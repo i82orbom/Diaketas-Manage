@@ -10,12 +10,12 @@ import java.awt.event.ActionListener;
  *
  * @author psylock
  */
-public class VistaPanelVoluntarioInicio extends javax.swing.JPanel {
+public class PanelVoluntarioInicio extends javax.swing.JPanel {
 
     /**
      * Creates new form VistaPanelVoluntarioInicio
      */
-    public VistaPanelVoluntarioInicio() {
+    public PanelVoluntarioInicio() {
         initComponents();
     }
 
@@ -41,11 +41,6 @@ public class VistaPanelVoluntarioInicio extends javax.swing.JPanel {
     public void anadirListenerbtNuevoVoluntario(ActionListener listener){
         this.btNuevoVoluntario.addActionListener(listener);
     }
-       
-    public void anadirListenernavToMainFromVoluntarios(ActionListener listener){
-        this.navToMainFromVoluntarios.addActionListener(listener);
-    }
-     
    
 
     /**
@@ -56,59 +51,21 @@ public class VistaPanelVoluntarioInicio extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        separadorVoluntario = new javax.swing.JSeparator();
-        senalaVoluntario = new javax.swing.JLabel();
-        labSVolunt = new javax.swing.JLabel();
         btNuevoVoluntario = new javax.swing.JButton();
         btBuscarVoluntario = new javax.swing.JButton();
         btContabilidad = new javax.swing.JButton();
         btAyudas = new javax.swing.JButton();
-        navToMainFromVoluntarios = new javax.swing.JButton();
         btColaboraciones = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(1000, 600));
-        setMinimumSize(new java.awt.Dimension(1000, 600));
-        setLayout(new java.awt.GridBagLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 12;
-        gridBagConstraints.ipadx = 987;
-        gridBagConstraints.ipady = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 6, 0, 6);
-        add(separadorVoluntario, gridBagConstraints);
-
-        senalaVoluntario.setForeground(new java.awt.Color(153, 153, 153));
-        senalaVoluntario.setText(">");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 0);
-        add(senalaVoluntario, gridBagConstraints);
-
-        labSVolunt.setText("Voluntarios");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 32, 0, 0);
-        add(labSVolunt, gridBagConstraints);
+        setMaximumSize(new java.awt.Dimension(1000, 550));
+        setMinimumSize(new java.awt.Dimension(1000, 550));
+        setPreferredSize(new java.awt.Dimension(1000, 550));
+        setSize(new java.awt.Dimension(1000, 550));
 
         btNuevoVoluntario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/vol.png"))); // NOI18N
         btNuevoVoluntario.setActionCommand("nuevoVoluntario");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.ipady = 21;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(47, 96, 0, 0);
-        add(btNuevoVoluntario, gridBagConstraints);
 
         btBuscarVoluntario.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btBuscarVoluntario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/lupa.png"))); // NOI18N
@@ -116,12 +73,6 @@ public class VistaPanelVoluntarioInicio extends javax.swing.JPanel {
         btBuscarVoluntario.setActionCommand("buscarVoluntario");
         btBuscarVoluntario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btBuscarVoluntario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(47, 154, 0, 0);
-        add(btBuscarVoluntario, gridBagConstraints);
 
         btContabilidad.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btContabilidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/contabilidad.jpg"))); // NOI18N
@@ -129,15 +80,6 @@ public class VistaPanelVoluntarioInicio extends javax.swing.JPanel {
         btContabilidad.setActionCommand("contabilidad");
         btContabilidad.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btContabilidad.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.ipadx = 30;
-        gridBagConstraints.ipady = 30;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(66, 96, 85, 0);
-        add(btContabilidad, gridBagConstraints);
 
         btAyudas.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btAyudas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/images.jpg"))); // NOI18N
@@ -145,26 +87,6 @@ public class VistaPanelVoluntarioInicio extends javax.swing.JPanel {
         btAyudas.setActionCommand("ayudas");
         btAyudas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btAyudas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 30;
-        gridBagConstraints.ipady = 30;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(66, 154, 85, 0);
-        add(btAyudas, gridBagConstraints);
-
-        navToMainFromVoluntarios.setForeground(new java.awt.Color(0, 0, 255));
-        navToMainFromVoluntarios.setText("DIAKETAS");
-        navToMainFromVoluntarios.setActionCommand("navToMainFromVoluntarios");
-        navToMainFromVoluntarios.setBorderPainted(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipady = -15;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 6, 0, 0);
-        add(navToMainFromVoluntarios, gridBagConstraints);
 
         btColaboraciones.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btColaboraciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/monigote-devoluciones_1.jpg"))); // NOI18N
@@ -172,15 +94,39 @@ public class VistaPanelVoluntarioInicio extends javax.swing.JPanel {
         btColaboraciones.setActionCommand("contabilidad");
         btColaboraciones.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btColaboraciones.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.ipadx = 30;
-        gridBagConstraints.ipady = 30;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(66, 135, 85, 0);
-        add(btColaboraciones, gridBagConstraints);
+
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .add(96, 96, 96)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(btNuevoVoluntario)
+                    .add(layout.createSequentialGroup()
+                        .add(btContabilidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 169, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(121, 121, 121)
+                        .add(btColaboraciones, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 166, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .add(161, 161, 161)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(btAyudas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 166, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(btBuscarVoluntario))
+                .add(121, 121, 121))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .add(98, 98, 98)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(btNuevoVoluntario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 183, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(btBuscarVoluntario))
+                .add(72, 72, 72)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                    .add(btColaboraciones, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .add(btAyudas, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(btContabilidad, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAyudas;
@@ -188,9 +134,5 @@ public class VistaPanelVoluntarioInicio extends javax.swing.JPanel {
     private javax.swing.JButton btColaboraciones;
     private javax.swing.JButton btContabilidad;
     private javax.swing.JButton btNuevoVoluntario;
-    private javax.swing.JLabel labSVolunt;
-    private javax.swing.JButton navToMainFromVoluntarios;
-    private javax.swing.JLabel senalaVoluntario;
-    private javax.swing.JSeparator separadorVoluntario;
     // End of variables declaration//GEN-END:variables
 }

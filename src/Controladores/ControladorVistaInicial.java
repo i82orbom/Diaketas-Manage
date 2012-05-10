@@ -74,7 +74,7 @@ public class ControladorVistaInicial {
         @Override
         public void actionPerformed(ActionEvent e) {
             
-           Raiz.mostrarVista(m_view, VistaPanelVoluntarioInicio.class);
+           Raiz.mostrarVista(m_view, PanelVoluntarioInicio.class);
             
         }
     }

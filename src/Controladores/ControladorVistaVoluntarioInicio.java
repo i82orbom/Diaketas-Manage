@@ -8,7 +8,7 @@ import Modelos.ModeloVistaLogin;
 import Vistas.Raiz;
 import Vistas.VistaInicial;
 import Vistas.VistaLogin;
-import Vistas.VistaPanelVoluntarioInicio;
+import Vistas.PanelVoluntarioInicio;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,11 +23,11 @@ import javax.swing.JPanel;
 public class ControladorVistaVoluntarioInicio {
     
     //... The Controller needs to interact with both the Model and View.
-    private VistaPanelVoluntarioInicio  m_view;
+    private PanelVoluntarioInicio  m_view;
     
     //========================================================== constructor
     /** Constructor */
-    public ControladorVistaVoluntarioInicio(VistaPanelVoluntarioInicio view) {
+    public ControladorVistaVoluntarioInicio(PanelVoluntarioInicio view) {
     
         m_view  = view;
     
@@ -38,7 +38,6 @@ public class ControladorVistaVoluntarioInicio {
         m_view.anadirListenerbtColaboraciones(new BtColaboracionesListener());
         m_view.anadirListenerbtContabilidad(new BtContabilidadListener());
         m_view.anadirListenerbtNuevoVoluntario(new BtNuevoVoluntarioListener());
-        m_view.anadirListenernavToMainFromVoluntarios(new NavToMainFromVoluntariosListener());
      
     }
     

@@ -30,7 +30,6 @@ public class Raiz extends javax.swing.JFrame {
         ControladorVistaBeneficiariosInicio cvBI = new ControladorVistaBeneficiariosInicio(vistaBeneficiarioInicio1);
         ControladorVistaBeneficiarioBuscar cvBB = new ControladorVistaBeneficiarioBuscar(vistaBeneficiarioBuscar1);
         ControladorVistaBeneficiarioDatos cvBD = new ControladorVistaBeneficiarioDatos(vistaBeneficiarioDatos1);
-        ControladorVistaVoluntarioInicio cvVI = new ControladorVistaVoluntarioInicio(vistaPanelVoluntarioInicio1);
     }
     
     
@@ -93,21 +92,26 @@ public class Raiz extends javax.swing.JFrame {
         vistaBeneficiarioInicio1 = new Vistas.VistaBeneficiarioInicio();
         vistaBeneficiarioBuscar1 = new Vistas.VistaBeneficiarioBuscar();
         vistaBeneficiarioDatos1 = new Vistas.VistaBeneficiarioDatos();
-        vistaPanelVoluntarioInicio1 = new Vistas.VistaPanelVoluntarioInicio();
+        panelVoluntario1 = new Vistas.PanelVoluntario();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(135, 170, 235));
         setBounds(new java.awt.Rectangle(0, 0, 1000, 700));
         setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
+        setPreferredSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
+
+        vistaLogin1.setMaximumSize(new java.awt.Dimension(1000, 600));
+        vistaLogin1.setMinimumSize(new java.awt.Dimension(1000, 600));
+        vistaLogin1.setPreferredSize(new java.awt.Dimension(1000, 600));
         getContentPane().add(vistaLogin1, "card2");
         getContentPane().add(vistaInicial2, "card3");
         getContentPane().add(vistaBeneficiarioInicio1, "card4");
         getContentPane().add(vistaBeneficiarioBuscar1, "card5");
         getContentPane().add(vistaBeneficiarioDatos1, "card6");
-        getContentPane().add(vistaPanelVoluntarioInicio1, "card7");
+        getContentPane().add(panelVoluntario1, "card7");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -154,11 +158,11 @@ public class Raiz extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Vistas.PanelVoluntario panelVoluntario1;
     private Vistas.VistaBeneficiarioBuscar vistaBeneficiarioBuscar1;
     private Vistas.VistaBeneficiarioDatos vistaBeneficiarioDatos1;
     private Vistas.VistaBeneficiarioInicio vistaBeneficiarioInicio1;
     private Vistas.VistaInicial vistaInicial2;
     private Vistas.VistaLogin vistaLogin1;
-    private Vistas.VistaPanelVoluntarioInicio vistaPanelVoluntarioInicio1;
     // End of variables declaration//GEN-END:variables
 }
