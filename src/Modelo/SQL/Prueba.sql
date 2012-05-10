@@ -1,0 +1,3 @@
+CREATE TABLE beneficiario (
+id VARCHAR(5) PRIMARY KEY
+);
