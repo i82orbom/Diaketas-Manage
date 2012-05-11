@@ -32,12 +32,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="navToMainFromVoluntarios" min="-2" max="-2" attributes="0"/>
+              <Component id="navToMain" min="-2" pref="106" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="senalaVoluntario" min="-2" pref="21" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="768" max="32767" attributes="0"/>
+              <Component id="senalaPrincipal" min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="labelMenuPrincipal" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Component id="senalaAvanzado" min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="labelMenuAvanzado" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="666" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,9 +50,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="navToMainFromVoluntarios" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
-                  <Component id="senalaVoluntario" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="navToMain" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                  <Component id="senalaPrincipal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelMenuPrincipal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="senalaAvanzado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelMenuAvanzado" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
@@ -56,7 +62,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="navToMainFromVoluntarios">
+    <Component class="javax.swing.JButton" name="navToMain">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="0" red="0" type="rgb"/>
@@ -65,8 +71,11 @@
         <Property name="actionCommand" type="java.lang.String" value="navToMainFromVoluntarios"/>
         <Property name="borderPainted" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="navToMainActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="senalaVoluntario">
+    <Component class="javax.swing.JLabel" name="senalaPrincipal">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="99" type="rgb"/>
@@ -74,9 +83,25 @@
         <Property name="text" type="java.lang.String" value="&gt;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="labelMenuPrincipal">
       <Properties>
         <Property name="text" type="java.lang.String" value="Voluntario"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelMenuPrincipalMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="senalaAvanzado">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelMenuAvanzado">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
     </Component>
   </SubComponents>

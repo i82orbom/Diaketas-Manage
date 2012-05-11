@@ -4,17 +4,57 @@
  */
 package Vistas;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author raphaelcolleau
  */
-public class PanelVoluntario extends javax.swing.JPanel {
+public class VistaVoluntario extends javax.swing.JPanel {
 
+    /* identificador de los paneles en el CardLayout */ 
+    public static String panelInicio = "inicio";
+    public static String panelBuscar = "buscar";
+    public static String panelDatos = "datos";
+    public static String panelAyudas = "ayuda";
+    public static String panelContabilidad = "contabilidad";
+    
     /**
      * Creates new form PanelVoluntario
      */
-    public PanelVoluntario() {
+    public VistaVoluntario() {
         initComponents();
+    }
+
+    // getter panel
+    public BarraDeNavigacion getBarraDeNavigacion() {
+        return barraDeNavigacion;
+    }
+
+    public PanelVoluntarioBuscar getPanelVoluntarioBuscar() {
+        return panelVoluntarioBuscar;
+    }
+
+    public PanelVoluntarioInicio getPanelVoluntarioInicio() {
+        return panelVoluntarioInicio;
+    }
+
+    public PanelVoluntarioAyudas getPanelVoluntarioAyudas() {
+        return panelVoluntarioAyudas;
+    }
+
+    public PanelVoluntarioContabilidad getPanelVoluntarioContabilidad() {
+        return panelVoluntarioContabilidad;
+    }
+
+    public PanelVoluntarioDatos getPanelVoluntarioDatos() {
+        return panelVoluntarioDatos;
+    }
+    
+    // mostrar un panel con el CardLayoud
+    public void showPanel (String panel) {
+        CardLayout cardLayout =  (CardLayout)panelVoluntario.getLayout();
+        cardLayout.show(panelVoluntario, panel);
     }
 
     /**
@@ -26,42 +66,41 @@ public class PanelVoluntario extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        barraDeNavigacion1 = new Vistas.BarraDeNavigacion();
-        panelVoluntarioBuscar1 = new Vistas.PanelVoluntarioBuscar();
-        panelVoluntarioInicio1 = new Vistas.PanelVoluntarioInicio();
+        barraDeNavigacion = new Vistas.BarraDeNavigacion();
+        panelVoluntario = new javax.swing.JPanel();
+        panelVoluntarioInicio = new Vistas.PanelVoluntarioInicio();
+        panelVoluntarioDatos = new Vistas.PanelVoluntarioDatos();
+        panelVoluntarioBuscar = new Vistas.PanelVoluntarioBuscar();
+        panelVoluntarioAyudas = new Vistas.PanelVoluntarioAyudas();
+        panelVoluntarioContabilidad = new Vistas.PanelVoluntarioContabilidad();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
+        setSize(new java.awt.Dimension(1000, 600));
+        setLayout(new java.awt.BorderLayout());
+        add(barraDeNavigacion, java.awt.BorderLayout.PAGE_START);
 
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(0, 0, Short.MAX_VALUE)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, barraDeNavigacion1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, panelVoluntarioBuscar1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(panelVoluntarioInicio1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(barraDeNavigacion1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(panelVoluntarioBuscar1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(panelVoluntarioInicio1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        panelVoluntario.setMaximumSize(new java.awt.Dimension(1000, 550));
+        panelVoluntario.setMinimumSize(new java.awt.Dimension(1000, 550));
+        panelVoluntario.setPreferredSize(new java.awt.Dimension(1000, 550));
+        panelVoluntario.setLayout(new java.awt.CardLayout());
+        panelVoluntario.add(panelVoluntarioInicio, "inicio");
+        panelVoluntario.add(panelVoluntarioDatos, "datos");
+        panelVoluntario.add(panelVoluntarioBuscar, "buscar");
+        panelVoluntario.add(panelVoluntarioAyudas, "ayuda");
+        panelVoluntario.add(panelVoluntarioContabilidad, "contabilidad");
+
+        add(panelVoluntario, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Vistas.BarraDeNavigacion barraDeNavigacion1;
-    private Vistas.PanelVoluntarioBuscar panelVoluntarioBuscar1;
-    private Vistas.PanelVoluntarioInicio panelVoluntarioInicio1;
+    private Vistas.BarraDeNavigacion barraDeNavigacion;
+    private javax.swing.JPanel panelVoluntario;
+    private Vistas.PanelVoluntarioAyudas panelVoluntarioAyudas;
+    private Vistas.PanelVoluntarioBuscar panelVoluntarioBuscar;
+    private Vistas.PanelVoluntarioContabilidad panelVoluntarioContabilidad;
+    private Vistas.PanelVoluntarioDatos panelVoluntarioDatos;
+    private Vistas.PanelVoluntarioInicio panelVoluntarioInicio;
     // End of variables declaration//GEN-END:variables
 }

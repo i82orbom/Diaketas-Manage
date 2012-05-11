@@ -8,12 +8,12 @@ package Vistas;
  *
  * @author raphaelcolleau
  */
-public class PanelVoluntarioDatos extends javax.swing.JPanel {
+public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
 
     /**
-     * Creates new form PanelVoluntarioDatos
+     * Creates new form PanelVoluntarioContabilidad
      */
-    public PanelVoluntarioDatos() {
+    public PanelVoluntarioContabilidad() {
         initComponents();
     }
 
@@ -33,23 +33,23 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1000, 550));
         setPreferredSize(new java.awt.Dimension(1000, 550));
 
-        jLabel1.setText("Panel Voluntario Datos");
+        jLabel1.setText("Panel Voluntario Contabilidad");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .addContainerGap()
+                .add(62, 62, 62)
                 .add(jLabel1)
-                .addContainerGap(851, Short.MAX_VALUE))
+                .addContainerGap(752, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .addContainerGap()
+                .add(113, 113, 113)
                 .add(jLabel1)
-                .addContainerGap(528, Short.MAX_VALUE))
+                .addContainerGap(471, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

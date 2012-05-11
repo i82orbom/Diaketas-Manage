@@ -4,8 +4,7 @@
  */
 package Vistas;
 
-import Controladores.*;
-import Modelos.ModeloVistaLogin;
+import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,10 +12,15 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author psylock
+ * @author psylock, Raphael Colleau
  */
 public class Raiz extends javax.swing.JFrame {
 
+    /* identificador de los paneles en el CardLayout 
+       anadir una linea aqui y poner, en el design el nombre en el parametro CardName*/ 
+    public static String panelLogin = "login";
+    public static String panelInicio = "inicio";
+    public static String panelVoluntario = "voluntario";
     /**
      * Creates new form Raiz
      */
@@ -24,15 +28,19 @@ public class Raiz extends javax.swing.JFrame {
         initComponents();
         
         /** Inicializar los controladores */
-        
-        ControladorVistaLogin cvl = new ControladorVistaLogin(vistaLogin1);
-        ControladorVistaInicial cvI = new ControladorVistaInicial(vistaInicial2);
-        ControladorVistaBeneficiariosInicio cvBI = new ControladorVistaBeneficiariosInicio(vistaBeneficiarioInicio1);
-        ControladorVistaBeneficiarioBuscar cvBB = new ControladorVistaBeneficiarioBuscar(vistaBeneficiarioBuscar1);
-        ControladorVistaBeneficiarioDatos cvBD = new ControladorVistaBeneficiarioDatos(vistaBeneficiarioDatos1);
+        // Los controladores ne se pueden inicializarse en una vista
+        //ControladorVistaBeneficiariosInicio cvBI = new ControladorVistaBeneficiariosInicio(vistaBeneficiarioInicio1);
+        //ControladorVistaBeneficiarioBuscar cvBB = new ControladorVistaBeneficiarioBuscar(vistaBeneficiarioBuscar1);
+        //ControladorVistaBeneficiarioDatos cvBD = new ControladorVistaBeneficiarioDatos(vistaBeneficiarioDatos1);
     }
     
+    // mostrar un panel con el CardLayoud
+    public void showPanel (String panel) {
+        CardLayout cardLayout =  (CardLayout)getContentPane().getLayout();
+        cardLayout.show(getContentPane(), panel);
+    }
     
+    // A borrar
     public static void mostrarVista(JPanel vistaOrigen, Class claseVista){
            // Se ocultan todos los demás 
 
@@ -50,13 +58,14 @@ public class Raiz extends javax.swing.JFrame {
                             ((JPanel)cComponent).setVisible(true);
                         }
                     } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(ControladorVistaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Raiz.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
            
     }
     
+    // A borrar
     public static Component getVista(JPanel vistaOrigen, Class claseVista){
          for (int i = 0; i < vistaOrigen.getParent().getComponentCount(); ++i){
                 
@@ -70,7 +79,7 @@ public class Raiz extends javax.swing.JFrame {
                         }
                         
                     } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(ControladorVistaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Raiz.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
@@ -87,31 +96,32 @@ public class Raiz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        vistaLogin1 = new Vistas.VistaLogin();
-        vistaInicial2 = new Vistas.VistaInicial();
+        vistaLogin = new Vistas.VistaLogin();
+        vistaInicial = new Vistas.VistaInicial();
         vistaBeneficiarioInicio1 = new Vistas.VistaBeneficiarioInicio();
         vistaBeneficiarioBuscar1 = new Vistas.VistaBeneficiarioBuscar();
         vistaBeneficiarioDatos1 = new Vistas.VistaBeneficiarioDatos();
-        panelVoluntario1 = new Vistas.PanelVoluntario();
+        vistaVoluntario = new Vistas.VistaVoluntario();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Diaketas");
         setBackground(new java.awt.Color(135, 170, 235));
         setBounds(new java.awt.Rectangle(0, 0, 1000, 700));
         setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
-        setPreferredSize(new java.awt.Dimension(1000, 700));
+        setPreferredSize(new java.awt.Dimension(1044, 644));
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        vistaLogin1.setMaximumSize(new java.awt.Dimension(1000, 600));
-        vistaLogin1.setMinimumSize(new java.awt.Dimension(1000, 600));
-        vistaLogin1.setPreferredSize(new java.awt.Dimension(1000, 600));
-        getContentPane().add(vistaLogin1, "card2");
-        getContentPane().add(vistaInicial2, "card3");
+        vistaLogin.setMaximumSize(new java.awt.Dimension(1000, 600));
+        vistaLogin.setMinimumSize(new java.awt.Dimension(1000, 600));
+        vistaLogin.setPreferredSize(new java.awt.Dimension(1000, 600));
+        getContentPane().add(vistaLogin, "login");
+        getContentPane().add(vistaInicial, "inicio");
         getContentPane().add(vistaBeneficiarioInicio1, "card4");
         getContentPane().add(vistaBeneficiarioBuscar1, "card5");
         getContentPane().add(vistaBeneficiarioDatos1, "card6");
-        getContentPane().add(panelVoluntario1, "card7");
+        getContentPane().add(vistaVoluntario, "voluntario");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -157,12 +167,27 @@ public class Raiz extends javax.swing.JFrame {
             }
         });
     }
+
+    // getter vista
+    public VistaVoluntario getPanelVoluntario() {
+        return vistaVoluntario;
+    }
+
+    public VistaInicial getVistaInicial() {
+        return vistaInicial;
+    }
+
+    public VistaLogin getVistaLogin() {
+        return vistaLogin;
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Vistas.PanelVoluntario panelVoluntario1;
     private Vistas.VistaBeneficiarioBuscar vistaBeneficiarioBuscar1;
     private Vistas.VistaBeneficiarioDatos vistaBeneficiarioDatos1;
     private Vistas.VistaBeneficiarioInicio vistaBeneficiarioInicio1;
-    private Vistas.VistaInicial vistaInicial2;
-    private Vistas.VistaLogin vistaLogin1;
+    private Vistas.VistaInicial vistaInicial;
+    private Vistas.VistaLogin vistaLogin;
+    private Vistas.VistaVoluntario vistaVoluntario;
     // End of variables declaration//GEN-END:variables
 }

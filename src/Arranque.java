@@ -1,6 +1,5 @@
 
-import Vistas.Raiz;
-import javax.swing.JFrame;
+import Controladores.ControladorPrincipal;
 
 /*
  * To change this template, choose Tools | Templates
@@ -15,6 +14,7 @@ public class Arranque {
     
     public static void main (String ...args){
         
-        Raiz.initialize(args);
+        ControladorPrincipal.getInstance();
+                
     }
 }

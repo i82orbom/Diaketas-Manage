@@ -6,6 +6,10 @@ package Vistas;
 
 import Modelos.ModeloVistaLogin;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -21,6 +25,22 @@ public class VistaLogin extends javax.swing.JPanel {
         initComponents();
         VistaLogin.modelo = new ModeloVistaLogin();
         this.textErrorLogin.setVisible(false);
+    }
+
+    public JButton getBtConectarse() {
+        return btConectarse;
+    }
+
+    public JLabel getTextErrorLogin() {
+        return textErrorLogin;
+    }
+
+    public JPasswordField getTextFieldContrasena() {
+        return textFieldContrasena;
+    }
+
+    public JTextField getTextFieldIdUsuario() {
+        return textFieldIdUsuario;
     }
     
     public ModeloVistaLogin getModelo(){

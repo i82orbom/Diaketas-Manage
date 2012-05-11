@@ -4,17 +4,47 @@
  */
 package Vistas;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
- *
+ ** DESCRIPCION :
+ *      Barra de navigacion generica
+ * 
  * @author raphaelcolleau
  */
 public class BarraDeNavigacion extends javax.swing.JPanel {
-
+    
+    ActionListener listener;
     /**
      * Creates new form BarraDeNavigacion
      */
     public BarraDeNavigacion() {
         initComponents();
+        senalaPrincipal.setVisible(false);
+        labelMenuPrincipal.setVisible(false);
+        senalaAvanzado.setVisible(false);
+        labelMenuAvanzado.setVisible(false);
+    }
+
+    // anadir el listener de un controlador para recibir los eventos
+    public void setListener(ActionListener listener) {
+        this.listener = listener;
+    }
+    
+    // indicar un texto de la vista
+    public void setTextLabelMenuPrincipal (String text) {
+        labelMenuPrincipal.setText(text);
+        labelMenuPrincipal.setVisible(true);
+        senalaPrincipal.setVisible(true);
+    }
+    
+    // indicar un texto del panel
+    public void setTextLabelMenuAvanzado (String text) {
+        labelMenuAvanzado.setText(text);
+        labelMenuAvanzado.setVisible(true);
+        senalaAvanzado.setVisible(true);
+        
     }
 
     /**
@@ -26,24 +56,41 @@ public class BarraDeNavigacion extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        navToMainFromVoluntarios = new javax.swing.JButton();
-        senalaVoluntario = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        navToMain = new javax.swing.JButton();
+        senalaPrincipal = new javax.swing.JLabel();
+        labelMenuPrincipal = new javax.swing.JLabel();
+        senalaAvanzado = new javax.swing.JLabel();
+        labelMenuAvanzado = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 50));
         setMinimumSize(new java.awt.Dimension(1000, 50));
         setPreferredSize(new java.awt.Dimension(1000, 50));
 
-        navToMainFromVoluntarios.setForeground(new java.awt.Color(0, 0, 255));
-        navToMainFromVoluntarios.setText("DIAKETAS");
-        navToMainFromVoluntarios.setActionCommand("navToMainFromVoluntarios");
-        navToMainFromVoluntarios.setBorderPainted(false);
+        navToMain.setForeground(new java.awt.Color(0, 0, 255));
+        navToMain.setText("DIAKETAS");
+        navToMain.setActionCommand("navToMainFromVoluntarios");
+        navToMain.setBorderPainted(false);
+        navToMain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                navToMainActionPerformed(evt);
+            }
+        });
 
-        senalaVoluntario.setForeground(new java.awt.Color(153, 153, 153));
-        senalaVoluntario.setText(">");
+        senalaPrincipal.setForeground(new java.awt.Color(153, 153, 153));
+        senalaPrincipal.setText(">");
 
-        jLabel1.setText("Voluntario");
+        labelMenuPrincipal.setText("Voluntario");
+        labelMenuPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelMenuPrincipalMouseClicked(evt);
+            }
+        });
+
+        senalaAvanzado.setForeground(new java.awt.Color(153, 153, 153));
+        senalaAvanzado.setText(">");
+
+        labelMenuAvanzado.setText("Buscar");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -51,27 +98,57 @@ public class BarraDeNavigacion extends javax.swing.JPanel {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(navToMainFromVoluntarios)
+                .add(navToMain, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 106, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(senalaVoluntario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(28, 28, 28)
-                .add(jLabel1)
-                .addContainerGap(768, Short.MAX_VALUE))
+                .add(senalaPrincipal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
+                .add(labelMenuPrincipal)
+                .add(32, 32, 32)
+                .add(senalaAvanzado, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
+                .add(labelMenuAvanzado)
+                .addContainerGap(666, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(16, 16, 16)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(navToMainFromVoluntarios, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(senalaVoluntario)
-                    .add(jLabel1))
+                    .add(navToMain, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(senalaPrincipal)
+                    .add(labelMenuPrincipal)
+                    .add(senalaAvanzado)
+                    .add(labelMenuAvanzado))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void navToMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_navToMainActionPerformed
+        senalaPrincipal.setVisible(false);
+        labelMenuPrincipal.setVisible(false);
+        senalaAvanzado.setVisible(false);
+        labelMenuAvanzado.setVisible(false);
+        
+        // manda un event al controlador para cambiar de panel
+        ActionEvent event = new ActionEvent(this, 0, "toMain");
+        listener.actionPerformed(event);
+    }//GEN-LAST:event_navToMainActionPerformed
+
+    private void labelMenuPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMenuPrincipalMouseClicked
+
+        senalaAvanzado.setVisible(false);
+        labelMenuAvanzado.setVisible(false);
+        
+        // manda un event al controlador para cambiar de panel
+        ActionEvent event = new ActionEvent(this, 0, "toMenuInicial");
+        listener.actionPerformed(event);
+    }//GEN-LAST:event_labelMenuPrincipalMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton navToMainFromVoluntarios;
-    private javax.swing.JLabel senalaVoluntario;
+    private javax.swing.JLabel labelMenuAvanzado;
+    private javax.swing.JLabel labelMenuPrincipal;
+    private javax.swing.JButton navToMain;
+    private javax.swing.JLabel senalaAvanzado;
+    private javax.swing.JLabel senalaPrincipal;
     // End of variables declaration//GEN-END:variables
 }
