@@ -80,6 +80,8 @@ public class VistaVoluntario extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1000, 600));
         setSize(new java.awt.Dimension(1000, 600));
         setLayout(new java.awt.BorderLayout());
+
+        barraDeNavigacion.setAlignmentX(10.0F);
         add(barraDeNavigacion, java.awt.BorderLayout.PAGE_START);
 
         panelVoluntario.setMaximumSize(new java.awt.Dimension(1000, 550));

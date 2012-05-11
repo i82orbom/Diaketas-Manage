@@ -61,6 +61,7 @@ public class BarraDeNavigacion extends javax.swing.JPanel {
         labelMenuPrincipal = new javax.swing.JLabel();
         senalaAvanzado = new javax.swing.JLabel();
         labelMenuAvanzado = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 50));
@@ -98,16 +99,20 @@ public class BarraDeNavigacion extends javax.swing.JPanel {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(navToMain, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 106, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(senalaPrincipal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(labelMenuPrincipal)
-                .add(32, 32, 32)
-                .add(senalaAvanzado, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(labelMenuAvanzado)
-                .addContainerGap(666, Short.MAX_VALUE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jSeparator1)
+                    .add(layout.createSequentialGroup()
+                        .add(navToMain, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 106, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(senalaPrincipal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(18, 18, 18)
+                        .add(labelMenuPrincipal)
+                        .add(32, 32, 32)
+                        .add(senalaAvanzado, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(18, 18, 18)
+                        .add(labelMenuAvanzado)
+                        .add(0, 660, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -119,7 +124,9 @@ public class BarraDeNavigacion extends javax.swing.JPanel {
                     .add(labelMenuPrincipal)
                     .add(senalaAvanzado)
                     .add(labelMenuAvanzado))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -145,6 +152,7 @@ public class BarraDeNavigacion extends javax.swing.JPanel {
     }//GEN-LAST:event_labelMenuPrincipalMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelMenuAvanzado;
     private javax.swing.JLabel labelMenuPrincipal;
     private javax.swing.JButton navToMain;

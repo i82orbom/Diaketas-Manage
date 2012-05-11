@@ -59,7 +59,6 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
         btColaboraciones = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setMaximumSize(new java.awt.Dimension(1000, 550));
         setMinimumSize(new java.awt.Dimension(1000, 550));
         setPreferredSize(new java.awt.Dimension(1000, 550));
@@ -68,7 +67,7 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
 
         btNuevoVoluntario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/vol.png"))); // NOI18N
         btNuevoVoluntario.setActionCommand("nuevoVoluntario");
-        add(btNuevoVoluntario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, 183));
+        add(btNuevoVoluntario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, 183));
 
         btBuscarVoluntario.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btBuscarVoluntario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/lupa.png"))); // NOI18N
@@ -76,7 +75,7 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
         btBuscarVoluntario.setActionCommand("buscarVoluntario");
         btBuscarVoluntario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btBuscarVoluntario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        add(btBuscarVoluntario, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 70, -1, -1));
+        add(btBuscarVoluntario, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 60, -1, -1));
 
         btContabilidad.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btContabilidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/contabilidad.jpg"))); // NOI18N
