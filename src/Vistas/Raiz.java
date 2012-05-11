@@ -26,6 +26,7 @@ public class Raiz extends javax.swing.JFrame {
      */
     public Raiz() {
         initComponents();
+        setLocationRelativeTo(null);
         
         /** Inicializar los controladores */
         // Los controladores ne se pueden inicializarse en una vista
@@ -107,10 +108,12 @@ public class Raiz extends javax.swing.JFrame {
         setTitle("Diaketas");
         setBackground(new java.awt.Color(135, 170, 235));
         setBounds(new java.awt.Rectangle(0, 0, 1000, 700));
-        setMaximumSize(new java.awt.Dimension(1000, 700));
-        setMinimumSize(new java.awt.Dimension(1000, 700));
-        setPreferredSize(new java.awt.Dimension(1044, 644));
+        setMaximumSize(new java.awt.Dimension(1000, 600));
+        setMinimumSize(new java.awt.Dimension(1000, 600));
+        setName("Diaketas");
+        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
+        setSize(new java.awt.Dimension(1000, 600));
         getContentPane().setLayout(new java.awt.CardLayout());
 
         vistaLogin.setMaximumSize(new java.awt.Dimension(1000, 600));

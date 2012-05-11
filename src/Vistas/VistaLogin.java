@@ -77,7 +77,6 @@ public class VistaLogin extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         imgLogo = new javax.swing.JLabel();
         labelTitulo = new javax.swing.JLabel();
@@ -89,84 +88,35 @@ public class VistaLogin extends javax.swing.JPanel {
         textErrorLogin = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setLayout(new java.awt.GridBagLayout());
+        setMaximumSize(new java.awt.Dimension(1000, 600));
+        setMinimumSize(new java.awt.Dimension(1000, 600));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imgLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/Acceso_Usuarios.jpg"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 7;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(148, 74, 0, 0);
-        add(imgLogo, gridBagConstraints);
+        add(imgLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 145, -1, -1));
 
-        labelTitulo.setFont(new java.awt.Font("Times New Roman", 1, 26)); // NOI18N
+        labelTitulo.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         labelTitulo.setForeground(new java.awt.Color(255, 0, 0));
         labelTitulo.setText("BIENVENIDO A DIAKETAS");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.ipady = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(148, 98, 0, 201);
-        add(labelTitulo, gridBagConstraints);
+        add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 480, 50));
 
         labelUsuario.setText("USUARIO");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(141, 61, 0, 0);
-        add(labelUsuario, gridBagConstraints);
+        add(labelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, -1, -1));
 
         labelContrasena.setText("CONTRASEÑA");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 30, 0, 0);
-        add(labelContrasena, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 208;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(135, 94, 0, 201);
-        add(textFieldIdUsuario, gridBagConstraints);
+        add(labelContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, -1, -1));
+        add(textFieldIdUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 293, 222, -1));
 
         btConectarse.setText("Entrar");
         btConectarse.setActionCommand("accionLogin");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 53;
-        gridBagConstraints.ipady = -2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 182, 0, 201);
-        add(btConectarse, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 208;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 94, 0, 201);
-        add(textFieldContrasena, gridBagConstraints);
+        add(btConectarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 400, 134, 27));
+        add(textFieldContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 344, 222, -1));
 
+        textErrorLogin.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         textErrorLogin.setForeground(new java.awt.Color(255, 0, 0));
         textErrorLogin.setText("ERROR AL HACER LOGIN. INTÉNTELO DE NUEVO.");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(41, 98, 86, 0);
-        add(textErrorLogin, gridBagConstraints);
+        add(textErrorLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 480, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConectarse;
