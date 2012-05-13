@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package Vistas.Paneles.Voluntario;
 
 import java.awt.event.ActionListener;
 

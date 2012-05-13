@@ -13,13 +13,13 @@ import java.awt.event.ActionListener;
  * 
  * @author raphaelcolleau
  */
-public class BarraDeNavigacion extends javax.swing.JPanel {
+public class BarraDeNavegacion extends javax.swing.JPanel {
     
     ActionListener listener;
     /**
-     * Creates new form BarraDeNavigacion
+     * Creates new form BarraDeNavegacion
      */
-    public BarraDeNavigacion() {
+    public BarraDeNavegacion() {
         initComponents();
         senalaPrincipal.setVisible(false);
         labelMenuPrincipal.setVisible(false);

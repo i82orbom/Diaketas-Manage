@@ -33,7 +33,7 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
   <SubComponents>
-    <Component class="Vistas.BarraDeNavigacion" name="barraDeNavigacion">
+    <Component class="Vistas.BarraDeNavegacion" name="barraDeNavegacion">
       <Properties>
         <Property name="alignmentX" type="float" value="10.0"/>
       </Properties>
@@ -63,35 +63,35 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
       <SubComponents>
-        <Component class="Vistas.PanelVoluntarioInicio" name="panelVoluntarioInicio">
+        <Component class="Vistas.Paneles.Voluntario.PanelVoluntarioInicio" name="panelVoluntarioInicio">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="inicio"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Vistas.PanelVoluntarioDatos" name="panelVoluntarioDatos">
+        <Component class="Vistas.Paneles.Voluntario.PanelVoluntarioDatos" name="panelVoluntarioDatos">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="datos"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Vistas.PanelVoluntarioBuscar" name="panelVoluntarioBuscar">
+        <Component class="Vistas.Paneles.Voluntario.PanelVoluntarioBuscar" name="panelVoluntarioBuscar">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="buscar"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Vistas.PanelVoluntarioAyudas" name="panelVoluntarioAyudas">
+        <Component class="Vistas.Paneles.Voluntario.PanelVoluntarioAyudas" name="panelVoluntarioAyudas">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="ayuda"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Vistas.PanelVoluntarioContabilidad" name="panelVoluntarioContabilidad">
+        <Component class="Vistas.Paneles.Voluntario.PanelVoluntarioContabilidad" name="panelVoluntarioContabilidad">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="contabilidad"/>

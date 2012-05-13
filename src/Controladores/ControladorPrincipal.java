@@ -71,11 +71,13 @@ public class ControladorPrincipal {
         vista.showPanel(Raiz.panelLogin);
 
         // Para crear la instancia de los controladores con la vista asociada
-        ControladorVoluntario.getInstance(vista.getPanelVoluntario());
+        ControladorVoluntario.getInstance(this.vista.getPanelVoluntario());
+        ControladorBeneficiario.getInstance(this.vista.getVistaBeneficiario());
 
         // adicion de los listeners cuyo el controlador se encarga
         vista.getVistaLogin().anadirListenerBtConectarse(new BtConectarseListener());
         vista.getVistaInicial().anadirListenerbtVoluntario(new BtVoluntarioListener());
+        vista.getVistaInicial().anadirListenerbtBeneficiario(new BtBeneficiarioListener());
     }
 
     /*
@@ -132,4 +134,13 @@ public class ControladorPrincipal {
             vista.showPanel(Raiz.panelVoluntario);
         }
     }
+    
+    
+     class  BtBeneficiarioListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            vista.showPanel(Raiz.panelBeneficiario);
+        }
+     }
 }

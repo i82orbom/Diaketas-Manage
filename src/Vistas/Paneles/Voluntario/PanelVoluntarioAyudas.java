@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package Vistas.Paneles.Voluntario;
 
 /**
  *
@@ -49,7 +49,7 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .add(111, 111, 111)
                 .add(jLabel1)
-                .addContainerGap(473, Short.MAX_VALUE))
+                .addContainerGap(423, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

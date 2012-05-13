@@ -2,8 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package Vistas.Paneles.Voluntario;
 
+import Vistas.BarraDeNavegacion;
+import Vistas.Paneles.Voluntario.PanelVoluntarioBuscar;
+import Vistas.Paneles.Voluntario.PanelVoluntarioAyudas;
+import Vistas.Paneles.Voluntario.PanelVoluntarioDatos;
+import Vistas.Paneles.Voluntario.PanelVoluntarioInicio;
+import Vistas.Paneles.Voluntario.PanelVoluntarioContabilidad;
 import java.awt.CardLayout;
 
 /**
@@ -27,8 +33,8 @@ public class VistaVoluntario extends javax.swing.JPanel {
     }
 
     // getter panel
-    public BarraDeNavigacion getBarraDeNavigacion() {
-        return barraDeNavigacion;
+    public BarraDeNavegacion getBarraDeNavegacion() {
+        return barraDeNavegacion;
     }
 
     public PanelVoluntarioBuscar getPanelVoluntarioBuscar() {
@@ -66,13 +72,13 @@ public class VistaVoluntario extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        barraDeNavigacion = new Vistas.BarraDeNavigacion();
+        barraDeNavegacion = new Vistas.BarraDeNavegacion();
         panelVoluntario = new javax.swing.JPanel();
-        panelVoluntarioInicio = new Vistas.PanelVoluntarioInicio();
-        panelVoluntarioDatos = new Vistas.PanelVoluntarioDatos();
-        panelVoluntarioBuscar = new Vistas.PanelVoluntarioBuscar();
-        panelVoluntarioAyudas = new Vistas.PanelVoluntarioAyudas();
-        panelVoluntarioContabilidad = new Vistas.PanelVoluntarioContabilidad();
+        panelVoluntarioInicio = new Vistas.Paneles.Voluntario.PanelVoluntarioInicio();
+        panelVoluntarioDatos = new Vistas.Paneles.Voluntario.PanelVoluntarioDatos();
+        panelVoluntarioBuscar = new Vistas.Paneles.Voluntario.PanelVoluntarioBuscar();
+        panelVoluntarioAyudas = new Vistas.Paneles.Voluntario.PanelVoluntarioAyudas();
+        panelVoluntarioContabilidad = new Vistas.Paneles.Voluntario.PanelVoluntarioContabilidad();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
@@ -81,8 +87,8 @@ public class VistaVoluntario extends javax.swing.JPanel {
         setSize(new java.awt.Dimension(1000, 600));
         setLayout(new java.awt.BorderLayout());
 
-        barraDeNavigacion.setAlignmentX(10.0F);
-        add(barraDeNavigacion, java.awt.BorderLayout.PAGE_START);
+        barraDeNavegacion.setAlignmentX(10.0F);
+        add(barraDeNavegacion, java.awt.BorderLayout.PAGE_START);
 
         panelVoluntario.setMaximumSize(new java.awt.Dimension(1000, 550));
         panelVoluntario.setMinimumSize(new java.awt.Dimension(1000, 550));
@@ -97,12 +103,12 @@ public class VistaVoluntario extends javax.swing.JPanel {
         add(panelVoluntario, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Vistas.BarraDeNavigacion barraDeNavigacion;
+    private Vistas.BarraDeNavegacion barraDeNavegacion;
     private javax.swing.JPanel panelVoluntario;
-    private Vistas.PanelVoluntarioAyudas panelVoluntarioAyudas;
-    private Vistas.PanelVoluntarioBuscar panelVoluntarioBuscar;
-    private Vistas.PanelVoluntarioContabilidad panelVoluntarioContabilidad;
-    private Vistas.PanelVoluntarioDatos panelVoluntarioDatos;
-    private Vistas.PanelVoluntarioInicio panelVoluntarioInicio;
+    private Vistas.Paneles.Voluntario.PanelVoluntarioAyudas panelVoluntarioAyudas;
+    private Vistas.Paneles.Voluntario.PanelVoluntarioBuscar panelVoluntarioBuscar;
+    private Vistas.Paneles.Voluntario.PanelVoluntarioContabilidad panelVoluntarioContabilidad;
+    private Vistas.Paneles.Voluntario.PanelVoluntarioDatos panelVoluntarioDatos;
+    private Vistas.Paneles.Voluntario.PanelVoluntarioInicio panelVoluntarioInicio;
     // End of variables declaration//GEN-END:variables
 }

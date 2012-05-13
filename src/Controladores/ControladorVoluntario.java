@@ -5,7 +5,7 @@
 
 package Controladores;
 
-import Vistas.VistaVoluntario;
+import Vistas.Paneles.Voluntario.VistaVoluntario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
  **       
  **
  ** DESARROLLADO POR:
- *          Raphael Colleau (RC)
+ *          Raphael Colleau (RC) 
  **        
  **
  ** SUPERVISADO POR:
@@ -58,7 +58,7 @@ public class ControladorVoluntario {
 	vista = pvista;
         
         // anadir listener
-        vista.getBarraDeNavigacion().setListener(new ListenerBarraNavigacion());
+        vista.getBarraDeNavegacion().setListener(new ListenerBarraNavegacion());
         vista.getPanelVoluntarioInicio().anadirListenerbtAyudas(new btAyudasListener());
         vista.getPanelVoluntarioInicio().anadirListenerbtBuscarVoluntario(new btBuscarListener());
         vista.getPanelVoluntarioInicio().anadirListenerbtContabilidad(new btContabilidadListener());
@@ -68,38 +68,38 @@ public class ControladorVoluntario {
         mostrarVistaInicio();       
     }
     
-    // mostrar la vista que queremos y actualizacion de la barra de navigacion
+    // mostrar la vista que queremos y actualizacion de la barra de navegacion
     private void mostrarVistaInicio(){
         vista.showPanel(VistaVoluntario.panelInicio);
-        vista.getBarraDeNavigacion().setTextLabelMenuPrincipal("Voluntario");     
+        vista.getBarraDeNavegacion().setTextLabelMenuPrincipal("Voluntario");     
     }
     
     private void mostrarVistaBuscar(){
         vista.showPanel(VistaVoluntario.panelBuscar);
-        vista.getBarraDeNavigacion().setTextLabelMenuPrincipal("Voluntario");  
-        vista.getBarraDeNavigacion().setTextLabelMenuAvanzado("Buscar");
+        vista.getBarraDeNavegacion().setTextLabelMenuPrincipal("Voluntario");  
+        vista.getBarraDeNavegacion().setTextLabelMenuAvanzado("Buscar");
     }
     
     private void mostrarVistaDatos(){
         vista.showPanel(VistaVoluntario.panelDatos);
-        vista.getBarraDeNavigacion().setTextLabelMenuPrincipal("Voluntario");    
-        vista.getBarraDeNavigacion().setTextLabelMenuAvanzado("Datos");   
+        vista.getBarraDeNavegacion().setTextLabelMenuPrincipal("Voluntario");    
+        vista.getBarraDeNavegacion().setTextLabelMenuAvanzado("Datos");   
     }
     
     private void mostrarVistaAyudas(){
         vista.showPanel(VistaVoluntario.panelAyudas);
-        vista.getBarraDeNavigacion().setTextLabelMenuPrincipal("Voluntario");    
-        vista.getBarraDeNavigacion().setTextLabelMenuAvanzado("Ayudas");   
+        vista.getBarraDeNavegacion().setTextLabelMenuPrincipal("Voluntario");    
+        vista.getBarraDeNavegacion().setTextLabelMenuAvanzado("Ayudas");   
     }
     
     private void mostrarVistaContabilidad(){
         vista.showPanel(VistaVoluntario.panelContabilidad);
-        vista.getBarraDeNavigacion().setTextLabelMenuPrincipal("Voluntario");    
-        vista.getBarraDeNavigacion().setTextLabelMenuAvanzado("Contabilidad");   
+        vista.getBarraDeNavegacion().setTextLabelMenuPrincipal("Voluntario");    
+        vista.getBarraDeNavegacion().setTextLabelMenuAvanzado("Contabilidad");   
     }
     
     //Listener de la barra de navigacion
-    class ListenerBarraNavigacion implements ActionListener {
+    class ListenerBarraNavegacion implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {

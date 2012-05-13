@@ -2,18 +2,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas;
+package Vistas.Paneles.Voluntario;
 
 /**
  *
  * @author raphaelcolleau
  */
-public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
+public class PanelVoluntarioDatos extends javax.swing.JPanel {
 
     /**
-     * Creates new form PanelVoluntarioContabilidad
+     * Creates new form PanelVoluntarioDatos
      */
-    public PanelVoluntarioContabilidad() {
+    public PanelVoluntarioDatos() {
         initComponents();
     }
 
@@ -33,23 +33,23 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1000, 550));
         setPreferredSize(new java.awt.Dimension(1000, 550));
 
-        jLabel1.setText("Panel Voluntario Contabilidad");
+        jLabel1.setText("Panel Voluntario Datos");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(62, 62, 62)
+                .addContainerGap()
                 .add(jLabel1)
-                .addContainerGap(752, Short.MAX_VALUE))
+                .addContainerGap(851, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(113, 113, 113)
+                .addContainerGap()
                 .add(jLabel1)
-                .addContainerGap(471, Short.MAX_VALUE))
+                .addContainerGap(528, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
