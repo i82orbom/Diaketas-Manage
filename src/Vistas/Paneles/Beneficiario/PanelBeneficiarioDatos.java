@@ -4,10 +4,6 @@
  */
 package Vistas.Paneles.Beneficiario;
 
-import Modelos.ModeloBeneficiarioDatos;
-import Modelos.ModeloVistaLogin;
-import java.awt.event.ActionListener;
-
 /**
  *
  * @author psylock

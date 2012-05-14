@@ -12,7 +12,7 @@ import java.awt.CardLayout;
  *
  * @author psylock, Raphael Colleau
  */
-public class Raiz extends javax.swing.JFrame {
+public class Ventana extends javax.swing.JFrame {
 
     /* identificador de los paneles en el CardLayout 
        anadir una linea aqui y poner, en el design el nombre en el parametro CardName*/ 
@@ -24,7 +24,7 @@ public class Raiz extends javax.swing.JFrame {
     /**
      * Creates new form Raiz
      */
-    public Raiz() {
+    public Ventana() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -88,13 +88,13 @@ public class Raiz extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Raiz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Raiz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Raiz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Raiz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -104,7 +104,7 @@ public class Raiz extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new Raiz().setVisible(true);
+                new Ventana().setVisible(true);
             }
         });
     }

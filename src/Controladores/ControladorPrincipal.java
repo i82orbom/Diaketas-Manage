@@ -6,7 +6,7 @@ package Controladores;
 
 import JDBC.DriverJDBC;
 import Modelo.Voluntario;
-import Vistas.Raiz;
+import Vistas.Ventana;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -47,19 +47,19 @@ public class ControladorPrincipal {
     public static ControladorPrincipal getInstance() {
         if (instancia == null) {
             // Crea la ventana y el controlador con ella
-            Raiz ventana = new Raiz();
+            Ventana ventana = new Ventana();
             instancia = new ControladorPrincipal(ventana);
         }
 
         return instancia;
 
     }
-    private Raiz vista;
+    private Ventana vista;
 
     /**
      * Constructor de la clase
      */
-    private ControladorPrincipal(Raiz pvista) {
+    private ControladorPrincipal(Ventana pvista) {
 
         /**
          * Establece como ventana padre la pasada como parámetro
@@ -68,7 +68,7 @@ public class ControladorPrincipal {
         vista.setVisible(true);
         
         // al principio mostra el panel de Login
-        vista.showPanel(Raiz.panelLogin);
+        vista.showPanel(Ventana.panelLogin);
 
         // Para crear la instancia de los controladores con la vista asociada
         ControladorVoluntario.getInstance(this.vista.getPanelVoluntario());
@@ -84,7 +84,7 @@ public class ControladorPrincipal {
      * Para que los controladores especificos pregunta al controlador principal de volver a la vista de inicio
      */
     public void mostrarVistaInicio() {
-        vista.showPanel(Raiz.panelInicio);
+        vista.showPanel(Ventana.panelInicio);
     }
 
     // Listeners botones
@@ -119,7 +119,7 @@ public class ControladorPrincipal {
                 }
 
                 if (exito) {
-                    vista.showPanel(Raiz.panelInicio);
+                    vista.showPanel(Ventana.panelInicio);
                 } else {
                     vista.getVistaLogin().mostrarErrorLogin("Nombre usuario y/o contraseña no válidos");
                 }
@@ -131,7 +131,7 @@ public class ControladorPrincipal {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            vista.showPanel(Raiz.panelVoluntario);
+            vista.showPanel(Ventana.panelVoluntario);
         }
     }
     
@@ -140,7 +140,7 @@ public class ControladorPrincipal {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            vista.showPanel(Raiz.panelBeneficiario);
+            vista.showPanel(Ventana.panelBeneficiario);
         }
      }
 }

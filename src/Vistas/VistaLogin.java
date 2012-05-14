@@ -4,7 +4,6 @@
  */
 package Vistas;
 
-import Modelos.ModeloVistaLogin;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -17,13 +16,11 @@ import javax.swing.JTextField;
  */
 public class VistaLogin extends javax.swing.JPanel {
 
-    private static ModeloVistaLogin modelo;
     /**
      * Creates new form VistaLogin
      */
     public VistaLogin() {
         initComponents();
-        VistaLogin.modelo = new ModeloVistaLogin();
         this.textErrorLogin.setVisible(false);
     }
 
@@ -41,19 +38,6 @@ public class VistaLogin extends javax.swing.JPanel {
 
     public JTextField getTextFieldIdUsuario() {
         return textFieldIdUsuario;
-    }
-    
-    public ModeloVistaLogin getModelo(){
-        return VistaLogin.modelo;
-    }
-    
-    public void setModelo(ModeloVistaLogin model){
-        VistaLogin.modelo = model;
-    }
-    
-    public void actualizarModelo(){
-        VistaLogin.modelo.setUsuario(this.textFieldIdUsuario.getText());
-        VistaLogin.modelo.setPass(new String(this.textFieldContrasena.getPassword()));
     }
     
     /** LISTENERS */
