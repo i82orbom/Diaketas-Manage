@@ -33,11 +33,7 @@ public class VistaVoluntario extends javax.swing.JPanel {
     }
 
     // getter panel
-<<<<<<< HEAD:src/Vistas/Paneles/Voluntario/VistaVoluntario.java
     public BarraDeNavegacion getBarraDeNavegacion() {
-=======
-    public BarraDeNavegacion getBarraDeNavigacion() {
->>>>>>> Cambio navigacion en navegacion:src/Vistas/VistaVoluntario.java
         return barraDeNavegacion;
     }
 
