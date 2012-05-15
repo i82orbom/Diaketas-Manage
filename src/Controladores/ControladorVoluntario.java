@@ -25,6 +25,7 @@ public class ControladorVoluntario {
      * PATRON DE DISEÑO SINGLETON
      */
     private static ControladorVoluntario instancia;
+    private static final String baseContrasena = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     public static ControladorVoluntario getInstance(VistaVoluntario panelVoluntario) {
         if (instancia == null) {
@@ -34,7 +35,21 @@ public class ControladorVoluntario {
         return instancia;
 
     }
-    
+
+    public static String genContrasena() {
+
+        String contrasena = "";
+        int longitud = baseContrasena.length();
+        int largoContrasena = 6;
+
+        for (int i = 0; i < largoContrasena; i++) {
+            int numero = (int) (Math.random() * (longitud));
+            String caracter = baseContrasena.substring(numero, numero + 1);
+            contrasena = contrasena + caracter;
+        }
+        return contrasena;
+
+    }
     private VistaVoluntario vista;
 
     /**
@@ -53,6 +68,9 @@ public class ControladorVoluntario {
         vista.getPanelVoluntarioInicio().anadirListenerbtBuscarVoluntario(new btBuscarListener());
         vista.getPanelVoluntarioInicio().anadirListenerbtContabilidad(new btContabilidadListener());
         vista.getPanelVoluntarioInicio().anadirListenerbtNuevoVoluntario(new btDatosListener());
+
+        vista.getPanelVoluntarioDatos().getBtGuardar().addActionListener(new btGuardarVoluntarioListener());
+        vista.getPanelVoluntarioDatos().getBtBorrar().addActionListener(new btBorrarVoluntarioListener());
 
         // al principio mostrar la vista de inicio
         mostrarVistaInicio();
@@ -94,7 +112,7 @@ public class ControladorVoluntario {
         if (this.comprobarDatos(datos) == false || this.comprobarContrasena(password) == false) {
             return false;
         }
-        
+
         Voluntario voluntario = new Voluntario();
         voluntario.setNIF(datos[Voluntario.NIF_ID]);
         voluntario.setNombre(datos[Voluntario.NOMBRE_ID]);
@@ -105,7 +123,7 @@ public class ControladorVoluntario {
         voluntario.setLocalidad(datos[Voluntario.LOCALIDAD_ID]);
         voluntario.setTelefonoMovil(Integer.parseInt(datos[Voluntario.TELEFONO_MOVIL_ID]));
         voluntario.setTelefonoFijo(Integer.parseInt(datos[Voluntario.TELEFONO_FIJO_ID]));
-        
+
 
         try {
             VoluntarioJDBC.getInstance().añadirVoluntario(voluntario);
@@ -117,17 +135,17 @@ public class ControladorVoluntario {
         return true;
 
     }
-    
-    private Voluntario consultarVoluntario (String DNI){
+
+    private Voluntario consultarVoluntario(String DNI) {
         Voluntario voluntario;
-        
+
         try {
             voluntario = VoluntarioJDBC.getInstance().obtenerVoluntario(DNI);
         } catch (SQLException ex) {
             Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
-        
+
         return voluntario;
     }
 
@@ -136,7 +154,7 @@ public class ControladorVoluntario {
         if (this.comprobarDatos(datos) == false) {
             return false;
         }
-        
+
         Voluntario voluntario = new Voluntario();
         voluntario.setNIF(datos[Voluntario.NIF_ID]);
         voluntario.setNombre(datos[Voluntario.NOMBRE_ID]);
@@ -147,7 +165,7 @@ public class ControladorVoluntario {
         voluntario.setLocalidad(datos[Voluntario.LOCALIDAD_ID]);
         voluntario.setTelefonoMovil(Integer.parseInt(datos[Voluntario.TELEFONO_MOVIL_ID]));
         voluntario.setTelefonoFijo(Integer.parseInt(datos[Voluntario.TELEFONO_FIJO_ID]));
-        
+
 
         try {
             VoluntarioJDBC.getInstance().modificarDatosVoluntario(voluntario);
@@ -159,8 +177,8 @@ public class ControladorVoluntario {
         return true;
 
     }
-    
-    private boolean eliminarVoluntario (String dni) {
+
+    private boolean eliminarVoluntario(String dni) {
         boolean exito;
         try {
             exito = VoluntarioJDBC.getInstance().borrarVoluntario(dni);
@@ -168,44 +186,53 @@ public class ControladorVoluntario {
             Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
             exito = false;
         }
-        
+
         return exito;
     }
-    
-    private boolean comprobarDatos (String[] datos) {
+
+    private boolean comprobarDatos(String[] datos) {
         // cada campo debe ser not null
-        for (int i=0; i<datos.length; i++) {
-            if (datos[i].length() < 1)
+        /*
+        for (int i = 0; i < datos.length; i++) {
+            if (datos[i].length() < 1) {
                 return false;
+            }
+        }*/
+
+        if (!TestDatos.isDNI(datos[Voluntario.NIF_ID])) {
+            return false;
         }
-        
-        if (!TestDatos.isDNI(datos[Voluntario.NIF_ID]))
+
+        if (!TestDatos.isCodigoPostal(datos[Voluntario.CP_ID])) {
             return false;
-        
-        if (!TestDatos.isCodigoPostal(datos[Voluntario.CP_ID]))
+        }
+
+        if (!TestDatos.isOnlyLetter(datos[Voluntario.NOMBRE_ID])) {
             return false;
-        
-        if (!TestDatos.isOnlyLetter(datos[Voluntario.NOMBRE_ID]))
+        }
+
+        if (!TestDatos.isOnlyLetter(datos[Voluntario.APELLIDOS_ID])) {
             return false;
-        
-        if (!TestDatos.isOnlyLetter(datos[Voluntario.APELLIDOS_ID]))
+        }
+
+        if (!TestDatos.isOnlyLetter(datos[Voluntario.LOCALIDAD_ID])) {
             return false;
-        
-        if (!TestDatos.isOnlyLetter(datos[Voluntario.LOCALIDAD_ID]))
+        }
+
+        if (datos[Voluntario.TELEFONO_MOVIL_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[Voluntario.TELEFONO_MOVIL_ID])) {
             return false;
-        
-        if (datos[Voluntario.TELEFONO_MOVIL_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[Voluntario.TELEFONO_MOVIL_ID]))
+        }
+
+        if (datos[Voluntario.TELEFONO_FIJO_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[Voluntario.TELEFONO_FIJO_ID])) {
             return false;
-        
-        if (datos[Voluntario.TELEFONO_FIJO_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[Voluntario.TELEFONO_FIJO_ID]))
-            return false;
-        
+        }
+
         return true;
     }
-    
+
     public boolean comprobarContrasena(String contrasena) {
         // TODO
-	return true;
+        return true;
     }
 
     //Listener de la barra de navigacion
@@ -254,6 +281,42 @@ public class ControladorVoluntario {
         @Override
         public void actionPerformed(ActionEvent ae) {
             mostrarVistaContabilidad();
+        }
+    }
+
+    class btGuardarVoluntarioListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            String[] datos = new String[15];
+
+            datos[Voluntario.NIF_ID] = vista.getPanelVoluntarioDatos().getTextNIF();
+            datos[Voluntario.NOMBRE_ID] = vista.getPanelVoluntarioDatos().getTextNombre();
+            datos[Voluntario.APELLIDOS_ID] = vista.getPanelVoluntarioDatos().getTextApellidos();
+            datos[Voluntario.FECHA_DE_NACIMIENTO_ID] = vista.getPanelVoluntarioDatos().getTextFechaNacimiento();
+            datos[Voluntario.DOMICILIO_ID] = vista.getPanelVoluntarioDatos().getTextDomicilio();
+            datos[Voluntario.LOCALIDAD_ID] = vista.getPanelVoluntarioDatos().getTextLocalidad();
+            datos[Voluntario.CP_ID] = vista.getPanelVoluntarioDatos().getTextCP();
+            datos[Voluntario.TELEFONO_MOVIL_ID] = vista.getPanelVoluntarioDatos().getTextTelefono();
+            //datos[Voluntario.TELEFONO_FIJO_ID] = vista.getPanelVoluntarioDatos().getTextNivelEstudios();
+
+            String password = genContrasena();
+            boolean exito = insertarVoluntario(datos, password);
+            
+            
+            if (exito) {
+                vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario anadido correctamente.");
+            } else {
+                vista.getPanelVoluntarioDatos().setTextLabelError("El voluntario no ha sido anadido.");
+            }
+        }
+    }
+    
+    class btBorrarVoluntarioListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            vista.getPanelVoluntarioDatos().borrarCampos();
         }
     }
 }
