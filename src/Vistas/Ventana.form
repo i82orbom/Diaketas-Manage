@@ -8,7 +8,7 @@
       <Color blue="eb" green="aa" red="87" type="rgb"/>
     </Property>
     <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
-      <Rectangle value="[0, 0, 1000, 700]"/>
+      <Rectangle value="[0, 0, 1000, 600]"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1000, 600]"/>
@@ -16,7 +16,7 @@
     <Property name="name" type="java.lang.String" value="Diaketas"/>
     <Property name="resizable" type="boolean" value="false"/>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1000, 600]"/>
+      <Dimension value="[1000, 650]"/>
     </Property>
   </Properties>
   <SyntheticProperties>

@@ -53,11 +53,11 @@ public class Ventana extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Diaketas");
         setBackground(new java.awt.Color(135, 170, 235));
-        setBounds(new java.awt.Rectangle(0, 0, 1000, 700));
+        setBounds(new java.awt.Rectangle(0, 0, 1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
         setName("Diaketas");
         setResizable(false);
-        setSize(new java.awt.Dimension(1000, 600));
+        setSize(new java.awt.Dimension(1000, 650));
         getContentPane().setLayout(new java.awt.CardLayout());
         getContentPane().add(vistaLogin, "login");
         getContentPane().add(vistaInicial, "inicio");
