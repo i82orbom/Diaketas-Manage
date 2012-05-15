@@ -32,18 +32,30 @@ import java.util.Date;
  */
 public abstract class Persona {
     
-    private String apellidos;
-    private int CP;
-    private String domicilio;
-    private Date fechaDENacimiento;
-    private String localidad;
     private String NIF;
     private String nombre;
-    private int telefonoFijo;
-    private int telefonoMovil;
+    private String apellidos;
+    private Date fechaDENacimiento;
     private ArrayList<Persona> familia;
     
+    private String domicilio;
+    private int CP;
+    private String localidad;
+    private int telefonoMovil;   
+    private int telefonoFijo;
+    
     private Asociacion asociacion;
+    
+    public static int  NIF_ID = 0;
+    public static int  NOMBRE_ID = 1;
+    public static int  APELLIDOS_ID = 2;
+    public static int  FECHA_DE_NACIMIENTO_ID = 3;
+    public static int  DOMICILIO_ID = 4;
+    public static int  CP_ID = 5;
+    public static int  LOCALIDAD_ID = 6;
+    public static int  TELEFONO_MOVIL_ID = 7;
+    public static int  TELEFONO_FIJO_ID = 8;
+    
 
     /**
      * Constructor por defecto

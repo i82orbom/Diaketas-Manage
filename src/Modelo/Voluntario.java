@@ -32,7 +32,9 @@ import java.util.ArrayList;
  public class Voluntario extends Persona implements Identificable {
     
     private Long OID;
-	private String password;
+    private String password;
+    
+    public static int PASSWORD_ID = 9;
     
     private ArrayList<Modificacion> modificaciones;
     private ArrayList<Ayuda> ayudasDadas;
