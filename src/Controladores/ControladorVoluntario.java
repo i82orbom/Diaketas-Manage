@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -148,6 +149,19 @@ public class ControladorVoluntario {
 
         return voluntario;
     }
+    
+    private ArrayList<Voluntario> obtenerListadoVoluntarios (String dato, String tipoDato) {
+        ArrayList<Voluntario> voluntarios;
+        
+        try {
+            voluntarios = VoluntarioJDBC.getInstance().obtenerListadoVoluntario(dato, tipoDato);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+        return voluntarios;
+    }
 
     private boolean modificarVoluntario(String[] datos) {
 
@@ -175,7 +189,6 @@ public class ControladorVoluntario {
         }
 
         return true;
-
     }
 
     private boolean eliminarVoluntario(String dni) {
