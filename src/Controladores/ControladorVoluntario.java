@@ -62,6 +62,10 @@ public class ControladorVoluntario {
          * Establece como ventana padre la pasada como parámetro
          */
         vista = pvista;
+        
+        // Para crear la instancia de los controladores con la vista asociada
+        ControladorContabilidad.getInstance(vista.getPanelVoluntarioContabilidad());
+        ControladorAyuda.getInstance(vista.getPanelVoluntarioAyudas());
 
         // anadir listener
         vista.getBarraDeNavegacion().setListener(new ListenerBarraNavegacion());
