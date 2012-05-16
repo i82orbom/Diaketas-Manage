@@ -102,7 +102,7 @@ public class VistaInicial extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSocioActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btSocioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
