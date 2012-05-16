@@ -79,7 +79,7 @@ public class C_PersonaJDBC {
         
         String sql = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, codigoPostal, TelefojonoFijo, TelefojonoMovil, Email) VALUES ('"+persona.getDireccion()+"','"+persona.getLocalidad()+"','"+persona.getProvincia()+"','"+persona.getCP()+"','"+persona.getTelefonoFijo()+"','"+persona.getTelefonoMovil()+"','"+persona.getEmail()+"')";
         boolean exito = driver.insertar(sql);
-        String sql2 = "INSERT INTO C_Persona (DNI, Nombre, Apellidos, FechaDeNacimiento) VALUES ('"+DNI+"','"+Nombre+"','"+Apellidos+"','"+FechaDeNacimiento+"','"+Sexo+"')";
+        String sql2 = "INSERT INTO C_Persona (OID, DNI, Nombre, Apellidos, FechaDeNacimiento) VALUES (LAST_INSERT_ID(),'"+DNI+"','"+Nombre+"','"+Apellidos+"','"+FechaDeNacimiento+"','"+Sexo+"')";
         boolean exito2 = driver.insertar(sql2);
                 
         return (exito && exito2);

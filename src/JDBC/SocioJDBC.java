@@ -77,9 +77,9 @@ public class SocioJDBC {
         
         String sql = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, codigoPostal, TelefonoFijo, TelefonoMovil, Email) VALUES ('"+socio.getDireccion()+"','"+socio.getLocalidad()+"','"+socio.getProvincia()+"','"+socio.getCP()+"','"+socio.getTelefonoFijo()+"','"+socio.getTelefonoMovil()+"','"+socio.getEmail()+"')";
         boolean exito = driver.insertar(sql);
-        String sql2 = "INSERT INTO C_Persona (DNI, Nombre, Apellidos, FechaDeNacimiento) VALUES ('"+socio.getDNI()+"','"+socio.getNombre()+"','"+socio.getApellidos()+"','"+socio.getFechaDeNacimiento()+"','"+socio.getSexo()+"')";
+        String sql2 = "INSERT INTO C_Persona (OID, DNI, Nombre, Apellidos, FechaDeNacimiento) VALUES (LAST_INSERT_ID(),'"+socio.getDNI()+"','"+socio.getNombre()+"','"+socio.getApellidos()+"','"+socio.getFechaDeNacimiento()+"','"+socio.getSexo()+"')";
         boolean exito2 = driver.insertar(sql2);
-        String sql3 = "INSERT INTO Socio (usuario, contrasena) VALUES ('"+usuario+"','"+contrasena+"')"; 
+        String sql3 = "INSERT INTO Socio (OID, usuario, contrasena) VALUES (LAST_INSERT_ID(),'"+usuario+"','"+contrasena+"')"; 
         boolean exito3 = driver.insertar(sql3);
         
         return (exito && exito2 && exito3);

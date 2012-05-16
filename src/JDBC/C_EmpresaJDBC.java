@@ -74,7 +74,7 @@ public class C_EmpresaJDBC {
         
         String sql = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, codigoPostal, TelefonoFijo, TelefonoMovil, Email) VALUES ('"+e.getDireccion()+"','"+e.getLocalidad()+"','"+e.getProvincia()+"','"+e.getCP()+"','"+e.getTelefonoFijo()+"',,'"+e.getTelefonoMovil()+"','"+e.getEmail()+"')";
         boolean exito = driver.insertar(sql);
-        String sql2 = "INSERT INTO C_Empresa (CIF, Nombre, Fax, DireccionWeb) VALUES ('"+CIF+"','"+Nombre+"','"+Fax+"','"+DireccionWeb+"')";
+        String sql2 = "INSERT INTO C_Empresa (OID, CIF, Nombre, Fax, DireccionWeb) VALUES (LAST_INSERT_ID(),'"+CIF+"','"+Nombre+"','"+Fax+"','"+DireccionWeb+"')";
         boolean exito2 = driver.insertar(sql2);
         
         return (exito && exito2);       
