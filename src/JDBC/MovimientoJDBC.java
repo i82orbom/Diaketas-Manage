@@ -38,7 +38,7 @@ import java.util.Date;
  *
  * @author Jobero
  */
-public class MovimientoJDBC extends JDBC{
+public class MovimientoJDBC {
     
      private static MovimientoJDBC instancia;
     

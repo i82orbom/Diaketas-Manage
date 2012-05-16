@@ -24,16 +24,13 @@
 
 package Modelo;
 
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Jobero
  */
-public class Beneficiario extends Persona implements Identificable,Serializable {
+public class Beneficiario extends Persona {
     
     private Long OID;
     private String estadoCivil;
@@ -46,23 +43,16 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     private String vivienda;
     private float viviendaAlquiler;
     private String viviendaObservaciones;
-   
     private ArrayList<Ayuda> ayudasPrestadas;
-	
-	private void writeObject(ObjectOutputStream aOutputStream) throws IOException{
-		
-		aOutputStream.defaultWriteObject();
-		
-	}
-	
-	/**
+
+    /**
      * Constructor por defecto
      */
     public Beneficiario() {
     }
 
     /**
-     * 
+     *
      * @return
      */
     public ArrayList<Ayuda> getAyudasPrestadas() {
@@ -70,7 +60,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @param ayudasPrestadas
      */
     public void setAyudasPrestadas(ArrayList<Ayuda> ayudasPrestadas) {
@@ -78,7 +68,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @return
      */
     public String getEstadoCivil() {
@@ -86,18 +76,15 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @param estadoCivil
      */
     public void setEstadoCivil(String estadoCivil) {
         this.estadoCivil = estadoCivil;
     }
 
-   
-
-
     /**
-     * 
+     *
      * @return
      */
     public String getNacionalidad() {
@@ -105,7 +92,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @param nacionalidad
      */
     public void setNacionalidad(String nacionalidad) {
@@ -113,7 +100,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @return
      */
     public String getNivelDeEstudio() {
@@ -121,7 +108,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @param nivelDeEstudio
      */
     public void setNivelDeEstudio(String nivelDeEstudio) {
@@ -129,7 +116,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @return
      */
     public String getObservaciones() {
@@ -137,7 +124,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @param observaciones
      */
     public void setObservaciones(String observaciones) {
@@ -145,7 +132,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @return
      */
     public String getOcupacion() {
@@ -153,7 +140,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @param ocupacion
      */
     public void setOcupacion(String ocupacion) {
@@ -161,7 +148,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @return
      */
     public String getProfesion() {
@@ -169,7 +156,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @param profesion
      */
     public void setProfesion(String profesion) {
@@ -177,7 +164,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @return
      */
     public String getSituacionEconomica() {
@@ -185,7 +172,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @param situacionEconomica
      */
     public void setSituacionEconomica(String situacionEconomica) {
@@ -193,7 +180,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @return
      */
     public String getVivienda() {
@@ -201,7 +188,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @param vivienda
      */
     public void setVivienda(String vivienda) {
@@ -209,7 +196,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @return
      */
     public float getViviendaAlquiler() {
@@ -217,7 +204,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @param viviendaAlquiler
      */
     public void setViviendaAlquiler(float viviendaAlquiler) {
@@ -225,7 +212,7 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @return
      */
     public String getViviendaObservaciones() {
@@ -233,21 +220,19 @@ public class Beneficiario extends Persona implements Identificable,Serializable 
     }
 
     /**
-     * 
+     *
      * @param viviendaObservaciones
      */
     public void setViviendaObservaciones(String viviendaObservaciones) {
         this.viviendaObservaciones = viviendaObservaciones;
     }
 
-	@Override
-	public void setOID(Long OID) {
-		this.OID = OID;
-	}
+    public void setOID(Long OID) {
+        this.OID = OID;
+    }
 
-	@Override
-	public Long getOID() {
-		return OID;
-	}
-    
+    public Long getOID() {
+        return OID;
+    }
+
 }

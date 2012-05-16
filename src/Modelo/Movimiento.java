@@ -29,7 +29,7 @@ import java.util.Date;
  *
  * @author Jobero
  */
-public class Movimiento implements Identificable{
+public class Movimiento {
 	
     private Long OID;
     private String concepto;
