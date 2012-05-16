@@ -7,9 +7,13 @@ package Controladores.Colaborador;
 
 import Controladores.TestDatos;
 import Controladores.Voluntario.ControladorVoluntario;
+import JDBC.ColaboracionJDBC;
 import JDBC.CuotaJDBC;
+import JDBC.PagoCuotaJDBC;
 import JDBC.SocioJDBC;
+import Modelo.Colaboracion;
 import Modelo.Cuota;
+import Modelo.Movimiento;
 import Modelo.PagoCuota;
 import Modelo.Socio;
 import java.awt.event.ActionEvent;
@@ -181,9 +185,34 @@ public class ControladorSocio {
         return false;
     }
     
-    public ArrayList<PagoCuota> historialPagosCuotas (Socio socio, Date fechaInicio, Date fechaFin) {
-        // TODO
-        return null;
+    public ArrayList<Movimiento> historialPagosCuotas (Socio socio, Date fechaInicio, Date fechaFin) {
+        ArrayList<PagoCuota> pagosCuotas = null;
+        
+        try {
+            pagosCuotas = PagoCuotaJDBC.getInstance().HistorialPagosCuotas(socio, fechaInicio, fechaFin);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorSocio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if (pagosCuotas == null)
+            return null;
+        
+        ArrayList<Colaboracion> pagosColaboraciones = null;
+        
+        try {
+            pagosColaboraciones = ColaboracionJDBC.getInstance().HistorialColaboraciones(socio, fechaInicio, fechaFin);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorSocio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if (pagosColaboraciones == null)
+            return null;
+        
+        ArrayList<Movimiento> pagos = new ArrayList<Movimiento>();
+        pagos.addAll(pagosCuotas);
+        pagos.addAll(pagosColaboraciones);
+        
+        return pagos;
     }
     
     // proba los datos pero no sabemos cual son los datos que no son correcto
