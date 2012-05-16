@@ -50,7 +50,7 @@ public class VoluntarioJDBC {
         
     }
     
-    public boolean añadirVoluntario (Voluntario voluntario) throws SQLException{
+    public boolean anadirVoluntario (Voluntario voluntario) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance() ;
         Integer Cp = voluntario.getCP();
@@ -62,10 +62,11 @@ public class VoluntarioJDBC {
         
         String sql = "INSERT INTO persona (NIF,Nombre,Apellidos,CP,TelefonoFijo,TelefonoMovil,Domicilio,Localidad,FechaNacimiento) VALUES ('"+voluntario.getNIF()+"','"+voluntario.getNombre()+"','"+voluntario.getApellidos()+"','"+Cp_cadena+"','"+telefono_fijo_cadena+"','"+telefono_movil_cadena+"','"+voluntario.getDomicilio()+"','"+voluntario.getLocalidad()+"','"+voluntario.getFechaDENacimiento().toString()+"')";
 		
-		String sql2 = "INSERT INTO voluntario (NIFV,Password) VALUES ('"+voluntario.getNIF()+"','"+voluntario.getPassword()+"')";
+	String sql2 = "INSERT INTO voluntario (NIFV,Password) VALUES ('"+voluntario.getNIF()+"','"+voluntario.getPassword()+"')";
         
-        boolean exito=driver.insertar(sql);
-        boolean exito2=driver.insertar(sql2);
+        boolean exito = driver.insertar(sql);
+        if (exito)
+            exito = driver.insertar(sql2);
         
         return exito;
         

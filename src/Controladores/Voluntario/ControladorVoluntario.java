@@ -133,7 +133,7 @@ public class ControladorVoluntario {
 
 
         try {
-            VoluntarioJDBC.getInstance().añadirVoluntario(voluntario);
+            VoluntarioJDBC.getInstance().anadirVoluntario(voluntario);
         } catch (SQLException se) {
             System.err.print(se.getMessage());
             return false;
@@ -316,11 +316,11 @@ public class ControladorVoluntario {
             datos[Voluntario.DOMICILIO_ID] = vista.getPanelVoluntarioDatos().getTextDomicilio();
             datos[Voluntario.LOCALIDAD_ID] = vista.getPanelVoluntarioDatos().getTextLocalidad();
             datos[Voluntario.CP_ID] = vista.getPanelVoluntarioDatos().getTextCP();
-            datos[Voluntario.TELEFONO_MOVIL_ID] = vista.getPanelVoluntarioDatos().getTextTelefono();
-            //datos[Voluntario.TELEFONO_FIJO_ID] = vista.getPanelVoluntarioDatos().getTextNivelEstudios();
+            datos[Voluntario.TELEFONO_MOVIL_ID] = vista.getPanelVoluntarioDatos().getTextTelFijo();
+            datos[Voluntario.TELEFONO_FIJO_ID] = vista.getPanelVoluntarioDatos().getTextTelMovil();
+            datos[Voluntario.PASSWORD_ID] = vista.getPanelVoluntarioDatos().getTextPassword();
 
-            String password = genContrasena();
-            boolean exito = insertarVoluntario(datos, password);
+            boolean exito = insertarVoluntario(datos, datos[Voluntario.PASSWORD_ID]);
             
             
             if (exito) {
