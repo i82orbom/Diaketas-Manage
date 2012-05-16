@@ -154,7 +154,7 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
 
         jLabel14.setText("Teléfono Fijo");
 
-        textFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        textFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
         btGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/save_f2.png"))); // NOI18N
         btGuardar.setActionCommand("guardarDatosVoluntario");

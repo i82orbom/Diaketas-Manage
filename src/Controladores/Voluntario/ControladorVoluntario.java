@@ -12,8 +12,9 @@ import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.Voluntario.VistaVoluntario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +29,7 @@ public class ControladorVoluntario {
     /**
      * PATRON DE DISEÑO SINGLETON
      */
-    private static ControladorVoluntario instancia;
+    private static ControladorVoluntario instancia;  
     private static final String baseContrasena = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     public static ControladorVoluntario getInstance(VistaVoluntario panelVoluntario) {
@@ -124,14 +125,18 @@ public class ControladorVoluntario {
         voluntario.setNIF(datos[Voluntario.NIF_ID]);
         voluntario.setNombre(datos[Voluntario.NOMBRE_ID]);
         voluntario.setApellidos(datos[Voluntario.APELLIDOS_ID]);
-        voluntario.setFechaDENacimiento(Date.valueOf(datos[Voluntario.FECHA_DE_NACIMIENTO_ID]));
+        try {
+            voluntario.setFechaDENacimiento(TestDatos.formatter.parse(vista.getPanelVoluntarioDatos().getTextFechaNacimiento()));
+        } catch (ParseException ex) {
+            Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         voluntario.setDomicilio(datos[Voluntario.DOMICILIO_ID]);
         voluntario.setCP(Integer.parseInt(datos[Voluntario.CP_ID]));
         voluntario.setLocalidad(datos[Voluntario.LOCALIDAD_ID]);
         voluntario.setTelefonoMovil(Integer.parseInt(datos[Voluntario.TELEFONO_MOVIL_ID]));
         voluntario.setTelefonoFijo(Integer.parseInt(datos[Voluntario.TELEFONO_FIJO_ID]));
-
-
+        voluntario.setPassword(password);
+        
         try {
             VoluntarioJDBC.getInstance().anadirVoluntario(voluntario);
         } catch (SQLException se) {
@@ -179,7 +184,11 @@ public class ControladorVoluntario {
         voluntario.setNIF(datos[Voluntario.NIF_ID]);
         voluntario.setNombre(datos[Voluntario.NOMBRE_ID]);
         voluntario.setApellidos(datos[Voluntario.APELLIDOS_ID]);
-        voluntario.setFechaDENacimiento(Date.valueOf(datos[Voluntario.FECHA_DE_NACIMIENTO_ID]));
+        try {
+            voluntario.setFechaDENacimiento(TestDatos.formatter.parse(vista.getPanelVoluntarioDatos().getTextFechaNacimiento()));
+        } catch (ParseException ex) {
+            Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         voluntario.setDomicilio(datos[Voluntario.DOMICILIO_ID]);
         voluntario.setCP(Integer.parseInt(datos[Voluntario.CP_ID]));
         voluntario.setLocalidad(datos[Voluntario.LOCALIDAD_ID]);
@@ -307,6 +316,14 @@ public class ControladorVoluntario {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
+            
+            try {
+                System.out.println("Date : " + TestDatos.formatter.parse(vista.getPanelVoluntarioDatos().getTextFechaNacimiento()).toString());
+            } catch (ParseException ex) {
+                vista.getPanelVoluntarioDatos().setTextLabelError("Pon el fecha de nacimiento con este formato dd/mm/aaaa");
+                Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             String[] datos = new String[15];
 
             datos[Voluntario.NIF_ID] = vista.getPanelVoluntarioDatos().getTextNIF();

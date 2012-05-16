@@ -25,9 +25,11 @@
  */
 package JDBC;
 
+import Controladores.TestDatos;
 import Modelo.Voluntario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -37,6 +39,7 @@ import java.util.ArrayList;
 public class VoluntarioJDBC {
     
     private static VoluntarioJDBC instancia;
+    private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     
     private VoluntarioJDBC(){
         
@@ -60,9 +63,9 @@ public class VoluntarioJDBC {
         Integer telefono_movil = voluntario.getTelefonoMovil();
         String telefono_movil_cadena = telefono_movil.toString();
         
-        String sql = "INSERT INTO persona (NIF,Nombre,Apellidos,CP,TelefonoFijo,TelefonoMovil,Domicilio,Localidad,FechaNacimiento) VALUES ('"+voluntario.getNIF()+"','"+voluntario.getNombre()+"','"+voluntario.getApellidos()+"','"+Cp_cadena+"','"+telefono_fijo_cadena+"','"+telefono_movil_cadena+"','"+voluntario.getDomicilio()+"','"+voluntario.getLocalidad()+"','"+voluntario.getFechaDENacimiento().toString()+"')";
-		
-	String sql2 = "INSERT INTO voluntario (NIFV,Password) VALUES ('"+voluntario.getNIF()+"','"+voluntario.getPassword()+"')";
+        String sql = "INSERT INTO persona (NIF,Nombre,Apellidos,CP,TelefonoFijo,TelefonoMovil,Domicilio,Localidad,FechaNacimiento) VALUES ('"+voluntario.getNIF()+"','"+voluntario.getNombre()+"','"+voluntario.getApellidos()+"','"+Cp_cadena+"','"+telefono_fijo_cadena+"','"+telefono_movil_cadena+"','"+voluntario.getDomicilio()+"','"+voluntario.getLocalidad()+"','"+formatter.format(voluntario.getFechaDENacimiento())+"')";
+	
+        String sql2 = "INSERT INTO voluntario (OID,Password) VALUES (LAST_INSERT_ID(),'"+voluntario.getPassword()+"')";
         
         boolean exito = driver.insertar(sql);
         if (exito)
@@ -75,8 +78,8 @@ public class VoluntarioJDBC {
     public boolean borrarVoluntario (String DNI ) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance() ;
-           
-        String sql = "DELETE FROM voluntario WHERE NIFV='"+DNI+"'";
+        // no va bien el OID del voluntario no es el dni
+        String sql = "DELETE FROM voluntario WHERE OID='"+DNI+"'";
         
          boolean exito = driver.eliminar(sql);
          
@@ -84,9 +87,7 @@ public class VoluntarioJDBC {
                 sql = "DELETE from persona WHERE NIF='"+DNI+"'";
                 exito = driver.eliminar(sql);
             }
-            
-      
-                     
+         
         return exito;
     }
     
@@ -102,8 +103,8 @@ public class VoluntarioJDBC {
             
             
             String sql2 = "UPDATE persona SET NIF='"+voluntario.getNIF()+"',Nombre='"+voluntario.getNombre()+"',Apellidos='"+voluntario.getApellidos()+"',FechaNacimiento='"+voluntario.getFechaDENacimiento().toString()+"',CP='"+Cp_cadena+"',TelefonoFijo='"+telefono_fijo_cadena+"',TelefonoMovil='"+telefono_movil_cadena+"',Domicilio='"+voluntario.getDomicilio()+"',Localidad='"+voluntario.getLocalidad()+"' WHERE NIF ="+voluntario.getNIF()+"'";
-            
-            String sql = "UPDATE voluntario SET Password='"+voluntario.getPassword()+"' WHERE NIFV ="+voluntario.getNIF()+"'";
+            // TODO ne va bien "OID ="+voluntario.getNIF()"
+            String sql = "UPDATE voluntario SET Password='"+voluntario.getPassword()+"' WHERE OID ="+voluntario.getNIF()+"'";
             
             boolean exito = driver.actualizar(sql);
             boolean exito2 = driver.actualizar(sql2);
@@ -115,7 +116,7 @@ public class VoluntarioJDBC {
             
             DriverJDBC driver = DriverJDBC.getInstance() ;
            
-            String sql = "SELECT * FROM voluntario v, persona p WHERE "+tipoDato+"='"+dato+"' AND p.NIF=v.NIFV";
+            String sql = "SELECT * FROM voluntario v, persona p WHERE "+tipoDato+"='"+dato+"' AND p.OID=v.OID";
             
             ResultSet resultados = driver.seleccionar(sql);
             
@@ -170,5 +171,9 @@ public class VoluntarioJDBC {
         
     }
     
-    
+    public int getOIDVoluntarioFromPersona (String DNI) {
+        String sql = "SELECT * FROM persona p WHERE (p.NIF='"+DNI+"')";
+       
+        return 0;
+    }
 }
