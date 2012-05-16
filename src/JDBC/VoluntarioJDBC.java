@@ -130,7 +130,7 @@ public class VoluntarioJDBC {
         ArrayList<Voluntario> listadoVoluntarios = new ArrayList<Voluntario>();
         Voluntario temp;
 
-        if (resultados.next()) {
+        while (resultados.next()) {
             temp = new Voluntario();
             temp.setPassword(resultados.getString("Password"));
             temp.setNIF(resultados.getString("NIF"));

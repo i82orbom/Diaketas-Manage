@@ -17,6 +17,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
 
 /**
  ** NOMBRE CLASE: *	ControladorVoluntario * * DESCRIPCION: * * * * DESARROLLADO
@@ -53,7 +55,10 @@ public class ControladorVoluntario {
         return contrasena;
 
     }
+    
     private VistaVoluntario vista;
+    private ArrayList<Voluntario> voluntarios = new ArrayList<Voluntario>();
+    private String[] columnNames = {"DNI", "Nombre y Apellidos", "Fecha de Nacimiento", "Localidad", "Telefono movil"};
 
     /**
      * Constructor de la clase
@@ -78,6 +83,8 @@ public class ControladorVoluntario {
 
         vista.getPanelVoluntarioDatos().getBtGuardar().addActionListener(new btGuardarVoluntarioListener());
         vista.getPanelVoluntarioDatos().getBtBorrar().addActionListener(new btBorrarVoluntarioListener());
+        
+        vista.getPanelVoluntarioBuscar().getBtBuscar().addActionListener(new BtBuscarVoluntarioListener());
 
         // al principio mostrar la vista de inicio
         mostrarVistaInicio();
@@ -167,16 +174,16 @@ public class ControladorVoluntario {
     }
     
     private ArrayList<Voluntario> obtenerListadoVoluntarios (String dato, String tipoDato) {
-        ArrayList<Voluntario> voluntarios;
+        ArrayList<Voluntario> t_voluntarios;
         
         try {
-            voluntarios = VoluntarioJDBC.getInstance().obtenerListadoVoluntario(dato, tipoDato);
+            t_voluntarios = VoluntarioJDBC.getInstance().obtenerListadoVoluntario(dato, tipoDato);
         } catch (SQLException ex) {
             Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
         
-        return voluntarios;
+        return t_voluntarios;
     }
 
     private boolean modificarVoluntario(String[] datos) {
@@ -360,5 +367,82 @@ public class ControladorVoluntario {
         public void actionPerformed(ActionEvent ae) {
             vista.getPanelVoluntarioDatos().borrarCampos();
         }
+    }
+    
+    class BtBuscarVoluntarioListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            //ArrayList<Voluntario> voluntarios;
+            
+            String busqueta = vista.getPanelVoluntarioBuscar().getTextBusqueda();
+            String tipoBusqueta = vista.getPanelVoluntarioBuscar().getCbTipoBusqueda().getSelectedItem().toString();
+            
+            voluntarios = obtenerListadoVoluntarios(busqueta, tipoBusqueta);
+            
+            TableModel tableModel = new TableModel() {
+
+                @Override
+                public int getRowCount() {
+                    return voluntarios.size();
+                }
+
+                @Override
+                public int getColumnCount() {
+                    return columnNames.length;
+                }
+
+                @Override
+                public String getColumnName(int i) {
+                    return columnNames[i];
+                }
+
+                @Override
+                public Class<?> getColumnClass(int i) {
+                    return String.class;
+                }
+
+                @Override
+                public boolean isCellEditable(int i, int i1) {
+                    return false;
+                }
+
+                @Override
+                public Object getValueAt(int row, int col) {
+                    switch (col) {
+                        case 0:
+                            return voluntarios.get(row).getNIF();
+                        case 1:
+                            return voluntarios.get(row).getNombre() + " " + voluntarios.get(row).getApellidos();
+                        case 2:
+                            return voluntarios.get(row).getFechaDENacimiento();
+                        case 3:
+                            return voluntarios.get(row).getLocalidad();
+                        case 4:
+                            return voluntarios.get(row).getTelefonoMovil();
+                    }
+                    return "";
+                }
+
+                @Override
+                public void setValueAt(Object o, int row, int col) {
+                    throw new UnsupportedOperationException("Not supported yet.");
+                }
+
+                @Override
+                public void addTableModelListener(TableModelListener tl) {
+                    
+                }
+
+                @Override
+                public void removeTableModelListener(TableModelListener tl) {
+                   
+                }
+            };
+            
+            vista.getPanelVoluntarioBuscar().getTablaBusqueda().setModel(tableModel);
+            //vista.getPanelVoluntarioBuscar().getTablaBusqueda().repaint();
+        }
+        
     }
 }

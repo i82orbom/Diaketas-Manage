@@ -4,6 +4,12 @@
  */
 package Vistas.Paneles.Voluntario;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author raphaelcolleau
@@ -17,6 +23,27 @@ public class PanelVoluntarioBuscar extends javax.swing.JPanel {
         initComponents();
     }
 
+    public JButton getBtBuscar() {
+        return btBuscar;
+    }
+
+    public JButton getBtVerVoluntario() {
+        return btVerVoluntario;
+    }
+
+    public JComboBox getCbTipoBusqueda() {
+        return cbTipoBusqueda;
+    }
+
+    public JTable getTablaBusqueda() {
+        return tablaBusqueda;
+    }
+
+    public String getTextBusqueda() {
+        return textBusqueda.getText();
+    }
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,42 +54,55 @@ public class PanelVoluntarioBuscar extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane5 = new javax.swing.JScrollPane();
-        tablaBusquedaBeneficiario = new javax.swing.JTable();
-        btVerBeneficiarioBusqueda = new javax.swing.JButton();
-        jLabel63 = new javax.swing.JLabel();
-        textBusquedaBeneficiarioDNI = new javax.swing.JTextField();
-        btBuscarBeneficiarioDNI = new javax.swing.JButton();
+        tablaBusqueda = new javax.swing.JTable();
+        btVerVoluntario = new javax.swing.JButton();
+        textBusqueda = new javax.swing.JTextField();
+        btBuscar = new javax.swing.JButton();
         jLabel29 = new javax.swing.JLabel();
-        cbTipoBusquedaBeneficiario = new javax.swing.JComboBox();
+        cbTipoBusqueda = new javax.swing.JComboBox();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 550));
         setMinimumSize(new java.awt.Dimension(1000, 550));
 
-        tablaBusquedaBeneficiario.setModel(new javax.swing.table.DefaultTableModel(
+        tablaBusqueda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Tipo Búsqueda", "DNI", "Nombre y Apellidos", "Fecha Nacimiento"
+                "DNI", "Nombre y Apellidos", "Fecha Nacimiento", "Localidad", "Telefono movil"
             }
-        ));
-        jScrollPane5.setViewportView(tablaBusquedaBeneficiario);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
 
-        btVerBeneficiarioBusqueda.setText("Ver beneficiario");
-        btVerBeneficiarioBusqueda.setActionCommand("verBeneficiarioBusqueda");
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(tablaBusqueda);
 
-        jLabel63.setText("Introduzca el DNI para buscar al voluntario");
+        btVerVoluntario.setText("Ver Voluntario");
+        btVerVoluntario.setActionCommand("verBeneficiarioBusqueda");
 
-        btBuscarBeneficiarioDNI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
-        btBuscarBeneficiarioDNI.setActionCommand("buscarBeneficiarioDNI");
+        textBusqueda.setText("Buscar");
 
-        jLabel29.setText("Criterio de búsqueda");
+        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
+        btBuscar.setActionCommand("buscarBeneficiarioDNI");
 
-        cbTipoBusquedaBeneficiario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel29.setText("Buscar por :");
+
+        cbTipoBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NIF", "Apellidos", "Localidad" }));
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -72,50 +112,47 @@ public class PanelVoluntarioBuscar extends javax.swing.JPanel {
                 .add(23, 23, 23)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(jLabel29)
-                        .add(50, 50, 50)
-                        .add(cbTipoBusquedaBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 138, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(layout.createSequentialGroup()
-                        .add(jLabel63)
-                        .add(46, 46, 46)
-                        .add(textBusquedaBeneficiarioDNI, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(textBusqueda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 404, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(30, 30, 30)
-                        .add(btBuscarBeneficiarioDNI, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(btBuscar))
+                    .add(layout.createSequentialGroup()
+                        .add(8, 8, 8)
+                        .add(jLabel29)
+                        .add(36, 36, 36)
+                        .add(cbTipoBusqueda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                        .add(btVerBeneficiarioBusqueda)
+                        .add(btVerVoluntario)
                         .add(jScrollPane5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 951, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .add(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel63)
-                            .add(textBusquedaBeneficiarioDNI, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(11, 11, 11)
+                        .add(9, 9, 9)
+                        .add(textBusqueda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(18, 18, 18)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(jLabel29)
-                            .add(cbTipoBusquedaBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(btBuscarBeneficiarioDNI, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 31, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(cbTipoBusqueda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(btBuscar))
                 .add(19, 19, 19)
                 .add(jScrollPane5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 382, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(btVerBeneficiarioBusqueda)
+                .add(btVerVoluntario)
                 .add(16, 16, 16))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btBuscarBeneficiarioDNI;
-    private javax.swing.JButton btVerBeneficiarioBusqueda;
-    private javax.swing.JComboBox cbTipoBusquedaBeneficiario;
+    private javax.swing.JButton btBuscar;
+    private javax.swing.JButton btVerVoluntario;
+    private javax.swing.JComboBox cbTipoBusqueda;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel63;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable tablaBusquedaBeneficiario;
-    private javax.swing.JTextField textBusquedaBeneficiarioDNI;
+    private javax.swing.JTable tablaBusqueda;
+    private javax.swing.JTextField textBusqueda;
     // End of variables declaration//GEN-END:variables
 }
