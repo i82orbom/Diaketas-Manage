@@ -6,6 +6,7 @@ package Controladores;
 
 import JDBC.VoluntarioJDBC;
 import Modelo.Voluntario;
+import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.Voluntario.VistaVoluntario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -84,31 +85,31 @@ public class ControladorVoluntario {
     // mostrar la vista que queremos y actualizacion de la barra de navegacion
     private void mostrarVistaInicio() {
         vista.showPanel(VistaVoluntario.panelInicio);
-        vista.getBarraDeNavegacion().setTextLabelMenuPrincipal("Voluntario");
+        vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
     }
 
     private void mostrarVistaBuscar() {
         vista.showPanel(VistaVoluntario.panelBuscar);
-        vista.getBarraDeNavegacion().setTextLabelMenuPrincipal("Voluntario");
-        vista.getBarraDeNavegacion().setTextLabelMenuAvanzado("Buscar");
+        vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
+        vista.getBarraDeNavegacion().setTextLabelNivel2("Buscar");
     }
 
     private void mostrarVistaDatos() {
         vista.showPanel(VistaVoluntario.panelDatos);
-        vista.getBarraDeNavegacion().setTextLabelMenuPrincipal("Voluntario");
-        vista.getBarraDeNavegacion().setTextLabelMenuAvanzado("Datos");
+        vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
+        vista.getBarraDeNavegacion().setTextLabelNivel2("Datos");
     }
 
     private void mostrarVistaAyudas() {
         vista.showPanel(VistaVoluntario.panelAyudas);
-        vista.getBarraDeNavegacion().setTextLabelMenuPrincipal("Voluntario");
-        vista.getBarraDeNavegacion().setTextLabelMenuAvanzado("Ayudas");
+        vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
+        vista.getBarraDeNavegacion().setTextLabelNivel2("Ayudas");
     }
 
     private void mostrarVistaContabilidad() {
         vista.showPanel(VistaVoluntario.panelContabilidad);
-        vista.getBarraDeNavegacion().setTextLabelMenuPrincipal("Voluntario");
-        vista.getBarraDeNavegacion().setTextLabelMenuAvanzado("Contabilidad");
+        vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
+        vista.getBarraDeNavegacion().setTextLabelNivel2("Contabilidad");
     }
 
     // metodos de interaccion con JDBC
@@ -257,12 +258,12 @@ public class ControladorVoluntario {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if (ae.getActionCommand().equalsIgnoreCase("toMain")) {
+            if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_VISTA_INICIAL)) {
                 mostrarVistaInicio();
                 ControladorPrincipal.getInstance().mostrarVistaInicio();
             }
 
-            if (ae.getActionCommand().equalsIgnoreCase("toMenuInicial")) {
+            if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_NIVEL1)) {
                 mostrarVistaInicio();
             }
         }

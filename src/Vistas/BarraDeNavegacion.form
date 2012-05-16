@@ -37,14 +37,18 @@
                   <Group type="102" attributes="0">
                       <Component id="navToMain" min="-2" pref="106" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="senalaPrincipal" min="-2" pref="21" max="-2" attributes="0"/>
+                      <Component id="senalaNivel1" min="-2" pref="21" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="labelMenuPrincipal" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelNivel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="senalaAvanzado" min="-2" pref="21" max="-2" attributes="0"/>
+                      <Component id="senalaNivel2" min="-2" pref="21" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="labelMenuAvanzado" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="660" max="32767" attributes="0"/>
+                      <Component id="labelNivel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="senalaNivel3" min="-2" pref="21" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="labelNivel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="497" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -57,10 +61,12 @@
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="navToMain" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
-                  <Component id="senalaPrincipal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelMenuPrincipal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="senalaAvanzado" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelMenuAvanzado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="senalaNivel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelNivel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="senalaNivel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelNivel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="senalaNivel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelNivel3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="16" max="-2" attributes="0"/>
@@ -83,7 +89,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="navToMainActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="senalaPrincipal">
+    <Component class="javax.swing.JLabel" name="senalaNivel1">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="99" type="rgb"/>
@@ -91,15 +97,15 @@
         <Property name="text" type="java.lang.String" value="&gt;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelMenuPrincipal">
+    <Component class="javax.swing.JLabel" name="labelNivel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Voluntario"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelMenuPrincipalMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelNivel1MouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="senalaAvanzado">
+    <Component class="javax.swing.JLabel" name="senalaNivel2">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="99" type="rgb"/>
@@ -107,9 +113,25 @@
         <Property name="text" type="java.lang.String" value="&gt;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelMenuAvanzado">
+    <Component class="javax.swing.JLabel" name="labelNivel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar"/>
+        <Property name="text" type="java.lang.String" value="Colaboraciones"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelNivel2MouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="senalaNivel3">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelNivel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">

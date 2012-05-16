@@ -5,8 +5,8 @@
 
 package Controladores;
 
+import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.Beneficiario.VistaBeneficiario;
-import Vistas.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -72,19 +72,19 @@ public class ControladorBeneficiario {
     // mostrar la vista que queremos y actualizacion de la barra de navigacion
     private void mostrarVistaInicio(){
         vista.showPanel(VistaBeneficiario.panelInicio);
-        vista.getBarraDeNavigacion().setTextLabelMenuPrincipal("Beneficiario");     
+        vista.getBarraDeNavigacion().setTextLabelNivel1("Beneficiario");     
     }
     
     private void mostrarVistaBuscar(){
         vista.showPanel(VistaBeneficiario.panelBuscar);
-        vista.getBarraDeNavigacion().setTextLabelMenuPrincipal("Beneficiario");  
-        vista.getBarraDeNavigacion().setTextLabelMenuAvanzado("Buscar");
+        vista.getBarraDeNavigacion().setTextLabelNivel1("Beneficiario");  
+        vista.getBarraDeNavigacion().setTextLabelNivel2("Buscar");
     }
     
     private void mostrarVistaNuevoBeneficiario(){
         vista.showPanel(VistaBeneficiario.panelDatos);
-        vista.getBarraDeNavigacion().setTextLabelMenuPrincipal("Beneficiario");    
-        vista.getBarraDeNavigacion().setTextLabelMenuAvanzado("Datos");   
+        vista.getBarraDeNavigacion().setTextLabelNivel1("Beneficiario");    
+        vista.getBarraDeNavigacion().setTextLabelNivel2("Datos");   
     }
     
   
@@ -95,12 +95,12 @@ public class ControladorBeneficiario {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if (ae.getActionCommand().equalsIgnoreCase("toMain")) {
+            if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_VISTA_INICIAL)) {
                 mostrarVistaInicio();
                 ControladorPrincipal.getInstance().mostrarVistaInicio();
             }
             
-            if (ae.getActionCommand().equalsIgnoreCase("toMenuInicial")) {
+            if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_NIVEL1)) {
                 mostrarVistaInicio();
             }
         }
