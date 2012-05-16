@@ -79,6 +79,7 @@ public class ControladorPrincipal {
         vista.getVistaLogin().anadirListenerBtConectarse(new BtConectarseListener());
         vista.getVistaInicial().anadirListenerbtVoluntario(new BtVoluntarioListener());
         vista.getVistaInicial().anadirListenerbtBeneficiario(new BtBeneficiarioListener());
+        vista.getVistaInicial().anadirListenerbtDesconectase(new BtDesconectarseListener());
     }
 
     /*
@@ -126,6 +127,15 @@ public class ControladorPrincipal {
                 }
             }
         }
+    }
+    
+    class BtDesconectarseListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            vista.showPanel(Ventana.panelLogin);
+        }
+        
     }
 
     class BtVoluntarioListener implements ActionListener {

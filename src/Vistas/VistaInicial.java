@@ -33,8 +33,12 @@ public class VistaInicial extends javax.swing.JPanel {
         this.btSocio.addActionListener(listener);
     }
     
-     public void anadirListenerbtVoluntario(ActionListener listener){
+    public void anadirListenerbtVoluntario(ActionListener listener) {
         this.btVoluntario.addActionListener(listener);
+    }
+    
+    public void anadirListenerbtDesconectase(ActionListener listener) {
+        this.btDesconectarse.addActionListener(listener);
     }
 
     /**
@@ -50,7 +54,7 @@ public class VistaInicial extends javax.swing.JPanel {
         btBeneficiario = new javax.swing.JButton();
         btVoluntario = new javax.swing.JButton();
         btBolsaTrabajo = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btDesconectarse = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
@@ -97,8 +101,8 @@ public class VistaInicial extends javax.swing.JPanel {
         btBolsaTrabajo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         add(btBolsaTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 330, 250, 190));
 
-        jButton1.setText("Deconectarse");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, -1, -1));
+        btDesconectarse.setText("Desconectarse");
+        add(btDesconectarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSocioActionPerformed
@@ -108,8 +112,8 @@ public class VistaInicial extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBeneficiario;
     private javax.swing.JButton btBolsaTrabajo;
+    private javax.swing.JButton btDesconectarse;
     private javax.swing.JButton btSocio;
     private javax.swing.JButton btVoluntario;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
