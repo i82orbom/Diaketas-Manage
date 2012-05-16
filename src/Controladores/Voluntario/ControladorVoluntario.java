@@ -37,7 +37,6 @@ public class ControladorVoluntario {
         }
 
         return instancia;
-
     }
 
     public static String genContrasena() {

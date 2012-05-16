@@ -4,6 +4,7 @@
  */
 package Vistas.Paneles.Voluntario;
 
+import java.awt.Color;
 import javax.swing.JButton;
 
 /**
@@ -19,6 +20,7 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
         initComponents();
         
         labelError.setVisible(false);
+        textApellidos.setForeground(Color.yellow);
     }
     
     public void setTextLabelError (String text) {

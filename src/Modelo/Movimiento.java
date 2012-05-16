@@ -44,20 +44,11 @@ public class Movimiento {
     public static int IMPORTE_ID = 2;
     
     private ArrayList<Ayuda> ayudasAsociadas;
-    private Asociacion asociacionQueGenera;
 
     /**
      * Constructor por defecto
      */
     public Movimiento() {
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public Asociacion getAsociacionQueGenera() {
-        return asociacionQueGenera;
     }
     
     
@@ -75,14 +66,6 @@ public class Movimiento {
      */
     public Long getOID() {
         return OID;
-    }
-    
-    /**
-     * 
-     * @param asociacionQueGenera
-     */
-    public void setAsociacionQueGenera(Asociacion asociacionQueGenera) {
-        this.asociacionQueGenera = asociacionQueGenera;
     }
 
     /**

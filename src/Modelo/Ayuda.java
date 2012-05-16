@@ -43,7 +43,6 @@ public class Ayuda {
     private TipoAyuda tipo_ayuda;
     private Beneficiario beneficiarioDeAyuda;
     private Voluntario voluntarioQueOtorga;
-    private Asociacion asociacionQueOtorga;
 
     
     /**
@@ -66,22 +65,6 @@ public class Ayuda {
      */
     public void setOID(String OID) {
         this.OID = OID;
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public Asociacion getAsociacionQueOtorga() {
-        return asociacionQueOtorga;
-    }
-
-    /**
-     * 
-     * @param asociacionQueOtorga
-     */
-    public void setAsociacionQueOtorga(Asociacion asociacionQueOtorga) {
-        this.asociacionQueOtorga = asociacionQueOtorga;
     }
 
     /**
