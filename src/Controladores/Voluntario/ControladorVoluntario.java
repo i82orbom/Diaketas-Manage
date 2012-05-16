@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controladores;
+package Controladores.Voluntario;
 
+import Controladores.ControladorPrincipal;
+import Controladores.TestDatos;
 import JDBC.VoluntarioJDBC;
 import Modelo.Voluntario;
 import Vistas.BarraDeNavegacion;

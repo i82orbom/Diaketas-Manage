@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package Controladores;
+package Controladores.Voluntario;
 
 import Vistas.Paneles.Voluntario.PanelVoluntarioContabilidad;
 

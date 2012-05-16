@@ -4,6 +4,7 @@
  */
 package Controladores;
 
+import Controladores.Voluntario.ControladorVoluntario;
 import JDBC.DriverJDBC;
 import Modelo.Voluntario;
 import Vistas.Ventana;
