@@ -14,7 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -96,10 +95,16 @@ public class ControladorVoluntario {
         vista.getBarraDeNavegacion().setTextLabelNivel2("Buscar");
     }
 
-    private void mostrarVistaDatos() {
+    private void mostrarVistaNuevoVoluntario() {
         vista.showPanel(VistaVoluntario.panelDatos);
         vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
-        vista.getBarraDeNavegacion().setTextLabelNivel2("Datos");
+        vista.getBarraDeNavegacion().setTextLabelNivel2("Nuevo Voluntario");
+    }
+    
+    private void mostrarVistaModificarVoluntario() {
+        vista.showPanel(VistaVoluntario.panelDatos);
+        vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
+        vista.getBarraDeNavegacion().setTextLabelNivel2("Modificar Voluntario");
     }
 
     private void mostrarVistaAyudas() {
@@ -292,7 +297,7 @@ public class ControladorVoluntario {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            mostrarVistaDatos();
+            mostrarVistaNuevoVoluntario();
         }
     }
 
@@ -319,32 +324,33 @@ public class ControladorVoluntario {
             
             try {
                 System.out.println("Date : " + TestDatos.formatter.parse(vista.getPanelVoluntarioDatos().getTextFechaNacimiento()).toString());
+            
+                String[] datos = new String[15];
+
+                datos[Voluntario.NIF_ID] = vista.getPanelVoluntarioDatos().getTextNIF();
+                datos[Voluntario.NOMBRE_ID] = vista.getPanelVoluntarioDatos().getTextNombre();
+                datos[Voluntario.APELLIDOS_ID] = vista.getPanelVoluntarioDatos().getTextApellidos();
+                datos[Voluntario.FECHA_DE_NACIMIENTO_ID] = vista.getPanelVoluntarioDatos().getTextFechaNacimiento();
+                datos[Voluntario.DOMICILIO_ID] = vista.getPanelVoluntarioDatos().getTextDomicilio();
+                datos[Voluntario.LOCALIDAD_ID] = vista.getPanelVoluntarioDatos().getTextLocalidad();
+                datos[Voluntario.CP_ID] = vista.getPanelVoluntarioDatos().getTextCP();
+                datos[Voluntario.TELEFONO_MOVIL_ID] = vista.getPanelVoluntarioDatos().getTextTelFijo();
+                datos[Voluntario.TELEFONO_FIJO_ID] = vista.getPanelVoluntarioDatos().getTextTelMovil();
+                datos[Voluntario.PASSWORD_ID] = vista.getPanelVoluntarioDatos().getTextPassword();
+
+                boolean exito = insertarVoluntario(datos, datos[Voluntario.PASSWORD_ID]);
+
+                if (exito) {
+                    vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario anadido correctamente.");
+                } else {
+                    vista.getPanelVoluntarioDatos().setTextLabelError("El voluntario no ha sido anadido.");
+                }
             } catch (ParseException ex) {
                 vista.getPanelVoluntarioDatos().setTextLabelError("Pon el fecha de nacimiento con este formato dd/mm/aaaa");
                 Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            String[] datos = new String[15];
-
-            datos[Voluntario.NIF_ID] = vista.getPanelVoluntarioDatos().getTextNIF();
-            datos[Voluntario.NOMBRE_ID] = vista.getPanelVoluntarioDatos().getTextNombre();
-            datos[Voluntario.APELLIDOS_ID] = vista.getPanelVoluntarioDatos().getTextApellidos();
-            datos[Voluntario.FECHA_DE_NACIMIENTO_ID] = vista.getPanelVoluntarioDatos().getTextFechaNacimiento();
-            datos[Voluntario.DOMICILIO_ID] = vista.getPanelVoluntarioDatos().getTextDomicilio();
-            datos[Voluntario.LOCALIDAD_ID] = vista.getPanelVoluntarioDatos().getTextLocalidad();
-            datos[Voluntario.CP_ID] = vista.getPanelVoluntarioDatos().getTextCP();
-            datos[Voluntario.TELEFONO_MOVIL_ID] = vista.getPanelVoluntarioDatos().getTextTelFijo();
-            datos[Voluntario.TELEFONO_FIJO_ID] = vista.getPanelVoluntarioDatos().getTextTelMovil();
-            datos[Voluntario.PASSWORD_ID] = vista.getPanelVoluntarioDatos().getTextPassword();
-
-            boolean exito = insertarVoluntario(datos, datos[Voluntario.PASSWORD_ID]);
             
-            
-            if (exito) {
-                vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario anadido correctamente.");
-            } else {
-                vista.getPanelVoluntarioDatos().setTextLabelError("El voluntario no ha sido anadido.");
-            }
         }
     }
     
