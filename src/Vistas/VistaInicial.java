@@ -30,7 +30,7 @@ public class VistaInicial extends javax.swing.JPanel {
     }
     
     public void anadirListenerbtSocio(ActionListener listener){
-        this.btSocio.addActionListener(listener);
+        this.btColaboradores.addActionListener(listener);
     }
     
     public void anadirListenerbtVoluntario(ActionListener listener) {
@@ -39,6 +39,10 @@ public class VistaInicial extends javax.swing.JPanel {
     
     public void anadirListenerbtDesconectase(ActionListener listener) {
         this.btDesconectarse.addActionListener(listener);
+    }
+    
+    public void anadirListenerbtColaboradores(ActionListener listener){
+        this.btColaboradores.addActionListener(listener);
     }
 
     /**
@@ -50,7 +54,7 @@ public class VistaInicial extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btSocio = new javax.swing.JButton();
+        btColaboradores = new javax.swing.JButton();
         btBeneficiario = new javax.swing.JButton();
         btVoluntario = new javax.swing.JButton();
         btBolsaTrabajo = new javax.swing.JButton();
@@ -60,22 +64,22 @@ public class VistaInicial extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1000, 600));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btSocio.setBackground(new java.awt.Color(255, 255, 255));
-        btSocio.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        btSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/socio.png"))); // NOI18N
-        btSocio.setText("COLABORADORES");
-        btSocio.setToolTipText("Acceso a Colaboradores");
-        btSocio.setActionCommand("entrarAPanelSocios");
-        btSocio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btSocio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btSocio.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        btSocio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btSocio.addActionListener(new java.awt.event.ActionListener() {
+        btColaboradores.setBackground(new java.awt.Color(255, 255, 255));
+        btColaboradores.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btColaboradores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/socio.png"))); // NOI18N
+        btColaboradores.setText("COLABORADORES");
+        btColaboradores.setToolTipText("Acceso a Colaboradores");
+        btColaboradores.setActionCommand("entrarAPanelSocios");
+        btColaboradores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btColaboradores.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btColaboradores.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        btColaboradores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btColaboradores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSocioActionPerformed(evt);
+                btColaboradoresActionPerformed(evt);
             }
         });
-        add(btSocio, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 250, 190));
+        add(btColaboradores, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 250, 190));
 
         btBeneficiario.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btBeneficiario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/bene.png"))); // NOI18N
@@ -105,15 +109,15 @@ public class VistaInicial extends javax.swing.JPanel {
         add(btDesconectarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSocioActionPerformed
+    private void btColaboradoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btColaboradoresActionPerformed
         
-    }//GEN-LAST:event_btSocioActionPerformed
+    }//GEN-LAST:event_btColaboradoresActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBeneficiario;
     private javax.swing.JButton btBolsaTrabajo;
+    private javax.swing.JButton btColaboradores;
     private javax.swing.JButton btDesconectarse;
-    private javax.swing.JButton btSocio;
     private javax.swing.JButton btVoluntario;
     // End of variables declaration//GEN-END:variables
 }
