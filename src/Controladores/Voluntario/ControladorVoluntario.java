@@ -80,7 +80,8 @@ public class ControladorVoluntario {
         vista.getPanelVoluntarioInicio().anadirListenerbtBuscarVoluntario(new btBuscarListener());
         vista.getPanelVoluntarioInicio().anadirListenerbtContabilidad(new btContabilidadListener());
         vista.getPanelVoluntarioInicio().anadirListenerbtNuevoVoluntario(new btDatosListener());
-
+        vista.getPanelVoluntarioInicio().anadirListenerbtColaboraciones(new btColaboracionesListener());
+                
         vista.getPanelVoluntarioDatos().getBtGuardar().addActionListener(new btGuardarVoluntarioListener());
         vista.getPanelVoluntarioDatos().getBtBorrar().addActionListener(new btBorrarVoluntarioListener());
 
@@ -124,6 +125,12 @@ public class ControladorVoluntario {
         vista.showPanel(VistaVoluntario.panelContabilidad);
         vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
         vista.getBarraDeNavegacion().setTextLabelNivel2("Contabilidad");
+    }
+    
+    private void mostrarVistaColaboraciones() {
+        vista.showPanel(VistaVoluntario.panelColaboraciones);
+        vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
+        vista.getBarraDeNavegacion().setTextLabelNivel2("Colaboraciones");
     }
 
     // metodos de interaccion con JDBC
@@ -321,6 +328,20 @@ public class ControladorVoluntario {
         @Override
         public void actionPerformed(ActionEvent ae) {
             mostrarVistaContabilidad();
+        }
+    }
+    
+    class btColaboracionesListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            mostrarVistaColaboraciones();
+        }
+    }
+    class btAñadirColaboracionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            //mostrarVistaAñadirColaboraciones();
         }
     }
 

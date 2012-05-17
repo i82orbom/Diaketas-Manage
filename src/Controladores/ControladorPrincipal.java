@@ -79,7 +79,7 @@ public class ControladorPrincipal {
         // Para crear la instancia de los controladores con la vista asociada
         ControladorVoluntario.getInstance(this.vista.getPanelVoluntario());
         ControladorBeneficiario.getInstance(this.vista.getVistaBeneficiario());
-       // ControladorSocio.getInstance(this.vista.getVistaColaboradores());
+        ControladorColaboradores.getInstance(this.vista.getVistaColaboradores());
         
         // adicion de los listeners cuyo el controlador se encarga
         vista.getVistaLogin().anadirListenerBtConectarse(new BtConectarseListener());

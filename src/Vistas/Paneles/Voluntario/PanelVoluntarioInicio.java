@@ -62,7 +62,6 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1000, 550));
         setMinimumSize(new java.awt.Dimension(1000, 550));
         setPreferredSize(new java.awt.Dimension(1000, 550));
-        setSize(new java.awt.Dimension(1000, 550));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btNuevoVoluntario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/vol.png"))); // NOI18N

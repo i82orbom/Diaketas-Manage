@@ -65,7 +65,7 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().add(vistaInicial, "inicio");
         getContentPane().add(vistaVoluntario, "voluntario");
         getContentPane().add(vistaBeneficiario, "beneficiario");
-        getContentPane().add(vistaColaboradores, "card6");
+        getContentPane().add(vistaColaboradores, "colaboradores");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
