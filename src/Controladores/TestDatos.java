@@ -5,6 +5,7 @@
 
 package Controladores;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,6 +34,8 @@ import java.util.regex.Pattern;
  **
  */
 public class TestDatos {
+    
+    public static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
     public static boolean isDNI (String DNI) {
         if (DNI.length() != 9)
@@ -68,7 +71,7 @@ public class TestDatos {
     }
     
     public static boolean isTelefonoOFax (String numero) {
-        if (numero.length() <= 9)
+        if (numero.length() < 9)
             return false;
         
         for (int i=0; i<numero.length(); i++) {

@@ -63,7 +63,7 @@ public class ControladorColaboracion {
     }*/
 
     public Colaboracion anadirColaboracion (String[] datos){
-        if (!testDatos(datos))
+        if (!comprobarDatos(datos))
             return null;
         
         Colaboracion c = new Colaboracion();
@@ -101,7 +101,7 @@ public class ControladorColaboracion {
         return null;
     }
     
-    private boolean testDatos (String[] datos) {
+    private boolean comprobarDatos (String[] datos) {
         // cada campo debe ser not null
         for (int i=0; i<datos.length; i++) {
             if (datos[i].length() < 1)

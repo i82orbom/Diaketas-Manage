@@ -4,9 +4,11 @@
  */
 package Controladores;
 
+import Controladores.Colaborador.ControladorSocio;
 import Controladores.Voluntario.ControladorVoluntario;
 import JDBC.DriverJDBC;
 import Modelo.Voluntario;
+import Vistas.Paneles.Colaboradores.VistaColaboradores;
 import Vistas.Ventana;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,7 +57,9 @@ public class ControladorPrincipal {
         return instancia;
 
     }
+
     private Ventana vista;
+    private VistaColaboradores vistaC;
 
     /**
      * Constructor de la clase
@@ -67,6 +71,7 @@ public class ControladorPrincipal {
          */
         vista = pvista;
         vista.setVisible(true);
+        //vistaC.setVisible(false);
         
         // al principio mostra el panel de Login
         vista.showPanel(Ventana.panelLogin);
@@ -74,12 +79,16 @@ public class ControladorPrincipal {
         // Para crear la instancia de los controladores con la vista asociada
         ControladorVoluntario.getInstance(this.vista.getPanelVoluntario());
         ControladorBeneficiario.getInstance(this.vista.getVistaBeneficiario());
-
+       // ControladorSocio.getInstance(this.vista.getVistaColaboradores());
+        
         // adicion de los listeners cuyo el controlador se encarga
         vista.getVistaLogin().anadirListenerBtConectarse(new BtConectarseListener());
         vista.getVistaInicial().anadirListenerbtVoluntario(new BtVoluntarioListener());
         vista.getVistaInicial().anadirListenerbtBeneficiario(new BtBeneficiarioListener());
+        vista.getVistaInicial().anadirListenerbtDesconectase(new BtDesconectarseListener());
+        vista.getVistaInicial().anadirListenerbtColaboradores(new BtColaboradoresListener());
     }
+
 
     /*
      * Para que los controladores especificos pregunta al controlador principal de volver a la vista de inicio
@@ -127,6 +136,15 @@ public class ControladorPrincipal {
             }
         }
     }
+    
+    class BtDesconectarseListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            vista.showPanel(Ventana.panelLogin);
+        }
+        
+    }
 
     class BtVoluntarioListener implements ActionListener {
 
@@ -142,6 +160,14 @@ public class ControladorPrincipal {
         @Override
         public void actionPerformed(ActionEvent ae) {
             vista.showPanel(Ventana.panelBeneficiario);
+        }
+     }
+     
+     class  BtColaboradoresListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            vista.showPanel(Ventana.panelColaboradores);
         }
      }
 }
