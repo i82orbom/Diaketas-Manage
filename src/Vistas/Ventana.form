@@ -65,7 +65,7 @@
     <Component class="Vistas.Paneles.Colaboradores.VistaColaboradores" name="vistaColaboradores">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-          <CardConstraints cardName="card6"/>
+          <CardConstraints cardName="colaboradores"/>
         </Constraint>
       </Constraints>
     </Component>
