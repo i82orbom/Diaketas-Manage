@@ -10,13 +10,13 @@ import Vistas.Paneles.Beneficiario.*;
  *
  * @author psylock
  */
-public class PanelDemandaBuscar extends javax.swing.JPanel {
+public class PanelDemandanteBuscar extends javax.swing.JPanel {
   
     
     /**
      * Creates new form PanelBeneficiarioBuscar
      */
-    public PanelDemandaBuscar() {
+    public PanelDemandanteBuscar() {
         initComponents();
     }
     

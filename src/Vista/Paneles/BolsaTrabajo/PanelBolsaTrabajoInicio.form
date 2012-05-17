@@ -29,9 +29,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
-              <Component id="btNuevoBeneficiario" min="-2" pref="257" max="-2" attributes="0"/>
+              <Component id="btOfertadeEmpleo" min="-2" pref="257" max="-2" attributes="0"/>
               <EmptySpace pref="251" max="32767" attributes="0"/>
-              <Component id="btBuscarBeneficiario" min="-2" pref="257" max="-2" attributes="0"/>
+              <Component id="btDemandasEmpleo" min="-2" pref="257" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -41,8 +41,8 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btBuscarBeneficiario" min="-2" pref="231" max="-2" attributes="0"/>
-                  <Component id="btNuevoBeneficiario" min="-2" max="-2" attributes="0"/>
+                  <Component id="btDemandasEmpleo" min="-2" pref="231" max="-2" attributes="0"/>
+                  <Component id="btOfertadeEmpleo" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="206" max="32767" attributes="0"/>
           </Group>
@@ -50,7 +50,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btNuevoBeneficiario">
+    <Component class="javax.swing.JButton" name="btOfertadeEmpleo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="14" style="1"/>
@@ -63,10 +63,10 @@
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btNuevoBeneficiarioActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btOfertadeEmpleoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btBuscarBeneficiario">
+    <Component class="javax.swing.JButton" name="btDemandasEmpleo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="14" style="1"/>

@@ -23,11 +23,11 @@ public class PanelBolsaTrabajoInicio extends javax.swing.JPanel {
     // LISTENERS
 
     public void anadirListenerbtBuscarBeneficiario(ActionListener listener){
-        this.btBuscarBeneficiario.addActionListener(listener);
+        this.btDemandasEmpleo.addActionListener(listener);
     }
     
     public void anadirListenerbtNuevoBeneficiario(ActionListener listener){
-        this.btNuevoBeneficiario.addActionListener(listener);
+        this.btOfertadeEmpleo.addActionListener(listener);
     }
     
     
@@ -40,29 +40,29 @@ public class PanelBolsaTrabajoInicio extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btNuevoBeneficiario = new javax.swing.JButton();
-        btBuscarBeneficiario = new javax.swing.JButton();
+        btOfertadeEmpleo = new javax.swing.JButton();
+        btDemandasEmpleo = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
 
-        btNuevoBeneficiario.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        btNuevoBeneficiario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/ofertas.jpg"))); // NOI18N
-        btNuevoBeneficiario.setActionCommand("nuevoBeneficiario");
-        btNuevoBeneficiario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btNuevoBeneficiario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btNuevoBeneficiario.addActionListener(new java.awt.event.ActionListener() {
+        btOfertadeEmpleo.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btOfertadeEmpleo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/ofertas.jpg"))); // NOI18N
+        btOfertadeEmpleo.setActionCommand("nuevoBeneficiario");
+        btOfertadeEmpleo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btOfertadeEmpleo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btOfertadeEmpleo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNuevoBeneficiarioActionPerformed(evt);
+                btOfertadeEmpleoActionPerformed(evt);
             }
         });
 
-        btBuscarBeneficiario.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        btBuscarBeneficiario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/demandas.jpg"))); // NOI18N
-        btBuscarBeneficiario.setActionCommand("buscarBeneficiario");
-        btBuscarBeneficiario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btBuscarBeneficiario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btDemandasEmpleo.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btDemandasEmpleo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/demandas.jpg"))); // NOI18N
+        btDemandasEmpleo.setActionCommand("buscarBeneficiario");
+        btDemandasEmpleo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btDemandasEmpleo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -70,9 +70,9 @@ public class PanelBolsaTrabajoInicio extends javax.swing.JPanel {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(126, 126, 126)
-                .add(btNuevoBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 257, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(btOfertadeEmpleo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 257, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 251, Short.MAX_VALUE)
-                .add(btBuscarBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 257, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(btDemandasEmpleo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 257, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(109, 109, 109))
         );
         layout.setVerticalGroup(
@@ -80,18 +80,18 @@ public class PanelBolsaTrabajoInicio extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .add(163, 163, 163)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(btBuscarBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 231, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(btNuevoBeneficiario))
+                    .add(btDemandasEmpleo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 231, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(btOfertadeEmpleo))
                 .addContainerGap(206, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btNuevoBeneficiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoBeneficiarioActionPerformed
+    private void btOfertadeEmpleoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOfertadeEmpleoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btNuevoBeneficiarioActionPerformed
+    }//GEN-LAST:event_btOfertadeEmpleoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btBuscarBeneficiario;
-    private javax.swing.JButton btNuevoBeneficiario;
+    private javax.swing.JButton btDemandasEmpleo;
+    private javax.swing.JButton btOfertadeEmpleo;
     // End of variables declaration//GEN-END:variables
 }
