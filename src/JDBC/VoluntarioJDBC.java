@@ -112,7 +112,7 @@ public class VoluntarioJDBC {
 
         boolean exito = driver.actualizar(sql);
 
-        if (exito) {
+        if (exito && !(voluntario.getPassword()==null)) {
             exito = driver.actualizar(sql2);
         }
 

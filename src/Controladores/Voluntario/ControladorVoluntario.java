@@ -12,6 +12,8 @@ import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.Voluntario.VistaVoluntario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -193,7 +195,7 @@ public class ControladorVoluntario {
         return t_voluntarios;
     }
 
-    private boolean modificarVoluntario(String[] datos) {
+    private boolean modificarVoluntario(String[] datos,String password) {
 
         if (this.comprobarDatos(datos) == false) {
             return false;
@@ -213,7 +215,10 @@ public class ControladorVoluntario {
         voluntario.setLocalidad(datos[Voluntario.LOCALIDAD_ID]);
         voluntario.setTelefonoMovil(Integer.parseInt(datos[Voluntario.TELEFONO_MOVIL_ID]));
         voluntario.setTelefonoFijo(Integer.parseInt(datos[Voluntario.TELEFONO_FIJO_ID]));
-
+        if(!"".equals(password))
+            voluntario.setPassword(ControladorPrincipal.getInstance().md5(password+ControladorPrincipal.getInstance().getSalto()));
+        else
+            voluntario.setPassword(null);
 
         try {
             VoluntarioJDBC.getInstance().modificarDatosVoluntario(voluntario);
@@ -365,7 +370,10 @@ public class ControladorVoluntario {
 				datos[Voluntario.CP_ID] = vista.getPanelVoluntarioDatos().getTextCP();
 				datos[Voluntario.TELEFONO_MOVIL_ID] = vista.getPanelVoluntarioDatos().getTextTelFijo();
 				datos[Voluntario.TELEFONO_FIJO_ID] = vista.getPanelVoluntarioDatos().getTextTelMovil();
-				datos[Voluntario.PASSWORD_ID] = vista.getPanelVoluntarioDatos().getTextPassword();
+                                
+                                /* Codificar password con md5 mas un salto */
+                                String password = ControladorPrincipal.getInstance().md5(vista.getPanelVoluntarioDatos().getTextPassword()+ControladorPrincipal.getInstance().getSalto());
+				datos[Voluntario.PASSWORD_ID] = password;
 
 				boolean exito = insertarVoluntario(datos);
 
@@ -379,6 +387,7 @@ public class ControladorVoluntario {
 				Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
 			}
         }
+        
     }
 
     class btBorrarVoluntarioListener implements ActionListener {

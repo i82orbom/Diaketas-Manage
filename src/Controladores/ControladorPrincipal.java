@@ -12,6 +12,8 @@ import Vistas.Paneles.Colaboradores.VistaColaboradores;
 import Vistas.Ventana;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,6 +62,9 @@ public class ControladorPrincipal {
 
     private Ventana vista;
     private VistaColaboradores vistaC;
+    
+    /* Salto para la codificación de la contraseña (para login y registro) */
+    private String salto="Mary Popins";
 
     /**
      * Constructor de la clase
@@ -97,6 +102,34 @@ public class ControladorPrincipal {
         vista.showPanel(Ventana.panelInicio);
     }
 
+    public String getSalto() {
+        return salto;
+    }
+    /* Funcion para generar hash md5 a partir de una cadena */
+    public String md5(String s) {
+    		try {
+    	        // Create MD5 Hash
+    	        MessageDigest digest = java.security.MessageDigest
+    	                .getInstance("MD5");
+    	        digest.update(s.getBytes());
+    	        byte messageDigest[] = digest.digest();
+    	 
+    	        // Create Hex String
+    	        StringBuffer hexString = new StringBuffer();
+    	        for (int i = 0; i < messageDigest.length; i++) {
+    	            String h = Integer.toHexString(0xFF & messageDigest[i]);
+    	            while (h.length() < 2)
+    	                h = "0" + h;
+    	            hexString.append(h);
+    	        }
+    	        return hexString.toString();
+    	 
+    	    } catch (NoSuchAlgorithmException e) {
+    	        e.printStackTrace();
+    	    }
+    	    return "";
+    	}
+    
     // Listeners botones
     class BtConectarseListener implements ActionListener {
 
@@ -119,7 +152,7 @@ public class ControladorPrincipal {
                     if (volun == null) {
                         exito = false;
                     } else {
-                        if (!volun.getPassword().equals(vista.getVistaLogin().getTextFieldContrasena().getText())) {
+                        if (!volun.getPassword().equals(md5(vista.getVistaLogin().getTextFieldContrasena().getText()+getSalto()))) {
                             exito = false;
                         }
                     }
