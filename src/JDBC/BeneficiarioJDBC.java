@@ -21,7 +21,9 @@
  *      004 - Mar 27, 2012 - FBR - Ampliación e implementación de métodos
  *      005 - Mar 30, 2012 - AAN - Reestructuracion para usar la tabla persona
  **     006 - Abr 14, 2012 - AAN - Modificacion sentencias SQL
- *      007 - Abr 15, 2012 . FBR - Modifiacion de sentencias SQL y métodos
+ *      007 - Abr 15, 2012 - FBR - Modifiacion de sentencias SQL y métodos
+ **     008 - May 18, 2012 - ARS - Modifiacion de sentencias SQL para incluir OID
+ * 
  ** NOTAS:
  **
  **

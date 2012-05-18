@@ -33,6 +33,7 @@ import java.util.logging.Logger;
  **
  ** HISTORIA:
  ** 	000 - 20 May 2012 - MOB - Creacion
+ **		001 - 18 May 2012 - ARS - Cambios para añadir beneficiario
  **
  ** NOTAS:
  **
