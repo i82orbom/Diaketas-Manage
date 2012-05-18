@@ -113,18 +113,18 @@ public class ControladorBeneficiario {
         beneficiario.setLocalidad(datos[Beneficiario.LOCALIDAD_ID]);
         beneficiario.setTelefonoMovil(Integer.parseInt(datos[Beneficiario.TELEFONO_MOVIL_ID]));
         beneficiario.setTelefonoFijo(Integer.parseInt(datos[Beneficiario.TELEFONO_FIJO_ID]));
-		beneficiario.setEstadoCivil(datos[Beneficiario.ESTADOCIVIL_ID]);
+		beneficiario.setEstadoCivil(datos[Beneficiario.ESTADO_CIVIL_ID]);
 
 		beneficiario.setNacionalidad(datos[Beneficiario.NACIONALIDAD_ID]);
 		beneficiario.setNivelDeEstudio(datos[Beneficiario.NIVELESTUDIOS_ID]);
 		beneficiario.setObservaciones(datos[Beneficiario.OBSERVACIONES_ID]);
 		beneficiario.setOcupacion(datos[Beneficiario.OCUPACION_ID]);
 		beneficiario.setProfesion(datos[Beneficiario.PROFESION_ID]);
-		beneficiario.setSituacionEconomica(datos[Beneficiario.SITUACIONECONOMICA_ID]);
+		beneficiario.setSituacionEconomica(datos[Beneficiario.SITUACION_ECONOMICA_ID]);
 		beneficiario.setVivienda(datos[Beneficiario.VIVIENDA_ID]);
-		Float alquiler = Float.parseFloat(datos[Beneficiario.VIVIENDAALQUILER_ID]);
+		Float alquiler = Float.parseFloat(datos[Beneficiario.VIVIENDA_ALQUILER_ID]);
 		beneficiario.setViviendaAlquiler(alquiler);
-		beneficiario.setViviendaObservaciones(datos[Beneficiario.VIVIENDAOBSERVACIONES_ID]);
+		beneficiario.setViviendaObservaciones(datos[Beneficiario.VIVIENDA_OBSERVACIONES_ID]);
 
         try {
             BeneficiarioJDBC.getInstance().anadirBeneficiario(beneficiario);

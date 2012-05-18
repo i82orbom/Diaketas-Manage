@@ -378,6 +378,7 @@ public class ControladorVoluntario {
 				vista.getPanelVoluntarioDatos().setTextLabelError("La fecha de nacimiento debe tener el formato dd/mm/aaaa");
 				Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
 			}
+
         }
     }
 
