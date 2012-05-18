@@ -52,7 +52,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="PanelDatosGenerales">
+        <Container class="javax.swing.JPanel" name="PanelDatos">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -74,19 +74,19 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel50" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelVivienda" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jLabel38" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel37" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel35" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel39" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel49" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel40" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel41" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel42" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel51" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel52" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelNacionalidad" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelNIF" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelNombre" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelNivelEstudios" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelFijo" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelDomicilio" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelLocalidad" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelObservaciones" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelTipoVivienda" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelTipoViviendaEspecificacion" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -94,70 +94,70 @@
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                          <Component id="cbNivelEstudiosBeneficiario" pref="137" max="32767" attributes="0"/>
-                                                          <Component id="textNacionalidadBeneficiario" alignment="1" max="32767" attributes="0"/>
-                                                          <Component id="textNombreBeneficiario" alignment="1" max="32767" attributes="0"/>
-                                                          <Component id="textNIFBeneficiario" alignment="1" max="32767" attributes="0"/>
-                                                          <Component id="textTelefonoBeneficiario" max="32767" attributes="0"/>
+                                                          <Component id="cbNivelEstudios" pref="137" max="32767" attributes="0"/>
+                                                          <Component id="textNacionalidad" alignment="1" max="32767" attributes="0"/>
+                                                          <Component id="textNombre" alignment="1" max="32767" attributes="0"/>
+                                                          <Component id="textNIF" alignment="1" max="32767" attributes="0"/>
+                                                          <Component id="textTelefonoFijo" max="32767" attributes="0"/>
                                                       </Group>
                                                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="1" attributes="0">
-                                                          <Component id="jLabel45" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel44" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel55" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="labelEstadoCivil" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="labelFechaNac" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="labelApellidos" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="labelProfesion" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="labelOcupacion" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="labelMovil" alignment="1" min="-2" max="-2" attributes="0"/>
                                                       </Group>
                                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                                               <Group type="102" attributes="0">
-                                                                  <Component id="textFechaNacimientoBeneficiario" min="-2" pref="112" max="-2" attributes="0"/>
+                                                                  <Component id="textFechaNacimiento" min="-2" pref="112" max="-2" attributes="0"/>
                                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                                  <Component id="jLabel46" min="-2" max="-2" attributes="0"/>
+                                                                  <Component id="labelProvinciaNacimiento" min="-2" max="-2" attributes="0"/>
                                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                                  <Component id="textProvinciaNacimientoBeneficiario" max="32767" attributes="0"/>
+                                                                  <Component id="textLugarNacimiento" max="32767" attributes="0"/>
                                                               </Group>
-                                                              <Component id="textApellidosBeneficiario" min="-2" pref="307" max="-2" attributes="0"/>
+                                                              <Component id="textApellidos" min="-2" pref="307" max="-2" attributes="0"/>
                                                           </Group>
                                                           <Component id="cbEstadoCivilBeneficiario" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
-                                                          <Component id="textProfesionBeneficiario" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
+                                                          <Component id="textProfesion" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
                                                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                                              <Component id="textOcupacionBeneficiario" pref="148" max="32767" attributes="0"/>
-                                                              <Component id="textMovilBeneficiario" max="32767" attributes="0"/>
+                                                              <Component id="textOcupacion" pref="148" max="32767" attributes="0"/>
+                                                              <Component id="textTelefonoMovil" max="32767" attributes="0"/>
                                                           </Group>
                                                       </Group>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="textLocalidadBeneficiario" min="-2" pref="138" max="-2" attributes="0"/>
+                                                      <Component id="textLocalidad" min="-2" pref="138" max="-2" attributes="0"/>
                                                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                                      <Component id="jLabel48" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="labelCP" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                                      <Component id="textCPBeneficiario" min="-2" pref="72" max="-2" attributes="0"/>
+                                                      <Component id="textCP" min="-2" pref="72" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="textObservacionesBeneficiario" alignment="0" pref="400" max="32767" attributes="0"/>
-                                                      <Component id="textDomicilioBeneficiario" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="textObservaciones" alignment="0" pref="400" max="32767" attributes="0"/>
+                                                      <Component id="textDomicilio" alignment="0" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="jLabel54" max="32767" attributes="0"/>
+                                                  <Component id="labelSituacionEconomica" max="32767" attributes="0"/>
                                                   <Component id="jScrollPane7" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Group type="102" attributes="0">
-                                              <Component id="cbTipoViviendaBeneficiario" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cbTipoVivienda" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                              <Component id="jLabel53" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelViviendaPrecio" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="textPrecioViviendaBeneficiario" min="-2" pref="95" max="-2" attributes="0"/>
+                                              <Component id="textPrecioVivienda" min="-2" pref="95" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="textEspecificarTipoVivienda" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelDatosPersonales" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -168,7 +168,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
-                              <Component id="labelErrorBeneficiario" min="-2" pref="482" max="-2" attributes="0"/>
+                              <Component id="labelError" min="-2" pref="482" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="117" max="32767" attributes="0"/>
@@ -179,106 +179,106 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelDatosPersonales" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel35" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textNombreBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="textNIFBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel37" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel44" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textFechaNacimientoBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textNIF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelNIF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelFechaNac" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textFechaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel38" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textNacionalidadBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel45" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelNacionalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textNacionalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelEstadoCivil" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cbEstadoCivilBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel39" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cbNivelEstudiosBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel47" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textProfesionBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelNivelEstudios" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbNivelEstudios" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelProfesion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textProfesion" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="textOcupacionBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelOcupacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="textOcupacion" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel49" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelFijo" min="-2" max="-2" attributes="0"/>
                                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                              <Component id="textMovilBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="textTelefonoMovil" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelMovil" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="textTelefonoBeneficiario" min="-2" max="-2" attributes="0"/>
+                                      <Component id="textTelefonoFijo" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="textDomicilioBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel40" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textDomicilio" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelDomicilio" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel41" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textLocalidadBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel48" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textCPBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelLocalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textLocalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelCP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textCP" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="textObservacionesBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel42" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textObservaciones" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelObservaciones" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="jLabel50" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelVivienda" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel51" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cbTipoViviendaBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel53" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textPrecioViviendaBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelTipoVivienda" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbTipoVivienda" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelViviendaPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textPrecioVivienda" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel52" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelTipoViviendaEspecificacion" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="textEspecificarTipoVivienda" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel55" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textApellidosBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel54" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelApellidos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textApellidos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelSituacionEconomica" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel46" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textProvinciaNacimientoBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelProvinciaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="textLugarNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane7" min="-2" pref="107" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="labelErrorBeneficiario" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelError" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btGuardarBeneficiario" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -290,13 +290,13 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="textTelefonoBeneficiario">
+            <Component class="javax.swing.JTextField" name="textTelefonoFijo">
             </Component>
-            <Component class="javax.swing.JTextField" name="textCPBeneficiario">
+            <Component class="javax.swing.JTextField" name="textCP">
             </Component>
-            <Component class="javax.swing.JTextField" name="textApellidosBeneficiario">
+            <Component class="javax.swing.JTextField" name="textApellidos">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel49">
+            <Component class="javax.swing.JLabel" name="labelFijo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tel&#xe9;fono Fijo"/>
               </Properties>
@@ -315,31 +315,31 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbEstadoCivilBeneficiarioActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="textProfesionBeneficiario">
+            <Component class="javax.swing.JTextField" name="textProfesion">
             </Component>
-            <Component class="javax.swing.JTextField" name="textProvinciaNacimientoBeneficiario">
+            <Component class="javax.swing.JTextField" name="textLugarNacimiento">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel35">
+            <Component class="javax.swing.JLabel" name="labelNombre">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nombre"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel38">
+            <Component class="javax.swing.JLabel" name="labelNacionalidad">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nacionalidad"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel37">
+            <Component class="javax.swing.JLabel" name="labelNIF">
               <Properties>
                 <Property name="text" type="java.lang.String" value="NIF/DNI/Pasaporte"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel39">
+            <Component class="javax.swing.JLabel" name="labelNivelEstudios">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nivel de estudios"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cbNivelEstudiosBeneficiario">
+            <Component class="javax.swing.JComboBox" name="cbNivelEstudios">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="5">
@@ -352,66 +352,66 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="textNacionalidadBeneficiario">
+            <Component class="javax.swing.JTextField" name="textNacionalidad">
             </Component>
-            <Component class="javax.swing.JTextField" name="textNombreBeneficiario">
+            <Component class="javax.swing.JTextField" name="textNombre">
             </Component>
-            <Component class="javax.swing.JTextField" name="textNIFBeneficiario">
+            <Component class="javax.swing.JTextField" name="textNIF">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel42">
+            <Component class="javax.swing.JLabel" name="labelObservaciones">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Observaciones"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel40">
+            <Component class="javax.swing.JLabel" name="labelDomicilio">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Domicilio"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel41">
+            <Component class="javax.swing.JLabel" name="labelLocalidad">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Localidad"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel46">
+            <Component class="javax.swing.JLabel" name="labelProvinciaNacimiento">
               <Properties>
                 <Property name="text" type="java.lang.String" value="en"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel47">
+            <Component class="javax.swing.JLabel" name="labelProfesion">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Profesion"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel48">
+            <Component class="javax.swing.JLabel" name="labelCP">
               <Properties>
                 <Property name="text" type="java.lang.String" value="C&#xf3;digo Postal"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel44">
+            <Component class="javax.swing.JLabel" name="labelFechaNac">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nacido el"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel45">
+            <Component class="javax.swing.JLabel" name="labelEstadoCivil">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Estado civil"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="textDomicilioBeneficiario">
+            <Component class="javax.swing.JTextField" name="textDomicilio">
             </Component>
-            <Component class="javax.swing.JTextField" name="textLocalidadBeneficiario">
+            <Component class="javax.swing.JTextField" name="textLocalidad">
             </Component>
-            <Component class="javax.swing.JTextField" name="textObservacionesBeneficiario">
+            <Component class="javax.swing.JTextField" name="textObservaciones">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel55">
+            <Component class="javax.swing.JLabel" name="labelApellidos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Apellidos"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="textFechaNacimientoBeneficiario">
+            <Component class="javax.swing.JFormattedTextField" name="textFechaNacimiento">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel34">
+            <Component class="javax.swing.JLabel" name="labelDatosPersonales">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -419,7 +419,7 @@
                 <Property name="text" type="java.lang.String" value="Datos personales"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel50">
+            <Component class="javax.swing.JLabel" name="labelVivienda">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -427,22 +427,22 @@
                 <Property name="text" type="java.lang.String" value="Vivienda"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel51">
+            <Component class="javax.swing.JLabel" name="labelTipoVivienda">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tipo"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel52">
+            <Component class="javax.swing.JLabel" name="labelTipoViviendaEspecificacion">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Especificar"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel53">
+            <Component class="javax.swing.JLabel" name="labelViviendaPrecio">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Precio"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cbTipoViviendaBeneficiario">
+            <Component class="javax.swing.JComboBox" name="cbTipoVivienda">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
@@ -453,11 +453,11 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="textPrecioViviendaBeneficiario">
+            <Component class="javax.swing.JTextField" name="textPrecioVivienda">
             </Component>
             <Component class="javax.swing.JTextField" name="textEspecificarTipoVivienda">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel54">
+            <Component class="javax.swing.JLabel" name="labelSituacionEconomica">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Descripci&#xf3;n de la situaci&#xf3;n econ&#xf3;mica"/>
               </Properties>
@@ -469,7 +469,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="jTextArea1">
+                <Component class="javax.swing.JTextArea" name="textSituacionEconomica">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
@@ -491,27 +491,27 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="labelOcupacion">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ocupaci&#xf3;n"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="textOcupacionBeneficiario">
+            <Component class="javax.swing.JTextField" name="textOcupacion">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textOcupacionBeneficiarioActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textOcupacionActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="textMovilBeneficiario">
+            <Component class="javax.swing.JTextField" name="textTelefonoMovil">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textMovilBeneficiarioActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textTelefonoMovilActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="labelMovil">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tel&#xe9;fono M&#xf3;vil"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelErrorBeneficiario">
+            <Component class="javax.swing.JLabel" name="labelError">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>

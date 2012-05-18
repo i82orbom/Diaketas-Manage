@@ -4,6 +4,8 @@
  */
 package Vistas.Paneles.Beneficiario;
 
+import Modelo.Beneficiario;
+
 /**
  *
  * @author psylock
@@ -17,6 +19,61 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         initComponents();
     }
 
+	public void setTextLabelError (String text) {
+        labelError.setText(text);
+        labelError.setVisible(true);
+    }
+
+	public void limpiarFormulario() {
+		labelError.setVisible(false);
+		textNombre.setText("");
+		textApellidos.setText("");
+		textNIF.setText("");
+		textFechaNacimiento.setText("");
+		textLugarNacimiento.setText("");
+		textNacionalidad.setText("");
+//		cbEstadoCivil.
+//		cbNivelEstudios.
+		textProfesion.setText("");
+		textOcupacion.setText("");
+		textTelefonoFijo.setText("");
+		textTelefonoMovil.setText("");
+		textDomicilio.setText("");
+		textLocalidad.setText("");
+		textCP.setText("");
+		textObservaciones.setText("");
+
+//		cbTipoVivienda.
+		textPrecioVivienda.setText("");
+		textEspecificarTipoVivienda.setText("");
+	}
+
+    public String[] getDatosPersonales() {
+		String []datos = new String[24];
+
+		datos[Beneficiario.NOMBRE_ID] = textNombre.getText();
+		datos[Beneficiario.APELLIDOS_ID] = textApellidos.getText();
+		datos[Beneficiario.NIF_ID] = textNIF.getText();
+		datos[Beneficiario.FECHA_DE_NACIMIENTO_ID] = textFechaNacimiento.getText();
+		datos[Beneficiario.LUGAR_NACIMIENTO_ID] = textLugarNacimiento.getText();
+		datos[Beneficiario.NACIONALIDAD_ID] = textNacionalidad.getText();
+		datos[Beneficiario.ESTADO_CIVIL_ID] = PanelDatos.getToolTipText();
+		datos[Beneficiario.NIVELESTUDIOS_ID] = cbNivelEstudios.getToolTipText();
+		datos[Beneficiario.PROFESION_ID] = textProfesion.getText();
+		datos[Beneficiario.OCUPACION_ID] = textOcupacion.getText();
+		datos[Beneficiario.TELEFONO_FIJO_ID] = textTelefonoFijo.getText();
+		datos[Beneficiario.TELEFONO_MOVIL_ID] = textTelefonoMovil.getText();
+		datos[Beneficiario.DOMICILIO_ID] = textDomicilio.getText();
+		datos[Beneficiario.LOCALIDAD_ID] = textLocalidad.getText();
+		datos[Beneficiario.CP_ID] = textCP.getText();
+		datos[Beneficiario.OBSERVACIONES_ID] = textObservaciones.getText();
+		datos[Beneficiario.SITUACION_ECONOMICA_ID] = textSituacionEconomica.getText();
+		datos[Beneficiario.VIVIENDA_ID] =cbTipoVivienda.getToolTipText();
+		datos[Beneficiario.VIVIENDA_ALQUILER_ID] = textPrecioVivienda.getText();
+		datos[Beneficiario.VIVIENDA_OBSERVACIONES_ID] = textEspecificarTipoVivienda.getText();
+
+		return datos;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,53 +85,53 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        PanelDatosGenerales = new javax.swing.JPanel();
-        textTelefonoBeneficiario = new javax.swing.JTextField();
-        textCPBeneficiario = new javax.swing.JTextField();
-        textApellidosBeneficiario = new javax.swing.JTextField();
-        jLabel49 = new javax.swing.JLabel();
+        PanelDatos = new javax.swing.JPanel();
+        textTelefonoFijo = new javax.swing.JTextField();
+        textCP = new javax.swing.JTextField();
+        textApellidos = new javax.swing.JTextField();
+        labelFijo = new javax.swing.JLabel();
         cbEstadoCivilBeneficiario = new javax.swing.JComboBox();
-        textProfesionBeneficiario = new javax.swing.JTextField();
-        textProvinciaNacimientoBeneficiario = new javax.swing.JTextField();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        cbNivelEstudiosBeneficiario = new javax.swing.JComboBox();
-        textNacionalidadBeneficiario = new javax.swing.JTextField();
-        textNombreBeneficiario = new javax.swing.JTextField();
-        textNIFBeneficiario = new javax.swing.JTextField();
-        jLabel42 = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
-        jLabel48 = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
-        textDomicilioBeneficiario = new javax.swing.JTextField();
-        textLocalidadBeneficiario = new javax.swing.JTextField();
-        textObservacionesBeneficiario = new javax.swing.JTextField();
-        jLabel55 = new javax.swing.JLabel();
-        textFechaNacimientoBeneficiario = new javax.swing.JFormattedTextField();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel50 = new javax.swing.JLabel();
-        jLabel51 = new javax.swing.JLabel();
-        jLabel52 = new javax.swing.JLabel();
-        jLabel53 = new javax.swing.JLabel();
-        cbTipoViviendaBeneficiario = new javax.swing.JComboBox();
-        textPrecioViviendaBeneficiario = new javax.swing.JTextField();
+        textProfesion = new javax.swing.JTextField();
+        textLugarNacimiento = new javax.swing.JTextField();
+        labelNombre = new javax.swing.JLabel();
+        labelNacionalidad = new javax.swing.JLabel();
+        labelNIF = new javax.swing.JLabel();
+        labelNivelEstudios = new javax.swing.JLabel();
+        cbNivelEstudios = new javax.swing.JComboBox();
+        textNacionalidad = new javax.swing.JTextField();
+        textNombre = new javax.swing.JTextField();
+        textNIF = new javax.swing.JTextField();
+        labelObservaciones = new javax.swing.JLabel();
+        labelDomicilio = new javax.swing.JLabel();
+        labelLocalidad = new javax.swing.JLabel();
+        labelProvinciaNacimiento = new javax.swing.JLabel();
+        labelProfesion = new javax.swing.JLabel();
+        labelCP = new javax.swing.JLabel();
+        labelFechaNac = new javax.swing.JLabel();
+        labelEstadoCivil = new javax.swing.JLabel();
+        textDomicilio = new javax.swing.JTextField();
+        textLocalidad = new javax.swing.JTextField();
+        textObservaciones = new javax.swing.JTextField();
+        labelApellidos = new javax.swing.JLabel();
+        textFechaNacimiento = new javax.swing.JFormattedTextField();
+        labelDatosPersonales = new javax.swing.JLabel();
+        labelVivienda = new javax.swing.JLabel();
+        labelTipoVivienda = new javax.swing.JLabel();
+        labelTipoViviendaEspecificacion = new javax.swing.JLabel();
+        labelViviendaPrecio = new javax.swing.JLabel();
+        cbTipoVivienda = new javax.swing.JComboBox();
+        textPrecioVivienda = new javax.swing.JTextField();
         textEspecificarTipoVivienda = new javax.swing.JTextField();
-        jLabel54 = new javax.swing.JLabel();
+        labelSituacionEconomica = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textSituacionEconomica = new javax.swing.JTextArea();
         btGuardarBeneficiario = new javax.swing.JButton();
         btEliminarBeneficiario = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        textOcupacionBeneficiario = new javax.swing.JTextField();
-        textMovilBeneficiario = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        labelErrorBeneficiario = new javax.swing.JLabel();
+        labelOcupacion = new javax.swing.JLabel();
+        textOcupacion = new javax.swing.JTextField();
+        textTelefonoMovil = new javax.swing.JTextField();
+        labelMovil = new javax.swing.JLabel();
+        labelError = new javax.swing.JLabel();
         PanelIntervenciones = new javax.swing.JPanel();
         btGuardarIntervencionBeneficiario = new javax.swing.JButton();
         btEliminarIntervencionBeneficiario = new javax.swing.JButton();
@@ -103,9 +160,9 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1000, 600));
         setPreferredSize(new java.awt.Dimension(1000, 600));
 
-        PanelDatosGenerales.setBackground(new java.awt.Color(255, 255, 255));
+        PanelDatos.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel49.setText("Teléfono Fijo");
+        labelFijo.setText("Teléfono Fijo");
 
         cbEstadoCivilBeneficiario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Soltero", "Casado", "Viudo" }));
         cbEstadoCivilBeneficiario.addActionListener(new java.awt.event.ActionListener() {
@@ -114,255 +171,255 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
             }
         });
 
-        jLabel35.setText("Nombre");
+        labelNombre.setText("Nombre");
 
-        jLabel38.setText("Nacionalidad");
+        labelNacionalidad.setText("Nacionalidad");
 
-        jLabel37.setText("NIF/DNI/Pasaporte");
+        labelNIF.setText("NIF/DNI/Pasaporte");
 
-        jLabel39.setText("Nivel de estudios");
+        labelNivelEstudios.setText("Nivel de estudios");
 
-        cbNivelEstudiosBeneficiario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Graduado Escolar", "Graduado Secundario", "Graduado Medio", "Graduado Superior", "Estudios Universitarios" }));
+        cbNivelEstudios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Graduado Escolar", "Graduado Secundario", "Graduado Medio", "Graduado Superior", "Estudios Universitarios" }));
 
-        jLabel42.setText("Observaciones");
+        labelObservaciones.setText("Observaciones");
 
-        jLabel40.setText("Domicilio");
+        labelDomicilio.setText("Domicilio");
 
-        jLabel41.setText("Localidad");
+        labelLocalidad.setText("Localidad");
 
-        jLabel46.setText("en");
+        labelProvinciaNacimiento.setText("en");
 
-        jLabel47.setText("Profesion");
+        labelProfesion.setText("Profesion");
 
-        jLabel48.setText("Código Postal");
+        labelCP.setText("Código Postal");
 
-        jLabel44.setText("Nacido el");
+        labelFechaNac.setText("Nacido el");
 
-        jLabel45.setText("Estado civil");
+        labelEstadoCivil.setText("Estado civil");
 
-        jLabel55.setText("Apellidos");
+        labelApellidos.setText("Apellidos");
 
-        jLabel34.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel34.setText("Datos personales");
+        labelDatosPersonales.setForeground(new java.awt.Color(255, 0, 0));
+        labelDatosPersonales.setText("Datos personales");
 
-        jLabel50.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel50.setText("Vivienda");
+        labelVivienda.setForeground(new java.awt.Color(255, 0, 0));
+        labelVivienda.setText("Vivienda");
 
-        jLabel51.setText("Tipo");
+        labelTipoVivienda.setText("Tipo");
 
-        jLabel52.setText("Especificar");
+        labelTipoViviendaEspecificacion.setText("Especificar");
 
-        jLabel53.setText("Precio");
+        labelViviendaPrecio.setText("Precio");
 
-        cbTipoViviendaBeneficiario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alquilada", "Cedida", "Otro" }));
+        cbTipoVivienda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alquilada", "Cedida", "Otro" }));
 
-        jLabel54.setText("Descripción de la situación económica");
+        labelSituacionEconomica.setText("Descripción de la situación económica");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane7.setViewportView(jTextArea1);
+        textSituacionEconomica.setColumns(20);
+        textSituacionEconomica.setRows(5);
+        jScrollPane7.setViewportView(textSituacionEconomica);
 
         btGuardarBeneficiario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/save_f2.png"))); // NOI18N
 
         btEliminarBeneficiario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
 
-        jLabel1.setText("Ocupación");
+        labelOcupacion.setText("Ocupación");
 
-        textOcupacionBeneficiario.addActionListener(new java.awt.event.ActionListener() {
+        textOcupacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textOcupacionBeneficiarioActionPerformed(evt);
+                textOcupacionActionPerformed(evt);
             }
         });
 
-        textMovilBeneficiario.addActionListener(new java.awt.event.ActionListener() {
+        textTelefonoMovil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textMovilBeneficiarioActionPerformed(evt);
+                textTelefonoMovilActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Teléfono Móvil");
+        labelMovil.setText("Teléfono Móvil");
 
-        labelErrorBeneficiario.setForeground(new java.awt.Color(255, 51, 51));
-        labelErrorBeneficiario.setText("Mensaje de error");
+        labelError.setForeground(new java.awt.Color(255, 51, 51));
+        labelError.setText("Mensaje de error");
 
-        org.jdesktop.layout.GroupLayout PanelDatosGeneralesLayout = new org.jdesktop.layout.GroupLayout(PanelDatosGenerales);
-        PanelDatosGenerales.setLayout(PanelDatosGeneralesLayout);
-        PanelDatosGeneralesLayout.setHorizontalGroup(
-            PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(PanelDatosGeneralesLayout.createSequentialGroup()
-                .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(PanelDatosGeneralesLayout.createSequentialGroup()
+        org.jdesktop.layout.GroupLayout PanelDatosLayout = new org.jdesktop.layout.GroupLayout(PanelDatos);
+        PanelDatos.setLayout(PanelDatosLayout);
+        PanelDatosLayout.setHorizontalGroup(
+            PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(PanelDatosLayout.createSequentialGroup()
+                .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(PanelDatosLayout.createSequentialGroup()
                         .add(14, 14, 14)
-                        .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel50)
-                            .add(PanelDatosGeneralesLayout.createSequentialGroup()
-                                .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel38)
-                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel37)
-                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel35)
-                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel39)
-                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel49)
-                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel40)
-                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel41)
-                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel42)
-                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel51)
-                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel52))
+                        .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(labelVivienda)
+                            .add(PanelDatosLayout.createSequentialGroup()
+                                .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, labelNacionalidad)
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, labelNIF)
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, labelNombre)
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, labelNivelEstudios)
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, labelFijo)
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, labelDomicilio)
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, labelLocalidad)
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, labelObservaciones)
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, labelTipoVivienda)
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, labelTipoViviendaEspecificacion))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(PanelDatosGeneralesLayout.createSequentialGroup()
-                                        .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                            .add(PanelDatosGeneralesLayout.createSequentialGroup()
-                                                .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                                    .add(cbNivelEstudiosBeneficiario, 0, 137, Short.MAX_VALUE)
-                                                    .add(textNacionalidadBeneficiario)
-                                                    .add(textNombreBeneficiario)
-                                                    .add(textNIFBeneficiario)
-                                                    .add(textTelefonoBeneficiario))
+                                .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(PanelDatosLayout.createSequentialGroup()
+                                        .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                            .add(PanelDatosLayout.createSequentialGroup()
+                                                .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                                    .add(cbNivelEstudios, 0, 137, Short.MAX_VALUE)
+                                                    .add(textNacionalidad)
+                                                    .add(textNombre)
+                                                    .add(textNIF)
+                                                    .add(textTelefonoFijo))
                                                 .add(28, 28, 28)
-                                                .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                                    .add(jLabel45)
-                                                    .add(jLabel44)
-                                                    .add(jLabel55)
-                                                    .add(jLabel47)
-                                                    .add(jLabel1)
-                                                    .add(jLabel2))
+                                                .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                                    .add(labelEstadoCivil)
+                                                    .add(labelFechaNac)
+                                                    .add(labelApellidos)
+                                                    .add(labelProfesion)
+                                                    .add(labelOcupacion)
+                                                    .add(labelMovil))
                                                 .add(18, 18, 18)
-                                                .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                                    .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                                        .add(PanelDatosGeneralesLayout.createSequentialGroup()
-                                                            .add(textFechaNacimientoBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 112, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                                .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                                    .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                                        .add(PanelDatosLayout.createSequentialGroup()
+                                                            .add(textFechaNacimiento, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 112, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                                             .add(18, 18, 18)
-                                                            .add(jLabel46)
+                                                            .add(labelProvinciaNacimiento)
                                                             .add(18, 18, 18)
-                                                            .add(textProvinciaNacimientoBeneficiario))
-                                                        .add(textApellidosBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 307, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                                            .add(textLugarNacimiento))
+                                                        .add(textApellidos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 307, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                                     .add(cbEstadoCivilBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 86, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                    .add(textProfesionBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 148, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                    .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                                        .add(textOcupacionBeneficiario, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                                                        .add(textMovilBeneficiario))))
-                                            .add(PanelDatosGeneralesLayout.createSequentialGroup()
-                                                .add(textLocalidadBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 138, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                                    .add(textProfesion, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 148, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                                    .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                                        .add(textOcupacion, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                                                        .add(textTelefonoMovil))))
+                                            .add(PanelDatosLayout.createSequentialGroup()
+                                                .add(textLocalidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 138, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                                 .add(29, 29, 29)
-                                                .add(jLabel48)
+                                                .add(labelCP)
                                                 .add(21, 21, 21)
-                                                .add(textCPBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 72, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                            .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                                .add(org.jdesktop.layout.GroupLayout.LEADING, textObservacionesBeneficiario, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                                                .add(org.jdesktop.layout.GroupLayout.LEADING, textDomicilioBeneficiario)))
+                                                .add(textCP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 72, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                            .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                                .add(org.jdesktop.layout.GroupLayout.LEADING, textObservaciones, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                                                .add(org.jdesktop.layout.GroupLayout.LEADING, textDomicilio)))
                                         .add(18, 18, 18)
-                                        .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                            .add(jLabel54, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                            .add(labelSituacionEconomica, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .add(jScrollPane7)))
-                                    .add(PanelDatosGeneralesLayout.createSequentialGroup()
-                                        .add(cbTipoViviendaBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(PanelDatosLayout.createSequentialGroup()
+                                        .add(cbTipoVivienda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .add(37, 37, 37)
-                                        .add(jLabel53)
+                                        .add(labelViviendaPrecio)
                                         .add(18, 18, 18)
-                                        .add(textPrecioViviendaBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                        .add(textPrecioVivienda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                     .add(textEspecificarTipoVivienda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 400, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                            .add(jLabel34)))
-                    .add(PanelDatosGeneralesLayout.createSequentialGroup()
+                            .add(labelDatosPersonales)))
+                    .add(PanelDatosLayout.createSequentialGroup()
                         .add(204, 204, 204)
                         .add(btGuardarBeneficiario)
                         .add(32, 32, 32)
                         .add(btEliminarBeneficiario))
-                    .add(PanelDatosGeneralesLayout.createSequentialGroup()
+                    .add(PanelDatosLayout.createSequentialGroup()
                         .add(156, 156, 156)
-                        .add(labelErrorBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 482, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(labelError, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 482, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(117, Short.MAX_VALUE))
         );
-        PanelDatosGeneralesLayout.setVerticalGroup(
-            PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(PanelDatosGeneralesLayout.createSequentialGroup()
+        PanelDatosLayout.setVerticalGroup(
+            PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(PanelDatosLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(jLabel34)
+                .add(labelDatosPersonales)
                 .add(18, 18, 18)
-                .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(PanelDatosGeneralesLayout.createSequentialGroup()
-                        .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel35)
-                            .add(textNombreBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(PanelDatosLayout.createSequentialGroup()
+                        .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(labelNombre)
+                            .add(textNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .add(6, 6, 6)
-                        .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(textNIFBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel37)
-                            .add(jLabel44)
-                            .add(textFechaNacimientoBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(textNIF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(labelNIF)
+                            .add(labelFechaNac)
+                            .add(textFechaNacimiento, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel38)
-                            .add(textNacionalidadBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel45)
+                        .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(labelNacionalidad)
+                            .add(textNacionalidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(labelEstadoCivil)
                             .add(cbEstadoCivilBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel39)
-                            .add(cbNivelEstudiosBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel47)
-                            .add(textProfesionBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(PanelDatosGeneralesLayout.createSequentialGroup()
+                        .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(labelNivelEstudios)
+                            .add(cbNivelEstudios, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(labelProfesion)
+                            .add(textProfesion, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(PanelDatosLayout.createSequentialGroup()
                                 .add(10, 10, 10)
-                                .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                    .add(jLabel1)
-                                    .add(textOcupacionBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(labelOcupacion)
+                                    .add(textOcupacion, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jLabel49)
-                                    .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                        .add(textMovilBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(jLabel2))))
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, PanelDatosGeneralesLayout.createSequentialGroup()
+                                .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(labelFijo)
+                                    .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                        .add(textTelefonoMovil, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(labelMovil))))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, PanelDatosLayout.createSequentialGroup()
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(textTelefonoBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                .add(textTelefonoFijo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(textDomicilioBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel40))
+                        .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(textDomicilio, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(labelDomicilio))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel41)
-                            .add(textLocalidadBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel48)
-                            .add(textCPBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(labelLocalidad)
+                            .add(textLocalidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(labelCP)
+                            .add(textCP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(textObservacionesBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel42))
+                        .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(textObservaciones, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(labelObservaciones))
                         .add(33, 33, 33)
-                        .add(jLabel50)
+                        .add(labelVivienda)
                         .add(2, 2, 2)
-                        .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel51)
-                            .add(cbTipoViviendaBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel53)
-                            .add(textPrecioViviendaBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(labelTipoVivienda)
+                            .add(cbTipoVivienda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(labelViviendaPrecio)
+                            .add(textPrecioVivienda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel52)
+                        .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(labelTipoViviendaEspecificacion)
                             .add(textEspecificarTipoVivienda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(PanelDatosGeneralesLayout.createSequentialGroup()
-                        .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel55)
-                            .add(textApellidosBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel54))
+                    .add(PanelDatosLayout.createSequentialGroup()
+                        .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(labelApellidos)
+                            .add(textApellidos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(labelSituacionEconomica))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                .add(jLabel46)
-                                .add(textProvinciaNacimientoBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                .add(labelProvinciaNacimiento)
+                                .add(textLugarNacimiento, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(jScrollPane7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 107, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .add(18, 18, 18)
-                .add(labelErrorBeneficiario)
+                .add(labelError)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(PanelDatosGeneralesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, btGuardarBeneficiario)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, btEliminarBeneficiario))
                 .add(146, 146, 146))
         );
 
-        jTabbedPane1.addTab("Datos Generales", PanelDatosGenerales);
+        jTabbedPane1.addTab("Datos Generales", PanelDatos);
 
         PanelIntervenciones.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -552,16 +609,16 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 		// TODO add your handling code here:
 	}//GEN-LAST:event_cbEstadoCivilBeneficiarioActionPerformed
 
-	private void textOcupacionBeneficiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textOcupacionBeneficiarioActionPerformed
+	private void textOcupacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textOcupacionActionPerformed
 		// TODO add your handling code here:
-	}//GEN-LAST:event_textOcupacionBeneficiarioActionPerformed
+	}//GEN-LAST:event_textOcupacionActionPerformed
 
-	private void textMovilBeneficiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textMovilBeneficiarioActionPerformed
+	private void textTelefonoMovilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTelefonoMovilActionPerformed
 		// TODO add your handling code here:
-	}//GEN-LAST:event_textMovilBeneficiarioActionPerformed
+	}//GEN-LAST:event_textTelefonoMovilActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel PanelDatosGenerales;
+    private javax.swing.JPanel PanelDatos;
     private javax.swing.JPanel PanelIntervenciones;
     private javax.swing.JPanel PanelSituacionFamiliar;
     private javax.swing.JButton btEliminarBeneficiario;
@@ -571,32 +628,10 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
     private javax.swing.JButton btGuardarFamiliarBeneficiario;
     private javax.swing.JButton btGuardarIntervencionBeneficiario;
     private javax.swing.JComboBox cbEstadoCivilBeneficiario;
-    private javax.swing.JComboBox cbNivelEstudiosBeneficiario;
+    private javax.swing.JComboBox cbNivelEstudios;
     private javax.swing.JComboBox cbParentescoBeneficiario;
-    private javax.swing.JComboBox cbTipoViviendaBeneficiario;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
+    private javax.swing.JComboBox cbTipoVivienda;
     private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel59;
@@ -608,28 +643,50 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel labelErrorBeneficiario;
+    private javax.swing.JLabel labelApellidos;
+    private javax.swing.JLabel labelCP;
+    private javax.swing.JLabel labelDatosPersonales;
+    private javax.swing.JLabel labelDomicilio;
+    private javax.swing.JLabel labelError;
+    private javax.swing.JLabel labelEstadoCivil;
+    private javax.swing.JLabel labelFechaNac;
+    private javax.swing.JLabel labelFijo;
+    private javax.swing.JLabel labelLocalidad;
+    private javax.swing.JLabel labelMovil;
+    private javax.swing.JLabel labelNIF;
+    private javax.swing.JLabel labelNacionalidad;
+    private javax.swing.JLabel labelNivelEstudios;
+    private javax.swing.JLabel labelNombre;
+    private javax.swing.JLabel labelObservaciones;
+    private javax.swing.JLabel labelOcupacion;
+    private javax.swing.JLabel labelProfesion;
+    private javax.swing.JLabel labelProvinciaNacimiento;
+    private javax.swing.JLabel labelSituacionEconomica;
+    private javax.swing.JLabel labelTipoVivienda;
+    private javax.swing.JLabel labelTipoViviendaEspecificacion;
+    private javax.swing.JLabel labelVivienda;
+    private javax.swing.JLabel labelViviendaPrecio;
     private javax.swing.JTable listDatosFamiliarBeneficiario;
-    private javax.swing.JTextField textApellidosBeneficiario;
-    private javax.swing.JTextField textCPBeneficiario;
+    private javax.swing.JTextField textApellidos;
+    private javax.swing.JTextField textCP;
     private javax.swing.JTextField textConceptoBeneficiario;
-    private javax.swing.JTextField textDomicilioBeneficiario;
+    private javax.swing.JTextField textDomicilio;
     private javax.swing.JTextField textEspecificarTipoVivienda;
-    private javax.swing.JFormattedTextField textFechaNacimientoBeneficiario;
+    private javax.swing.JFormattedTextField textFechaNacimiento;
     private javax.swing.JTextField textImporteBeneficiario;
-    private javax.swing.JTextField textLocalidadBeneficiario;
-    private javax.swing.JTextField textMovilBeneficiario;
-    private javax.swing.JTextField textNIFBeneficiario;
+    private javax.swing.JTextField textLocalidad;
+    private javax.swing.JTextField textLugarNacimiento;
+    private javax.swing.JTextField textNIF;
     private javax.swing.JTextField textNIFFamiliarBeneficiario;
-    private javax.swing.JTextField textNacionalidadBeneficiario;
-    private javax.swing.JTextField textNombreBeneficiario;
-    private javax.swing.JTextField textObservacionesBeneficiario;
+    private javax.swing.JTextField textNacionalidad;
+    private javax.swing.JTextField textNombre;
+    private javax.swing.JTextField textObservaciones;
     private javax.swing.JTextField textObservacionesIntervencionBeneficiario;
-    private javax.swing.JTextField textOcupacionBeneficiario;
-    private javax.swing.JTextField textPrecioViviendaBeneficiario;
-    private javax.swing.JTextField textProfesionBeneficiario;
-    private javax.swing.JTextField textProvinciaNacimientoBeneficiario;
-    private javax.swing.JTextField textTelefonoBeneficiario;
+    private javax.swing.JTextField textOcupacion;
+    private javax.swing.JTextField textPrecioVivienda;
+    private javax.swing.JTextField textProfesion;
+    private javax.swing.JTextArea textSituacionEconomica;
+    private javax.swing.JTextField textTelefonoFijo;
+    private javax.swing.JTextField textTelefonoMovil;
     // End of variables declaration//GEN-END:variables
 }
