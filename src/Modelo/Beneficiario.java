@@ -15,6 +15,7 @@
  **
  ** HISTORIA:
  ** 	000 - Mar 24, 2012 - FBR - Creacion
+ *		001 - May 18, 2012 - ARS - Variables staticas para el orden de los datos
  *
  **
  ** NOTAS:
@@ -45,16 +46,17 @@ public class Beneficiario extends Persona {
     private String viviendaObservaciones;
     private ArrayList<Ayuda> ayudasPrestadas;
 
-	public static int  ESTADOCIVIL_ID = 9;
-    public static int  NACIONALIDAD_ID = 10;
-    public static int  NIVELESTUDIOS_ID = 11;
-    public static int  OBSERVACIONES_ID = 12;
-    public static int  OCUPACION_ID = 13;
-    public static int  PROFESION_ID = 14;
-    public static int  SITUACIONECONOMICA_ID = 15;
-    public static int  VIVIENDA_ID = 16;
-    public static int  VIVIENDAALQUILER_ID = 17;
-    public static int  VIVIENDAOBSERVACIONES_ID = 18;
+	public static int  LUGAR_NACIMIENTO_ID = 9;
+	public static int  ESTADO_CIVIL_ID = 10;
+    public static int  NACIONALIDAD_ID = 11;
+    public static int  NIVELESTUDIOS_ID = 12;
+    public static int  OBSERVACIONES_ID = 13;
+    public static int  OCUPACION_ID = 14;
+    public static int  PROFESION_ID = 15;
+    public static int  SITUACION_ECONOMICA_ID = 16;
+    public static int  VIVIENDA_ID = 17;
+    public static int  VIVIENDA_ALQUILER_ID = 18;
+    public static int  VIVIENDA_OBSERVACIONES_ID = 19;
 
 
     /**
