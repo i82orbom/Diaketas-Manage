@@ -5,6 +5,7 @@
 
 package Controladores;
 
+import Controladores.Voluntario.ControladorVoluntario;
 import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.Beneficiario.VistaBeneficiario;
 import JDBC.BeneficiarioJDBC;
@@ -59,10 +60,10 @@ public class ControladorBeneficiario {
 		*/
 	private ControladorBeneficiario(VistaBeneficiario pvista){
 
-	/**
+		/**
 		* Establece como ventana padre la pasada como parámetro
 		*/
-	vista = pvista;
+		vista = pvista;
 
 		// anadir listener
 		vista.getBarraDeNavigacion().setListener(new ListenerBarraNavigacion());
@@ -73,6 +74,10 @@ public class ControladorBeneficiario {
 
 		vista.getPanelInicio().anadirListenerbtBuscarBeneficiario(new btBuscarListener());
 		vista.getPanelInicio().anadirListenerbtNuevoBeneficiario(new btNuevoBeneficiarioListener());
+
+		vista.getPanelDatos().getBtGuardar().addActionListener(new btGuardarBeneficiarioListener());
+        vista.getPanelDatos().getBtBorrar().addActionListener(new btBorrarBeneficiarioListener());
+
 	}
 
 	// mostrar la vista que queremos y actualizacion de la barra de navigacion
@@ -104,10 +109,14 @@ public class ControladorBeneficiario {
         beneficiario.setNombre(datos[Beneficiario.NOMBRE_ID]);
         beneficiario.setApellidos(datos[Beneficiario.APELLIDOS_ID]);
         try {
+//System.out.println("Fecha1: "+TestDatos.formatter.parse(datos[Beneficiario.FECHA_DE_NACIMIENTO_ID]));
             beneficiario.setFechaDENacimiento(TestDatos.formatter.parse(datos[Beneficiario.FECHA_DE_NACIMIENTO_ID]));
         } catch (ParseException ex) {
+System.out.println("¡¡MIERDAAA!!");
             Logger.getLogger(ControladorBeneficiario.class.getName()).log(Level.SEVERE, null, ex);
         }
+//System.out.println("Fecha2: "+beneficiario.getFechaDENacimiento());
+
 		beneficiario.setDomicilio(datos[Beneficiario.DOMICILIO_ID]);
         beneficiario.setCP(Integer.parseInt(datos[Beneficiario.CP_ID]));
         beneficiario.setLocalidad(datos[Beneficiario.LOCALIDAD_ID]);
@@ -129,7 +138,9 @@ public class ControladorBeneficiario {
         try {
             BeneficiarioJDBC.getInstance().anadirBeneficiario(beneficiario);
         } catch (SQLException se) {
-            System.err.print(se.getMessage());
+            System.out.println("NOOOOO!!!");
+            System.out.println("NOOOOO!!!");
+            System.err.println(se.getMessage());
             return false;
         }
 
@@ -157,7 +168,7 @@ public class ControladorBeneficiario {
 		}
 	}
 
-	// listeners de los botones
+	// Listeners de los botones
 	class btBuscarListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent ae) {
@@ -170,6 +181,30 @@ public class ControladorBeneficiario {
 		public void actionPerformed(ActionEvent ae) {
 			mostrarVistaNuevoBeneficiario();
 		}
+	}
+
+	class btBorrarBeneficiarioListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            vista.getPanelDatos().limpiarFormulario();
+        }
+    }
+
+	class btGuardarBeneficiarioListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+			String[] datos = vista.getPanelDatos().getDatosPersonales();
+			boolean exito = insertarBeneficiario(datos);
+
+			if (exito) {
+				vista.getPanelDatos().setTextLabelError("Beneficiario añadido correctamente.");
+			} else {
+				vista.getPanelDatos().setTextLabelError("El beneficiario no ha sido añadido.");
+			}
+        }
+
 	}
 
 }

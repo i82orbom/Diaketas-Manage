@@ -13,14 +13,14 @@ import java.awt.CardLayout;
  */
 public class VistaVoluntario extends javax.swing.JPanel {
 
-    /* identificador de los paneles en el CardLayout */ 
+    /* identificador de los paneles en el CardLayout */
     public static String panelInicio = "inicio";
     public static String panelBuscar = "buscar";
     public static String panelDatos = "datos";
     public static String panelAyudas = "ayuda";
     public static String panelContabilidad = "contabilidad";
     public static String panelColaboraciones = "colaboraciones";
-    
+
     /**
      * Creates new form PanelVoluntario
      */
@@ -52,11 +52,11 @@ public class VistaVoluntario extends javax.swing.JPanel {
     public PanelVoluntarioDatos getPanelVoluntarioDatos() {
         return panelVoluntarioDatos;
     }
-    
+
     public PanelVoluntarioColaboraciones getPanelVoluntarioColaboraciones() {
         return panelVoluntarioColaboraciones;
     }
-    
+
     // mostrar un panel con el CardLayoud
     public void showPanel (String panel) {
         CardLayout cardLayout =  (CardLayout)panelVoluntario.getLayout();

@@ -113,10 +113,10 @@
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                                               <Group type="102" attributes="0">
-                                                                  <Component id="textFechaNacimiento" min="-2" pref="112" max="-2" attributes="0"/>
-                                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                                  <Component id="textFechaNacimiento" min="-2" pref="111" max="-2" attributes="0"/>
+                                                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                                                   <Component id="labelProvinciaNacimiento" min="-2" max="-2" attributes="0"/>
-                                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                                   <Component id="textLugarNacimiento" max="32767" attributes="0"/>
                                                               </Group>
                                                               <Component id="textApellidos" min="-2" pref="307" max="-2" attributes="0"/>
@@ -162,9 +162,9 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
-                              <Component id="btGuardarBeneficiario" min="-2" max="-2" attributes="0"/>
+                              <Component id="btGuardar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="btEliminarBeneficiario" min="-2" max="-2" attributes="0"/>
+                              <Component id="btBorrar" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
@@ -281,8 +281,8 @@
                       <Component id="labelError" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btGuardarBeneficiario" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="btEliminarBeneficiario" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btGuardar" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btBorrar" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
                   </Group>
@@ -409,8 +409,6 @@
                 <Property name="text" type="java.lang.String" value="Apellidos"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="textFechaNacimiento">
-            </Component>
             <Component class="javax.swing.JLabel" name="labelDatosPersonales">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -477,14 +475,14 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btGuardarBeneficiario">
+            <Component class="javax.swing.JButton" name="btGuardar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Vista/images/save_f2.png"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btEliminarBeneficiario">
+            <Component class="javax.swing.JButton" name="btBorrar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Vista/images/limpiar.png"/>
@@ -517,6 +515,13 @@
                   <Color blue="33" green="33" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Mensaje de error"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="textFechaNacimiento">
+              <Properties>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                  <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>
@@ -583,7 +588,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel59" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane10" pref="342" max="32767" attributes="0"/>
+                      <Component id="jScrollPane10" pref="409" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel60" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -745,7 +750,7 @@
                           <Component id="btGuardarFamiliarBeneficiario" min="-2" pref="34" max="-2" attributes="0"/>
                           <Component id="btEliminarFamiliarBeneficiario" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace pref="103" max="32767" attributes="0"/>
                       <Component id="jScrollPane9" min="-2" pref="438" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>

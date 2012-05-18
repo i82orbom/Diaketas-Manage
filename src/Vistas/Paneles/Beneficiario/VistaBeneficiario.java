@@ -15,12 +15,12 @@ import java.awt.CardLayout;
  */
 public class VistaBeneficiario extends javax.swing.JPanel {
 
-     /* identificador de los paneles en el CardLayout */ 
+	/* identificador de los paneles en el CardLayout */
     public static String panelInicio = "inicio";
     public static String panelBuscar = "buscar";
     public static String panelDatos = "datos";
 
-    
+
     /**
      * Creates new form VistaBeneficiario
      */
@@ -28,27 +28,27 @@ public class VistaBeneficiario extends javax.swing.JPanel {
         initComponents();
     }
 
-    
+
      // mostrar un panel con el CardLayoud
     public void showPanel (String panel) {
         CardLayout cardLayout =  (CardLayout)panelBeneficiario.getLayout();
         cardLayout.show(panelBeneficiario, panel);
     }
-    
-    
+
+
     public BarraDeNavegacion getBarraDeNavigacion() {
        return this.barraDeNavegacion;
     }
-    
-    
+
+
     public PanelBeneficiarioDatos getPanelDatos(){
         return this.panelBeneficiarioDatos;
     }
-    
+
     public PanelBeneficiarioBuscar getPanelBuscar(){
         return this.panelBeneficiarioBuscar;
     }
-    
+
     public PanelBeneficiarioInicio getPanelInicio(){
         return this.panelBeneficiarioInicio;
     }

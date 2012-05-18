@@ -370,9 +370,9 @@ public class ControladorVoluntario {
 				datos[Voluntario.CP_ID] = vista.getPanelVoluntarioDatos().getTextCP();
 				datos[Voluntario.TELEFONO_MOVIL_ID] = vista.getPanelVoluntarioDatos().getTextTelFijo();
 				datos[Voluntario.TELEFONO_FIJO_ID] = vista.getPanelVoluntarioDatos().getTextTelMovil();
-                                
-                                /* Codificar password con md5 mas un salto */
-                                String password = ControladorPrincipal.getInstance().md5(vista.getPanelVoluntarioDatos().getTextPassword()+ControladorPrincipal.getInstance().getSalto());
+
+				/* Codificar password con md5 mas un salto */
+				String password = ControladorPrincipal.getInstance().md5(vista.getPanelVoluntarioDatos().getTextPassword()+ControladorPrincipal.getInstance().getSalto());
 				datos[Voluntario.PASSWORD_ID] = password;
 
 				boolean exito = insertarVoluntario(datos);
@@ -388,7 +388,7 @@ public class ControladorVoluntario {
 			}
 
         }
-        
+
     }
 
     class btBorrarVoluntarioListener implements ActionListener {

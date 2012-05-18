@@ -5,6 +5,7 @@
 package Vistas.Paneles.Beneficiario;
 
 import Modelo.Beneficiario;
+import javax.swing.JButton;
 
 /**
  *
@@ -17,6 +18,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
      */
     public PanelBeneficiarioDatos() {
         initComponents();
+		labelError.setVisible(false);
     }
 
 	public void setTextLabelError (String text) {
@@ -42,11 +44,22 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 		textLocalidad.setText("");
 		textCP.setText("");
 		textObservaciones.setText("");
+		textSituacionEconomica.setText("");
 
 //		cbTipoVivienda.
 		textPrecioVivienda.setText("");
 		textEspecificarTipoVivienda.setText("");
 	}
+
+	    // getters de los campos
+
+	public JButton getBtBorrar() {
+		return btBorrar;
+	}
+
+	public JButton getBtGuardar() {
+        return btGuardar;
+    }
 
     public String[] getDatosPersonales() {
 		String []datos = new String[24];
@@ -113,7 +126,6 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         textLocalidad = new javax.swing.JTextField();
         textObservaciones = new javax.swing.JTextField();
         labelApellidos = new javax.swing.JLabel();
-        textFechaNacimiento = new javax.swing.JFormattedTextField();
         labelDatosPersonales = new javax.swing.JLabel();
         labelVivienda = new javax.swing.JLabel();
         labelTipoVivienda = new javax.swing.JLabel();
@@ -125,13 +137,14 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         labelSituacionEconomica = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         textSituacionEconomica = new javax.swing.JTextArea();
-        btGuardarBeneficiario = new javax.swing.JButton();
-        btEliminarBeneficiario = new javax.swing.JButton();
+        btGuardar = new javax.swing.JButton();
+        btBorrar = new javax.swing.JButton();
         labelOcupacion = new javax.swing.JLabel();
         textOcupacion = new javax.swing.JTextField();
         textTelefonoMovil = new javax.swing.JTextField();
         labelMovil = new javax.swing.JLabel();
         labelError = new javax.swing.JLabel();
+        textFechaNacimiento = new javax.swing.JFormattedTextField();
         PanelIntervenciones = new javax.swing.JPanel();
         btGuardarIntervencionBeneficiario = new javax.swing.JButton();
         btEliminarIntervencionBeneficiario = new javax.swing.JButton();
@@ -219,9 +232,9 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         textSituacionEconomica.setRows(5);
         jScrollPane7.setViewportView(textSituacionEconomica);
 
-        btGuardarBeneficiario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/save_f2.png"))); // NOI18N
+        btGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/save_f2.png"))); // NOI18N
 
-        btEliminarBeneficiario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
+        btBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
 
         labelOcupacion.setText("Ocupación");
 
@@ -241,6 +254,8 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 
         labelError.setForeground(new java.awt.Color(255, 51, 51));
         labelError.setText("Mensaje de error");
+
+        textFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
         org.jdesktop.layout.GroupLayout PanelDatosLayout = new org.jdesktop.layout.GroupLayout(PanelDatos);
         PanelDatos.setLayout(PanelDatosLayout);
@@ -287,10 +302,10 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                                                 .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                                     .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                                                         .add(PanelDatosLayout.createSequentialGroup()
-                                                            .add(textFechaNacimiento, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 112, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                            .add(18, 18, 18)
+                                                            .add(textFechaNacimiento, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 111, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                                            .add(26, 26, 26)
                                                             .add(labelProvinciaNacimiento)
-                                                            .add(18, 18, 18)
+                                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                                             .add(textLugarNacimiento))
                                                         .add(textApellidos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 307, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                                     .add(cbEstadoCivilBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 86, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -321,9 +336,9 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                             .add(labelDatosPersonales)))
                     .add(PanelDatosLayout.createSequentialGroup()
                         .add(204, 204, 204)
-                        .add(btGuardarBeneficiario)
+                        .add(btGuardar)
                         .add(32, 32, 32)
-                        .add(btEliminarBeneficiario))
+                        .add(btBorrar))
                     .add(PanelDatosLayout.createSequentialGroup()
                         .add(156, 156, 156)
                         .add(labelError, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 482, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
@@ -414,8 +429,8 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                 .add(labelError)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, btGuardarBeneficiario)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, btEliminarBeneficiario))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, btGuardar)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, btBorrar))
                 .add(146, 146, 146))
         );
 
@@ -487,7 +502,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(jLabel59)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                .add(jScrollPane10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
                 .add(18, 18, 18)
                 .add(PanelIntervencionesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel60)
@@ -580,7 +595,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                             .add(cbParentescoBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(btGuardarFamiliarBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(btEliminarFamiliarBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 103, Short.MAX_VALUE)
                 .add(jScrollPane9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 438, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -621,10 +636,10 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
     private javax.swing.JPanel PanelDatos;
     private javax.swing.JPanel PanelIntervenciones;
     private javax.swing.JPanel PanelSituacionFamiliar;
-    private javax.swing.JButton btEliminarBeneficiario;
+    private javax.swing.JButton btBorrar;
     private javax.swing.JButton btEliminarFamiliarBeneficiario;
     private javax.swing.JButton btEliminarIntervencionBeneficiario;
-    private javax.swing.JButton btGuardarBeneficiario;
+    private javax.swing.JButton btGuardar;
     private javax.swing.JButton btGuardarFamiliarBeneficiario;
     private javax.swing.JButton btGuardarIntervencionBeneficiario;
     private javax.swing.JComboBox cbEstadoCivilBeneficiario;

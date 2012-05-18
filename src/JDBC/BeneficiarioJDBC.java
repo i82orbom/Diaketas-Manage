@@ -22,8 +22,8 @@
  *      005 - Mar 30, 2012 - AAN - Reestructuracion para usar la tabla persona
  **     006 - Abr 14, 2012 - AAN - Modificacion sentencias SQL
  *      007 - Abr 15, 2012 - FBR - Modifiacion de sentencias SQL y métodos
- **     008 - May 18, 2012 - ARS - Modifiacion de sentencias SQL para incluir OID
- * 
+ **     008 - May 18, 2012 - ARS - Modifiacion de sentencias SQL para incluir OID. Se puede añadir beneficiario bien
+ *
  ** NOTAS:
  **
  **
@@ -35,16 +35,15 @@ import Modelo.Beneficiario;
 import Modelo.Persona;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * @author Jobero
- */
 public class BeneficiarioJDBC {
 
 	private static BeneficiarioJDBC instancia;
+	private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
 
 	private BeneficiarioJDBC(){
 
@@ -255,10 +254,10 @@ public class BeneficiarioJDBC {
 		String vivienda_alquiler_cadena = String.valueOf(beneficiario.getViviendaAlquiler());
 
 		String sql2 = "INSERT INTO persona (NIF,Nombre,Apellidos,FechaNacimiento,CP,TelefonoFijo,TelefonoMovil,Domicilio,Localidad) VALUES "
-				+ "('"+beneficiario.getNIF()+"','"+beneficiario.getNombre()+"','"+beneficiario.getApellidos()+"','"+beneficiario.getFechaDENacimiento()+"','"+Cp_cadena+"','"+telefono_fijo_cadena+"','"+telefono_movil_cadena+"','"+beneficiario.getDomicilio()+"','"+beneficiario.getLocalidad()+"')";
+				+ "('"+beneficiario.getNIF()+"','"+beneficiario.getNombre()+"','"+beneficiario.getApellidos()+"','"+formatter.format(beneficiario.getFechaDENacimiento())+"','"+Cp_cadena+"','"+telefono_fijo_cadena+"','"+telefono_movil_cadena+"','"+beneficiario.getDomicilio()+"','"+beneficiario.getLocalidad()+"')";
 		boolean exito = driver.insertar(sql2);
-		String sql = "INSERT INTO beneficiario (OID,NIF,EstadoCivil,Nacionalidad,NivelDeEstudio,Observaciones,Ocupacion,Profesion,SituacionEconomica,Vivienda,ViviendaAlquiler,ViviendaObservaciones) VALUES "
-				+ "(last_inserted_ID(),'"+beneficiario.getNIF()+"','"+beneficiario.getEstadoCivil()+"','"+beneficiario.getNacionalidad()+"','"+beneficiario.getNivelDeEstudio()+"','"+beneficiario.getObservaciones()+"','"+beneficiario.getOcupacion()+"','"+beneficiario.getProfesion()+"','"+beneficiario.getSituacionEconomica()+"','"+beneficiario.getVivienda()+"','"+vivienda_alquiler_cadena+"','"+beneficiario.getViviendaObservaciones()+"')";
+		String sql = "INSERT INTO beneficiario (OID,EstadoCivil,Nacionalidad,NivelDeEstudio,Observaciones,Ocupacion,Profesion,SituacionEconomica,Vivienda,ViviendaAlquiler,ViviendaObservaciones) VALUES "
+				+ "(LAST_INSERT_ID(),'"+beneficiario.getEstadoCivil()+"','"+beneficiario.getNacionalidad()+"','"+beneficiario.getNivelDeEstudio()+"','"+beneficiario.getObservaciones()+"','"+beneficiario.getOcupacion()+"','"+beneficiario.getProfesion()+"','"+beneficiario.getSituacionEconomica()+"','"+beneficiario.getVivienda()+"','"+vivienda_alquiler_cadena+"','"+beneficiario.getViviendaObservaciones()+"')";
 
 		boolean exito2 = driver.insertar(sql);
 
