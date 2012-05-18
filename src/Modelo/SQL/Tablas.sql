@@ -19,9 +19,9 @@ DROP TABLE IF EXISTS Persona ;
 
 CREATE TABLE Persona (
 	OID INTEGER PRIMARY KEY AUTO_INCREMENT
-	, NIF VARCHAR (11) NOT NULL
-	, Nombre VARCHAR (15)
-	, Apellidos VARCHAR (20)
+	, NIF VARCHAR (11) NOT NULL UNIQUE
+	, Nombre VARCHAR (15) NOT NULL
+	, Apellidos VARCHAR (20) NOT NULL
 	, FechaNacimiento DATE
 	, CP NUMERIC(5,0)
 	, TelefonoFijo INTEGER
@@ -32,7 +32,6 @@ CREATE TABLE Persona (
 
 CREATE TABLE Beneficiario (
 	OID INTEGER PRIMARY KEY
-	, NIF VARCHAR(11) NOT NULL
 	, EstadoCivil VARCHAR (10)
 	, Nacionalidad VARCHAR (15)
 	, NivelDeEstudio VARCHAR (20)
@@ -49,14 +48,14 @@ CREATE TABLE Beneficiario (
 
 CREATE TABLE Familia (
 	OID_Bene1 INTEGER
-	, OID_Bene2 INTEGER 
-	, Parentesco VARCHAR (30) 
+	, OID_Bene2 INTEGER
+	, Parentesco VARCHAR (30)
 	, PRIMARY KEY (OID_Bene1,OID_Bene2)
 	, CONSTRAINT Fkfamilia3 FOREIGN KEY (OID_Bene1)
 				  REFERENCES Persona (OID)
 	, CONSTRAINT Fkfamilia4 FOREIGN KEY (OID_Bene2)
 				  REFERENCES Persona (OID)
-); 
+);
 
 
 CREATE TABLE Voluntario (
@@ -123,7 +122,7 @@ CREATE TABLE C_Empresa (
 	  OID INTEGER
 	, CIF VARCHAR (9) NOT NULL UNIQUE
 	, Nombre VARCHAR (50) NOT NULL
-	, Direccionweb VARCHAR (256) NOT NULL 
+	, Direccionweb VARCHAR (256) NOT NULL
 	, Fax INTEGER
 	, PRIMARY KEY (OID)
 	, CONSTRAINT Fk_OIDCEmpresa FOREIGN KEY (OID)
@@ -153,7 +152,7 @@ CREATE TABLE Socio (
 
 CREATE TABLE Cuota (
 	  OID INTEGER
-	, OIDSocio INTEGER 
+	, OIDSocio INTEGER
 	, Cantidad FLOAT NOT NULL
 	, IntervalosPagos DATE NOT NULL
 	, FechaInicio DATE NOT NULL

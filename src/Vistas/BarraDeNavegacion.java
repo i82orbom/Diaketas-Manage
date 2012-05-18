@@ -16,15 +16,22 @@ import java.awt.event.ActionListener;
 public class BarraDeNavegacion extends javax.swing.JPanel {
     
     ActionListener listener;
+    
+    public static String TO_VISTA_INICIAL = "toMain";
+    public static String TO_NIVEL1 = "toNivel1";
+    public static String TO_NIVEL2 = "toNivel2";
+    
     /**
      * Creates new form BarraDeNavegacion
      */
     public BarraDeNavegacion() {
         initComponents();
-        senalaPrincipal.setVisible(false);
-        labelMenuPrincipal.setVisible(false);
-        senalaAvanzado.setVisible(false);
-        labelMenuAvanzado.setVisible(false);
+        senalaNivel1.setVisible(false);
+        labelNivel1.setVisible(false);
+        senalaNivel2.setVisible(false);
+        labelNivel2.setVisible(false);
+        senalaNivel3.setVisible(false);
+        labelNivel3.setVisible(false);
     }
 
     // anadir el listener de un controlador para recibir los eventos
@@ -33,18 +40,23 @@ public class BarraDeNavegacion extends javax.swing.JPanel {
     }
     
     // indicar un texto de la vista
-    public void setTextLabelMenuPrincipal (String text) {
-        labelMenuPrincipal.setText(text);
-        labelMenuPrincipal.setVisible(true);
-        senalaPrincipal.setVisible(true);
+    public void setTextLabelNivel1 (String text) {
+        labelNivel1.setText(text);
+        labelNivel1.setVisible(true);
+        senalaNivel1.setVisible(true);
     }
     
     // indicar un texto del panel
-    public void setTextLabelMenuAvanzado (String text) {
-        labelMenuAvanzado.setText(text);
-        labelMenuAvanzado.setVisible(true);
-        senalaAvanzado.setVisible(true);
-        
+    public void setTextLabelNivel2 (String text) {
+        labelNivel2.setText(text);
+        labelNivel2.setVisible(true);
+        senalaNivel2.setVisible(true);  
+    }
+    
+    public void setTextLabelNivel3 (String text) {
+        labelNivel3.setText(text);
+        labelNivel3.setVisible(true);
+        senalaNivel3.setVisible(true);  
     }
 
     /**
@@ -57,10 +69,12 @@ public class BarraDeNavegacion extends javax.swing.JPanel {
     private void initComponents() {
 
         navToMain = new javax.swing.JButton();
-        senalaPrincipal = new javax.swing.JLabel();
-        labelMenuPrincipal = new javax.swing.JLabel();
-        senalaAvanzado = new javax.swing.JLabel();
-        labelMenuAvanzado = new javax.swing.JLabel();
+        senalaNivel1 = new javax.swing.JLabel();
+        labelNivel1 = new javax.swing.JLabel();
+        senalaNivel2 = new javax.swing.JLabel();
+        labelNivel2 = new javax.swing.JLabel();
+        senalaNivel3 = new javax.swing.JLabel();
+        labelNivel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -78,20 +92,30 @@ public class BarraDeNavegacion extends javax.swing.JPanel {
             }
         });
 
-        senalaPrincipal.setForeground(new java.awt.Color(153, 153, 153));
-        senalaPrincipal.setText(">");
+        senalaNivel1.setForeground(new java.awt.Color(153, 153, 153));
+        senalaNivel1.setText(">");
 
-        labelMenuPrincipal.setText("Voluntario");
-        labelMenuPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelNivel1.setText("Voluntario");
+        labelNivel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelMenuPrincipalMouseClicked(evt);
+                labelNivel1MouseClicked(evt);
             }
         });
 
-        senalaAvanzado.setForeground(new java.awt.Color(153, 153, 153));
-        senalaAvanzado.setText(">");
+        senalaNivel2.setForeground(new java.awt.Color(153, 153, 153));
+        senalaNivel2.setText(">");
 
-        labelMenuAvanzado.setText("Buscar");
+        labelNivel2.setText("Colaboraciones");
+        labelNivel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelNivel2MouseClicked(evt);
+            }
+        });
+
+        senalaNivel3.setForeground(new java.awt.Color(153, 153, 153));
+        senalaNivel3.setText(">");
+
+        labelNivel3.setText("Añadir");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -104,14 +128,18 @@ public class BarraDeNavegacion extends javax.swing.JPanel {
                     .add(layout.createSequentialGroup()
                         .add(navToMain, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 106, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(senalaPrincipal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(senalaNivel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
-                        .add(labelMenuPrincipal)
+                        .add(labelNivel1)
                         .add(32, 32, 32)
-                        .add(senalaAvanzado, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(senalaNivel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
-                        .add(labelMenuAvanzado)
-                        .add(0, 660, Short.MAX_VALUE)))
+                        .add(labelNivel2)
+                        .add(27, 27, 27)
+                        .add(senalaNivel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(18, 18, 18)
+                        .add(labelNivel3)
+                        .add(0, 497, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -120,10 +148,12 @@ public class BarraDeNavegacion extends javax.swing.JPanel {
                 .add(16, 16, 16)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(navToMain, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(senalaPrincipal)
-                    .add(labelMenuPrincipal)
-                    .add(senalaAvanzado)
-                    .add(labelMenuAvanzado))
+                    .add(senalaNivel1)
+                    .add(labelNivel1)
+                    .add(senalaNivel2)
+                    .add(labelNivel2)
+                    .add(senalaNivel3)
+                    .add(labelNivel3))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -131,32 +161,47 @@ public class BarraDeNavegacion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void navToMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_navToMainActionPerformed
-        senalaPrincipal.setVisible(false);
-        labelMenuPrincipal.setVisible(false);
-        senalaAvanzado.setVisible(false);
-        labelMenuAvanzado.setVisible(false);
+        senalaNivel1.setVisible(false);
+        labelNivel1.setVisible(false);
+        senalaNivel2.setVisible(false);
+        labelNivel2.setVisible(false);
+        senalaNivel3.setVisible(false);
+        labelNivel3.setVisible(false);
         
         // manda un event al controlador para cambiar de panel
-        ActionEvent event = new ActionEvent(this, 0, "toMain");
+        ActionEvent event = new ActionEvent(this, 0, TO_VISTA_INICIAL);
         listener.actionPerformed(event);
     }//GEN-LAST:event_navToMainActionPerformed
 
-    private void labelMenuPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelMenuPrincipalMouseClicked
+    private void labelNivel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelNivel1MouseClicked
 
-        senalaAvanzado.setVisible(false);
-        labelMenuAvanzado.setVisible(false);
+        senalaNivel2.setVisible(false);
+        labelNivel2.setVisible(false);
+        senalaNivel3.setVisible(false);
+        labelNivel3.setVisible(false);
         
         // manda un event al controlador para cambiar de panel
-        ActionEvent event = new ActionEvent(this, 0, "toMenuInicial");
+        ActionEvent event = new ActionEvent(this, 0, TO_NIVEL1);
         listener.actionPerformed(event);
-    }//GEN-LAST:event_labelMenuPrincipalMouseClicked
+    }//GEN-LAST:event_labelNivel1MouseClicked
+
+    private void labelNivel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelNivel2MouseClicked
+        senalaNivel3.setVisible(false);
+        labelNivel3.setVisible(false);
+        
+        // manda un event al controlador para cambiar de panel
+        ActionEvent event = new ActionEvent(this, 0, TO_NIVEL2);
+        listener.actionPerformed(event);
+    }//GEN-LAST:event_labelNivel2MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel labelMenuAvanzado;
-    private javax.swing.JLabel labelMenuPrincipal;
+    private javax.swing.JLabel labelNivel1;
+    private javax.swing.JLabel labelNivel2;
+    private javax.swing.JLabel labelNivel3;
     private javax.swing.JButton navToMain;
-    private javax.swing.JLabel senalaAvanzado;
-    private javax.swing.JLabel senalaPrincipal;
+    private javax.swing.JLabel senalaNivel1;
+    private javax.swing.JLabel senalaNivel2;
+    private javax.swing.JLabel senalaNivel3;
     // End of variables declaration//GEN-END:variables
 }

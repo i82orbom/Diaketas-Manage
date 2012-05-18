@@ -40,7 +40,7 @@ import java.util.Date;
  *
  * @author Jobero
  */
-    public class BeneficiarioJDBC extends JDBC {
+    public class BeneficiarioJDBC {
     
         private static BeneficiarioJDBC instancia;
     

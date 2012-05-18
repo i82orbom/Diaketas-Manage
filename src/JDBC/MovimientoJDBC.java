@@ -26,7 +26,6 @@
  */
 package JDBC;
 
-import Modelo.Asociacion;
 import Modelo.Ayuda;
 import Modelo.Movimiento;
 import java.sql.ResultSet;
@@ -38,7 +37,7 @@ import java.util.Date;
  *
  * @author Jobero
  */
-public class MovimientoJDBC extends JDBC{
+public class MovimientoJDBC {
     
      private static MovimientoJDBC instancia;
     
@@ -102,17 +101,9 @@ public class MovimientoJDBC extends JDBC{
               m.setImporte(rs.getFloat("Importe"));
               m.setFecha(rs.getDate("Fecha"));
               m.setTipo('G');
-              //Guardamos el ID de asociacion y ayuda
-              String id_asociacion = rs.getString("AsociacionID");
+              //Guardamos el ID de ayuda
               String id_ayuda = rs.getString("AyudaOID");         
               
-              //Añadimos los valores de la asociación
-              String consulta2 = "SELECT * FROM asociacion WHERE AsociacionID = '"+id_asociacion+"'";
-              rs2 = driver.seleccionar(consulta2);
-              Asociacion asoc = new Asociacion();
-              asoc.setNombre(rs2.getString("Nombre"));
-              asoc.setDireccion(rs2.getString("Direccion"));
-              m.setAsociacionQueGenera(asoc);
               
               //Añadimos los valores de la ayuda
               String consulta3 = "SELECT * FROM ayuda WHERE OID = '"+id_ayuda+"'";
@@ -162,17 +153,8 @@ public class MovimientoJDBC extends JDBC{
               m.setImporte(rs.getFloat("Importe"));
               m.setFecha(rs.getDate("Fecha"));
               m.setTipo('G');
-              //Guardamos el ID de asociacion y ayuda
-              String id_asociacion = rs.getString("AsociacionID");
+              //Guardamos el ID de ayuda
               String id_ayuda = rs.getString("AyudaOID");         
-              
-              //Añadimos los valores de la asociación
-              String consulta2 = "SELECT * FROM asociacion WHERE AsociacionID = '"+id_asociacion+"'";
-              rs2 = driver.seleccionar(consulta2);
-              Asociacion asoc = new Asociacion();
-              asoc.setNombre(rs2.getString("Nombre"));
-              asoc.setDireccion(rs2.getString("Direccion"));
-              m.setAsociacionQueGenera(asoc);
               
               //Añadimos los valores de la ayuda
               String consulta3 = "SELECT * FROM ayuda WHERE OID = '"+id_ayuda+"'";

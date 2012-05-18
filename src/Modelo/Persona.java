@@ -44,8 +44,6 @@ public abstract class Persona {
     private int telefonoMovil;   
     private int telefonoFijo;
     
-    private Asociacion asociacion;
-    
     public static int  NIF_ID = 0;
     public static int  NOMBRE_ID = 1;
     public static int  APELLIDOS_ID = 2;
@@ -109,22 +107,6 @@ public abstract class Persona {
      */
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public Asociacion getAsociacion() {
-        return asociacion;
-    }
-
-    /**
-     * 
-     * @param asociacion
-     */
-    public void setAsociacion(Asociacion asociacion) {
-        this.asociacion = asociacion;
     }
 
     /**

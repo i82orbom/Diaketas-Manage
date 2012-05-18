@@ -29,7 +29,7 @@ import java.util.Date;
  *
  * @author Jobero
  */
-public class Movimiento implements Identificable{
+public class Movimiento {
 	
     private Long OID;
     private String concepto;
@@ -44,20 +44,11 @@ public class Movimiento implements Identificable{
     public static int IMPORTE_ID = 2;
     
     private ArrayList<Ayuda> ayudasAsociadas;
-    private Asociacion asociacionQueGenera;
 
     /**
      * Constructor por defecto
      */
     public Movimiento() {
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public Asociacion getAsociacionQueGenera() {
-        return asociacionQueGenera;
     }
     
     
@@ -75,14 +66,6 @@ public class Movimiento implements Identificable{
      */
     public Long getOID() {
         return OID;
-    }
-    
-    /**
-     * 
-     * @param asociacionQueGenera
-     */
-    public void setAsociacionQueGenera(Asociacion asociacionQueGenera) {
-        this.asociacionQueGenera = asociacionQueGenera;
     }
 
     /**

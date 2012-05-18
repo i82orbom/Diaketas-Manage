@@ -5,11 +5,6 @@
 package Vistas.Paneles.Voluntario;
 
 import Vistas.BarraDeNavegacion;
-import Vistas.Paneles.Voluntario.PanelVoluntarioBuscar;
-import Vistas.Paneles.Voluntario.PanelVoluntarioAyudas;
-import Vistas.Paneles.Voluntario.PanelVoluntarioDatos;
-import Vistas.Paneles.Voluntario.PanelVoluntarioInicio;
-import Vistas.Paneles.Voluntario.PanelVoluntarioContabilidad;
 import java.awt.CardLayout;
 
 /**
@@ -24,6 +19,7 @@ public class VistaVoluntario extends javax.swing.JPanel {
     public static String panelDatos = "datos";
     public static String panelAyudas = "ayuda";
     public static String panelContabilidad = "contabilidad";
+    public static String panelColaboraciones = "colaboraciones";
     
     /**
      * Creates new form PanelVoluntario
@@ -57,6 +53,10 @@ public class VistaVoluntario extends javax.swing.JPanel {
         return panelVoluntarioDatos;
     }
     
+    public PanelVoluntarioColaboraciones getPanelVoluntarioColaboraciones() {
+        return panelVoluntarioColaboraciones;
+    }
+    
     // mostrar un panel con el CardLayoud
     public void showPanel (String panel) {
         CardLayout cardLayout =  (CardLayout)panelVoluntario.getLayout();
@@ -79,12 +79,12 @@ public class VistaVoluntario extends javax.swing.JPanel {
         panelVoluntarioBuscar = new Vistas.Paneles.Voluntario.PanelVoluntarioBuscar();
         panelVoluntarioAyudas = new Vistas.Paneles.Voluntario.PanelVoluntarioAyudas();
         panelVoluntarioContabilidad = new Vistas.Paneles.Voluntario.PanelVoluntarioContabilidad();
+        panelVoluntarioColaboraciones = new Vistas.Paneles.Voluntario.PanelVoluntarioColaboraciones();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
         setPreferredSize(new java.awt.Dimension(1000, 600));
-        setSize(new java.awt.Dimension(1000, 600));
         setLayout(new java.awt.BorderLayout());
 
         barraDeNavegacion.setAlignmentX(10.0F);
@@ -99,6 +99,7 @@ public class VistaVoluntario extends javax.swing.JPanel {
         panelVoluntario.add(panelVoluntarioBuscar, "buscar");
         panelVoluntario.add(panelVoluntarioAyudas, "ayuda");
         panelVoluntario.add(panelVoluntarioContabilidad, "contabilidad");
+        panelVoluntario.add(panelVoluntarioColaboraciones, "colaboraciones");
 
         add(panelVoluntario, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -107,6 +108,7 @@ public class VistaVoluntario extends javax.swing.JPanel {
     private javax.swing.JPanel panelVoluntario;
     private Vistas.Paneles.Voluntario.PanelVoluntarioAyudas panelVoluntarioAyudas;
     private Vistas.Paneles.Voluntario.PanelVoluntarioBuscar panelVoluntarioBuscar;
+    private Vistas.Paneles.Voluntario.PanelVoluntarioColaboraciones panelVoluntarioColaboraciones;
     private Vistas.Paneles.Voluntario.PanelVoluntarioContabilidad panelVoluntarioContabilidad;
     private Vistas.Paneles.Voluntario.PanelVoluntarioDatos panelVoluntarioDatos;
     private Vistas.Paneles.Voluntario.PanelVoluntarioInicio panelVoluntarioInicio;

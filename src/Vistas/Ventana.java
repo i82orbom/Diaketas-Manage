@@ -5,6 +5,7 @@
 package Vistas;
 
 import Vistas.Paneles.Beneficiario.VistaBeneficiario;
+import Vistas.Paneles.Colaboradores.VistaColaboradores;
 import Vistas.Paneles.Voluntario.VistaVoluntario;
 import java.awt.CardLayout;
 
@@ -20,6 +21,7 @@ public class Ventana extends javax.swing.JFrame {
     public static String panelInicio = "inicio";
     public static String panelVoluntario = "voluntario";
     public static String panelBeneficiario = "beneficiario";
+    public static String panelColaboradores = "colaboradores";
     
     /**
      * Creates new form Raiz
@@ -49,20 +51,21 @@ public class Ventana extends javax.swing.JFrame {
         vistaInicial = new Vistas.VistaInicial();
         vistaVoluntario = new Vistas.Paneles.Voluntario.VistaVoluntario();
         vistaBeneficiario = new Vistas.Paneles.Beneficiario.VistaBeneficiario();
+        vistaColaboradores = new Vistas.Paneles.Colaboradores.VistaColaboradores();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Diaketas");
         setBackground(new java.awt.Color(135, 170, 235));
-        setBounds(new java.awt.Rectangle(0, 0, 1000, 700));
+        setBounds(new java.awt.Rectangle(0, 0, 1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
         setName("Diaketas");
         setResizable(false);
-        setSize(new java.awt.Dimension(1000, 600));
         getContentPane().setLayout(new java.awt.CardLayout());
         getContentPane().add(vistaLogin, "login");
         getContentPane().add(vistaInicial, "inicio");
         getContentPane().add(vistaVoluntario, "voluntario");
         getContentPane().add(vistaBeneficiario, "beneficiario");
+        getContentPane().add(vistaColaboradores, "colaboradores");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -126,9 +129,13 @@ public class Ventana extends javax.swing.JFrame {
         return this.vistaBeneficiario;
     }
     
-    
+    public VistaColaboradores getVistaColaboradores() {
+        return this.vistaColaboradores;
+    }
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Vistas.Paneles.Beneficiario.VistaBeneficiario vistaBeneficiario;
+    private Vistas.Paneles.Colaboradores.VistaColaboradores vistaColaboradores;
     private Vistas.VistaInicial vistaInicial;
     private Vistas.VistaLogin vistaLogin;
     private Vistas.Paneles.Voluntario.VistaVoluntario vistaVoluntario;
