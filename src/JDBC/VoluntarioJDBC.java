@@ -106,9 +106,9 @@ public class VoluntarioJDBC {
         String telefono_movil_cadena = telefono_movil.toString();
 
 
-        String sql2 = "UPDATE persona SET NIF='" + voluntario.getNIF() + "',Nombre='" + voluntario.getNombre() + "',Apellidos='" + voluntario.getApellidos() + "',FechaNacimiento='" + voluntario.getFechaDENacimiento().toString() + "',CP='" + Cp_cadena + "',TelefonoFijo='" + telefono_fijo_cadena + "',TelefonoMovil='" + telefono_movil_cadena + "',Domicilio='" + voluntario.getDomicilio() + "',Localidad='" + voluntario.getLocalidad() + "' WHERE NIF =" + voluntario.getNIF() + "'";
+        String sql = "UPDATE persona SET NIF='" + voluntario.getNIF() + "',Nombre='" + voluntario.getNombre() + "',Apellidos='" + voluntario.getApellidos() + "',FechaNacimiento='" + voluntario.getFechaDENacimiento().toString() + "',CP='" + Cp_cadena + "',TelefonoFijo='" + telefono_fijo_cadena + "',TelefonoMovil='" + telefono_movil_cadena + "',Domicilio='" + voluntario.getDomicilio() + "',Localidad='" + voluntario.getLocalidad() + "' WHERE NIF =" + voluntario.getNIF() + "'";
         int OID = getOIDVoluntarioFromPersona(voluntario.getNIF());
-        String sql = "UPDATE voluntario SET Password='" + voluntario.getPassword() + "' WHERE OID =" + OID + "'";
+        String sql2 = "UPDATE voluntario SET Password='" + voluntario.getPassword() + "' WHERE OID =" + OID + "'";
 
         boolean exito = driver.actualizar(sql);
 
