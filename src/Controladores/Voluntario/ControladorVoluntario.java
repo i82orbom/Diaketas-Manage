@@ -81,7 +81,7 @@ public class ControladorVoluntario {
         vista.getPanelVoluntarioInicio().anadirListenerbtContabilidad(new btContabilidadListener());
         vista.getPanelVoluntarioInicio().anadirListenerbtNuevoVoluntario(new btDatosListener());
         vista.getPanelVoluntarioInicio().anadirListenerbtColaboraciones(new btColaboracionesListener());
-                
+
         vista.getPanelVoluntarioDatos().getBtGuardar().addActionListener(new btGuardarVoluntarioListener());
         vista.getPanelVoluntarioDatos().getBtBorrar().addActionListener(new btBorrarVoluntarioListener());
 
@@ -126,7 +126,7 @@ public class ControladorVoluntario {
         vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
         vista.getBarraDeNavegacion().setTextLabelNivel2("Contabilidad");
     }
-    
+
     private void mostrarVistaColaboraciones() {
         vista.showPanel(VistaVoluntario.panelColaboraciones);
         vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
@@ -330,7 +330,7 @@ public class ControladorVoluntario {
             mostrarVistaContabilidad();
         }
     }
-    
+
     class btColaboracionesListener implements ActionListener {
 
         @Override
@@ -338,6 +338,7 @@ public class ControladorVoluntario {
             mostrarVistaColaboraciones();
         }
     }
+
     class btAñadirColaboracionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -464,4 +465,5 @@ public class ControladorVoluntario {
         }
 
     }
+
 }
