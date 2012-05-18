@@ -68,11 +68,14 @@ public class PagoCuotaJDBC {
     public boolean añadirPagoCuota(PagoCuota pc) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
-               
-        String sql = "INSERT INTO PagoCuota (IDSocio, Importe, Fecha, Concepto) VALUES ('"+pc.getOIDSocio()+"','"+pc.getImporte()+"','"+pc.getFecha()+"','"+pc.getConcepto()+"')";
-        boolean exito = driver.insertar(sql);
         
-        return exito;
+        String sql = "INSERT INTO Movimiento (importe, fecha, concepto) VALUES ('"+pc.getImporte()+"','"+pc.getFecha()+"','"+pc.getConcepto()+"')";
+        boolean exito = driver.insertar(sql);
+               
+        String sql2 = "INSERT INTO PagoCuota (OIDSocio, OIDVoluntario, OID) VALUES ('"+pc.getOIDSocio()+"','"+pc.getOIDVoluntario()+"',LAST_INSERT_ID())";
+        boolean exito2 = driver.insertar(sql2);
+        
+        return (exito && exito2);
     }
     
     /**

@@ -168,7 +168,7 @@ public class AyudaJDBC {
         
         if(exito){
             String sql2 = "DELETE FROM ayuda WHERE OID='"+ayudaOID+"'";
-            exito= driver.eliminar(sql);
+            exito= driver.eliminar(sql2);
         }
             
         return exito;
