@@ -60,7 +60,7 @@ CREATE TABLE Familia (
 
 CREATE TABLE Voluntario (
 	OID INTEGER PRIMARY KEY
-	, Password VARCHAR (20)
+	, Password VARCHAR (32)
 	, CONSTRAINT FkVoluntario3 FOREIGN KEY (OID)
 				  REFERENCES Persona (OID)
 );
@@ -201,6 +201,6 @@ CREATE TABLE Colaboracion (
 
 
 
-INSERT INTO Persona (`OID`, `NIF`, `Nombre`, `Apellidos`, `FechaNacimiento`, `CP`, `TelefonoFijo`, `TelefonoMovil`, `Domicilio`, `Localidad`) VALUES (1, '111222333A', 'Prueba', 'PruebaAp', '1990-04-03', 11321, 666999666, 999666999, 'C/Falsa 123', 'Granada');
+INSERT INTO Persona (`OID`, `NIF`, `Nombre`, `Apellidos`, `FechaNacimiento`, `CP`, `TelefonoFijo`, `TelefonoMovil`, `Domicilio`, `Localidad`) VALUES (1, '12345678A', 'admin', 'admin', '1990-04-03', 11321, 666999666, 999666999, 'C/Falsa 123', 'Granada');
 
-INSERT INTO Voluntario (`OID`, `Password`) VALUES (1, '1234');
+INSERT INTO Voluntario (`OID`, `Password`) VALUES (1, 'cd15bf6a6c78f04336aa85a722ceb148');
