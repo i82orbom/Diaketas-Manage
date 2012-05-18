@@ -1,24 +1,24 @@
 /**
- ** NOMBRE CLASE: 
+ ** NOMBRE CLASE:
  **	  Beneficiario.java
  **
  ** DESCRIPCION:
  **       Abstracción de Beneficiario
- **       
+ **
  **
  ** DESARROLLADO POR:
  *        Francisco José Beltrán Rodriguez (FBR)
- *	   
- **        
+ *
+ **
  ** SUPERVISADO POR:
  **       Adolfo Arcoya Nieto (AAN)
  **
  ** HISTORIA:
  ** 	000 - Mar 24, 2012 - FBR - Creacion
- *      
+ *
  **
  ** NOTAS:
- **   
+ **
  **
  */
 
@@ -31,7 +31,7 @@ import java.util.ArrayList;
  * @author Jobero
  */
 public class Beneficiario extends Persona {
-    
+
     private Long OID;
     private String estadoCivil;
     private String nacionalidad;
@@ -44,6 +44,18 @@ public class Beneficiario extends Persona {
     private float viviendaAlquiler;
     private String viviendaObservaciones;
     private ArrayList<Ayuda> ayudasPrestadas;
+
+	public static int  ESTADOCIVIL_ID = 9;
+    public static int  NACIONALIDAD_ID = 10;
+    public static int  NIVELESTUDIOS_ID = 11;
+    public static int  OBSERVACIONES_ID = 12;
+    public static int  OCUPACION_ID = 13;
+    public static int  PROFESION_ID = 14;
+    public static int  SITUACIONECONOMICA_ID = 15;
+    public static int  VIVIENDA_ID = 16;
+    public static int  VIVIENDAALQUILER_ID = 17;
+    public static int  VIVIENDAOBSERVACIONES_ID = 18;
+
 
     /**
      * Constructor por defecto
