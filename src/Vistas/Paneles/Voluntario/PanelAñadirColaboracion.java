@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vistas.Paneles.Colaboraciones;
+package Vistas.Paneles.Voluntario;
 
 /**
  *
@@ -191,7 +191,10 @@ public class PanelAñadirColaboracion extends javax.swing.JPanel {
                             .addComponent(btGuardarEmpresaAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(164, Short.MAX_VALUE))
         );
+
+        getAccessibleContext().setAccessibleName("añadir");
     }// </editor-fold>//GEN-END:initComponents
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btGuardarColaboradorAñadir;
     private javax.swing.JButton btGuardarEmpresaAñadir;

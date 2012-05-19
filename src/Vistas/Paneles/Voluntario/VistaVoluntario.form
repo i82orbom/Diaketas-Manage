@@ -102,6 +102,20 @@
             </Constraint>
           </Constraints>
         </Component>
+        <Component class="Vistas.Paneles.Voluntario.PanelCuotasNoPagadas" name="panelCuotasNoPagadas">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="cuotas"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Vistas.Paneles.Voluntario.PanelA&#xf1;adirColaboracion" name="panelA&#xf1;adirColaboracion">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="a&#xf1;adir"/>
+            </Constraint>
+          </Constraints>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

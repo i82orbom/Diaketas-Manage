@@ -83,6 +83,8 @@ public class ControladorVoluntario {
         vista.getPanelVoluntarioInicio().anadirListenerbtContabilidad(new btContabilidadListener());
         vista.getPanelVoluntarioInicio().anadirListenerbtNuevoVoluntario(new btDatosListener());
         vista.getPanelVoluntarioInicio().anadirListenerbtColaboraciones(new btColaboracionesListener());
+        vista.getPanelVoluntarioColaboraciones().anadirListenerbtAñadirColaboraciones(new btAñadirColaboracionesListener());
+        vista.getPanelVoluntarioColaboraciones().anadirListenerbtCuotasNoPagatas(new btCuotasNoPagadasListener());
 
         vista.getPanelVoluntarioDatos().getBtGuardar().addActionListener(new btGuardarVoluntarioListener());
         vista.getPanelVoluntarioDatos().getBtBorrar().addActionListener(new btBorrarVoluntarioListener());
@@ -135,6 +137,18 @@ public class ControladorVoluntario {
         vista.getBarraDeNavegacion().setTextLabelNivel2("Colaboraciones");
     }
 
+    private void mostrarVistaAñadirColaboraciones() {
+        vista.showPanel(VistaVoluntario.panelAñadir);
+        vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
+        vista.getBarraDeNavegacion().setTextLabelNivel2("Colaboraciones");
+        vista.getBarraDeNavegacion().setTextLabelNivel3("Añadir Couta");
+    }
+     private void mostrarVistaCuotasNoPagadas() {
+        vista.showPanel(VistaVoluntario.panelCuotas);
+        vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
+        vista.getBarraDeNavegacion().setTextLabelNivel2("Colaboraciones");
+        vista.getBarraDeNavegacion().setTextLabelNivel3("Cuotas no pagadas");
+    }
     // metodos de interaccion con JDBC
     private boolean insertarVoluntario(String[] datos) {
 
@@ -344,13 +358,18 @@ public class ControladorVoluntario {
         }
     }
 
-    class btAñadirColaboracionListener implements ActionListener {
+    class btAñadirColaboracionesListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {
-            //mostrarVistaAñadirColaboraciones();
+            mostrarVistaAñadirColaboraciones();
         }
     }
-
+     class btCuotasNoPagadasListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            mostrarVistaCuotasNoPagadas();
+        }
+    }
     class btGuardarVoluntarioListener implements ActionListener {
 
         @Override

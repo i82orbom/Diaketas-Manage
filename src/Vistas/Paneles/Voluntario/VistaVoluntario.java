@@ -20,6 +20,9 @@ public class VistaVoluntario extends javax.swing.JPanel {
     public static String panelAyudas = "ayuda";
     public static String panelContabilidad = "contabilidad";
     public static String panelColaboraciones = "colaboraciones";
+    public static String panelAñadir = "añadir";
+    public static String panelCuotas = "cuotas";
+
 
     /**
      * Creates new form PanelVoluntario
@@ -57,6 +60,12 @@ public class VistaVoluntario extends javax.swing.JPanel {
         return panelVoluntarioColaboraciones;
     }
 
+    public PanelAñadirColaboracion getPanelVoluntarioAñadirColaboraciones() {
+        return panelAñadirColaboracion;
+    }
+    public PanelCuotasNoPagadas getPanelVoluntarioCuotasNoPagadas() {
+        return panelCuotasNoPagadas;
+    }
     // mostrar un panel con el CardLayoud
     public void showPanel (String panel) {
         CardLayout cardLayout =  (CardLayout)panelVoluntario.getLayout();
@@ -80,6 +89,8 @@ public class VistaVoluntario extends javax.swing.JPanel {
         panelVoluntarioAyudas = new Vistas.Paneles.Voluntario.PanelVoluntarioAyudas();
         panelVoluntarioContabilidad = new Vistas.Paneles.Voluntario.PanelVoluntarioContabilidad();
         panelVoluntarioColaboraciones = new Vistas.Paneles.Voluntario.PanelVoluntarioColaboraciones();
+        panelCuotasNoPagadas = new Vistas.Paneles.Voluntario.PanelCuotasNoPagadas();
+        panelAñadirColaboracion = new Vistas.Paneles.Voluntario.PanelAñadirColaboracion();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
@@ -100,11 +111,15 @@ public class VistaVoluntario extends javax.swing.JPanel {
         panelVoluntario.add(panelVoluntarioAyudas, "ayuda");
         panelVoluntario.add(panelVoluntarioContabilidad, "contabilidad");
         panelVoluntario.add(panelVoluntarioColaboraciones, "colaboraciones");
+        panelVoluntario.add(panelCuotasNoPagadas, "cuotas");
+        panelVoluntario.add(panelAñadirColaboracion, "añadir");
 
         add(panelVoluntario, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Vistas.BarraDeNavegacion barraDeNavegacion;
+    private Vistas.Paneles.Voluntario.PanelAñadirColaboracion panelAñadirColaboracion;
+    private Vistas.Paneles.Voluntario.PanelCuotasNoPagadas panelCuotasNoPagadas;
     private javax.swing.JPanel panelVoluntario;
     private Vistas.Paneles.Voluntario.PanelVoluntarioAyudas panelVoluntarioAyudas;
     private Vistas.Paneles.Voluntario.PanelVoluntarioBuscar panelVoluntarioBuscar;

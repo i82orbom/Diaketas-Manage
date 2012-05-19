@@ -4,6 +4,8 @@
  */
 package Vistas.Paneles.Voluntario;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Alberto
@@ -17,6 +19,13 @@ public class PanelVoluntarioColaboraciones extends javax.swing.JPanel {
         initComponents();
     }
 
+    public void anadirListenerbtAñadirColaboraciones (ActionListener listener){
+        this.btAñadirColaboraciones.addActionListener(listener);
+    }
+    
+    public void anadirListenerbtCuotasNoPagatas(ActionListener listener){
+        this.btComprobarPagos.addActionListener(listener);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
