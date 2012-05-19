@@ -25,8 +25,10 @@
 package JDBC;
 
 import Modelo.C_Empresa;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -66,19 +68,27 @@ public class C_EmpresaJDBC {
     public boolean añadirC_Empresa(C_Empresa e) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
-        
+        Connection con = null;
         String CIF = e.getCIF();
         String Nombre = e.getNombre();
         String Fax = e.getFax();
         String DireccionWeb = e.getDireccionWeb();
         
-        String sql = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, codigoPostal, TelefonoFijo, TelefonoMovil, Email) VALUES ('"+e.getDireccion()+"','"+e.getLocalidad()+"','"+e.getProvincia()+"','"+e.getCP()+"','"+e.getTelefonoFijo()+"',,'"+e.getTelefonoMovil()+"','"+e.getEmail()+"')";
-        boolean exito = driver.insertar(sql);
-        String sql2 = "INSERT INTO C_Empresa (OID, CIF, Nombre, Fax, DireccionWeb) VALUES (LAST_INSERT_ID(),'"+CIF+"','"+Nombre+"','"+Fax+"','"+DireccionWeb+"')";
-        boolean exito2 = driver.insertar(sql2);
+        try{
+            con.setAutoCommit(false);
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate("INSERT INTO Colaborador (Direccion, Localidad, Provincia, codigoPostal, TelefonoFijo, TelefonoMovil, Email) VALUES ('"+e.getDireccion()+"','"+e.getLocalidad()+"','"+e.getProvincia()+"','"+e.getCP()+"','"+e.getTelefonoFijo()+"',,'"+e.getTelefonoMovil()+"','"+e.getEmail()+"')");
+            // boolean exito = driver.insertar(sql);
+            stmt.executeUpdate("INSERT INTO C_Empresa (OID, CIF, Nombre, Fax, DireccionWeb) VALUES (LAST_INSERT_ID(),'"+CIF+"','"+Nombre+"','"+Fax+"','"+DireccionWeb+"')");
+            // boolean exito2 = driver.insertar(sql2);
+            con.commit();
+            stmt.close();
+        }
+        catch (SQLException ex){
+            con.rollback();
+        }
         
-        return (exito && exito2);       
-        
+        return true;
     }
     
     /**
