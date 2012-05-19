@@ -29,6 +29,7 @@ public class VistaSocio extends javax.swing.JPanel {
 
     // getter panel
     public BarraDeNavegacion getBarraDeNavegacion() {
+        System.out.println("Barra de navegacion Vista socio");
         return barraDeNavegacion;
     }
 
@@ -67,6 +68,7 @@ public class VistaSocio extends javax.swing.JPanel {
     public void showPanel (String panel) {
         CardLayout cardLayout =  (CardLayout)panelSocio.getLayout();
         cardLayout.show(panelSocio, panel);
+        System.out.println("ShowPanel vista Socio"); 
     }
 
     

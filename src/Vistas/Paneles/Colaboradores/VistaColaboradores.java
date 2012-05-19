@@ -14,7 +14,7 @@ import java.awt.CardLayout;
 public class VistaColaboradores extends javax.swing.JPanel {
 
      /* identificador de los paneles en el CardLayout */ 
-    public static String panelColaboradoresInicio = "Colaboradores";
+    public static String panelColaboradoresInicio = "colaboradores";
 
     
     /**
