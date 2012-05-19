@@ -50,7 +50,7 @@ public class ControladorColaboradores {
     }
 
     private VistaColaboradores vista;
-    private VistaSocio vistaSocio= new VistaSocio();
+    
     /**
      * Constructor de la clase
      */	
@@ -79,9 +79,9 @@ public class ControladorColaboradores {
     }
     
     private void mostrarVistaSocio(){
-        vistaSocio.showPanel(VistaSocio.panelInicio);
-        vistaSocio.getBarraDeNavegacion().setTextLabelNivel1("Colaboradores");
-        vistaSocio.getBarraDeNavegacion().setTextLabelNivel2("Socio");
+        vista.showPanel(VistaSocio.panelInicio);
+        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");  
+        vista.getBarraDeNavigacion().setTextLabelNivel2("Socio");
     }
     
     private void mostrarVistaEmpresa(){

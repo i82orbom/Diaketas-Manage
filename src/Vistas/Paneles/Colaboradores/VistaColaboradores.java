@@ -53,12 +53,14 @@ public class VistaColaboradores extends javax.swing.JPanel {
         barraDeNavegacion = new Vistas.BarraDeNavegacion();
         panelColaboradores = new javax.swing.JPanel();
         panelColaboradoresInicio1 = new Vistas.Paneles.Colaboradores.PanelColaboradoresInicio();
+        panelSocioInicio = new Vistas.Paneles.Socio.PanelSocioInicio();
 
         setLayout(new java.awt.BorderLayout());
         add(barraDeNavegacion, java.awt.BorderLayout.PAGE_START);
 
         panelColaboradores.setLayout(new java.awt.CardLayout());
         panelColaboradores.add(panelColaboradoresInicio1, "colaboradores");
+        panelColaboradores.add(panelSocioInicio, "inicio");
 
         add(panelColaboradores, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -66,5 +68,6 @@ public class VistaColaboradores extends javax.swing.JPanel {
     private Vistas.BarraDeNavegacion barraDeNavegacion;
     private javax.swing.JPanel panelColaboradores;
     private Vistas.Paneles.Colaboradores.PanelColaboradoresInicio panelColaboradoresInicio1;
+    private Vistas.Paneles.Socio.PanelSocioInicio panelSocioInicio;
     // End of variables declaration//GEN-END:variables
 }
