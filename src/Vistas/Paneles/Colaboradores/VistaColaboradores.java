@@ -14,7 +14,7 @@ import java.awt.CardLayout;
 public class VistaColaboradores extends javax.swing.JPanel {
 
      /* identificador de los paneles en el CardLayout */ 
-    public static String panelColaboradoresInicio = "colaboradores";
+    public static String panelColaboradoresInicio = "Colaboradores";
 
     
     /**
@@ -40,7 +40,7 @@ public class VistaColaboradores extends javax.swing.JPanel {
     public PanelColaboradoresInicio getPanelColaboradoresInicio(){
         return this.panelColaboradoresInicio1;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,7 +58,7 @@ public class VistaColaboradores extends javax.swing.JPanel {
         add(barraDeNavegacion, java.awt.BorderLayout.PAGE_START);
 
         panelColaboradores.setLayout(new java.awt.CardLayout());
-        panelColaboradores.add(panelColaboradoresInicio1, "card5");
+        panelColaboradores.add(panelColaboradoresInicio1, "colaboradores");
 
         add(panelColaboradores, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents

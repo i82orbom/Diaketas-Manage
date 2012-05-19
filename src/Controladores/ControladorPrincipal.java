@@ -61,7 +61,6 @@ public class ControladorPrincipal {
     }
 
     private Ventana vista;
-    private VistaColaboradores vistaC;
     
     /* Salto para la codificación de la contraseña (para login y registro) */
     private String salto="Mary Popins";

@@ -8,6 +8,7 @@ package Controladores;
 import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.Beneficiario.VistaBeneficiario;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
+import Vistas.Paneles.Socio.VistaSocio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -62,7 +63,9 @@ public class ControladorColaboradores {
         
         // anadir listener
         vista.getBarraDeNavigacion().setListener(new ListenerBarraNavigacion());
-        
+        vista.getPanelColaboradoresInicio().anadirListenerbtColaborador(new btColaboradorListener());
+        vista.getPanelColaboradoresInicio().anadirListenerbtSocio(new btSocioListener());
+        vista.getPanelColaboradoresInicio().anadirListenerbtEmpresa(new btEmpresaListener());
         
         // al principio mostrar la vista de inicio
         mostrarVistaInicio();   
@@ -71,12 +74,12 @@ public class ControladorColaboradores {
     
     // mostrar la vista que queremos y actualizacion de la barra de navigacion
     private void mostrarVistaInicio(){
-        vista.showPanel(VistaBeneficiario.panelInicio);
+        vista.showPanel(VistaColaboradores.panelColaboradoresInicio);
         vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");     
     }
     
     private void mostrarVistaSocio(){
-        vista.showPanel(VistaBeneficiario.panelBuscar);
+        vista.showPanel(VistaSocio.panelInicio);
         vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");  
         vista.getBarraDeNavigacion().setTextLabelNivel2("Socio");
     }
