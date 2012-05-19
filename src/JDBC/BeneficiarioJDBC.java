@@ -231,15 +231,15 @@ public class BeneficiarioJDBC {
 		String nivel_estudio = beneficiario.getNivelDeEstudio();
 		String nivel_estudio_cadena = nivel_estudio.toString();
 
-		String sql2 = "UPDATE persona SET NIF='"+beneficiario.getNIF()+"',Nombre='"+beneficiario.getNombre()+"',Apellidos='"+beneficiario.getApellidos()+"',FechaNacimiento='"+beneficiario.getFechaDENacimiento()+"',CP='"+Cp_cadena+"',TelefonoFijo='"+telefono_fijo_cadena+"',TelefonoMovil='"+telefono_movil_cadena+"',Domicilio='"+beneficiario.getDomicilio()+"',Localidad='"+beneficiario.getLocalidad()+"WHERE NIF ="+beneficiario.getNIF()+"'";
-
-		boolean exito2 = driver.actualizar(sql2);
-
-		String sql = "UPDATE beneficiario SET NIF='"+beneficiario.getNIF()+"',Nacionalidad='"+beneficiario.getNacionalidad()+"',EstadoCivil='"+beneficiario.getEstadoCivil()+"',NivelDeEstudio='"+nivel_estudio_cadena+"',Observaciones='"+beneficiario.getObservaciones()+"',Ocupacion='"+beneficiario.getOcupacion()+"',Profesion='"+beneficiario.getProfesion()+"',SituacionEconomica='"+beneficiario.getSituacionEconomica()+"',Vivienda='"+beneficiario.getVivienda()+"',ViviendaAlquiler='"+beneficiario.getViviendaAlquiler()+"',ViviendaObservaciones='"+beneficiario.getViviendaObservaciones()+"WHERE NIF ="+beneficiario.getNIF()+"'";
+		String sql = "UPDATE persona SET NIF='"+beneficiario.getNIF()+"',Nombre='"+beneficiario.getNombre()+"',Apellidos='"+beneficiario.getApellidos()+"',FechaNacimiento='"+beneficiario.getFechaDENacimiento()+"',CP='"+Cp_cadena+"',TelefonoFijo='"+telefono_fijo_cadena+"',TelefonoMovil='"+telefono_movil_cadena+"',Domicilio='"+beneficiario.getDomicilio()+"',Localidad='"+beneficiario.getLocalidad()+"WHERE NIF ="+beneficiario.getNIF()+"'";
 
 		boolean exito = driver.actualizar(sql);
 
-		return exito;
+		String sql2 = "UPDATE beneficiario SET NIF='"+beneficiario.getNIF()+"',Nacionalidad='"+beneficiario.getNacionalidad()+"',EstadoCivil='"+beneficiario.getEstadoCivil()+"',NivelDeEstudio='"+nivel_estudio_cadena+"',Observaciones='"+beneficiario.getObservaciones()+"',Ocupacion='"+beneficiario.getOcupacion()+"',Profesion='"+beneficiario.getProfesion()+"',SituacionEconomica='"+beneficiario.getSituacionEconomica()+"',Vivienda='"+beneficiario.getVivienda()+"',ViviendaAlquiler='"+beneficiario.getViviendaAlquiler()+"',ViviendaObservaciones='"+beneficiario.getViviendaObservaciones()+"WHERE NIF ="+beneficiario.getNIF()+"'";
+
+		boolean exito2 = driver.actualizar(sql2);
+
+		return exito && exito2;
 	}
 
 	public boolean anadirBeneficiario (Beneficiario beneficiario) throws SQLException{

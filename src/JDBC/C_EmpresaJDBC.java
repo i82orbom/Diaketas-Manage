@@ -77,18 +77,20 @@ public class C_EmpresaJDBC {
         try{
             con.setAutoCommit(false);
             Statement stmt = con.createStatement();
+            stmt.
             stmt.executeUpdate("INSERT INTO Colaborador (Direccion, Localidad, Provincia, codigoPostal, TelefonoFijo, TelefonoMovil, Email) VALUES ('"+e.getDireccion()+"','"+e.getLocalidad()+"','"+e.getProvincia()+"','"+e.getCP()+"','"+e.getTelefonoFijo()+"',,'"+e.getTelefonoMovil()+"','"+e.getEmail()+"')");
             // boolean exito = driver.insertar(sql);
             stmt.executeUpdate("INSERT INTO C_Empresa (OID, CIF, Nombre, Fax, DireccionWeb) VALUES (LAST_INSERT_ID(),'"+CIF+"','"+Nombre+"','"+Fax+"','"+DireccionWeb+"')");
             // boolean exito2 = driver.insertar(sql2);
             con.commit();
             stmt.close();
+            return true;
         }
         catch (SQLException ex){
             con.rollback();
+            return false;
         }
         
-        return true;
     }
     
     /**
