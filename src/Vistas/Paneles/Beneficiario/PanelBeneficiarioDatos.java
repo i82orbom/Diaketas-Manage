@@ -27,7 +27,6 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         labelError.setVisible(true);
     }
 
-
 	public void setColorLabelNombre (Color cf){
 		labelNombre.setForeground(cf);
 	}
@@ -129,7 +128,6 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 	}
 
 	    // getters de los campos
-
 	public JButton getBtBorrar() {
 		return btBorrar;
 	}
