@@ -81,12 +81,12 @@
                                           <Component id="labelNIF" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="labelNombre" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="labelNivelEstudios" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="labelFijo" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelTelefonoFijo" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="labelDomicilio" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="labelLocalidad" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="labelObservaciones" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="labelTipoVivienda" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="labelTipoViviendaEspecificacion" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelViviendaEspecificacion" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -103,11 +103,11 @@
                                                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="1" attributes="0">
                                                           <Component id="labelEstadoCivil" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="labelFechaNac" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="labelFechaNacimiento" alignment="1" min="-2" max="-2" attributes="0"/>
                                                           <Component id="labelApellidos" alignment="1" min="-2" max="-2" attributes="0"/>
                                                           <Component id="labelProfesion" min="-2" max="-2" attributes="0"/>
                                                           <Component id="labelOcupacion" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="labelMovil" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="labelTelefonoMovil" alignment="1" min="-2" max="-2" attributes="0"/>
                                                       </Group>
                                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -115,7 +115,7 @@
                                                               <Group type="102" attributes="0">
                                                                   <Component id="textFechaNacimiento" min="-2" pref="111" max="-2" attributes="0"/>
                                                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                                                  <Component id="labelProvinciaNacimiento" min="-2" max="-2" attributes="0"/>
+                                                                  <Component id="labelLugarNacimiento" min="-2" max="-2" attributes="0"/>
                                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                                   <Component id="textLugarNacimiento" max="32767" attributes="0"/>
                                                               </Group>
@@ -191,7 +191,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="textNIF" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="labelNIF" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelFechaNac" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelFechaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="textFechaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -217,10 +217,10 @@
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="labelFijo" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelTelefonoFijo" min="-2" max="-2" attributes="0"/>
                                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                               <Component id="textTelefonoMovil" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labelMovil" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelTelefonoMovil" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -257,7 +257,7 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="labelTipoViviendaEspecificacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelViviendaEspecificacion" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="textEspecificarTipoVivienda" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -270,7 +270,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelProvinciaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelLugarNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="textLugarNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane7" min="-2" pref="107" max="-2" attributes="0"/>
@@ -296,7 +296,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="textApellidos">
             </Component>
-            <Component class="javax.swing.JLabel" name="labelFijo">
+            <Component class="javax.swing.JLabel" name="labelTelefonoFijo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tel&#xe9;fono Fijo"/>
               </Properties>
@@ -373,7 +373,7 @@
                 <Property name="text" type="java.lang.String" value="Localidad"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelProvinciaNacimiento">
+            <Component class="javax.swing.JLabel" name="labelLugarNacimiento">
               <Properties>
                 <Property name="text" type="java.lang.String" value="en"/>
               </Properties>
@@ -388,7 +388,7 @@
                 <Property name="text" type="java.lang.String" value="C&#xf3;digo Postal"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelFechaNac">
+            <Component class="javax.swing.JLabel" name="labelFechaNacimiento">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nacido el"/>
               </Properties>
@@ -430,7 +430,7 @@
                 <Property name="text" type="java.lang.String" value="Tipo"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelTipoViviendaEspecificacion">
+            <Component class="javax.swing.JLabel" name="labelViviendaEspecificacion">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Especificar"/>
               </Properties>
@@ -504,7 +504,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textTelefonoMovilActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelMovil">
+            <Component class="javax.swing.JLabel" name="labelTelefonoMovil">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tel&#xe9;fono M&#xf3;vil"/>
               </Properties>
@@ -588,7 +588,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel59" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane10" pref="409" max="32767" attributes="0"/>
+                      <Component id="jScrollPane10" pref="342" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel60" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -750,7 +750,7 @@
                           <Component id="btGuardarFamiliarBeneficiario" min="-2" pref="34" max="-2" attributes="0"/>
                           <Component id="btEliminarFamiliarBeneficiario" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="103" max="32767" attributes="0"/>
+                      <EmptySpace pref="36" max="32767" attributes="0"/>
                       <Component id="jScrollPane9" min="-2" pref="438" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>

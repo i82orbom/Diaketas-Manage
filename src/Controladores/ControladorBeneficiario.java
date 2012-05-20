@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package Controladores;
 
@@ -10,12 +6,14 @@ import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.Beneficiario.VistaBeneficiario;
 import JDBC.BeneficiarioJDBC;
 import Modelo.Beneficiario;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  ** NOMBRE CLASE:
@@ -33,8 +31,9 @@ import java.util.logging.Logger;
  **
  **
  ** HISTORIA:
- ** 	000 - 20 May 2012 - MOB - Creacion
+ ** 	000 - 20 Mar 2012 - MOB - Creacion
  **		001 - 18 May 2012 - ARS - Cambios para añadir beneficiario
+ *		002 - 20 May 2012 - ARS - Comprobar datos del beneficiario
  **
  ** NOTAS:
  **
@@ -99,7 +98,6 @@ public class ControladorBeneficiario {
 	}
 
 	private boolean insertarBeneficiario(String[] datos){
-
         if (this.comprobarDatos(datos) == false) {
             return false;
         }
@@ -109,13 +107,10 @@ public class ControladorBeneficiario {
         beneficiario.setNombre(datos[Beneficiario.NOMBRE_ID]);
         beneficiario.setApellidos(datos[Beneficiario.APELLIDOS_ID]);
         try {
-//System.out.println("Fecha1: "+TestDatos.formatter.parse(datos[Beneficiario.FECHA_DE_NACIMIENTO_ID]));
             beneficiario.setFechaDENacimiento(TestDatos.formatter.parse(datos[Beneficiario.FECHA_DE_NACIMIENTO_ID]));
         } catch (ParseException ex) {
-System.out.println("¡¡MIERDAAA!!");
             Logger.getLogger(ControladorBeneficiario.class.getName()).log(Level.SEVERE, null, ex);
         }
-//System.out.println("Fecha2: "+beneficiario.getFechaDENacimiento());
 
 		beneficiario.setDomicilio(datos[Beneficiario.DOMICILIO_ID]);
         beneficiario.setCP(Integer.parseInt(datos[Beneficiario.CP_ID]));
@@ -138,18 +133,87 @@ System.out.println("¡¡MIERDAAA!!");
         try {
             BeneficiarioJDBC.getInstance().anadirBeneficiario(beneficiario);
         } catch (SQLException se) {
-            System.out.println("NOOOOO!!!");
-            System.out.println("NOOOOO!!!");
+			JOptionPane.showMessageDialog(null, "Error al añadir beneficiario:\n"+se.getMessage());
             System.err.println(se.getMessage());
             return false;
         }
 
         return true;
-
 	}
 
 	private boolean comprobarDatos(String[] datos){
-		return true;
+		boolean validos = true;
+
+		if (!TestDatos.isNombre(datos[Beneficiario.NOMBRE_ID])){
+			vista.getPanelDatos().setColorLabelNombre(Color.red);
+			validos = false;
+		}
+		if (!TestDatos.isNombre(datos[Beneficiario.APELLIDOS_ID])){
+			vista.getPanelDatos().setColorLabelApellidos(Color.red);
+			validos = false;
+		}
+		if (!TestDatos.isDNI(datos[Beneficiario.NIF_ID])){
+			vista.getPanelDatos().setColorLabelNIF(Color.red);
+			validos = false;
+		}
+		if (!TestDatos.isFecha(datos[Beneficiario.FECHA_DE_NACIMIENTO_ID])){
+			vista.getPanelDatos().setColorLabelFechaNacimiento(Color.red);
+			validos = false;
+		}
+		if (!TestDatos.isNombre(datos[Beneficiario.LUGAR_NACIMIENTO_ID])){
+			vista.getPanelDatos().setColorLabelLugarNacimiento(Color.red);
+			validos = false;
+		}
+		if (!TestDatos.isNombre(datos[Beneficiario.NACIONALIDAD_ID])){
+			vista.getPanelDatos().setColorLabelNacionalidad(Color.red);
+			validos = false;
+		}
+		if (!TestDatos.isNombre(datos[Beneficiario.PROFESION_ID])){
+			vista.getPanelDatos().setColorLabelProfesion(Color.red);
+			validos = false;
+		}
+		if (!TestDatos.isNombre(datos[Beneficiario.OCUPACION_ID])){
+			vista.getPanelDatos().setColorLabelOcupacion(Color.red);
+			validos = false;
+		}
+		if (!TestDatos.isTelefonoOFax(datos[Beneficiario.TELEFONO_FIJO_ID])){
+			vista.getPanelDatos().setColorLabelTelefonoFijo(Color.red);
+			validos = false;
+		}
+		if (!TestDatos.isTelefonoOFax(datos[Beneficiario.TELEFONO_MOVIL_ID])){
+			vista.getPanelDatos().setColorLabelTelefonoMovil(Color.red);
+			validos = false;
+		}
+		if (!TestDatos.isDomicilio(datos[Beneficiario.DOMICILIO_ID])){
+			vista.getPanelDatos().setColorLabelDomicilio(Color.red);
+			validos = false;
+		}
+		if (!TestDatos.isNombre(datos[Beneficiario.LOCALIDAD_ID])){
+			vista.getPanelDatos().setColorLabelLocalidad(Color.red);
+			validos = false;
+		}
+		if (!TestDatos.isCodigoPostal(datos[Beneficiario.CP_ID])){
+			vista.getPanelDatos().setColorLabelCP(Color.red);
+			validos = false;
+		}
+		if (!TestDatos.isNombre(datos[Beneficiario.OBSERVACIONES_ID])){
+			vista.getPanelDatos().setColorLabelObservaciones(Color.red);
+			validos = false;
+		}
+		if (!TestDatos.isNombre(datos[Beneficiario.SITUACION_ECONOMICA_ID])){
+			vista.getPanelDatos().setColorLabelSituacionEconomica(Color.red);
+			validos = false;
+		}
+		if (!TestDatos.isOnlyDigit(datos[Beneficiario.VIVIENDA_ALQUILER_ID])){
+			vista.getPanelDatos().setColorLabelViviendaPrecio(Color.red);
+			validos = false;
+		}
+		if (!TestDatos.isNombre(datos[Beneficiario.VIVIENDA_OBSERVACIONES_ID])){
+			vista.getPanelDatos().setColorLabelViviendaEspecificacion(Color.red);
+			validos = false;
+		}
+
+		return validos;
 	}
 
 	//Listener de la barra de navigacion

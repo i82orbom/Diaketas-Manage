@@ -5,6 +5,7 @@
 package Vistas.Paneles.Beneficiario;
 
 import Modelo.Beneficiario;
+import java.awt.Color;
 import javax.swing.JButton;
 
 /**
@@ -26,7 +27,81 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         labelError.setVisible(true);
     }
 
+
+	public void setColorLabelNombre (Color cf){
+		labelNombre.setForeground(cf);
+	}
+	public void setColorLabelApellidos (Color cf){
+		labelApellidos.setForeground(cf);
+	}
+	public void setColorLabelNIF (Color cf){
+		labelNIF.setForeground(cf);
+	}
+	public void setColorLabelLugarNacimiento (Color cf){
+		labelLugarNacimiento.setForeground(cf);
+	}
+	public void setColorLabelFechaNacimiento (Color cf){
+		labelFechaNacimiento.setForeground(cf);
+	}
+	public void setColorLabelNacionalidad (Color cf){
+		labelNacionalidad.setForeground(cf);
+	}
+	public void setColorLabelProfesion (Color cf){
+		labelProfesion.setForeground(cf);
+	}
+	public void setColorLabelOcupacion (Color cf){
+		labelOcupacion.setForeground(cf);
+	}
+	public void setColorLabelTelefonoFijo (Color cf){
+		labelTelefonoFijo.setForeground(cf);
+	}
+	public void setColorLabelTelefonoMovil (Color cf){
+		labelTelefonoMovil.setForeground(cf);
+	}
+	public void setColorLabelDomicilio (Color cf){
+		labelDomicilio.setForeground(cf);
+	}
+	public void setColorLabelLocalidad (Color cf){
+		labelLocalidad.setForeground(cf);
+	}
+	public void setColorLabelCP (Color cf){
+		labelCP.setForeground(cf);
+	}
+	public void setColorLabelObservaciones (Color cf){
+		labelObservaciones.setForeground(cf);
+	}
+	public void setColorLabelSituacionEconomica (Color cf){
+		labelSituacionEconomica.setForeground(cf);
+	}
+	public void setColorLabelViviendaPrecio (Color cf){
+		labelViviendaPrecio.setForeground(cf);
+	}
+	public void setColorLabelViviendaEspecificacion (Color cf){
+		labelViviendaEspecificacion.setForeground(cf);
+	}
+
+	public void setColorLabels(Color cf){
+		labelNombre.setForeground(cf);
+		labelNIF.setForeground(cf);
+		labelApellidos.setForeground(cf);
+		labelFechaNacimiento.setForeground(cf);
+		labelLugarNacimiento.setForeground(cf);
+		labelNacionalidad.setForeground(cf);
+		labelProfesion.setForeground(cf);
+		labelOcupacion.setForeground(cf);
+		labelTelefonoFijo.setForeground(cf);
+		labelTelefonoMovil.setForeground(cf);
+		labelDomicilio.setForeground(cf);
+		labelLocalidad.setForeground(cf);
+		labelCP.setForeground(cf);
+		labelObservaciones.setForeground(cf);
+		labelSituacionEconomica.setForeground(cf);
+		labelViviendaPrecio.setForeground(cf);
+		labelViviendaEspecificacion.setForeground(cf);
+
+	}
 	public void limpiarFormulario() {
+		// Limpio los campos
 		labelError.setVisible(false);
 		textNombre.setText("");
 		textApellidos.setText("");
@@ -49,6 +124,8 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 //		cbTipoVivienda.
 		textPrecioVivienda.setText("");
 		textEspecificarTipoVivienda.setText("");
+
+		setColorLabels(Color.black);
 	}
 
 	    // getters de los campos
@@ -102,7 +179,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         textTelefonoFijo = new javax.swing.JTextField();
         textCP = new javax.swing.JTextField();
         textApellidos = new javax.swing.JTextField();
-        labelFijo = new javax.swing.JLabel();
+        labelTelefonoFijo = new javax.swing.JLabel();
         cbEstadoCivilBeneficiario = new javax.swing.JComboBox();
         textProfesion = new javax.swing.JTextField();
         textLugarNacimiento = new javax.swing.JTextField();
@@ -117,10 +194,10 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         labelObservaciones = new javax.swing.JLabel();
         labelDomicilio = new javax.swing.JLabel();
         labelLocalidad = new javax.swing.JLabel();
-        labelProvinciaNacimiento = new javax.swing.JLabel();
+        labelLugarNacimiento = new javax.swing.JLabel();
         labelProfesion = new javax.swing.JLabel();
         labelCP = new javax.swing.JLabel();
-        labelFechaNac = new javax.swing.JLabel();
+        labelFechaNacimiento = new javax.swing.JLabel();
         labelEstadoCivil = new javax.swing.JLabel();
         textDomicilio = new javax.swing.JTextField();
         textLocalidad = new javax.swing.JTextField();
@@ -129,7 +206,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         labelDatosPersonales = new javax.swing.JLabel();
         labelVivienda = new javax.swing.JLabel();
         labelTipoVivienda = new javax.swing.JLabel();
-        labelTipoViviendaEspecificacion = new javax.swing.JLabel();
+        labelViviendaEspecificacion = new javax.swing.JLabel();
         labelViviendaPrecio = new javax.swing.JLabel();
         cbTipoVivienda = new javax.swing.JComboBox();
         textPrecioVivienda = new javax.swing.JTextField();
@@ -142,7 +219,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         labelOcupacion = new javax.swing.JLabel();
         textOcupacion = new javax.swing.JTextField();
         textTelefonoMovil = new javax.swing.JTextField();
-        labelMovil = new javax.swing.JLabel();
+        labelTelefonoMovil = new javax.swing.JLabel();
         labelError = new javax.swing.JLabel();
         textFechaNacimiento = new javax.swing.JFormattedTextField();
         PanelIntervenciones = new javax.swing.JPanel();
@@ -175,7 +252,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 
         PanelDatos.setBackground(new java.awt.Color(255, 255, 255));
 
-        labelFijo.setText("Teléfono Fijo");
+        labelTelefonoFijo.setText("Teléfono Fijo");
 
         cbEstadoCivilBeneficiario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Soltero", "Casado", "Viudo" }));
         cbEstadoCivilBeneficiario.addActionListener(new java.awt.event.ActionListener() {
@@ -200,13 +277,13 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 
         labelLocalidad.setText("Localidad");
 
-        labelProvinciaNacimiento.setText("en");
+        labelLugarNacimiento.setText("en");
 
         labelProfesion.setText("Profesion");
 
         labelCP.setText("Código Postal");
 
-        labelFechaNac.setText("Nacido el");
+        labelFechaNacimiento.setText("Nacido el");
 
         labelEstadoCivil.setText("Estado civil");
 
@@ -220,7 +297,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 
         labelTipoVivienda.setText("Tipo");
 
-        labelTipoViviendaEspecificacion.setText("Especificar");
+        labelViviendaEspecificacion.setText("Especificar");
 
         labelViviendaPrecio.setText("Precio");
 
@@ -250,7 +327,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
             }
         });
 
-        labelMovil.setText("Teléfono Móvil");
+        labelTelefonoMovil.setText("Teléfono Móvil");
 
         labelError.setForeground(new java.awt.Color(255, 51, 51));
         labelError.setText("Mensaje de error");
@@ -273,12 +350,12 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                                     .add(org.jdesktop.layout.GroupLayout.TRAILING, labelNIF)
                                     .add(org.jdesktop.layout.GroupLayout.TRAILING, labelNombre)
                                     .add(org.jdesktop.layout.GroupLayout.TRAILING, labelNivelEstudios)
-                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, labelFijo)
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, labelTelefonoFijo)
                                     .add(org.jdesktop.layout.GroupLayout.TRAILING, labelDomicilio)
                                     .add(org.jdesktop.layout.GroupLayout.TRAILING, labelLocalidad)
                                     .add(org.jdesktop.layout.GroupLayout.TRAILING, labelObservaciones)
                                     .add(org.jdesktop.layout.GroupLayout.TRAILING, labelTipoVivienda)
-                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, labelTipoViviendaEspecificacion))
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, labelViviendaEspecificacion))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(PanelDatosLayout.createSequentialGroup()
@@ -293,18 +370,18 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                                                 .add(28, 28, 28)
                                                 .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                                                     .add(labelEstadoCivil)
-                                                    .add(labelFechaNac)
+                                                    .add(labelFechaNacimiento)
                                                     .add(labelApellidos)
                                                     .add(labelProfesion)
                                                     .add(labelOcupacion)
-                                                    .add(labelMovil))
+                                                    .add(labelTelefonoMovil))
                                                 .add(18, 18, 18)
                                                 .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                                     .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                                                         .add(PanelDatosLayout.createSequentialGroup()
                                                             .add(textFechaNacimiento, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 111, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                                             .add(26, 26, 26)
-                                                            .add(labelProvinciaNacimiento)
+                                                            .add(labelLugarNacimiento)
                                                             .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                                             .add(textLugarNacimiento))
                                                         .add(textApellidos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 307, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -359,7 +436,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                         .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(textNIF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(labelNIF)
-                            .add(labelFechaNac)
+                            .add(labelFechaNacimiento)
                             .add(textFechaNacimiento, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -381,10 +458,10 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                                     .add(textOcupacion, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(labelFijo)
+                                    .add(labelTelefonoFijo)
                                     .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                                         .add(textTelefonoMovil, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(labelMovil))))
+                                        .add(labelTelefonoMovil))))
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, PanelDatosLayout.createSequentialGroup()
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(textTelefonoFijo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
@@ -412,7 +489,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                             .add(textPrecioVivienda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(labelTipoViviendaEspecificacion)
+                            .add(labelViviendaEspecificacion)
                             .add(textEspecificarTipoVivienda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(PanelDatosLayout.createSequentialGroup()
                         .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -422,7 +499,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                .add(labelProvinciaNacimiento)
+                                .add(labelLugarNacimiento)
                                 .add(textLugarNacimiento, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(jScrollPane7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 107, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .add(18, 18, 18)
@@ -502,7 +579,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(jLabel59)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                .add(jScrollPane10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
                 .add(18, 18, 18)
                 .add(PanelIntervencionesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel60)
@@ -595,7 +672,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                             .add(cbParentescoBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(btGuardarFamiliarBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(btEliminarFamiliarBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 103, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 36, Short.MAX_VALUE)
                 .add(jScrollPane9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 438, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -664,10 +741,9 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
     private javax.swing.JLabel labelDomicilio;
     private javax.swing.JLabel labelError;
     private javax.swing.JLabel labelEstadoCivil;
-    private javax.swing.JLabel labelFechaNac;
-    private javax.swing.JLabel labelFijo;
+    private javax.swing.JLabel labelFechaNacimiento;
     private javax.swing.JLabel labelLocalidad;
-    private javax.swing.JLabel labelMovil;
+    private javax.swing.JLabel labelLugarNacimiento;
     private javax.swing.JLabel labelNIF;
     private javax.swing.JLabel labelNacionalidad;
     private javax.swing.JLabel labelNivelEstudios;
@@ -675,11 +751,12 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
     private javax.swing.JLabel labelObservaciones;
     private javax.swing.JLabel labelOcupacion;
     private javax.swing.JLabel labelProfesion;
-    private javax.swing.JLabel labelProvinciaNacimiento;
     private javax.swing.JLabel labelSituacionEconomica;
+    private javax.swing.JLabel labelTelefonoFijo;
+    private javax.swing.JLabel labelTelefonoMovil;
     private javax.swing.JLabel labelTipoVivienda;
-    private javax.swing.JLabel labelTipoViviendaEspecificacion;
     private javax.swing.JLabel labelVivienda;
+    private javax.swing.JLabel labelViviendaEspecificacion;
     private javax.swing.JLabel labelViviendaPrecio;
     private javax.swing.JTable listDatosFamiliarBeneficiario;
     private javax.swing.JTextField textApellidos;
