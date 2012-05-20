@@ -143,6 +143,7 @@ public class ControladorBeneficiario {
 
 	private boolean comprobarDatos(String[] datos){
 		boolean validos = true;
+		vista.getPanelDatos().setColorLabels(Color.black);
 
 		if (!TestDatos.isNombre(datos[Beneficiario.NOMBRE_ID])){
 			vista.getPanelDatos().setColorLabelNombre(Color.red);

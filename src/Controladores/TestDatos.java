@@ -105,7 +105,9 @@ public class TestDatos {
     }
 
     public static boolean isOnlyDigit (String s) {
-        for (int i=0; i<s.length(); i++) {
+		if (s.length()<1) return false;
+
+		for (int i=0; i<s.length(); i++) {
             if (!Character.isDigit(s.charAt(i)))
                 return false;
         }
