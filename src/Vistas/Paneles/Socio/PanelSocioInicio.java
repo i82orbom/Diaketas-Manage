@@ -4,6 +4,8 @@
  */
 package Vistas.Paneles.Socio;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Alberto
@@ -16,7 +18,14 @@ public class PanelSocioInicio extends javax.swing.JPanel {
     public PanelSocioInicio() {
         initComponents();
     }
-
+    public void anadirListenerbtBuscarSocio(ActionListener listener){
+        System.out.println("anadirListener vista socio byscar");
+        btBuscarSocio.addActionListener(listener);
+    }
+    
+    public void anadirListenerbtNuevoSocio(ActionListener listener){
+        btNuevoSocio.addActionListener(listener);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

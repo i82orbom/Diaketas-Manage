@@ -66,7 +66,13 @@ public class ControladorColaboradores {
         vista.getPanelColaboradoresInicio().anadirListenerbtColaborador(new btColaboradorListener());
         vista.getPanelColaboradoresInicio().anadirListenerbtSocio(new btSocioListener());
         vista.getPanelColaboradoresInicio().anadirListenerbtEmpresa(new btEmpresaListener());
-        
+       
+        vista.getPanelSocioInicio().anadirListenerbtNuevoSocio(new btNuevoSocioListener());
+        vista.getPanelSocioInicio().anadirListenerbtBuscarSocio(new btBuscarSocioListener());
+        vista.getPanelEmpresaInicio().anadirListenerbtBuscarEmpresa(new btBuscarEmpresaListener());
+        vista.getPanelEmpresaInicio().anadirListenerbtNuevoEmpresa(new btNuevaEmpresaListener());
+        vista.getPanelColaboradorInicio().anadirListenerbtNuevoColaborador(new btNuevoColaboradorListener());
+        vista.getPanelColaboradorInicio().anadirListenerbtBuscarColaborador(new btBuscarColaboradorListener());
         // al principio mostrar la vista de inicio
         mostrarVistaInicio();   
        
@@ -79,24 +85,63 @@ public class ControladorColaboradores {
     }
     
     private void mostrarVistaSocio(){
-        vista.showPanel(VistaSocio.panelInicio);
+        vista.showPanel(VistaColaboradores.panelsocioInicio);
         vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");  
         vista.getBarraDeNavigacion().setTextLabelNivel2("Socio");
     }
     
     private void mostrarVistaEmpresa(){
-        vista.showPanel(VistaBeneficiario.panelDatos);
+        vista.showPanel(VistaColaboradores.panelempresaInicio);
         vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");    
         vista.getBarraDeNavigacion().setTextLabelNivel2("Empresa");   
     }
     
       private void mostrarVistaColaborador(){
-        vista.showPanel(VistaBeneficiario.panelDatos);
+        vista.showPanel(VistaColaboradores.panelcolaboradorInicio);
         vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");    
         vista.getBarraDeNavigacion().setTextLabelNivel2("Colaborador");   
     }
     
+    private void mostrarVistaSocioNuevo(){
+        vista.showPanel(VistaColaboradores.panelsocioDatos);
+        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
+        vista.getBarraDeNavigacion().setTextLabelNivel2("Socio");
+        vista.getBarraDeNavigacion().setTextLabelNivel3("Datos");
+    }
     
+    private void mostrarVistaSocioBuscar(){
+        vista.showPanel(VistaColaboradores.panelsocioBuscar);
+        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
+        vista.getBarraDeNavigacion().setTextLabelNivel2("Socio");
+        vista.getBarraDeNavigacion().setTextLabelNivel3("Buscar");
+    }
+    
+    private void mostrarVistaEmpresaNuevo(){
+        vista.showPanel(VistaColaboradores.panelempresaDatos);
+        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
+        vista.getBarraDeNavigacion().setTextLabelNivel2("Empresa");
+        vista.getBarraDeNavigacion().setTextLabelNivel3("Datos");
+    }
+    
+    private void mostrarVistaEmpresaBuscar(){
+        vista.showPanel(VistaColaboradores.panelempresaBuscar);
+        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
+        vista.getBarraDeNavigacion().setTextLabelNivel2("Empresa");
+        vista.getBarraDeNavigacion().setTextLabelNivel3("Buscar");
+    }
+    private void mostrarVistaColaboradorNuevo(){
+        vista.showPanel(VistaColaboradores.panelcolaboradorDatos);
+        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
+        vista.getBarraDeNavigacion().setTextLabelNivel2("Colaborador");
+        vista.getBarraDeNavigacion().setTextLabelNivel3("Datos");
+    }
+    
+    private void mostrarVistaColaboradorBuscar(){
+        vista.showPanel(VistaColaboradores.panelcolaboradorBuscar);
+        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
+        vista.getBarraDeNavigacion().setTextLabelNivel2("Colaborador");
+        vista.getBarraDeNavigacion().setTextLabelNivel3("Buscar");
+    }
     //Listener de la barra de navigacion
     class ListenerBarraNavigacion implements ActionListener {
 
@@ -133,6 +178,46 @@ public class ControladorColaboradores {
         @Override
         public void actionPerformed(ActionEvent ae) {
             mostrarVistaColaborador();
+        }
+    }
+    
+    class btNuevoSocioListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            mostrarVistaSocioNuevo();
+        }
+    }
+   
+   class btBuscarSocioListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            mostrarVistaSocioBuscar();
+        }
+    }
+    class btNuevaEmpresaListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            mostrarVistaEmpresaNuevo();
+        }
+    }
+   
+   class btBuscarEmpresaListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            mostrarVistaEmpresaBuscar();
+        }
+    }
+   class btNuevoColaboradorListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            mostrarVistaColaboradorNuevo();
+        }
+    }
+   
+   class btBuscarColaboradorListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            mostrarVistaColaboradorBuscar();
         }
     }
 }

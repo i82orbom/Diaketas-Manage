@@ -5,22 +5,20 @@
 
 package Controladores.Colaborador;
 
+import Controladores.ControladorPrincipal;
 import Controladores.TestDatos;
 import Controladores.Voluntario.ControladorVoluntario;
 import JDBC.ColaboracionJDBC;
 import JDBC.CuotaJDBC;
 import JDBC.PagoCuotaJDBC;
 import JDBC.SocioJDBC;
-import Modelo.Colaboracion;
-import Modelo.Cuota;
-import Modelo.Movimiento;
-import Modelo.PagoCuota;
-import Modelo.Socio;
+import Modelo.*;
+import Vistas.BarraDeNavegacion;
+import Vistas.Paneles.Socio.VistaSocio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,15 +47,15 @@ import java.util.logging.Logger;
  **   
  **
  */
-public class ControladorSocio {
+public class ControladorSocio{
 
     /**
      * PATRON DE DISEÑO SINGLETON
      */
     private static ControladorSocio instancia = null;
 
-    /* TODO vista
-    public static ControladorSocio getInstance(PanelColaboradorSocio pvista) {
+    // TODO vista
+    public static ControladorSocio getInstance(VistaSocio pvista) {
 
         if (instancia == null) {
             instancia = new ControladorSocio(pvista);
@@ -66,13 +64,16 @@ public class ControladorSocio {
 
     }
     
-    private PanelColaboradorSocio vista;
+    private VistaSocio vista;
 
 
-    public ControladorSocio(PanelColaboradorSocio vista) {
-        this.vista = vista;
-    }*/
-    
+    public ControladorSocio(VistaSocio pvista) {
+        vista = pvista;
+        
+        System.out.println("me aburro");    
+    }
+ 
+   
     public boolean anadirSocio(String[] datos) {
         if (!comprobarDatos(datos))
             return false;
@@ -252,7 +253,7 @@ public class ControladorSocio {
         
         return true;
     }
-        
+       
     /**
         * Listener controlador del boton Guardar datos socio
         

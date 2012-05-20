@@ -5,6 +5,15 @@
 package Vistas.Paneles.Colaboradores;
 
 import Vistas.BarraDeNavegacion;
+import Vistas.Paneles.Colaborador.PanelColaboradorBuscar;
+import Vistas.Paneles.Colaborador.PanelColaboradorDatos;
+import Vistas.Paneles.Colaborador.PanelColaboradorInicio;
+import Vistas.Paneles.Empresa.PanelEmpresaBuscar;
+import Vistas.Paneles.Empresa.PanelEmpresaDatos;
+import Vistas.Paneles.Empresa.PanelEmpresaInicio;
+import Vistas.Paneles.Socio.PanelSocioBuscar;
+import Vistas.Paneles.Socio.PanelSocioDatos;
+import Vistas.Paneles.Socio.PanelSocioInicio;
 import java.awt.CardLayout;
 
 /**
@@ -15,7 +24,15 @@ public class VistaColaboradores extends javax.swing.JPanel {
 
      /* identificador de los paneles en el CardLayout */ 
     public static String panelColaboradoresInicio = "colaboradores";
-
+    public static String panelsocioInicio = "socioInicio";
+    public static String panelsocioDatos = "socioDatos";
+    public static String panelsocioBuscar = "socioBuscar";
+    public static String panelempresaInicio = "empresaInicio";
+    public static String panelempresaDatos = "empresaDatos";
+    public static String panelempresaBuscar = "empresaBuscar";
+    public static String panelcolaboradorInicio = "colaboradorInicio";
+    public static String panelcolaboradorDatos = "colaboradorDatos";
+    public static String panelcolaboradorBuscar = "colaboradorBuscar";
     
     /**
      * Creates new form VistaColaboradores
@@ -40,6 +57,33 @@ public class VistaColaboradores extends javax.swing.JPanel {
     public PanelColaboradoresInicio getPanelColaboradoresInicio(){
         return this.panelColaboradoresInicio1;
     }
+    public PanelSocioInicio getPanelSocioInicio(){
+        return this.panelSocioInicio;
+    }
+    public PanelSocioDatos getPanelSocioDatos(){
+        return this.panelSocioDatos;
+    }
+    public PanelSocioBuscar getPanelSocioBuscar(){
+        return this.panelSocioBuscar;
+    }
+    public PanelEmpresaInicio getPanelEmpresaInicio(){
+        return this.panelEmpresaInicio;
+    }
+    public PanelEmpresaDatos getPanelEmpresaDatos(){
+        return this.panelEmpresaDatos;
+    }
+    public PanelEmpresaBuscar getPanelEmpresaBuscar(){
+        return this.panelEmpresaBuscar;
+    }
+    public PanelColaboradorInicio getPanelColaboradorInicio(){
+        return this.panelColaboradorInicio;
+    }
+    public PanelColaboradorDatos getPanelColaboradorDatos(){
+        return this.panelColaboradorDatos;
+    }
+    public PanelColaboradorBuscar getPanelColaboradorBuscar(){
+        return this.panelColaboradorBuscar;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,20 +98,44 @@ public class VistaColaboradores extends javax.swing.JPanel {
         panelColaboradores = new javax.swing.JPanel();
         panelColaboradoresInicio1 = new Vistas.Paneles.Colaboradores.PanelColaboradoresInicio();
         panelSocioInicio = new Vistas.Paneles.Socio.PanelSocioInicio();
+        panelSocioDatos = new Vistas.Paneles.Socio.PanelSocioDatos();
+        panelSocioBuscar = new Vistas.Paneles.Socio.PanelSocioBuscar();
+        panelEmpresaBuscar = new Vistas.Paneles.Empresa.PanelEmpresaBuscar();
+        panelEmpresaDatos = new Vistas.Paneles.Empresa.PanelEmpresaDatos();
+        panelEmpresaInicio = new Vistas.Paneles.Empresa.PanelEmpresaInicio();
+        panelColaboradorInicio = new Vistas.Paneles.Colaborador.PanelColaboradorInicio();
+        panelColaboradorDatos = new Vistas.Paneles.Colaborador.PanelColaboradorDatos();
+        panelColaboradorBuscar = new Vistas.Paneles.Colaborador.PanelColaboradorBuscar();
 
         setLayout(new java.awt.BorderLayout());
         add(barraDeNavegacion, java.awt.BorderLayout.PAGE_START);
 
         panelColaboradores.setLayout(new java.awt.CardLayout());
         panelColaboradores.add(panelColaboradoresInicio1, "colaboradores");
-        panelColaboradores.add(panelSocioInicio, "inicio");
+        panelColaboradores.add(panelSocioInicio, "socioInicio");
+        panelColaboradores.add(panelSocioDatos, "socioDatos");
+        panelColaboradores.add(panelSocioBuscar, "socioBuscar");
+        panelColaboradores.add(panelEmpresaBuscar, "empresaBuscar");
+        panelColaboradores.add(panelEmpresaDatos, "empresaDatos");
+        panelColaboradores.add(panelEmpresaInicio, "empresaInicio");
+        panelColaboradores.add(panelColaboradorInicio, "colaboradorInicio");
+        panelColaboradores.add(panelColaboradorDatos, "colaboradorDatos");
+        panelColaboradores.add(panelColaboradorBuscar, "colaboradorBuscar");
 
         add(panelColaboradores, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Vistas.BarraDeNavegacion barraDeNavegacion;
+    private Vistas.Paneles.Colaborador.PanelColaboradorBuscar panelColaboradorBuscar;
+    private Vistas.Paneles.Colaborador.PanelColaboradorDatos panelColaboradorDatos;
+    private Vistas.Paneles.Colaborador.PanelColaboradorInicio panelColaboradorInicio;
     private javax.swing.JPanel panelColaboradores;
     private Vistas.Paneles.Colaboradores.PanelColaboradoresInicio panelColaboradoresInicio1;
+    private Vistas.Paneles.Empresa.PanelEmpresaBuscar panelEmpresaBuscar;
+    private Vistas.Paneles.Empresa.PanelEmpresaDatos panelEmpresaDatos;
+    private Vistas.Paneles.Empresa.PanelEmpresaInicio panelEmpresaInicio;
+    private Vistas.Paneles.Socio.PanelSocioBuscar panelSocioBuscar;
+    private Vistas.Paneles.Socio.PanelSocioDatos panelSocioDatos;
     private Vistas.Paneles.Socio.PanelSocioInicio panelSocioInicio;
     // End of variables declaration//GEN-END:variables
 }

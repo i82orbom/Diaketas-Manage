@@ -40,7 +40,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Container class="javax.swing.JPanel" name="panelSocio">
+    <Container class="javax.swing.JPanel" name="panelColaborador">
       <Properties>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[1000, 550]"/>
@@ -60,24 +60,24 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
       <SubComponents>
-        <Component class="Vistas.Paneles.Socio.PanelSocioBuscar" name="panelSocioBuscar">
+        <Component class="Vistas.Paneles.Colaborador.PanelColaboradorInicio" name="panelColaboradorInicio">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="buscar"/>
+              <CardConstraints cardName="inicio"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Vistas.Paneles.Socio.PanelSocioDatos" name="panelSocioDatos">
+        <Component class="Vistas.Paneles.Colaborador.PanelColaboradorDatos" name="panelColaboradorDatos">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="datos"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Vistas.Paneles.Socio.PanelSocioInicio" name="panelSocioInicio">
+        <Component class="Vistas.Paneles.Colaborador.PanelColaboradorBuscar" name="panelColaboradorBuscar">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="inicio"/>
+              <CardConstraints cardName="buscar"/>
             </Constraint>
           </Constraints>
         </Component>

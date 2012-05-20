@@ -29,11 +29,12 @@ public class VistaSocio extends javax.swing.JPanel {
 
     // getter panel
     public BarraDeNavegacion getBarraDeNavegacion() {
-        System.out.println("Barra de navegacion Vista socio");
+        //System.out.println("Barra de navegacion Vista socio");
         return barraDeNavegacion;
     }
 
     public PanelSocioInicio getPanelSocioInicio() {
+        System.out.println("Panel socio inico vista socio datos");
         return panelSocioInicio;
     }
 
@@ -83,9 +84,9 @@ public class VistaSocio extends javax.swing.JPanel {
 
         barraDeNavegacion = new Vistas.BarraDeNavegacion();
         panelSocio = new javax.swing.JPanel();
-        panelSocioInicio = new Vistas.Paneles.Socio.PanelSocioInicio();
-        panelSocioDatos = new Vistas.Paneles.Socio.PanelSocioDatos();
         panelSocioBuscar = new Vistas.Paneles.Socio.PanelSocioBuscar();
+        panelSocioDatos = new Vistas.Paneles.Socio.PanelSocioDatos();
+        panelSocioInicio = new Vistas.Paneles.Socio.PanelSocioInicio();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
@@ -100,9 +101,9 @@ public class VistaSocio extends javax.swing.JPanel {
         panelSocio.setMinimumSize(new java.awt.Dimension(1000, 550));
         panelSocio.setPreferredSize(new java.awt.Dimension(1000, 550));
         panelSocio.setLayout(new java.awt.CardLayout());
-        panelSocio.add(panelSocioInicio, "inicio");
-        panelSocio.add(panelSocioDatos, "datos");
         panelSocio.add(panelSocioBuscar, "buscar");
+        panelSocio.add(panelSocioDatos, "datos");
+        panelSocio.add(panelSocioInicio, "inicio");
 
         add(panelSocio, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -113,4 +114,5 @@ public class VistaSocio extends javax.swing.JPanel {
     private Vistas.Paneles.Socio.PanelSocioDatos panelSocioDatos;
     private Vistas.Paneles.Socio.PanelSocioInicio panelSocioInicio;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -4,6 +4,7 @@
  */
 package Controladores.Voluntario;
 
+import Controladores.ControladorColaboradores;
 import Controladores.ControladorPrincipal;
 import Controladores.TestDatos;
 import JDBC.VoluntarioJDBC;

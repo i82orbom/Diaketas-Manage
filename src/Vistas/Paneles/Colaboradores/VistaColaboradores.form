@@ -42,7 +42,63 @@
         <Component class="Vistas.Paneles.Socio.PanelSocioInicio" name="panelSocioInicio">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="inicio"/>
+              <CardConstraints cardName="socioInicio"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Vistas.Paneles.Socio.PanelSocioDatos" name="panelSocioDatos">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="socioDatos"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Vistas.Paneles.Socio.PanelSocioBuscar" name="panelSocioBuscar">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="socioBuscar"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Vistas.Paneles.Empresa.PanelEmpresaBuscar" name="panelEmpresaBuscar">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="empresaBuscar"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Vistas.Paneles.Empresa.PanelEmpresaDatos" name="panelEmpresaDatos">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="empresaDatos"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Vistas.Paneles.Empresa.PanelEmpresaInicio" name="panelEmpresaInicio">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="empresaInicio"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Vistas.Paneles.Colaborador.PanelColaboradorInicio" name="panelColaboradorInicio">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="colaboradorInicio"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Vistas.Paneles.Colaborador.PanelColaboradorDatos" name="panelColaboradorDatos">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="colaboradorDatos"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Vistas.Paneles.Colaborador.PanelColaboradorBuscar" name="panelColaboradorBuscar">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="colaboradorBuscar"/>
             </Constraint>
           </Constraints>
         </Component>
