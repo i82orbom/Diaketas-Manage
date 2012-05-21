@@ -34,7 +34,6 @@ public class VistaSocio extends javax.swing.JPanel {
     }
 
     public PanelSocioInicio getPanelSocioInicio() {
-        System.out.println("Panel socio inico vista socio datos");
         return panelSocioInicio;
     }
 
@@ -45,26 +44,7 @@ public class VistaSocio extends javax.swing.JPanel {
     public PanelSocioBuscar getPanelSocioBuscar() {
         return panelSocioBuscar;
     }
-/*
-    public PanelVoluntarioContabilidad getPanelVoluntarioContabilidad() {
-        return panelVoluntarioContabilidad;
-    }
-
-    public PanelVoluntarioDatos getPanelVoluntarioDatos() {
-        return panelVoluntarioDatos;
-    }
-
-    public PanelVoluntarioColaboraciones getPanelVoluntarioColaboraciones() {
-        return panelVoluntarioColaboraciones;
-    }
-
-    public PanelAñadirColaboracion getPanelVoluntarioAñadirColaboraciones() {
-        return panelAñadirColaboracion;
-    }
-    public PanelCuotasNoPagadas getPanelVoluntarioCuotasNoPagadas() {
-        return panelCuotasNoPagadas;
-    }*/
-    
+  
     // mostrar un panel con el CardLayoud
     public void showPanel (String panel) {
         CardLayout cardLayout =  (CardLayout)panelSocio.getLayout();
@@ -85,8 +65,8 @@ public class VistaSocio extends javax.swing.JPanel {
         barraDeNavegacion = new Vistas.BarraDeNavegacion();
         panelSocio = new javax.swing.JPanel();
         panelSocioBuscar = new Vistas.Paneles.Socio.PanelSocioBuscar();
-        panelSocioDatos = new Vistas.Paneles.Socio.PanelSocioDatos();
         panelSocioInicio = new Vistas.Paneles.Socio.PanelSocioInicio();
+        panelSocioDatos = new Vistas.Paneles.Socio.PanelSocioDatos();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
@@ -102,8 +82,8 @@ public class VistaSocio extends javax.swing.JPanel {
         panelSocio.setPreferredSize(new java.awt.Dimension(1000, 550));
         panelSocio.setLayout(new java.awt.CardLayout());
         panelSocio.add(panelSocioBuscar, "buscar");
-        panelSocio.add(panelSocioDatos, "datos");
         panelSocio.add(panelSocioInicio, "inicio");
+        panelSocio.add(panelSocioDatos, "datos");
 
         add(panelSocio, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents

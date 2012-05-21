@@ -19,7 +19,6 @@ public class PanelSocioInicio extends javax.swing.JPanel {
         initComponents();
     }
     public void anadirListenerbtBuscarSocio(ActionListener listener){
-        System.out.println("anadirListener vista socio byscar");
         btBuscarSocio.addActionListener(listener);
     }
     

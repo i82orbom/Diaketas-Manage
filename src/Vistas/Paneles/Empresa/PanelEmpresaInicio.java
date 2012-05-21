@@ -20,7 +20,6 @@ public class PanelEmpresaInicio extends javax.swing.JPanel {
     }
     
     public void anadirListenerbtBuscarEmpresa(ActionListener listener){
-        System.out.println("anadirListener vista socio byscar");
         btBuscarEmpresa.addActionListener(listener);
     }
     

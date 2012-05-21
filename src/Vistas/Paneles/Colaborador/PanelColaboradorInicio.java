@@ -21,7 +21,6 @@ public class PanelColaboradorInicio extends javax.swing.JPanel {
 
         
     public void anadirListenerbtBuscarColaborador(ActionListener listener){
-        System.out.println("anadirListener vista socio byscar");
         btBuscarColaborador.addActionListener(listener);
     }
     

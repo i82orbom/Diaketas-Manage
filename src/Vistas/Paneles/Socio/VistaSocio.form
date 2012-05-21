@@ -67,17 +67,17 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Vistas.Paneles.Socio.PanelSocioDatos" name="panelSocioDatos">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="datos"/>
-            </Constraint>
-          </Constraints>
-        </Component>
         <Component class="Vistas.Paneles.Socio.PanelSocioInicio" name="panelSocioInicio">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="inicio"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="Vistas.Paneles.Socio.PanelSocioDatos" name="panelSocioDatos">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="datos"/>
             </Constraint>
           </Constraints>
         </Component>

@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -69,8 +70,8 @@ public class ControladorSocio{
 
     public ControladorSocio(VistaSocio pvista) {
         vista = pvista;
-        
-        System.out.println("me aburro");    
+
+        vista.getPanelSocioDatos().getBtGuardarDatosSocio().addActionListener(new btGuardarDatosSocioListener());
     }
  
    
@@ -256,51 +257,42 @@ public class ControladorSocio{
        
     /**
         * Listener controlador del boton Guardar datos socio
-        
-
-    public class ListenerBtGuardarDatosSocio implements ActionListener{
-
+    */
+    public class btGuardarDatosSocioListener implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
-                    Socio socio = new Socio();
-
-                    socio.setNombre(vista.obtenerNombreSocio());
-                    socio.setApellidos(vista.obtenerApellidosSocio());
-                    socio.setEmail(vista.obtenerCorreoSocio());
-                    socio.setDNI(vista.obtenerDNISocio());
-                    socio.setSexo(vista.obtenerSexoSocio());
+                    System.out.println("btguardar");
+                    String[] datos = new String[14];
+                    
+                    datos[Socio.NOMBRE_ID] = vista.getPanelSocioDatos().obtenerNombreSocio();
+                    datos[Socio.APELLIDOS_ID] = vista.getPanelSocioDatos().obtenerApellidosSocio();
+                    datos[Socio.EMAIL_ID] = vista.getPanelSocioDatos().obtenerCorreoSocio();
+                    datos[Socio.DNI_ID] = vista.getPanelSocioDatos().obtenerDNISocio();
+                    datos[Socio.SEXO_ID] = vista.getPanelSocioDatos().obtenerSexoSocio();
                     try {
-                        socio.setFechaDeNacimiento(vista.obtenerFNSocio());
+                        datos[Socio.FECHA_DE_NACIMIENTO_ID] = vista.getPanelSocioDatos().obtenerFNSocio();
                     } catch (ParseException ex) {
                         Logger.getLogger(ControladorSocio.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
-                    //Falta socio.setNacionalidad(vista.obtenerNacionalidadSocio());
-
-                    socio.setDireccion(vista.obtenerDomicilioSocio());
-                    socio.setLocalidad(vista.obtenerLocalidadSocio());
-                    socio.setProvincia(vista.obtenerProvinciaSocio());
-                    socio.setCP(vista.obtenerCPSocio());
-                    socio.setTelefonoFijo(vista.obtenerTelfSocio());
-                    socio.setTelefonoMovil(vista.obtenerMovilSocio());
-                    socio.setUsuario(vista.obtenerUsuarioSocio());
-                    socio.setContrasena(MD5.encode(vista.obtenerContraseñaSocio()));
-
-                    if(testDatos(socio)){
-                        try {
-                            if(socJDBC.añadirSocio(socio)){
-                                System.out.println("Añadido con exito");
-                            }
-                            else
-                                System.out.println("Error");
-                        } catch (SQLException ex) {
-                            Logger.getLogger(ControladorSocio.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                    datos[Socio.DIRECCION_ID] = vista.getPanelSocioDatos().obtenerDomicilioSocio();
+                    datos[Socio.LOCALIDAD_ID] = vista.getPanelSocioDatos().obtenerLocalidadSocio();
+                    datos[Socio.PROVINCIA_ID] = vista.getPanelSocioDatos().obtenerProvinciaSocio();
+                    datos[Socio.CP_ID] = vista.getPanelSocioDatos().obtenerCPSocio();
+                    datos[Socio.TEL1_ID] = vista.getPanelSocioDatos().obtenerTelfSocio();
+                    datos[Socio.TEL2_ID] = vista.getPanelSocioDatos().obtenerMovilSocio();
+                    datos[Socio.USUARIO_ID] = vista.getPanelSocioDatos().obtenerUsuarioSocio();
+                    
+                    String password = ControladorPrincipal.getInstance().md5(vista.getPanelSocioDatos().obtenerDNISocio()+ControladorPrincipal.getInstance().getSalto());
+                    datos[Socio.CONTRASENA_ID] = password;
+                    
+                    boolean exito = anadirSocio(datos);
+                    if (exito) {
+                            vista.getPanelSocioDatos().setTextLabelError("Socio añadido correctamente.");
+                    } else {
+                            vista.getPanelSocioDatos().setTextLabelError("El Socio no ha sido añadido.");
                     }
-                    else
-                        System.out.println("Error en el test");
-            }        
-        }*/
+              }        
+        }
         
         private boolean testDatos(Socio socio) {
 
