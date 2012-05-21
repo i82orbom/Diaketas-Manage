@@ -72,8 +72,8 @@ public class ControladorC_Empresa {
         tempE.setLocalidad(datos[C_Empresa.LOCALIDAD_ID]);
         tempE.setProvincia(datos[C_Empresa.PROVINCIA_ID]);
         tempE.setCP(datos[C_Empresa.CP_ID]);
-        tempE.setTelefonoFijo(datos[C_Empresa.TEL1_ID]);
-        tempE.setTelefonoMovil(datos[C_Empresa.TEL2_ID]);
+        tempE.setTelefonoFijo(datos[C_Empresa.TELEFONO1_ID]);
+        tempE.setTelefonoMovil(datos[C_Empresa.TELEFONO2_ID]);
 
         tempE.setDireccionWeb(datos[C_Empresa.DIRECCION_WEB_ID]);
         tempE.setFax(datos[C_Empresa.FAX_ID]);
@@ -115,8 +115,8 @@ public class ControladorC_Empresa {
         tempE.setLocalidad(datos[C_Empresa.LOCALIDAD_ID]);
         tempE.setProvincia(datos[C_Empresa.PROVINCIA_ID]);
         tempE.setCP(datos[C_Empresa.CP_ID]);
-        tempE.setTelefonoFijo(datos[C_Empresa.TEL1_ID]);
-        tempE.setTelefonoMovil(datos[C_Empresa.TEL2_ID]);
+        tempE.setTelefonoFijo(datos[C_Empresa.TELEFONO1_ID]);
+        tempE.setTelefonoMovil(datos[C_Empresa.TELEFONO2_ID]);
 
         tempE.setDireccionWeb(datos[C_Empresa.DIRECCION_WEB_ID]);
         tempE.setFax(datos[C_Empresa.FAX_ID]);
@@ -173,7 +173,7 @@ public class ControladorC_Empresa {
         if (!TestDatos.isEmail(datos[C_Empresa.EMAIL_ID]))
             return false;
 
-        if (!TestDatos.isTelefonoOFax(datos[C_Empresa.TEL1_ID]))
+        if (!TestDatos.isTelefonoOFax(datos[C_Empresa.TELEFONO1_ID]))
             return false;
 
         if (!TestDatos.isOnlyLetter(datos[C_Empresa.NOMBRE_ID]))
@@ -190,7 +190,7 @@ public class ControladorC_Empresa {
 
 
 
-        if (datos[C_Empresa.TEL2_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[C_Empresa.TEL2_ID]))
+        if (datos[C_Empresa.TELEFONO2_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[C_Empresa.TELEFONO2_ID]))
             return false;
 
         if (datos[C_Empresa.FAX_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[C_Empresa.FAX_ID]))

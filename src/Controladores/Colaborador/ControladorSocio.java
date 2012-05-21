@@ -272,8 +272,8 @@ public class ControladorSocio{
 			datos[Socio.LOCALIDAD_ID] = vista.getPanelSocioDatos().obtenerLocalidadSocio();
 			datos[Socio.PROVINCIA_ID] = vista.getPanelSocioDatos().obtenerProvinciaSocio();
 			datos[Socio.CP_ID] = vista.getPanelSocioDatos().obtenerCPSocio();
-			datos[Socio.TEL1_ID] = vista.getPanelSocioDatos().obtenerTelfSocio();
-			datos[Socio.TEL2_ID] = vista.getPanelSocioDatos().obtenerMovilSocio();
+			datos[Socio.TELEFONO1_ID] = vista.getPanelSocioDatos().obtenerTelfSocio();
+			datos[Socio.TELEFONO2_ID] = vista.getPanelSocioDatos().obtenerMovilSocio();
 			datos[Socio.USUARIO_ID] = vista.getPanelSocioDatos().obtenerUsuarioSocio();
 
 			String password = ControladorPrincipal.getInstance().md5(vista.getPanelSocioDatos().obtenerDNISocio()+ControladorPrincipal.getInstance().getSalto());

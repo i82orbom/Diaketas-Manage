@@ -77,8 +77,8 @@ public class ControladorC_Persona {
         tempP.setLocalidad(datos[C_Persona.LOCALIDAD_ID]);
         tempP.setProvincia(datos[C_Persona.PROVINCIA_ID]);
         tempP.setCP(datos[C_Persona.CP_ID]);
-        tempP.setTelefonoFijo(datos[C_Persona.TEL1_ID]);
-        tempP.setTelefonoMovil(datos[C_Persona.TEL2_ID]);
+        tempP.setTelefonoFijo(datos[C_Persona.TELEFONO1_ID]);
+        tempP.setTelefonoMovil(datos[C_Persona.TELEFONO2_ID]);
 
         boolean resulto = false;
         try {
@@ -120,8 +120,8 @@ public class ControladorC_Persona {
         tempP.setLocalidad(datos[C_Persona.LOCALIDAD_ID]);
         tempP.setProvincia(datos[C_Persona.PROVINCIA_ID]);
         tempP.setCP(datos[C_Persona.CP_ID]);
-        tempP.setTelefonoFijo(datos[C_Persona.TEL1_ID]);
-        tempP.setTelefonoMovil(datos[C_Persona.TEL2_ID]);
+        tempP.setTelefonoFijo(datos[C_Persona.TELEFONO1_ID]);
+        tempP.setTelefonoMovil(datos[C_Persona.TELEFONO2_ID]);
 
         boolean resulto = false;
         try {
