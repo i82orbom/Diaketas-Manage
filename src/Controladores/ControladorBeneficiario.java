@@ -1,11 +1,10 @@
 
 package Controladores;
 
-import Controladores.Voluntario.ControladorVoluntario;
-import Vistas.BarraDeNavegacion;
-import Vistas.Paneles.Beneficiario.VistaBeneficiario;
 import JDBC.BeneficiarioJDBC;
 import Modelo.Beneficiario;
+import Vistas.BarraDeNavegacion;
+import Vistas.Paneles.Beneficiario.VistaBeneficiario;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -97,7 +96,7 @@ public class ControladorBeneficiario {
 		vista.getBarraDeNavigacion().setTextLabelNivel2("Nuevo Beneficiario");
 	}
 
-	private boolean insertarBeneficiario(String[] datos){
+	private boolean insertarBeneficiario(String[] datos) {
         if (this.comprobarDatos(datos) == false) {
             return false;
         }
@@ -113,10 +112,10 @@ public class ControladorBeneficiario {
         }
 
 		beneficiario.setDomicilio(datos[Beneficiario.DOMICILIO_ID]);
-        beneficiario.setCP(Integer.parseInt(datos[Beneficiario.CP_ID]));
+        beneficiario.setCP(datos[Beneficiario.CP_ID]);
         beneficiario.setLocalidad(datos[Beneficiario.LOCALIDAD_ID]);
-        beneficiario.setTelefonoMovil(Integer.parseInt(datos[Beneficiario.TELEFONO_MOVIL_ID]));
-        beneficiario.setTelefonoFijo(Integer.parseInt(datos[Beneficiario.TELEFONO_FIJO_ID]));
+        beneficiario.setTelefonoMovil(datos[Beneficiario.TELEFONO_MOVIL_ID]);
+        beneficiario.setTelefonoFijo(datos[Beneficiario.TELEFONO_FIJO_ID]);
 		beneficiario.setEstadoCivil(datos[Beneficiario.ESTADO_CIVIL_ID]);
 
 		beneficiario.setNacionalidad(datos[Beneficiario.NACIONALIDAD_ID]);

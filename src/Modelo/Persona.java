@@ -1,24 +1,24 @@
 /**
- ** NOMBRE CLASE: 
+ ** NOMBRE CLASE:
  **	  Persona.java
  **
  ** DESCRIPCION:
  **       Abstracción de Persona
- **       
+ **
  **
  ** DESARROLLADO POR:
  *        Francisco José Beltrán Rodriguez (FBR)
- *	   
- **        
+ *
+ **
  ** SUPERVISADO POR:
- **       Adolfo Arcoya Nieto (AAN)   
+ **       Adolfo Arcoya Nieto (AAN)
  **
  ** HISTORIA:
  ** 	000 - Mar 24, 2012 - FBR - Creacion
  *      001 - Mar 29, 2012 - FBR - Se ha añadido un vector para indicar los familiares
  **
  ** NOTAS:
- **   
+ **
  **
  */
 package Modelo;
@@ -31,19 +31,18 @@ import java.util.Date;
  * @author Jobero
  */
 public abstract class Persona {
-    
     private String NIF;
     private String nombre;
     private String apellidos;
     private Date fechaDENacimiento;
     private ArrayList<Persona> familia;
-    
+
     private String domicilio;
-    private int CP;
+    private String CP;
     private String localidad;
-    private int telefonoMovil;   
-    private int telefonoFijo;
-    
+    private String telefonoMovil;
+    private String telefonoFijo;
+
     public static int  NIF_ID = 0;
     public static int  NOMBRE_ID = 1;
     public static int  APELLIDOS_ID = 2;
@@ -53,7 +52,7 @@ public abstract class Persona {
     public static int  LOCALIDAD_ID = 6;
     public static int  TELEFONO_MOVIL_ID = 7;
     public static int  TELEFONO_FIJO_ID = 8;
-    
+
 
     /**
      * Constructor por defecto
@@ -62,23 +61,23 @@ public abstract class Persona {
     }
 
     /**
-     * 
+     *
      * @return
      */
-    public int getCP() {
+    public String getCP() {
         return CP;
     }
 
     /**
-     * 
+     *
      * @param CP
      */
-    public void setCP(int CP) {
+    public void setCP(String CP) {
         this.CP = CP;
     }
 
     /**
-     * 
+     *
      * @return
      */
     public String getNIF() {
@@ -86,7 +85,7 @@ public abstract class Persona {
     }
 
     /**
-     * 
+     *
      * @param NIF
      */
     public void setNIF(String NIF) {
@@ -94,7 +93,7 @@ public abstract class Persona {
     }
 
     /**
-     * 
+     *
      * @return
      */
     public String getApellidos() {
@@ -102,7 +101,7 @@ public abstract class Persona {
     }
 
     /**
-     * 
+     *
      * @param apellidos
      */
     public void setApellidos(String apellidos) {
@@ -110,7 +109,7 @@ public abstract class Persona {
     }
 
     /**
-     * 
+     *
      * @return
      */
     public String getDomicilio() {
@@ -118,7 +117,7 @@ public abstract class Persona {
     }
 
     /**
-     * 
+     *
      * @param domicilio
      */
     public void setDomicilio(String domicilio) {
@@ -126,7 +125,7 @@ public abstract class Persona {
     }
 
     /**
-     * 
+     *
      * @return
      */
     public Date getFechaDENacimiento() {
@@ -134,7 +133,7 @@ public abstract class Persona {
     }
 
     /**
-     * 
+     *
      * @param fechaDENacimiento
      */
     public void setFechaDENacimiento(Date fechaDENacimiento) {
@@ -142,7 +141,7 @@ public abstract class Persona {
     }
 
     /**
-     * 
+     *
      * @return
      */
     public String getLocalidad() {
@@ -150,7 +149,7 @@ public abstract class Persona {
     }
 
     /**
-     * 
+     *
      * @param localidad
      */
     public void setLocalidad(String localidad) {
@@ -158,7 +157,7 @@ public abstract class Persona {
     }
 
     /**
-     * 
+     *
      * @return
      */
     public String getNombre() {
@@ -166,7 +165,7 @@ public abstract class Persona {
     }
 
     /**
-     * 
+     *
      * @param nombre
      */
     public void setNombre(String nombre) {
@@ -174,37 +173,35 @@ public abstract class Persona {
     }
 
     /**
-     * 
+     *
      * @return
      */
-    public int getTelefonoFijo() {
+    public String getTelefonoFijo() {
         return telefonoFijo;
     }
 
     /**
-     * 
+     *
      * @param telefonoFijo
      */
-    public void setTelefonoFijo(int telefonoFijo) {
+    public void setTelefonoFijo(String telefonoFijo) {
         this.telefonoFijo = telefonoFijo;
     }
 
     /**
-     * 
+     *
      * @return
      */
-    public int getTelefonoMovil() {
+    public String getTelefonoMovil() {
         return telefonoMovil;
     }
 
     /**
-     * 
+     *
      * @param telefonoMovil
      */
-    public void setTelefonoMovil(int telefonoMovil) {
+    public void setTelefonoMovil(String telefonoMovil) {
         this.telefonoMovil = telefonoMovil;
     }
-    
-    
-    
+
 }
