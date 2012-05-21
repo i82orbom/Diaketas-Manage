@@ -23,9 +23,9 @@ CREATE TABLE Persona (
 	, Nombre VARCHAR (15) NOT NULL
 	, Apellidos VARCHAR (20) NOT NULL
 	, FechaNacimiento DATE
-	, CP NUMERIC(5,0)
-	, TelefonoFijo INTEGER
-	, TelefonoMovil INTEGER
+	, CP VARCHAR (5)
+	, TelefonoFijo VARCHAR (15)
+	, TelefonoMovil VARCHAR (15)
 	, Domicilio VARCHAR (50)
 	, Localidad VARCHAR (15)
 );
@@ -114,8 +114,8 @@ CREATE TABLE Colaborador (
 	, Localidad VARCHAR (50) NOT NULL
 	, Provincia VARCHAR (50) NOT NULL
 	, CP VARCHAR (5) NOT NULL
-	, telefonoFijo INTEGER
-	, telefonoMovil INTEGER
+	, telefonoFijo VARCHAR (15)
+	, telefonoMovil VARCHAR (15)
 );
 
 CREATE TABLE C_Empresa (
@@ -123,7 +123,7 @@ CREATE TABLE C_Empresa (
 	, CIF VARCHAR (9) NOT NULL UNIQUE
 	, Nombre VARCHAR (50) NOT NULL
 	, Direccionweb VARCHAR (256) NOT NULL
-	, Fax INTEGER
+	, Fax VARCHAR (15)
 	, PRIMARY KEY (OID)
 	, CONSTRAINT Fk_OIDCEmpresa FOREIGN KEY (OID)
 				REFERENCES Colaborador (OID)

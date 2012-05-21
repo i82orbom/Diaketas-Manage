@@ -5,6 +5,7 @@
 package Vistas.Paneles.BolsaTrabajo;
 
 import Vistas.Paneles.Beneficiario.*;
+import javax.swing.JButton;
 
 /**
  *
@@ -17,11 +18,40 @@ public class PanelConsultarOferta extends javax.swing.JPanel {
      * Creates new form PanelBeneficiarioBuscar
      */
     public PanelConsultarOferta() {
+        TextDuracionContrato.setEditable(false);
+        TextNIF1.setEditable(false);
+        TextNPuestos.setEditable(false);
+        taHistoriaLaboral.setEditable(false);
+        taCualificacion.setEditable(false);
         initComponents();
     }
+    public String getTextDuracionContrato() {
+        return TextDuracionContrato.getText();
+    }
     
+    public String getTextNIF(){
+        return TextNIF1.getText();
+    }
 
+    public String getTextNPuestos(){
+        return TextNPuestos.getText();
+    }
 
+    public JButton getBtEliminar(){
+        return BTEliminar;
+    }
+    
+    public JButton getBtModificar(){
+        return BTModificar;
+    }
+    
+    public String getTaHistorialLaboral(){
+        return taHistoriaLaboral.getText();
+   }
+    
+    public String getTaCualificacion(){
+        return taCualificacion.getText();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,6 +63,11 @@ public class PanelConsultarOferta extends javax.swing.JPanel {
 
         BTEliminar = new javax.swing.JButton();
         BTModificar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel66 = new javax.swing.JLabel();
+        jLabel72 = new javax.swing.JLabel();
+        cbSector = new javax.swing.JComboBox();
+        TextNIF1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel64 = new javax.swing.JLabel();
         jLabel65 = new javax.swing.JLabel();
@@ -44,17 +79,12 @@ public class PanelConsultarOferta extends javax.swing.JPanel {
         cbTipoContrato = new javax.swing.JComboBox();
         jLabel75 = new javax.swing.JLabel();
         TextDuracionContrato = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel66 = new javax.swing.JLabel();
-        jLabel72 = new javax.swing.JLabel();
-        cbSector = new javax.swing.JComboBox();
-        TextNIF1 = new javax.swing.JTextField();
         jLabel68 = new javax.swing.JLabel();
         jLabel69 = new javax.swing.JLabel();
         jLabel71 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        taHistoriaLaboral1 = new javax.swing.JTextArea();
+        taCualificacion = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
@@ -63,6 +93,43 @@ public class PanelConsultarOferta extends javax.swing.JPanel {
         BTEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
 
         BTModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/modificar.png"))); // NOI18N
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel66.setText("CIF/ NIF");
+
+        jLabel72.setText("Sector");
+
+        cbSector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Economico" }));
+
+        TextNIF1.setText("CIF/ NIF");
+
+        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel2Layout.createSequentialGroup()
+                .add(16, 16, 16)
+                .add(jLabel66)
+                .add(18, 18, 18)
+                .add(TextNIF1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(100, 100, 100)
+                .add(jLabel72)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel66)
+                    .add(jLabel72)
+                    .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(TextNIF1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -135,43 +202,6 @@ public class PanelConsultarOferta extends javax.swing.JPanel {
                 .add(7, 7, 7))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel66.setText("CIF/ NIF");
-
-        jLabel72.setText("Sector");
-
-        cbSector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Economico" }));
-
-        TextNIF1.setText("CIF/ NIF");
-
-        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .add(16, 16, 16)
-                .add(jLabel66)
-                .add(18, 18, 18)
-                .add(TextNIF1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(100, 100, 100)
-                .add(jLabel72)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel66)
-                    .add(jLabel72)
-                    .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(TextNIF1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-
         jLabel68.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel68.setForeground(java.awt.Color.red);
         jLabel68.setText("Datos Empresa");
@@ -186,11 +216,11 @@ public class PanelConsultarOferta extends javax.swing.JPanel {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        taHistoriaLaboral1.setColumns(20);
-        taHistoriaLaboral1.setRows(5);
-        taHistoriaLaboral1.setText("Descripción completa de la cualificacion necesria");
-        taHistoriaLaboral1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
-        jScrollPane2.setViewportView(taHistoriaLaboral1);
+        taCualificacion.setColumns(20);
+        taCualificacion.setRows(5);
+        taCualificacion.setText("Descripción completa de la cualificacion necesria");
+        taCualificacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
+        jScrollPane2.setViewportView(taCualificacion);
 
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -217,12 +247,6 @@ public class PanelConsultarOferta extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(0, 0, Short.MAX_VALUE)
-                        .add(BTModificar)
-                        .add(18, 18, 18)
-                        .add(BTEliminar)
-                        .add(389, 389, 389))
-                    .add(layout.createSequentialGroup()
                         .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
@@ -230,40 +254,45 @@ public class PanelConsultarOferta extends javax.swing.JPanel {
                         .addContainerGap())
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .add(layout.createSequentialGroup()
+                        .add(10, 10, 10)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel71)
+                            .add(jLabel69))
+                        .add(0, 0, Short.MAX_VALUE))))
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(28, 28, 28)
-                        .add(jLabel71))
+                        .add(24, 24, 24)
+                        .add(jLabel68))
                     .add(layout.createSequentialGroup()
-                        .add(30, 30, 30)
-                        .add(jLabel69))
-                    .add(layout.createSequentialGroup()
-                        .add(29, 29, 29)
-                        .add(jLabel68)))
+                        .add(450, 450, 450)
+                        .add(BTModificar)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(BTEliminar)))
                 .add(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
+                .addContainerGap()
                 .add(jLabel68)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(jLabel69)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jLabel69)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jLabel71)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(BTModificar)
                     .add(BTEliminar))
-                .add(15, 15, 15))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -290,7 +319,7 @@ public class PanelConsultarOferta extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea taCualificacion;
     private javax.swing.JTextArea taHistoriaLaboral;
-    private javax.swing.JTextArea taHistoriaLaboral1;
     // End of variables declaration//GEN-END:variables
 }

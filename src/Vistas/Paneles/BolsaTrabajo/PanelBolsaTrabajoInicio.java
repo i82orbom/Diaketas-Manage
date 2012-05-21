@@ -22,11 +22,11 @@ public class PanelBolsaTrabajoInicio extends javax.swing.JPanel {
 
     // LISTENERS
 
-    public void anadirListenerbtBuscarBeneficiario(ActionListener listener){
+    public void anadirListenerbtDemandasEmpleo(ActionListener listener){
         this.btDemandasEmpleo.addActionListener(listener);
     }
     
-    public void anadirListenerbtNuevoBeneficiario(ActionListener listener){
+    public void anadirListenerbtOfertasEmpleo(ActionListener listener){
         this.btOfertadeEmpleo.addActionListener(listener);
     }
     

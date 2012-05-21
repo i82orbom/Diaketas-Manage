@@ -1,17 +1,17 @@
 /**
- ** NOMBRE CLASE: 
+ ** NOMBRE CLASE:
  **	  VoluntarioJDBC.java
  **
  ** DESCRIPCION:
  **       Abstracción JDBC de Voluntario
- **       
+ **
  **
  ** DESARROLLADO POR:
  *        Francisco José Beltrán Rodriguez (FBR)
- *	   
- **        
+ *
+ **
  ** SUPERVISADO POR:
- **       Adolfo Arcoya Nieto (AAN)   
+ **       Adolfo Arcoya Nieto (AAN)
  **
  ** HISTORIA:
  ** 	000 - Mar 24, 2012 - FBR - Creacion
@@ -21,7 +21,7 @@
  *      004 - May 16, 2012 - RC  - Revision y testo de todos los metodos con los OID y adicion de getOIDVoluntarioFromPersona(String DNI)
  **
  ** NOTAS:
- **   
+ **
  **
  */
 package JDBC;
@@ -39,42 +39,36 @@ import java.util.logging.Logger;
  * @author Jobero
  */
 public class VoluntarioJDBC {
-    
+
     private static VoluntarioJDBC instancia;
     private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-    
+
     private VoluntarioJDBC(){
-        
+
     }
-    
+
     public static VoluntarioJDBC getInstance(){
-        
+
         if(instancia == null)
              instancia = new VoluntarioJDBC();
         return instancia;
-        
+
     }
-    
+
     public boolean anadirVoluntario (Voluntario voluntario) throws SQLException{
-        
+
         DriverJDBC driver = DriverJDBC.getInstance() ;
-        Integer Cp = voluntario.getCP();
-        String Cp_cadena = Cp.toString();
-        Integer telefono_fijo = voluntario.getTelefonoFijo();
-        String telefono_fijo_cadena = telefono_fijo.toString();
-        Integer telefono_movil = voluntario.getTelefonoMovil();
-        String telefono_movil_cadena = telefono_movil.toString();
-        
-        String sql = "INSERT INTO persona (NIF,Nombre,Apellidos,CP,TelefonoFijo,TelefonoMovil,Domicilio,Localidad,FechaNacimiento) VALUES ('"+voluntario.getNIF()+"','"+voluntario.getNombre()+"','"+voluntario.getApellidos()+"','"+Cp_cadena+"','"+telefono_fijo_cadena+"','"+telefono_movil_cadena+"','"+voluntario.getDomicilio()+"','"+voluntario.getLocalidad()+"','"+formatter.format(voluntario.getFechaDENacimiento())+"')";
-	
+
+        String sql = "INSERT INTO persona (NIF,Nombre,Apellidos,CP,TelefonoFijo,TelefonoMovil,Domicilio,Localidad,FechaNacimiento) VALUES ('"
+				+voluntario.getNIF()+"','"+voluntario.getNombre()+"','"+voluntario.getApellidos()+"','"+voluntario.getCP()+"','"+voluntario.getTelefonoFijo()+"','"+voluntario.getTelefonoMovil()+"','"+voluntario.getDomicilio()+"','"+voluntario.getLocalidad()+"','"+formatter.format(voluntario.getFechaDENacimiento())+"')";
+
         String sql2 = "INSERT INTO voluntario (OID,Password) VALUES (LAST_INSERT_ID(),'"+voluntario.getPassword()+"')";
-        
+
         boolean exito = driver.insertar(sql);
-        if (exito)
-            exito = driver.insertar(sql2);
-        
+        if (exito) exito = driver.insertar(sql2);
+
         return exito;
-        
+
     }
 
     public boolean borrarVoluntario(String DNI) throws SQLException {
@@ -96,17 +90,9 @@ public class VoluntarioJDBC {
     }
 
     public boolean modificarDatosVoluntario(Voluntario voluntario) throws SQLException {
-
         DriverJDBC driver = DriverJDBC.getInstance();
-        Integer Cp = voluntario.getCP();
-        String Cp_cadena = Cp.toString();
-        Integer telefono_fijo = voluntario.getTelefonoFijo();
-        String telefono_fijo_cadena = telefono_fijo.toString();
-        Integer telefono_movil = voluntario.getTelefonoMovil();
-        String telefono_movil_cadena = telefono_movil.toString();
 
-
-        String sql = "UPDATE persona SET NIF='" + voluntario.getNIF() + "',Nombre='" + voluntario.getNombre() + "',Apellidos='" + voluntario.getApellidos() + "',FechaNacimiento='" + voluntario.getFechaDENacimiento().toString() + "',CP='" + Cp_cadena + "',TelefonoFijo='" + telefono_fijo_cadena + "',TelefonoMovil='" + telefono_movil_cadena + "',Domicilio='" + voluntario.getDomicilio() + "',Localidad='" + voluntario.getLocalidad() + "' WHERE NIF =" + voluntario.getNIF() + "'";
+        String sql = "UPDATE persona SET NIF='" + voluntario.getNIF() + "',Nombre='" + voluntario.getNombre() + "',Apellidos='" + voluntario.getApellidos() + "',FechaNacimiento='" + voluntario.getFechaDENacimiento().toString() + "',CP='" + voluntario.getCP() + "',TelefonoFijo='" + voluntario.getTelefonoFijo() + "',TelefonoMovil='" + voluntario.getTelefonoMovil() + "',Domicilio='" + voluntario.getDomicilio() + "',Localidad='" + voluntario.getLocalidad() + "' WHERE OID =" + voluntario.getOID() + "'";
         int OID = getOIDVoluntarioFromPersona(voluntario.getNIF());
         String sql2 = "UPDATE voluntario SET Password='" + voluntario.getPassword() + "' WHERE OID =" + OID + "'";
 
@@ -137,13 +123,12 @@ public class VoluntarioJDBC {
             temp.setNombre(resultados.getString("Nombre"));
             temp.setApellidos(resultados.getString("Apellidos"));
             temp.setFechaDENacimiento(resultados.getDate("FechaNacimiento"));
-            temp.setCP(resultados.getInt("CP"));
-            temp.setTelefonoFijo(resultados.getInt("TelefonoFijo"));
-            temp.setTelefonoMovil(resultados.getInt("TelefonoMovil"));
+            temp.setCP(resultados.getString("CP"));
+            temp.setTelefonoFijo(resultados.getString("TelefonoFijo"));
+            temp.setTelefonoMovil(resultados.getString("TelefonoMovil"));
             temp.setDomicilio(resultados.getString("Domicilio"));
             temp.setLocalidad(resultados.getString("Localidad"));
             listadoVoluntarios.add(temp);
-
         }
 
         return listadoVoluntarios;
@@ -166,9 +151,9 @@ public class VoluntarioJDBC {
             voluntario.setNIF(resultado.getString("NIF"));
             voluntario.setNombre(resultado.getString("Nombre"));
             voluntario.setApellidos(resultado.getString("Apellidos"));
-            voluntario.setCP(resultado.getInt("CP"));
-            voluntario.setTelefonoFijo(resultado.getInt("TelefonoFijo"));
-            voluntario.setTelefonoMovil(resultado.getInt("TelefonoMovil"));
+            voluntario.setCP(resultado.getString("CP"));
+            voluntario.setTelefonoFijo(resultado.getString("TelefonoFijo"));
+            voluntario.setTelefonoMovil(resultado.getString("TelefonoMovil"));
             voluntario.setDomicilio(resultado.getString("Domicilio"));
             voluntario.setLocalidad(resultado.getString("Localidad"));
             voluntario.setFechaDENacimiento(resultado.getDate("FechaNacimiento"));

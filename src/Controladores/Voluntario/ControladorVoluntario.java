@@ -4,7 +4,6 @@
  */
 package Controladores.Voluntario;
 
-import Controladores.ControladorColaboradores;
 import Controladores.ControladorPrincipal;
 import Controladores.TestDatos;
 import JDBC.VoluntarioJDBC;
@@ -13,8 +12,6 @@ import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.Voluntario.VistaVoluntario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -167,10 +164,10 @@ public class ControladorVoluntario {
             Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
         }
         voluntario.setDomicilio(datos[Voluntario.DOMICILIO_ID]);
-        voluntario.setCP(Integer.parseInt(datos[Voluntario.CP_ID]));
+        voluntario.setCP(datos[Voluntario.CP_ID]);
         voluntario.setLocalidad(datos[Voluntario.LOCALIDAD_ID]);
-        voluntario.setTelefonoMovil(Integer.parseInt(datos[Voluntario.TELEFONO_MOVIL_ID]));
-        voluntario.setTelefonoFijo(Integer.parseInt(datos[Voluntario.TELEFONO_FIJO_ID]));
+        voluntario.setTelefonoMovil(datos[Voluntario.TELEFONO_MOVIL_ID]);
+        voluntario.setTelefonoFijo(datos[Voluntario.TELEFONO_FIJO_ID]);
         voluntario.setPassword(datos[Voluntario.PASSWORD_ID]);
 
         try {
@@ -226,10 +223,10 @@ public class ControladorVoluntario {
             Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
         }
         voluntario.setDomicilio(datos[Voluntario.DOMICILIO_ID]);
-        voluntario.setCP(Integer.parseInt(datos[Voluntario.CP_ID]));
+        voluntario.setCP(datos[Voluntario.CP_ID]);
         voluntario.setLocalidad(datos[Voluntario.LOCALIDAD_ID]);
-        voluntario.setTelefonoMovil(Integer.parseInt(datos[Voluntario.TELEFONO_MOVIL_ID]));
-        voluntario.setTelefonoFijo(Integer.parseInt(datos[Voluntario.TELEFONO_FIJO_ID]));
+        voluntario.setTelefonoMovil(datos[Voluntario.TELEFONO_MOVIL_ID]);
+        voluntario.setTelefonoFijo(datos[Voluntario.TELEFONO_FIJO_ID]);
         if(!"".equals(password))
             voluntario.setPassword(ControladorPrincipal.getInstance().md5(password+ControladorPrincipal.getInstance().getSalto()));
         else

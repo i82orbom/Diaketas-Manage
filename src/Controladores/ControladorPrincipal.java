@@ -6,6 +6,7 @@ package Controladores;
 
 import Controladores.Colaborador.ControladorSocio;
 import Controladores.Voluntario.ControladorVoluntario;
+import Controladores.ControladorBolsaTrabajo;
 import JDBC.DriverJDBC;
 import Modelo.Voluntario;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
