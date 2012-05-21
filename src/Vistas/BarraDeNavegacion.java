@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Vistas;
 
 import java.awt.event.ActionEvent;
@@ -10,17 +7,17 @@ import java.awt.event.ActionListener;
 /**
  ** DESCRIPCION :
  *      Barra de navigacion generica
- * 
+ *
  * @author raphaelcolleau
  */
 public class BarraDeNavegacion extends javax.swing.JPanel {
-    
+
     ActionListener listener;
-    
+
     public static String TO_VISTA_INICIAL = "toMain";
     public static String TO_NIVEL1 = "toNivel1";
     public static String TO_NIVEL2 = "toNivel2";
-    
+
     /**
      * Creates new form BarraDeNavegacion
      */
@@ -38,25 +35,25 @@ public class BarraDeNavegacion extends javax.swing.JPanel {
     public void setListener(ActionListener listener) {
         this.listener = listener;
     }
-    
+
     // indicar un texto de la vista
     public void setTextLabelNivel1 (String text) {
         labelNivel1.setText(text);
         labelNivel1.setVisible(true);
         senalaNivel1.setVisible(true);
     }
-    
+
     // indicar un texto del panel
     public void setTextLabelNivel2 (String text) {
         labelNivel2.setText(text);
         labelNivel2.setVisible(true);
-        senalaNivel2.setVisible(true);  
+        senalaNivel2.setVisible(true);
     }
-    
+
     public void setTextLabelNivel3 (String text) {
         labelNivel3.setText(text);
         labelNivel3.setVisible(true);
-        senalaNivel3.setVisible(true);  
+        senalaNivel3.setVisible(true);
     }
 
     /**
@@ -167,7 +164,7 @@ public class BarraDeNavegacion extends javax.swing.JPanel {
         labelNivel2.setVisible(false);
         senalaNivel3.setVisible(false);
         labelNivel3.setVisible(false);
-        
+
         // manda un event al controlador para cambiar de panel
         ActionEvent event = new ActionEvent(this, 0, TO_VISTA_INICIAL);
         listener.actionPerformed(event);
@@ -179,7 +176,7 @@ public class BarraDeNavegacion extends javax.swing.JPanel {
         labelNivel2.setVisible(false);
         senalaNivel3.setVisible(false);
         labelNivel3.setVisible(false);
-        
+
         // manda un event al controlador para cambiar de panel
         ActionEvent event = new ActionEvent(this, 0, TO_NIVEL1);
         listener.actionPerformed(event);
@@ -188,7 +185,7 @@ public class BarraDeNavegacion extends javax.swing.JPanel {
     private void labelNivel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelNivel2MouseClicked
         senalaNivel3.setVisible(false);
         labelNivel3.setVisible(false);
-        
+
         // manda un event al controlador para cambiar de panel
         ActionEvent event = new ActionEvent(this, 0, TO_NIVEL2);
         listener.actionPerformed(event);

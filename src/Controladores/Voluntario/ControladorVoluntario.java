@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Controladores.Voluntario;
 
 import Controladores.ControladorPrincipal;
@@ -21,9 +18,25 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
 /**
- ** NOMBRE CLASE: *	ControladorVoluntario * * DESCRIPCION: * * * * DESARROLLADO
- * POR: Raphael Colleau (RC) * * * SUPERVISADO POR: * * * HISTORIA: * 000 - 10
- * mai 2012 - RC - Creacion * * NOTAS: * *
+ ** NOMBRE CLASE:
+ *	ControladorVoluntario
+ *
+ ** DESCRIPCION:
+ *
+ *
+ * DESARROLLADO POR:
+ *			Raphael Colleau (RC)
+ *
+ *
+ * SUPERVISADO POR:
+ *
+ * HISTORIA:
+ *		000 - 10 mai 2012 - RC - Creacion
+ *
+ *
+ * NOTAS:
+ *
+ *
  */
 public class ControladorVoluntario {
 

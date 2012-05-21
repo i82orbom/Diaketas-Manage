@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package Controladores.Voluntario;
 
@@ -16,19 +12,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- ** NOMBRE CLASE: 
+ ** NOMBRE CLASE:
  **	  ControladorColaborador
  **
  ** DESCRIPCION:
- **       
- **       
+ **
+ **
  **
  ** DESARROLLADO POR:
  *          Raphael Colleau (RC)
- **        
+ **
  **
  ** SUPERVISADO POR:
- **          
+ **
  **
  ** HISTORIA:
  ** 	000 - 1 mai 2012 - RC - Creacion
@@ -36,13 +32,13 @@ import java.util.logging.Logger;
  *      002 - 5 mai 2012 - RC - relleno de metodos
  **
  ** NOTAS:
- **   
+ **
  **
  */
 public class ControladorColaboracion {
 
     /** PATRON DE DISEÑO SINGLETON */
-    
+
     private static ControladorColaboracion instancia;
 
     /*
@@ -53,7 +49,7 @@ public class ControladorColaboracion {
         return instancia;
 
     }
-    
+
     private PanelVoluntarioColaboracion vista;
 
     public ControladorColaboracion(PanelVoluntarioColaboracion vista) {
@@ -63,14 +59,14 @@ public class ControladorColaboracion {
     public Colaboracion anadirColaboracion (String[] datos){
         if (!comprobarDatos(datos))
             return null;
-        
+
         Colaboracion c = new Colaboracion();
-        
+
         c.setConcepto(datos[Colaboracion.CONCEPTO_ID]);
         c.setFecha(Date.valueOf(datos[Colaboracion.FECHA_ID]));
         c.setImporte(Integer.parseInt(datos[Colaboracion.IMPORTE_ID]));
-        
-        
+
+
         try {
             ColaboracionJDBC.getInstance().añadirColaboracion(c);
         } catch (SQLException ex) {
@@ -78,37 +74,37 @@ public class ControladorColaboracion {
         }
         return null;
     }
-    
+
     public boolean eliminarColaboracion (Colaboracion c) {
         try {
             return ColaboracionJDBC.getInstance().eliminarColaboracion(c);
         } catch (SQLException ex) {
             Logger.getLogger(ControladorColaboracion.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return false;
     }
-    
+
     public ArrayList<Colaboracion> historialColaboraciones (Colaborador c, Date fechaInicio, Date fechaFin) {
         try {
             return ColaboracionJDBC.getInstance().HistorialColaboraciones(c, fechaInicio, fechaFin);
         } catch (SQLException ex) {
             Logger.getLogger(ControladorColaboracion.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return null;
     }
-    
+
     private boolean comprobarDatos (String[] datos) {
         // cada campo debe ser not null
         for (int i=0; i<datos.length; i++) {
             if (datos[i].length() < 1)
                 return false;
         }
-        
+
         if (!TestDatos.isOnlyDigit(datos[Colaboracion.IMPORTE_ID]))
             return false;
-        
+
         return true;
     }
 }

@@ -1,43 +1,37 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package Controladores;
 
 import Vistas.BarraDeNavegacion;
-import Vistas.Paneles.Beneficiario.VistaBeneficiario;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
-import Vistas.Paneles.Socio.VistaSocio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- ** NOMBRE CLASE: 
+ ** NOMBRE CLASE:
  **	  ControladorBeneficiario
  **
  ** DESCRIPCION:
- **       
- **       
+ **
+ **
  **
  ** DESARROLLADO POR:
- *          Alberto Moreno Mantas
- * 
- **        
+ *          Alberto Moreno Mantas (AMM)
+ *
+ **
  **
  ** SUPERVISADO POR:
- **          
+ **
  **
  ** HISTORIA:
- ** 	000 - 20 May 2012 - MOB - Creacion
+ ** 	000 - 20 May 2012 - AMM - Creacion
  **
  ** NOTAS:
- **   
+ **
  **
  */
 public class ControladorColaboradores {
     /** PATRON DE DISEÑO SINGLETON */
-    
+
     private static ControladorColaboradores instancia;
 
 
@@ -50,23 +44,23 @@ public class ControladorColaboradores {
     }
 
     private VistaColaboradores vista;
-    
+
     /**
      * Constructor de la clase
-     */	
+     */
     private ControladorColaboradores(VistaColaboradores pvista){
 
-	/** 
+	/**
      * Establece como ventana padre la pasada como parámetro
      */
 	vista = pvista;
-        
+
         // anadir listener
         vista.getBarraDeNavigacion().setListener(new ListenerBarraNavigacion());
         vista.getPanelColaboradoresInicio().anadirListenerbtColaborador(new btColaboradorListener());
         vista.getPanelColaboradoresInicio().anadirListenerbtSocio(new btSocioListener());
         vista.getPanelColaboradoresInicio().anadirListenerbtEmpresa(new btEmpresaListener());
-       
+
         vista.getPanelSocioInicio().anadirListenerbtNuevoSocio(new btNuevoSocioListener());
         vista.getPanelSocioInicio().anadirListenerbtBuscarSocio(new btBuscarSocioListener());
         vista.getPanelEmpresaInicio().anadirListenerbtBuscarEmpresa(new btBuscarEmpresaListener());
@@ -74,55 +68,55 @@ public class ControladorColaboradores {
         vista.getPanelColaboradorInicio().anadirListenerbtNuevoColaborador(new btNuevoColaboradorListener());
         vista.getPanelColaboradorInicio().anadirListenerbtBuscarColaborador(new btBuscarColaboradorListener());
         // al principio mostrar la vista de inicio
-        mostrarVistaInicio();   
-       
+        mostrarVistaInicio();
+
     }
-    
+
     // mostrar la vista que queremos y actualizacion de la barra de navigacion
     private void mostrarVistaInicio(){
         vista.showPanel(VistaColaboradores.panelColaboradoresInicio);
-        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");     
+        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
     }
-    
+
     private void mostrarVistaSocio(){
         vista.showPanel(VistaColaboradores.panelsocioInicio);
-        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");  
+        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
         vista.getBarraDeNavigacion().setTextLabelNivel2("Socio");
     }
-    
+
     private void mostrarVistaEmpresa(){
         vista.showPanel(VistaColaboradores.panelempresaInicio);
-        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");    
-        vista.getBarraDeNavigacion().setTextLabelNivel2("Empresa");   
+        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
+        vista.getBarraDeNavigacion().setTextLabelNivel2("Empresa");
     }
-    
+
       private void mostrarVistaColaborador(){
         vista.showPanel(VistaColaboradores.panelcolaboradorInicio);
-        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");    
-        vista.getBarraDeNavigacion().setTextLabelNivel2("Colaborador");   
+        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
+        vista.getBarraDeNavigacion().setTextLabelNivel2("Colaborador");
     }
-    
+
     private void mostrarVistaSocioNuevo(){
         vista.showPanel(VistaColaboradores.panelsocioDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
         vista.getBarraDeNavigacion().setTextLabelNivel2("Socio");
         vista.getBarraDeNavigacion().setTextLabelNivel3("Datos");
     }
-    
+
     private void mostrarVistaSocioBuscar(){
         vista.showPanel(VistaColaboradores.panelsocioBuscar);
         vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
         vista.getBarraDeNavigacion().setTextLabelNivel2("Socio");
         vista.getBarraDeNavigacion().setTextLabelNivel3("Buscar");
     }
-    
+
     private void mostrarVistaEmpresaNuevo(){
         vista.showPanel(VistaColaboradores.panelempresaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
         vista.getBarraDeNavigacion().setTextLabelNivel2("Empresa");
         vista.getBarraDeNavigacion().setTextLabelNivel3("Datos");
     }
-    
+
     private void mostrarVistaEmpresaBuscar(){
         vista.showPanel(VistaColaboradores.panelempresaBuscar);
         vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
@@ -135,7 +129,7 @@ public class ControladorColaboradores {
         vista.getBarraDeNavigacion().setTextLabelNivel2("Colaborador");
         vista.getBarraDeNavigacion().setTextLabelNivel3("Datos");
     }
-    
+
     private void mostrarVistaColaboradorBuscar(){
         vista.showPanel(VistaColaboradores.panelcolaboradorBuscar);
         vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
@@ -151,14 +145,14 @@ public class ControladorColaboradores {
                 mostrarVistaInicio();
                 ControladorPrincipal.getInstance().mostrarVistaInicio();
             }
-            
+
             if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_NIVEL1)) {
                 mostrarVistaInicio();
             }
         }
     }
-    
-   
+
+
     // listeners de los botones
     class btSocioListener implements ActionListener {
         @Override
@@ -166,28 +160,28 @@ public class ControladorColaboradores {
             mostrarVistaSocio();
         }
     }
-    
+
     class btEmpresaListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {
             mostrarVistaEmpresa();
         }
     }
-    
+
     class btColaboradorListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {
             mostrarVistaColaborador();
         }
     }
-    
+
     class btNuevoSocioListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {
             mostrarVistaSocioNuevo();
         }
     }
-   
+
    class btBuscarSocioListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -200,7 +194,7 @@ public class ControladorColaboradores {
             mostrarVistaEmpresaNuevo();
         }
     }
-   
+
    class btBuscarEmpresaListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -213,7 +207,7 @@ public class ControladorColaboradores {
             mostrarVistaColaboradorNuevo();
         }
     }
-   
+
    class btBuscarColaboradorListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {

@@ -21,9 +21,9 @@ import java.util.regex.Pattern;
  **
  **
  ** HISTORIA:
- ** 	000 -  4 may 2012 - RC - Creacion + metodos
- ** 	001 -  5 may 2012 - RC - Adicion metodos
- *		002 - 20 may 2012 - ARS - Metodos para nombre, direccion y fecha
+ ** 	000 -  4 May 2012 - RC - Creacion + metodos
+ ** 	001 -  5 May 2012 - RC - Adicion metodos
+ *		002 - 20 May 2012 - ARS - Metodos para nombre, direccion y fecha
  **
  ** NOTAS:
  **

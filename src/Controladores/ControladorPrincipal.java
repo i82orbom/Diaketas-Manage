@@ -1,15 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Controladores;
 
-import Controladores.Colaborador.ControladorSocio;
 import Controladores.Voluntario.ControladorVoluntario;
-import Controladores.ControladorBolsaTrabajo;
 import JDBC.DriverJDBC;
 import Modelo.Voluntario;
-import Vistas.Paneles.Colaboradores.VistaColaboradores;
 import Vistas.Ventana;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,27 +14,27 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- ** NOMBRE CLASE: 
- *	
- * ControladorPrincipal 
- * 
- * DESCRIPCION: 
- * 
- * 
- * 
- * DESARROLLADO POR: 
- *      Raphael Colleau (RC) 
+ ** NOMBRE CLASE:
+ *
+ * ControladorPrincipal
+ *
+ * DESCRIPCION:
  *
  *
  *
- * SUPERVISADO POR: 
+ * DESARROLLADO POR:
+ *      Raphael Colleau (RC)
  *
- * 
- * HISTORIA: 
- *      000 - 10 mai 2012 - RC - Creacion 
- * 
- * NOTAS: 
- * 
+ *
+ *
+ * SUPERVISADO POR:
+ *
+ *
+ * HISTORIA:
+ *      000 - 10 May 2012 - RC - Creacion
+ *
+ * NOTAS:
+ *
  *
  */
 public class ControladorPrincipal {
@@ -62,7 +56,7 @@ public class ControladorPrincipal {
     }
 
     private Ventana vista;
-    
+
     /* Salto para la codificación de la contraseña (para login y registro) */
     private String salto="Mary Popins";
 
@@ -77,7 +71,7 @@ public class ControladorPrincipal {
         vista = pvista;
         vista.setVisible(true);
         //vistaC.setVisible(false);
-        
+
         // al principio mostra el panel de Login
         vista.showPanel(Ventana.panelLogin);
 
@@ -85,7 +79,7 @@ public class ControladorPrincipal {
         ControladorVoluntario.getInstance(this.vista.getPanelVoluntario());
         ControladorBeneficiario.getInstance(this.vista.getVistaBeneficiario());
         ControladorColaboradores.getInstance(this.vista.getVistaColaboradores());
-        
+
         // adicion de los listeners cuyo el controlador se encarga
         vista.getVistaLogin().anadirListenerBtConectarse(new BtConectarseListener());
         vista.getVistaInicial().anadirListenerbtVoluntario(new BtVoluntarioListener());
@@ -113,7 +107,7 @@ public class ControladorPrincipal {
     	                .getInstance("MD5");
     	        digest.update(s.getBytes());
     	        byte messageDigest[] = digest.digest();
-    	 
+
     	        // Create Hex String
     	        StringBuffer hexString = new StringBuffer();
     	        for (int i = 0; i < messageDigest.length; i++) {
@@ -123,13 +117,13 @@ public class ControladorPrincipal {
     	            hexString.append(h);
     	        }
     	        return hexString.toString();
-    	 
+
     	    } catch (NoSuchAlgorithmException e) {
     	        e.printStackTrace();
     	    }
     	    return "";
     	}
-    
+
     // Listeners botones
     class BtConectarseListener implements ActionListener {
 
@@ -169,14 +163,14 @@ public class ControladorPrincipal {
             }
         }
     }
-    
+
     class BtDesconectarseListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
             vista.showPanel(Ventana.panelLogin);
         }
-        
+
     }
 
     class BtVoluntarioListener implements ActionListener {
@@ -186,8 +180,8 @@ public class ControladorPrincipal {
             vista.showPanel(Ventana.panelVoluntario);
         }
     }
-    
-    
+
+
      class  BtBeneficiarioListener implements ActionListener {
 
         @Override
@@ -195,7 +189,7 @@ public class ControladorPrincipal {
             vista.showPanel(Ventana.panelBeneficiario);
         }
      }
-     
+
      class  BtColaboradoresListener implements ActionListener {
 
         @Override
