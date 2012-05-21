@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista.Paneles.BolsaTrabajo;
+package Vistas.Paneles.BolsaTrabajo;
 
 import Vistas.Paneles.Beneficiario.*;
 
@@ -10,13 +10,13 @@ import Vistas.Paneles.Beneficiario.*;
  *
  * @author psylock
  */
-public class PanelModificarOferta extends javax.swing.JPanel {
+public class PanelNuevaOferta extends javax.swing.JPanel {
   
     
     /**
      * Creates new form PanelBeneficiarioBuscar
      */
-    public PanelModificarOferta() {
+    public PanelNuevaOferta() {
         initComponents();
     }
     
