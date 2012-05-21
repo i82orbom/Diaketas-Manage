@@ -5,6 +5,11 @@
 package Vistas.Paneles.BolsaTrabajo;
 
 import Vistas.Paneles.Beneficiario.*;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+
 
 /**
  *
@@ -19,6 +24,36 @@ public class PanelDemandanteBuscar extends javax.swing.JPanel {
     public PanelDemandanteBuscar() {
         initComponents();
     }
+    
+    public JButton getBTBuscar(){
+        return BTBuscar;
+    }
+    
+    public JButton getBTEliminar(){
+        return BTEliminar;
+    }
+    
+    public JButton getBTModificar(){
+        return BTEliminar;
+    }
+    
+    public String getcbSector(){
+        return cbSector.getSelectedItem().toString();
+    }
+    
+    public String getcbAntiguedad(){
+        return cbAntiguedad.getSelectedItem().toString();
+    }
+    
+    public JTable getTablaBusquedaDemandante(){
+        return tablaBusquedaDemandante;
+    }
+    
+    public String getTextBusquedaDemandanteDNI(){
+        return textBusquedaDemandanteDNI.getText();
+    }
+    
+    
     
 
 
@@ -41,7 +76,7 @@ public class PanelDemandanteBuscar extends javax.swing.JPanel {
         cbAntiguedad = new javax.swing.JComboBox();
         BTEliminar = new javax.swing.JButton();
         BTModificar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BTBuscar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
@@ -73,7 +108,7 @@ public class PanelDemandanteBuscar extends javax.swing.JPanel {
 
         BTModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/modificar.png"))); // NOI18N
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/consultar.png"))); // NOI18N
+        BTBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/consultar.png"))); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -100,7 +135,7 @@ public class PanelDemandanteBuscar extends javax.swing.JPanel {
                         .add(cbAntiguedad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(175, 175, 175))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(jButton2)
+                        .add(BTBuscar)
                         .add(18, 18, 18)
                         .add(BTModificar)
                         .add(18, 18, 18)
@@ -119,23 +154,23 @@ public class PanelDemandanteBuscar extends javax.swing.JPanel {
                     .add(jLabel65)
                     .add(cbAntiguedad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
-                .add(jScrollPane5)
+                .add(jScrollPane5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
                 .add(87, 87, 87)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                         .add(BTEliminar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(BTModificar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .add(jButton2))
+                    .add(BTBuscar))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BTBuscar;
     private javax.swing.JButton BTEliminar;
     private javax.swing.JButton BTModificar;
     private javax.swing.JComboBox cbAntiguedad;
     private javax.swing.JComboBox cbSector;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;

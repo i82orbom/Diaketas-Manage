@@ -5,6 +5,10 @@
 package Vistas.Paneles.BolsaTrabajo;
 
 import Vistas.Paneles.Beneficiario.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -20,7 +24,25 @@ public class PanelConsultarDemanda extends javax.swing.JPanel {
         initComponents();
     }
     
-
+    public JButton getBtModificar(){
+        return BTModificar;
+    }
+    
+    public JButton getBTEliminar(){
+        return BTEliminar;
+    }
+    
+    public String getTextNIF(){
+        return TextNIF.getText();
+    }
+    
+    public String getcbSector(){
+        return cbSector.getSelectedItem().toString();
+    }
+    
+    public void settaHitoriaLaboral(String historial){
+        taHistoriaLaboral.setText(historial);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
