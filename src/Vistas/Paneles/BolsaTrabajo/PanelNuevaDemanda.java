@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista.Paneles.BolsaTrabajo;
+package Vistas.Paneles.BolsaTrabajo;
 
 import Vistas.Paneles.Beneficiario.*;
 
@@ -10,13 +10,13 @@ import Vistas.Paneles.Beneficiario.*;
  *
  * @author psylock
  */
-public class PanelConsultarDemanda extends javax.swing.JPanel {
+public class PanelNuevaDemanda extends javax.swing.JPanel {
   
     
     /**
      * Creates new form PanelBeneficiarioBuscar
      */
-    public PanelConsultarDemanda() {
+    public PanelNuevaDemanda() {
         initComponents();
     }
     
@@ -31,8 +31,8 @@ public class PanelConsultarDemanda extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BTEliminar = new javax.swing.JButton();
-        BTModificar = new javax.swing.JButton();
+        btLimpiar = new javax.swing.JButton();
+        btGuardar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel64 = new javax.swing.JLabel();
         jLabel65 = new javax.swing.JLabel();
@@ -49,9 +49,9 @@ public class PanelConsultarDemanda extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
 
-        BTEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
+        btLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
 
-        BTModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/modificar.png"))); // NOI18N
+        btGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -142,10 +142,10 @@ public class PanelConsultarDemanda extends javax.swing.JPanel {
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(0, 453, Short.MAX_VALUE)
-                        .add(BTModificar)
+                        .add(0, 455, Short.MAX_VALUE)
+                        .add(btGuardar)
                         .add(18, 18, 18)
-                        .add(BTEliminar)
+                        .add(btLimpiar)
                         .add(389, 389, 389))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
@@ -155,36 +155,36 @@ public class PanelConsultarDemanda extends javax.swing.JPanel {
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(24, 24, 24)
-                        .add(jLabel68))
-                    .add(layout.createSequentialGroup()
                         .add(25, 25, 25)
-                        .add(jLabel69)))
+                        .add(jLabel69))
+                    .add(layout.createSequentialGroup()
+                        .add(22, 22, 22)
+                        .add(jLabel68)))
                 .add(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .addContainerGap(58, Short.MAX_VALUE)
+                .addContainerGap(70, Short.MAX_VALUE)
                 .add(jLabel68)
-                .add(18, 18, 18)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
+                .add(30, 30, 30)
                 .add(jLabel69)
-                .add(18, 18, 18)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(34, 34, 34)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(BTEliminar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(BTModificar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(btLimpiar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(btGuardar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BTEliminar;
-    private javax.swing.JButton BTModificar;
     private javax.swing.JTextField TextNIF;
+    private javax.swing.JButton btGuardar;
+    private javax.swing.JButton btLimpiar;
     private javax.swing.JComboBox cbSector;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;

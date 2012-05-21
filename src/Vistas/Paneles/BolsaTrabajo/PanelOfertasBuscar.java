@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista.Paneles.BolsaTrabajo;
+package Vistas.Paneles.BolsaTrabajo;
 
 import Vistas.Paneles.Beneficiario.*;
 
@@ -10,13 +10,13 @@ import Vistas.Paneles.Beneficiario.*;
  *
  * @author psylock
  */
-public class PanelDemandanteBuscar extends javax.swing.JPanel {
+public class PanelOfertasBuscar extends javax.swing.JPanel {
   
     
     /**
      * Creates new form PanelBeneficiarioBuscar
      */
-    public PanelDemandanteBuscar() {
+    public PanelOfertasBuscar() {
         initComponents();
     }
     
@@ -32,10 +32,8 @@ public class PanelDemandanteBuscar extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane5 = new javax.swing.JScrollPane();
-        tablaBusquedaDemandante = new javax.swing.JTable();
-        jLabel63 = new javax.swing.JLabel();
+        tablaBusquedaOferta = new javax.swing.JTable();
         jLabel64 = new javax.swing.JLabel();
-        textBusquedaDemandanteDNI = new javax.swing.JTextField();
         cbSector = new javax.swing.JComboBox();
         jLabel65 = new javax.swing.JLabel();
         cbAntiguedad = new javax.swing.JComboBox();
@@ -47,21 +45,26 @@ public class PanelDemandanteBuscar extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
 
-        tablaBusquedaDemandante.setModel(new javax.swing.table.DefaultTableModel(
+        tablaBusquedaOferta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"12345678E", "Pepe Morillas Bonico", "Construccion", null}
+                {"F12344322", "Reformas chapuza", "Construccion", "12/01/2012"},
+                {null, null, null, null}
             },
             new String [] {
-                "DNI", "Nombre y Apellidos", "Sector", "Fecha Demanda"
+                "CIF", "Razon Social", "Sector", "Fecha Demanda"
             }
-        ));
-        jScrollPane5.setViewportView(tablaBusquedaDemandante);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+            };
 
-        jLabel63.setText("Demandante");
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(tablaBusquedaOferta);
 
         jLabel64.setText("Sector Busqueda");
-
-        textBusquedaDemandanteDNI.setText("DNI");
 
         cbSector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Construccion", "Electricidad", "Carpinteria", "Fontaneria", " " }));
 
@@ -79,47 +82,41 @@ public class PanelDemandanteBuscar extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(25, 25, 25)
-                .add(jScrollPane5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 948, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(380, Short.MAX_VALUE)
+                .add(jButton2)
+                .add(18, 18, 18)
+                .add(BTModificar)
+                .add(18, 18, 18)
+                .add(BTEliminar)
+                .add(389, 389, 389))
+            .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(jLabel63)
-                        .add(18, 18, 18)
-                        .add(textBusquedaDemandanteDNI, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(69, 69, 69)
+                    .add(layout.createSequentialGroup()
+                        .add(25, 25, 25)
+                        .add(jScrollPane5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 948, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(layout.createSequentialGroup()
+                        .add(62, 62, 62)
                         .add(jLabel64)
                         .add(18, 18, 18)
                         .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(79, 79, 79)
+                        .add(46, 46, 46)
                         .add(jLabel65)
                         .add(18, 18, 18)
-                        .add(cbAntiguedad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(175, 175, 175))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(jButton2)
-                        .add(18, 18, 18)
-                        .add(BTModificar)
-                        .add(18, 18, 18)
-                        .add(BTEliminar)
-                        .add(389, 389, 389))))
+                        .add(cbAntiguedad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(51, 51, 51)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel63)
                     .add(jLabel64)
-                    .add(textBusquedaDemandanteDNI, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel65)
                     .add(cbAntiguedad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
-                .add(jScrollPane5)
+                .add(jScrollPane5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
                 .add(87, 87, 87)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
@@ -136,11 +133,9 @@ public class PanelDemandanteBuscar extends javax.swing.JPanel {
     private javax.swing.JComboBox cbAntiguedad;
     private javax.swing.JComboBox cbSector;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable tablaBusquedaDemandante;
-    private javax.swing.JTextField textBusquedaDemandanteDNI;
+    private javax.swing.JTable tablaBusquedaOferta;
     // End of variables declaration//GEN-END:variables
 }
