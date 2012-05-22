@@ -28,17 +28,31 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
 
         jLabel14 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaAyudas = new javax.swing.JTable();
         jLabel24 = new javax.swing.JLabel();
         textBeneficiarioAyudas = new javax.swing.JTextField();
-        btnBuscarBeneficiario = new javax.swing.JButton();
+        btnBuscarAyudas = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        textTipoAyudas = new javax.swing.JTextField();
+        textTipoAyuda = new javax.swing.JTextField();
         btnEliminarTipoAyuda = new javax.swing.JButton();
         btnGuardarTipoAyuda = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tableTiposAyuda = new javax.swing.JTable();
+        jLabel27 = new javax.swing.JLabel();
+        cbTipoAyuda = new javax.swing.JComboBox();
+        jLabel28 = new javax.swing.JLabel();
+        fechaInicioAyudas = new javax.swing.JTextField();
+        fechaFinAyudas = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        minimoImporte = new javax.swing.JTextField();
+        maximoImporte = new javax.swing.JTextField();
+        descripcionTipoAyuda = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        isMonetaria = new javax.swing.JCheckBox();
+        btnGuardarAyuda = new javax.swing.JButton();
+        btnEliminarAyuda = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 550));
@@ -48,123 +62,241 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
         jLabel14.setForeground(new java.awt.Color(255, 0, 0));
         jLabel14.setText("Listado de ayudas");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaAyudas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Concepto", "DNI"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(tablaAyudas);
 
         jLabel24.setText("Beneficiario");
 
-        btnBuscarBeneficiario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
-        btnBuscarBeneficiario.setActionCommand("buscarBeneficiarioAyuda");
+        btnBuscarAyudas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
+        btnBuscarAyudas.setActionCommand("buscarBeneficiarioAyuda");
+        btnBuscarAyudas.setPreferredSize(new java.awt.Dimension(48, 44));
 
         jLabel25.setForeground(new java.awt.Color(255, 0, 0));
         jLabel25.setText("Gestión tipos de ayudas");
 
         jLabel26.setText("Nombre de un tipo");
 
-        btnEliminarTipoAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
+        btnEliminarTipoAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
         btnEliminarTipoAyuda.setActionCommand("eliminarTipoAyuda");
 
         btnGuardarTipoAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/save_f2.png"))); // NOI18N
         btnGuardarTipoAyuda.setActionCommand("guardarTipoAyuda");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tableTiposAyuda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Titulo", "Descripcion", "Monetaria"
             }
         ));
-        jScrollPane4.setViewportView(jTable2);
+        jScrollPane4.setViewportView(tableTiposAyuda);
+
+        jLabel27.setText("Tipo de ayuda");
+
+        cbTipoAyuda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel28.setText("Fecha de la ayuda");
+
+        fechaInicioAyudas.setText("Inicio");
+
+        fechaFinAyudas.setText("Fin");
+
+        jLabel29.setText("Importe");
+
+        minimoImporte.setText("Minimo");
+
+        maximoImporte.setText("Maximo");
+
+        jLabel30.setText("Descripción");
+
+        jLabel31.setText("Monetaria");
+
+        btnGuardarAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/save_f2.png"))); // NOI18N
+        btnGuardarAyuda.setActionCommand("guardarTipoAyuda");
+
+        btnEliminarAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
+        btnEliminarAyuda.setActionCommand("eliminarTipoAyuda");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(34, 34, 34)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 256, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel14)
                             .add(layout.createSequentialGroup()
-                                .add(jLabel24)
                                 .add(18, 18, 18)
-                                .add(textBeneficiarioAyudas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 157, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(btnBuscarBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 31, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 406, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 49, Short.MAX_VALUE)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(layout.createSequentialGroup()
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                            .add(fechaInicioAyudas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(minimoImporte))
+                                        .add(18, 18, 18)
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                            .add(fechaFinAyudas)
+                                            .add(maximoImporte, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))
+                                    .add(textBeneficiarioAyudas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 157, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(layout.createSequentialGroup()
+                                        .add(8, 8, 8)
+                                        .add(jLabel24))
+                                    .add(layout.createSequentialGroup()
+                                        .add(10, 10, 10)
+                                        .add(jLabel27))
+                                    .add(cbTipoAyuda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(layout.createSequentialGroup()
+                                        .add(9, 9, 9)
+                                        .add(jLabel28))
+                                    .add(layout.createSequentialGroup()
+                                        .add(11, 11, 11)
+                                        .add(jLabel29))))
+                            .add(layout.createSequentialGroup()
+                                .add(30, 30, 30)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(btnBuscarAyudas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(layout.createSequentialGroup()
+                                        .add(btnGuardarAyuda)
+                                        .add(36, 36, 36)
+                                        .add(btnEliminarAyuda))))))
                     .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(20, 20, 20)
+                        .add(jLabel14)))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 26, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(jLabel25)
+                            .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 499, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(layout.createSequentialGroup()
                                 .add(jLabel26)
-                                .add(18, 18, 18)
-                                .add(textTipoAyudas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 199, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(jLabel25))
-                        .add(32, 32, 32)
+                                .add(57, 57, 57)
+                                .add(textTipoAyuda)))
+                        .addContainerGap())
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(btnGuardarTipoAyuda)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(btnEliminarTipoAyuda))
-                    .add(layout.createSequentialGroup()
-                        .add(6, 6, 6)
-                        .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 469, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .add(36, 36, 36))
+                        .add(71, 71, 71)
+                        .add(btnEliminarTipoAyuda)
+                        .add(80, 80, 80))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel30)
+                            .add(jLabel31))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(isMonetaria)
+                            .add(descripcionTipoAyuda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 324, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .addContainerGap()
+                .add(16, 16, 16)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel14)
+                    .add(jLabel25))
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
+                        .add(43, 43, 43)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(textBeneficiarioAyudas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel24))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel14))
-                    .add(btnBuscarBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 26, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(layout.createSequentialGroup()
-                        .add(jLabel25)
-                        .add(18, 18, 18)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel24)
                             .add(jLabel26)
-                            .add(textTipoAyudas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(btnGuardarTipoAyuda)
-                    .add(btnEliminarTipoAyuda))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jScrollPane3)
-                    .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 465, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(11, Short.MAX_VALUE))
+                            .add(textTipoAyuda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(textBeneficiarioAyudas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jLabel30)
+                                    .add(descripcionTipoAyuda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(layout.createSequentialGroup()
+                                        .add(18, 18, 18)
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                            .add(jLabel27)
+                                            .add(jLabel31)
+                                            .add(isMonetaria))
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(cbTipoAyuda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(18, 18, 18)
+                                        .add(jLabel28))
+                                    .add(layout.createSequentialGroup()
+                                        .add(61, 61, 61)
+                                        .add(btnEliminarTipoAyuda))))
+                            .add(layout.createSequentialGroup()
+                                .add(101, 101, 101)
+                                .add(btnGuardarTipoAyuda)))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(layout.createSequentialGroup()
+                                .add(0, 6, Short.MAX_VALUE)
+                                .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 281, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(layout.createSequentialGroup()
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(fechaInicioAyudas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(fechaFinAyudas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .add(18, 18, 18)
+                                .add(jLabel29)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(minimoImporte, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(maximoImporte, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .add(27, 27, 27)
+                                .add(btnBuscarAyudas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(18, 18, 18)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(btnGuardarAyuda)
+                                    .add(btnEliminarAyuda))
+                                .add(0, 0, Short.MAX_VALUE))))
+                    .add(layout.createSequentialGroup()
+                        .add(18, 18, 18)
+                        .add(jScrollPane3)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscarBeneficiario;
+    private javax.swing.JButton btnBuscarAyudas;
+    private javax.swing.JButton btnEliminarAyuda;
     private javax.swing.JButton btnEliminarTipoAyuda;
+    private javax.swing.JButton btnGuardarAyuda;
     private javax.swing.JButton btnGuardarTipoAyuda;
+    private javax.swing.JComboBox cbTipoAyuda;
+    private javax.swing.JTextField descripcionTipoAyuda;
+    private javax.swing.JTextField fechaFinAyudas;
+    private javax.swing.JTextField fechaInicioAyudas;
+    private javax.swing.JCheckBox isMonetaria;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTextField maximoImporte;
+    private javax.swing.JTextField minimoImporte;
+    private javax.swing.JTable tablaAyudas;
+    private javax.swing.JTable tableTiposAyuda;
     private javax.swing.JTextField textBeneficiarioAyudas;
-    private javax.swing.JTextField textTipoAyudas;
+    private javax.swing.JTextField textTipoAyuda;
     // End of variables declaration//GEN-END:variables
 }
