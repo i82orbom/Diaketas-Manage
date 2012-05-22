@@ -82,10 +82,6 @@ public class ControladorVoluntario {
      * Constructor de la clase
      */
     private ControladorVoluntario(VistaVoluntario pvista) {
-
-        /**
-         * Establece como ventana padre la pasada como parámetro
-         */
         vista = pvista;
 
         // Para crear la instancia de los controladores con la vista asociada
@@ -126,6 +122,7 @@ public class ControladorVoluntario {
     }
 
     private void mostrarVistaNuevoVoluntario() {
+        voluntario_temp = null;
         vista.showPanel(VistaVoluntario.panelDatos);
         vista.getPanelVoluntarioDatos().nuevoVoluntario();
         vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
@@ -162,7 +159,8 @@ public class ControladorVoluntario {
         vista.getBarraDeNavegacion().setTextLabelNivel2("Colaboraciones");
         vista.getBarraDeNavegacion().setTextLabelNivel3("Añadir Couta");
     }
-     private void mostrarVistaCuotasNoPagadas() {
+
+    private void mostrarVistaCuotasNoPagadas() {
         vista.showPanel(VistaVoluntario.panelCuotas);
         vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
         vista.getBarraDeNavegacion().setTextLabelNivel2("Colaboraciones");
@@ -419,18 +417,29 @@ public class ControladorVoluntario {
                 String password = ControladorPrincipal.getInstance().md5(vista.getPanelVoluntarioDatos().getTextPassword() + ControladorPrincipal.getInstance().getSalto());
                 datos[Voluntario.PASSWORD_ID] = password;
 
-                boolean exito = insertarVoluntario(datos);
+                if (voluntario_temp == null) {
+                    boolean exito = insertarVoluntario(datos);
 
-                if (exito) {
-                    vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario añadido correctamente.");
+                    if (exito) {
+                        vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario añadido correctamente.");
+                    } else {
+                        vista.getPanelVoluntarioDatos().setTextLabelError("El voluntario no ha sido añadido.");
+                    }
                 } else {
-                    vista.getPanelVoluntarioDatos().setTextLabelError("El voluntario no ha sido añadido.");
+                    // TODO como se hace con el password
+                    boolean exito = modificarVoluntario(datos, password);
+                    
+                    if (exito) {
+                        vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario modificado correctamente.");
+                    } else {
+                        vista.getPanelVoluntarioDatos().setTextLabelError("El voluntario no ha sido modificado.");
+                    }
                 }
+                
             } catch (ParseException ex) {
                 vista.getPanelVoluntarioDatos().setTextLabelError("La fecha de nacimiento debe tener el formato dd/mm/aaaa");
                 Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
     }
 
