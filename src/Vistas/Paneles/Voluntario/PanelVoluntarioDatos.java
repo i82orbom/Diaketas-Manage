@@ -4,7 +4,8 @@
  */
 package Vistas.Paneles.Voluntario;
 
-import java.awt.Color;
+import Modelo.Voluntario;
+import java.text.SimpleDateFormat;
 import javax.swing.JButton;
 
 /**
@@ -12,6 +13,8 @@ import javax.swing.JButton;
  * @author raphaelcolleau
  */
 public class PanelVoluntarioDatos extends javax.swing.JPanel {
+    
+    private static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
     /**
      * Creates new form PanelVoluntarioDatos
@@ -20,6 +23,27 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
         initComponents();
 
         labelError.setVisible(false);
+    }
+    
+    public void nuevoVoluntario () {
+        borrarCampos();
+        btBorrar.setVisible(true);
+        btEliminar.setVisible(false);
+    }
+    
+    public void modificarVoluntario (Voluntario voluntario) {
+        btBorrar.setVisible(false);
+        btEliminar.setVisible(true);
+        textApellidos.setText(voluntario.getApellidos());
+        textCP.setText(voluntario.getCP());
+        textDomicilio.setText(voluntario.getDomicilio());
+        textFechaNacimiento.setText(formatter.format(voluntario.getFechaDENacimiento()));
+        textLocalidad.setText(voluntario.getLocalidad());
+        textNIF.setText(voluntario.getNIF());
+        textNombre.setText(voluntario.getNombre());
+        textTelMovil.setText(voluntario.getTelefonoMovil());
+        textTelFijo.setText(voluntario.getTelefonoFijo());
+        textPassword.setText("");
     }
 
     public void setTextLabelError (String text) {
@@ -49,6 +73,10 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
 
     public JButton getBtGuardar() {
         return btGuardar;
+    }
+
+    public JButton getBtEliminar() {
+        return btEliminar;
     }
 
     public String getTextApellidos() {
@@ -130,6 +158,7 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         textPassword = new javax.swing.JTextField();
+        btEliminar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 550));
@@ -174,6 +203,9 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
 
         jLabel15.setText("Password");
 
+        btEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
+        btEliminar.setActionCommand("borrarDatosVoluntario");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,7 +229,9 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
                                     .add(btGuardar)
                                     .add(40, 40, 40)
                                     .add(labelError, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 363, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 99, Short.MAX_VALUE)
+                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 71, Short.MAX_VALUE)
+                                    .add(btEliminar)
+                                    .add(18, 18, 18)
                                     .add(btBorrar))))
                         .add(layout.createSequentialGroup()
                             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -225,7 +259,7 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
                                             .add(org.jdesktop.layout.GroupLayout.LEADING, textFechaNacimiento, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                                             .add(org.jdesktop.layout.GroupLayout.LEADING, textTelMovil))))
                                 .add(textDomicilio)))))
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -276,14 +310,16 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
                         .add(52, 52, 52)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(btBorrar)
-                            .add(btGuardar))))
-                .addContainerGap(118, Short.MAX_VALUE))
+                            .add(btGuardar)
+                            .add(btEliminar))))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         btBorrar.getAccessibleContext().setAccessibleDescription("Borrar los campos\n");
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBorrar;
+    private javax.swing.JButton btEliminar;
     private javax.swing.JButton btGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

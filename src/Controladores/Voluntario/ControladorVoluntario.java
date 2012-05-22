@@ -99,8 +99,10 @@ public class ControladorVoluntario {
 
         vista.getPanelVoluntarioDatos().getBtGuardar().addActionListener(new btGuardarVoluntarioListener());
         vista.getPanelVoluntarioDatos().getBtBorrar().addActionListener(new btBorrarVoluntarioListener());
+        
 
         vista.getPanelVoluntarioBuscar().getBtBuscar().addActionListener(new BtBuscarVoluntarioListener());
+        vista.getPanelVoluntarioBuscar().getBtVerVoluntario().addActionListener(new BtVerVoluntarioListener());
 
         // al principio mostrar la vista de inicio
         mostrarVistaInicio();
@@ -120,6 +122,7 @@ public class ControladorVoluntario {
 
     private void mostrarVistaNuevoVoluntario() {
         vista.showPanel(VistaVoluntario.panelDatos);
+        vista.getPanelVoluntarioDatos().nuevoVoluntario();
         vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
         vista.getBarraDeNavegacion().setTextLabelNivel2("Nuevo Voluntario");
     }
@@ -370,55 +373,60 @@ public class ControladorVoluntario {
     }
 
     class btAñadirColaboracionesListener implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent ae) {
             mostrarVistaAñadirColaboraciones();
         }
     }
-     class btCuotasNoPagadasListener implements ActionListener {
+
+    class btCuotasNoPagadasListener implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent ae) {
             mostrarVistaCuotasNoPagadas();
         }
     }
+
     class btGuardarVoluntarioListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
 
             try {
-				System.out.println("Date : " + TestDatos.formatter.parse(vista.getPanelVoluntarioDatos().getTextFechaNacimiento()).toString());
+                System.out.println("Date : " + TestDatos.formatter.parse(vista.getPanelVoluntarioDatos().getTextFechaNacimiento()).toString());
 
-				String[] datos = new String[15];
+                String[] datos = new String[15];
 
-				datos[Voluntario.NIF_ID] = vista.getPanelVoluntarioDatos().getTextNIF();
-				datos[Voluntario.NOMBRE_ID] = vista.getPanelVoluntarioDatos().getTextNombre();
-				datos[Voluntario.APELLIDOS_ID] = vista.getPanelVoluntarioDatos().getTextApellidos();
-				datos[Voluntario.FECHA_DE_NACIMIENTO_ID] = vista.getPanelVoluntarioDatos().getTextFechaNacimiento();
-				datos[Voluntario.DOMICILIO_ID] = vista.getPanelVoluntarioDatos().getTextDomicilio();
-				datos[Voluntario.LOCALIDAD_ID] = vista.getPanelVoluntarioDatos().getTextLocalidad();
-				datos[Voluntario.CP_ID] = vista.getPanelVoluntarioDatos().getTextCP();
-				datos[Voluntario.TELEFONO_MOVIL_ID] = vista.getPanelVoluntarioDatos().getTextTelFijo();
-				datos[Voluntario.TELEFONO_FIJO_ID] = vista.getPanelVoluntarioDatos().getTextTelMovil();
+                datos[Voluntario.NIF_ID] = vista.getPanelVoluntarioDatos().getTextNIF();
+                datos[Voluntario.NOMBRE_ID] = vista.getPanelVoluntarioDatos().getTextNombre();
+                datos[Voluntario.APELLIDOS_ID] = vista.getPanelVoluntarioDatos().getTextApellidos();
+                datos[Voluntario.FECHA_DE_NACIMIENTO_ID] = vista.getPanelVoluntarioDatos().getTextFechaNacimiento();
+                datos[Voluntario.DOMICILIO_ID] = vista.getPanelVoluntarioDatos().getTextDomicilio();
+                datos[Voluntario.LOCALIDAD_ID] = vista.getPanelVoluntarioDatos().getTextLocalidad();
+                datos[Voluntario.CP_ID] = vista.getPanelVoluntarioDatos().getTextCP();
+                datos[Voluntario.TELEFONO_MOVIL_ID] = vista.getPanelVoluntarioDatos().getTextTelFijo();
+                datos[Voluntario.TELEFONO_FIJO_ID] = vista.getPanelVoluntarioDatos().getTextTelMovil();
 
-				/* Codificar password con md5 mas un salto */
-				String password = ControladorPrincipal.getInstance().md5(vista.getPanelVoluntarioDatos().getTextPassword()+ControladorPrincipal.getInstance().getSalto());
-				datos[Voluntario.PASSWORD_ID] = password;
+                /*
+                 * Codificar password con md5 mas un salto
+                 */
+                String password = ControladorPrincipal.getInstance().md5(vista.getPanelVoluntarioDatos().getTextPassword() + ControladorPrincipal.getInstance().getSalto());
+                datos[Voluntario.PASSWORD_ID] = password;
 
-				boolean exito = insertarVoluntario(datos);
+                boolean exito = insertarVoluntario(datos);
 
-				if (exito) {
-					vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario añadido correctamente.");
-				} else {
-					vista.getPanelVoluntarioDatos().setTextLabelError("El voluntario no ha sido añadido.");
-				}
-			} catch (ParseException ex) {
-				vista.getPanelVoluntarioDatos().setTextLabelError("La fecha de nacimiento debe tener el formato dd/mm/aaaa");
-				Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
-			}
+                if (exito) {
+                    vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario añadido correctamente.");
+                } else {
+                    vista.getPanelVoluntarioDatos().setTextLabelError("El voluntario no ha sido añadido.");
+                }
+            } catch (ParseException ex) {
+                vista.getPanelVoluntarioDatos().setTextLabelError("La fecha de nacimiento debe tener el formato dd/mm/aaaa");
+                Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
-
     }
 
     class btBorrarVoluntarioListener implements ActionListener {
@@ -427,6 +435,19 @@ public class ControladorVoluntario {
         public void actionPerformed(ActionEvent ae) {
             vista.getPanelVoluntarioDatos().borrarCampos();
         }
+    }
+    
+    class BtVerVoluntarioListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if (vista.getPanelVoluntarioBuscar().getTablaBusqueda().getSelectedRow() != -1) {
+                Voluntario voluntario = voluntarios.get(vista.getPanelVoluntarioBuscar().getTablaBusqueda().getSelectedRow());
+                vista.getPanelVoluntarioDatos().modificarVoluntario(voluntario);
+                mostrarVistaModificarVoluntario();
+            }
+        }
+        
     }
 
     class BtBuscarVoluntarioListener implements ActionListener {
@@ -499,9 +520,8 @@ public class ControladorVoluntario {
 
                 }
             };
-
+            
             vista.getPanelVoluntarioBuscar().getTablaBusqueda().setModel(tableModel);
-            //vista.getPanelVoluntarioBuscar().getTablaBusqueda().repaint();
         }
 
     }
