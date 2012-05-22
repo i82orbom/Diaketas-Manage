@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS Oferta;
+DROP TABLE IF EXISTS Demanda;
 DROP TABLE IF EXISTS Colaboracion ;
 DROP TABLE IF EXISTS Gasto ;
 DROP TABLE IF EXISTS PagoCuota ;
@@ -14,8 +16,7 @@ DROP TABLE IF EXISTS Voluntario ;
 DROP TABLE IF EXISTS TipoAyuda ;
 DROP TABLE IF EXISTS Familia ;
 DROP TABLE IF EXISTS Persona ;
-
-
+DROP TABLE IF EXISTS Sector;
 
 CREATE TABLE Persona (
 	OID INTEGER PRIMARY KEY AUTO_INCREMENT
@@ -199,6 +200,49 @@ CREATE TABLE Colaboracion (
 			REFERENCES Colaborador (OID)
 );
 
+CREATE TABLE Sector (
+	OID INTEGER
+	, Descripccion VARCHAR (100)  NOT NULL
+	, PRIMARY KEY (OID)
+);
+
+CREATE TABLE Oferta (
+	OID INTEGER
+	, OIDSector INTEGER
+	, OIDEmpresa INTEGER
+	, OIDBeneficiario INTEGER
+	, OIDVoluntario INTEGER
+	, CualificacionRequerida VARCHAR (50)
+	, DescripcionOferta VARCHAR (100) NOT NULL
+	, DuracionContrato INTEGER
+	, Fecha DATE NOT NULL
+	, PlazasOfertadas INTEGER 
+	, TipoContrato VARCHAR (50)
+	, CONSTRAINT Fk_OIDOferta FOREIGN KEY (OIDSector)
+			REFERENCES Sector (OID)
+	, CONSTRAINT Fk_OIDOferta2 FOREIGN KEY (OIDEmpresa)
+			REFERENCES C_Empresa (OID)
+	, CONSTRAINT Fk_OIDOferta3 FOREIGN KEY (OIDBeneficiario)
+			REFERENCES Beneficiario (OID)
+	, CONSTRAINT Fk_OIDOferta4 FOREIGN KEY (OIDVoluntario)
+			REFERENCES Voluntario (OID)
+
+);
+
+CREATE TABLE Demanda (
+	OID INTEGER
+	, OIDSector INTEGER
+	, OIDBeneficiario INTEGER
+	, OIDVoluntario INTEGER
+	, DescripcionVidaLaboral VARCHAR (100) 
+	, Fecha DATE NOT NULL
+	, CONSTRAINT Fk_OIDDemanda FOREIGN KEY (OIDSector)
+			REFERENCES Sector (OID)
+	, CONSTRAINT Fk_OIDDemanda2 FOREIGN KEY (OIDBeneficiario)
+			REFERENCES Beneficiario (OID)
+	, CONSTRAINT Fk_OIDDemanda3 FOREIGN KEY (OIDVoluntario)
+			REFERENCES Voluntario (OID)
+);
 
 
 INSERT INTO Persona (`OID`, `NIF`, `Nombre`, `Apellidos`, `FechaNacimiento`, `CP`, `TelefonoFijo`, `TelefonoMovil`, `Domicilio`, `Localidad`) VALUES (1, '12345678A', 'admin', 'admin', '1990-04-03', 11321, 666999666, 999666999, 'C/Falsa 123', 'Granada');
