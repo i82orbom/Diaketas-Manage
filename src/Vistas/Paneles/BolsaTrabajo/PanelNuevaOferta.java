@@ -5,6 +5,7 @@
 package Vistas.Paneles.BolsaTrabajo;
 
 import Vistas.Paneles.Beneficiario.*;
+import javax.swing.JButton;
 
 /**
  *
@@ -18,6 +19,54 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
      */
     public PanelNuevaOferta() {
         initComponents();
+    }
+    
+    public JButton getBTEliminar1(){
+        return BTEliminar1;
+    }
+    
+    public JButton getBTGuardar(){
+        return BTGuardar;
+    }
+    
+    public JButton getBTGuardarSector(){
+        return BTGuardarSector;
+    }
+    
+    public JButton getBTLimpiar(){
+        return BTLimpiar;
+    }
+    
+    public String getTextDuracionContrato(){
+        return TextDuracionContrato.getText();
+    }
+    
+    public String getTextNIF1(){
+        return TextNIF1.getText();
+    }
+    
+    public String getTextNPuestos(){
+        return TextNPuestos.getText();
+    }
+    
+    public String getTextNuevoSector(){
+        return TextNuevoSector.getText();
+    }
+    
+    public String getcbSector(){
+        return cbSector.getSelectedItem().toString();
+    }
+    
+    public String getcbTipoContrato(){
+        return cbTipoContrato.getSelectedItem().toString();
+    }
+    
+    public String gettaCualificacion(){
+        return taCualificacion.getText();
+    }
+    
+    public String gettaPuestoOfertado(){
+        return taPuestoOfertado.getText();
     }
     
 
@@ -37,7 +86,7 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
         jLabel64 = new javax.swing.JLabel();
         jLabel65 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        taHistoriaLaboral = new javax.swing.JTextArea();
+        taPuestoOfertado = new javax.swing.JTextArea();
         jLabel73 = new javax.swing.JLabel();
         jLabel74 = new javax.swing.JLabel();
         TextNPuestos = new javax.swing.JTextField();
@@ -50,14 +99,14 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
         cbSector = new javax.swing.JComboBox();
         TextNIF1 = new javax.swing.JTextField();
         BTEliminar1 = new javax.swing.JButton();
-        TextNeuevoSector = new javax.swing.JTextField();
+        TextNuevoSector = new javax.swing.JTextField();
         BTGuardarSector = new javax.swing.JButton();
         jLabel68 = new javax.swing.JLabel();
         jLabel69 = new javax.swing.JLabel();
         jLabel71 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        taHistoriaLaboral1 = new javax.swing.JTextArea();
+        taCualificacion = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
@@ -73,11 +122,11 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
 
         jLabel65.setText("Nº de puestos");
 
-        taHistoriaLaboral.setColumns(20);
-        taHistoriaLaboral.setRows(5);
-        taHistoriaLaboral.setText("Descripción completa del puesto de trabajo");
-        taHistoriaLaboral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
-        jScrollPane1.setViewportView(taHistoriaLaboral);
+        taPuestoOfertado.setColumns(20);
+        taPuestoOfertado.setRows(5);
+        taPuestoOfertado.setText("Descripción completa del puesto de trabajo");
+        taPuestoOfertado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
+        jScrollPane1.setViewportView(taPuestoOfertado);
 
         jLabel73.setText("Tipo de contrato");
 
@@ -150,7 +199,7 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
 
         BTEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
 
-        TextNeuevoSector.setText("Nuevo Sector");
+        TextNuevoSector.setText("Nuevo Sector");
 
         BTGuardarSector.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
 
@@ -170,7 +219,7 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(BTEliminar1)
                 .add(18, 18, 18)
-                .add(TextNeuevoSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(TextNuevoSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(BTGuardarSector)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -193,7 +242,7 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
                             .add(BTEliminar1))
                         .add(jPanel2Layout.createSequentialGroup()
                             .add(21, 21, 21)
-                            .add(TextNeuevoSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                            .add(TextNuevoSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -211,11 +260,11 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        taHistoriaLaboral1.setColumns(20);
-        taHistoriaLaboral1.setRows(5);
-        taHistoriaLaboral1.setText("Descripción completa de la cualificacion necesria");
-        taHistoriaLaboral1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
-        jScrollPane2.setViewportView(taHistoriaLaboral1);
+        taCualificacion.setColumns(20);
+        taCualificacion.setRows(5);
+        taCualificacion.setText("Descripción completa de la cualificacion necesria");
+        taCualificacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
+        jScrollPane2.setViewportView(taCualificacion);
 
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -300,7 +349,7 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
     private javax.swing.JTextField TextDuracionContrato;
     private javax.swing.JTextField TextNIF1;
     private javax.swing.JTextField TextNPuestos;
-    private javax.swing.JTextField TextNeuevoSector;
+    private javax.swing.JTextField TextNuevoSector;
     private javax.swing.JComboBox cbSector;
     private javax.swing.JComboBox cbTipoContrato;
     private javax.swing.JLabel jLabel64;
@@ -318,7 +367,7 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea taHistoriaLaboral;
-    private javax.swing.JTextArea taHistoriaLaboral1;
+    private javax.swing.JTextArea taCualificacion;
+    private javax.swing.JTextArea taPuestoOfertado;
     // End of variables declaration//GEN-END:variables
 }

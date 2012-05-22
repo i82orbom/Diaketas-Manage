@@ -5,6 +5,7 @@
 package Vistas.Paneles.BolsaTrabajo;
 
 import Vistas.Paneles.Beneficiario.*;
+import javax.swing.JButton;
 
 /**
  *
@@ -18,6 +19,26 @@ public class PanelNuevaDemanda extends javax.swing.JPanel {
      */
     public PanelNuevaDemanda() {
         initComponents();
+    }
+    
+    public JButton getbtGuardar(){
+        return btGuardar;
+    }
+    
+    public JButton getbtLimpiar(){
+        return btLimpiar;
+    }
+    
+    public String getTextNIF(){
+        return TextNIF.getText();
+    }
+    
+    public String getcbSector(){
+        return cbSector.getSelectedItem().toString();
+    }
+    
+    public String gettaHistoriaLaboral(){
+        return taHistoriaLaboral.getText();
     }
     
 
