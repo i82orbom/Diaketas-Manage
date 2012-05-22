@@ -27,9 +27,9 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        panelListaGastos = new javax.swing.JTable();
+        tablaListaGastos = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        panelListaIngresos = new javax.swing.JTable();
+        tablaListaIngresos = new javax.swing.JTable();
         fieldFechaInicio = new javax.swing.JFormattedTextField();
         fieldFechaFin = new javax.swing.JFormattedTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -45,7 +45,7 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1000, 550));
         setPreferredSize(new java.awt.Dimension(1000, 550));
 
-        panelListaGastos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaListaGastos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -64,10 +64,10 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        panelListaGastos.setToolTipText("");
-        jScrollPane1.setViewportView(panelListaGastos);
+        tablaListaGastos.setToolTipText("");
+        jScrollPane1.setViewportView(tablaListaGastos);
 
-        panelListaIngresos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaListaIngresos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -86,7 +86,7 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(panelListaIngresos);
+        jScrollPane2.setViewportView(tablaListaIngresos);
 
         fieldFechaInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
@@ -185,7 +185,7 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable panelListaGastos;
-    private javax.swing.JTable panelListaIngresos;
+    private javax.swing.JTable tablaListaGastos;
+    private javax.swing.JTable tablaListaIngresos;
     // End of variables declaration//GEN-END:variables
 }

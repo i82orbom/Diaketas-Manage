@@ -69,9 +69,9 @@ public class MovimientoJDBC {
 
           while (resultado.next()){
               
-              if("I".equals(resultado.getString("tipo")))
+              if("I".equalsIgnoreCase(resultado.getString("tipo")))
                 total = total + resultado.getFloat("Importe");
-              else if ("G".equals(resultado.getString("tipo")))
+              else if ("G".equalsIgnoreCase(resultado.getString("tipo")))
                 total = total - resultado.getFloat("Importe");  
           }     
          
