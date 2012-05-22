@@ -29,11 +29,13 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
         borrarCampos();
         btBorrar.setVisible(true);
         btEliminar.setVisible(false);
+        labelError.setVisible(false);
     }
     
     public void modificarVoluntario (Voluntario voluntario) {
         btBorrar.setVisible(false);
         btEliminar.setVisible(true);
+        labelError.setVisible(false);
         textApellidos.setText(voluntario.getApellidos());
         textCP.setText(voluntario.getCP());
         textDomicilio.setText(voluntario.getDomicilio());
@@ -317,6 +319,7 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
 
         btBorrar.getAccessibleContext().setAccessibleDescription("Borrar los campos\n");
     }// </editor-fold>//GEN-END:initComponents
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBorrar;
     private javax.swing.JButton btEliminar;

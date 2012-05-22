@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,6 +46,7 @@ public class ControladorVoluntario {
      */
     private static ControladorVoluntario instancia;
     private static final String baseContrasena = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
     public static ControladorVoluntario getInstance(VistaVoluntario panelVoluntario) {
         if (instancia == null) {
@@ -70,6 +72,9 @@ public class ControladorVoluntario {
     }
 
     private VistaVoluntario vista;
+    // el voluntario que esta modificando
+    Voluntario voluntario_temp;
+    // List de voluntarios por la tabla
     private ArrayList<Voluntario> voluntarios = new ArrayList<Voluntario>();
     private String[] columnNames = {"DNI", "Nombre y Apellidos", "Fecha de Nacimiento", "Localidad", "Telefono movil"};
 
@@ -99,7 +104,7 @@ public class ControladorVoluntario {
 
         vista.getPanelVoluntarioDatos().getBtGuardar().addActionListener(new btGuardarVoluntarioListener());
         vista.getPanelVoluntarioDatos().getBtBorrar().addActionListener(new btBorrarVoluntarioListener());
-        
+        vista.getPanelVoluntarioDatos().getBtEliminar().addActionListener(new BtEliminarVoluntario());
 
         vista.getPanelVoluntarioBuscar().getBtBuscar().addActionListener(new BtBuscarVoluntarioListener());
         vista.getPanelVoluntarioBuscar().getBtVerVoluntario().addActionListener(new BtVerVoluntarioListener());
@@ -437,13 +442,27 @@ public class ControladorVoluntario {
         }
     }
     
+    class BtEliminarVoluntario implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if (eliminarVoluntario(voluntario_temp.getNIF())) {
+                vista.getPanelVoluntarioDatos().setTextLabelError("El Voluntario ha sido eliminado del sistema.");
+            } else {
+                vista.getPanelVoluntarioDatos().setTextLabelError("Error : el Voluntario no ha sido eliminado del sistema.");
+            }
+            
+        }
+        
+    }
+    
     class BtVerVoluntarioListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
             if (vista.getPanelVoluntarioBuscar().getTablaBusqueda().getSelectedRow() != -1) {
-                Voluntario voluntario = voluntarios.get(vista.getPanelVoluntarioBuscar().getTablaBusqueda().getSelectedRow());
-                vista.getPanelVoluntarioDatos().modificarVoluntario(voluntario);
+                voluntario_temp = voluntarios.get(vista.getPanelVoluntarioBuscar().getTablaBusqueda().getSelectedRow());
+                vista.getPanelVoluntarioDatos().modificarVoluntario(voluntario_temp);
                 mostrarVistaModificarVoluntario();
             }
         }
@@ -454,7 +473,6 @@ public class ControladorVoluntario {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            //ArrayList<Voluntario> voluntarios;
 
             String busqueta = vista.getPanelVoluntarioBuscar().getTextBusqueda();
             String tipoBusqueta = vista.getPanelVoluntarioBuscar().getCbTipoBusqueda().getSelectedItem().toString();
@@ -496,7 +514,7 @@ public class ControladorVoluntario {
                         case 1:
                             return voluntarios.get(row).getNombre() + " " + voluntarios.get(row).getApellidos();
                         case 2:
-                            return voluntarios.get(row).getFechaDENacimiento();
+                            return formatter.format(voluntarios.get(row).getFechaDENacimiento());
                         case 3:
                             return voluntarios.get(row).getLocalidad();
                         case 4:

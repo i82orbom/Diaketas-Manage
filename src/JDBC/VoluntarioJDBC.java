@@ -82,7 +82,7 @@ public class VoluntarioJDBC {
         boolean exito = driver.eliminar(sql);
 
         if (exito) {
-            sql = "DELETE from persona WHERE NIF='" + DNI + "'";
+            sql = "DELETE from persona WHERE OID='" + OID + "'";
             exito = driver.eliminar(sql);
         }
 
@@ -166,15 +166,15 @@ public class VoluntarioJDBC {
 
     public int getOIDVoluntarioFromPersona(String DNI) {
         String sql = "SELECT * FROM persona p WHERE (p.NIF='" + DNI + "')";
-        int OID = -1;
+        Long OID = -1l;
 
         try {
             ResultSet resultado = DriverJDBC.getInstance().seleccionar(sql);
-            OID = resultado.getInt("OID");
+            OID = resultado.getLong("OID");
         } catch (SQLException ex) {
             Logger.getLogger(VoluntarioJDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return OID;
+        return OID.intValue();
     }
 }
