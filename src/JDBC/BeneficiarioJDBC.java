@@ -55,7 +55,7 @@ public class BeneficiarioJDBC {
 	public boolean anadirBeneficiario (Beneficiario beneficiario) throws SQLException{
 
 		DriverJDBC driver = DriverJDBC.getInstance();
-		boolean exito;
+		boolean exito = true;
 		try{
 			driver.inicioTransaccion();
 
@@ -65,9 +65,9 @@ public class BeneficiarioJDBC {
 			String sql2 = "INSERT INTO beneficiario (OID,EstadoCivil,Nacionalidad,NivelDeEstudio,Observaciones,Ocupacion,Profesion,SituacionEconomica,Vivienda,ViviendaAlquiler,ViviendaObservaciones) VALUES "
 					+ "(LAST_INSERT_ID(),'"+beneficiario.getEstadoCivil()+"','"+beneficiario.getNacionalidad()+"','"+beneficiario.getNivelDeEstudio()+"','"+beneficiario.getObservaciones()+"','"+beneficiario.getOcupacion()+"','"+beneficiario.getProfesion()+"','"+beneficiario.getSituacionEconomica()+"','"+beneficiario.getVivienda()+"','"+beneficiario.getViviendaAlquiler()+"','"+beneficiario.getViviendaObservaciones()+"')";
 
-			exito = driver.insertar(sql);
+			driver.insertar(sql);
+			driver.insertar(sql2);
 
-			if (exito) exito = driver.insertar(sql2);
 			driver.commit();
 		}
 		catch (SQLException ex){

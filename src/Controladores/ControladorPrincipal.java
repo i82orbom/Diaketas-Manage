@@ -28,10 +28,11 @@ import java.util.logging.Logger;
  *
  *
  * SUPERVISADO POR:
- *
+ *		Antonio Rodriguez Segura (ARS)
  *
  * HISTORIA:
  *      000 - 10 May 2012 - RC - Creacion
+ *		001 - 23 May 2012 - ARS - Mejora para eliminar la conexion contunia a la BD
  *
  * NOTAS:
  *
@@ -60,9 +61,10 @@ public class ControladorPrincipal {
     /* Salto para la codificación de la contraseña (para login y registro) */
     private String salto="Mary Popins";
 
-    /**
-     * Constructor de la clase
-     */
+	/**
+	 * Constructor de la clase
+	 * @param pvista Panel de vista de inicio
+	 */
     private ControladorPrincipal(Ventana pvista) {
 
         /**
@@ -90,10 +92,9 @@ public class ControladorPrincipal {
         vista.getVistaInicial().anadirListenerbtBolsaTrabajo(new BtBolsaTrabajoListener());
     }
 
-
-    /*
-     * Para que los controladores especificos pregunta al controlador principal de volver a la vista de inicio
-     */
+	/**
+	 * Para que los controladores especificos pregunta al controlador principal de volver a la vista de inicio
+	 */
     public void mostrarVistaInicio() {
         vista.showPanel(Ventana.panelInicio);
     }
@@ -101,7 +102,8 @@ public class ControladorPrincipal {
     public String getSalto() {
         return salto;
     }
-    /* Funcion para generar hash md5 a partir de una cadena */
+
+	/* Funcion para generar hash md5 a partir de una cadena */
     public String md5(String s) {
     		try {
     	        // Create MD5 Hash
@@ -132,38 +134,40 @@ public class ControladorPrincipal {
         @Override
         public void actionPerformed(ActionEvent e) {
             DriverJDBC dr = DriverJDBC.getInstance();
+			boolean exito = true;
+			Voluntario v = null;
 
-
-            dr.configurar("127.0.0.1", "Diaketas", "diaketas", "diaketas");
-
-            if (!dr.conectar()) {
+			try {
+				dr.conectar();
+				v = JDBC.VoluntarioJDBC.getInstance().obtenerVoluntario(vista.getVistaLogin().getTextFieldIdUsuario().getText());
+				dr.desconectar();
+			}
+			catch (SQLException ex){
+				exito = false;
                 vista.getVistaLogin().mostrarErrorLogin("Hubo un problema de conexion a la BD");
+				Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+				System.err.println("Error al conectar a la base de datos:\n"+ex);
+			}
 
-            } else {
-                JDBC.VoluntarioJDBC vol = JDBC.VoluntarioJDBC.getInstance();
+			if (exito){
+				// Comprobamos que el voluntario existe
+				if (v == null) exito = false;
 
-                boolean exito = true;
-                try {
-                    Voluntario volun = vol.obtenerVoluntario(vista.getVistaLogin().getTextFieldIdUsuario().getText());
-                    if (volun == null) {
-                        exito = false;
-                    } else {
-                        if (!volun.getPassword().equals(md5(vista.getVistaLogin().getTextFieldContrasena().getText()+getSalto()))) {
-                            exito = false;
-                        }
-                    }
-                } catch (SQLException ex) {
-                    exito = false;
-                    Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                }
+				// La contraseña se corresponde
+				else
+					if (!v.getPassword().equals(md5(vista.getVistaLogin().getTextFieldContrasena().getText()+getSalto())))
+						exito = false;
 
-                if (exito) {
-                    vista.showPanel(Ventana.panelInicio);
-                } else {
-                    vista.getVistaLogin().mostrarErrorLogin("Nombre usuario y/o contraseña no válidos");
-                }
-            }
-        }
+
+				if (exito){
+					//vista.getVistaLogin().mostrarErrorLogin("");
+					// Limpiar el formulario de inicio de sesion
+					vista.showPanel(Ventana.panelInicio);
+				}
+				else vista.getVistaLogin().mostrarErrorLogin("Nombre usuario y/o contraseña no válidos");
+
+			}
+		}
     }
 
     class BtDesconectarseListener implements ActionListener {
@@ -183,29 +187,29 @@ public class ControladorPrincipal {
         }
     }
 
+	class BtBeneficiarioListener implements ActionListener {
 
-     class  BtBeneficiarioListener implements ActionListener {
-
-        @Override
+		@Override
         public void actionPerformed(ActionEvent ae) {
             vista.showPanel(Ventana.panelBeneficiario);
         }
      }
 
-     class  BtColaboradoresListener implements ActionListener {
+	class BtColaboradoresListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
             vista.showPanel(Ventana.panelColaboradores);
         }
      }
-     
-     class BtBolsaTrabajoListener implements ActionListener {
 
-        @Override
-        public void actionPerformed(ActionEvent ae) {
+	class BtBolsaTrabajoListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent ae) {
             vista.showPanel(Ventana.panelBolsaTrabajo);
         }
-         
+
      }
+
 }

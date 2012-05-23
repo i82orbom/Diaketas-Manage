@@ -31,9 +31,9 @@ package JDBC;
 import java.sql.*;
 
 public class DriverJDBC {
+    private static DriverJDBC instancia;
     private Connection conexion;
     private String hostBD;
-    private static DriverJDBC instancia;
     private String nombreBD;
     private String password;
     private String usuarioBD;
@@ -44,7 +44,10 @@ public class DriverJDBC {
 	private int oldEstadoTransaccionIsolation;
 
     private DriverJDBC(){
-
+        this.hostBD="127.0.0.1";
+        this.nombreBD="Diaketas";
+        this.password="diaketas";
+        this.usuarioBD="diaketas";
     }
 
     public static DriverJDBC getInstance(){
@@ -56,22 +59,20 @@ public class DriverJDBC {
 		return conexion;
 	}
 
-    //Antes de conectar se debera haber configurado
-    public boolean conectar(){
-        //Siempre usaremos mysql
-       try {
+    public boolean conectar() throws SQLException{
+		try {
             Class.forName("com.mysql.jdbc.Driver");
             conexion = DriverManager.getConnection("jdbc:mysql://"+hostBD+"/"+nombreBD , usuarioBD, password);
             statement = conexion.createStatement();
-        } catch (SQLException ex) {
-            System.err.println(ex.toString());
-            return false;
-        } catch (ClassNotFoundException ex1){
-            System.err.println(ex1.toString());
-            return false;
-        }
+		} catch (SQLException exSQL) {
+			System.err.println(exSQL);
+			throw exSQL;
+		} catch (ClassNotFoundException exClass){
+			System.err.println(exClass);
+			return false;
+		}
 
-        return true;
+		return true;
     }
 
     public boolean desconectar(){
@@ -85,20 +86,8 @@ public class DriverJDBC {
         return true;
     }
 
-    public void configurar(String hostBD, String nombreBD, String password, String usuarioBD){
-        this.hostBD=hostBD;
-        this.nombreBD=nombreBD;
-        this.password=password;
-        this.usuarioBD=usuarioBD;
-    }
-
     public boolean insertar(String sentencia) throws SQLException{
-		try{
-			statement.executeUpdate(sentencia);
-		}
-		catch(SQLException ex){
-			throw ex;
-		}
+		statement.executeUpdate(sentencia);
 		return true;
     }
 
@@ -126,7 +115,7 @@ public class DriverJDBC {
 	 */
 	public void inicioTransaccion() throws SQLException {
 		try {
-//			this.conectar();
+			this.conectar();
 			this.oldEstadoTransaccionIsolation = this.conexion.getTransactionIsolation();
 			conexion.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 			this.oldEstadoAutoCommit = this.conexion.getAutoCommit();
@@ -172,7 +161,7 @@ public class DriverJDBC {
 			// Restauramos estado de autoComit y de Isolation
 			this.conexion.setAutoCommit(this.oldEstadoAutoCommit);
 			this.conexion.setTransactionIsolation(oldEstadoTransaccionIsolation);
-//			this.desconectar();
+			this.desconectar();
 		} catch (SQLException e) {
 			throw e;
 		}
