@@ -22,11 +22,11 @@ public class PanelDemandasInicio extends javax.swing.JPanel {
 
     // LISTENERS
 
-    public void anadirListenerbtBuscarBeneficiario(ActionListener listener){
+    public void anadirListenerbtConsultarDemanda(ActionListener listener){
         this.btConsultarDemanda.addActionListener(listener);
     }
     
-    public void anadirListenerbtNuevoBeneficiario(ActionListener listener){
+    public void anadirListenerbtNuevaDemanda(ActionListener listener){
         this.btNuevaDemanda.addActionListener(listener);
     }
     
