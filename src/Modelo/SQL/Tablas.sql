@@ -35,7 +35,7 @@ CREATE TABLE Beneficiario (
 	OID INTEGER PRIMARY KEY
 	, EstadoCivil VARCHAR (10)
 	, Nacionalidad VARCHAR (15)
-	, NivelDeEstudio VARCHAR (20)
+	, NivelDeEstudio VARCHAR (25)
 	, Observaciones TEXT
 	, Ocupacion TEXT
 	, Profesion TEXT
