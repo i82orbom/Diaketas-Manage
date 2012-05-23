@@ -1,6 +1,9 @@
 
 package Controladores;
 
+import Controladores.Colaborador.ControladorC_Empresa;
+import Controladores.Colaborador.ControladorC_Persona;
+import Controladores.Colaborador.ControladorSocio;
 import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
 import java.awt.event.ActionEvent;
@@ -54,6 +57,10 @@ public class ControladorColaboradores {
      * Establece como ventana padre la pasada como parámetro
      */
 	vista = pvista;
+	
+	ControladorSocio.getInstance(vista);
+	//ControladorC_Empresa.getInstance(vista.getVistaEmpresa());
+	//ControladorC_Persona.getInstance(vista.getVistaColaborador());
 
         // anadir listener
         vista.getBarraDeNavigacion().setListener(new ListenerBarraNavigacion());
@@ -67,6 +74,7 @@ public class ControladorColaboradores {
         vista.getPanelEmpresaInicio().anadirListenerbtNuevoEmpresa(new btNuevaEmpresaListener());
         vista.getPanelColaboradorInicio().anadirListenerbtNuevoColaborador(new btNuevoColaboradorListener());
         vista.getPanelColaboradorInicio().anadirListenerbtBuscarColaborador(new btBuscarColaboradorListener());
+		
         // al principio mostrar la vista de inicio
         mostrarVistaInicio();
 
@@ -214,4 +222,5 @@ public class ControladorColaboradores {
             mostrarVistaColaboradorBuscar();
         }
     }
+
 }

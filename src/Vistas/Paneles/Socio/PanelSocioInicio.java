@@ -37,17 +37,24 @@ public class PanelSocioInicio extends javax.swing.JPanel {
         btNuevoSocio = new javax.swing.JButton();
         btBuscarSocio = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setForeground(new java.awt.Color(255, 255, 255));
+
+        btNuevoSocio.setBackground(new java.awt.Color(255, 255, 255));
         btNuevoSocio.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btNuevoSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/usu.png"))); // NOI18N
         btNuevoSocio.setText("Nuevo Socio");
         btNuevoSocio.setActionCommand("contabilidad");
+        btNuevoSocio.setBorder(null);
         btNuevoSocio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btNuevoSocio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        btBuscarSocio.setBackground(new java.awt.Color(255, 255, 255));
         btBuscarSocio.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btBuscarSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/lupa.png"))); // NOI18N
         btBuscarSocio.setText("BUSCAR");
         btBuscarSocio.setActionCommand("buscarVoluntario");
+        btBuscarSocio.setBorder(null);
         btBuscarSocio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btBuscarSocio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 

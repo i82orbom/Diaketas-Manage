@@ -2,18 +2,25 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+/**
+ *
+ * @author Alberto Moreno Mantas
+ */
 package Vistas.Paneles.Colaboradores;
 
 import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.Colaborador.PanelColaboradorBuscar;
 import Vistas.Paneles.Colaborador.PanelColaboradorDatos;
 import Vistas.Paneles.Colaborador.PanelColaboradorInicio;
+import Vistas.Paneles.Colaborador.VistaColaborador;
 import Vistas.Paneles.Empresa.PanelEmpresaBuscar;
 import Vistas.Paneles.Empresa.PanelEmpresaDatos;
 import Vistas.Paneles.Empresa.PanelEmpresaInicio;
+import Vistas.Paneles.Empresa.VistaEmpresa;
 import Vistas.Paneles.Socio.PanelSocioBuscar;
 import Vistas.Paneles.Socio.PanelSocioDatos;
 import Vistas.Paneles.Socio.PanelSocioInicio;
+import Vistas.Paneles.Socio.VistaSocio;
 import java.awt.CardLayout;
 
 /**
@@ -33,7 +40,9 @@ public class VistaColaboradores extends javax.swing.JPanel {
     public static String panelcolaboradorInicio = "colaboradorInicio";
     public static String panelcolaboradorDatos = "colaboradorDatos";
     public static String panelcolaboradorBuscar = "colaboradorBuscar";
-    
+    public static String vistasocio = "vistaSocio";
+    public static String vistacolaborador = "vistaColaborador";
+    public static String vistaempresaa = "vistaEmpresa";    
     /**
      * Creates new form VistaColaboradores
      */
@@ -84,6 +93,8 @@ public class VistaColaboradores extends javax.swing.JPanel {
     public PanelColaboradorBuscar getPanelColaboradorBuscar(){
         return this.panelColaboradorBuscar;
     }
+
+	
 
     /**
      * This method is called from within the constructor to initialize the form.
