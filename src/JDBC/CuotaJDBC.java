@@ -68,19 +68,26 @@ public class CuotaJDBC {
     public boolean añadirCuota(Cuota c) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "INSERT INTO Cuota (Importe, intervaloPagos, fechaInicial, fechaFin, OIDSocio) VALUES ('"+c.getCantidad()+"','"+c.getIntervaloPagos()+"','"+c.getFechaInicio()+"','"+c.getFechaFin()+"','"+c.getOIDSocio()+"')";
-        boolean exito = driver.insertar(sql);
+        boolean exito;
         
+        try{
+            String sql = "INSERT INTO Cuota (Importe, intervaloPagos, fechaInicial, fechaFin, OIDSocio) VALUES ('"+c.getCantidad()+"','"+c.getIntervaloPagos()+"','"+c.getFechaInicio()+"','"+c.getFechaFin()+"','"+c.getOIDSocio()+"')";
+            exito = driver.insertar(sql);
+        
+            driver.commit();
+            
+        }
+        catch (SQLException ex){
+            driver.rollback();
+            exito = false;
+            throw ex;
+	}
+        finally {
+            driver.finTransaccion();
+	}
         return exito;
     }
-    
-    public  boolean modificarFechaFin(){
-        
-        DriverJDBC driver = DriverJDBC.getInstance();
-        
-        return true;
-    }
-    
+       
     
     /**
      * Actualiza el último pago de una Cuota
@@ -91,9 +98,25 @@ public class CuotaJDBC {
     public boolean actualizarUltimoPago(Cuota c) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "UPDATE Cuota SET fechaUltimoPago='"+c.getFechaUltimoPago()+"'+'"+c.getIntervaloPagos()+"' WHERE OIDSocio='"+c.getOIDSocio()+"'";
-        boolean exito = driver.insertar(sql);
+        boolean exito;
         
+        try{
+            driver.inicioTransaccion();
+            
+            String sql = "UPDATE Cuota SET fechaUltimoPago='"+c.getFechaUltimoPago()+"'+'"+c.getIntervaloPagos()+"' WHERE OIDSocio='"+c.getOIDSocio()+"'";
+        
+            exito = driver.insertar(sql);
+            driver.commit();
+            
+        }
+        catch (SQLException ex){
+            driver.rollback();
+            exito = false;
+            throw ex;
+	}
+        finally {
+            driver.finTransaccion();
+	}
         return exito;
     }
     
@@ -106,9 +129,24 @@ public class CuotaJDBC {
     public boolean atrasarUltimoPago(Cuota c) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "UPDATE Cuota SET fechaUltimoPago='"+c.getFechaUltimoPago()+"'-'"+c.getIntervaloPagos()+"' WHERE OIDSocio='"+c.getOIDSocio()+"'";
-        boolean exito = driver.insertar(sql);
+        boolean exito;
         
+        try{
+            driver.inicioTransaccion();
+            String sql = "UPDATE Cuota SET fechaUltimoPago='"+c.getFechaUltimoPago()+"'-'"+c.getIntervaloPagos()+"' WHERE OIDSocio='"+c.getOIDSocio()+"'";
+            exito = driver.insertar(sql);
+        
+            driver.commit();
+            
+        }
+        catch (SQLException ex){
+            driver.rollback();
+            exito = false;
+            throw ex;
+	}
+        finally {
+            driver.finTransaccion();
+	}
         return exito;
     }
     
@@ -123,9 +161,24 @@ public class CuotaJDBC {
         DriverJDBC driver = DriverJDBC.getInstance();
         
         Date fechaActual = null;
-        String sql = "UPDATE Cuota SET FechaFin='"+fechaActual.getTime()+" WHERE Cuota.OID='"+c.getOIDCuota()+"'";
-        boolean exito = driver.insertar(sql);
+        boolean exito;
         
+        try{
+            driver.inicioTransaccion();
+            String sql = "UPDATE Cuota SET FechaFin='"+fechaActual.getTime()+" WHERE Cuota.OID='"+c.getOIDCuota()+"'";
+            exito = driver.insertar(sql);
+        
+            driver.commit();
+            
+        }
+        catch (SQLException ex){
+            driver.rollback();
+            exito = false;
+            throw ex;
+	}
+        finally {
+            driver.finTransaccion();
+	}
         return exito;
     }
     
@@ -138,10 +191,24 @@ public class CuotaJDBC {
     public boolean eliminarCuota(Cuota c) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
-          
-        String sql2 = "DELETE FROM Cuota WHERE Cuota.OID='"+c.getOIDCuota()+"'";
-        boolean exito = driver.insertar(sql2);
+        boolean exito;
         
+        try{
+            driver.inicioTransaccion();  
+            String sql2 = "DELETE FROM Cuota WHERE Cuota.OID='"+c.getOIDCuota()+"'";
+            exito = driver.insertar(sql2);
+        
+            driver.commit();
+            
+        }
+        catch (SQLException ex){
+            driver.rollback();
+            exito = false;
+            throw ex;
+	}
+        finally {
+            driver.finTransaccion();
+	}
         return exito;
         
     }

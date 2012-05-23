@@ -99,7 +99,7 @@ public class ColaboracionJDBC {
     public boolean eliminarColaboracion(Colaboracion c) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
-         boolean exito;
+        boolean exito;
         
         try{
             driver.inicioTransaccion();
