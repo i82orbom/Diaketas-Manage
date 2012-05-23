@@ -111,14 +111,8 @@
                                                       </Group>
                                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                              <Group type="102" attributes="0">
-                                                                  <Component id="textFechaNacimiento" min="-2" pref="111" max="-2" attributes="0"/>
-                                                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                                                  <Component id="labelLugarNacimiento" min="-2" max="-2" attributes="0"/>
-                                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                                  <Component id="textLugarNacimiento" max="32767" attributes="0"/>
-                                                              </Group>
+                                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                              <Component id="textFechaNacimiento" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
                                                               <Component id="textApellidos" min="-2" pref="307" max="-2" attributes="0"/>
                                                           </Group>
                                                           <Component id="cbEstadoCivilBeneficiario" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
@@ -268,13 +262,7 @@
                                   <Component id="labelSituacionEconomica" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelLugarNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textLugarNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jScrollPane7" min="-2" pref="107" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jScrollPane7" min="-2" pref="107" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -316,8 +304,6 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="textProfesion">
-            </Component>
-            <Component class="javax.swing.JTextField" name="textLugarNacimiento">
             </Component>
             <Component class="javax.swing.JLabel" name="labelNombre">
               <Properties>
@@ -371,11 +357,6 @@
             <Component class="javax.swing.JLabel" name="labelLocalidad">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Localidad"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="labelLugarNacimiento">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="en"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="labelProfesion">
