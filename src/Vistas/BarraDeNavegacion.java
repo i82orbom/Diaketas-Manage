@@ -55,7 +55,9 @@ public class BarraDeNavegacion extends javax.swing.JPanel {
         labelNivel3.setVisible(true);
         senalaNivel3.setVisible(true);
     }
-
+    public String getTextLebelNivel2(){
+        return labelNivel2.getText();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

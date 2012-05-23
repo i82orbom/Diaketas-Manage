@@ -113,14 +113,14 @@ public class VistaBolsaTrabajo extends javax.swing.JPanel {
         panelBolsaTrabajo.add(panelBolsaTrabajoInicio, "inicio");
         panelBolsaTrabajo.add(panelConsultarDemanda, "consultardemandas");
         panelBolsaTrabajo.add(panelConsultarOferta, "consultarofertas");
-        panelBolsaTrabajo.add(panelDemandanteBuscar, "card5");
-        panelBolsaTrabajo.add(panelModificarDemanda, "card7");
-        panelBolsaTrabajo.add(panelModificarOferta, "card8");
-        panelBolsaTrabajo.add(panelNuevaDemanda, "card9");
-        panelBolsaTrabajo.add(panelNuevaOferta, "card10");
-        panelBolsaTrabajo.add(panelOfertasBuscar, "card11");
+        panelBolsaTrabajo.add(panelDemandanteBuscar, "buscardemandas");
+        panelBolsaTrabajo.add(panelModificarDemanda, "modificardemanda");
+        panelBolsaTrabajo.add(panelModificarOferta, "modificaroferta");
+        panelBolsaTrabajo.add(panelNuevaDemanda, "nuevademanda");
+        panelBolsaTrabajo.add(panelNuevaOferta, "nuevaoferta");
+        panelBolsaTrabajo.add(panelOfertasBuscar, "buscarofertas");
         panelBolsaTrabajo.add(panelDemandasInicio, "demandasInicio");
-        panelBolsaTrabajo.add(panelOfertasInicio1, "card12");
+        panelBolsaTrabajo.add(panelOfertasInicio1, "ofertasInicio");
 
         add(panelBolsaTrabajo, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents

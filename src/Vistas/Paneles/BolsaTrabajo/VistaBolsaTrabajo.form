@@ -61,42 +61,42 @@
         <Component class="Vistas.Paneles.BolsaTrabajo.PanelDemandanteBuscar" name="panelDemandanteBuscar">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card5"/>
+              <CardConstraints cardName="buscardemandas"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="Vistas.Paneles.BolsaTrabajo.PanelModificarDemanda" name="panelModificarDemanda">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card7"/>
+              <CardConstraints cardName="modificardemanda"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="Vistas.Paneles.BolsaTrabajo.PanelModificarOferta" name="panelModificarOferta">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card8"/>
+              <CardConstraints cardName="modificaroferta"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="Vistas.Paneles.BolsaTrabajo.PanelNuevaDemanda" name="panelNuevaDemanda">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card9"/>
+              <CardConstraints cardName="nuevademanda"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="Vistas.Paneles.BolsaTrabajo.PanelNuevaOferta" name="panelNuevaOferta">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card10"/>
+              <CardConstraints cardName="nuevaoferta"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="Vistas.Paneles.BolsaTrabajo.PanelOfertasBuscar" name="panelOfertasBuscar">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card11"/>
+              <CardConstraints cardName="buscarofertas"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -110,7 +110,7 @@
         <Component class="Vistas.Paneles.BolsaTrabajo.PanelOfertasInicio" name="panelOfertasInicio1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="card12"/>
+              <CardConstraints cardName="ofertasInicio"/>
             </Constraint>
           </Constraints>
         </Component>

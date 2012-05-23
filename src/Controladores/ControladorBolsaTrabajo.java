@@ -172,6 +172,13 @@ public class ControladorBolsaTrabajo {
 			if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_NIVEL1)) {
 				mostrarVistaInicio();
 			}
+                        if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_NIVEL2)) {
+                            if (vista.getBarraDeNavigacion().getTextLebelNivel2().equalsIgnoreCase("Demandas")){
+				mostrarDemandasInicio();
+                            }
+                            else
+                                 mostrarOfertasInicio();
+			}
 		}
 	}
 
