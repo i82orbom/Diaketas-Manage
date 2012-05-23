@@ -43,7 +43,7 @@ public class ControladorBolsaTrabajo {
 
         vista = bvista;
 
-       // vista.getBarraDeNavigacion().setListener(new Co
+        vista.getBarraDeNavigacion().setListener(new ListenerBarraNavigacion());
 
         this.mostrarVistaInicio();
 

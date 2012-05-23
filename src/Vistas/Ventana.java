@@ -5,6 +5,7 @@
 package Vistas;
 
 import Vistas.Paneles.Beneficiario.VistaBeneficiario;
+import Vistas.Paneles.BolsaTrabajo.VistaBolsaTrabajo;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
 import Vistas.Paneles.Voluntario.VistaVoluntario;
 import java.awt.CardLayout;
@@ -22,6 +23,7 @@ public class Ventana extends javax.swing.JFrame {
     public static String panelVoluntario = "voluntario";
     public static String panelBeneficiario = "beneficiario";
     public static String panelColaboradores = "colaboradores";
+    public static String panelBolsaTrabajo = "bolsaTrabajo";
     
     /**
      * Creates new form Raiz
@@ -52,6 +54,7 @@ public class Ventana extends javax.swing.JFrame {
         vistaVoluntario = new Vistas.Paneles.Voluntario.VistaVoluntario();
         vistaBeneficiario = new Vistas.Paneles.Beneficiario.VistaBeneficiario();
         vistaColaboradores = new Vistas.Paneles.Colaboradores.VistaColaboradores();
+        vistaBolsaTrabajo = new Vistas.Paneles.BolsaTrabajo.VistaBolsaTrabajo();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Diaketas");
@@ -66,6 +69,7 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().add(vistaVoluntario, "voluntario");
         getContentPane().add(vistaBeneficiario, "beneficiario");
         getContentPane().add(vistaColaboradores, "colaboradores");
+        getContentPane().add(vistaBolsaTrabajo, "bolsaTrabajo");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -132,9 +136,14 @@ public class Ventana extends javax.swing.JFrame {
     public VistaColaboradores getVistaColaboradores() {
         return this.vistaColaboradores;
     }
+
+    public VistaBolsaTrabajo getVistaBolsaTrabajo() {
+        return vistaBolsaTrabajo;
+    }
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Vistas.Paneles.Beneficiario.VistaBeneficiario vistaBeneficiario;
+    private Vistas.Paneles.BolsaTrabajo.VistaBolsaTrabajo vistaBolsaTrabajo;
     private Vistas.Paneles.Colaboradores.VistaColaboradores vistaColaboradores;
     private Vistas.VistaInicial vistaInicial;
     private Vistas.VistaLogin vistaLogin;

@@ -79,6 +79,7 @@ public class ControladorPrincipal {
         ControladorVoluntario.getInstance(this.vista.getPanelVoluntario());
         ControladorBeneficiario.getInstance(this.vista.getVistaBeneficiario());
         ControladorColaboradores.getInstance(this.vista.getVistaColaboradores());
+        ControladorBolsaTrabajo.getIntance(this.vista.getVistaBolsaTrabajo());
 
         // adicion de los listeners cuyo el controlador se encarga
         vista.getVistaLogin().anadirListenerBtConectarse(new BtConectarseListener());
@@ -86,6 +87,7 @@ public class ControladorPrincipal {
         vista.getVistaInicial().anadirListenerbtBeneficiario(new BtBeneficiarioListener());
         vista.getVistaInicial().anadirListenerbtDesconectase(new BtDesconectarseListener());
         vista.getVistaInicial().anadirListenerbtColaboradores(new BtColaboradoresListener());
+        vista.getVistaInicial().anadirListenerbtBolsaTrabajo(new BtBolsaTrabajoListener());
     }
 
 
@@ -196,5 +198,14 @@ public class ControladorPrincipal {
         public void actionPerformed(ActionEvent ae) {
             vista.showPanel(Ventana.panelColaboradores);
         }
+     }
+     
+     class BtBolsaTrabajoListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            vista.showPanel(Ventana.panelBolsaTrabajo);
+        }
+         
      }
 }
