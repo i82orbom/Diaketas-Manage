@@ -13,14 +13,20 @@ import java.awt.CardLayout;
  */
 public class VistaBolsaTrabajo extends javax.swing.JPanel {
 
-    public static String panelInicio = "inicio";
-    public static String panelDemandaInicio = "demandasInicio";
-    public static String panelOfertasInicio = "ofertasInicio";
-    public static String panelConsultarOfertas = "consultarofertas";
-    public static String panelConsultarDemandas = "consultardemandas";
+    public static String PanelInicio = "inicio";
+    public static String PanelDemandaInicio = "demandasInicio";
+    public static String PanelOfertasInicio = "ofertasInicio";
+    public static String PanelConsultarOfertas = "consultarofertas";
+    public static String PanelConsultarDemandas = "consultardemandas";
+    public static String PanelNuevaDemanda = "nuevademanda";
+    public static String PanelNuevaOferta = "nuevaoferta";
+    public static String PanelModificarDemanda = "modificardemanda";
+    public static String PanelModificarOferta = "modificaroferta";
+    public static String PanelBuscarDemandas = "buscardemandas";
+    public static String PanelBuscarOfertas = "buscarofertas";
     /**
      * Creates new form VistaBolsaTrabajo
-     */
+     */ 
         public VistaBolsaTrabajo() {
             initComponents();
         }
