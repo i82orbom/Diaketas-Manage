@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
@@ -193,6 +194,7 @@ public class ControladorVoluntario {
             VoluntarioJDBC.getInstance().anadirVoluntario(voluntario);
         } catch (SQLException se) {
             System.err.print(se.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al añadir voluntario:\n"+se.getMessage());
             return false;
         }
 
@@ -290,11 +292,11 @@ public class ControladorVoluntario {
             return false;
         }
 
-        if (!TestDatos.isOnlyLetter(datos[Voluntario.NOMBRE_ID])) {
+        if (!TestDatos.isNombre(datos[Voluntario.NOMBRE_ID])) {
             return false;
         }
 
-        if (!TestDatos.isOnlyLetter(datos[Voluntario.APELLIDOS_ID])) {
+        if (!TestDatos.isNombre(datos[Voluntario.APELLIDOS_ID])) {
             return false;
         }
 
