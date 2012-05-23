@@ -26,7 +26,7 @@ public class VistaBolsaTrabajo extends javax.swing.JPanel {
     public static String PanelBuscarOfertas = "buscarofertas";
     /**
      * Creates new form VistaBolsaTrabajo
-     */
+     */ 
         public VistaBolsaTrabajo() {
             initComponents();
         }

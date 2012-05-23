@@ -18,12 +18,12 @@ public class PanelConsultarOferta extends javax.swing.JPanel {
      * Creates new form PanelBeneficiarioBuscar
      */
     public PanelConsultarOferta() {
+        initComponents();
         TextDuracionContrato.setEditable(false);
         TextNIF1.setEditable(false);
         TextNPuestos.setEditable(false);
         taHistoriaLaboral.setEditable(false);
         taCualificacion.setEditable(false);
-        initComponents();
     }
     public String getTextDuracionContrato() {
         return TextDuracionContrato.getText();
