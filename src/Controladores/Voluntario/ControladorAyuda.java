@@ -7,6 +7,7 @@ import Modelo.Ayuda;
 import Modelo.TipoAyuda;
 import Vistas.Paneles.Voluntario.PanelVoluntarioAyudas;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -96,6 +97,44 @@ public class ControladorAyuda {
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        
+        return exito;
+    }
+    
+    private ArrayList<TipoAyuda> obtenerTiposAyuda () {
+        ArrayList<TipoAyuda> tiposAyuda;
+        try {
+            tiposAyuda = AyudaJDBC.getInstance().obtenerDatosTipoAyuda();
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return tiposAyuda;
+    }
+    
+    private boolean modificarAyuda (Ayuda ayuda) {
+        boolean exito = false;
+        
+            // TODO comprobar datos
+            // TODO test si tipoayuda existe
+        try {   
+            exito = AyudaJDBC.getInstance().modificarDatosAyuda(ayuda, ayuda.getVoluntarioQueOtorga());
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return exito;
+    }
+    
+    private boolean modificarTypoAyuda (TipoAyuda tipoAyuda) {
+        boolean exito = false;
+        
+            // TODO comprobar datos
+        try {    
+            exito = AyudaJDBC.getInstance().modificarDatosTipoAyuda(tipoAyuda);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return exito;
