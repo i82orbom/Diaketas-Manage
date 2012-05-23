@@ -70,19 +70,29 @@ public class C_PersonaJDBC {
     public boolean añadirC_Persona(C_Persona persona) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
+        boolean exito;
         
-        String DNI = persona.getDNI();
-        String Nombre = persona.getNombre();
-        String Apellidos = persona.getApellidos();
-        Date FechaDeNacimiento = persona.getFechaDeNacimiento();
-        char Sexo = persona.getSexo();
+        try{
+            driver.inicioTransaccion();
+            
+            String sql = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, codigoPostal, TelefojonoFijo, TelefojonoMovil, Email) VALUES ('"+persona.getDireccion()+"','"+persona.getLocalidad()+"','"+persona.getProvincia()+"','"+persona.getCP()+"','"+persona.getTelefonoFijo()+"','"+persona.getTelefonoMovil()+"','"+persona.getEmail()+"')";
+       
+            String sql2 = "INSERT INTO C_Persona (OID, DNI, Nombre, Apellidos, FechaDeNacimiento) VALUES (LAST_INSERT_ID(),'"+persona.getDNI()+"','"+persona.getNombre()+"','"+persona.getApellidos()+"','"+persona.getFechaDeNacimiento()+"','"+persona.getSexo()+"')";
         
-        String sql = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, codigoPostal, TelefojonoFijo, TelefojonoMovil, Email) VALUES ('"+persona.getDireccion()+"','"+persona.getLocalidad()+"','"+persona.getProvincia()+"','"+persona.getCP()+"','"+persona.getTelefonoFijo()+"','"+persona.getTelefonoMovil()+"','"+persona.getEmail()+"')";
-        boolean exito = driver.insertar(sql);
-        String sql2 = "INSERT INTO C_Persona (OID, DNI, Nombre, Apellidos, FechaDeNacimiento) VALUES (LAST_INSERT_ID(),'"+DNI+"','"+Nombre+"','"+Apellidos+"','"+FechaDeNacimiento+"','"+Sexo+"')";
-        boolean exito2 = driver.insertar(sql2);
-                
-        return (exito && exito2);
+            exito = driver.insertar(sql);
+            if (exito) exito = driver.insertar(sql2);
+            driver.commit();
+            
+        }
+        catch (SQLException ex){
+            driver.rollback();
+            exito = false;
+            throw ex;
+	}
+        finally {
+            driver.finTransaccion();
+	}
+        return exito;
     }
     
     /**
@@ -94,18 +104,30 @@ public class C_PersonaJDBC {
     public boolean modificarDatosC_Persona(C_Persona persona) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
-        String DNI = persona.getDNI();
-        String Nombre = persona.getNombre();
-        String Apellidos = persona.getApellidos();
-        Date FechaDeNacimiento = persona.getFechaDeNacimiento();
-        char Sexo = persona.getSexo();
+        boolean exito;
         
-        String sql = "UPDATE Colaborador SET Direccion='"+persona.getDireccion()+"', Localidad='"+persona.getLocalidad()+"', Provincia='"+persona.getProvincia()+"', codigoPostal='"+persona.getCP()+"', TelefonoFijo='"+persona.getTelefonoFijo()+"', TelefonoMovil='"+persona.getTelefonoMovil()+"', Email='"+persona.getEmail()+"WHERE OID="+persona.getOIDColaborador()+"'";
-        boolean exito = driver.insertar(sql);
-        String sql2 = "UPDATE C_Persona SET DNI='"+DNI+"', Nombre='"+Nombre+"', Apellidos='"+Apellidos+"', FechaDeNacimiento='"+FechaDeNacimiento+"WHERE OID="+persona.getOIDPersona()+"'";
-        boolean exito2 = driver.insertar(sql2);
+        try{
+            driver.inicioTransaccion();
+            
+            String sql = "UPDATE Colaborador SET Direccion='"+persona.getDireccion()+"', Localidad='"+persona.getLocalidad()+"', Provincia='"+persona.getProvincia()+"', codigoPostal='"+persona.getCP()+"', TelefonoFijo='"+persona.getTelefonoFijo()+"', TelefonoMovil='"+persona.getTelefonoMovil()+"', Email='"+persona.getEmail()+"WHERE OID="+persona.getOIDColaborador()+"'";
+            
+            String sql2 = "UPDATE C_Persona SET DNI='"+persona.getDNI()+"', Nombre='"+persona.getNombre()+"', Apellidos='"+persona.getApellidos()+"', FechaDeNacimiento='"+persona.getFechaDeNacimiento()+"WHERE OID="+persona.getOIDPersona()+"'";
         
-        return (exito && exito2);
+            exito = driver.insertar(sql);
+            if (exito) exito = driver.insertar(sql2);
+            driver.commit();
+            
+        }
+        catch (SQLException ex){
+            driver.rollback();
+            exito = false;
+            throw ex;
+	}
+        finally {
+            driver.finTransaccion();
+	}
+        
+        return exito;
     }
     
     /**
@@ -117,17 +139,36 @@ public class C_PersonaJDBC {
     public boolean eliminarC_Persona(C_Persona persona) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
+        boolean exito;
         
-        String sql = "UPDATE Colaboracion SET OID=OID_Anonimo WHERE OID='"+persona.getOIDPersona()+"'";
-        boolean exito = driver.insertar(sql);
+        try{
+            driver.inicioTransaccion();
+            
+            String sql = "UPDATE Colaboracion SET OID=OID_Anonimo WHERE OID='"+persona.getOIDPersona()+"'";
+            
         
-        String sql2 = "DELETE FROM C_Persona WHERE OID='"+persona.getOIDPersona()+"'";
-        boolean exito2 = driver.insertar(sql2);
+            String sql2 = "DELETE FROM C_Persona WHERE OID='"+persona.getOIDPersona()+"'";
         
-        String sql3 = "DELETE FROM Colaborador WHERE OID='"+persona.getOIDPersona()+"'";
-        boolean exito3 = driver.insertar(sql3);
         
-        return (exito && exito2 && exito3);
+            String sql3 = "DELETE FROM Colaborador WHERE OID='"+persona.getOIDPersona()+"'";
+            
+            exito = driver.insertar(sql);
+            if (exito) {
+                exito = driver.insertar(sql2);
+                if (exito) exito = driver.insertar(sql3);
+            }
+            driver.commit();
+            
+        }
+        catch (SQLException ex){
+            driver.rollback();
+            exito = false;
+            throw ex;
+	}
+        finally {
+            driver.finTransaccion();
+	}
+        return exito;
     }
     
     /**
@@ -230,9 +271,25 @@ public class C_PersonaJDBC {
     public boolean hacerSocio(C_Persona persona, String usuarioN, String contrasena) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "INSERT INTO Socio (OIDC_Persona, OIDColaborador, usuario, contrasena) VALUES ('"+persona.getOIDPersona()+"','"+persona.getOIDColaborador()+"','"+usuarioN+"','"+contrasena+"')";
-        boolean exito = driver.insertar(sql);
+        boolean exito;
         
+        try{
+            driver.inicioTransaccion();
+            
+            String sql = "INSERT INTO Socio (OIDC_Persona, OIDColaborador, usuario, contrasena) VALUES ('"+persona.getOIDPersona()+"','"+persona.getOIDColaborador()+"','"+usuarioN+"','"+contrasena+"')";
+            exito = driver.insertar(sql);
+        
+            driver.commit();
+            
+        }
+        catch (SQLException ex){
+            driver.rollback();
+            exito = false;
+            throw ex;
+	}
+        finally {
+            driver.finTransaccion();
+	}
         return exito;
      
     }
