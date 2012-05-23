@@ -109,7 +109,7 @@ public class VoluntarioJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
 
-        String sql = "SELECT * FROM voluntario v, persona p WHERE " + tipoDato + "='" + dato + "' AND p.OID=v.OID";
+        String sql = "SELECT * FROM voluntario v, persona p WHERE " + tipoDato + " LIKE '%" + dato + "%' AND p.OID=v.OID";
 
         ResultSet resultados = driver.seleccionar(sql);
 
