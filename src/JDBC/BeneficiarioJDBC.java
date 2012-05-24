@@ -135,38 +135,47 @@ public class BeneficiarioJDBC {
 	}
 
 	public ArrayList<Beneficiario> obtenerListadoBeneficiario(String dato, String tipoDato) throws SQLException{
-
 		DriverJDBC driver = DriverJDBC.getInstance() ;
 		String sql = "SELECT * FROM beneficiario b, persona p WHERE "+tipoDato+" LIKE '%"+dato+"%' AND p.OID=b.OID";
-
-		ResultSet resultados = driver.seleccionar(sql);
 		ArrayList<Beneficiario> listadoBeneficiarios = new ArrayList<Beneficiario>();
-		Beneficiario temp = null;
 
-		while(resultados.next()){
-			temp = new Beneficiario();
-			temp.setNIF(resultados.getString("NIF"));
-			temp.setNivelDeEstudio(resultados.getString("NivelDeEstudio"));
-			temp.setObservaciones(resultados.getString("Observaciones"));
-			temp.setOcupacion(resultados.getString("Ocupacion"));
-			temp.setProfesion(resultados.getString("Profesion"));
-			temp.setSituacionEconomica(resultados.getString("SituacionEconomica"));
-			temp.setVivienda(resultados.getString("Vivienda"));
-			temp.setViviendaAlquiler(resultados.getFloat("ViviendaAlquiler"));
-			temp.setViviendaObservaciones(resultados.getString("ViviendaObservaciones"));
-			temp.setNacionalidad(resultados.getString("Nacionalidad"));
-			temp.setNombre(resultados.getString("Nombre"));
-			temp.setApellidos(resultados.getString("Apellidos"));
-			temp.setFechaDENacimiento(resultados.getDate("FechaNacimiento"));
-			temp.setCP(resultados.getString("CP"));
-			temp.setTelefonoFijo(resultados.getString("TelefonoFijo"));
-			temp.setTelefonoMovil(resultados.getString("TelefonoMovil"));
-			temp.setDomicilio(resultados.getString("Domicilio"));
-			temp.setLocalidad(resultados.getString("Localidad"));
-                        temp.setEstadoCivil(resultados.getString("EstadoCivil"));
+		try {
+			driver.conectar();
+			ResultSet resultados = driver.seleccionar(sql);
+			Beneficiario temp;
 
-			listadoBeneficiarios.add(temp);
+			while(resultados.next()){
+				temp = new Beneficiario();
+				temp.setNIF(resultados.getString("NIF"));
+				temp.setNivelDeEstudio(resultados.getString("NivelDeEstudio"));
+				temp.setObservaciones(resultados.getString("Observaciones"));
+				temp.setOcupacion(resultados.getString("Ocupacion"));
+				temp.setProfesion(resultados.getString("Profesion"));
+				temp.setSituacionEconomica(resultados.getString("SituacionEconomica"));
+				temp.setVivienda(resultados.getString("Vivienda"));
+				temp.setViviendaAlquiler(resultados.getFloat("ViviendaAlquiler"));
+				temp.setViviendaObservaciones(resultados.getString("ViviendaObservaciones"));
+				temp.setNacionalidad(resultados.getString("Nacionalidad"));
+				temp.setNombre(resultados.getString("Nombre"));
+				temp.setApellidos(resultados.getString("Apellidos"));
+				temp.setFechaDENacimiento(resultados.getDate("FechaNacimiento"));
+				temp.setCP(resultados.getString("CP"));
+				temp.setTelefonoFijo(resultados.getString("TelefonoFijo"));
+				temp.setTelefonoMovil(resultados.getString("TelefonoMovil"));
+				temp.setDomicilio(resultados.getString("Domicilio"));
+				temp.setLocalidad(resultados.getString("Localidad"));
+				temp.setEstadoCivil(resultados.getString("EstadoCivil"));
+
+				listadoBeneficiarios.add(temp);
+			}
 		}
+		catch (SQLException ex){
+			throw ex;
+		}
+		finally{
+			driver.desconectar();
+		}
+
 		return listadoBeneficiarios;
 	}
 
