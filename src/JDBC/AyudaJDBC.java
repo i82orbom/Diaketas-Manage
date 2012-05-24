@@ -18,7 +18,6 @@
  **     001 - Mar 26, 2012 - FBR - Implementacion de los metodos
  **     002 - Mar 29, 2012 - AAN - Correccion consultas SQL
  *      003 - Abr 15, 2012 - FBR - Corrección consultas SQL
- **   
  *      
  **
  ** NOTAS:
@@ -72,7 +71,7 @@ public class AyudaJDBC {
             temp = new Ayuda();
             
             temp.setOID(resultado.getString("OID"));
-            temp.setFecha(resultado.getDate("Fecha").toString());
+            temp.setFecha(resultado.getDate("Fecha"));
             temp.setObservaciones(resultado.getString("Observaciones"));
             temp.setImporte(resultado.getFloat("Importe"));
             
@@ -109,7 +108,7 @@ public class AyudaJDBC {
         while(resultados.next()){
             ayuda = new Ayuda();
             ayuda.setOID(resultados.getString("OID"));
-            ayuda.setFecha(resultados.getDate("Fecha").toString());
+            ayuda.setFecha(resultados.getDate("Fecha"));
             ayuda.setImporte(resultados.getFloat("Importe"));
             ayuda.setObservaciones("Observaciones");
             

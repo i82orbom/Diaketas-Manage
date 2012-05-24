@@ -5,9 +5,12 @@
 package Vistas.Paneles.Beneficiario;
 
 import Modelo.Beneficiario;
+import Modelo.TipoAyuda;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JTable;
 
 /**
  *
@@ -128,6 +131,10 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 		setColorLabels(Color.black);
 	}
         
+        public JTable getTbIntervenciones() {
+            return tbIntervenciones;
+        }
+        
         //Rellenar datos generales a partir de un Beneficiario
         public void actualizarDatosGenerales(Beneficiario b){
             textNombre.setText(b.getNombre());
@@ -150,7 +157,12 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
             cbNivelEstudios.setSelectedItem(b.getNivelDeEstudio());
             cbTipoVivienda.setSelectedItem(b.getVivienda());
         }
-
+        public void actualizarTiposAyuda(ArrayList<TipoAyuda> tiposAyuda) {
+            cbTiposAyuda.removeAllItems();
+            for(TipoAyuda ta:tiposAyuda){
+                cbTiposAyuda.addItem(ta);
+            }       
+        }
 	    // getters de los campos
 	public JButton getBtBorrar() {
 		return btBorrar;
@@ -246,13 +258,13 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         btEliminarIntervencionBeneficiario = new javax.swing.JButton();
         jLabel59 = new javax.swing.JLabel();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tbIntervenciones = new javax.swing.JTable();
         jLabel60 = new javax.swing.JLabel();
         textObservacionesIntervencionBeneficiario = new javax.swing.JTextField();
-        textConceptoBeneficiario = new javax.swing.JTextField();
         jLabel62 = new javax.swing.JLabel();
         jLabel61 = new javax.swing.JLabel();
         textImporteBeneficiario = new javax.swing.JTextField();
+        cbTiposAyuda = new javax.swing.JComboBox();
         PanelSituacionFamiliar = new javax.swing.JPanel();
         cbParentescoBeneficiario = new javax.swing.JComboBox();
         jLabel57 = new javax.swing.JLabel();
@@ -530,18 +542,15 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         jLabel59.setForeground(new java.awt.Color(255, 0, 0));
         jLabel59.setText("Intervenciones realizadas");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tbIntervenciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Fecha", "Concepto", "Importe", "Observaciones"
+                "Fecha", "Concepto", "Importe", "Observaciones", "Voluntario"
             }
         ));
-        jScrollPane10.setViewportView(jTable3);
+        jScrollPane10.setViewportView(tbIntervenciones);
 
         jLabel60.setText("Importe");
 
@@ -576,8 +585,8 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                                 .add(18, 18, 18)
                                 .add(PanelIntervencionesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(textObservacionesIntervencionBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 769, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(textConceptoBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 717, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(textImporteBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                                    .add(textImporteBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(cbTiposAyuda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                         .add(0, 48, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -594,8 +603,8 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                     .add(textImporteBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(PanelIntervencionesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(textConceptoBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel61))
+                    .add(jLabel61)
+                    .add(cbTiposAyuda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(12, 12, 12)
                 .add(PanelIntervencionesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel62)
@@ -731,6 +740,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
     private javax.swing.JComboBox cbNivelEstudios;
     private javax.swing.JComboBox cbParentescoBeneficiario;
     private javax.swing.JComboBox cbTipoVivienda;
+    private javax.swing.JComboBox cbTiposAyuda;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
@@ -742,7 +752,6 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable3;
     private javax.swing.JLabel labelApellidos;
     private javax.swing.JLabel labelCP;
     private javax.swing.JLabel labelDatosPersonales;
@@ -766,9 +775,9 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
     private javax.swing.JLabel labelViviendaEspecificacion;
     private javax.swing.JLabel labelViviendaPrecio;
     private javax.swing.JTable listDatosFamiliarBeneficiario;
+    private javax.swing.JTable tbIntervenciones;
     private javax.swing.JTextField textApellidos;
     private javax.swing.JTextField textCP;
-    private javax.swing.JTextField textConceptoBeneficiario;
     private javax.swing.JTextField textDomicilio;
     private javax.swing.JTextField textEspecificarTipoVivienda;
     private javax.swing.JFormattedTextField textFechaNacimiento;

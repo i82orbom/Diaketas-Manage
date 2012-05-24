@@ -26,6 +26,7 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -33,7 +34,7 @@ import java.util.ArrayList;
  */
 public class Ayuda {
     
-    private String fecha;
+    private Date fecha;
     private float importe;
     private String observaciones;
     private String OID;
@@ -87,7 +88,7 @@ public class Ayuda {
      * 
      * @return
      */
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
@@ -95,7 +96,7 @@ public class Ayuda {
      * 
      * @param fecha
      */
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

@@ -113,7 +113,7 @@ public class MovimientoJDBC {
               ArrayList<Ayuda> lista_ayudas = new ArrayList<Ayuda>();
               while (rs2.next()){
                   ayu = new Ayuda();
-                  ayu.setFecha(rs2.getDate("Fecha").toString());
+                  ayu.setFecha(rs2.getDate("Fecha"));
                   ayu.setImporte(rs2.getFloat("Importe"));
                   ayu.setObservaciones(rs2.getString("Observaciones"));
                   ayu.setOID(rs2.getString("OID"));
@@ -164,7 +164,7 @@ public class MovimientoJDBC {
               ArrayList<Ayuda> lista_ayudas = new ArrayList<Ayuda>();
               while (rs2.next()){
                   ayu = new Ayuda();
-                  ayu.setFecha(rs2.getDate("Fecha").toString());
+                  ayu.setFecha(rs2.getDate("Fecha"));
                   ayu.setImporte(rs2.getFloat("Importe"));
                   ayu.setObservaciones(rs2.getString("Observaciones"));
                   ayu.setOID(rs2.getString("OID"));
