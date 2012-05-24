@@ -1,8 +1,10 @@
 
 package Controladores;
 
+import Controladores.Voluntario.ControladorAyuda;
 import JDBC.BeneficiarioJDBC;
 import Modelo.Beneficiario;
+import Modelo.TipoAyuda;
 import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.Beneficiario.VistaBeneficiario;
 import java.awt.Color;
@@ -16,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -38,6 +41,7 @@ import javax.swing.table.TableModel;
  **	001 - 18 May 2012 - ARS - Cambios para añadir beneficiario
  *	002 - 20 May 2012 - ARS - Comprobar datos del beneficiario
  *      003 - 23 May 2012 - JAEG - Buscar y consultar beneficiarios
+ *      004 - 24 May 2012 - JAEG - Consultar intervenciones del beneficiario
  ** NOTAS:
  **
  **
@@ -63,8 +67,10 @@ public class ControladorBeneficiario {
         /* Ultimo beneficiario consultado */
         private Beneficiario benef=null;
         /* Nombre de las columnas para el mapeo de los datos en la vista */
-        String[] columnas = {"NIF","Nombre y Apellidos","Fecha Nacimiento","Localidad","Teléfono Móvil"};
-        
+        String[] columnasBuscarBeneficiario = {"NIF","Nombre y Apellidos","Fecha Nacimiento","Localidad","Teléfono Móvil"};
+        String[] columnasIntervenciones = {"Fecha", "Concepto", "Importe", "Observaciones", "Voluntario"};
+        /* Listado con el tipo de ayudas disponibles */
+        ArrayList<TipoAyuda> tiposAyuda;
         /* Formateador de fechas */
         private SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -113,6 +119,7 @@ public class ControladorBeneficiario {
                     vista.getPanelDatos().limpiarFormulario();
                 }
                 benef = null;
+                vista.getPanelDatos().getTbIntervenciones().setModel(new DefaultTableModel(columnasIntervenciones, 0));
 		vista.showPanel(VistaBeneficiario.panelDatos);
 		vista.getBarraDeNavigacion().setTextLabelNivel1("Beneficiario");
 		vista.getBarraDeNavigacion().setTextLabelNivel2("Nuevo Beneficiario");
@@ -279,6 +286,9 @@ public class ControladorBeneficiario {
 	class btNuevoBeneficiarioListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent ae) {
+                        
+                        tiposAyuda = ControladorAyuda.getInstance(null).obtenerTiposAyuda();
+                        vista.getPanelDatos().actualizarTiposAyuda(tiposAyuda);
 			mostrarVistaNuevoBeneficiario();
 		}
 	}
@@ -325,12 +335,12 @@ public class ControladorBeneficiario {
 
                     @Override
                     public int getColumnCount() {
-                        return columnas.length;
+                        return columnasBuscarBeneficiario.length;
                     }
 
                     @Override
                     public String getColumnName(int columnIndex) {
-                        return columnas[columnIndex];
+                        return columnasBuscarBeneficiario[columnIndex];
                     }
 
                     @Override
@@ -388,7 +398,71 @@ public class ControladorBeneficiario {
             public void actionPerformed(ActionEvent e) {
                 if(vista.getPanelBuscar().getTablaBusquedaBeneficiario().getSelectedRow()!=-1){
                     benef = beneficiarios.get(vista.getPanelBuscar().getTablaBusquedaBeneficiario().getSelectedRow());
+                    tiposAyuda = ControladorAyuda.getInstance(null).obtenerTiposAyuda();
+                    vista.getPanelDatos().actualizarTiposAyuda(tiposAyuda);
                     vista.getPanelDatos().actualizarDatosGenerales(benef);
+                    /* Actualizar intervenciones */
+                    vista.getPanelDatos().getTbIntervenciones().setModel(new TableModel() {
+
+                    @Override
+                    public int getRowCount() {
+                        return benef.getAyudasPrestadas().size();
+                    }
+
+                    @Override
+                    public int getColumnCount() {
+                        return columnasIntervenciones.length;
+                    }
+
+                    @Override
+                    public String getColumnName(int columnIndex) {
+                       return columnasIntervenciones[columnIndex];
+                    }
+
+                    @Override
+                    public Class<?> getColumnClass(int columnIndex) {
+                        return String.class;
+                    }
+
+                    @Override
+                    public boolean isCellEditable(int rowIndex, int columnIndex) {
+                       return false;
+                    }
+
+                    @Override
+                    public Object getValueAt(int rowIndex, int columnIndex) {
+                       switch(columnIndex){
+                           case 0:
+                               return formateador.format(benef.getAyudasPrestadas().get(rowIndex).getFecha());
+                           case 1:
+                               return benef.getAyudasPrestadas().get(rowIndex).getTipo_ayuda().getTitulo();
+                           case 2:
+                               return benef.getAyudasPrestadas().get(rowIndex).getImporte();
+                           case 3:
+                               return benef.getAyudasPrestadas().get(rowIndex).getObservaciones();
+                           case 4:
+                               return benef.getAyudasPrestadas().get(rowIndex).getVoluntarioQueOtorga().getApellidos()+", "+benef.getAyudasPrestadas().get(rowIndex).getVoluntarioQueOtorga().getNombre();
+                           default:
+                               return "";
+                       }
+                       
+                    }
+
+                    @Override
+                    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+                        throw new UnsupportedOperationException("Not supported yet.");
+                    }
+
+                    @Override
+                    public void addTableModelListener(TableModelListener l) {
+                       
+                    }
+
+                    @Override
+                    public void removeTableModelListener(TableModelListener l) {
+                        
+                    }
+                });
                     mostrarVistaModificarBeneficiario();
                 }
             }

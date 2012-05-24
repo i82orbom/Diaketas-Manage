@@ -124,5 +124,8 @@ public class TipoAyuda {
         this.titulo = titulo;
     }
     
-    
+    @Override
+    public String toString(){
+        return this.getTitulo();
+    }
 }

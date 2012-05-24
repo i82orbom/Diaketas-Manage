@@ -102,7 +102,7 @@ public class ControladorAyuda {
         return exito;
     }
     
-    private ArrayList<TipoAyuda> obtenerTiposAyuda () {
+    public ArrayList<TipoAyuda> obtenerTiposAyuda () {
         ArrayList<TipoAyuda> tiposAyuda;
         try {
             tiposAyuda = AyudaJDBC.getInstance().obtenerDatosTipoAyuda();
