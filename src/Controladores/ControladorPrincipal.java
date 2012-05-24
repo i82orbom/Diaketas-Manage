@@ -2,7 +2,6 @@
 package Controladores;
 
 import Controladores.Voluntario.ControladorVoluntario;
-import JDBC.DriverJDBC;
 import Modelo.Voluntario;
 import Vistas.Ventana;
 import java.awt.event.ActionEvent;
@@ -10,8 +9,6 @@ import java.awt.event.ActionListener;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  ** NOMBRE CLASE:
@@ -133,20 +130,17 @@ public class ControladorPrincipal {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            DriverJDBC dr = DriverJDBC.getInstance();
 			boolean exito = true;
 			Voluntario v = null;
 
 			try {
-				dr.conectar();
 				v = JDBC.VoluntarioJDBC.getInstance().obtenerVoluntario(vista.getVistaLogin().getTextFieldIdUsuario().getText());
-				dr.desconectar();
 			}
 			catch (SQLException ex){
 				exito = false;
-                vista.getVistaLogin().mostrarErrorLogin("Hubo un problema de conexion a la BD");
-				Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-				System.err.println("Error al conectar a la base de datos:\n"+ex);
+                vista.getVistaLogin().mostrarErrorLogin("Hubo un problema con la Base de Datos");
+//				Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//				System.err.println("Error al conectar a la base de datos:\n"+ex);
 			}
 
 			if (exito){

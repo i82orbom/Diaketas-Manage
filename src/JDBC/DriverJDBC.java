@@ -44,7 +44,7 @@ public class DriverJDBC {
 	private int oldEstadoTransaccionIsolation;
 
     private DriverJDBC(){
-        this.hostBD="127.0.0.1";
+		this.hostBD="127.0.0.1";
         this.nombreBD="Diaketas";
         this.password="diaketas";
         this.usuarioBD="diaketas";
@@ -61,11 +61,10 @@ public class DriverJDBC {
 
     public boolean conectar() throws SQLException{
 		try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://"+hostBD+"/"+nombreBD , usuarioBD, password);
-            statement = conexion.createStatement();
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection("jdbc:mysql://"+hostBD+"/"+nombreBD , usuarioBD, password);
+			statement = conexion.createStatement();
 		} catch (SQLException exSQL) {
-			System.err.println(exSQL);
 			throw exSQL;
 		} catch (ClassNotFoundException exClass){
 			System.err.println(exClass);
@@ -75,15 +74,17 @@ public class DriverJDBC {
 		return true;
     }
 
-    public boolean desconectar(){
-        try {
-            conexion.close();
-        } catch (SQLException ex) {
-            System.err.println(ex.toString());
-            return false;
-        }
+    public boolean desconectar() throws SQLException{
+		if (conexion!=null){
+			try {
+				conexion.close();
+			}
+			catch (SQLException ex) {
+				throw ex;
+			}
+		}
 
-        return true;
+		return true;
     }
 
     public boolean insertar(String sentencia) throws SQLException{

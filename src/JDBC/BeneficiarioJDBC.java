@@ -53,19 +53,18 @@ public class BeneficiarioJDBC {
 	}
 
 	public boolean anadirBeneficiario (Beneficiario beneficiario) throws SQLException{
-
 		DriverJDBC driver = DriverJDBC.getInstance();
 		boolean exito = true;
 		try{
 			driver.inicioTransaccion();
 
-			String sql = "INSERT INTO persona (NIF,Nombre,Apellidos,FechaNacimiento,CP,TelefonoFijo,TelefonoMovil,Domicilio,Localidad) VALUES "
+			String sql1 = "INSERT INTO persona (NIF,Nombre,Apellidos,FechaNacimiento,CP,TelefonoFijo,TelefonoMovil,Domicilio,Localidad) VALUES "
 					+ "('"+beneficiario.getNIF()+"','"+beneficiario.getNombre()+"','"+beneficiario.getApellidos()+"','"+formatter.format(beneficiario.getFechaDENacimiento())+"','"+beneficiario.getCP()+"','"+beneficiario.getTelefonoFijo()+"','"+beneficiario.getTelefonoMovil()+"','"+beneficiario.getDomicilio()+"','"+beneficiario.getLocalidad()+"')";
 
 			String sql2 = "INSERT INTO beneficiario (OID,EstadoCivil,Nacionalidad,NivelDeEstudio,Observaciones,Ocupacion,Profesion,SituacionEconomica,Vivienda,ViviendaAlquiler,ViviendaObservaciones) VALUES "
 					+ "(LAST_INSERT_ID(),'"+beneficiario.getEstadoCivil()+"','"+beneficiario.getNacionalidad()+"','"+beneficiario.getNivelDeEstudio()+"','"+beneficiario.getObservaciones()+"','"+beneficiario.getOcupacion()+"','"+beneficiario.getProfesion()+"','"+beneficiario.getSituacionEconomica()+"','"+beneficiario.getVivienda()+"','"+beneficiario.getViviendaAlquiler()+"','"+beneficiario.getViviendaObservaciones()+"')";
 
-			driver.insertar(sql);
+			driver.insertar(sql1);
 			driver.insertar(sql2);
 
 			driver.commit();

@@ -19,11 +19,13 @@
  *      002 - Mar 30, 2012 - AAN - Reestructuracion para la tabla persona
  *      003 - Abr 14, 2012 - AAN - Modificacion sentencias SQL
  *      004 - May 16, 2012 - RC  - Revision y testo de todos los metodos con los OID y adicion de getOIDVoluntarioFromPersona(String DNI)
+ *		005 - May 24, 2012 - ARS - Revisión para conectar y desconectar en las consultas
  **
  ** NOTAS:
  **
  **
  */
+
 package JDBC;
 
 import Modelo.Voluntario;
@@ -31,150 +33,187 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-/**
- *
- * @author Jobero
- */
 public class VoluntarioJDBC {
-
     private static VoluntarioJDBC instancia;
     private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     private VoluntarioJDBC(){
-
     }
 
     public static VoluntarioJDBC getInstance(){
-
         if(instancia == null)
              instancia = new VoluntarioJDBC();
         return instancia;
-
     }
 
     public boolean anadirVoluntario (Voluntario voluntario) throws SQLException{
+		DriverJDBC driver = DriverJDBC.getInstance();
+		boolean exito = true;
 
-        DriverJDBC driver = DriverJDBC.getInstance() ;
-
-        String sql = "INSERT INTO persona (NIF,Nombre,Apellidos,CP,TelefonoFijo,TelefonoMovil,Domicilio,Localidad,FechaNacimiento) VALUES ('"
+		String sql1 = "INSERT INTO persona (NIF,Nombre,Apellidos,CP,TelefonoFijo,TelefonoMovil,Domicilio,Localidad,FechaNacimiento) VALUES ('"
 				+voluntario.getNIF()+"','"+voluntario.getNombre()+"','"+voluntario.getApellidos()+"','"+voluntario.getCP()+"','"+voluntario.getTelefonoFijo()+"','"+voluntario.getTelefonoMovil()+"','"+voluntario.getDomicilio()+"','"+voluntario.getLocalidad()+"','"+formatter.format(voluntario.getFechaDENacimiento())+"')";
+		String sql2 = "INSERT INTO voluntario (OID,Password) VALUES (LAST_INSERT_ID(),'"+voluntario.getPassword()+"')";
 
-        String sql2 = "INSERT INTO voluntario (OID,Password) VALUES (LAST_INSERT_ID(),'"+voluntario.getPassword()+"')";
+		try{
+			driver.inicioTransaccion();
+			driver.insertar(sql1);
+			driver.insertar(sql2);
+			driver.commit();
+		}
+		catch (SQLException ex){
+			driver.rollback();
+			exito = false;
+			throw ex;
+		}
+		finally {
+			driver.finTransaccion();
+		}
 
-        boolean exito = driver.insertar(sql);
-        if (exito) exito = driver.insertar(sql2);
-
-        return exito;
-
+		return exito;
     }
 
     public boolean borrarVoluntario(String DNI) throws SQLException {
+		DriverJDBC driver = DriverJDBC.getInstance();
+		boolean exito = true;
 
-        DriverJDBC driver = DriverJDBC.getInstance();
+		int OID = getOIDVoluntarioFromPersona(DNI);
+		String sql1 = "DELETE FROM voluntario WHERE OID='" + OID + "'";
+		String sql2 = "DELETE from persona WHERE OID='" + OID + "'";
 
-        int OID = getOIDVoluntarioFromPersona(DNI);
+		try {
+			driver.inicioTransaccion();
+			driver.eliminar(sql1);
+			driver.eliminar(sql2);
 
-        String sql = "DELETE FROM voluntario WHERE OID='" + OID + "'";
+			driver.commit();
+		}
+		catch (SQLException ex){
+			driver.rollback();
+			exito = false;
+			throw ex;
+		}
+		finally {
+			driver.finTransaccion();
+		}
 
-        boolean exito = driver.eliminar(sql);
-
-        if (exito) {
-            sql = "DELETE from persona WHERE OID='" + OID + "'";
-            exito = driver.eliminar(sql);
-        }
-
-        return exito;
+		return exito;
     }
 
     public boolean modificarDatosVoluntario(Voluntario voluntario) throws SQLException {
-        DriverJDBC driver = DriverJDBC.getInstance();
+		DriverJDBC driver = DriverJDBC.getInstance();
+		boolean exito = true;
 
-        String sql = "UPDATE persona SET NIF='" + voluntario.getNIF() + "',Nombre='" + voluntario.getNombre() + "',Apellidos='" + voluntario.getApellidos() + "',FechaNacimiento='" + voluntario.getFechaDENacimiento().toString() + "',CP='" + voluntario.getCP() + "',TelefonoFijo='" + voluntario.getTelefonoFijo() + "',TelefonoMovil='" + voluntario.getTelefonoMovil() + "',Domicilio='" + voluntario.getDomicilio() + "',Localidad='" + voluntario.getLocalidad() + "' WHERE OID =" + voluntario.getOID() + "'";
-        int OID = getOIDVoluntarioFromPersona(voluntario.getNIF());
-        String sql2 = "UPDATE voluntario SET Password='" + voluntario.getPassword() + "' WHERE OID =" + OID + "'";
+		int OID = getOIDVoluntarioFromPersona(voluntario.getNIF());
+		String sql1 = "UPDATE persona SET NIF='" + voluntario.getNIF() + "',Nombre='" + voluntario.getNombre() + "',Apellidos='" + voluntario.getApellidos() + "',FechaNacimiento='" + voluntario.getFechaDENacimiento().toString() + "',CP='" + voluntario.getCP() + "',TelefonoFijo='" + voluntario.getTelefonoFijo() + "',TelefonoMovil='" + voluntario.getTelefonoMovil() + "',Domicilio='" + voluntario.getDomicilio() + "',Localidad='" + voluntario.getLocalidad() + "' WHERE OID =" + voluntario.getOID() + "'";
+		String sql2 = "UPDATE voluntario SET Password='" + voluntario.getPassword() + "' WHERE OID =" + OID + "'";
 
-        boolean exito = driver.actualizar(sql);
+		try{
+			driver.inicioTransaccion();
+			driver.actualizar(sql1);
+            driver.actualizar(sql2);
+			driver.commit();
+		}
+		catch (SQLException ex){
+			driver.rollback();
+			exito = false;
+			throw ex;
+		}
+		finally {
+			driver.finTransaccion();
+		}
 
-        if (exito && !(voluntario.getPassword()==null)) {
-            exito = driver.actualizar(sql2);
-        }
-
-        return exito;
+		return exito;
     }
 
-    public ArrayList<Voluntario> obtenerListadoVoluntario(String dato, String tipoDato) throws SQLException {
-
+	public ArrayList<Voluntario> obtenerListadoVoluntario(String dato, String tipoDato) throws SQLException {
         DriverJDBC driver = DriverJDBC.getInstance();
-
-        String sql = "SELECT * FROM voluntario v, persona p WHERE " + tipoDato + " LIKE '%" + dato + "%' AND p.OID=v.OID";
-
-        ResultSet resultados = driver.seleccionar(sql);
-
+		String sql = "SELECT * FROM voluntario v, persona p WHERE " + tipoDato + " LIKE '%" + dato + "%' AND p.OID=v.OID";
+		ResultSet resultados;
         ArrayList<Voluntario> listadoVoluntarios = new ArrayList<Voluntario>();
-        Voluntario temp;
+		Voluntario temp;
 
-        while (resultados.next()) {
-            temp = new Voluntario();
-            temp.setPassword(resultados.getString("Password"));
-            temp.setNIF(resultados.getString("NIF"));
-            temp.setNombre(resultados.getString("Nombre"));
-            temp.setApellidos(resultados.getString("Apellidos"));
-            temp.setFechaDENacimiento(resultados.getDate("FechaNacimiento"));
-            temp.setCP(resultados.getString("CP"));
-            temp.setTelefonoFijo(resultados.getString("TelefonoFijo"));
-            temp.setTelefonoMovil(resultados.getString("TelefonoMovil"));
-            temp.setDomicilio(resultados.getString("Domicilio"));
-            temp.setLocalidad(resultados.getString("Localidad"));
-            listadoVoluntarios.add(temp);
-        }
+		try{
+			driver.conectar();
+			resultados = driver.seleccionar(sql);
 
-        return listadoVoluntarios;
+			while (resultados.next()) {
+				temp = new Voluntario();
+				temp.setPassword(resultados.getString("Password"));
+				temp.setNIF(resultados.getString("NIF"));
+				temp.setNombre(resultados.getString("Nombre"));
+				temp.setApellidos(resultados.getString("Apellidos"));
+				temp.setFechaDENacimiento(resultados.getDate("FechaNacimiento"));
+				temp.setCP(resultados.getString("CP"));
+				temp.setTelefonoFijo(resultados.getString("TelefonoFijo"));
+				temp.setTelefonoMovil(resultados.getString("TelefonoMovil"));
+				temp.setDomicilio(resultados.getString("Domicilio"));
+				temp.setLocalidad(resultados.getString("Localidad"));
+				listadoVoluntarios.add(temp);
+	        }
+		}
+		catch (SQLException ex){
+			throw ex;
+		}
+		finally{
+			driver.desconectar();
+		}
+
+		return listadoVoluntarios;
     }
 
     public Voluntario obtenerVoluntario(String DNI) throws SQLException {
+		DriverJDBC driver = DriverJDBC.getInstance();
+		String sql = "SELECT * FROM voluntario v, persona p WHERE (p.NIF='" + DNI + "') AND p.OID=v.OID";
+		Voluntario voluntario = null;
+		ResultSet resultado;
 
-        DriverJDBC driver = DriverJDBC.getInstance();
-
-        String sql = "SELECT * FROM voluntario v, persona p WHERE (p.NIF='" + DNI + "') AND p.OID=v.OID";
-
-
-        ResultSet resultado = driver.seleccionar(sql);
-
-        Voluntario voluntario = null;
-
-        if (resultado.next()) {
-            voluntario = new Voluntario();
-            voluntario.setPassword(resultado.getString("Password"));
-            voluntario.setNIF(resultado.getString("NIF"));
-            voluntario.setNombre(resultado.getString("Nombre"));
-            voluntario.setApellidos(resultado.getString("Apellidos"));
-            voluntario.setCP(resultado.getString("CP"));
-            voluntario.setTelefonoFijo(resultado.getString("TelefonoFijo"));
-            voluntario.setTelefonoMovil(resultado.getString("TelefonoMovil"));
-            voluntario.setDomicilio(resultado.getString("Domicilio"));
-            voluntario.setLocalidad(resultado.getString("Localidad"));
-            voluntario.setFechaDENacimiento(resultado.getDate("FechaNacimiento"));
-            voluntario.setOID(resultado.getLong("OID"));
-        }
+		try {
+			driver.conectar();
+	        resultado = driver.seleccionar(sql);
+			if (resultado.next()) {
+				voluntario = new Voluntario();
+				voluntario.setPassword(resultado.getString("Password"));
+				voluntario.setNIF(resultado.getString("NIF"));
+				voluntario.setNombre(resultado.getString("Nombre"));
+				voluntario.setApellidos(resultado.getString("Apellidos"));
+				voluntario.setCP(resultado.getString("CP"));
+				voluntario.setTelefonoFijo(resultado.getString("TelefonoFijo"));
+				voluntario.setTelefonoMovil(resultado.getString("TelefonoMovil"));
+				voluntario.setDomicilio(resultado.getString("Domicilio"));
+				voluntario.setLocalidad(resultado.getString("Localidad"));
+				voluntario.setFechaDENacimiento(resultado.getDate("FechaNacimiento"));
+				voluntario.setOID(resultado.getLong("OID"));
+			}
+		}
+		catch (SQLException ex){
+			throw ex;
+		}
+		finally {
+			driver.desconectar();
+		}
 
         return voluntario;
-
     }
 
-    public int getOIDVoluntarioFromPersona(String DNI) {
+    public int getOIDVoluntarioFromPersona(String DNI) throws SQLException {
+		DriverJDBC conexion = DriverJDBC.getInstance();
         String sql = "SELECT * FROM persona p WHERE (p.NIF='" + DNI + "')";
         Long OID = -1l;
 
-        try {
-            ResultSet resultado = DriverJDBC.getInstance().seleccionar(sql);
-            OID = resultado.getLong("OID");
-        } catch (SQLException ex) {
-            Logger.getLogger(VoluntarioJDBC.class.getName()).log(Level.SEVERE, null, ex);
-        }
+		try {
+			conexion.conectar();
+			ResultSet resultado = conexion.seleccionar(sql);
+			OID = resultado.getLong("OID");
+		}
+		catch (SQLException ex){
+			throw ex;
+		}
+		finally{
+			conexion.desconectar();
+		}
 
         return OID.intValue();
     }
+
 }
