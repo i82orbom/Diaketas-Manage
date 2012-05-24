@@ -32,8 +32,7 @@
 
 package JDBC;
 
-import Modelo.Beneficiario;
-import Modelo.Persona;
+import Modelo.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -113,7 +112,7 @@ public class BeneficiarioJDBC {
 			benef.setViviendaAlquiler(resultado.getFloat("ViviendaAlquiler"));
 			benef.setViviendaObservaciones(resultado.getString("ViviendaObservaciones"));
 		}
-
+                benef.setAyudasPrestadas(obtenerAyudasBeneficiario(benef.getNIF()));
 		return benef;
 	}
 
@@ -175,9 +174,36 @@ public class BeneficiarioJDBC {
 		finally{
 			driver.desconectar();
 		}
-
+                 for(Beneficiario b:listadoBeneficiarios)
+                     b.setAyudasPrestadas(obtenerAyudasBeneficiario(b.getNIF()));
 		return listadoBeneficiarios;
 	}
+        
+         public ArrayList<Ayuda> obtenerAyudasBeneficiario(String nif) throws SQLException{
+            DriverJDBC driver = DriverJDBC.getInstance();
+            driver.conectar();
+            String sql = "SELECT tp.Titulo, a.*, p2.Nombre, p2.Apellidos  FROM tipoAyuda tp, ayuda a, persona p, persona p2 WHERE p.NIF='"+nif+"' AND a.OID_Bene=p.OID AND tp.OID=a.TipoAyudaOID AND p2.OID=a.OID_Volun";
+            ResultSet resultados = driver.seleccionar(sql);
+            ArrayList<Ayuda> ayudas = new ArrayList<Ayuda>();
+            while(resultados.next()){
+                Ayuda aux = new Ayuda();
+                aux.setBeneficiarioDeAyuda(null);
+                aux.setFecha(resultados.getDate("Fecha"));
+                aux.setImporte(resultados.getFloat("Importe"));
+                aux.setObservaciones(resultados.getString("Observaciones"));
+                TipoAyuda auxTp = new TipoAyuda();
+                auxTp.setTitulo(resultados.getString("Titulo"));
+                aux.setTipo_ayuda(auxTp);
+                Voluntario auxVol = new Voluntario();
+                auxVol.setNombre(resultados.getString("Nombre"));
+                auxVol.setApellidos(resultados.getString("Apellidos"));
+                aux.setVoluntarioQueOtorga(auxVol);
+                ayudas.add(aux);
+            }
+            resultados.close();
+            driver.desconectar();
+            return ayudas;
+        }
 
 	public boolean borrarBeneficiario (String DNI) throws SQLException{
 

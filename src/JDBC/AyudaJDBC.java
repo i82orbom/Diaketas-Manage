@@ -119,6 +119,7 @@ public class AyudaJDBC {
     public ArrayList<TipoAyuda> obtenerDatosTipoAyuda() throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance() ;
+        driver.conectar();
         ArrayList<TipoAyuda> tiposAyuda = new ArrayList<TipoAyuda>();
         
         String sql = "SELECT * FROM tipoayuda";
@@ -138,6 +139,8 @@ public class AyudaJDBC {
             tiposAyuda.add(temp);
 
         }
+        resultados.close();
+        driver.desconectar();
         return tiposAyuda;
     }
     
