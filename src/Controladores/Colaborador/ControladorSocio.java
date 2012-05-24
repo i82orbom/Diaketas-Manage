@@ -9,6 +9,7 @@ import JDBC.CuotaJDBC;
 import JDBC.PagoCuotaJDBC;
 import JDBC.SocioJDBC;
 import Modelo.*;
+import Vistas.Paneles.Colaboradores.VistaColaboradores;
 import Vistas.Paneles.Socio.VistaSocio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,7 +29,7 @@ import java.util.logging.Logger;
  **
  **
  ** DESARROLLADO POR:
- *          Raphael Colleau (RC)
+ *          Raphael Colleau (RC) y Alberto Moreno Mantas
  **
  **
  ** SUPERVISADO POR:
@@ -51,7 +52,7 @@ public class ControladorSocio{
     private static ControladorSocio instancia = null;
 
     // TODO vista
-    public static ControladorSocio getInstance(VistaSocio pvista) {
+    public static ControladorSocio getInstance(VistaColaboradores pvista) {
 
         if (instancia == null) {
             instancia = new ControladorSocio(pvista);
@@ -60,20 +61,23 @@ public class ControladorSocio{
 
     }
 
-    private VistaSocio vista;
+   private VistaColaboradores vista;
+    Socio socio_temp = null;
 
-
-    public ControladorSocio(VistaSocio pvista) {
+    public ControladorSocio(VistaColaboradores pvista) {
         vista = pvista;
 
-        vista.getPanelSocioDatos().getBtGuardarDatosSocio().addActionListener(new btGuardarDatosSocioListener());
+        pvista.getPanelSocioDatos().getBtGuardarDatosSocio().addActionListener(new btGuardarDatosSocioListener());
+		pvista.getPanelSocioDatos().getBtBorrarDatosSocio().addActionListener(new btBorrarDatosSocioListener());
+		
     }
 
 
     public boolean anadirSocio(String[] datos) {
-        if (!comprobarDatos(datos))
-            return false;
-
+        if (!comprobarDatos(datos)){
+			System.out.println("Errores en los datos");
+			return false;
+		}
         Socio socio = new Socio();
         socio.setUsuario(datos[Socio.USUARIO_ID]);
         // cryptar password en MD5
@@ -84,7 +88,6 @@ public class ControladorSocio{
         socio.setApellidos(datos[Socio.APELLIDOS_ID]);
         socio.setSexo(datos[Socio.SEXO_ID].charAt(0));
         socio.setFechaDeNacimiento(Date.valueOf(datos[Socio.FECHA_DE_NACIMIENTO_ID]));
-
         socio.setEmail(datos[Socio.EMAIL_ID]);
         socio.setDireccion(datos[Socio.DIRECCION_ID]);
         socio.setLocalidad(datos[Socio.LOCALIDAD_ID]);
@@ -278,16 +281,47 @@ public class ControladorSocio{
 
 			String password = ControladorPrincipal.getInstance().md5(vista.getPanelSocioDatos().obtenerDNISocio()+ControladorPrincipal.getInstance().getSalto());
 			datos[Socio.CONTRASENA_ID] = password;
-
-			boolean exito = anadirSocio(datos);
-			if (exito) {
-					vista.getPanelSocioDatos().setTextLabelError("Socio añadido correctamente.");
-			} else {
-					vista.getPanelSocioDatos().setTextLabelError("El Socio no ha sido añadido.");
+			if(socio_temp==null){
+				System.out.println("anadiendoSocio");
+				boolean exito = anadirSocio(datos);
+				if (exito) {
+						vista.getPanelSocioDatos().setTextLabelError("Socio añadido correctamente.");
+				} else {
+						vista.getPanelSocioDatos().setTextLabelError("El Socio no ha sido añadido.");
+				}
+			}
+			else{
+				boolean exito = modificarSocio(datos);
+				if (exito) {
+						vista.getPanelSocioDatos().setTextLabelError("Socio modificado correctamente.");
+				} else {
+						vista.getPanelSocioDatos().setTextLabelError("El Socio no ha sido modificado.");
+				}
 			}
 		}
 	}
+    public class btBorrarDatosSocioListener implements ActionListener{
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(socio_temp==null){
+				String[] datos = new String[15];
+				for(int i=0; i<15; i++)
+				datos[i]="";
+				vista.getPanelSocioDatos().escribirSocioDatos(datos);
+			}
+			else{
+				boolean exito = eliminarSocio(socio_temp);
+				if (exito) {
+						vista.getPanelSocioDatos().setTextLabelError("Socio eliminado correctamente.");
+				} else {
+						vista.getPanelSocioDatos().setTextLabelError("El Socio no ha sido eliminado.");
+				}
+			}
+		}
 
+	}
+	
 	private boolean comprobarDatos(Socio socio) {
 		//comporbar que los elementos de un socio no son nulos
 		if(socio.getNombre().equals("") || socio.getApellidos().equals("")|| socio.getDNI().equals("")|| socio.getDireccion().equals("")|| socio.getProvincia().equals("")|| socio.getLocalidad().equals("")|| socio.getCP().equals("") || socio.getUsuario().equals(""))

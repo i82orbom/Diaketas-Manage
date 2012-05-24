@@ -27,55 +27,54 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="jLabel63" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="textBusquedaBeneficiarioDNI" min="-2" pref="132" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btBuscarBeneficiarioDNI" min="-2" pref="34" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="26" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="cbTipoBusquedaBeneficiario" min="-2" pref="138" max="-2" attributes="0"/>
+                      <Component id="textBusquedaBeneficiarios" min="-2" pref="375" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btBuscarBeneficiarios" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Component id="btVerBeneficiarioBusqueda" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane5" alignment="1" min="-2" pref="948" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="cbTipoBusquedaBeneficiario" min="-2" pref="138" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="btVerBeneficiarioBusqueda" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane5" alignment="1" min="-2" pref="948" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="textBusquedaBeneficiarios" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel63" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textBusquedaBeneficiarioDNI" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbTipoBusquedaBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btBuscarBeneficiarioDNI" min="-2" pref="31" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btBuscarBeneficiarios" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbTipoBusquedaBeneficiario" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-              <Component id="jScrollPane5" pref="423" max="32767" attributes="0"/>
+              <Component id="jScrollPane5" pref="445" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btVerBeneficiarioBusqueda" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -84,14 +83,14 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="textBusquedaBeneficiarioDNI">
+    <Component class="javax.swing.JTextField" name="textBusquedaBeneficiarios">
     </Component>
-    <Component class="javax.swing.JButton" name="btBuscarBeneficiarioDNI">
+    <Component class="javax.swing.JButton" name="btBuscarBeneficiarios">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Vista/images/buscar.png"/>
         </Property>
-        <Property name="actionCommand" type="java.lang.String" value="buscarBeneficiarioDNI"/>
+        <Property name="actionCommand" type="java.lang.String" value="buscarBeneficiarios"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel29">
@@ -102,11 +101,10 @@
     <Component class="javax.swing.JComboBox" name="cbTipoBusquedaBeneficiario">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="3">
+            <StringItem index="0" value="NIF"/>
+            <StringItem index="1" value="Apellidos"/>
+            <StringItem index="2" value="Localidad"/>
           </StringArray>
         </Property>
       </Properties>
@@ -121,13 +119,15 @@
         <Component class="javax.swing.JTable" name="tablaBusquedaBeneficiario">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="Tipo B&#xfa;squeda" type="java.lang.Object"/>
-                <Column editable="true" title="DNI" type="java.lang.Object"/>
+              <Table columnCount="5" rowCount="0">
+                <Column editable="true" title="NIF" type="java.lang.Object"/>
                 <Column editable="true" title="Nombre y Apellidos" type="java.lang.Object"/>
                 <Column editable="true" title="Fecha Nacimiento" type="java.lang.Object"/>
+                <Column editable="true" title="Localidad" type="java.lang.Object"/>
+                <Column editable="true" title="Tel&#xe9;fono m&#xf3;vil" type="java.lang.Object"/>
               </Table>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
       </SubComponents>
@@ -136,11 +136,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ver beneficiario"/>
         <Property name="actionCommand" type="java.lang.String" value="verBeneficiarioBusqueda"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel63">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Introduzca el DNI para buscar al beneficiario"/>
       </Properties>
     </Component>
   </SubComponents>

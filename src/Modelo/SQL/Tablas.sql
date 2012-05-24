@@ -35,7 +35,7 @@ CREATE TABLE Beneficiario (
 	OID INTEGER PRIMARY KEY
 	, EstadoCivil VARCHAR (10)
 	, Nacionalidad VARCHAR (15)
-	, NivelDeEstudio VARCHAR (20)
+	, NivelDeEstudio VARCHAR (25)
 	, Observaciones TEXT
 	, Ocupacion TEXT
 	, Profesion TEXT
@@ -117,6 +117,7 @@ CREATE TABLE Colaborador (
 	, CP VARCHAR (5) NOT NULL
 	, telefonoFijo VARCHAR (15)
 	, telefonoMovil VARCHAR (15)
+	, Email VARCHAR(50)
 );
 
 CREATE TABLE C_Empresa (
@@ -145,7 +146,7 @@ CREATE TABLE C_Persona (
 CREATE TABLE Socio (
 	  OID INTEGER
 	, Usuario VARCHAR (50) NOT NULL UNIQUE
-	, Contraseña VARCHAR (50)  NOT NULL
+	, Contrasena VARCHAR (50)  NOT NULL
 	, PRIMARY KEY (OID)
 	, CONSTRAINT Fk_OIDSocio FOREIGN KEY (OID)
 				REFERENCES C_Persona (OID)

@@ -68,14 +68,29 @@ public class PagoCuotaJDBC {
     public boolean añadirPagoCuota(PagoCuota pc) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
+        boolean exito;
         
-        String sql = "INSERT INTO Movimiento (importe, fecha, concepto) VALUES ('"+pc.getImporte()+"','"+pc.getFecha()+"','"+pc.getConcepto()+"')";
-        boolean exito = driver.insertar(sql);
-               
-        String sql2 = "INSERT INTO PagoCuota (OIDSocio, OIDVoluntario, OID) VALUES ('"+pc.getOIDSocio()+"','"+pc.getOIDVoluntario()+"',LAST_INSERT_ID())";
-        boolean exito2 = driver.insertar(sql2);
+        try{
+            driver.inicioTransaccion();
+            
+            String sql = "INSERT INTO Movimiento (importe, fecha, concepto) VALUES ('"+pc.getImporte()+"','"+pc.getFecha()+"','"+pc.getConcepto()+"')";
         
-        return (exito && exito2);
+            String sql2 = "INSERT INTO PagoCuota (OIDSocio, OIDVoluntario, OID) VALUES ('"+pc.getOIDSocio()+"','"+pc.getOIDVoluntario()+"',LAST_INSERT_ID())";
+       
+            exito = driver.insertar(sql);
+            if (exito) exito = driver.insertar(sql2);
+            driver.commit();
+            
+        }
+        catch (SQLException ex){
+            driver.rollback();
+            exito = false;
+            throw ex;
+	}
+        finally {
+            driver.finTransaccion();
+	}
+        return exito;
     }
     
     /**
@@ -87,10 +102,22 @@ public class PagoCuotaJDBC {
     public boolean eliminarPagoCuota(PagoCuota pc) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
+        boolean exito;
         
-        String sql = "DELETE FROM PagoCuota WHERE OID='"+pc.getOIDPagoCuota()+"'";
-        boolean exito = driver.insertar(sql);
+        try{
+            String sql = "DELETE FROM PagoCuota WHERE OID='"+pc.getOIDPagoCuota()+"'";
+            exito = driver.insertar(sql);
         
+            driver.commit();  
+        }
+        catch (SQLException ex){
+            driver.rollback();
+            exito = false;
+            throw ex;
+	}
+        finally {
+            driver.finTransaccion();
+	}
         return exito;
     }
  

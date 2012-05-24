@@ -46,7 +46,6 @@ public class Beneficiario extends Persona {
     private String viviendaObservaciones;
     private ArrayList<Ayuda> ayudasPrestadas;
 
-	public static int  LUGAR_NACIMIENTO_ID = 9;
 	public static int  ESTADO_CIVIL_ID = 10;
     public static int  NACIONALIDAD_ID = 11;
     public static int  NIVELESTUDIOS_ID = 12;

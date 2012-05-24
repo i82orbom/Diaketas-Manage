@@ -23,6 +23,7 @@
  **     006 - Abr 14, 2012 - AAN - Modificacion sentencias SQL
  *      007 - Abr 15, 2012 - FBR - Modifiacion de sentencias SQL y métodos
  **     008 - May 18, 2012 - ARS - Modifiacion de sentencias SQL para incluir OID. Se puede añadir beneficiario bien
+ *      009 - May 23, 2012 - JAEG - Modificada sentencia SQL del metodo obtenerListadoBeneficiario()
  *
  ** NOTAS:
  **
@@ -136,7 +137,7 @@ public class BeneficiarioJDBC {
 	public ArrayList<Beneficiario> obtenerListadoBeneficiario(String dato, String tipoDato) throws SQLException{
 
 		DriverJDBC driver = DriverJDBC.getInstance() ;
-		String sql = "SELECT * FROM beneficiario b, persona p WHERE "+tipoDato+"='"+dato+"' AND p.NIF=b.NIF";
+		String sql = "SELECT * FROM beneficiario b, persona p WHERE "+tipoDato+" LIKE '%"+dato+"%' AND p.OID=b.OID";
 
 		ResultSet resultados = driver.seleccionar(sql);
 		ArrayList<Beneficiario> listadoBeneficiarios = new ArrayList<Beneficiario>();
@@ -162,7 +163,7 @@ public class BeneficiarioJDBC {
 			temp.setTelefonoMovil(resultados.getString("TelefonoMovil"));
 			temp.setDomicilio(resultados.getString("Domicilio"));
 			temp.setLocalidad(resultados.getString("Localidad"));
-
+                        temp.setEstadoCivil(resultados.getString("EstadoCivil"));
 
 			listadoBeneficiarios.add(temp);
 		}

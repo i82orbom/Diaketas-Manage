@@ -18,6 +18,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
      */
     public PanelSocioDatos() {
         initComponents();
+		labelError.setVisible(false);
     }
 
     /**
@@ -28,17 +29,18 @@ public class PanelSocioDatos extends javax.swing.JPanel {
     /**
          *  OBTENER DATOS PANEL SOCIO
          */
-        public JButton getBtBorrarDatosSocio() {
-            return btLimpiarDatosSocio;
-        }
+	public JButton getBtBorrarDatosSocio() {
+		return btLimpiarDatosSocio;
+	}
 
-        public JButton getBtGuardarDatosSocio() {
-            return btGuardarDatosSocio;
-        }
-        public void setTextLabelError (String text) {
-            labelError.setText(text);
-            labelError.setVisible(true);
-        }
+	public JButton getBtGuardarDatosSocio() {
+		return btGuardarDatosSocio;
+	}
+	public void setTextLabelError (String text) {
+		labelError.setText(text);
+		labelError.setVisible(true);
+	}
+	
 	public String obtenerNombreSocio(){
 		return textNombreSocio.getText();
 	}
@@ -56,17 +58,15 @@ public class PanelSocioDatos extends javax.swing.JPanel {
         }
         
         public String obtenerFNSocio() throws ParseException{
-          //public java.sql.Date obtenerFNSocio() throws ParseException{
-
- 
-                String Fecha = new String();
-		String Dia = textDiaNacimientoSocio.getText();
-		String Mes = textMesNacimientoSocio.getText();
-		String Ano = textAnoNacimientoSocio.getText();
-                Fecha=Ano+"-"+Mes+"-"+Dia;
-                return Fecha;
-                //java.sql.Date var = java.sql.Date.valueOf(Fecha);
-                //return var;                        
+			//public java.sql.Date obtenerFNSocio() throws ParseException{
+			String Fecha = new String();
+			String Dia = textDiaNacimientoSocio.getText();
+			String Mes = textMesNacimientoSocio.getText();
+			String Ano = textAnoNacimientoSocio.getText();
+			Fecha=Ano+"-"+Mes+"-"+Dia;
+			return Fecha;
+			//java.sql.Date var = java.sql.Date.valueOf(Fecha);
+			//return var;                        
         }
         public String obtenerSexoSocio(){
             
@@ -104,6 +104,27 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                 return textUsuarioSocio.getText();
         }
         
+		public void escribirSocioDatos(String[] datos){
+
+				textNombreSocio.setText(datos[0]);
+				textApellidosSocio.setText(datos[1]);
+				textDNISocio.setText(datos[2]);
+				textCorreoSocio.setText(datos[3]);
+				textDiaNacimientoSocio.setText(datos[4]);
+				textMesNacimientoSocio.setText(datos[5]);
+				textAnoNacimientoSocio.setText(datos[6]);
+                if(datos[7].equals("M"))
+                    radioSexoFemeninoSocio.setSelected(true);
+                else
+                    radioSexoMasculinoSocio.setSelected(true);
+                textLocalidadSocio.setText(datos[8]);
+                textProvinciaSocio.setText(datos[9]);
+                textDomicilioSocio.setText(datos[10]);
+                textCPSocio.setText(datos[11]);  
+                textTefSocio.setText(datos[12]);
+                textMovilSocio.setText(datos[13]);
+                textUsuarioSocio.setText(datos[14]);
+        }
         
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -184,6 +205,13 @@ public class PanelSocioDatos extends javax.swing.JPanel {
         btGuardarCuotaSocio = new javax.swing.JButton();
         btEliminarCuotaSocio = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setForeground(new java.awt.Color(255, 255, 255));
+
+        jTabbedPane2.setBackground(new java.awt.Color(255, 255, 255));
+
+        PanelDatosSocio.setBackground(new java.awt.Color(255, 255, 255));
+
         label7.setForeground(new java.awt.Color(255, 51, 51));
         label7.setText("Datos personales");
 
@@ -263,10 +291,13 @@ public class PanelSocioDatos extends javax.swing.JPanel {
 
         textUsuarioSocio.setText("Nombre de usuario");
 
+        btGuardarDatosSocio.setBackground(new java.awt.Color(255, 255, 255));
         btGuardarDatosSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
 
+        btLimpiarDatosSocio.setBackground(new java.awt.Color(255, 255, 255));
         btLimpiarDatosSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
 
+        radioSexoMasculinoSocio.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroupSexo.add(radioSexoMasculinoSocio);
         radioSexoMasculinoSocio.setSelected(true);
         radioSexoMasculinoSocio.setText("Hombre");
@@ -445,8 +476,12 @@ public class PanelSocioDatos extends javax.swing.JPanel {
 
         jTabbedPane2.addTab("Datos", PanelDatosSocio);
 
+        PanelColaboracionesSocio.setBackground(new java.awt.Color(255, 255, 255));
+
         label1.setForeground(new java.awt.Color(255, 0, 0));
         label1.setText("Colaboraciones");
+
+        jScrollPane8.setBackground(new java.awt.Color(255, 255, 255));
 
         tableColaboracionesSocio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -576,9 +611,13 @@ public class PanelSocioDatos extends javax.swing.JPanel {
 
         jTabbedPane2.addTab("Colaboraciones", PanelColaboracionesSocio);
 
+        PanelCuotasSocio.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel28.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 0, 0));
         jLabel28.setText("Cuotas");
+
+        jScrollPane11.setBackground(new java.awt.Color(255, 255, 255));
 
         tableCuotasSocio.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         tableCuotasSocio.setModel(new javax.swing.table.DefaultTableModel(

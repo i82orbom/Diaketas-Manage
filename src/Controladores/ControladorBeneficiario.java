@@ -10,9 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
 
 /**
  ** NOMBRE CLASE:
@@ -31,9 +35,9 @@ import javax.swing.JOptionPane;
  **
  ** HISTORIA:
  ** 	000 - 20 Mar 2012 - MOB - Creacion
- **		001 - 18 May 2012 - ARS - Cambios para añadir beneficiario
- *		002 - 20 May 2012 - ARS - Comprobar datos del beneficiario
- **
+ **	001 - 18 May 2012 - ARS - Cambios para añadir beneficiario
+ *	002 - 20 May 2012 - ARS - Comprobar datos del beneficiario
+ *      003 - 23 May 2012 - JAEG - Buscar y consultar beneficiarios
  ** NOTAS:
  **
  **
@@ -51,30 +55,44 @@ public class ControladorBeneficiario {
 
 	}
 
+
 	private VistaBeneficiario vista;
+        /* Lista con los resultados de la busqueda de beneficiarios */
+        private ArrayList<Beneficiario> beneficiarios;
+        
+        /* Ultimo beneficiario consultado */
+        private Beneficiario benef=null;
+        /* Nombre de las columnas para el mapeo de los datos en la vista */
+        String[] columnas = {"NIF","Nombre y Apellidos","Fecha Nacimiento","Localidad","Teléfono Móvil"};
+        
+        /* Formateador de fechas */
+        private SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
 
 	/**
 		* Constructor de la clase
 		*/
 	private ControladorBeneficiario(VistaBeneficiario pvista){
 
-		/**
-		* Establece como ventana padre la pasada como parámetro
-		*/
-		vista = pvista;
+            /**
+            * Establece como ventana padre la pasada como parámetro
+            */
+            vista = pvista;
 
-		// anadir listener
-		vista.getBarraDeNavigacion().setListener(new ListenerBarraNavigacion());
+            // anadir listener
+            vista.getBarraDeNavigacion().setListener(new ListenerBarraNavigacion());
 
 
-		// al principio mostrar la vista de inicio
-		mostrarVistaInicio();
+            // al principio mostrar la vista de inicio
+            mostrarVistaInicio();
 
-		vista.getPanelInicio().anadirListenerbtBuscarBeneficiario(new btBuscarListener());
-		vista.getPanelInicio().anadirListenerbtNuevoBeneficiario(new btNuevoBeneficiarioListener());
+            vista.getPanelInicio().anadirListenerbtBuscarBeneficiario(new btBuscarListener());
+            vista.getPanelInicio().anadirListenerbtNuevoBeneficiario(new btNuevoBeneficiarioListener());
 
-		vista.getPanelDatos().getBtGuardar().addActionListener(new btGuardarBeneficiarioListener());
-        vista.getPanelDatos().getBtBorrar().addActionListener(new btBorrarBeneficiarioListener());
+            vista.getPanelDatos().getBtGuardar().addActionListener(new btGuardarBeneficiarioListener());
+            vista.getPanelDatos().getBtBorrar().addActionListener(new btBorrarBeneficiarioListener());
+            
+            vista.getPanelBuscar().getBtBuscarBeneficiarios().addActionListener(new btBuscarBeneficiariosListener());
+            vista.getPanelBuscar().getBtVerBeneficiarioBusqueda().addActionListener(new btVerBeneficiarioListener());
 
 	}
 
@@ -91,54 +109,75 @@ public class ControladorBeneficiario {
 	}
 
 	private void mostrarVistaNuevoBeneficiario(){
+                if(benef!=null){
+                    vista.getPanelDatos().limpiarFormulario();
+                }
+                benef = null;
 		vista.showPanel(VistaBeneficiario.panelDatos);
 		vista.getBarraDeNavigacion().setTextLabelNivel1("Beneficiario");
 		vista.getBarraDeNavigacion().setTextLabelNivel2("Nuevo Beneficiario");
 	}
+        
+        private void mostrarVistaModificarBeneficiario(){
+		vista.showPanel(VistaBeneficiario.panelDatos);
+		vista.getBarraDeNavigacion().setTextLabelNivel1("Beneficiario");
+		vista.getBarraDeNavigacion().setTextLabelNivel2("Modificar Beneficiario");
+	}
 
 	private boolean insertarBeneficiario(String[] datos) {
-        if (this.comprobarDatos(datos) == false) {
-            return false;
-        }
+            if (this.comprobarDatos(datos) == false) {
+                return false;
+            }
 
-        Beneficiario beneficiario = new Beneficiario();
-        beneficiario.setNIF(datos[Beneficiario.NIF_ID]);
-        beneficiario.setNombre(datos[Beneficiario.NOMBRE_ID]);
-        beneficiario.setApellidos(datos[Beneficiario.APELLIDOS_ID]);
-        try {
-            beneficiario.setFechaDENacimiento(TestDatos.formatter.parse(datos[Beneficiario.FECHA_DE_NACIMIENTO_ID]));
-        } catch (ParseException ex) {
-            Logger.getLogger(ControladorBeneficiario.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            Beneficiario beneficiario = new Beneficiario();
+            beneficiario.setNIF(datos[Beneficiario.NIF_ID]);
+            beneficiario.setNombre(datos[Beneficiario.NOMBRE_ID]);
+            beneficiario.setApellidos(datos[Beneficiario.APELLIDOS_ID]);
+            try {
+                beneficiario.setFechaDENacimiento(TestDatos.formatter.parse(datos[Beneficiario.FECHA_DE_NACIMIENTO_ID]));
+            } catch (ParseException ex) {
+                Logger.getLogger(ControladorBeneficiario.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-		beneficiario.setDomicilio(datos[Beneficiario.DOMICILIO_ID]);
-        beneficiario.setCP(datos[Beneficiario.CP_ID]);
-        beneficiario.setLocalidad(datos[Beneficiario.LOCALIDAD_ID]);
-        beneficiario.setTelefonoMovil(datos[Beneficiario.TELEFONO_MOVIL_ID]);
-        beneficiario.setTelefonoFijo(datos[Beneficiario.TELEFONO_FIJO_ID]);
-		beneficiario.setEstadoCivil(datos[Beneficiario.ESTADO_CIVIL_ID]);
+                beneficiario.setDomicilio(datos[Beneficiario.DOMICILIO_ID]);
+                beneficiario.setCP(datos[Beneficiario.CP_ID]);
+                beneficiario.setLocalidad(datos[Beneficiario.LOCALIDAD_ID]);
+                beneficiario.setTelefonoMovil(datos[Beneficiario.TELEFONO_MOVIL_ID]);
+                beneficiario.setTelefonoFijo(datos[Beneficiario.TELEFONO_FIJO_ID]);
+                beneficiario.setEstadoCivil(datos[Beneficiario.ESTADO_CIVIL_ID]);
 
-		beneficiario.setNacionalidad(datos[Beneficiario.NACIONALIDAD_ID]);
-		beneficiario.setNivelDeEstudio(datos[Beneficiario.NIVELESTUDIOS_ID]);
-		beneficiario.setObservaciones(datos[Beneficiario.OBSERVACIONES_ID]);
-		beneficiario.setOcupacion(datos[Beneficiario.OCUPACION_ID]);
-		beneficiario.setProfesion(datos[Beneficiario.PROFESION_ID]);
-		beneficiario.setSituacionEconomica(datos[Beneficiario.SITUACION_ECONOMICA_ID]);
-		beneficiario.setVivienda(datos[Beneficiario.VIVIENDA_ID]);
-		Float alquiler = Float.parseFloat(datos[Beneficiario.VIVIENDA_ALQUILER_ID]);
-		beneficiario.setViviendaAlquiler(alquiler);
-		beneficiario.setViviendaObservaciones(datos[Beneficiario.VIVIENDA_OBSERVACIONES_ID]);
+                beneficiario.setNacionalidad(datos[Beneficiario.NACIONALIDAD_ID]);
+                beneficiario.setNivelDeEstudio(datos[Beneficiario.NIVELESTUDIOS_ID]);
+                beneficiario.setObservaciones(datos[Beneficiario.OBSERVACIONES_ID]);
+                beneficiario.setOcupacion(datos[Beneficiario.OCUPACION_ID]);
+                beneficiario.setProfesion(datos[Beneficiario.PROFESION_ID]);
+                beneficiario.setSituacionEconomica(datos[Beneficiario.SITUACION_ECONOMICA_ID]);
+                beneficiario.setVivienda(datos[Beneficiario.VIVIENDA_ID]);
+                Float alquiler = Float.parseFloat(datos[Beneficiario.VIVIENDA_ALQUILER_ID]);
+                beneficiario.setViviendaAlquiler(alquiler);
+                beneficiario.setViviendaObservaciones(datos[Beneficiario.VIVIENDA_OBSERVACIONES_ID]);
 
-        try {
-            BeneficiarioJDBC.getInstance().anadirBeneficiario(beneficiario);
-        } catch (SQLException se) {
-			JOptionPane.showMessageDialog(null, "Error al añadir beneficiario:\n"+se.getMessage());
-            System.err.println(se.getMessage());
-            return false;
-        }
+            try {
+                BeneficiarioJDBC.getInstance().anadirBeneficiario(beneficiario);
+            } catch (SQLException se) {
+                            JOptionPane.showMessageDialog(null, "Error al añadir beneficiario:\n"+se.getMessage());
+                System.err.println(se.getMessage());
+                return false;
+            }
 
-        return true;
+            return true;
 	}
+        
+        private ArrayList<Beneficiario> buscarBeneficiario(String dato, String tipoDato){
+            ArrayList<Beneficiario> benefs;
+            try {
+                benefs = BeneficiarioJDBC.getInstance().obtenerListadoBeneficiario(dato, tipoDato);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorBeneficiario.class.getName()).log(Level.SEVERE, null, ex);
+                return null;
+            }
+            return benefs;
+        }
 
 	private boolean comprobarDatos(String[] datos){
 		boolean validos = true;
@@ -160,10 +199,7 @@ public class ControladorBeneficiario {
 			vista.getPanelDatos().setColorLabelFechaNacimiento(Color.red);
 			validos = false;
 		}
-		if (!TestDatos.isNombre(datos[Beneficiario.LUGAR_NACIMIENTO_ID])){
-			vista.getPanelDatos().setColorLabelLugarNacimiento(Color.red);
-			validos = false;
-		}
+		
 		if (!TestDatos.isNombre(datos[Beneficiario.NACIONALIDAD_ID])){
 			vista.getPanelDatos().setColorLabelNacionalidad(Color.red);
 			validos = false;
@@ -259,16 +295,103 @@ public class ControladorBeneficiario {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-			String[] datos = vista.getPanelDatos().getDatosPersonales();
-			boolean exito = insertarBeneficiario(datos);
+            String[] datos = vista.getPanelDatos().getDatosPersonales();
+            if(benef!=null){
+                //TODO Modificar beneficiario
+            }else{
+                boolean exito = insertarBeneficiario(datos);
 
-			if (exito) {
-				vista.getPanelDatos().setTextLabelError("Beneficiario añadido correctamente.");
-			} else {
-				vista.getPanelDatos().setTextLabelError("El beneficiario no ha sido añadido.");
-			}
+                if (exito) {
+                        vista.getPanelDatos().setTextLabelError("Beneficiario añadido correctamente.");
+                } else {
+                        vista.getPanelDatos().setTextLabelError("El beneficiario no ha sido añadido.");
+                }
+            }
         }
 
 	}
+        class btBuscarBeneficiariosListener implements ActionListener {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String dato = vista.getPanelBuscar().getTextBusquedaBeneficiarios();
+                String tipoDato = vista.getPanelBuscar().getTipoDatoBusqueda();
+                beneficiarios = buscarBeneficiario(dato, tipoDato);
+                TableModel tabla = new TableModel() {
 
+                    @Override
+                    public int getRowCount() {
+                        return beneficiarios.size();
+                    }
+
+                    @Override
+                    public int getColumnCount() {
+                        return columnas.length;
+                    }
+
+                    @Override
+                    public String getColumnName(int columnIndex) {
+                        return columnas[columnIndex];
+                    }
+
+                    @Override
+                    public Class<?> getColumnClass(int columnIndex) {
+                        return String.class;
+                    }
+
+                    @Override
+                    public boolean isCellEditable(int rowIndex, int columnIndex) {
+                       return false;
+                    }
+
+                    @Override
+                    public Object getValueAt(int rowIndex, int columnIndex) {
+                       switch(columnIndex){
+                           case 0:
+                               return beneficiarios.get(rowIndex).getNIF();
+                           case 1:
+                               return beneficiarios.get(rowIndex).getNombre()+" "+beneficiarios.get(rowIndex).getApellidos();
+                           case 2:
+                               return formateador.format(beneficiarios.get(rowIndex).getFechaDENacimiento());
+                           case 3:
+                               return beneficiarios.get(rowIndex).getLocalidad();
+                           case 4:
+                               return beneficiarios.get(rowIndex).getTelefonoMovil();
+                           default:
+                               return "";
+                       }
+                    }
+
+                    @Override
+                    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+                        throw new UnsupportedOperationException("Not supported yet.");
+                    }
+
+                    @Override
+                    public void addTableModelListener(TableModelListener l) {
+                        
+                    }
+
+                    @Override
+                    public void removeTableModelListener(TableModelListener l) {
+                       
+                    }
+                };
+                
+                vista.getPanelBuscar().getTablaBusquedaBeneficiario().setModel(tabla);
+                
+            }
+        }
+        
+        class btVerBeneficiarioListener implements ActionListener {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(vista.getPanelBuscar().getTablaBusquedaBeneficiario().getSelectedRow()!=-1){
+                    benef = beneficiarios.get(vista.getPanelBuscar().getTablaBusquedaBeneficiario().getSelectedRow());
+                    vista.getPanelDatos().actualizarDatosGenerales(benef);
+                    mostrarVistaModificarBeneficiario();
+                }
+            }
+             
+        }
 }

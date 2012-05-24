@@ -68,10 +68,24 @@ public class ColaboracionJDBC {
     public boolean añadirColaboracion(Colaboracion c) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
+        boolean exito;
         
-        String sql = "INSERT INTO Colaboracion (Cantidad, Fecha, DNIoCIF, OID) VALUES ('"+c.getImporte()+"','"+c.getFecha()+"','"+c.getOIDColaborador()+"','"+c.getOIDColaboracion()+"')";
-        boolean exito = driver.insertar(sql);
-        
+        try{
+            driver.inicioTransaccion();
+            String sql = "INSERT INTO Colaboracion (Cantidad, Fecha, DNIoCIF, OID) VALUES ('"+c.getImporte()+"','"+c.getFecha()+"','"+c.getOIDColaborador()+"','"+c.getOIDColaboracion()+"')";
+            exito = driver.insertar(sql);
+            
+            driver.commit();
+            
+        }
+        catch (SQLException ex){
+            driver.rollback();
+            exito = false;
+            throw ex;
+	}
+        finally {
+            driver.finTransaccion();
+	}
         return exito;
         
     }
@@ -85,10 +99,24 @@ public class ColaboracionJDBC {
     public boolean eliminarColaboracion(Colaboracion c) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
+        boolean exito;
         
-        String sql = "DELETE FROM Colaboracion WHERE OID= '"+c.getOIDColaboracion()+"'";
-        boolean exito = driver.insertar(sql);
+        try{
+            driver.inicioTransaccion();
+            String sql = "DELETE FROM Colaboracion WHERE OID= '"+c.getOIDColaboracion()+"'";
+            exito = driver.insertar(sql);
         
+            driver.commit();
+            
+        }
+        catch (SQLException ex){
+            driver.rollback();
+            exito = false;
+            throw ex;
+	}
+        finally {
+            driver.finTransaccion();
+	}
         return exito;
     }
     

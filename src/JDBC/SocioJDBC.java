@@ -75,11 +75,11 @@ public class SocioJDBC {
         String usuario = socio.getUsuario();
         String contrasena = socio.getContrasena();
         
-        String sql = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, codigoPostal, TelefonoFijo, TelefonoMovil, Email) VALUES ('"+socio.getDireccion()+"','"+socio.getLocalidad()+"','"+socio.getProvincia()+"','"+socio.getCP()+"','"+socio.getTelefonoFijo()+"','"+socio.getTelefonoMovil()+"','"+socio.getEmail()+"')";
+        String sql = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, CP, TelefonoFijo, TelefonoMovil, Email) VALUES ('"+socio.getDireccion()+"','"+socio.getLocalidad()+"','"+socio.getProvincia()+"','"+socio.getCP()+"','"+socio.getTelefonoFijo()+"','"+socio.getTelefonoMovil()+"','"+socio.getEmail()+"')";
         boolean exito = driver.insertar(sql);
-        String sql2 = "INSERT INTO C_Persona (OID, DNI, Nombre, Apellidos, FechaDeNacimiento) VALUES (LAST_INSERT_ID(),'"+socio.getDNI()+"','"+socio.getNombre()+"','"+socio.getApellidos()+"','"+socio.getFechaDeNacimiento()+"','"+socio.getSexo()+"')";
+        String sql2 = "INSERT INTO C_Persona (OID, DNI, Nombre, Apellidos, FechaNacimiento,Sexo) VALUES (LAST_INSERT_ID(),'"+socio.getDNI()+"','"+socio.getNombre()+"','"+socio.getApellidos()+"','"+socio.getFechaDeNacimiento()+"','"+socio.getSexo()+"')";
         boolean exito2 = driver.insertar(sql2);
-        String sql3 = "INSERT INTO Socio (OID, usuario, contrasena) VALUES (LAST_INSERT_ID(),'"+usuario+"','"+contrasena+"')"; 
+        String sql3 = "INSERT INTO Socio (OID, usuario, contrasena) VALUES (LAST_INSERT_ID(),'"+socio.getUsuario()+"','"+socio.getContrasena()+"')"; 
         boolean exito3 = driver.insertar(sql3);
         
         return (exito && exito2 && exito3);
