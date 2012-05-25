@@ -51,24 +51,30 @@ public class PanelColaboradoresInicio extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
 
+        btColaborador.setBackground(new java.awt.Color(255, 255, 255));
         btColaborador.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/monigotes_redimensionados.png"))); // NOI18N
         btColaborador.setText("COLABORADORES");
         btColaborador.setActionCommand("nuevoBeneficiario");
+        btColaborador.setBorder(null);
         btColaborador.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btColaborador.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        btSocio.setBackground(new java.awt.Color(255, 255, 255));
         btSocio.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/socios.jpg"))); // NOI18N
         btSocio.setText("SOCIO");
         btSocio.setActionCommand("buscarBeneficiario");
+        btSocio.setBorder(null);
         btSocio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btSocio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        btEmpresa.setBackground(new java.awt.Color(255, 255, 255));
         btEmpresa.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/empresas-redimensionada.jpg"))); // NOI18N
         btEmpresa.setText("EMPRESA");
         btEmpresa.setActionCommand("nuevoBeneficiario");
+        btEmpresa.setBorder(null);
         btEmpresa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btEmpresa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
@@ -82,14 +88,12 @@ public class PanelColaboradoresInicio extends javax.swing.JPanel {
                 .addContainerGap(709, Short.MAX_VALUE))
             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(layout.createSequentialGroup()
+                    .addContainerGap(396, Short.MAX_VALUE)
                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                         .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                            .addContainerGap(364, Short.MAX_VALUE)
                             .add(btEmpresa)
                             .add(352, 352, 352))
-                        .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                            .addContainerGap(716, Short.MAX_VALUE)
-                            .add(btSocio)))
+                        .add(org.jdesktop.layout.GroupLayout.TRAILING, btSocio))
                     .add(53, 53, 53)))
         );
         layout.setVerticalGroup(
@@ -104,7 +108,7 @@ public class PanelColaboradoresInicio extends javax.swing.JPanel {
                     .add(btSocio)
                     .add(70, 70, 70)
                     .add(btEmpresa)
-                    .addContainerGap(84, Short.MAX_VALUE)))
+                    .addContainerGap(100, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

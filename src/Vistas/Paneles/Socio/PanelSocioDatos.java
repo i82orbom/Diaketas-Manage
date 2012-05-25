@@ -6,6 +6,7 @@ package Vistas.Paneles.Socio;
 
 import java.text.ParseException;
 import javax.swing.JButton;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -29,6 +30,9 @@ public class PanelSocioDatos extends javax.swing.JPanel {
     /**
          *  OBTENER DATOS PANEL SOCIO
          */
+	public JTabbedPane getJTabbedPaneSocio(){
+		return jTabbedPane;
+	}
 	public JButton getBtBorrarDatosSocio() {
 		return btLimpiarDatosSocio;
 	}
@@ -63,7 +67,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
 			String Dia = textDiaNacimientoSocio.getText();
 			String Mes = textMesNacimientoSocio.getText();
 			String Ano = textAnoNacimientoSocio.getText();
-			Fecha=Ano+"-"+Mes+"-"+Dia;
+			Fecha=Dia+"/"+Mes+"/"+Ano;
 			return Fecha;
 			//java.sql.Date var = java.sql.Date.valueOf(Fecha);
 			//return var;                        
@@ -124,14 +128,37 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                 textTefSocio.setText(datos[12]);
                 textMovilSocio.setText(datos[13]);
                 textUsuarioSocio.setText(datos[14]);
+				labelError.setVisible(false);
         }
-        
+		
+//-------------------------------------->PANEL CUOTA<-------------------------------------------//
+        public JButton getBtBorrarCuotaSocio() {
+			return btEliminarCuotaSocio;
+		}
+
+		public JButton getBtGuardarCuotaSocio() {
+			return btGuardarCuotaSocio;
+		}
+		
+		public String obtenerCantidadCuotaSocio(){
+			return textCantidadCuotaSocio.getText();
+		}
+		public String obtenerIntervaloCuotaSocio(){
+			return textIntervaloCuotaSocio.getText();
+		}
+		public String obtenerFechaIniCuotaSocio(){
+			return textFechaInicioCuotaSocio.getText();
+		}
+		public String obtenerFechaFinCuotaSocio(){
+			return textFechaFinalCuotaSocio.getText();
+		}
+		
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         buttonGroupSexo = new javax.swing.ButtonGroup();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jTabbedPane = new javax.swing.JTabbedPane();
         PanelDatosSocio = new javax.swing.JPanel();
         label7 = new java.awt.Label();
         label8 = new java.awt.Label();
@@ -208,7 +235,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
 
-        jTabbedPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane.setBackground(new java.awt.Color(255, 255, 255));
 
         PanelDatosSocio.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -254,6 +281,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
 
         label16.setText("Sexo");
 
+        radioSexoFemeninoSocio.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroupSexo.add(radioSexoFemeninoSocio);
         radioSexoFemeninoSocio.setText("Mujer");
 
@@ -293,9 +321,11 @@ public class PanelSocioDatos extends javax.swing.JPanel {
 
         btGuardarDatosSocio.setBackground(new java.awt.Color(255, 255, 255));
         btGuardarDatosSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
+        btGuardarDatosSocio.setBorder(null);
 
         btLimpiarDatosSocio.setBackground(new java.awt.Color(255, 255, 255));
         btLimpiarDatosSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
+        btLimpiarDatosSocio.setBorder(null);
 
         radioSexoMasculinoSocio.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroupSexo.add(radioSexoMasculinoSocio);
@@ -474,7 +504,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                 .addGap(25, 25, 25))
         );
 
-        jTabbedPane2.addTab("Datos", PanelDatosSocio);
+        jTabbedPane.addTab("Datos", PanelDatosSocio);
 
         PanelColaboracionesSocio.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -609,7 +639,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                         .addGap(76, 76, 76))))
         );
 
-        jTabbedPane2.addTab("Colaboraciones", PanelColaboracionesSocio);
+        jTabbedPane.addTab("Colaboraciones", PanelColaboracionesSocio);
 
         PanelCuotasSocio.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -720,7 +750,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                         .addGap(84, 84, 84))))
         );
 
-        jTabbedPane2.addTab("Cuotas", PanelCuotasSocio);
+        jTabbedPane.addTab("Cuotas", PanelCuotasSocio);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -730,7 +760,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jTabbedPane2)
+                    .addComponent(jTabbedPane)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -739,7 +769,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jTabbedPane2)))
+                    .addComponent(jTabbedPane)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -770,7 +800,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel69;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane;
     private java.awt.Label label1;
     private java.awt.Label label10;
     private java.awt.Label label11;
