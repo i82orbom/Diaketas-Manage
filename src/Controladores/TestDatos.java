@@ -131,21 +131,41 @@ public class TestDatos {
         return true;
     }
 
+	/**
+	 * Comprueba si la cadena tiene el formato de un nombre,
+	 * incluyendo letras (incluyendo caracteres especiales)
+	 * y guiones.
+	 * @param s cadena a comprobar
+	 * @return True si la cadena es válida
+	 */
     public static boolean isNombre (String s) {
         Pattern p = Pattern.compile("[[\\p{IsL}] -]+");
         Matcher m = p.matcher(s.toUpperCase());
         return m.matches();
     }
 
+	/**
+	 * Comprueba si la cadena tiene formato para ser una direccion.
+	 * Esto incluye letras, numeros, comas, puntos, guines y /
+	 * @param s cadena a comprobar
+	 * @return True si la cadena es válida
+	 */
 	public static boolean isDomicilio(String s){
-        Pattern p = Pattern.compile("[A-Z0-9 /,.-]+");
+        Pattern p = Pattern.compile("[[\\p{IsL}]0-9 /,.-]+");
         Matcher m = p.matcher(s.toUpperCase());
         return m.matches();
 	}
 
-	public static boolean isFecha(String s){
+	/**
+	 * Comprueba que la cadena es una fecha con el formato
+	 * dia/mes/año, representando el día y el mes con 2 digitos
+	 * y el año con 4 digitos
+	 * @param s cadena a comprobar
+	 * @return True si la cadena es una fecha válida
+	 */
+	public static boolean isFecha(String fecha){
         Pattern p = Pattern.compile("\\d\\d/\\d\\d/\\d\\d\\d\\d$");
-        Matcher m = p.matcher(s.toUpperCase());
+        Matcher m = p.matcher(fecha.toUpperCase());
         return m.matches();
 	}
 
