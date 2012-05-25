@@ -51,55 +51,51 @@ public class ControladorBeneficiario {
 
 	private static ControladorBeneficiario instancia;
 
-	public static ControladorBeneficiario getInstance(VistaBeneficiario panelVoluntario){
-		if (instancia == null)
-			instancia = new ControladorBeneficiario(panelVoluntario);
+	public static ControladorBeneficiario getInstance(VistaBeneficiario panelBeneficiario){
+		if (instancia == null) instancia = new ControladorBeneficiario(panelBeneficiario);
 
 		return instancia;
-
 	}
 
 
 	private VistaBeneficiario vista;
-        /* Lista con los resultados de la busqueda de beneficiarios */
-        private ArrayList<Beneficiario> beneficiarios;
-        
-        /* Ultimo beneficiario consultado */
-        private Beneficiario benef=null;
-        /* Nombre de las columnas para el mapeo de los datos en la vista */
-        String[] columnasBuscarBeneficiario = {"NIF","Nombre y Apellidos","Fecha Nacimiento","Localidad","Teléfono Móvil"};
-        String[] columnasIntervenciones = {"Fecha", "Concepto", "Importe", "Observaciones", "Voluntario"};
-        /* Listado con el tipo de ayudas disponibles */
-        ArrayList<TipoAyuda> tiposAyuda;
-        /* Formateador de fechas */
-        private SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+	/* Lista con los resultados de la busqueda de beneficiarios */
+	private ArrayList<Beneficiario> beneficiarios;
+
+	/* Ultimo beneficiario consultado */
+	private Beneficiario benef=null;
+	/* Nombre de las columnas para el mapeo de los datos en la vista */
+	String[] columnasBuscarBeneficiario = {"NIF","Nombre y Apellidos","Fecha Nacimiento","Localidad","Teléfono Móvil"};
+	String[] columnasIntervenciones = {"Fecha", "Concepto", "Importe", "Observaciones", "Voluntario"};
+	/* Listado con el tipo de ayudas disponibles */
+	ArrayList<TipoAyuda> tiposAyuda;
+	/* Formateador de fechas */
+	private SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
 
 	/**
 		* Constructor de la clase
 		*/
 	private ControladorBeneficiario(VistaBeneficiario pvista){
+		/**
+		* Establece como ventana padre la pasada como parámetro
+		*/
+		vista = pvista;
 
-            /**
-            * Establece como ventana padre la pasada como parámetro
-            */
-            vista = pvista;
-
-            // anadir listener
-            vista.getBarraDeNavigacion().setListener(new ListenerBarraNavigacion());
+		// anadir listener
+		vista.getBarraDeNavigacion().setListener(new ListenerBarraNavigacion());
 
 
-            // al principio mostrar la vista de inicio
-            mostrarVistaInicio();
+		// al principio mostrar la vista de inicio
+		mostrarVistaInicio();
 
-            vista.getPanelInicio().anadirListenerbtBuscarBeneficiario(new btBuscarListener());
-            vista.getPanelInicio().anadirListenerbtNuevoBeneficiario(new btNuevoBeneficiarioListener());
+		vista.getPanelInicio().anadirListenerbtBuscarBeneficiario(new btBuscarListener());
+		vista.getPanelInicio().anadirListenerbtNuevoBeneficiario(new btNuevoBeneficiarioListener());
 
-            vista.getPanelDatos().getBtGuardar().addActionListener(new btGuardarBeneficiarioListener());
-            vista.getPanelDatos().getBtBorrar().addActionListener(new btBorrarBeneficiarioListener());
-            
-            vista.getPanelBuscar().getBtBuscarBeneficiarios().addActionListener(new btBuscarBeneficiariosListener());
-            vista.getPanelBuscar().getBtVerBeneficiarioBusqueda().addActionListener(new btVerBeneficiarioListener());
+		vista.getPanelDatos().getBtGuardar().addActionListener(new btGuardarBeneficiarioListener());
+		vista.getPanelDatos().getBtBorrar().addActionListener(new btBorrarBeneficiarioListener());
 
+		vista.getPanelBuscar().getBtBuscarBeneficiarios().addActionListener(new btBuscarBeneficiariosListener());
+		vista.getPanelBuscar().getBtVerBeneficiarioBusqueda().addActionListener(new btVerBeneficiarioListener());
 	}
 
 	// mostrar la vista que queremos y actualizacion de la barra de navigacion
@@ -124,8 +120,8 @@ public class ControladorBeneficiario {
 		vista.getBarraDeNavigacion().setTextLabelNivel1("Beneficiario");
 		vista.getBarraDeNavigacion().setTextLabelNivel2("Nuevo Beneficiario");
 	}
-        
-        private void mostrarVistaModificarBeneficiario(){
+
+	private void mostrarVistaModificarBeneficiario(){
 		vista.showPanel(VistaBeneficiario.panelDatos);
 		vista.getBarraDeNavigacion().setTextLabelNivel1("Beneficiario");
 		vista.getBarraDeNavigacion().setTextLabelNivel2("Modificar Beneficiario");
@@ -174,17 +170,17 @@ public class ControladorBeneficiario {
 
             return true;
 	}
-        
-        private ArrayList<Beneficiario> buscarBeneficiario(String dato, String tipoDato){
-            ArrayList<Beneficiario> benefs;
-            try {
-                benefs = BeneficiarioJDBC.getInstance().obtenerListadoBeneficiario(dato, tipoDato);
-            } catch (SQLException ex) {
-                Logger.getLogger(ControladorBeneficiario.class.getName()).log(Level.SEVERE, null, ex);
-                return null;
-            }
-            return benefs;
-        }
+
+	private ArrayList<Beneficiario> buscarBeneficiario(String dato, String tipoDato){
+		ArrayList<Beneficiario> benefs;
+		try {
+			benefs = BeneficiarioJDBC.getInstance().obtenerListadoBeneficiario(dato, tipoDato);
+		} catch (SQLException ex) {
+			Logger.getLogger(ControladorBeneficiario.class.getName()).log(Level.SEVERE, null, ex);
+			return null;
+		}
+		return benefs;
+	}
 
 	private boolean comprobarDatos(String[] datos){
 		boolean validos = true;
@@ -206,7 +202,7 @@ public class ControladorBeneficiario {
 			vista.getPanelDatos().setColorLabelFechaNacimiento(Color.red);
 			validos = false;
 		}
-		
+
 		if (!TestDatos.isNombre(datos[Beneficiario.NACIONALIDAD_ID])){
 			vista.getPanelDatos().setColorLabelNacionalidad(Color.red);
 			validos = false;
@@ -286,7 +282,7 @@ public class ControladorBeneficiario {
 	class btNuevoBeneficiarioListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent ae) {
-                        
+
                         tiposAyuda = ControladorAyuda.getInstance(null).obtenerTiposAyuda();
                         vista.getPanelDatos().actualizarTiposAyuda(tiposAyuda);
 			mostrarVistaNuevoBeneficiario();
@@ -320,152 +316,154 @@ public class ControladorBeneficiario {
         }
 
 	}
-        class btBuscarBeneficiariosListener implements ActionListener {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                String dato = vista.getPanelBuscar().getTextBusquedaBeneficiarios();
-                String tipoDato = vista.getPanelBuscar().getTipoDatoBusqueda();
-                beneficiarios = buscarBeneficiario(dato, tipoDato);
-                TableModel tabla = new TableModel() {
 
-                    @Override
-                    public int getRowCount() {
-                        return beneficiarios.size();
-                    }
+	class btBuscarBeneficiariosListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent ae) {
+			String dato = vista.getPanelBuscar().getTextBusquedaBeneficiarios();
+			String tipoDato = vista.getPanelBuscar().getTipoDatoBusqueda();
+			beneficiarios = buscarBeneficiario(dato, tipoDato);
+			TableModel tabla = new TableModel() {
 
-                    @Override
-                    public int getColumnCount() {
-                        return columnasBuscarBeneficiario.length;
-                    }
+				@Override
+				public int getRowCount() {
+					return beneficiarios.size();
+				}
 
-                    @Override
-                    public String getColumnName(int columnIndex) {
-                        return columnasBuscarBeneficiario[columnIndex];
-                    }
+				@Override
+				public int getColumnCount() {
+					return columnasBuscarBeneficiario.length;
+				}
 
-                    @Override
-                    public Class<?> getColumnClass(int columnIndex) {
-                        return String.class;
-                    }
+				@Override
+				public String getColumnName(int columnIndex) {
+					return columnasBuscarBeneficiario[columnIndex];
+				}
 
-                    @Override
-                    public boolean isCellEditable(int rowIndex, int columnIndex) {
-                       return false;
-                    }
+				@Override
+				public Class<?> getColumnClass(int columnIndex) {
+					return String.class;
+				}
 
-                    @Override
-                    public Object getValueAt(int rowIndex, int columnIndex) {
-                       switch(columnIndex){
-                           case 0:
-                               return beneficiarios.get(rowIndex).getNIF();
-                           case 1:
-                               return beneficiarios.get(rowIndex).getNombre()+" "+beneficiarios.get(rowIndex).getApellidos();
-                           case 2:
-                               return formateador.format(beneficiarios.get(rowIndex).getFechaDENacimiento());
-                           case 3:
-                               return beneficiarios.get(rowIndex).getLocalidad();
-                           case 4:
-                               return beneficiarios.get(rowIndex).getTelefonoMovil();
-                           default:
-                               return "";
-                       }
-                    }
+				@Override
+				public boolean isCellEditable(int rowIndex, int columnIndex) {
+					return false;
+				}
 
-                    @Override
-                    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-                        throw new UnsupportedOperationException("Not supported yet.");
-                    }
+				@Override
+				public Object getValueAt(int rowIndex, int columnIndex) {
+					switch(columnIndex){
+						case 0:
+							return beneficiarios.get(rowIndex).getNIF();
+						case 1:
+							return beneficiarios.get(rowIndex).getNombre()+" "+beneficiarios.get(rowIndex).getApellidos();
+						case 2:
+							return formateador.format(beneficiarios.get(rowIndex).getFechaDENacimiento());
+						case 3:
+							return beneficiarios.get(rowIndex).getLocalidad();
+						case 4:
+							return beneficiarios.get(rowIndex).getTelefonoMovil();
+						default:
+							return "";
+					}
+				}
 
-                    @Override
-                    public void addTableModelListener(TableModelListener l) {
-                        
-                    }
+				@Override
+				public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+					throw new UnsupportedOperationException("Not supported yet.");
+				}
 
-                    @Override
-                    public void removeTableModelListener(TableModelListener l) {
-                       
-                    }
-                };
-                
-                vista.getPanelBuscar().getTablaBusquedaBeneficiario().setModel(tabla);
-                
-            }
-        }
-        
-        class btVerBeneficiarioListener implements ActionListener {
+				@Override
+				public void addTableModelListener(TableModelListener l) {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(vista.getPanelBuscar().getTablaBusquedaBeneficiario().getSelectedRow()!=-1){
-                    benef = beneficiarios.get(vista.getPanelBuscar().getTablaBusquedaBeneficiario().getSelectedRow());
-                    tiposAyuda = ControladorAyuda.getInstance(null).obtenerTiposAyuda();
-                    vista.getPanelDatos().actualizarTiposAyuda(tiposAyuda);
-                    vista.getPanelDatos().actualizarDatosGenerales(benef);
-                    /* Actualizar intervenciones */
-                    vista.getPanelDatos().getTbIntervenciones().setModel(new TableModel() {
+				}
 
-                    @Override
-                    public int getRowCount() {
-                        return benef.getAyudasPrestadas().size();
-                    }
+				@Override
+				public void removeTableModelListener(TableModelListener l) {
 
-                    @Override
-                    public int getColumnCount() {
-                        return columnasIntervenciones.length;
-                    }
+				}
+			};
 
-                    @Override
-                    public String getColumnName(int columnIndex) {
-                       return columnasIntervenciones[columnIndex];
-                    }
+			vista.getPanelBuscar().getTablaBusquedaBeneficiario().setModel(tabla);
 
-                    @Override
-                    public Class<?> getColumnClass(int columnIndex) {
-                        return String.class;
-                    }
+		}
+	}
 
-                    @Override
-                    public boolean isCellEditable(int rowIndex, int columnIndex) {
-                       return false;
-                    }
+	class btVerBeneficiarioListener implements ActionListener {
 
-                    @Override
-                    public Object getValueAt(int rowIndex, int columnIndex) {
-                       switch(columnIndex){
-                           case 0:
-                               return formateador.format(benef.getAyudasPrestadas().get(rowIndex).getFecha());
-                           case 1:
-                               return benef.getAyudasPrestadas().get(rowIndex).getTipo_ayuda().getTitulo();
-                           case 2:
-                               return benef.getAyudasPrestadas().get(rowIndex).getImporte();
-                           case 3:
-                               return benef.getAyudasPrestadas().get(rowIndex).getObservaciones();
-                           case 4:
-                               return benef.getAyudasPrestadas().get(rowIndex).getVoluntarioQueOtorga().getApellidos()+", "+benef.getAyudasPrestadas().get(rowIndex).getVoluntarioQueOtorga().getNombre();
-                           default:
-                               return "";
-                       }
-                       
-                    }
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(vista.getPanelBuscar().getTablaBusquedaBeneficiario().getSelectedRow()!=-1){
+				benef = beneficiarios.get(vista.getPanelBuscar().getTablaBusquedaBeneficiario().getSelectedRow());
+				tiposAyuda = ControladorAyuda.getInstance(null).obtenerTiposAyuda();
+				vista.getPanelDatos().actualizarTiposAyuda(tiposAyuda);
+				vista.getPanelDatos().actualizarDatosGenerales(benef);
+				/* Actualizar intervenciones */
+				vista.getPanelDatos().getTbIntervenciones().setModel(new TableModel() {
 
-                    @Override
-                    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-                        throw new UnsupportedOperationException("Not supported yet.");
-                    }
+				@Override
+				public int getRowCount() {
+					return benef.getAyudasPrestadas().size();
+				}
 
-                    @Override
-                    public void addTableModelListener(TableModelListener l) {
-                       
-                    }
+				@Override
+				public int getColumnCount() {
+					return columnasIntervenciones.length;
+				}
 
-                    @Override
-                    public void removeTableModelListener(TableModelListener l) {
-                        
-                    }
-                });
-                    mostrarVistaModificarBeneficiario();
-                }
-            }
-             
-        }
+				@Override
+				public String getColumnName(int columnIndex) {
+					return columnasIntervenciones[columnIndex];
+				}
+
+				@Override
+				public Class<?> getColumnClass(int columnIndex) {
+					return String.class;
+				}
+
+				@Override
+				public boolean isCellEditable(int rowIndex, int columnIndex) {
+					return false;
+				}
+
+				@Override
+				public Object getValueAt(int rowIndex, int columnIndex) {
+					switch(columnIndex){
+						case 0:
+							return formateador.format(benef.getAyudasPrestadas().get(rowIndex).getFecha());
+						case 1:
+							return benef.getAyudasPrestadas().get(rowIndex).getTipo_ayuda().getTitulo();
+						case 2:
+							return benef.getAyudasPrestadas().get(rowIndex).getImporte();
+						case 3:
+							return benef.getAyudasPrestadas().get(rowIndex).getObservaciones();
+						case 4:
+							return benef.getAyudasPrestadas().get(rowIndex).getVoluntarioQueOtorga().getApellidos()+", "+benef.getAyudasPrestadas().get(rowIndex).getVoluntarioQueOtorga().getNombre();
+						default:
+							return "";
+					}
+
+				}
+
+				@Override
+				public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+					throw new UnsupportedOperationException("Not supported yet.");
+				}
+
+				@Override
+				public void addTableModelListener(TableModelListener l) {
+
+				}
+
+				@Override
+				public void removeTableModelListener(TableModelListener l) {
+
+				}
+			});
+				mostrarVistaModificarBeneficiario();
+			}
+		}
+
+	}
+
 }

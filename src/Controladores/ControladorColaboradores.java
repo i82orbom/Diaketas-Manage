@@ -57,7 +57,7 @@ public class ControladorColaboradores {
      * Establece como ventana padre la pasada como parámetro
      */
 	vista = pvista;
-	
+
 	ControladorSocio.getInstance(vista);
 	//ControladorC_Empresa.getInstance(vista.getVistaEmpresa());
 	//ControladorC_Persona.getInstance(vista.getVistaColaborador());
@@ -74,7 +74,7 @@ public class ControladorColaboradores {
         vista.getPanelEmpresaInicio().anadirListenerbtNuevoEmpresa(new btNuevaEmpresaListener());
         vista.getPanelColaboradorInicio().anadirListenerbtNuevoColaborador(new btNuevoColaboradorListener());
         vista.getPanelColaboradorInicio().anadirListenerbtBuscarColaborador(new btBuscarColaboradorListener());
-		
+
         // al principio mostrar la vista de inicio
         mostrarVistaInicio();
 
@@ -98,10 +98,10 @@ public class ControladorColaboradores {
         vista.getBarraDeNavigacion().setTextLabelNivel2("Empresa");
     }
 
-      private void mostrarVistaColaborador(){
-        vista.showPanel(VistaColaboradores.panelcolaboradorInicio);
-        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
-        vista.getBarraDeNavigacion().setTextLabelNivel2("Colaborador");
+	private void mostrarVistaColaborador(){
+		vista.showPanel(VistaColaboradores.panelcolaboradorInicio);
+		vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
+		vista.getBarraDeNavigacion().setTextLabelNivel2("Colaborador");
     }
 
     private void mostrarVistaSocioNuevo(){
@@ -144,6 +144,7 @@ public class ControladorColaboradores {
         vista.getBarraDeNavigacion().setTextLabelNivel2("Colaborador");
         vista.getBarraDeNavigacion().setTextLabelNivel3("Buscar");
     }
+
     //Listener de la barra de navigacion
     class ListenerBarraNavigacion implements ActionListener {
 
@@ -159,7 +160,6 @@ public class ControladorColaboradores {
             }
         }
     }
-
 
     // listeners de los botones
     class btSocioListener implements ActionListener {

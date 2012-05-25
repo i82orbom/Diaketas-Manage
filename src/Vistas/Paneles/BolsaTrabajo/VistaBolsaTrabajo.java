@@ -24,60 +24,61 @@ public class VistaBolsaTrabajo extends javax.swing.JPanel {
     public static String PanelModificarOferta = "modificaroferta";
     public static String PanelBuscarDemandas = "buscardemandas";
     public static String PanelBuscarOfertas = "buscarofertas";
-    /**
+
+	/**
      * Creates new form VistaBolsaTrabajo
-     */ 
-        public VistaBolsaTrabajo() {
-            initComponents();
-        }
-        public void showPanel (String panel) {
-            CardLayout cardLayout =  (CardLayout)panelBolsaTrabajo.getLayout();
-            cardLayout.show(panelBolsaTrabajo, panel);
-        }
-        
-        public BarraDeNavegacion getBarraDeNavigacion() {
-            return this.barraDeNavegacion;
-        }
-    	public PanelBolsaTrabajoInicio getBolsaTrabajoInicio(){
-            return this.panelBolsaTrabajoInicio;
-        }
-	
+     */
+	public VistaBolsaTrabajo() {
+		initComponents();
+	}
+	public void showPanel (String panel) {
+		CardLayout cardLayout =  (CardLayout)panelBolsaTrabajo.getLayout();
+		cardLayout.show(panelBolsaTrabajo, panel);
+	}
+
+	public BarraDeNavegacion getBarraDeNavigacion() {
+		return this.barraDeNavegacion;
+	}
+	public PanelBolsaTrabajoInicio getBolsaTrabajoInicio(){
+		return this.panelBolsaTrabajoInicio;
+	}
+
 	public PanelConsultarDemanda getConsultarDemanda(){
             return this.panelConsultarDemanda;
         }
-	
+
 	public PanelConsultarOferta getConsultarOferta(){
             return this.panelConsultarOferta;
         }
-	
+
 	public PanelDemandanteBuscar getDemandanteBuscar(){
             return this.panelDemandanteBuscar;
         }
-	
+
 	public PanelDemandasInicio getDemandasInicio(){
             return this.panelDemandasInicio;
         }
-	
+
 	public PanelModificarDemanda getModificarDemanda(){
             return this.panelModificarDemanda;
         }
-	
+
 	public PanelModificarOferta getModificarOferta(){
             return this.panelModificarOferta;
         }
-	
+
 	public PanelNuevaDemanda getNuevaDemanda(){
             return this.panelNuevaDemanda;
         }
-	
+
 	public PanelNuevaOferta getNuevaOferta(){
             return this.panelNuevaOferta;
         }
-	
+
 	public PanelOfertasBuscar getOfertasBuscar(){
             return this.panelOfertasBuscar;
         }
-	
+
 	public PanelOfertasInicio getOfertasInicio(){
             return this.panelOfertasInicio1;
         }

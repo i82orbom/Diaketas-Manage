@@ -78,7 +78,7 @@ public class ControladorPrincipal {
         ControladorVoluntario.getInstance(this.vista.getPanelVoluntario());
         ControladorBeneficiario.getInstance(this.vista.getVistaBeneficiario());
         ControladorColaboradores.getInstance(this.vista.getVistaColaboradores());
-        ControladorBolsaTrabajo.getIntance(this.vista.getVistaBolsaTrabajo());
+        ControladorBolsaTrabajo.getInstance(this.vista.getVistaBolsaTrabajo());
 
         // adicion de los listeners cuyo el controlador se encarga
         vista.getVistaLogin().anadirListenerBtConectarse(new BtConectarseListener());

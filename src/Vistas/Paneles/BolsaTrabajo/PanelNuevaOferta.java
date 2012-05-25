@@ -12,63 +12,62 @@ import javax.swing.JButton;
  * @author psylock
  */
 public class PanelNuevaOferta extends javax.swing.JPanel {
-  
-    
+
+
     /**
      * Creates new form PanelBeneficiarioBuscar
      */
     public PanelNuevaOferta() {
         initComponents();
     }
-    
-    public JButton getBTEliminar1(){
-        return BTEliminar1;
+
+    public JButton getBTEliminarSector(){
+        return BTEliminarSector;
     }
-    
+
     public JButton getBTGuardar(){
         return BTGuardar;
     }
-    
+
     public JButton getBTGuardarSector(){
         return BTGuardarSector;
     }
-    
+
     public JButton getBTLimpiar(){
         return BTLimpiar;
     }
-    
+
     public String getTextDuracionContrato(){
         return TextDuracionContrato.getText();
     }
-    
+
     public String getTextNIF1(){
         return TextNIF1.getText();
     }
-    
+
     public String getTextNPuestos(){
         return TextNPuestos.getText();
     }
-    
+
     public String getTextNuevoSector(){
         return TextNuevoSector.getText();
     }
-    
+
     public String getcbSector(){
         return cbSector.getSelectedItem().toString();
     }
-    
+
     public String getcbTipoContrato(){
         return cbTipoContrato.getSelectedItem().toString();
     }
-    
+
     public String gettaCualificacion(){
         return taCualificacion.getText();
     }
-    
+
     public String gettaPuestoOfertado(){
         return taPuestoOfertado.getText();
     }
-    
 
 
     /**
@@ -98,7 +97,7 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
         jLabel72 = new javax.swing.JLabel();
         cbSector = new javax.swing.JComboBox();
         TextNIF1 = new javax.swing.JTextField();
-        BTEliminar1 = new javax.swing.JButton();
+        BTEliminarSector = new javax.swing.JButton();
         TextNuevoSector = new javax.swing.JTextField();
         BTGuardarSector = new javax.swing.JButton();
         jLabel68 = new javax.swing.JLabel();
@@ -197,7 +196,7 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
 
         TextNIF1.setText("CIF/ NIF");
 
-        BTEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
+        BTEliminarSector.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
 
         TextNuevoSector.setText("Nuevo Sector");
 
@@ -217,7 +216,7 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(BTEliminar1)
+                .add(BTEliminarSector)
                 .add(18, 18, 18)
                 .add(TextNuevoSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -239,7 +238,7 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
                                 .add(jLabel72)))
                         .add(jPanel2Layout.createSequentialGroup()
                             .addContainerGap()
-                            .add(BTEliminar1))
+                            .add(BTEliminarSector))
                         .add(jPanel2Layout.createSequentialGroup()
                             .add(21, 21, 21)
                             .add(TextNuevoSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
@@ -342,7 +341,7 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BTEliminar1;
+    private javax.swing.JButton BTEliminarSector;
     private javax.swing.JButton BTGuardar;
     private javax.swing.JButton BTGuardarSector;
     private javax.swing.JButton BTLimpiar;
