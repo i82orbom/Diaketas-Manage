@@ -28,15 +28,14 @@
 
 package JDBC;
 
+import Controladores.TestDatos;
 import Modelo.Voluntario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class VoluntarioJDBC {
     private static VoluntarioJDBC instancia;
-    private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     private VoluntarioJDBC(){
     }
@@ -52,7 +51,7 @@ public class VoluntarioJDBC {
 		boolean exito = true;
 
 		String sql1 = "INSERT INTO persona (NIF,Nombre,Apellidos,CP,TelefonoFijo,TelefonoMovil,Domicilio,Localidad,FechaNacimiento) VALUES ('"
-				+voluntario.getNIF()+"','"+voluntario.getNombre()+"','"+voluntario.getApellidos()+"','"+voluntario.getCP()+"','"+voluntario.getTelefonoFijo()+"','"+voluntario.getTelefonoMovil()+"','"+voluntario.getDomicilio()+"','"+voluntario.getLocalidad()+"','"+formatter.format(voluntario.getFechaDENacimiento())+"')";
+				+voluntario.getNIF()+"','"+voluntario.getNombre()+"','"+voluntario.getApellidos()+"','"+voluntario.getCP()+"','"+voluntario.getTelefonoFijo()+"','"+voluntario.getTelefonoMovil()+"','"+voluntario.getDomicilio()+"','"+voluntario.getLocalidad()+"','"+TestDatos.formatterBD.format(voluntario.getFechaDENacimiento())+"')";
 		String sql2 = "INSERT INTO voluntario (OID,Password) VALUES (LAST_INSERT_ID(),'"+voluntario.getPassword()+"')";
 
 		try{

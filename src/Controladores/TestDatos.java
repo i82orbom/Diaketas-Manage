@@ -31,7 +31,15 @@ import java.util.regex.Pattern;
  */
 public class TestDatos {
 
+	/**
+	 * Formato de la fecha para formularios
+	 */
     public static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+	/**
+	 * Formato de la fecha para la base de datos
+	 */
+    public static SimpleDateFormat formatterBD = new SimpleDateFormat("yyyy/MM/dd");
 
     public static boolean isDNI (String DNI) {
         if (DNI.length() != 9)
@@ -97,6 +105,7 @@ public class TestDatos {
     }
 
     public static boolean isOnlyLetter (String s) {
+		// Definición isLetter de Unicode: [\\p{IsL}]
         for (int i=0; i<s.length(); i++) {
             if (!Character.isLetter(s.charAt(i)))
                 return false;
@@ -123,8 +132,7 @@ public class TestDatos {
     }
 
     public static boolean isNombre (String s) {
-		//Faltan comprobar acentos
-        Pattern p = Pattern.compile("[A-Z -]+");
+        Pattern p = Pattern.compile("[A-ZÁÉÍÓÚÜÑ -]+");
         Matcher m = p.matcher(s.toUpperCase());
         return m.matches();
     }

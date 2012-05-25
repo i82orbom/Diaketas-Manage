@@ -8,6 +8,7 @@
  **
  ** DESARROLLADO POR:
  *        Francisco José Beltrán Rodriguez (FBR)
+ *        Antonio Rodríguez Segura (ARS)
  *
  **
  ** SUPERVISADO POR:
@@ -32,16 +33,15 @@
 
 package JDBC;
 
+import Controladores.TestDatos;
 import Modelo.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class BeneficiarioJDBC {
 
 	private static BeneficiarioJDBC instancia;
-	private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
 	private BeneficiarioJDBC(){
 	}
@@ -54,7 +54,7 @@ public class BeneficiarioJDBC {
 	public boolean anadirBeneficiario (Beneficiario beneficiario) throws SQLException{
 		DriverJDBC driver = DriverJDBC.getInstance();
 		String sql1 = "INSERT INTO persona (NIF,Nombre,Apellidos,FechaNacimiento,CP,TelefonoFijo,TelefonoMovil,Domicilio,Localidad) VALUES "
-					+ "('"+beneficiario.getNIF()+"','"+beneficiario.getNombre()+"','"+beneficiario.getApellidos()+"','"+formatter.format(beneficiario.getFechaDENacimiento())+"','"+beneficiario.getCP()+"','"+beneficiario.getTelefonoFijo()+"','"+beneficiario.getTelefonoMovil()+"','"+beneficiario.getDomicilio()+"','"+beneficiario.getLocalidad()+"')";
+					+ "('"+beneficiario.getNIF()+"','"+beneficiario.getNombre()+"','"+beneficiario.getApellidos()+"','"+TestDatos.formatterBD.format(beneficiario.getFechaDENacimiento())+"','"+beneficiario.getCP()+"','"+beneficiario.getTelefonoFijo()+"','"+beneficiario.getTelefonoMovil()+"','"+beneficiario.getDomicilio()+"','"+beneficiario.getLocalidad()+"')";
 		String sql2 = "INSERT INTO beneficiario (OID,EstadoCivil,Nacionalidad,NivelDeEstudio,Observaciones,Ocupacion,Profesion,SituacionEconomica,Vivienda,ViviendaAlquiler,ViviendaObservaciones) VALUES "
 					+ "(LAST_INSERT_ID(),'"+beneficiario.getEstadoCivil()+"','"+beneficiario.getNacionalidad()+"','"+beneficiario.getNivelDeEstudio()+"','"+beneficiario.getObservaciones()+"','"+beneficiario.getOcupacion()+"','"+beneficiario.getProfesion()+"','"+beneficiario.getSituacionEconomica()+"','"+beneficiario.getVivienda()+"','"+beneficiario.getViviendaAlquiler()+"','"+beneficiario.getViviendaObservaciones()+"')";
 
@@ -73,7 +73,7 @@ public class BeneficiarioJDBC {
 		}
 
 		return true;
-    }
+	}
 
 	public Beneficiario obtenerBeneficiario(String DNI) throws SQLException{
 		DriverJDBC driver = DriverJDBC.getInstance() ;
