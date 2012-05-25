@@ -132,7 +132,7 @@ public class TestDatos {
     }
 
     public static boolean isNombre (String s) {
-        Pattern p = Pattern.compile("[A-ZÁÉÍÓÚÜÑ -]+");
+        Pattern p = Pattern.compile("[[\\p{IsL}] -]+");
         Matcher m = p.matcher(s.toUpperCase());
         return m.matches();
     }

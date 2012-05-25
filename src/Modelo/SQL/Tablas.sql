@@ -217,7 +217,7 @@ CREATE TABLE Oferta (
 	, DescripcionOferta VARCHAR (100) NOT NULL
 	, DuracionContrato INTEGER
 	, Fecha DATE NOT NULL
-	, PlazasOfertadas INTEGER 
+	, PlazasOfertadas INTEGER
 	, TipoContrato VARCHAR (50)
 	, CONSTRAINT Fk_OIDOferta FOREIGN KEY (OIDSector)
 			REFERENCES Sector (OID)
@@ -235,7 +235,7 @@ CREATE TABLE Demanda (
 	, OIDSector INTEGER
 	, OIDBeneficiario INTEGER
 	, OIDVoluntario INTEGER
-	, DescripcionVidaLaboral VARCHAR (100) 
+	, DescripcionVidaLaboral VARCHAR (100)
 	, Fecha DATE NOT NULL
 	, CONSTRAINT Fk_OIDDemanda FOREIGN KEY (OIDSector)
 			REFERENCES Sector (OID)
@@ -247,5 +247,4 @@ CREATE TABLE Demanda (
 
 
 INSERT INTO Persona (`OID`, `NIF`, `Nombre`, `Apellidos`, `FechaNacimiento`, `CP`, `TelefonoFijo`, `TelefonoMovil`, `Domicilio`, `Localidad`) VALUES (1, '12345678A', 'admin', 'admin', '1990-04-03', 11321, 666999666, 999666999, 'C/Falsa 123', 'Granada');
-
 INSERT INTO Voluntario (`OID`, `Password`) VALUES (1, 'cd15bf6a6c78f04336aa85a722ceb148');
