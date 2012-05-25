@@ -324,12 +324,12 @@ public class BeneficiarioJDBC {
 	}
         
         public ResultSet obtenerBeneficiario (Sector sector )throws SQLException{
-        DriverJDBC driver = DriverJDBC.getInstance();
-	Boolean exito;
-        ResultSet rs;
+            DriverJDBC driver = DriverJDBC.getInstance();
+            Boolean exito;
+            ResultSet rs;
         
-        String sql1 = "SELECT OID FROM Beneficiario WHERE OID = '"+Beneficiario.NIF_ID+"'";
-        rs = driver.seleccionar(sql1);
+            String sql1 = "SELECT OID FROM Beneficiario WHERE OID = '"+Beneficiario.NIF_ID+"'";
+            rs = driver.seleccionar(sql1);
         
         try{
 			driver.inicioTransaccion();

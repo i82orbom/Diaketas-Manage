@@ -68,25 +68,22 @@ public class ColaboracionJDBC {
     public boolean añadirColaboracion(Colaboracion c) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
-        boolean exito;
+        String sql = "INSERT INTO Colaboracion (Cantidad, Fecha, DNIoCIF, OID) VALUES ('"+c.getImporte()+"','"+c.getFecha()+"','"+c.getOIDColaborador()+"','"+c.getOIDColaboracion()+"')";
         
         try{
             driver.inicioTransaccion();
-            String sql = "INSERT INTO Colaboracion (Cantidad, Fecha, DNIoCIF, OID) VALUES ('"+c.getImporte()+"','"+c.getFecha()+"','"+c.getOIDColaborador()+"','"+c.getOIDColaboracion()+"')";
-            exito = driver.insertar(sql);
-            
+            driver.insertar(sql);           
             driver.commit();
             
         }
         catch (SQLException ex){
             driver.rollback();
-            exito = false;
             throw ex;
 	}
         finally {
             driver.finTransaccion();
 	}
-        return exito;
+        return true;
         
     }
     
@@ -99,25 +96,22 @@ public class ColaboracionJDBC {
     public boolean eliminarColaboracion(Colaboracion c) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
-        boolean exito;
-        
+        String sql = "DELETE FROM Colaboracion WHERE OID= '"+c.getOIDColaboracion()+"'";
+
         try{
             driver.inicioTransaccion();
-            String sql = "DELETE FROM Colaboracion WHERE OID= '"+c.getOIDColaboracion()+"'";
-            exito = driver.insertar(sql);
-        
+            driver.insertar(sql);
             driver.commit();
             
         }
         catch (SQLException ex){
             driver.rollback();
-            exito = false;
             throw ex;
 	}
         finally {
             driver.finTransaccion();
 	}
-        return exito;
+        return true;
     }
     
     /**
@@ -133,18 +127,29 @@ public class ColaboracionJDBC {
         DriverJDBC driver = DriverJDBC.getInstance();
         
         String sql = "SELECT * FROM Colaboracion c, Movimiento m WHERE c.OIDColaborador='"+c.getOIDColaborador()+"' AND m.Fecha>='"+FechaInicio+"' AND m.Fecha<='"+FechaFin+"'";
-        ResultSet rs = driver.seleccionar(sql);
+        
         ArrayList<Colaboracion> listaColaboraciones = new ArrayList<Colaboracion>();
         Colaboracion colaboracion = null;
         
-        if(rs.next()){
-            colaboracion = new Colaboracion();
-            colaboracion.setFecha(rs.getDate("Fecha"));
-            colaboracion.setImporte(rs.getInt("Importe"));
-            colaboracion.setConcepto(rs.getString("Concepto"));
-            
-            listaColaboraciones.add(colaboracion);
+        try {
+            driver.conectar();
+            ResultSet rs = driver.seleccionar(sql);
+
+            if(rs.next()){
+                colaboracion = new Colaboracion();
+                colaboracion.setFecha(rs.getDate("Fecha"));
+                colaboracion.setImporte(rs.getInt("Importe"));
+                colaboracion.setConcepto(rs.getString("Concepto"));
+
+                listaColaboraciones.add(colaboracion);
+            }
         }
+        catch (SQLException ex){
+            throw ex;
+	}
+	finally{
+		driver.desconectar();
+	}
         return listaColaboraciones;
     }
     

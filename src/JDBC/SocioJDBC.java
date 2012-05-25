@@ -70,25 +70,25 @@ public class SocioJDBC {
      * @throws SQLException
      */
     public boolean añadirSocio(Socio socio) throws SQLException{
-		DriverJDBC driver = DriverJDBC.getInstance();
-		String sql1 = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, CP, TelefonoFijo, TelefonoMovil, Email) VALUES ('"+socio.getDireccion()+"','"+socio.getLocalidad()+"','"+socio.getProvincia()+"','"+socio.getCP()+"','"+socio.getTelefonoFijo()+"','"+socio.getTelefonoMovil()+"','"+socio.getEmail()+"')";
+	DriverJDBC driver = DriverJDBC.getInstance();
+	String sql1 = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, CP, TelefonoFijo, TelefonoMovil, Email) VALUES ('"+socio.getDireccion()+"','"+socio.getLocalidad()+"','"+socio.getProvincia()+"','"+socio.getCP()+"','"+socio.getTelefonoFijo()+"','"+socio.getTelefonoMovil()+"','"+socio.getEmail()+"')";
         String sql2 = "INSERT INTO C_Persona (OID, DNI, Nombre, Apellidos, FechaNacimiento,Sexo) VALUES (LAST_INSERT_ID(),'"+socio.getDNI()+"','"+socio.getNombre()+"','"+socio.getApellidos()+"','"+socio.getFechaDeNacimiento()+"','"+socio.getSexo()+"')";
         String sql3 = "INSERT INTO Socio (OID, usuario, contrasena) VALUES (LAST_INSERT_ID(),'"+socio.getUsuario()+"','"+socio.getContrasena()+"')";
 
-		try{
-			driver.inicioTransaccion();
-			driver.insertar(sql1);
-			driver.insertar(sql2);
-			driver.insertar(sql3);
-			driver.commit();
-		}
-		catch (SQLException ex){
-			driver.rollback();
-			throw ex;
-		}
-		finally{
-			driver.finTransaccion();
-		}
+        try{
+                driver.inicioTransaccion();
+                driver.insertar(sql1);
+                driver.insertar(sql2);
+                driver.insertar(sql3);
+                driver.commit();
+        }
+        catch (SQLException ex){
+                driver.rollback();
+                throw ex;
+        }
+        finally{
+                driver.finTransaccion();
+        }
 
         return true;
     }
@@ -102,17 +102,26 @@ public class SocioJDBC {
     public boolean modificarDatosSocio(Socio socio) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String usuario = socio.getUsuario();
-        String contrasena = socio.getContrasena();
 
-        String sql = "UPDATE Colaborador SET Direccion='"+socio.getDireccion()+"', Localidad='"+socio.getLocalidad()+"', Provincia='"+socio.getProvincia()+"', codigoPostal='"+socio.getCP()+"',TelefonoFijo='"+socio.getTelefonoFijo()+"', TelefonoMovil='"+socio.getTelefonoMovil()+"', Email='"+socio.getEmail()+"WHERE OID="+socio.getOIDColaborador()+"'";
-        boolean exito = driver.insertar(sql);
-        String sql2 = "UPDATE C_Persona SET DNI='"+socio.getDNI()+"', Nombre='"+socio.getNombre()+"', Apellidos='"+socio.getApellidos()+"', FechaDeNacimiento='"+socio.getFechaDeNacimiento()+"WHERE OID="+socio.getOIDPersona()+"'";
-        boolean exito2 = driver.insertar(sql2);
-        String sql3 = "UPDATE Socio SET usuario='"+usuario+"', contrasena='"+contrasena+"WHERE OID="+socio.getOIDSocio()+"'";
-        boolean exito3 = driver.insertar(sql3);
-
-        return (exito && exito2 && exito3);
+        String sql = "UPDATE Colaborador SET Direccion='"+socio.getDireccion()+"', Localidad='"+socio.getLocalidad()+"', Provincia='"+socio.getProvincia()+"', codigoPostal='"+socio.getCP()+"',TelefonoFijo='"+socio.getTelefonoFijo()+"', TelefonoMovil='"+socio.getTelefonoMovil()+"', Email='"+socio.getEmail()+"WHERE OID="+socio.getOIDColaborador()+"'";      
+        String sql2 = "UPDATE C_Persona SET DNI='"+socio.getDNI()+"', Nombre='"+socio.getNombre()+"', Apellidos='"+socio.getApellidos()+"', FechaDeNacimiento='"+socio.getFechaDeNacimiento()+"WHERE OID="+socio.getOIDPersona()+"'";       
+        String sql3 = "UPDATE Socio SET usuario='"+socio.getUsuario()+"', contrasena='"+socio.getContrasena()+"WHERE OID="+socio.getOIDSocio()+"'";
+       
+        try{
+                driver.inicioTransaccion();
+                driver.insertar(sql);
+                driver.insertar(sql2);
+                driver.insertar(sql3);
+                driver.commit();
+        }
+        catch (SQLException ex){
+                driver.rollback();
+                throw ex;
+        }
+        finally{
+                driver.finTransaccion();
+        }
+        return true;
     }
 
     /**
@@ -126,27 +135,32 @@ public class SocioJDBC {
         DriverJDBC driver = DriverJDBC.getInstance();
 
         String sql = "UPDATE Colaboracion SET OID=OID_Anonimo WHERE OID='"+socio.getOIDSocio()+"'";
-        boolean exito = driver.insertar(sql);
-
         String sql2 = "UPDATE PagoCuota SET OID=OID_Anonimo WHERE OIDSocio='"+socio.getOIDSocio()+"'";
-        boolean exito2 = driver.insertar(sql2);
-
         String sql3 = "UPDATE Cuota SET fechaFin=fechaUltimoPago WHERE OIDSocio='"+socio.getOIDSocio()+"'";
-        boolean exito3 = driver.insertar(sql3);
-
         String sql4 = "UPDATE Cuota SET OIDSocio=OID_Anonimo WHERE OIDSocio='"+socio.getOIDSocio()+"'";
-        boolean exito4 = driver.insertar(sql4);
-
         String sql5 = "DELETE FROM Socio WHERE OIDSocio='"+socio.getOIDSocio()+"'";
-        boolean exito5 = driver.insertar(sql5);
-
         String sql6 = "DELETE FROM C_Persona WHERE OID='"+socio.getOIDPersona()+"'";
-        boolean exito6 = driver.insertar(sql6);
-
         String sql7 = "DELETE FROM Colaborador WHERE OID='"+socio.getOIDColaborador()+"'";
-        boolean exito7 = driver.insertar(sql7);
-
-        return (exito && exito2 && exito3 && exito4 && exito5 && exito6 && exito7);
+        
+        try{
+                driver.inicioTransaccion();
+                driver.insertar(sql);
+                driver.insertar(sql2);
+                driver.insertar(sql3);
+                driver.insertar(sql4);
+                driver.insertar(sql5);
+                driver.insertar(sql6);
+                driver.insertar(sql7);
+                driver.commit();
+        }
+        catch (SQLException ex){
+                driver.rollback();
+                throw ex;
+        }
+        finally{
+                driver.finTransaccion();
+        }
+        return true;
     }
 
     /**
@@ -160,37 +174,45 @@ public class SocioJDBC {
         DriverJDBC driver = DriverJDBC.getInstance();
 
         String sql = "SELECT * FROM Colaborador c, C_Persona p, Socio s WHERE (p.DNI='"+DNI+"') AND c.OID=p.OIDColaborador AND s.OIDC_Persona=p.OID";
-
-        ResultSet rs = driver.seleccionar(sql);
         Socio socio = null;
+        
+         try {
+            driver.conectar();
+            ResultSet rs = driver.seleccionar(sql);
 
-        if(rs.next()){
-            socio = new Socio();
-            socio.setUsuario(rs.getString("usuario"));
-            socio.setContrasena(rs.getString("contrasena"));
+            if(rs.next()){
+                socio = new Socio();
+                socio.setUsuario(rs.getString("usuario"));
+                socio.setContrasena(rs.getString("contrasena"));
 
-            socio.setDNI(rs.getString("DNI"));
-            socio.setNombre(rs.getString("Nombre"));
-            socio.setApellidos(rs.getString("Apellidos"));
-            socio.setFechaDeNacimiento(rs.getDate("FechaDeNacimiento"));
+                socio.setDNI(rs.getString("DNI"));
+                socio.setNombre(rs.getString("Nombre"));
+                socio.setApellidos(rs.getString("Apellidos"));
+                socio.setFechaDeNacimiento(rs.getDate("FechaDeNacimiento"));
 
-            char bufSexo[] = new char[1];
-            try {
-                rs.getCharacterStream("Sexo").read(bufSexo);
-            } catch (IOException ex) {
-                Logger.getLogger(SocioJDBC.class.getName()).log(Level.SEVERE, null, ex);
+                char bufSexo[] = new char[1];
+                try {
+                    rs.getCharacterStream("Sexo").read(bufSexo);
+                } catch (IOException ex) {
+                    Logger.getLogger(SocioJDBC.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                socio.setSexo(bufSexo[0]);
+
+                socio.setCP(rs.getString("CodigoPostal"));
+                socio.setDireccion(rs.getString("Direccion"));
+                socio.setEmail(rs.getString("Email"));
+                socio.setLocalidad(rs.getString("Localidad"));
+                socio.setProvincia(rs.getString("Provincia"));
+                socio.setTelefonoFijo(rs.getString("TelefonoFijo"));
+                socio.setTelefonoMovil(rs.getString("TelefonoMovil"));
             }
-            socio.setSexo(bufSexo[0]);
-
-            socio.setCP(rs.getString("CodigoPostal"));
-            socio.setDireccion(rs.getString("Direccion"));
-            socio.setEmail(rs.getString("Email"));
-            socio.setLocalidad(rs.getString("Localidad"));
-            socio.setProvincia(rs.getString("Provincia"));
-            socio.setTelefonoFijo(rs.getString("TelefonoFijo"));
-            socio.setTelefonoMovil(rs.getString("TelefonoMovil"));
-            }
-
+        }
+        catch (SQLException ex){
+            throw ex;
+	}
+	finally{
+		driver.desconectar();
+	}  
             return socio;
 
     }
@@ -206,40 +228,48 @@ public class SocioJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "SELECT * FROM Socio s, C_Persona p WHERE "+tipoBusqueda+"='"+valor+"' AND s.OIDC_Persona=p.OID";
-
-        ResultSet rs = driver.seleccionar(sql);
         ArrayList<Socio> listaSocios = new ArrayList<Socio>();
         Socio socio = null;
+        
+        try {
+            driver.conectar();
+            ResultSet rs = driver.seleccionar(sql);
 
-        if(rs.next()){
-            socio = new Socio();
-            socio.setUsuario(rs.getString("usuario"));
-            socio.setContrasena(rs.getString("contrasena"));
+            if(rs.next()){
+                socio = new Socio();
+                socio.setUsuario(rs.getString("usuario"));
+                socio.setContrasena(rs.getString("contrasena"));
 
-            socio.setDNI(rs.getString("DNI"));
-            socio.setNombre(rs.getString("Nombre"));
-            socio.setApellidos(rs.getString("Apellidos"));
-            socio.setFechaDeNacimiento(rs.getDate("FechaDeNacimiento"));
+                socio.setDNI(rs.getString("DNI"));
+                socio.setNombre(rs.getString("Nombre"));
+                socio.setApellidos(rs.getString("Apellidos"));
+                socio.setFechaDeNacimiento(rs.getDate("FechaDeNacimiento"));
 
-            char bufSexo[] = new char[1];
-            try {
-                rs.getCharacterStream("Sexo").read(bufSexo);
-            } catch (IOException ex) {
-                Logger.getLogger(SocioJDBC.class.getName()).log(Level.SEVERE, null, ex);
+                char bufSexo[] = new char[1];
+                try {
+                    rs.getCharacterStream("Sexo").read(bufSexo);
+                } catch (IOException ex) {
+                    Logger.getLogger(SocioJDBC.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                socio.setSexo(bufSexo[0]);
+
+                socio.setCP(rs.getString("CodigoPostal"));
+                socio.setDireccion(rs.getString("Direccion"));
+                socio.setEmail(rs.getString("Email"));
+                socio.setLocalidad(rs.getString("Localidad"));
+                socio.setProvincia(rs.getString("Provincia"));
+                socio.setTelefonoFijo(rs.getString("TelefonoFijo"));
+                socio.setTelefonoMovil(rs.getString("TelefonoMovil"));
+
+                listaSocios.add(socio);
             }
-            socio.setSexo(bufSexo[0]);
-
-            socio.setCP(rs.getString("CodigoPostal"));
-            socio.setDireccion(rs.getString("Direccion"));
-            socio.setEmail(rs.getString("Email"));
-            socio.setLocalidad(rs.getString("Localidad"));
-            socio.setProvincia(rs.getString("Provincia"));
-            socio.setTelefonoFijo(rs.getString("TelefonoFijo"));
-            socio.setTelefonoMovil(rs.getString("TelefonoMovil"));
-
-            listaSocios.add(socio);
         }
-
+        catch (SQLException ex){
+            throw ex;
+	}
+	finally{
+		driver.desconectar();
+	} 
         return listaSocios;
 
     }
@@ -257,15 +287,25 @@ public class SocioJDBC {
         Cuota c = new Cuota();
 
         String sql = "SELECT * FROM Cuota c WHERE c.OIDSocio='"+socio.getOIDSocio()+"' AND (c.FechaFin > '"+fechaActual.getTime()+"' OR c.FechaFin <> NULL)";
-        ResultSet rs = driver.seleccionar(sql);
+        
+        try {
+            driver.conectar();
+            ResultSet rs = driver.seleccionar(sql);
 
-        if(rs.next()){
-            c.setCantidad(rs.getDouble("Cantidad"));
-            c.setFechaFin(rs.getDate("fechaFin"));
-            c.setFechaInicial(rs.getDate("fechaInicial"));
-            c.setFechaUltimoPago(rs.getDate("fechaUltimoPago"));
-            c.setIntervaloPagos(rs.getDate("intervaloPagos"));
+            if(rs.next()){
+                c.setCantidad(rs.getDouble("Cantidad"));
+                c.setFechaFin(rs.getDate("fechaFin"));
+                c.setFechaInicial(rs.getDate("fechaInicial"));
+                c.setFechaUltimoPago(rs.getDate("fechaUltimoPago"));
+                c.setIntervaloPagos(rs.getDate("intervaloPagos"));
+            }
         }
+        catch (SQLException ex){
+            throw ex;
+	}
+	finally{
+		driver.desconectar();
+	}
         return c;
     }
 

@@ -77,7 +77,6 @@ public class C_EmpresaJDBC {
 			driver.insertar(sql);
 			driver.insertar(sql2);
 			driver.commit();
-
 		}
 		catch (SQLException ex){
 			driver.rollback();
@@ -98,30 +97,24 @@ public class C_EmpresaJDBC {
      */
     public boolean modificarDatosC_Empresa(C_Empresa e) throws SQLException{
 
-        DriverJDBC driver = DriverJDBC.getInstance();
-        boolean exito;
+        DriverJDBC driver = DriverJDBC.getInstance();     
+        String sql = "UPDATE Colaborador SET Direccion='"+e.getDireccion()+"', Localidad='"+e.getLocalidad()+"', Provincia='"+e.getProvincia()+"', codigoPostal='"+e.getCP()+"', TelefonoFijo='"+e.getTelefonoFijo()+"', TelefonoMovil='"+e.getTelefonoMovil()+"', Email='"+e.getEmail()+"WHERE OID="+e.getOIDColaborador()+"'";
+        String sql2 = "UPDATE C_Empresa SET CIF='"+e.getCIF()+"', Nombre='"+e.getNombre()+"', Fax='"+e.getFax()+"', DireccionWeb='"+e.getDireccionWeb()+"WHERE OID="+e.getOIDEmpresa()+"'";
 
         try{
             driver.inicioTransaccion();
-
-            String sql = "UPDATE Colaborador SET Direccion='"+e.getDireccion()+"', Localidad='"+e.getLocalidad()+"', Provincia='"+e.getProvincia()+"', codigoPostal='"+e.getCP()+"', TelefonoFijo='"+e.getTelefonoFijo()+"', TelefonoMovil='"+e.getTelefonoMovil()+"', Email='"+e.getEmail()+"WHERE OID="+e.getOIDColaborador()+"'";
-
-            String sql2 = "UPDATE C_Empresa SET CIF='"+e.getCIF()+"', Nombre='"+e.getNombre()+"', Fax='"+e.getFax()+"', DireccionWeb='"+e.getDireccionWeb()+"WHERE OID="+e.getOIDEmpresa()+"'";
-
-            exito = driver.insertar(sql);
-            if (exito) exito = driver.insertar(sql2);
+            driver.insertar(sql);
+            driver.insertar(sql2);
             driver.commit();
 
         }
         catch (SQLException ex){
-            driver.rollback();
-            exito = false;
             throw ex;
 	}
         finally {
             driver.finTransaccion();
 	}
-        return exito;
+        return true;
     }
 
     /**
@@ -133,34 +126,25 @@ public class C_EmpresaJDBC {
     public boolean eliminarC_Empresa(C_Empresa e) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        boolean exito;
+        String sql = "UPDATE Colaboracion SET OID=OID_Anonimo WHERE OID='"+e.getOIDEmpresa()+"'";
+        String sql2 = "DELETE FROM C_Empresa WHERE OID='"+e.getOIDEmpresa()+"'";
+        String sql3 = "DELETE FROM Colaborador WHERE OID='"+e.getOIDColaborador()+"'";
 
         try{
             driver.inicioTransaccion();
-
-            String sql = "UPDATE Colaboracion SET OID=OID_Anonimo WHERE OID='"+e.getOIDEmpresa()+"'";
-
-            String sql2 = "DELETE FROM C_Empresa WHERE OID='"+e.getOIDEmpresa()+"'";
-
-            String sql3 = "DELETE FROM Colaborador WHERE OID='"+e.getOIDColaborador()+"'";
-
-            exito = driver.insertar(sql);
-            if (exito) {
-                exito = driver.insertar(sql2);
-                if (exito) exito = driver.insertar(sql3);
-            }
+            driver.insertar(sql);
+            driver.insertar(sql2);
+            driver.insertar(sql3);
             driver.commit();
 
         }
         catch (SQLException ex){
-            driver.rollback();
-            exito = false;
             throw ex;
 	}
         finally {
             driver.finTransaccion();
 	}
-        return exito;
+        return true;
     }
 
     /**
@@ -172,29 +156,37 @@ public class C_EmpresaJDBC {
     public C_Empresa obtenerC_Empresa(String cif) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-
         String sql = "SELECT * FROM Colaborador c, C_Empresa e WHERE (e.CIF='"+cif+"') AND c.OID=e.OID";
-
-        ResultSet rs = driver.seleccionar(sql);
         C_Empresa Empresa = null;
+        
+        try {
+            driver.conectar();
+            ResultSet rs = driver.seleccionar(sql);
 
-        if(rs.next()){
-            Empresa = new C_Empresa();
-            Empresa.setCIF(rs.getString("CIF"));
-            Empresa.setNombre(rs.getString("Nombre"));
-            Empresa.setDireccionWeb(rs.getString("DireccionWeb"));
-            Empresa.setFax(rs.getString("Fax"));
+            if(rs.next()){
+                Empresa = new C_Empresa();
+                Empresa.setCIF(rs.getString("CIF"));
+                Empresa.setNombre(rs.getString("Nombre"));
+                Empresa.setDireccionWeb(rs.getString("DireccionWeb"));
+                Empresa.setFax(rs.getString("Fax"));
 
 
-            Empresa.setCP(rs.getString("CodigoPostal"));
-            Empresa.setDireccion(rs.getString("Direccion"));
-            Empresa.setEmail(rs.getString("Email"));
-            Empresa.setLocalidad(rs.getString("Localidad"));
-            Empresa.setProvincia(rs.getString("Provincia"));
-            Empresa.setTelefonoFijo(rs.getString("TelefonoFijo"));
-            Empresa.setTelefonoMovil(rs.getString("TelefonoMovil"));
+                Empresa.setCP(rs.getString("CodigoPostal"));
+                Empresa.setDireccion(rs.getString("Direccion"));
+                Empresa.setEmail(rs.getString("Email"));
+                Empresa.setLocalidad(rs.getString("Localidad"));
+                Empresa.setProvincia(rs.getString("Provincia"));
+                Empresa.setTelefonoFijo(rs.getString("TelefonoFijo"));
+                Empresa.setTelefonoMovil(rs.getString("TelefonoMovil"));
 
             }
+        }
+        catch (SQLException ex){
+            throw ex;
+	}
+	finally{
+		driver.desconectar();
+	}
 
             return Empresa;
     }
@@ -210,27 +202,37 @@ public class C_EmpresaJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "SELECT * FROM C_Empresa e, Colaborador c WHERE "+tipoBusqueda+"='"+valor+"' AND e.OID=c.";
-
-        ResultSet resultados = driver.seleccionar(sql);
         ArrayList<C_Empresa> listaC_Empresa = new ArrayList<C_Empresa>();
         C_Empresa Empresa = null;
+        
+        try {
+            driver.conectar();
+            ResultSet resultados = driver.seleccionar(sql);
 
-        if(resultados.next()){
-            Empresa = new C_Empresa();
-            Empresa.setCIF(resultados.getString("CIF"));
-            Empresa.setNombre(resultados.getString("Nombre"));
-            Empresa.setDireccionWeb(resultados.getString("DireccionWeb"));
-            Empresa.setFax(resultados.getString("Fax"));
 
-            Empresa.setCP(resultados.getString("CodigoPostal"));
-            Empresa.setDireccion(resultados.getString("Direccion"));
-            Empresa.setEmail(resultados.getString("Email"));
-            Empresa.setLocalidad(resultados.getString("Localidad"));
-            Empresa.setProvincia(resultados.getString("Provincia"));
-            Empresa.setTelefonoFijo(resultados.getString("TelefonoFijo"));
-            Empresa.setTelefonoMovil(resultados.getString("TelefonoMovil"));
+            if(resultados.next()){
+                Empresa = new C_Empresa();
+                Empresa.setCIF(resultados.getString("CIF"));
+                Empresa.setNombre(resultados.getString("Nombre"));
+                Empresa.setDireccionWeb(resultados.getString("DireccionWeb"));
+                Empresa.setFax(resultados.getString("Fax"));
 
-            listaC_Empresa.add(Empresa);
+                Empresa.setCP(resultados.getString("CodigoPostal"));
+                Empresa.setDireccion(resultados.getString("Direccion"));
+                Empresa.setEmail(resultados.getString("Email"));
+                Empresa.setLocalidad(resultados.getString("Localidad"));
+                Empresa.setProvincia(resultados.getString("Provincia"));
+                Empresa.setTelefonoFijo(resultados.getString("TelefonoFijo"));
+                Empresa.setTelefonoMovil(resultados.getString("TelefonoMovil"));
+
+                listaC_Empresa.add(Empresa);
+            }
+        }
+        catch (SQLException ex){
+                throw ex;
+        }
+        finally{
+                driver.desconectar();
         }
 
         return listaC_Empresa;
@@ -238,27 +240,25 @@ public class C_EmpresaJDBC {
     
     public ResultSet obtenerC_empresa (Sector sector )throws SQLException{
         DriverJDBC driver = DriverJDBC.getInstance();
-	Boolean exito;
         ResultSet rs;
         
         String sql1 = "SELECT OID FROM C_empresa WHERE OID = '"+C_Empresa.CIF_ID+"'";
         rs = driver.seleccionar(sql1);
         
-        try{
-			driver.inicioTransaccion();
-			driver.insertar(sql1);
-			driver.commit();
-		}
-		catch (SQLException ex){
-			driver.rollback();
-			exito = false;
-			throw ex;
-		}
-		finally {
-			driver.finTransaccion();
-		}
+            try{
+                    driver.inicioTransaccion();
+                    driver.insertar(sql1);
+                    driver.commit();
+            }
+            catch (SQLException ex){
+                    driver.rollback();
+                    throw ex;
+            }
+            finally {
+                    driver.finTransaccion();
+            }
 
-		return rs;
+	return rs;
     }
 
 }

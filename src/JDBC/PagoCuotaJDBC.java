@@ -68,29 +68,24 @@ public class PagoCuotaJDBC {
     public boolean añadirPagoCuota(PagoCuota pc) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
-        boolean exito;
-        
+        String sql = "INSERT INTO Movimiento (importe, fecha, concepto) VALUES ('"+pc.getImporte()+"','"+pc.getFecha()+"','"+pc.getConcepto()+"')";
+        String sql2 = "INSERT INTO PagoCuota (OIDSocio, OIDVoluntario, OID) VALUES ('"+pc.getOIDSocio()+"','"+pc.getOIDVoluntario()+"',LAST_INSERT_ID())";
+               
         try{
-            driver.inicioTransaccion();
-            
-            String sql = "INSERT INTO Movimiento (importe, fecha, concepto) VALUES ('"+pc.getImporte()+"','"+pc.getFecha()+"','"+pc.getConcepto()+"')";
-        
-            String sql2 = "INSERT INTO PagoCuota (OIDSocio, OIDVoluntario, OID) VALUES ('"+pc.getOIDSocio()+"','"+pc.getOIDVoluntario()+"',LAST_INSERT_ID())";
-       
-            exito = driver.insertar(sql);
-            if (exito) exito = driver.insertar(sql2);
+            driver.inicioTransaccion();       
+            driver.insertar(sql);
+            driver.insertar(sql2);
             driver.commit();
             
         }
         catch (SQLException ex){
             driver.rollback();
-            exito = false;
             throw ex;
 	}
         finally {
             driver.finTransaccion();
 	}
-        return exito;
+        return true;
     }
     
     /**
@@ -102,23 +97,22 @@ public class PagoCuotaJDBC {
     public boolean eliminarPagoCuota(PagoCuota pc) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
-        boolean exito;
+        String sql = "DELETE FROM PagoCuota WHERE OID='"+pc.getOIDPagoCuota()+"'";
+
         
         try{
-            String sql = "DELETE FROM PagoCuota WHERE OID='"+pc.getOIDPagoCuota()+"'";
-            exito = driver.insertar(sql);
-        
+            driver.inicioTransaccion();  
+            driver.insertar(sql);        
             driver.commit();  
         }
         catch (SQLException ex){
             driver.rollback();
-            exito = false;
             throw ex;
 	}
         finally {
             driver.finTransaccion();
 	}
-        return exito;
+        return true;
     }
  
     /**
@@ -132,20 +126,28 @@ public class PagoCuotaJDBC {
     public ArrayList<PagoCuota> HistorialPagosCuotas (Socio s, Date fechaInicio, Date fechaFin) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
-        
-        String sql = "SELECT * FROM PagoCuota p, Movimiento m, Voluntario v WHERE p.OID=m.OID AND p.OIDSocio='"+s.getOIDSocio()+"' AND p.OIDVoluntario=v.OID";
-        ResultSet rs = driver.seleccionar(sql);
-        
         ArrayList<PagoCuota> listaPagosCuotas = new ArrayList<PagoCuota>();
+        String sql = "SELECT * FROM PagoCuota p, Movimiento m, Voluntario v WHERE p.OID=m.OID AND p.OIDSocio='"+s.getOIDSocio()+"' AND p.OIDVoluntario=v.OID";
         
-        if(rs.next()){
-            PagoCuota PagoC = new PagoCuota();
-            PagoC.setConcepto(rs.getString("Concepto"));
-            PagoC.setFecha(rs.getDate("Fecha"));
-            PagoC.setImporte(rs.getFloat("Importe"));
-            
-            listaPagosCuotas.add(PagoC);
+        try {
+            driver.conectar();
+            ResultSet rs = driver.seleccionar(sql);
+
+            if(rs.next()){
+                PagoCuota PagoC = new PagoCuota();
+                PagoC.setConcepto(rs.getString("Concepto"));
+                PagoC.setFecha(rs.getDate("Fecha"));
+                PagoC.setImporte(rs.getFloat("Importe"));
+
+                listaPagosCuotas.add(PagoC);
+            }
         }
+        catch (SQLException ex){
+            throw ex;
+	}
+	finally{
+		driver.desconectar();
+	}    
         return listaPagosCuotas;
     }
 }
