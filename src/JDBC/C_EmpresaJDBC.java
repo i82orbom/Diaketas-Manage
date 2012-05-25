@@ -24,7 +24,9 @@
  */
 package JDBC;
 
+import Modelo.Beneficiario;
 import Modelo.C_Empresa;
+import Modelo.Sector;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -232,6 +234,31 @@ public class C_EmpresaJDBC {
         }
 
         return listaC_Empresa;
+    }
+    
+    public ResultSet obtenerC_empresa (Sector sector )throws SQLException{
+        DriverJDBC driver = DriverJDBC.getInstance();
+	Boolean exito;
+        ResultSet rs;
+        
+        String sql1 = "SELECT OID FROM C_empresa WHERE OID = '"+C_Empresa.CIF_ID+"'";
+        rs = driver.seleccionar(sql1);
+        
+        try{
+			driver.inicioTransaccion();
+			driver.insertar(sql1);
+			driver.commit();
+		}
+		catch (SQLException ex){
+			driver.rollback();
+			exito = false;
+			throw ex;
+		}
+		finally {
+			driver.finTransaccion();
+		}
+
+		return rs;
     }
 
 }
