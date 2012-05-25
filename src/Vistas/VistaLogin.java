@@ -39,15 +39,15 @@ public class VistaLogin extends javax.swing.JPanel {
     public JTextField getTextFieldIdUsuario() {
         return textFieldIdUsuario;
     }
-    
+
     /** LISTENERS */
-    
+
     public void anadirListenerBtConectarse(ActionListener listener){
         this.btConectarse.addActionListener(listener);
     }
-    
+
     /** FUNCIONES VARIAS */
-    
+
     public void mostrarErrorLogin(String cadena){
         this.textErrorLogin.setText(cadena);
         this.textErrorLogin.setVisible(true);
@@ -77,7 +77,7 @@ public class VistaLogin extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1000, 600));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        imgLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/Acceso_Usuarios.jpg"))); // NOI18N
+        imgLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/Acceso_Usuarios.png"))); // NOI18N
         add(imgLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 145, -1, -1));
 
         labelTitulo.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N

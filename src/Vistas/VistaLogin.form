@@ -35,7 +35,7 @@
     <Component class="javax.swing.JLabel" name="imgLogo">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/images/Acceso_Usuarios.jpg"/>
+          <Image iconType="3" name="/Vista/images/Acceso_Usuarios.png"/>
         </Property>
       </Properties>
       <Constraints>
