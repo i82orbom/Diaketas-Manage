@@ -5,6 +5,9 @@ import JDBC.CuotaJDBC;
 import JDBC.SocioJDBC;
 import Modelo.Cuota;
 import Modelo.Socio;
+import Vistas.Paneles.Colaboradores.VistaColaboradores;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -40,17 +43,22 @@ public class ControladorCuota {
      */
     private static ControladorCuota instancia = null;
 
-    public static ControladorCuota getInstance() {
+    public static ControladorCuota getInstance(VistaColaboradores colaborador) {
 
         if (instancia == null) {
-            instancia = new ControladorCuota();
+            instancia = new ControladorCuota(colaborador);
         }
         return instancia;
 
     }
 
-    public ControladorCuota() {
-    }
+	
+    private VistaColaboradores vista;
+
+    public ControladorCuota(VistaColaboradores pvista) {
+		vista=pvista;
+		
+	}
 
     public boolean anadirCuota (String[] datos, Socio s){
         // TODO comprobar datos

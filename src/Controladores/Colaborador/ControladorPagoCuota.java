@@ -43,12 +43,12 @@ public class ControladorPagoCuota {
     /**
      * PATRON DE DISEÑO SINGLETON
      */
-    private static ControladorCuota instancia = null;
+    private static ControladorPagoCuota instancia = null;
 
-    public static ControladorCuota getInstance() {
+    public static ControladorPagoCuota getInstance() {
 
         if (instancia == null) {
-            instancia = new ControladorCuota();
+            instancia = new ControladorPagoCuota();
         }
         return instancia;
 
