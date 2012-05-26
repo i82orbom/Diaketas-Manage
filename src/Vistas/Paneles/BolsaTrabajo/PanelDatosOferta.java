@@ -3,12 +3,12 @@ package Vistas.Paneles.BolsaTrabajo;
 
 import javax.swing.JButton;
 
-public class PanelNuevaOferta extends javax.swing.JPanel {
+public class PanelDatosOferta extends javax.swing.JPanel {
 
 	/**
 		* Creates new form PanelBeneficiarioBuscar
 		*/
-	public PanelNuevaOferta() {
+	public PanelDatosOferta() {
 		initComponents();
 	}
 
@@ -347,7 +347,7 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(BTGuardar)
                     .add(BTLimpiar))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

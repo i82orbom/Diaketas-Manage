@@ -90,7 +90,7 @@
                   <Component id="BTGuardar" min="-2" max="-2" attributes="0"/>
                   <Component id="BTLimpiar" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="118" max="32767" attributes="0"/>
+              <EmptySpace pref="84" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

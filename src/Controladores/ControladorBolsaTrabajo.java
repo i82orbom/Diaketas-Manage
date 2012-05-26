@@ -54,9 +54,10 @@ public class ControladorBolsaTrabajo {
         vista.getBolsaTrabajoInicio().anadirListenerbtOfertasEmpleo(new btOfertasInicioListener());
         vista.getDemandasInicio().anadirListenerbtConsultarDemanda(new btConsultarDemandaListener());
         vista.getDemandasInicio().anadirListenerbtNuevaDemanda(new btNuevaDemandaListener ());
-        vista.getOfertasInicio().anadirListenerbtConsultarOfertas(new btConsultarOfertas());
+        vista.getOfertasInicio().anadirListenerbtBuscarOfertas(new btBuscarOfertas());
         vista.getOfertasInicio().anadirListenerbtNuevaOferta(new btNuevaOferta());
     }
+
 /* __________________________    IMPLEMENTACION DE MOSTAR VISTAS    ________________*/
     public void mostrarVistaInicio(){
 		vista.showPanel(VistaBolsaTrabajo.PanelInicio);
@@ -89,8 +90,8 @@ public class ControladorBolsaTrabajo {
     }
 
     public void mostrarNuevaOferta() {
-        vista.showPanel(VistaBolsaTrabajo.PanelNuevaOferta);
-        vista.getBarraDeNavigacion().setTextLabelNivel3("Nueva Oferta");
+		vista.showPanel(VistaBolsaTrabajo.PanelDatosOferta);
+		vista.getBarraDeNavigacion().setTextLabelNivel3("Nueva Oferta");
     }
 
     public void mostrarModificarOferta() {
@@ -113,76 +114,76 @@ public class ControladorBolsaTrabajo {
         vista.getBarraDeNavigacion().setTextLabelNivel3("Buscar Demanda");
     }
 
- /* ____________________________    IMPLEMENTACION DE ACTION LISTENER    ________________________*/
+	/* ____________________________    IMPLEMENTACION DE ACTION LISTENER    ________________________*/
 
-    class btDemandasInicioListener implements ActionListener {
+	class btDemandasInicioListener implements ActionListener {
 
-        @Override
-       public void actionPerformed(ActionEvent ae){
-           mostrarDemandasInicio();
-       }
-    }
+		@Override
+		public void actionPerformed(ActionEvent ae){
+			mostrarDemandasInicio();
+		}
+	}
 
-    class btConsultarDemandaListener implements ActionListener {
+	class btConsultarDemandaListener implements ActionListener {
 
-        @Override
-        public void actionPerformed (ActionEvent ea){
-            mostrarBuscarDemanda();
-        }
-    }
+		@Override
+		public void actionPerformed (ActionEvent ea){
+			mostrarBuscarDemanda();
+		}
+	}
 
-    class btNuevaDemandaListener implements ActionListener {
+	class btNuevaDemandaListener implements ActionListener {
 
-        @Override
-        public void actionPerformed (ActionEvent ea){
-            mostarNuevaDemanda();
-        }
-    }
+		@Override
+		public void actionPerformed (ActionEvent ea){
+			mostarNuevaDemanda();
+		}
+	}
 
-    class btOfertasInicioListener implements ActionListener {
+	class btOfertasInicioListener implements ActionListener {
 
-        @Override
-        public void actionPerformed (ActionEvent ea){
-            mostrarOfertasInicio();
-        }
-    }
-    class btConsultarOfertas implements ActionListener {
+		@Override
+		public void actionPerformed (ActionEvent ea){
+			mostrarOfertasInicio();
+		}
+	}
 
-        @Override
-        public void actionPerformed (ActionEvent ea){
-            mostrarConsultarOfertas();
-        }
-    }
+	class btBuscarOfertas implements ActionListener {
 
-    class btNuevaOferta implements ActionListener {
+		@Override
+		public void actionPerformed (ActionEvent ea){
+			mostrarBuscarOferta();
+		}
+	}
 
-        @Override
-        public void actionPerformed (ActionEvent ea){
-            mostrarNuevaOferta();
-        }
-    }
+	class btNuevaOferta implements ActionListener {
 
+		@Override
+		public void actionPerformed (ActionEvent ea){
+			mostrarNuevaOferta();
+		}
+	}
 
 	class ListenerBarraNavigacion implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent ae) {
-		if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_VISTA_INICIAL)) {
-			mostrarVistaInicio();
-			ControladorPrincipal.getInstance().mostrarVistaInicio();
-		}
+			if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_VISTA_INICIAL)) {
+				mostrarVistaInicio();
+				ControladorPrincipal.getInstance().mostrarVistaInicio();
+			}
 
-		if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_NIVEL1)) {
-			mostrarVistaInicio();
+			if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_NIVEL1)) {
+				mostrarVistaInicio();
+			}
+			if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_NIVEL2)) {
+				if (vista.getBarraDeNavigacion().getTextLebelNivel2().equalsIgnoreCase("Demandas")){
+					mostrarDemandasInicio();
+				}
+				else
+					mostrarOfertasInicio();
+			}
 		}
-					if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_NIVEL2)) {
-						if (vista.getBarraDeNavigacion().getTextLebelNivel2().equalsIgnoreCase("Demandas")){
-			mostrarDemandasInicio();
-						}
-						else
-								mostrarOfertasInicio();
-		}
-	}
 	}
 
 }

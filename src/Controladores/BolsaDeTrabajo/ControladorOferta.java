@@ -129,8 +129,7 @@ public class ControladorOferta {
 
 //			oferta.setIdSector(SectorJDBC.getInstance().getOID(vista.getNuevaOferta().getcbSector()));
 			try { oferta.setIdEmpresa(C_EmpresaJDBC.getInstance().obtenerC_Empresa((vista.getNuevaOferta().getTextCIF())).getOIDEmpresa());
-			} catch (SQLException ex){
-			}
+			} catch (SQLException ex){ }
 			oferta.setIdVoluntario(ControladorPrincipal.getInstance().getVoluntario().getOID());
 
 			oferta.setFecha(new Date());	// Fecha actual
