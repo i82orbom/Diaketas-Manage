@@ -1,72 +1,83 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Vistas.Paneles.BolsaTrabajo;
 
-import Vistas.Paneles.Beneficiario.*;
 import javax.swing.JButton;
 
-/**
- *
- * @author psylock
- */
 public class PanelNuevaOferta extends javax.swing.JPanel {
 
+	/**
+		* Creates new form PanelBeneficiarioBuscar
+		*/
+	public PanelNuevaOferta() {
+		initComponents();
+	}
 
-    /**
-     * Creates new form PanelBeneficiarioBuscar
-     */
-    public PanelNuevaOferta() {
-        initComponents();
-    }
+	/* Botones del panel */
+	public JButton getBTEliminarSector(){
+		return BTEliminarSector;
+	}
 
-    public JButton getBTEliminarSector(){
-        return BTEliminarSector;
-    }
+	public JButton getBTGuardar(){
+		return BTGuardar;
+	}
 
-    public JButton getBTGuardar(){
-        return BTGuardar;
-    }
+	public JButton getBTGuardarSector(){
+		return BTGuardarSector;
+	}
 
-    public JButton getBTGuardarSector(){
-        return BTGuardarSector;
-    }
-
-    public JButton getBTLimpiar(){
+	public JButton getBTLimpiar(){
         return BTLimpiar;
     }
 
-    public String getTextDuracionContrato(){
-        return TextDuracionContrato.getText();
-    }
+	/* Campos del panel */
+	public String getTextCIF(){
+		return TextCIF.getText();
+	}
+	public void setTextCIF(String texto){
+		TextCIF.setText(texto);
+	}
 
-    public String getTextNIF1(){
-        return TextNIF1.getText();
-    }
+	public String getcbSector(){
+		return cbSector.getSelectedItem().toString();
+	}
 
-    public String getTextNPuestos(){
-        return TextNPuestos.getText();
-    }
+	public String getTextNuevoSector(){
+		return TextNuevoSector.getText();
+	}
+	public void setTextNuevoSector(String texto){
+		TextNuevoSector.setText(texto);
+	}
 
-    public String getTextNuevoSector(){
-        return TextNuevoSector.getText();
-    }
+	public String gettaDescripcionOferta(){
+		return taDescripcionOferta.getText();
+	}
+	public void settaDescripcionOferta(String texto){
+		taDescripcionOferta.setText(texto);
+	}
 
-    public String getcbSector(){
-        return cbSector.getSelectedItem().toString();
-    }
+	public String getTextNPuestos(){
+		return TextNPuestos.getText();
+	}
+	public void setTextNPuestos(String texto){
+		TextNPuestos.setText(texto);
+	}
 
-    public String getcbTipoContrato(){
-        return cbTipoContrato.getSelectedItem().toString();
-    }
+	public String getcbTipoContrato(){
+		return cbTipoContrato.getSelectedItem().toString();
+	}
 
-    public String gettaCualificacion(){
-        return taCualificacion.getText();
-    }
+	public String getTextDuracionContrato(){
+		return TextDuracionContrato.getText();
+	}
+	public void setTextDuracionContrato(String texto){
+		TextDuracionContrato.setText(texto);
+	}
 
-    public String gettaPuestoOfertado(){
-        return taPuestoOfertado.getText();
+	public String gettaCualificacion(){
+		return taCualificacion.getText();
+	}
+	public void settaCualificacion(String texto){
+        taCualificacion.setText(texto);
     }
 
 
@@ -82,21 +93,21 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
         BTLimpiar = new javax.swing.JButton();
         BTGuardar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel64 = new javax.swing.JLabel();
-        jLabel65 = new javax.swing.JLabel();
+        labelDescripcionOferta = new javax.swing.JLabel();
+        labelNPuestos = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        taPuestoOfertado = new javax.swing.JTextArea();
-        jLabel73 = new javax.swing.JLabel();
-        jLabel74 = new javax.swing.JLabel();
+        taDescripcionOferta = new javax.swing.JTextArea();
+        labelTipoContrato = new javax.swing.JLabel();
+        labelDuracionContrato = new javax.swing.JLabel();
         TextNPuestos = new javax.swing.JTextField();
         cbTipoContrato = new javax.swing.JComboBox();
-        jLabel75 = new javax.swing.JLabel();
+        labelMeses = new javax.swing.JLabel();
         TextDuracionContrato = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jLabel66 = new javax.swing.JLabel();
-        jLabel72 = new javax.swing.JLabel();
+        labelCIF = new javax.swing.JLabel();
+        labelSector = new javax.swing.JLabel();
         cbSector = new javax.swing.JComboBox();
-        TextNIF1 = new javax.swing.JTextField();
+        TextCIF = new javax.swing.JTextField();
         BTEliminarSector = new javax.swing.JButton();
         TextNuevoSector = new javax.swing.JTextField();
         BTGuardarSector = new javax.swing.JButton();
@@ -117,25 +128,25 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel64.setText("Descripcion del puesto ofertado");
+        labelDescripcionOferta.setText("Descripcion del puesto ofertado");
 
-        jLabel65.setText("Nº de puestos");
+        labelNPuestos.setText("Nº de puestos");
 
-        taPuestoOfertado.setColumns(20);
-        taPuestoOfertado.setRows(5);
-        taPuestoOfertado.setText("Descripción completa del puesto de trabajo");
-        taPuestoOfertado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
-        jScrollPane1.setViewportView(taPuestoOfertado);
+        taDescripcionOferta.setColumns(20);
+        taDescripcionOferta.setRows(5);
+        taDescripcionOferta.setText("Descripción completa del puesto de trabajo");
+        taDescripcionOferta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
+        jScrollPane1.setViewportView(taDescripcionOferta);
 
-        jLabel73.setText("Tipo de contrato");
+        labelTipoContrato.setText("Tipo de contrato");
 
-        jLabel74.setText("Duracion de contrato");
+        labelDuracionContrato.setText("Duracion de contrato");
 
-        TextNPuestos.setText("Nº");
+        TextNPuestos.setText("Numero");
 
         cbTipoContrato.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fijo", "Temporal" }));
 
-        jLabel75.setText("Meses");
+        labelMeses.setText("Meses");
 
         TextDuracionContrato.setText("12");
 
@@ -149,21 +160,21 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
                     .add(jScrollPane1)
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel64)
+                            .add(labelDescripcionOferta)
                             .add(jPanel1Layout.createSequentialGroup()
-                                .add(jLabel65)
+                                .add(labelNPuestos)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(TextNPuestos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 61, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(53, 53, 53)
-                                .add(jLabel73)
+                                .add(labelTipoContrato)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(cbTipoContrato, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(39, 39, 39)
-                                .add(jLabel74)
+                                .add(labelDuracionContrato)
                                 .add(18, 18, 18)
                                 .add(TextDuracionContrato, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jLabel75)))
+                                .add(labelMeses)))
                         .add(0, 333, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -171,30 +182,30 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jLabel64)
+                .add(labelDescripcionOferta)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 80, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel65)
-                    .add(jLabel73)
-                    .add(jLabel74)
+                    .add(labelNPuestos)
+                    .add(labelTipoContrato)
+                    .add(labelDuracionContrato)
                     .add(TextNPuestos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(cbTipoContrato, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel75)
+                    .add(labelMeses)
                     .add(TextDuracionContrato, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(7, 7, 7))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel66.setText("CIF/ NIF");
+        labelCIF.setText("CIF");
 
-        jLabel72.setText("Sector");
+        labelSector.setText("Sector");
 
         cbSector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Economico" }));
 
-        TextNIF1.setText("CIF/ NIF");
+        TextCIF.setText("CIF/ NIF");
 
         BTEliminarSector.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
 
@@ -207,12 +218,12 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel2Layout.createSequentialGroup()
+                .add(40, 40, 40)
+                .add(labelCIF)
                 .add(18, 18, 18)
-                .add(jLabel66)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(TextNIF1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(106, 106, 106)
-                .add(jLabel72)
+                .add(TextCIF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(76, 76, 76)
+                .add(labelSector)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -221,7 +232,7 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
                 .add(TextNuevoSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(BTGuardarSector)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -232,10 +243,10 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
                         .add(jPanel2Layout.createSequentialGroup()
                             .add(21, 21, 21)
                             .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                .add(TextNIF1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(jLabel66)
+                                .add(TextCIF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(labelCIF)
                                 .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(jLabel72)))
+                                .add(labelSector)))
                         .add(jPanel2Layout.createSequentialGroup()
                             .addContainerGap()
                             .add(BTEliminarSector))
@@ -320,7 +331,7 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .addContainerGap(97, Short.MAX_VALUE)
+                .addContainerGap()
                 .add(jLabel68)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -336,7 +347,7 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(BTGuardar)
                     .add(BTLimpiar))
-                .add(15, 15, 15))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -345,28 +356,28 @@ public class PanelNuevaOferta extends javax.swing.JPanel {
     private javax.swing.JButton BTGuardar;
     private javax.swing.JButton BTGuardarSector;
     private javax.swing.JButton BTLimpiar;
+    private javax.swing.JTextField TextCIF;
     private javax.swing.JTextField TextDuracionContrato;
-    private javax.swing.JTextField TextNIF1;
     private javax.swing.JTextField TextNPuestos;
     private javax.swing.JTextField TextNuevoSector;
     private javax.swing.JComboBox cbSector;
     private javax.swing.JComboBox cbTipoContrato;
-    private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel71;
-    private javax.swing.JLabel jLabel72;
-    private javax.swing.JLabel jLabel73;
-    private javax.swing.JLabel jLabel74;
-    private javax.swing.JLabel jLabel75;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelCIF;
+    private javax.swing.JLabel labelDescripcionOferta;
+    private javax.swing.JLabel labelDuracionContrato;
+    private javax.swing.JLabel labelMeses;
+    private javax.swing.JLabel labelNPuestos;
+    private javax.swing.JLabel labelSector;
+    private javax.swing.JLabel labelTipoContrato;
     private javax.swing.JTextArea taCualificacion;
-    private javax.swing.JTextArea taPuestoOfertado;
+    private javax.swing.JTextArea taDescripcionOferta;
     // End of variables declaration//GEN-END:variables
 }

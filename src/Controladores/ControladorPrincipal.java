@@ -54,6 +54,7 @@ public class ControladorPrincipal {
     }
 
     private Ventana vista;
+	private Voluntario voluntario;
 
     /* Salto para la codificación de la contraseña (para login y registro) */
     private String salto="Mary Popins";
@@ -125,16 +126,19 @@ public class ControladorPrincipal {
     	    return "";
     	}
 
+	public Voluntario getVoluntario(){
+		return voluntario;
+	}
+
     // Listeners botones
     class BtConectarseListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
 			boolean exito = true;
-			Voluntario v = null;
 
 			try {
-				v = JDBC.VoluntarioJDBC.getInstance().obtenerVoluntario(vista.getVistaLogin().getTextFieldIdUsuario().getText());
+				voluntario = JDBC.VoluntarioJDBC.getInstance().obtenerVoluntario(vista.getVistaLogin().getTextFieldIdUsuario().getText());
 			}
 			catch (SQLException ex){
 				exito = false;
@@ -145,16 +149,17 @@ public class ControladorPrincipal {
 
 			if (exito){
 				// Comprobamos que el voluntario existe
-				if (v == null) exito = false;
+				if (voluntario == null) exito = false;
 
 				// La contraseña se corresponde
 				else
-					if (!v.getPassword().equals(md5(vista.getVistaLogin().getTextFieldContrasena().getText()+getSalto())))
+					if (!voluntario.getPassword().equals(md5(vista.getVistaLogin().getTextFieldContrasena().getText()+getSalto()))){
+						voluntario = null;
 						exito = false;
-
+					}
 
 				if (exito){
-					//vista.getVistaLogin().mostrarErrorLogin("");
+					vista.getVistaLogin().mostrarErrorLogin("");
 					// Limpiar el formulario de inicio de sesion
 					vista.showPanel(Ventana.panelInicio);
 				}
@@ -168,6 +173,7 @@ public class ControladorPrincipal {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
+			voluntario = null;
             vista.showPanel(Ventana.panelLogin);
         }
 
