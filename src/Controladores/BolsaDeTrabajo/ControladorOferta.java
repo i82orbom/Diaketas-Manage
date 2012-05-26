@@ -1,14 +1,19 @@
 
 package Controladores.BolsaDeTrabajo;
 
+import Controladores.ControladorPrincipal;
+import JDBC.C_EmpresaJDBC;
+import JDBC.OfertaJDBC;
+import JDBC.SectorJDBC;
 import Modelo.Oferta;
 import Modelo.Sector;
-import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.BolsaTrabajo.VistaBolsaTrabajo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  ** NOMBRE CLASE:
@@ -55,12 +60,17 @@ public class ControladorOferta {
 		return instancia;
 	}
 
-	public boolean insertarOferta(String[] s){
+	/* Métodos del controlador */
+	public boolean insertarOferta(Oferta oferta){
+		validarDatosOferta(oferta);
 		return true;
 	}
 
-	public boolean obtenerDatosOferta(Oferta of){
-		return true;
+	public Oferta obtenerDatosOferta(int oid){
+		Oferta oferta = new Oferta();
+
+
+		return oferta;
 	}
 
 	public boolean actualizarOferta(String[] s, Oferta of){
@@ -71,17 +81,17 @@ public class ControladorOferta {
 	public ArrayList<Oferta> obtenerListaOfertas(String tipoBusqueda, String valor){
 		ArrayList<Oferta> listaOfertas = new ArrayList<Oferta>();
 
-/*		try{
+		try{
 			listaOfertas = OfertaJDBC.getInstance().filtartOfertas(tipoBusqueda,valor);
 		}
 		catch (SQLException ex){
-
+			JOptionPane.showMessageDialog(null, "Error al obtener la lista de ofertas:\n"+ex.getMessage());
 		}
-*/
+
 		return listaOfertas;
 	}
 
-	public ArrayList<Oferta> filtrarOfertas(String s	){
+	public ArrayList<Oferta> filtrarOfertas(String s){
 		ArrayList<Oferta> a = new ArrayList<Oferta>();
 		return a;
 	}
@@ -103,12 +113,61 @@ public class ControladorOferta {
 		return true;
 	}
 
+	public boolean validarDatosOferta(Oferta oferta){
+		return true;
+	}
+
 	/* Clases para ActionListener */
 	public class ListenerBtGuardarOferta implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Guardar Oferta");
+			Oferta  oferta = new Oferta();
+
+			oferta.setCualificacionRequerida(vista.getNuevaOferta().gettaCualificacion());
+			oferta.setDescripcionOferta(vista.getNuevaOferta().gettaDescripcionOferta());
+			oferta.setDuracionContrato(Integer.parseInt(vista.getNuevaOferta().getTextNPuestos()));
+			oferta.setPlazasOfertadas(Integer.parseInt(vista.getNuevaOferta().getTextNPuestos()));
+			oferta.setTipoContrato(vista.getNuevaOferta().getcbTipoContrato());
+
+//			oferta.setIdSector(SectorJDBC.getInstance().getOID(vista.getNuevaOferta().getcbSector()));
+			try { oferta.setIdEmpresa(C_EmpresaJDBC.getInstance().obtenerC_Empresa((vista.getNuevaOferta().getTextCIF())).getOIDEmpresa());
+			} catch (SQLException ex){
+			}
+			oferta.setIdVoluntario(ControladorPrincipal.getInstance().getVoluntario().getOID());
+
+			oferta.setFecha(new Date());	// Fecha actual
+			insertarOferta(oferta);
+		}
+	}
+
+	public class ListenerBtModificarOferta implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Modificar Oferta");
+		}
+	}
+
+	public class ListenerBtLimpiar implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			vista.getNuevaOferta().setTextCIF("");
+			vista.getNuevaOferta().setTextNuevoSector("");
+			vista.getNuevaOferta().settaDescripcionOferta("");
+			vista.getNuevaOferta().setTextNPuestos("");
+			vista.getNuevaOferta().setTextDuracionContrato("");
+			vista.getNuevaOferta().settaCualificacion("");
+		}
+	}
+
+	public class ListenerBtEliminarOferta implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Eliminar Oferta");
 		}
 	}
 
@@ -117,14 +176,6 @@ public class ControladorOferta {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Guardar Sector");
-		}
-	}
-
-	public class ListenerBtLimpiar implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			System.out.println("Limpiar Formulario");
 		}
 	}
 

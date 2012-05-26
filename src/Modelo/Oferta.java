@@ -1,23 +1,23 @@
 /**
- ** NOMBRE CLASE: 
+ ** NOMBRE CLASE:
  **	  Oferta.java
  **
  ** DESCRIPCION:
  **       Abstracción de una Oferta
- **       
+ **
  **
  ** DESARROLLADO POR:
  **       Juan Antonio Aranda Ortega
- **	   
- **        
+ **
+ **
  ** SUPERVISADO POR:
- **       
+ **
  **
  ** HISTORIA:
- ** 	000 - Mayo 22, 2012 - Creacion 
+ ** 	000 - Mayo 22, 2012 - Creacion
  **
  ** NOTAS:
- **   
+ **
  **
  */
 
@@ -25,28 +25,27 @@ package Modelo;
 import java.util.Date;
 
 public class Oferta {
-    
+
     //Atributos propios
-    private int OID;
+    private Long OID;
     private String cualificacionRequerida;
     private String descripcionOferta;
     private int duracionContrato;
     private Date fecha;
     private int plazasOfertadas;
     private String tipoContrato;
-    
+
     //Claves externas
-    private int idSector;
-    private int idEmpresa;
-    private int idBeneficiario;
-    private int idVoluntario;
+    private Long idSector;
+    private Long idEmpresa;
+    private Long idVoluntario;
 
     /**
      * Constructor Vacio
      */
     public Oferta() {
     }
-    
+
     /**
      * Constructor con todos los atributos
      * @param OID
@@ -59,9 +58,9 @@ public class Oferta {
      * @param IDSector
      * @param IDEmpresa
      * @param IDBeneficiario
-     * @param IDVoluntario 
+     * @param IDVoluntario
      */
-    public Oferta(int OID, String cualificacionRequerida, String descripcionOferta, int duracionContrato, Date fecha, int plazasOfertadas, String tipoContrato, int idSector, int idEmpresa, int idBeneficiario, int idVoluntario) {
+    public Oferta(Long OID, String cualificacionRequerida, String descripcionOferta, int duracionContrato, Date fecha, int plazasOfertadas, String tipoContrato, Long idSector, Long idEmpresa, Long idVoluntario) {
         this.OID = OID;
         this.cualificacionRequerida = cualificacionRequerida;
         this.descripcionOferta = descripcionOferta;
@@ -71,16 +70,15 @@ public class Oferta {
         this.tipoContrato = tipoContrato;
         this.idSector = idSector;
         this.idEmpresa = idEmpresa;
-        this.idBeneficiario = idBeneficiario;
         this.idVoluntario = idVoluntario;
     }
 
     //Métodos get y set
-    public int getOID() {
+    public Long getOID() {
         return OID;
     }
 
-    public void setOID(int OID) {
+    public void setOID(Long OID) {
         this.OID = OID;
     }
 
@@ -132,36 +130,28 @@ public class Oferta {
         this.tipoContrato = tipoContrato;
     }
 
-    public int getIdBeneficiario() {
-        return idBeneficiario;
-    }
-
-    public void setIdBeneficiario(int idBeneficiario) {
-        this.idBeneficiario = idBeneficiario;
-    }
-
-    public int getIdEmpresa() {
+    public Long getIdEmpresa() {
         return idEmpresa;
     }
 
-    public void setIdEmpresa(int idEmpresa) {
+    public void setIdEmpresa(Long idEmpresa) {
         this.idEmpresa = idEmpresa;
     }
 
-    public int getIdSector() {
+    public Long getIdSector() {
         return idSector;
     }
 
-    public void setIdSector(int idSector) {
+    public void setIdSector(Long idSector) {
         this.idSector = idSector;
     }
 
-    public int getIdVoluntario() {
+    public Long getIdVoluntario() {
         return idVoluntario;
     }
 
-    public void setIdVoluntario(int idVoluntario) {
+    public void setIdVoluntario(Long idVoluntario) {
         this.idVoluntario = idVoluntario;
     }
-        
+
 }

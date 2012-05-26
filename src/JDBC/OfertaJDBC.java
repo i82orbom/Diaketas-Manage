@@ -15,25 +15,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class OfertasJDBC {
-    private static OfertasJDBC instancia;
+public class OfertaJDBC {
+    private static OfertaJDBC instancia;
 
-    private OfertasJDBC(){
+    private OfertaJDBC(){
     }
-    
-    public static OfertasJDBC getInstance(){
+
+    public static OfertaJDBC getInstance(){
         if(instancia == null)
-             instancia = new OfertasJDBC();
+             instancia = new OfertaJDBC();
         return instancia;
-    
+
     }
-    
+
     public boolean insertarOferta (Oferta oferta)throws SQLException{
         DriverJDBC driver = DriverJDBC.getInstance();
-	boolean exito = true;
-        
         String sql1 = "INSERT INTO Oferta (cualificacionRequerida, descripcionOferta ,duracionContrato, fecha, plazasOfertadas, tipoContrato, idSector, idEmpresa, idVoluntario) VALUES ('"+oferta.getCualificacionRequerida()+"','"+oferta.getDescripcionOferta()+"','"+oferta.getDuracionContrato()+"','"+oferta.getFecha()+"','"+oferta.getPlazasOfertadas()+"','"+oferta.getTipoContrato()+"','"+oferta.getIdSector()+"','"+oferta.getIdEmpresa()+"','"+oferta.getIdVoluntario()+"')";
-        
+
         try{
 			driver.inicioTransaccion();
 			driver.insertar(sql1);
@@ -41,15 +39,17 @@ public class OfertasJDBC {
 		}
 		catch (SQLException ex){
 			driver.rollback();
-			exito = false;
 			throw ex;
 		}
 		finally {
 			driver.finTransaccion();
 		}
 
-		return exito;
+		return true;
     }
-    
-    
+
+	public ArrayList<Oferta> filtartOfertas(String tipoBusqueda, String valor) throws SQLException{
+		throw new SQLException("Not yet implemented");
+	}
+
 }
