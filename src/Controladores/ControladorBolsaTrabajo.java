@@ -19,10 +19,12 @@ import java.awt.event.ActionListener;
  **
  **
  ** SUPERVISADO POR:
+ *			Antonio Rodríguez Segura
  **
  **
  ** HISTORIA:
  ** 	000 - 21 May 2012 - RLJ - Creacion del controlador
+ *		001 - 26 May 2012 - ARS -
  **
  ** NOTAS:
  **
@@ -64,24 +66,10 @@ public class ControladorBolsaTrabajo {
 		vista.getBarraDeNavigacion().setTextLabelNivel1("Bolsa de Trabajo");
     }
 
+	// Paneles para demandas
     public void mostrarDemandasInicio(){
         vista.showPanel(VistaBolsaTrabajo.PanelDemandaInicio);
         vista.getBarraDeNavigacion().setTextLabelNivel2("Demandas");
-    }
-
-    public void mostrarOfertasInicio(){
-        vista.showPanel(VistaBolsaTrabajo.PanelOfertasInicio);
-        vista.getBarraDeNavigacion().setTextLabelNivel2("Ofertas");
-    }
-
-    public void mostrarConsultarDemandas(){
-        vista.showPanel(VistaBolsaTrabajo.PanelConsultarDemandas);
-        vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Demanda");
-    }
-
-    public void mostrarConsultarOfertas(){
-        vista.showPanel(VistaBolsaTrabajo.PanelConsultarOfertas);
-        vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Ofertas");
     }
 
     public void mostarNuevaDemanda(){
@@ -89,14 +77,9 @@ public class ControladorBolsaTrabajo {
         vista.getBarraDeNavigacion().setTextLabelNivel3("Nueva Demanda");
     }
 
-    public void mostrarNuevaOferta() {
-		vista.showPanel(VistaBolsaTrabajo.PanelDatosOferta);
-		vista.getBarraDeNavigacion().setTextLabelNivel3("Nueva Oferta");
-    }
-
-    public void mostrarModificarOferta() {
-        vista.showPanel(VistaBolsaTrabajo.PanelModificarOferta);
-        vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Oferta");
+    public void mostrarConsultarDemandas(){
+        vista.showPanel(VistaBolsaTrabajo.PanelConsultarDemandas);
+        vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Demanda");
     }
 
     public void mostrarModificarDemanda() {
@@ -104,15 +87,37 @@ public class ControladorBolsaTrabajo {
         vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Demanda");
     }
 
+    public void mostrarBuscarDemanda() {
+        vista.showPanel(VistaBolsaTrabajo.PanelBuscarDemandas);
+        vista.getBarraDeNavigacion().setTextLabelNivel3("Buscar Demanda");
+    }
+
+	// Paneles para ofertas
+	public void mostrarOfertasInicio(){
+        vista.showPanel(VistaBolsaTrabajo.PanelOfertasInicio);
+        vista.getBarraDeNavigacion().setTextLabelNivel2("Ofertas");
+    }
+
+    public void mostrarNuevaOferta() {
+		vista.showPanel(VistaBolsaTrabajo.PanelDatosOferta);
+		vista.getBarraDeNavigacion().setTextLabelNivel3("Nueva Oferta");
+    }
+
+    public void mostrarConsultarOfertas(){
+        vista.showPanel(VistaBolsaTrabajo.PanelConsultarOfertas);
+        vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Ofertas");
+    }
+
+    public void mostrarModificarOferta() {
+        vista.showPanel(VistaBolsaTrabajo.PanelModificarOferta);
+        vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Oferta");
+    }
+
 	public void mostrarBuscarOferta() {
         vista.showPanel(VistaBolsaTrabajo.PanelBuscarOfertas);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Buscar Oferta");
     }
 
-    public void mostrarBuscarDemanda() {
-        vista.showPanel(VistaBolsaTrabajo.PanelBuscarDemandas);
-        vista.getBarraDeNavigacion().setTextLabelNivel3("Buscar Demanda");
-    }
 
 	/* ____________________________    IMPLEMENTACION DE ACTION LISTENER    ________________________*/
 
