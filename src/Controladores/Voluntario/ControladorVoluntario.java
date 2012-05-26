@@ -221,33 +221,16 @@ public class ControladorVoluntario {
         return t_voluntarios;
     }
 
-    private boolean modificarVoluntario(String[] datos,String password) {
+    private boolean modificarVoluntario(Voluntario v) {
 
-        if (this.comprobarDatos(datos) == false) {
-            return false;
-        }
-
-        Voluntario voluntario = new Voluntario();
-        voluntario.setNIF(datos[Voluntario.NIF_ID]);
-        voluntario.setNombre(datos[Voluntario.NOMBRE_ID]);
-        voluntario.setApellidos(datos[Voluntario.APELLIDOS_ID]);
-//        try {
-//            voluntario.setFechaDENacimiento(TestDatos.formatter.parse(vista.getPanelVoluntarioDatos().getTextFechaNacimiento()));
-//        } catch (ParseException ex) {
-//            Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        voluntario.setDomicilio(datos[Voluntario.DOMICILIO_ID]);
-        voluntario.setCP(datos[Voluntario.CP_ID]);
-        voluntario.setLocalidad(datos[Voluntario.LOCALIDAD_ID]);
-        voluntario.setTelefonoMovil(datos[Voluntario.TELEFONO_MOVIL_ID]);
-        voluntario.setTelefonoFijo(datos[Voluntario.TELEFONO_FIJO_ID]);
-        if(!"".equals(password))
-            voluntario.setPassword(ControladorPrincipal.getInstance().md5(password+ControladorPrincipal.getInstance().getSalto()));
+        
+        if(!"".equals(v.getPassword()))
+            v.setPassword(ControladorPrincipal.getInstance().md5(v.getPassword()+ControladorPrincipal.getInstance().getSalto()));
         else
-            voluntario.setPassword(null);
+            v.setPassword(null);
 
         try {
-            VoluntarioJDBC.getInstance().modificarDatosVoluntario(voluntario);
+            VoluntarioJDBC.getInstance().modificarDatosVoluntario(v);
         } catch (SQLException se) {
             System.err.print(se.getMessage());
             return false;
@@ -256,10 +239,10 @@ public class ControladorVoluntario {
         return true;
     }
 
-    private boolean eliminarVoluntario(String dni) {
+    private boolean eliminarVoluntario(Voluntario v) {
         boolean exito;
         try {
-            exito = VoluntarioJDBC.getInstance().borrarVoluntario(dni);
+            exito = VoluntarioJDBC.getInstance().borrarVoluntario(v);
         } catch (SQLException ex) {
             Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
             exito = false;
@@ -473,53 +456,28 @@ public class ControladorVoluntario {
                     
                 } // Modificacion Voluntario
                 else {
+                    voluntario_temp.setNIF(vista.getPanelVoluntarioDatos().getTextNIF().getText());
+                    voluntario_temp.setNombre(vista.getPanelVoluntarioDatos().getTextNombre().getText());
+                    voluntario_temp.setApellidos(vista.getPanelVoluntarioDatos().getTextApellidos().getText());
+                    try {
+                        voluntario_temp.setFechaDENacimiento(TestDatos.formatter.parse(vista.getPanelVoluntarioDatos().getTextFechaNacimiento().getText()));
+                    } catch (ParseException ex) {
+                        Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    voluntario_temp.setDomicilio(vista.getPanelVoluntarioDatos().getTextDomicilio().getText());
+                    voluntario_temp.setCP(vista.getPanelVoluntarioDatos().getTextCP().getText());
+                    voluntario_temp.setLocalidad(vista.getPanelVoluntarioDatos().getTextLocalidad().getText());
+                    voluntario_temp.setTelefonoMovil(vista.getPanelVoluntarioDatos().getTextTelMovil().getText());
+                    voluntario_temp.setTelefonoFijo(vista.getPanelVoluntarioDatos().getTextTelFijo().getText());
+                    voluntario_temp.setPassword(vista.getPanelVoluntarioDatos().getTextPassword().getText());
+                    
+                    if (modificarVoluntario(voluntario_temp)) {
+                        vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario modificado correctamente.");
+                    } else {
+                        vista.getPanelVoluntarioDatos().setTextLabelError("El voluntario no ha sido modificado.");
+                    }
                 }
             }
-
-//            try {
-//                System.out.println("Date : " + TestDatos.formatter.parse(vista.getPanelVoluntarioDatos().getTextFechaNacimiento().getText()).toString());
-//
-//                String[] datos = new String[15];
-//
-//                
-//                datos[Voluntario.NOMBRE_ID] = vista.getPanelVoluntarioDatos().getTextNombre().getText();
-//                datos[Voluntario.APELLIDOS_ID] = vista.getPanelVoluntarioDatos().getTextApellidos().getText();
-//                datos[Voluntario.FECHA_DE_NACIMIENTO_ID] = vista.getPanelVoluntarioDatos().getTextFechaNacimiento().getText();
-//                datos[Voluntario.DOMICILIO_ID] = vista.getPanelVoluntarioDatos().getTextDomicilio().getText();
-//                datos[Voluntario.LOCALIDAD_ID] = vista.getPanelVoluntarioDatos().getTextLocalidad().getText();
-//                datos[Voluntario.CP_ID] = vista.getPanelVoluntarioDatos().getTextCP().getText();
-//                datos[Voluntario.TELEFONO_MOVIL_ID] = vista.getPanelVoluntarioDatos().getTextTelFijo().getText();
-//                datos[Voluntario.TELEFONO_FIJO_ID] = vista.getPanelVoluntarioDatos().getTextTelMovil().getText();
-//
-//                /*
-//                 * Codificar password con md5 mas un salto
-//                 */
-//                String password = ControladorPrincipal.getInstance().md5(vista.getPanelVoluntarioDatos().getTextPassword() + ControladorPrincipal.getInstance().getSalto());
-//                datos[Voluntario.PASSWORD_ID] = password;
-//
-//                if (voluntario_temp == null) {
-//                    boolean exito = insertarVoluntario(datos);
-//
-//                    if (exito) {
-//                        vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario añadido correctamente.");
-//                    } else {
-//                        vista.getPanelVoluntarioDatos().setTextLabelError("El voluntario no ha sido añadido.");
-//                    }
-//                } else {
-//                    // TODO como se hace con el password
-//                    boolean exito = modificarVoluntario(datos, password);
-//                    
-//                    if (exito) {
-//                        vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario modificado correctamente.");
-//                    } else {
-//                        vista.getPanelVoluntarioDatos().setTextLabelError("El voluntario no ha sido modificado.");
-//                    }
-//                }
-//                
-//            } catch (ParseException ex) {
-//                vista.getPanelVoluntarioDatos().setTextLabelError("La fecha de nacimiento debe tener el formato dd/mm/aaaa");
-//                Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
-//            }
         }
     }
     
@@ -537,6 +495,7 @@ public class ControladorVoluntario {
         vista.getPanelVoluntarioDatos().getTextTelMovil().addKeyListener(keyListener);
     }
     
+    // Cuando el usuario escribe, cambia el color en negro si habia errores y el color estaba rojo
     class TextKeyListener implements KeyListener {
 
         @Override
@@ -569,7 +528,7 @@ public class ControladorVoluntario {
         @Override
         public void actionPerformed(ActionEvent ae) {
             if(JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar el Voluntario?", "Eliminar Voluntario", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-                if (eliminarVoluntario(voluntario_temp.getNIF())) {
+                if (eliminarVoluntario(voluntario_temp)) {
                     vista.getPanelVoluntarioDatos().setTextLabelError("El Voluntario ha sido eliminado del sistema.");
                 } else {
                     vista.getPanelVoluntarioDatos().setTextLabelError("Error : el Voluntario no ha sido eliminado del sistema.");
