@@ -5,8 +5,10 @@
 package Vistas.Paneles.Voluntario;
 
 import Modelo.Voluntario;
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 /**
  *
@@ -81,49 +83,46 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
         return btEliminar;
     }
 
-    public String getTextApellidos() {
-        return textApellidos.getText();
+    public JTextField getTextApellidos() {
+        return textApellidos;
     }
 
-    public String getTextCP() {
-        return textCP.getText();
+    public JTextField getTextCP() {
+        return textCP;
     }
 
-    public String getTextDomicilio() {
-        return textDomicilio.getText();
+    public JTextField getTextDomicilio() {
+        return textDomicilio;
     }
 
-    public String getTextFechaNacimiento() {
-        return textFechaNacimiento.getText();
+    public JTextField getTextFechaNacimiento() {
+        return textFechaNacimiento;
     }
 
-    public String getTextLocalidad() {
-        return textLocalidad.getText();
+    public JTextField getTextLocalidad() {
+        return textLocalidad;
     }
 
-    public String getTextNIF() {
-        return textNIF.getText();
+    public JTextField getTextNIF() {
+        return textNIF;
     }
 
-    public String getTextNombre() {
-        return textNombre.getText();
+    public JTextField getTextNombre() {
+        return textNombre;
     }
 
-    public String getTextProfesion() {
-        return textTelMovil.getText();
+    public JTextField getTextTelFijo() {
+        return textTelFijo;
     }
 
-    public String getTextTelFijo() {
-        return textTelFijo.getText();
+    public JTextField getTextTelMovil() {
+        return textTelMovil;
     }
 
-    public String getTextTelMovil() {
-        return textTelMovil.getText();
+    public JTextField getTextPassword() {
+        return textPassword;
     }
-
-    public String getTextPassword() {
-        return textPassword.getText();
-    }
+    
 
 
     /**
