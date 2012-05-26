@@ -104,12 +104,12 @@ public class ControladorBolsaTrabajo {
     }
 
     public void mostrarConsultarOfertas(){
-        vista.showPanel(VistaBolsaTrabajo.PanelConsultarOfertas);
+        vista.showPanel(VistaBolsaTrabajo.PanelDatosOferta);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Ofertas");
     }
 
     public void mostrarModificarOferta() {
-        vista.showPanel(VistaBolsaTrabajo.PanelModificarOferta);
+        vista.showPanel(VistaBolsaTrabajo.PanelDatosOferta);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Oferta");
     }
 

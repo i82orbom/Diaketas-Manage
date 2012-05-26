@@ -136,6 +136,7 @@ public class PanelDatosOferta extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -377,7 +378,7 @@ public class PanelDatosOferta extends javax.swing.JPanel {
                     .add(BTGuardarCambios)
                     .add(BTLimpiar)
                     .add(BTModificar))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

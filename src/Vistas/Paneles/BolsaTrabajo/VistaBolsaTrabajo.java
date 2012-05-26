@@ -16,12 +16,11 @@ public class VistaBolsaTrabajo extends javax.swing.JPanel {
 	public static String PanelInicio = "inicio";
 	public static String PanelDemandaInicio = "demandasInicio";
 	public static String PanelOfertasInicio = "ofertasInicio";
-	public static String PanelConsultarOfertas = "consultarofertas";
-	public static String PanelConsultarDemandas = "consultardemandas";
 	public static String PanelNuevaDemanda = "nuevademanda";
-	public static String PanelDatosOferta = "nuevaoferta";
+	public static String PanelDatosOferta = "datosoferta";
+
+	public static String PanelConsultarDemandas = "consultardemandas";
 	public static String PanelModificarDemanda = "modificardemanda";
-	public static String PanelModificarOferta = "modificaroferta";
 	public static String PanelBuscarDemandas = "buscardemandas";
 	public static String PanelBuscarOfertas = "buscarofertas";
 
@@ -49,7 +48,7 @@ public class VistaBolsaTrabajo extends javax.swing.JPanel {
 		return this.panelConsultarDemanda;
 	}
 
-	public PanelDatosOferta getNuevaOferta(){
+	public PanelDatosOferta getDatosOferta(){
 		return this.panelDatosOferta;
 	}
 
@@ -107,7 +106,7 @@ public class VistaBolsaTrabajo extends javax.swing.JPanel {
         panelBolsaTrabajo.add(panelDemandanteBuscar, "buscardemandas");
         panelBolsaTrabajo.add(panelModificarDemanda, "modificardemanda");
         panelBolsaTrabajo.add(panelNuevaDemanda, "nuevademanda");
-        panelBolsaTrabajo.add(panelDatosOferta, "nuevaoferta");
+        panelBolsaTrabajo.add(panelDatosOferta, "datosoferta");
         panelBolsaTrabajo.add(panelOfertasBuscar, "buscarofertas");
         panelBolsaTrabajo.add(panelDemandasInicio, "demandasInicio");
         panelBolsaTrabajo.add(panelOfertasInicio1, "ofertasInicio");
