@@ -62,7 +62,6 @@ public class ControladorOferta {
 
 	/* Métodos del controlador */
 	public boolean insertarOferta(Oferta oferta){
-		validarDatosOferta(oferta);
 		return true;
 	}
 
@@ -73,7 +72,7 @@ public class ControladorOferta {
 		return oferta;
 	}
 
-	public boolean actualizarOferta(String[] s, Oferta of){
+	public boolean actualizarOferta(Oferta of){
 
 		return true;
 	}
@@ -102,10 +101,7 @@ public class ControladorOferta {
 		return exito;
 	}
 
-	public boolean insertarSector(String nombre){
-		Sector temp = new Sector();
-		temp.setDescripcion(nombre);
-
+	public boolean insertarSector(Sector sector){
 		return true;
 	}
 
@@ -123,7 +119,7 @@ public class ControladorOferta {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Guardar Oferta");
-			Oferta  oferta = new Oferta();
+			Oferta  oferta = new Oferta();		// Se crea el objeto oferta
 
 			oferta.setCualificacionRequerida(vista.getNuevaOferta().gettaCualificacion());
 			oferta.setDescripcionOferta(vista.getNuevaOferta().gettaDescripcionOferta());
@@ -138,7 +134,8 @@ public class ControladorOferta {
 			oferta.setIdVoluntario(ControladorPrincipal.getInstance().getVoluntario().getOID());
 
 			oferta.setFecha(new Date());	// Fecha actual
-			insertarOferta(oferta);
+
+			insertarOferta(oferta);			// Se envia el objeto al controlador
 		}
 	}
 
@@ -147,6 +144,23 @@ public class ControladorOferta {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Modificar Oferta");
+			Oferta  oferta = new Oferta();		// Se crea el objeto oferta
+
+//			oferta.setOID();
+			oferta.setCualificacionRequerida(vista.getNuevaOferta().gettaCualificacion());
+			oferta.setDescripcionOferta(vista.getNuevaOferta().gettaDescripcionOferta());
+			oferta.setDuracionContrato(Integer.parseInt(vista.getNuevaOferta().getTextNPuestos()));
+			oferta.setPlazasOfertadas(Integer.parseInt(vista.getNuevaOferta().getTextNPuestos()));
+			oferta.setTipoContrato(vista.getNuevaOferta().getcbTipoContrato());
+//			oferta.setIdSector(SectorJDBC.getInstance().getOID(vista.getNuevaOferta().getcbSector()));
+			try { oferta.setIdEmpresa(C_EmpresaJDBC.getInstance().obtenerC_Empresa((vista.getNuevaOferta().getTextCIF())).getOIDEmpresa());
+			} catch (SQLException ex){
+			}
+			oferta.setIdVoluntario(ControladorPrincipal.getInstance().getVoluntario().getOID());
+
+			oferta.setFecha(new Date());	// Fecha actual
+
+			insertarOferta(oferta);			// Se envia el objeto al controlador
 		}
 	}
 
@@ -168,6 +182,7 @@ public class ControladorOferta {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Eliminar Oferta");
+//			eliminarOferta(oferta);
 		}
 	}
 
@@ -176,6 +191,9 @@ public class ControladorOferta {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Guardar Sector");
+			Sector sector = new Sector();
+			sector.setDescripcion(vista.getNuevaOferta().getcbSector());
+			insertarSector(sector);
 		}
 	}
 

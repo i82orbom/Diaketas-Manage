@@ -211,7 +211,6 @@ CREATE TABLE Oferta (
 	OID INTEGER
 	, OIDSector INTEGER
 	, OIDEmpresa INTEGER
-	, OIDBeneficiario INTEGER
 	, OIDVoluntario INTEGER
 	, CualificacionRequerida VARCHAR (50)
 	, DescripcionOferta VARCHAR (100) NOT NULL
@@ -223,8 +222,6 @@ CREATE TABLE Oferta (
 			REFERENCES Sector (OID)
 	, CONSTRAINT Fk_OIDOferta2 FOREIGN KEY (OIDEmpresa)
 			REFERENCES C_Empresa (OID)
-	, CONSTRAINT Fk_OIDOferta3 FOREIGN KEY (OIDBeneficiario)
-			REFERENCES Beneficiario (OID)
 	, CONSTRAINT Fk_OIDOferta4 FOREIGN KEY (OIDVoluntario)
 			REFERENCES Voluntario (OID)
 
