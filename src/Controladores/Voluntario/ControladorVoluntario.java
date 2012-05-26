@@ -7,15 +7,20 @@ import JDBC.VoluntarioJDBC;
 import Modelo.Voluntario;
 import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.Voluntario.VistaVoluntario;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
@@ -106,6 +111,8 @@ public class ControladorVoluntario {
         vista.getPanelVoluntarioBuscar().getBtBuscar().addActionListener(new BtBuscarVoluntarioListener());
         vista.getPanelVoluntarioBuscar().getBtVerVoluntario().addActionListener(new BtVerVoluntarioListener());
 
+        anadirKeyListener();
+        
         // al principio mostrar la vista de inicio
         mostrarVistaInicio();
     }
@@ -167,39 +174,25 @@ public class ControladorVoluntario {
         vista.getBarraDeNavegacion().setTextLabelNivel2("Colaboraciones");
         vista.getBarraDeNavegacion().setTextLabelNivel3("Cuotas no pagadas");
     }
+    
     // metodos de interaccion con JDBC
-    private boolean insertarVoluntario(String[] datos) {
-
-        if (this.comprobarDatos(datos) == false || this.comprobarContrasena(datos[Voluntario.PASSWORD_ID]) == false) {
+    private boolean insertarVoluntario(Voluntario v) {
+        if (consultarVoluntario(v.getNIF()) != null) {
+            JOptionPane.showMessageDialog(null, "Un voluntario con este DNI ya existe.");
             return false;
+        } 
+        
+        else {
+            try {
+                VoluntarioJDBC.getInstance().anadirVoluntario(v);
+            } catch (SQLException se) {
+                System.err.print(se.getMessage());
+                JOptionPane.showMessageDialog(null, "Error al añadir voluntario:\n" + se.getMessage());
+                return false;
+            }
         }
-
-        Voluntario voluntario = new Voluntario();
-        voluntario.setNIF(datos[Voluntario.NIF_ID]);
-        voluntario.setNombre(datos[Voluntario.NOMBRE_ID]);
-        voluntario.setApellidos(datos[Voluntario.APELLIDOS_ID]);
-        try {
-            voluntario.setFechaDENacimiento(TestDatos.formatter.parse(vista.getPanelVoluntarioDatos().getTextFechaNacimiento()));
-        } catch (ParseException ex) {
-            Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        voluntario.setDomicilio(datos[Voluntario.DOMICILIO_ID]);
-        voluntario.setCP(datos[Voluntario.CP_ID]);
-        voluntario.setLocalidad(datos[Voluntario.LOCALIDAD_ID]);
-        voluntario.setTelefonoMovil(datos[Voluntario.TELEFONO_MOVIL_ID]);
-        voluntario.setTelefonoFijo(datos[Voluntario.TELEFONO_FIJO_ID]);
-        voluntario.setPassword(datos[Voluntario.PASSWORD_ID]);
-
-        try {
-            VoluntarioJDBC.getInstance().anadirVoluntario(voluntario);
-        } catch (SQLException se) {
-            System.err.print(se.getMessage());
-            JOptionPane.showMessageDialog(null, "Error al añadir voluntario:\n"+se.getMessage());
-            return false;
-        }
-
+       
         return true;
-
     }
 
     private Voluntario consultarVoluntario(String DNI) {
@@ -238,11 +231,11 @@ public class ControladorVoluntario {
         voluntario.setNIF(datos[Voluntario.NIF_ID]);
         voluntario.setNombre(datos[Voluntario.NOMBRE_ID]);
         voluntario.setApellidos(datos[Voluntario.APELLIDOS_ID]);
-        try {
-            voluntario.setFechaDENacimiento(TestDatos.formatter.parse(vista.getPanelVoluntarioDatos().getTextFechaNacimiento()));
-        } catch (ParseException ex) {
-            Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            voluntario.setFechaDENacimiento(TestDatos.formatter.parse(vista.getPanelVoluntarioDatos().getTextFechaNacimiento()));
+//        } catch (ParseException ex) {
+//            Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         voluntario.setDomicilio(datos[Voluntario.DOMICILIO_ID]);
         voluntario.setCP(datos[Voluntario.CP_ID]);
         voluntario.setLocalidad(datos[Voluntario.LOCALIDAD_ID]);
@@ -397,52 +390,170 @@ public class ControladorVoluntario {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
+            
+            boolean datosCorrectos = true;
+            
+            if( !TestDatos.isDNI( vista.getPanelVoluntarioDatos().getTextNIF().getText()) ) {
+                vista.getPanelVoluntarioDatos().getTextNIF().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+            
+            if ( !TestDatos.isNombre(vista.getPanelVoluntarioDatos().getTextNombre().getText())) {                
+                vista.getPanelVoluntarioDatos().getTextNombre().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+            
+            if ( !TestDatos.isNombre(vista.getPanelVoluntarioDatos().getTextApellidos().getText())) {                
+                vista.getPanelVoluntarioDatos().getTextApellidos().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+            
+            if ( !TestDatos.isFecha(vista.getPanelVoluntarioDatos().getTextFechaNacimiento().getText())) {                
+                vista.getPanelVoluntarioDatos().getTextFechaNacimiento().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+            
+            if ( !TestDatos.isDomicilio(vista.getPanelVoluntarioDatos().getTextDomicilio().getText())) {                
+                vista.getPanelVoluntarioDatos().getTextDomicilio().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+            
+            if ( !TestDatos.isDomicilio(vista.getPanelVoluntarioDatos().getTextLocalidad().getText())) {                
+                vista.getPanelVoluntarioDatos().getTextLocalidad().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+            
+            if ( !TestDatos.isCodigoPostal(vista.getPanelVoluntarioDatos().getTextCP().getText())) {                
+                vista.getPanelVoluntarioDatos().getTextCP().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+            
+            if ( !TestDatos.isTelefonoOFax(vista.getPanelVoluntarioDatos().getTextTelMovil().getText())) {                
+                vista.getPanelVoluntarioDatos().getTextTelMovil().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+            
+            if ( !TestDatos.isTelefonoOFax(vista.getPanelVoluntarioDatos().getTextTelFijo().getText())) {                
+                vista.getPanelVoluntarioDatos().getTextTelFijo().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+            
+            if (!datosCorrectos) {
+                vista.getPanelVoluntarioDatos().setTextLabelError("Los campos en rojo tienes errores.");
+            } else {
 
-            try {
-                System.out.println("Date : " + TestDatos.formatter.parse(vista.getPanelVoluntarioDatos().getTextFechaNacimiento()).toString());
-
-                String[] datos = new String[15];
-
-                datos[Voluntario.NIF_ID] = vista.getPanelVoluntarioDatos().getTextNIF();
-                datos[Voluntario.NOMBRE_ID] = vista.getPanelVoluntarioDatos().getTextNombre();
-                datos[Voluntario.APELLIDOS_ID] = vista.getPanelVoluntarioDatos().getTextApellidos();
-                datos[Voluntario.FECHA_DE_NACIMIENTO_ID] = vista.getPanelVoluntarioDatos().getTextFechaNacimiento();
-                datos[Voluntario.DOMICILIO_ID] = vista.getPanelVoluntarioDatos().getTextDomicilio();
-                datos[Voluntario.LOCALIDAD_ID] = vista.getPanelVoluntarioDatos().getTextLocalidad();
-                datos[Voluntario.CP_ID] = vista.getPanelVoluntarioDatos().getTextCP();
-                datos[Voluntario.TELEFONO_MOVIL_ID] = vista.getPanelVoluntarioDatos().getTextTelFijo();
-                datos[Voluntario.TELEFONO_FIJO_ID] = vista.getPanelVoluntarioDatos().getTextTelMovil();
-
-                /*
-                 * Codificar password con md5 mas un salto
-                 */
-                String password = ControladorPrincipal.getInstance().md5(vista.getPanelVoluntarioDatos().getTextPassword() + ControladorPrincipal.getInstance().getSalto());
-                datos[Voluntario.PASSWORD_ID] = password;
-
+                // Nuevo Voluntario
                 if (voluntario_temp == null) {
-                    boolean exito = insertarVoluntario(datos);
+                    Voluntario v = new Voluntario();
 
-                    if (exito) {
+                    v.setNIF(vista.getPanelVoluntarioDatos().getTextNIF().getText());
+                    v.setNombre(vista.getPanelVoluntarioDatos().getTextNombre().getText());
+                    v.setApellidos(vista.getPanelVoluntarioDatos().getTextApellidos().getText());
+                    try {
+                        v.setFechaDENacimiento(TestDatos.formatter.parse(vista.getPanelVoluntarioDatos().getTextFechaNacimiento().getText()));
+                    } catch (ParseException ex) {
+                        Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    v.setDomicilio(vista.getPanelVoluntarioDatos().getTextDomicilio().getText());
+                    v.setCP(vista.getPanelVoluntarioDatos().getTextCP().getText());
+                    v.setLocalidad(vista.getPanelVoluntarioDatos().getTextLocalidad().getText());
+                    v.setTelefonoMovil(vista.getPanelVoluntarioDatos().getTextTelMovil().getText());
+                    v.setTelefonoFijo(vista.getPanelVoluntarioDatos().getTextTelFijo().getText());
+                    /*  
+                     * Codificar password con md5 mas un salto
+                     */
+                    String password = ControladorPrincipal.getInstance().md5(vista.getPanelVoluntarioDatos().getTextPassword().getText() + ControladorPrincipal.getInstance().getSalto());
+                    v.setPassword(password);
+                    
+                    if (insertarVoluntario(v)) {
                         vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario añadido correctamente.");
                     } else {
                         vista.getPanelVoluntarioDatos().setTextLabelError("El voluntario no ha sido añadido.");
                     }
-                } else {
-                    // TODO como se hace con el password
-                    boolean exito = modificarVoluntario(datos, password);
                     
-                    if (exito) {
-                        vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario modificado correctamente.");
-                    } else {
-                        vista.getPanelVoluntarioDatos().setTextLabelError("El voluntario no ha sido modificado.");
-                    }
+                } // Modificacion Voluntario
+                else {
                 }
-                
-            } catch (ParseException ex) {
-                vista.getPanelVoluntarioDatos().setTextLabelError("La fecha de nacimiento debe tener el formato dd/mm/aaaa");
-                Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+//            try {
+//                System.out.println("Date : " + TestDatos.formatter.parse(vista.getPanelVoluntarioDatos().getTextFechaNacimiento().getText()).toString());
+//
+//                String[] datos = new String[15];
+//
+//                
+//                datos[Voluntario.NOMBRE_ID] = vista.getPanelVoluntarioDatos().getTextNombre().getText();
+//                datos[Voluntario.APELLIDOS_ID] = vista.getPanelVoluntarioDatos().getTextApellidos().getText();
+//                datos[Voluntario.FECHA_DE_NACIMIENTO_ID] = vista.getPanelVoluntarioDatos().getTextFechaNacimiento().getText();
+//                datos[Voluntario.DOMICILIO_ID] = vista.getPanelVoluntarioDatos().getTextDomicilio().getText();
+//                datos[Voluntario.LOCALIDAD_ID] = vista.getPanelVoluntarioDatos().getTextLocalidad().getText();
+//                datos[Voluntario.CP_ID] = vista.getPanelVoluntarioDatos().getTextCP().getText();
+//                datos[Voluntario.TELEFONO_MOVIL_ID] = vista.getPanelVoluntarioDatos().getTextTelFijo().getText();
+//                datos[Voluntario.TELEFONO_FIJO_ID] = vista.getPanelVoluntarioDatos().getTextTelMovil().getText();
+//
+//                /*
+//                 * Codificar password con md5 mas un salto
+//                 */
+//                String password = ControladorPrincipal.getInstance().md5(vista.getPanelVoluntarioDatos().getTextPassword() + ControladorPrincipal.getInstance().getSalto());
+//                datos[Voluntario.PASSWORD_ID] = password;
+//
+//                if (voluntario_temp == null) {
+//                    boolean exito = insertarVoluntario(datos);
+//
+//                    if (exito) {
+//                        vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario añadido correctamente.");
+//                    } else {
+//                        vista.getPanelVoluntarioDatos().setTextLabelError("El voluntario no ha sido añadido.");
+//                    }
+//                } else {
+//                    // TODO como se hace con el password
+//                    boolean exito = modificarVoluntario(datos, password);
+//                    
+//                    if (exito) {
+//                        vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario modificado correctamente.");
+//                    } else {
+//                        vista.getPanelVoluntarioDatos().setTextLabelError("El voluntario no ha sido modificado.");
+//                    }
+//                }
+//                
+//            } catch (ParseException ex) {
+//                vista.getPanelVoluntarioDatos().setTextLabelError("La fecha de nacimiento debe tener el formato dd/mm/aaaa");
+//                Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+        }
+    }
+    
+    private void anadirKeyListener () {
+        TextKeyListener keyListener = new TextKeyListener();
+        
+        vista.getPanelVoluntarioDatos().getTextApellidos().addKeyListener(keyListener);
+        vista.getPanelVoluntarioDatos().getTextCP().addKeyListener(keyListener);
+        vista.getPanelVoluntarioDatos().getTextDomicilio().addKeyListener(keyListener);
+        vista.getPanelVoluntarioDatos().getTextFechaNacimiento().addKeyListener(keyListener);
+        vista.getPanelVoluntarioDatos().getTextLocalidad().addKeyListener(keyListener);
+        vista.getPanelVoluntarioDatos().getTextNIF().addKeyListener(keyListener);
+        vista.getPanelVoluntarioDatos().getTextNombre().addKeyListener(keyListener);
+        vista.getPanelVoluntarioDatos().getTextTelFijo().addKeyListener(keyListener);
+        vista.getPanelVoluntarioDatos().getTextTelMovil().addKeyListener(keyListener);
+    }
+    
+    class TextKeyListener implements KeyListener {
+
+        @Override
+        public void keyTyped(KeyEvent ke) {
+            if (ke.getSource().getClass() == JTextField.class || ke.getSource().getClass() == JFormattedTextField.class) {
+                ((JTextField)ke.getSource()).setForeground(Color.black);
             }
         }
+
+        @Override
+        public void keyPressed(KeyEvent ke) {
+        }
+
+        @Override
+        public void keyReleased(KeyEvent ke) {
+        }
+        
     }
 
     class btBorrarVoluntarioListener implements ActionListener {
