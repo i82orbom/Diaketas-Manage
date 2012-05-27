@@ -50,7 +50,7 @@ public class ControladorBolsaTrabajo {
         this.mostrarVistaInicio();
 
 		ControladorOferta.getInstance(vista);
-//		ControladorDemanda.getInstance(vista);
+		ControladorDemanda.getInstance(vista);
 
         vista.getBolsaTrabajoInicio().anadirListenerbtDemandasEmpleo(new btDemandasInicioListener());
         vista.getBolsaTrabajoInicio().anadirListenerbtOfertasEmpleo(new btOfertasInicioListener());
