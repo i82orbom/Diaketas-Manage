@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+import javax.swing.event.ListDataListener;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
@@ -53,19 +55,23 @@ public class ControladorAyuda {
     }
     
     private PanelVoluntarioAyudas vista;
+    // list de tipo de ayuda para la tabla
     private ArrayList<TipoAyuda> tiposAyuda;
+    // tipo de ayuda seleccionado en el comboBox
+    private TipoAyuda tipoAyudaSeleccionado;
     
     private String[] columnNamesTipoAyuda = {"Titulo", "Descripcion", "Monetaria"};
 
     public ControladorAyuda(PanelVoluntarioAyudas vista) {
         this.vista = vista;
      
-        actualizarTablaTipoAyuda();
+        actualizarTipoAyuda();
 
         this.vista.getBtnGuardarTipoAyuda().addActionListener(new BtGuardarTipoAyudaListener());
+        this.vista.getBtnEliminarTipoAyuda().addActionListener(new BtBorrarTipoAyudaListener());
     }
 
-    private void actualizarTablaTipoAyuda() {
+    private void actualizarTipoAyuda() {
         try {
             tiposAyuda = AyudaJDBC.getInstance().obtenerDatosTipoAyuda();
         } catch (SQLException ex) {
@@ -129,8 +135,42 @@ public class ControladorAyuda {
             }
         };
 
-        vista.getTableTiposAyuda().setModel(tableModel);
+        vista.getTablaTiposAyuda().setModel(tableModel);
 
+        ComboBoxModel cbModel = new ComboBoxModel() {
+
+            @Override
+            public void setSelectedItem(Object o) {
+                tipoAyudaSeleccionado = (TipoAyuda)o;
+            }
+
+            @Override
+            public Object getSelectedItem() {
+                return tipoAyudaSeleccionado;
+            }
+
+            @Override
+            public int getSize() {
+                return tiposAyuda.size();
+            }
+
+            @Override
+            public Object getElementAt(int i) {
+                if (tiposAyuda.isEmpty())
+                    return "No hay";
+                else 
+                    return tiposAyuda.get(i);
+            }
+
+            @Override
+            public void addListDataListener(ListDataListener ll) {
+            }
+
+            @Override
+            public void removeListDataListener(ListDataListener ll) {
+            }
+        };
+        vista.getCbTipoAyuda().setModel(cbModel);
     }
 
     // TODO Metodos JDBC
@@ -176,14 +216,14 @@ public class ControladorAyuda {
     }
     
     public ArrayList<TipoAyuda> obtenerTiposAyuda () {
-        ArrayList<TipoAyuda> tiposAyuda;
+        ArrayList<TipoAyuda> temp_tiposAyuda;
         try {
-            tiposAyuda = AyudaJDBC.getInstance().obtenerDatosTipoAyuda();
+            temp_tiposAyuda = AyudaJDBC.getInstance().obtenerDatosTipoAyuda();
         } catch (SQLException ex) {
             Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
-        return tiposAyuda;
+        return temp_tiposAyuda;
     }
     
     private boolean modificarAyuda (Ayuda ayuda) {
@@ -259,10 +299,24 @@ public class ControladorAyuda {
                 if (datosNuevoTipoAyuda(tipoAyuda)) {
                     System.out.println("tipoAyuda anadido");
 
-                    actualizarTablaTipoAyuda();
+                    actualizarTipoAyuda();
                 }
             }
         }
+    }
+    
+    class BtBorrarTipoAyudaListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if (vista.getTablaTiposAyuda().getSelectedRow() != -1 ) {
+                TipoAyuda tipoAyuda = tiposAyuda.get(vista.getTablaTiposAyuda().getSelectedRow());
+                if (eliminarTipoAyuda(tipoAyuda)) {
+                    actualizarTipoAyuda();
+                }
+            }
+        }
+        
     }
     
     class BtGuardarAyudaListener implements ActionListener {

@@ -75,7 +75,7 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
         return tablaAyudas;
     }
 
-    public JTable getTableTiposAyuda() {
+    public JTable getTablaTiposAyuda() {
         return tablaTiposAyuda;
     }
 
@@ -217,20 +217,21 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                                             .add(fechaFinAyudas)
                                             .add(maximoImporte, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))
-                                    .add(textBeneficiarioAyudas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 157, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                     .add(layout.createSequentialGroup()
                                         .add(8, 8, 8)
                                         .add(jLabel24))
                                     .add(layout.createSequentialGroup()
                                         .add(10, 10, 10)
                                         .add(jLabel27))
-                                    .add(cbTipoAyuda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                     .add(layout.createSequentialGroup()
                                         .add(9, 9, 9)
                                         .add(jLabel28))
                                     .add(layout.createSequentialGroup()
                                         .add(11, 11, 11)
-                                        .add(jLabel29))))
+                                        .add(jLabel29))
+                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, cbTipoAyuda, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, textBeneficiarioAyudas, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))))
                             .add(layout.createSequentialGroup()
                                 .add(30, 30, 30)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
