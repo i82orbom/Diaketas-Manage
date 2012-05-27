@@ -1,7 +1,8 @@
 
 package Controladores;
 
-import Controladores.BolsaDeTrabajo.*;
+import Controladores.BolsaDeTrabajo.ControladorDemanda;
+import Controladores.BolsaDeTrabajo.ControladorOferta;
 import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.BolsaTrabajo.VistaBolsaTrabajo;
 import java.awt.event.ActionEvent;
