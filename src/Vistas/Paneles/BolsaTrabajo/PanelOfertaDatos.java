@@ -1,16 +1,48 @@
 
 package Vistas.Paneles.BolsaTrabajo;
 
+import Modelo.Oferta;
 import javax.swing.JButton;
 
-public class PanelDatosOferta extends javax.swing.JPanel {
+public class PanelOfertaDatos extends javax.swing.JPanel {
 
 	/**
 		* Creates new form PanelBeneficiarioBuscar
 		*/
-	public PanelDatosOferta() {
+	public PanelOfertaDatos() {
 		initComponents();
 	}
+
+	/* __________ Estados del panel _________ */
+	public void nuevaOferta () {
+/*
+		borrarCampos();
+		btBorrar.setVisible(true);
+		btEliminar.setVisible(false);
+		labelError.setVisible(false);
+*/
+	}
+
+	public void consultarOferta(Oferta oferta){
+
+	}
+
+    public void modificarOferta (Oferta oferta) {
+/*		btBorrar.setVisible(false);
+		btEliminar.setVisible(true);
+		labelError.setVisible(false);
+		textApellidos.setText(voluntario.getApellidos());
+		textCP.setText(voluntario.getCP());
+		textDomicilio.setText(voluntario.getDomicilio());
+		textFechaNacimiento.setText(formatter.format(voluntario.getFechaDENacimiento()));
+		textLocalidad.setText(voluntario.getLocalidad());
+		textNIF.setText(voluntario.getNIF());
+		textNombre.setText(voluntario.getNombre());
+		textTelMovil.setText(voluntario.getTelefonoMovil());
+		textTelFijo.setText(voluntario.getTelefonoFijo());
+		textPassword.setText("");
+*/	}
+
 
 	/* Botones del panel */
 	public JButton getBTGuardarSector(){

@@ -11,17 +11,21 @@
  **
  **
  ** SUPERVISADO POR:
+ *		  Antonio Rodríguez Segura
  **
  **
  ** HISTORIA:
- ** 	000 - Mayo 22, 2012 - Creacion
- **
+ ** 	000 - May 22, 2012 - Creacion
+ **     001 - May 27, 2012 - Añadida navegavilidad a la clase
+ *
+ *
  ** NOTAS:
  **
  **
  */
 
 package Modelo;
+
 import java.util.Date;
 
 public class Oferta {
@@ -36,9 +40,9 @@ public class Oferta {
     private String tipoContrato;
 
     //Claves externas
-    private Long idSector;
-    private Long idEmpresa;
-    private Long idVoluntario;
+    private Sector sector;
+    private C_Empresa empresa;
+    private Voluntario voluntario;
 
     /**
      * Constructor Vacio
@@ -60,7 +64,7 @@ public class Oferta {
      * @param IDBeneficiario
      * @param IDVoluntario
      */
-    public Oferta(Long OID, String cualificacionRequerida, String descripcionOferta, int duracionContrato, Date fecha, int plazasOfertadas, String tipoContrato, Long idSector, Long idEmpresa, Long idVoluntario) {
+    public Oferta(Long OID, String cualificacionRequerida, String descripcionOferta, int duracionContrato, Date fecha, int plazasOfertadas, String tipoContrato, Sector sector, C_Empresa empresa, Voluntario voluntario) {
         this.OID = OID;
         this.cualificacionRequerida = cualificacionRequerida;
         this.descripcionOferta = descripcionOferta;
@@ -68,9 +72,9 @@ public class Oferta {
         this.fecha = fecha;
         this.plazasOfertadas = plazasOfertadas;
         this.tipoContrato = tipoContrato;
-        this.idSector = idSector;
-        this.idEmpresa = idEmpresa;
-        this.idVoluntario = idVoluntario;
+        this.sector = sector;
+        this.empresa = empresa;
+        this.voluntario = voluntario;
     }
 
     //Métodos get y set
@@ -130,28 +134,28 @@ public class Oferta {
         this.tipoContrato = tipoContrato;
     }
 
-    public Long getIdEmpresa() {
-        return idEmpresa;
+    public C_Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setIdEmpresa(Long idEmpresa) {
-        this.idEmpresa = idEmpresa;
+    public void setEmpresa(C_Empresa empresa) {
+        this.empresa = empresa;
     }
 
-    public Long getIdSector() {
-        return idSector;
+    public Sector getSector() {
+        return sector;
     }
 
-    public void setIdSector(Long idSector) {
-        this.idSector = idSector;
+    public void setSector(Sector sector) {
+        this.sector = sector;
     }
 
-    public Long getIdVoluntario() {
-        return idVoluntario;
+    public Voluntario getVoluntario() {
+        return voluntario;
     }
 
-    public void setIdVoluntario(Long idVoluntario) {
-        this.idVoluntario = idVoluntario;
+    public void setVoluntario(Voluntario voluntario) {
+        this.voluntario = voluntario;
     }
 
 }

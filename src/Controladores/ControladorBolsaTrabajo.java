@@ -1,7 +1,8 @@
 
 package Controladores;
 
-import Controladores.BolsaDeTrabajo.*;
+import Controladores.BolsaDeTrabajo.ControladorDemanda;
+import Controladores.BolsaDeTrabajo.ControladorOferta;
 import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.BolsaTrabajo.VistaBolsaTrabajo;
 import java.awt.event.ActionEvent;
@@ -99,17 +100,17 @@ public class ControladorBolsaTrabajo {
     }
 
     public void mostrarNuevaOferta() {
-		vista.showPanel(VistaBolsaTrabajo.PanelDatosOferta);
+		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
 		vista.getBarraDeNavigacion().setTextLabelNivel3("Nueva Oferta");
     }
 
     public void mostrarConsultarOfertas(){
-        vista.showPanel(VistaBolsaTrabajo.PanelDatosOferta);
+        vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Ofertas");
     }
 
     public void mostrarModificarOferta() {
-        vista.showPanel(VistaBolsaTrabajo.PanelDatosOferta);
+        vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Oferta");
     }
 

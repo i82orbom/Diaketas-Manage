@@ -17,7 +17,7 @@ public class VistaBolsaTrabajo extends javax.swing.JPanel {
 	public static String PanelDemandaInicio = "demandasInicio";
 	public static String PanelOfertasInicio = "ofertasInicio";
 	public static String PanelNuevaDemanda = "nuevademanda";
-	public static String PanelDatosOferta = "datosoferta";
+	public static String PanelOfertaDatos = "datosoferta";
 
 	public static String PanelConsultarDemandas = "consultardemandas";
 	public static String PanelModificarDemanda = "modificardemanda";
@@ -44,38 +44,38 @@ public class VistaBolsaTrabajo extends javax.swing.JPanel {
 		return this.panelBolsaTrabajoInicio;
 	}
 
-	public PanelConsultarDemanda getConsultarDemanda(){
-		return this.panelConsultarDemanda;
-	}
-
-	public PanelDatosOferta getDatosOferta(){
-		return this.panelDatosOferta;
-	}
-
-	public PanelDemandanteBuscar getDemandanteBuscar(){
-		return this.panelDemandanteBuscar;
-	}
-
-	public PanelDemandasInicio getDemandasInicio(){
-		return this.panelDemandasInicio;
-	}
-
-	public PanelModificarDemanda getModificarDemanda(){
-		return this.panelModificarDemanda;
-	}
-
-	public PanelNuevaDemanda getNuevaDemanda(){
-		return this.panelNuevaDemanda;
+	public PanelOfertasInicio getOfertasInicio(){
+		return this.panelOfertasInicio1;
 	}
 
 	public PanelOfertasBuscar getOfertasBuscar(){
 		return this.panelOfertasBuscar;
 	}
 
-	public PanelOfertasInicio getOfertasInicio(){
-		return this.panelOfertasInicio1;
+	public PanelOfertaDatos getOfertaDatos(){
+		return this.panelDatosOferta;
 	}
 
+	public PanelDemandasInicio getDemandasInicio(){
+		return this.panelDemandasInicio;
+	}
+
+	public PanelNuevaDemanda getDemandaDatos(){
+		return this.panelNuevaDemanda;
+	}
+
+	public PanelDemandanteBuscar getDemandaBuscar(){
+		return this.panelDemandanteBuscar;
+	}
+
+/*	public PanelConsultarDemanda getConsultarDemanda(){
+		return this.panelConsultarDemanda;
+	}
+
+	public PanelModificarDemanda getModificarDemanda(){
+		return this.panelModificarDemanda;
+	}
+*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,7 +91,7 @@ public class VistaBolsaTrabajo extends javax.swing.JPanel {
         panelDemandanteBuscar = new Vistas.Paneles.BolsaTrabajo.PanelDemandanteBuscar();
         panelModificarDemanda = new Vistas.Paneles.BolsaTrabajo.PanelModificarDemanda();
         panelNuevaDemanda = new Vistas.Paneles.BolsaTrabajo.PanelNuevaDemanda();
-        panelDatosOferta = new Vistas.Paneles.BolsaTrabajo.PanelDatosOferta();
+        panelDatosOferta = new Vistas.Paneles.BolsaTrabajo.PanelOfertaDatos();
         panelOfertasBuscar = new Vistas.Paneles.BolsaTrabajo.PanelOfertasBuscar();
         panelDemandasInicio = new Vistas.Paneles.BolsaTrabajo.PanelDemandasInicio();
         panelOfertasInicio1 = new Vistas.Paneles.BolsaTrabajo.PanelOfertasInicio();
@@ -123,7 +123,7 @@ public class VistaBolsaTrabajo extends javax.swing.JPanel {
     private Vistas.Paneles.BolsaTrabajo.PanelDemandasInicio panelDemandasInicio;
     private Vistas.Paneles.BolsaTrabajo.PanelModificarDemanda panelModificarDemanda;
     private Vistas.Paneles.BolsaTrabajo.PanelNuevaDemanda panelNuevaDemanda;
-    private Vistas.Paneles.BolsaTrabajo.PanelDatosOferta panelDatosOferta;
+    private Vistas.Paneles.BolsaTrabajo.PanelOfertaDatos panelDatosOferta;
     private Vistas.Paneles.BolsaTrabajo.PanelOfertasBuscar panelOfertasBuscar;
     private Vistas.Paneles.BolsaTrabajo.PanelOfertasInicio panelOfertasInicio1;
     // End of variables declaration//GEN-END:variables

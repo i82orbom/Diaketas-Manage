@@ -50,9 +50,9 @@ public class ControladorDemanda {
 		vista = pvista;
 
 		// Botones
-		vista.getNuevaDemanda().getbtGuardar().addActionListener(new ControladorDemanda.ListenerBtGuardarDemanda());
-		vista.getNuevaDemanda().getbtLimpiar().addActionListener(new ControladorDemanda.ListenerBtLimpiar());
-	
+		vista.getDemandaDatos().getbtGuardar().addActionListener(new ControladorDemanda.ListenerBtGuardarDemanda());
+		vista.getDemandaDatos().getbtLimpiar().addActionListener(new ControladorDemanda.ListenerBtLimpiar());
+
 	}
 
 	public static ControladorDemanda getInstance(VistaBolsaTrabajo panelOferta){
@@ -76,7 +76,7 @@ public class ControladorDemanda {
 
 		return true;
 	}
-        
+
 	public boolean eliminarDemanda(Demanda demanda){
 		boolean exito = true;
 
@@ -110,10 +110,10 @@ public class ControladorDemanda {
 			System.out.println("Guardar Demanda");
 			Demanda demanda = new Demanda();	// Se crea el objeto demanda
 
-			demanda.setDescripcionValidaLaboral(vista.getNuevaDemanda().gettaHistoriaLaboral());
-			
+			demanda.setDescripcionValidaLaboral(vista.getDemandaDatos().gettaHistoriaLaboral());
+
 		//	demanda.setIdSector(SectorJDBC.getInstance().getOID(vista.getNuevaDemanda().getcbSector()));
-			try { demanda.setIdBeneficiario(BeneficiarioJDBC.getInstance().obtenerBeneficiario((vista.getNuevaDemanda().getTextNIF())).getOID());
+			try { demanda.setIdBeneficiario(BeneficiarioJDBC.getInstance().obtenerBeneficiario((vista.getDemandaDatos().getTextNIF())).getOID());
 			} catch (SQLException ex){
 			}
 			demanda.setIdVoluntario(ControladorPrincipal.getInstance().getVoluntario().getOID());
@@ -132,10 +132,10 @@ public class ControladorDemanda {
 			Demanda  demanda = new Demanda();		// Se crea el objeto demanda
 
 //			demanda.setOID();
-			demanda.setDescripcionValidaLaboral(vista.getNuevaDemanda().gettaHistoriaLaboral());
-			
+			demanda.setDescripcionValidaLaboral(vista.getDemandaDatos().gettaHistoriaLaboral());
+
 		//	demanda.setIdSector(SectorJDBC.getInstance().getOID(vista.getNuevaDemanda().getcbSector()));
-			try { demanda.setIdBeneficiario(BeneficiarioJDBC.getInstance().obtenerBeneficiario((vista.getNuevaDemanda().getTextNIF())).getOID());
+			try { demanda.setIdBeneficiario(BeneficiarioJDBC.getInstance().obtenerBeneficiario((vista.getDemandaDatos().getTextNIF())).getOID());
 			} catch (SQLException ex){
 			}
 			demanda.setIdVoluntario(ControladorPrincipal.getInstance().getVoluntario().getOID());
@@ -150,8 +150,8 @@ public class ControladorDemanda {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			vista.getNuevaDemanda().setTextNIF("");
-			vista.getNuevaDemanda().setTaHistoriaLaboral("");
+			vista.getDemandaDatos().setTextNIF("");
+			vista.getDemandaDatos().setTaHistoriaLaboral("");
 		}
 	}
 
