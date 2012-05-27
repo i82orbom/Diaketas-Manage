@@ -32,9 +32,9 @@ public class Demanda {
     private Date fecha;
     
     //Claves externas
-    private Long idSector;
-    private Long idBeneficiario;
-    private Long idVoluntario;
+    private Sector idSector;
+    private Beneficiario idBeneficiario;
+    private Voluntario idVoluntario;
 
     /**
      * Constructor Vacio
@@ -51,7 +51,7 @@ public class Demanda {
     * @param idBeneficiario
     * @param idVoluntario 
     */
-    public Demanda(Long OID, String descripcionValidaLaboral, Date fecha, Long idSector, Long idBeneficiario, Long idVoluntario) {
+    public Demanda(Long OID, String descripcionValidaLaboral, Date fecha, Sector idSector, Beneficiario idBeneficiario, Voluntario idVoluntario) {
         this.OID = OID;
         this.descripcionValidaLaboral = descripcionValidaLaboral;
         this.fecha = fecha;
@@ -86,27 +86,27 @@ public class Demanda {
         this.fecha = fecha;
     }
 
-    public Long getIdBeneficiario() {
+    public Beneficiario getIdBeneficiario() {
         return idBeneficiario;
     }
 
-    public void setIdBeneficiario(Long idBeneficiario) {
+    public void setIdBeneficiario(Beneficiario idBeneficiario) {
         this.idBeneficiario = idBeneficiario;
     }
 
-    public Long getIdSector() {
+    public Sector getIdSector() {
         return idSector;
     }
 
-    public void setIdSector(Long idSector) {
+    public void setIdSector(Sector idSector) {
         this.idSector = idSector;
     }
 
-    public Long getIdVoluntario() {
+    public Voluntario getIdVoluntario() {
         return idVoluntario;
     }
 
-    public void setIdVoluntario(Long idVoluntario) {
+    public void setIdVoluntario(Voluntario idVoluntario) {
         this.idVoluntario = idVoluntario;
     }
         

@@ -61,7 +61,6 @@ public class Oferta {
      * @param tipoContrato
      * @param IDSector
      * @param IDEmpresa
-     * @param IDBeneficiario
      * @param IDVoluntario
      */
     public Oferta(Long OID, String cualificacionRequerida, String descripcionOferta, int duracionContrato, Date fecha, int plazasOfertadas, String tipoContrato, Sector sector, C_Empresa empresa, Voluntario voluntario) {

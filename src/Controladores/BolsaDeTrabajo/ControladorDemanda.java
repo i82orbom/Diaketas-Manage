@@ -109,7 +109,7 @@ public class ControladorDemanda {
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Guardar Demanda");
 			Demanda demanda = new Demanda();	// Se crea el objeto demanda
-
+/*
 			demanda.setDescripcionValidaLaboral(vista.getDemandaDatos().gettaHistoriaLaboral());
 
 		//	demanda.setIdSector(SectorJDBC.getInstance().getOID(vista.getNuevaDemanda().getcbSector()));
@@ -120,7 +120,7 @@ public class ControladorDemanda {
 
 			demanda.setFecha(new Date());	// Fecha actual
 
-			insertarDemanda(demanda);			// Se envia el objeto al controlador
+			insertarDemanda(demanda);*/			// Se envia el objeto al controlador
 		}
 	}
 
@@ -131,6 +131,7 @@ public class ControladorDemanda {
 			System.out.println("Modificar Demanda");
 			Demanda  demanda = new Demanda();		// Se crea el objeto demanda
 
+                        /*
 //			demanda.setOID();
 			demanda.setDescripcionValidaLaboral(vista.getDemandaDatos().gettaHistoriaLaboral());
 
@@ -142,7 +143,7 @@ public class ControladorDemanda {
 
 			demanda.setFecha(new Date());	// Fecha actual
 
-			insertarDemanda(demanda);
+			insertarDemanda(demanda);*/
 		}
 	}
 
