@@ -76,7 +76,7 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
     }
 
     public JTable getTableTiposAyuda() {
-        return tableTiposAyuda;
+        return tablaTiposAyuda;
     }
 
     public JTextField getTextBeneficiarioAyudas() {
@@ -104,7 +104,7 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
         btnEliminarTipoAyuda = new javax.swing.JButton();
         btnGuardarTipoAyuda = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tableTiposAyuda = new javax.swing.JTable();
+        tablaTiposAyuda = new javax.swing.JTable();
         jLabel27 = new javax.swing.JLabel();
         cbTipoAyuda = new javax.swing.JComboBox();
         jLabel28 = new javax.swing.JLabel();
@@ -145,7 +145,6 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
 
         btnBuscarAyudas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
         btnBuscarAyudas.setActionCommand("buscarBeneficiarioAyuda");
-        btnBuscarAyudas.setPreferredSize(new java.awt.Dimension(48, 44));
 
         jLabel25.setForeground(new java.awt.Color(255, 0, 0));
         jLabel25.setText("Gestión tipos de ayudas");
@@ -158,7 +157,7 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
         btnGuardarTipoAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/save_f2.png"))); // NOI18N
         btnGuardarTipoAyuda.setActionCommand("guardarTipoAyuda");
 
-        tableTiposAyuda.setModel(new javax.swing.table.DefaultTableModel(
+        tablaTiposAyuda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -169,7 +168,7 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
                 "Titulo", "Descripcion", "Monetaria"
             }
         ));
-        jScrollPane4.setViewportView(tableTiposAyuda);
+        jScrollPane4.setViewportView(tablaTiposAyuda);
 
         jLabel27.setText("Tipo de ayuda");
 
@@ -235,7 +234,7 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
                             .add(layout.createSequentialGroup()
                                 .add(30, 30, 30)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(btnBuscarAyudas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(btnBuscarAyudas)
                                     .add(layout.createSequentialGroup()
                                         .add(btnGuardarAyuda)
                                         .add(36, 36, 36)
@@ -361,7 +360,7 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
     private javax.swing.JTextField maximoImporte;
     private javax.swing.JTextField minimoImporte;
     private javax.swing.JTable tablaAyudas;
-    private javax.swing.JTable tableTiposAyuda;
+    private javax.swing.JTable tablaTiposAyuda;
     private javax.swing.JTextField textBeneficiarioAyudas;
     private javax.swing.JTextField textTipoAyuda;
     // End of variables declaration//GEN-END:variables

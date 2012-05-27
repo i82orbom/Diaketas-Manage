@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
 
 /**
  ** NOMBRE CLASE:
@@ -51,11 +53,84 @@ public class ControladorAyuda {
     }
     
     private PanelVoluntarioAyudas vista;
+    private ArrayList<TipoAyuda> tiposAyuda;
+    
+    private String[] columnNamesTipoAyuda = {"Titulo", "Descripcion", "Monetaria"};
 
     public ControladorAyuda(PanelVoluntarioAyudas vista) {
         this.vista = vista;
-        
+     
+        actualizarTablaTipoAyuda();
+
         this.vista.getBtnGuardarTipoAyuda().addActionListener(new BtGuardarTipoAyudaListener());
+    }
+
+    private void actualizarTablaTipoAyuda() {
+        try {
+            tiposAyuda = AyudaJDBC.getInstance().obtenerDatosTipoAyuda();
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        TableModel tableModel = new TableModel() {
+
+            @Override
+            public int getRowCount() {
+                return tiposAyuda.size();
+            }
+
+            @Override
+            public int getColumnCount() {
+                return columnNamesTipoAyuda.length;
+            }
+
+            @Override
+            public String getColumnName(int i) {
+                return columnNamesTipoAyuda[i];
+            }
+
+            @Override
+            public Class<?> getColumnClass(int i) {
+                return String.class;
+            }
+
+            @Override
+            public boolean isCellEditable(int i, int i1) {
+                return false;
+            }
+
+            @Override
+            public Object getValueAt(int row, int col) {
+                switch (col) {
+                    case 0:
+                        return tiposAyuda.get(row).getTitulo();
+                    case 1:
+                        return tiposAyuda.get(row).getDescripcion();
+                    case 2:
+                        if (tiposAyuda.get(row).isMonetaria()) {
+                            return "Si";
+                        } else {
+                            return "No";
+                        }
+                }
+                return "";
+            }
+
+            @Override
+            public void setValueAt(Object o, int row, int col) {
+            }
+
+            @Override
+            public void addTableModelListener(TableModelListener tl) {
+            }
+
+            @Override
+            public void removeTableModelListener(TableModelListener tl) {
+            }
+        };
+
+        vista.getTableTiposAyuda().setModel(tableModel);
+
     }
 
     // TODO Metodos JDBC
@@ -183,6 +258,8 @@ public class ControladorAyuda {
                 
                 if (datosNuevoTipoAyuda(tipoAyuda)) {
                     System.out.println("tipoAyuda anadido");
+
+                    actualizarTablaTipoAyuda();
                 }
             }
         }

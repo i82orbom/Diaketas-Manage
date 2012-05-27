@@ -19,7 +19,7 @@
  **     001 - Mar 26, 2012 - FBR - Implementacion de los metodos
  **     002 - Mar 29, 2012 - AAN - Correccion consultas SQL
  *      003 - Abr 15, 2012 - FBR - Corrección consultas SQL
- *      003 - Mayo 27, 2012 - RC - Corrección consultas SQL
+ *      004 - Mayo 27, 2012 - RC - Corrección consultas SQL
  *      
  **
  ** NOTAS:
