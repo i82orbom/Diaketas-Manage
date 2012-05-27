@@ -79,7 +79,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="Vistas.Paneles.BolsaTrabajo.PanelDatosOferta" name="panelNuevaOferta">
+        <Component class="Vistas.Paneles.BolsaTrabajo.PanelOfertaDatos" name="panelNuevaOferta">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="nuevaoferta"/>

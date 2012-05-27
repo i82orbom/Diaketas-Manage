@@ -99,17 +99,17 @@ public class ControladorBolsaTrabajo {
     }
 
     public void mostrarNuevaOferta() {
-		vista.showPanel(VistaBolsaTrabajo.PanelDatosOferta);
+		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
 		vista.getBarraDeNavigacion().setTextLabelNivel3("Nueva Oferta");
     }
 
     public void mostrarConsultarOfertas(){
-        vista.showPanel(VistaBolsaTrabajo.PanelDatosOferta);
+        vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Ofertas");
     }
 
     public void mostrarModificarOferta() {
-        vista.showPanel(VistaBolsaTrabajo.PanelDatosOferta);
+        vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Oferta");
     }
 

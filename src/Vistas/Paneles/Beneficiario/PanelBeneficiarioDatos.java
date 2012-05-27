@@ -15,14 +15,14 @@ import javax.swing.JTable;
 /**
  *
  * @author psylock
- * 
+ *
  * HISTORIAL:
  *      000 - 23 May 2012 - JAEG - Añadida funcion para insertar los datos generales. Eliminado "lugar de nacimiento" (dato no existente en el modelo)
  */
 public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 
     private SimpleDateFormat formateadorFecha = new SimpleDateFormat("dd/MM/yyyy");
-    
+
     /**
      * Creates new form PanelBeneficiarioDatos
      */
@@ -112,7 +112,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 		textNIF.setText("");
 		textFechaNacimiento.setText("");
 		textNacionalidad.setText("");
-		cbEstadoCivilBeneficiario.setSelectedIndex(0);
+		cbEstadoCivil.setSelectedIndex(0);
 		cbNivelEstudios.setSelectedIndex(0);
 		textProfesion.setText("");
 		textOcupacion.setText("");
@@ -130,40 +130,41 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 
 		setColorLabels(Color.black);
 	}
-        
-        public JTable getTbIntervenciones() {
+
+	public JTable getTbIntervenciones() {
             return tbIntervenciones;
         }
-        
-        //Rellenar datos generales a partir de un Beneficiario
-        public void actualizarDatosGenerales(Beneficiario b){
-            textNombre.setText(b.getNombre());
-            textApellidos.setText(b.getApellidos());
-            textNIF.setText(b.getNIF());
-            textFechaNacimiento.setText(formateadorFecha.format(b.getFechaDENacimiento()));
-            textNacionalidad.setText(b.getNacionalidad());
-            textProfesion.setText(b.getProfesion());
-            textOcupacion.setText(b.getOcupacion());
-            textTelefonoFijo.setText(b.getTelefonoFijo());
-            textTelefonoMovil.setText(b.getTelefonoMovil());
-            textDomicilio.setText(b.getDomicilio());
-            textLocalidad.setText(b.getLocalidad());
-            textCP.setText(b.getCP());
-            textObservaciones.setText(b.getObservaciones());
-            textSituacionEconomica.setText(b.getSituacionEconomica());
-            textPrecioVivienda.setText(Float.toString(b.getViviendaAlquiler()));
-            textEspecificarTipoVivienda.setText(b.getViviendaObservaciones());
-            cbEstadoCivilBeneficiario.setSelectedItem(b.getEstadoCivil());
-            cbNivelEstudios.setSelectedItem(b.getNivelDeEstudio());
-            cbTipoVivienda.setSelectedItem(b.getVivienda());
-        }
-        public void actualizarTiposAyuda(ArrayList<TipoAyuda> tiposAyuda) {
-            cbTiposAyuda.removeAllItems();
-            for(TipoAyuda ta:tiposAyuda){
-                cbTiposAyuda.addItem(ta);
-            }       
-        }
-	    // getters de los campos
+
+	//Rellenar datos generales a partir de un Beneficiario
+	public void actualizarDatosGenerales(Beneficiario b){
+		textNombre.setText(b.getNombre());
+		textApellidos.setText(b.getApellidos());
+		textNIF.setText(b.getNIF());
+		textFechaNacimiento.setText(formateadorFecha.format(b.getFechaDENacimiento()));
+		textNacionalidad.setText(b.getNacionalidad());
+		textProfesion.setText(b.getProfesion());
+		textOcupacion.setText(b.getOcupacion());
+		textTelefonoFijo.setText(b.getTelefonoFijo());
+		textTelefonoMovil.setText(b.getTelefonoMovil());
+		textDomicilio.setText(b.getDomicilio());
+		textLocalidad.setText(b.getLocalidad());
+		textCP.setText(b.getCP());
+		textObservaciones.setText(b.getObservaciones());
+		textSituacionEconomica.setText(b.getSituacionEconomica());
+		textPrecioVivienda.setText(Float.toString(b.getViviendaAlquiler()));
+		textEspecificarTipoVivienda.setText(b.getViviendaObservaciones());
+		cbEstadoCivil.setSelectedItem(b.getEstadoCivil());
+		cbNivelEstudios.setSelectedItem(b.getNivelDeEstudio());
+		cbTipoVivienda.setSelectedItem(b.getVivienda());
+	}
+	public void actualizarTiposAyuda(ArrayList<TipoAyuda> tiposAyuda) {
+		cbTiposAyuda.removeAllItems();
+		for(TipoAyuda ta:tiposAyuda){
+			cbTiposAyuda.addItem(ta);
+		}
+	}
+
+	// getters de los campos
 	public JButton getBtBorrar() {
 		return btBorrar;
 	}
@@ -180,8 +181,8 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 		datos[Beneficiario.NIF_ID] = textNIF.getText();
 		datos[Beneficiario.FECHA_DE_NACIMIENTO_ID] = textFechaNacimiento.getText();
 		datos[Beneficiario.NACIONALIDAD_ID] = textNacionalidad.getText();
-		datos[Beneficiario.ESTADO_CIVIL_ID] = PanelDatos.getToolTipText();
-		datos[Beneficiario.NIVELESTUDIOS_ID] = cbNivelEstudios.getToolTipText();
+		datos[Beneficiario.ESTADO_CIVIL_ID] = cbEstadoCivil.getSelectedItem().toString();
+		datos[Beneficiario.NIVELESTUDIOS_ID] = cbNivelEstudios.getSelectedItem().toString();
 		datos[Beneficiario.PROFESION_ID] = textProfesion.getText();
 		datos[Beneficiario.OCUPACION_ID] = textOcupacion.getText();
 		datos[Beneficiario.TELEFONO_FIJO_ID] = textTelefonoFijo.getText();
@@ -191,7 +192,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 		datos[Beneficiario.CP_ID] = textCP.getText();
 		datos[Beneficiario.OBSERVACIONES_ID] = textObservaciones.getText();
 		datos[Beneficiario.SITUACION_ECONOMICA_ID] = textSituacionEconomica.getText();
-		datos[Beneficiario.VIVIENDA_ID] =cbTipoVivienda.getToolTipText();
+		datos[Beneficiario.VIVIENDA_ID] =cbTipoVivienda.getSelectedItem().toString();
 		datos[Beneficiario.VIVIENDA_ALQUILER_ID] = textPrecioVivienda.getText();
 		datos[Beneficiario.VIVIENDA_OBSERVACIONES_ID] = textEspecificarTipoVivienda.getText();
 
@@ -213,7 +214,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         textCP = new javax.swing.JTextField();
         textApellidos = new javax.swing.JTextField();
         labelTelefonoFijo = new javax.swing.JLabel();
-        cbEstadoCivilBeneficiario = new javax.swing.JComboBox();
+        cbEstadoCivil = new javax.swing.JComboBox();
         textProfesion = new javax.swing.JTextField();
         labelNombre = new javax.swing.JLabel();
         labelNacionalidad = new javax.swing.JLabel();
@@ -285,10 +286,10 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 
         labelTelefonoFijo.setText("Teléfono Fijo");
 
-        cbEstadoCivilBeneficiario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Soltero", "Casado", "Viudo" }));
-        cbEstadoCivilBeneficiario.addActionListener(new java.awt.event.ActionListener() {
+        cbEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Soltero", "Casado", "Viudo" }));
+        cbEstadoCivil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbEstadoCivilBeneficiarioActionPerformed(evt);
+                cbEstadoCivilActionPerformed(evt);
             }
         });
 
@@ -409,7 +410,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                                                     .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                                                         .add(org.jdesktop.layout.GroupLayout.LEADING, textFechaNacimiento, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 111, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                                         .add(textApellidos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 307, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                                    .add(cbEstadoCivilBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 86, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                                    .add(cbEstadoCivil, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 86, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                                     .add(textProfesion, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 148, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                                     .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                                                         .add(textOcupacion, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
@@ -467,7 +468,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                             .add(labelNacionalidad)
                             .add(textNacionalidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(labelEstadoCivil)
-                            .add(cbEstadoCivilBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(cbEstadoCivil, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(PanelDatosLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(labelNivelEstudios)
@@ -714,9 +715,9 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-	private void cbEstadoCivilBeneficiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEstadoCivilBeneficiarioActionPerformed
+	private void cbEstadoCivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEstadoCivilActionPerformed
 		// TODO add your handling code here:
-	}//GEN-LAST:event_cbEstadoCivilBeneficiarioActionPerformed
+	}//GEN-LAST:event_cbEstadoCivilActionPerformed
 
 	private void textOcupacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textOcupacionActionPerformed
 		// TODO add your handling code here:
@@ -736,7 +737,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
     private javax.swing.JButton btGuardar;
     private javax.swing.JButton btGuardarFamiliarBeneficiario;
     private javax.swing.JButton btGuardarIntervencionBeneficiario;
-    private javax.swing.JComboBox cbEstadoCivilBeneficiario;
+    private javax.swing.JComboBox cbEstadoCivil;
     private javax.swing.JComboBox cbNivelEstudios;
     private javax.swing.JComboBox cbParentescoBeneficiario;
     private javax.swing.JComboBox cbTipoVivienda;
