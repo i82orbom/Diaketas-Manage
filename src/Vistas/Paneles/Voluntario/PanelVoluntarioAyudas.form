@@ -252,9 +252,6 @@
           <Image iconType="3" name="/Vista/images/buscar.png"/>
         </Property>
         <Property name="actionCommand" type="java.lang.String" value="buscarBeneficiarioAyuda"/>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[48, 44]"/>
-        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel25">

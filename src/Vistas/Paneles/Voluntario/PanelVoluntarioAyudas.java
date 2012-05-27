@@ -4,6 +4,8 @@
  */
 package Vistas.Paneles.Voluntario;
 
+import javax.swing.*;
+
 /**
  *
  * @author raphaelcolleau
@@ -15,6 +17,70 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
      */
     public PanelVoluntarioAyudas() {
         initComponents();
+    }
+
+    public JButton getBtnBuscarAyudas() {
+        return btnBuscarAyudas;
+    }
+
+    public JButton getBtnEliminarAyuda() {
+        return btnEliminarAyuda;
+    }
+
+    public JButton getBtnEliminarTipoAyuda() {
+        return btnEliminarTipoAyuda;
+    }
+
+    public JButton getBtnGuardarAyuda() {
+        return btnGuardarAyuda;
+    }
+
+    public JButton getBtnGuardarTipoAyuda() {
+        return btnGuardarTipoAyuda;
+    }
+
+    public JComboBox getCbTipoAyuda() {
+        return cbTipoAyuda;
+    }
+
+    public JTextField getTextTipoAyuda() {
+        return textTipoAyuda;
+    }
+
+    public JTextField getDescripcionTipoAyuda() {
+        return descripcionTipoAyuda;
+    }
+
+    public JTextField getFechaFinAyudas() {
+        return fechaFinAyudas;
+    }
+
+    public JTextField getFechaInicioAyudas() {
+        return fechaInicioAyudas;
+    }
+
+    public JCheckBox getIsMonetaria() {
+        return isMonetaria;
+    }
+
+    public JTextField getMaximoImporte() {
+        return maximoImporte;
+    }
+
+    public JTextField getMinimoImporte() {
+        return minimoImporte;
+    }
+
+    public JTable getTablaAyudas() {
+        return tablaAyudas;
+    }
+
+    public JTable getTableTiposAyuda() {
+        return tableTiposAyuda;
+    }
+
+    public JTextField getTextBeneficiarioAyudas() {
+        return textBeneficiarioAyudas;
     }
 
     /**

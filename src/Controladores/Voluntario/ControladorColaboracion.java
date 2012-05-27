@@ -56,15 +56,13 @@ public class ControladorColaboracion {
         this.vista = vista;
     }*/
 
-    public Colaboracion anadirColaboracion (String[] datos){
-        if (!comprobarDatos(datos))
-            return null;
+    public Colaboracion anadirColaboracion (Colaboracion colaboracion){
 
         Colaboracion c = new Colaboracion();
 
-        c.setConcepto(datos[Colaboracion.CONCEPTO_ID]);
-        c.setFecha(Date.valueOf(datos[Colaboracion.FECHA_ID]));
-        c.setImporte(Integer.parseInt(datos[Colaboracion.IMPORTE_ID]));
+        c.setConcepto(colaboracion.getConcepto());
+        c.setFecha(colaboracion.getFecha());
+        c.setImporte(colaboracion.getImporte());
 
 
         try {
@@ -93,18 +91,5 @@ public class ControladorColaboracion {
         }
 
         return null;
-    }
-
-    private boolean comprobarDatos (String[] datos) {
-        // cada campo debe ser not null
-        for (int i=0; i<datos.length; i++) {
-            if (datos[i].length() < 1)
-                return false;
-        }
-
-        if (!TestDatos.isOnlyDigit(datos[Colaboracion.IMPORTE_ID]))
-            return false;
-
-        return true;
     }
 }

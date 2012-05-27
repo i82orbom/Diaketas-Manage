@@ -6,6 +6,9 @@ package Vistas.Paneles.BolsaTrabajo;
 
 import Vistas.Paneles.Beneficiario.*;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -32,15 +35,23 @@ public class PanelNuevaDemanda extends javax.swing.JPanel {
     public String getTextNIF(){
         return TextNIF.getText();
     }
+
+    public void setTextNIF(String texto) {
+        this.TextNIF.setText(texto);
+    }
     
     public String getcbSector(){
         return cbSector.getSelectedItem().toString();
     }
+
     
     public String gettaHistoriaLaboral(){
         return taHistoriaLaboral.getText();
     }
-    
+
+    public void setTaHistoriaLaboral(String texto) {
+        this.taHistoriaLaboral.setText(texto);
+    }
 
 
     /**

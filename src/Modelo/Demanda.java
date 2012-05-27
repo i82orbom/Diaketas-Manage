@@ -27,14 +27,14 @@ import java.util.Date;
 public class Demanda {
     
     //Atributos propios
-    private int OID;
+    private Long OID;
     private String descripcionValidaLaboral;
     private Date fecha;
     
     //Claves externas
-    private int idSector;
-    private int idBeneficiario;
-    private int idVoluntario;
+    private Long idSector;
+    private Long idBeneficiario;
+    private Long idVoluntario;
 
     /**
      * Constructor Vacio
@@ -51,7 +51,7 @@ public class Demanda {
     * @param idBeneficiario
     * @param idVoluntario 
     */
-    public Demanda(int OID, String descripcionValidaLaboral, Date fecha, int idSector, int idBeneficiario, int idVoluntario) {
+    public Demanda(Long OID, String descripcionValidaLaboral, Date fecha, Long idSector, Long idBeneficiario, Long idVoluntario) {
         this.OID = OID;
         this.descripcionValidaLaboral = descripcionValidaLaboral;
         this.fecha = fecha;
@@ -62,11 +62,11 @@ public class Demanda {
     
     
     //Métodos get y set
-    public int getOID() {
+    public Long getOID() {
         return OID;
     }
 
-    public void setOID(int OID) {
+    public void setOID(Long OID) {
         this.OID = OID;
     }
 
@@ -86,27 +86,27 @@ public class Demanda {
         this.fecha = fecha;
     }
 
-    public int getIdBeneficiario() {
+    public Long getIdBeneficiario() {
         return idBeneficiario;
     }
 
-    public void setIdBeneficiario(int idBeneficiario) {
+    public void setIdBeneficiario(Long idBeneficiario) {
         this.idBeneficiario = idBeneficiario;
     }
 
-    public int getIdSector() {
+    public Long getIdSector() {
         return idSector;
     }
 
-    public void setIdSector(int idSector) {
+    public void setIdSector(Long idSector) {
         this.idSector = idSector;
     }
 
-    public int getIdVoluntario() {
+    public Long getIdVoluntario() {
         return idVoluntario;
     }
 
-    public void setIdVoluntario(int idVoluntario) {
+    public void setIdVoluntario(Long idVoluntario) {
         this.idVoluntario = idVoluntario;
     }
         

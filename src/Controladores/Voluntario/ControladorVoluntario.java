@@ -251,51 +251,6 @@ public class ControladorVoluntario {
         return exito;
     }
 
-    private boolean comprobarDatos(String[] datos) {
-        // cada campo debe ser not null
-        /*
-        for (int i = 0; i < datos.length; i++) {
-            if (datos[i].length() < 1) {
-                return false;
-            }
-        }*/
-
-        if (!TestDatos.isDNI(datos[Voluntario.NIF_ID])) {
-            return false;
-        }
-
-        if (!TestDatos.isCodigoPostal(datos[Voluntario.CP_ID])) {
-            return false;
-        }
-
-        if (!TestDatos.isNombre(datos[Voluntario.NOMBRE_ID])) {
-            return false;
-        }
-
-        if (!TestDatos.isNombre(datos[Voluntario.APELLIDOS_ID])) {
-            return false;
-        }
-
-        if (!TestDatos.isOnlyLetter(datos[Voluntario.LOCALIDAD_ID])) {
-            return false;
-        }
-
-        if (datos[Voluntario.TELEFONO_MOVIL_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[Voluntario.TELEFONO_MOVIL_ID])) {
-            return false;
-        }
-
-        if (datos[Voluntario.TELEFONO_FIJO_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[Voluntario.TELEFONO_FIJO_ID])) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public boolean comprobarContrasena(String contrasena) {
-        // TODO
-        return true;
-    }
-
     //Listener de la barra de navigacion
     class ListenerBarraNavegacion implements ActionListener {
 
