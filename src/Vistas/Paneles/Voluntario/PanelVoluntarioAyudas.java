@@ -17,6 +17,16 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
      */
     public PanelVoluntarioAyudas() {
         initComponents();
+        labelErrorTipoAyuda.setVisible(false);
+    }
+    
+    public void setTextErrorTipoAyuda (String text) {
+        labelErrorTipoAyuda.setText(text);
+        labelErrorTipoAyuda.setVisible(true);
+    }
+
+    public JLabel getLabelErrorTipoAyuda() {
+        return labelErrorTipoAyuda;
     }
 
     public JButton getBtnBuscarAyudas() {
@@ -119,6 +129,7 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
         isMonetaria = new javax.swing.JCheckBox();
         btnGuardarAyuda = new javax.swing.JButton();
         btnEliminarAyuda = new javax.swing.JButton();
+        labelErrorTipoAyuda = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 550));
@@ -196,6 +207,9 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
         btnEliminarAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
         btnEliminarAyuda.setActionCommand("eliminarTipoAyuda");
 
+        labelErrorTipoAyuda.setForeground(new java.awt.Color(255, 0, 0));
+        labelErrorTipoAyuda.setText("label error");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -255,10 +269,12 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
                                 .add(textTipoAyuda)))
                         .addContainerGap())
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(labelErrorTipoAyuda, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(41, 41, 41)
                         .add(btnGuardarTipoAyuda)
-                        .add(71, 71, 71)
+                        .add(41, 41, 41)
                         .add(btnEliminarTipoAyuda)
-                        .add(80, 80, 80))
+                        .add(36, 36, 36))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabel30)
@@ -283,30 +299,32 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
                             .add(jLabel24)
                             .add(jLabel26)
                             .add(textTipoAyuda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(textBeneficiarioAyudas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jLabel30)
+                            .add(descripcionTipoAyuda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(18, 18, 18)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                    .add(textBeneficiarioAyudas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jLabel30)
-                                    .add(descripcionTipoAyuda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(jLabel27)
+                                    .add(jLabel31)
+                                    .add(isMonetaria))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(layout.createSequentialGroup()
-                                        .add(18, 18, 18)
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                            .add(jLabel27)
-                                            .add(jLabel31)
-                                            .add(isMonetaria))
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                         .add(cbTipoAyuda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .add(18, 18, 18)
                                         .add(jLabel28))
-                                    .add(layout.createSequentialGroup()
-                                        .add(61, 61, 61)
-                                        .add(btnEliminarTipoAyuda))))
-                            .add(layout.createSequentialGroup()
-                                .add(101, 101, 101)
-                                .add(btnGuardarTipoAyuda)))
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                        .add(labelErrorTipoAyuda)
+                                        .add(26, 26, 26))))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(btnGuardarTipoAyuda)
+                                    .add(btnEliminarTipoAyuda))
+                                .add(12, 12, 12)))
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(layout.createSequentialGroup()
                                 .add(0, 6, Short.MAX_VALUE)
@@ -358,6 +376,7 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel labelErrorTipoAyuda;
     private javax.swing.JTextField maximoImporte;
     private javax.swing.JTextField minimoImporte;
     private javax.swing.JTable tablaAyudas;

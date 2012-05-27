@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListDataListener;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
@@ -156,10 +157,7 @@ public class ControladorAyuda {
 
             @Override
             public Object getElementAt(int i) {
-                if (tiposAyuda.isEmpty())
-                    return "No hay";
-                else 
-                    return tiposAyuda.get(i);
+                return tiposAyuda.get(i);
             }
 
             @Override
@@ -210,6 +208,8 @@ public class ControladorAyuda {
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else {
+            JOptionPane.showMessageDialog(vista, "El tipo de ayuda ya existe en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
         return exito;
@@ -280,7 +280,7 @@ public class ControladorAyuda {
         @Override
         public void actionPerformed(ActionEvent ae) {
             boolean datosCorrectos = true;
-            
+            vista.getLabelErrorTipoAyuda().setVisible(false);
             
             if (vista.getTextTipoAyuda().getText().equals("")) {
                 datosCorrectos = false;
@@ -297,10 +297,13 @@ public class ControladorAyuda {
                 tipoAyuda.setMonetaria(vista.getIsMonetaria().isSelected());
                 
                 if (datosNuevoTipoAyuda(tipoAyuda)) {
-                    System.out.println("tipoAyuda anadido");
-
+                    vista.getTextTipoAyuda().setText("");
+                    vista.getDescripcionTipoAyuda().setText("");
+                    vista.getIsMonetaria().setSelected(false);
                     actualizarTipoAyuda();
                 }
+            } else {
+                vista.setTextErrorTipoAyuda("Error : El tipo de ayuda no ha sido anadido.");
             }
         }
     }
@@ -309,10 +312,17 @@ public class ControladorAyuda {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if (vista.getTablaTiposAyuda().getSelectedRow() != -1 ) {
-                TipoAyuda tipoAyuda = tiposAyuda.get(vista.getTablaTiposAyuda().getSelectedRow());
-                if (eliminarTipoAyuda(tipoAyuda)) {
-                    actualizarTipoAyuda();
+            vista.getLabelErrorTipoAyuda().setVisible(false);
+            if (vista.getTablaTiposAyuda().getSelectedRow() == -1) {
+                vista.setTextErrorTipoAyuda("Selecciona un tipo de ayuda en la tabla.");
+            } else {
+                if (JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar el tipo de ayuda?", "Eliminar tipo de ayuda", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    TipoAyuda tipoAyuda = tiposAyuda.get(vista.getTablaTiposAyuda().getSelectedRow());
+                    if (eliminarTipoAyuda(tipoAyuda)) {
+                        actualizarTipoAyuda();
+                    } else {
+                        vista.setTextErrorTipoAyuda("Error : El tipo de ayuda no ha sido eliminado.");
+                    }
                 }
             }
         }
