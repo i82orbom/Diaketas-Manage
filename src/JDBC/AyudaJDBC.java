@@ -8,6 +8,7 @@
  **
  ** DESARROLLADO POR:
  *        Francisco José Beltrán Rodriguez (FBR)
+ *          Raphael Colleau (RC)
  *	   
  **        
  ** SUPERVISADO POR:
@@ -18,6 +19,7 @@
  **     001 - Mar 26, 2012 - FBR - Implementacion de los metodos
  **     002 - Mar 29, 2012 - AAN - Correccion consultas SQL
  *      003 - Abr 15, 2012 - FBR - Corrección consultas SQL
+ *      003 - Mayo 27, 2012 - RC - Corrección consultas SQL
  *      
  **
  ** NOTAS:
@@ -65,7 +67,9 @@ public class AyudaJDBC {
         
         String sentencia = "SELECT * FROM ayuda a, tipoayuda t WHERE a.BeneficiarioNIF='"+dni+"' AND a.Fecha>="+fechaIni+" AND a.Fecha<="+fechaFin+" AND a.Importe>="+importeIni+" AND a.Importe<="+importeFin+" AND t.OID = a.TipoAyudaOID AND t.Titulo LIKE '%"+tipoAyuda+"%'";
         
+        driver.conectar();
         ResultSet resultado = driver.seleccionar(sentencia);
+        driver.desconectar();
         Ayuda temp;
         while(resultado.next()){
             temp = new Ayuda();
@@ -86,8 +90,9 @@ public class AyudaJDBC {
         DriverJDBC driver = DriverJDBC.getInstance() ;
         
         String sentencia = "SELECT Titulo FROM tipoayuda WHERE Titulo='"+titulo+"' LIMIT 1";
-        
+        driver.conectar();
         ResultSet resultados = driver.seleccionar(sentencia);
+        driver.desconectar();
         
         if(resultados.next())
             return true;
@@ -103,7 +108,9 @@ public class AyudaJDBC {
         
         Ayuda ayuda = null;
         String sql = "SELECT * FROM ayuda WHERE Fecha='"+fecha+"' AND BeneficiarioNIF='"+beneficiarioDNI+"' AND TipoAyudaOID='"+tipoAyuda.getOID()+"' LIMIT 1" ;
+        driver.conectar();
         ResultSet resultados = driver.seleccionar(sql);
+        driver.desconectar();
         
         while(resultados.next()){
             ayuda = new Ayuda();
@@ -154,9 +161,9 @@ public class AyudaJDBC {
             monetaria='0';
         
         String sql = "INSERT INTO tipoayuda (OID,Descripcion, Monetaria,Titulo) VALUES ('"+t.getOID()+"','"+t.getDescripcion()+"','"+monetaria+"','"+t.getTitulo()+"')";
-        
+        driver.conectar();
         boolean exito = driver.insertar(sql);
-        
+        driver.desconectar();
         return exito;
         
     }
@@ -164,7 +171,7 @@ public class AyudaJDBC {
     public boolean eliminarDatosAyuda(String ayudaOID) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance() ;
-        
+        driver.conectar();
         String sql = "DELETE FROM modificacionayuda WHERE AyudaOID ='"+ayudaOID+"'";
         boolean exito = driver.eliminar(sql);
         
@@ -172,17 +179,17 @@ public class AyudaJDBC {
             String sql2 = "DELETE FROM ayuda WHERE OID='"+ayudaOID+"'";
             exito= driver.eliminar(sql2);
         }
-            
+        driver.desconectar();
         return exito;
     }
     
     public boolean eliminarDatosTipoAyuda(String tipoayudaOID) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance() ;
-        
+        driver.conectar();
         String sql = "DELETE FROM tipoayuda WHERE OID ='"+tipoayudaOID+"'";
         boolean exito = driver.eliminar(sql);
-        
+        driver.desconectar();
         return exito;
         
     }
@@ -193,7 +200,7 @@ public class AyudaJDBC {
         Float importe = new Float(temp.getImporte());
         
         String sql = "UPDATE ayuda SET Importe='"+importe.toString()+"',TipoAyudaOID='"+temp.getTipo_ayuda().getOID()+"',Observaciones='"+temp.getObservaciones()+"' WHERE OID='"+temp.getOID()+"'";
-        
+        driver.conectar();
         boolean exito= driver.actualizar(sql);
         Date fecha_actual = new Date();
         
@@ -206,7 +213,7 @@ public class AyudaJDBC {
              System.out.println("Error al realizar el UPDATE en la base de datos");
              System.exit(1);
         }
-        
+        driver.desconectar();
         return exito;
     }
     
@@ -221,9 +228,9 @@ public class AyudaJDBC {
             monetaria='0';
         
         String sql = "UPDATE tipoayuda SET Titulo='"+t.getTitulo()+"',Descripcion='"+t.getDescripcion()+"',Monetaria='"+monetaria+"'WHERE OID='"+t.getOID()+"'";
-        
+        driver.conectar();
         boolean exito= driver.actualizar(sql);
-        
+        driver.desconectar();
         return exito;
     }
     
@@ -236,9 +243,9 @@ public class AyudaJDBC {
         //Asociacion ID siempre será 1 en esta primera iteracion
         
         String sql = "INSERT INTO ayuda (OID,Fecha,Importe,Observaciones,TipoAyudaOID,AsociacionID,VoluntarioNIF,BeneficiarioNIF) VALUES ('"+temp.getOID()+"','"+fecha+"','"+importe.toString()+"','"+temp.getObservaciones()+"','"+temp.getTipo_ayuda().getOID()+"','1','"+voluntarioDNI+"','"+beneficiarioDNI+"')";
-        
+        driver.conectar();
         boolean exito = driver.insertar(sql);
-        
+        driver.desconectar();
         return exito;
         
     }
