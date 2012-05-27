@@ -2,7 +2,6 @@
 package Controladores.Voluntario;
 
 import JDBC.AyudaJDBC;
-import JDBC.MovimientoJDBC;
 import Modelo.Ayuda;
 import Modelo.TipoAyuda;
 import Vistas.Paneles.Voluntario.PanelVoluntarioAyudas;

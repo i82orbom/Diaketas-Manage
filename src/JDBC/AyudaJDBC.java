@@ -92,12 +92,15 @@ public class AyudaJDBC {
         String sentencia = "SELECT Titulo FROM tipoayuda WHERE Titulo='"+titulo+"' LIMIT 1";
         driver.conectar();
         ResultSet resultados = driver.seleccionar(sentencia);
-        driver.desconectar();
         
-        if(resultados.next())
+        
+        if(resultados.next()) {
+            driver.desconectar();
             return true;
-        else
+        } else {
+            driver.desconectar();
             return false;
+        }
         
         
     }
@@ -160,7 +163,7 @@ public class AyudaJDBC {
         else
             monetaria='0';
         
-        String sql = "INSERT INTO tipoayuda (OID,Descripcion, Monetaria,Titulo) VALUES ('"+t.getOID()+"','"+t.getDescripcion()+"','"+monetaria+"','"+t.getTitulo()+"')";
+        String sql = "INSERT INTO tipoayuda (Descripcion, Monetaria,Titulo) VALUES ('"+t.getDescripcion()+"','"+monetaria+"','"+t.getTitulo()+"')";
         driver.conectar();
         boolean exito = driver.insertar(sql);
         driver.desconectar();
