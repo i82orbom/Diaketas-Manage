@@ -31,36 +31,6 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="BTGuardar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="BTModificar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                      <Component id="BTGuardarCambios" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="BTLimpiar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="BTEliminar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="332" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jPanel2" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jPanel1" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jPanel3" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-          </Group>
-          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
@@ -76,6 +46,36 @@
                   </Group>
               </Group>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jPanel2" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jPanel1" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jPanel3" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="BTGuardar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="BTModificar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="BTGuardarCambios" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="BTLimpiar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="BTEliminar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="309" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -94,7 +94,7 @@
               <Component id="jLabel71" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="BTGuardar" min="-2" max="-2" attributes="0"/>
                   <Component id="BTEliminar" min="-2" max="-2" attributes="0"/>
@@ -102,7 +102,7 @@
                   <Component id="BTLimpiar" min="-2" max="-2" attributes="0"/>
                   <Component id="BTModificar" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="84" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -130,7 +130,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="labelNPuestos" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="TextNPuestos" min="-2" pref="61" max="-2" attributes="0"/>
+                                  <Component id="textNPuestos" min="-2" pref="61" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                                   <Component id="labelTipoContrato" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -138,12 +138,12 @@
                                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                   <Component id="labelDuracionContrato" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="TextDuracionContrato" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="textDuracionContrato" min="-2" pref="29" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="labelMeses" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="333" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -162,10 +162,10 @@
                       <Component id="labelNPuestos" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelTipoContrato" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelDuracionContrato" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TextNPuestos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textNPuestos" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cbTipoContrato" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelMeses" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TextDuracionContrato" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textDuracionContrato" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               </Group>
@@ -216,7 +216,7 @@
             <Property name="text" type="java.lang.String" value="Duracion de contrato"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TextNPuestos">
+        <Component class="javax.swing.JTextField" name="textNPuestos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Numero"/>
           </Properties>
@@ -236,7 +236,7 @@
             <Property name="text" type="java.lang.String" value="Meses"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TextDuracionContrato">
+        <Component class="javax.swing.JTextField" name="textDuracionContrato">
           <Properties>
             <Property name="text" type="java.lang.String" value="12"/>
           </Properties>
@@ -259,7 +259,7 @@
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="labelCIF" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="TextCIF" min="-2" pref="124" max="-2" attributes="0"/>
+                  <Component id="textCIF" min="-2" pref="124" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                   <Component id="labelSector" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -267,7 +267,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="BTEliminarSector" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="TextNuevoSector" min="-2" pref="124" max="-2" attributes="0"/>
+                  <Component id="textNuevoSector" min="-2" pref="124" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="BTGuardarSector" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="255" max="32767" attributes="0"/>
@@ -283,7 +283,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="TextCIF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textCIF" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="labelCIF" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cbSector" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="labelSector" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -295,7 +295,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                              <Component id="TextNuevoSector" min="-2" max="-2" attributes="0"/>
+                              <Component id="textNuevoSector" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -324,7 +324,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TextCIF">
+        <Component class="javax.swing.JTextField" name="textCIF">
           <Properties>
             <Property name="text" type="java.lang.String" value="CIF/ NIF"/>
           </Properties>
@@ -336,7 +336,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TextNuevoSector">
+        <Component class="javax.swing.JTextField" name="textNuevoSector">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nuevo Sector"/>
           </Properties>
@@ -449,6 +449,15 @@
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Vista/images/limpiar.png"/>
+        </Property>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[65, 41]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[65, 41]"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[65, 41]"/>
         </Property>
       </Properties>
     </Component>
