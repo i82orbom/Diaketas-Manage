@@ -42,6 +42,7 @@ public class DriverJDBC {
     // Variables para restaurar tras transacciones
     private boolean oldEstadoAutoCommit;
     private int oldEstadoTransaccionIsolation;
+	private boolean oldEstadoConexion;
 
     private DriverJDBC() {
         this.hostBD = "127.0.0.1";
@@ -62,28 +63,31 @@ public class DriverJDBC {
     }
 
     public boolean conectar() throws SQLException {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://" + hostBD + "/" + nombreBD, usuarioBD, password);
-            statement = conexion.createStatement();
-        } catch (SQLException exSQL) {
-            throw exSQL;
-        } catch (ClassNotFoundException exClass) {
-            System.err.println(exClass);
-            return false;
-        }
+		oldEstadoConexion = (conexion == null);
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conexion = DriverManager.getConnection("jdbc:mysql://" + hostBD + "/" + nombreBD, usuarioBD, password);
+			statement = conexion.createStatement();
+		} catch (SQLException exSQL) {
+			throw exSQL;
+		} catch (ClassNotFoundException exClass) {
+			System.err.println(exClass);
+			return false;
+		}
 
-        return true;
+		return true;
     }
 
     public boolean desconectar() throws SQLException {
         if (conexion != null) {
-            try {
-                conexion.close();
-            } catch (SQLException ex) {
-                throw ex;
-            }
-        }
+			if (!oldEstadoConexion){
+				try {
+					conexion.close();
+				} catch (SQLException ex) {
+					throw ex;
+				}
+			}
+		}
 
         return true;
     }
