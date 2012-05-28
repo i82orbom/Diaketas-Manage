@@ -2,10 +2,12 @@
 package Controladores.BolsaDeTrabajo;
 
 import Controladores.ControladorBolsaTrabajo;
+import Controladores.ControladorErrores;
 import Controladores.ControladorPrincipal;
 import Controladores.TestDatos;
 import JDBC.C_EmpresaJDBC;
 import JDBC.OfertaJDBC;
+import JDBC.SectorJDBC;
 import Modelo.Oferta;
 import Modelo.Sector;
 import Vistas.Paneles.BolsaTrabajo.VistaBolsaTrabajo;
@@ -14,7 +16,6 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JOptionPane;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
@@ -102,7 +103,7 @@ public class ControladorOferta {
 			listaOfertas = OfertaJDBC.getInstance().filtrarOfertas(sector,antiguedad);
 		}
 		catch (SQLException ex){
-			JOptionPane.showMessageDialog(null, "Error al obtener la lista de ofertas:\n"+ex.getMessage());
+			ControladorErrores.mostrarError("Error al obtener la lista de ofertas:\n"+ex.getMessage());
 		}
 
 		return listaOfertas;
@@ -120,6 +121,13 @@ public class ControladorOferta {
 	}
 
 	public boolean insertarSector(Sector sector){
+		System.out.print(this);
+		try{
+			SectorJDBC.getInstance().InsertarSector(sector);
+		}
+		catch (SQLException ex){
+//			JOptionPane.
+		}
 		return true;
 	}
 

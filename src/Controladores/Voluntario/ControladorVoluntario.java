@@ -1,6 +1,7 @@
 
 package Controladores.Voluntario;
 
+import Controladores.ControladorErrores;
 import Controladores.ControladorPrincipal;
 import Controladores.TestDatos;
 import JDBC.VoluntarioJDBC;
@@ -112,7 +113,7 @@ public class ControladorVoluntario {
         vista.getPanelVoluntarioBuscar().getBtVerVoluntario().addActionListener(new BtVerVoluntarioListener());
 
         anadirKeyListener();
-        
+
         // al principio mostrar la vista de inicio
         mostrarVistaInicio();
     }
@@ -174,24 +175,24 @@ public class ControladorVoluntario {
         vista.getBarraDeNavegacion().setTextLabelNivel2("Colaboraciones");
         vista.getBarraDeNavegacion().setTextLabelNivel3("Cuotas no pagadas");
     }
-    
+
     // metodos de interaccion con JDBC
     private boolean insertarVoluntario(Voluntario v) {
         if (consultarVoluntario(v.getNIF()) != null) {
-            JOptionPane.showMessageDialog(null, "Un voluntario con este DNI ya existe.");
+            ControladorErrores.mostrarAlerta("Y a existe un voluntario con este DNI.");
             return false;
-        } 
-        
+        }
+
         else {
             try {
                 VoluntarioJDBC.getInstance().anadirVoluntario(v);
             } catch (SQLException se) {
                 System.err.print(se.getMessage());
-                JOptionPane.showMessageDialog(null, "Error al añadir voluntario:\n" + se.getMessage());
+				ControladorErrores.mostrarError("Error al añadir voluntario:\n" + se.getMessage());
                 return false;
             }
         }
-       
+
         return true;
     }
 
@@ -223,7 +224,7 @@ public class ControladorVoluntario {
 
     private boolean modificarVoluntario(Voluntario v) {
 
-        
+
         if(!"".equals(v.getPassword()))
             v.setPassword(ControladorPrincipal.getInstance().md5(v.getPassword()+ControladorPrincipal.getInstance().getSalto()));
         else
@@ -328,54 +329,54 @@ public class ControladorVoluntario {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            
+
             boolean datosCorrectos = true;
-            
+
             if( !TestDatos.isDNI( vista.getPanelVoluntarioDatos().getTextNIF().getText()) ) {
                 vista.getPanelVoluntarioDatos().getTextNIF().setForeground(Color.RED);
                 datosCorrectos = false;
             }
-            
-            if ( !TestDatos.isNombre(vista.getPanelVoluntarioDatos().getTextNombre().getText())) {                
+
+            if ( !TestDatos.isNombre(vista.getPanelVoluntarioDatos().getTextNombre().getText())) {
                 vista.getPanelVoluntarioDatos().getTextNombre().setForeground(Color.RED);
                 datosCorrectos = false;
             }
-            
-            if ( !TestDatos.isNombre(vista.getPanelVoluntarioDatos().getTextApellidos().getText())) {                
+
+            if ( !TestDatos.isNombre(vista.getPanelVoluntarioDatos().getTextApellidos().getText())) {
                 vista.getPanelVoluntarioDatos().getTextApellidos().setForeground(Color.RED);
                 datosCorrectos = false;
             }
-            
-            if ( !TestDatos.isFecha(vista.getPanelVoluntarioDatos().getTextFechaNacimiento().getText())) {                
+
+            if ( !TestDatos.isFecha(vista.getPanelVoluntarioDatos().getTextFechaNacimiento().getText())) {
                 vista.getPanelVoluntarioDatos().getTextFechaNacimiento().setForeground(Color.RED);
                 datosCorrectos = false;
             }
-            
-            if ( !TestDatos.isDomicilio(vista.getPanelVoluntarioDatos().getTextDomicilio().getText())) {                
+
+            if ( !TestDatos.isDomicilio(vista.getPanelVoluntarioDatos().getTextDomicilio().getText())) {
                 vista.getPanelVoluntarioDatos().getTextDomicilio().setForeground(Color.RED);
                 datosCorrectos = false;
             }
-            
-            if ( !TestDatos.isDomicilio(vista.getPanelVoluntarioDatos().getTextLocalidad().getText())) {                
+
+            if ( !TestDatos.isDomicilio(vista.getPanelVoluntarioDatos().getTextLocalidad().getText())) {
                 vista.getPanelVoluntarioDatos().getTextLocalidad().setForeground(Color.RED);
                 datosCorrectos = false;
             }
-            
-            if ( !TestDatos.isCodigoPostal(vista.getPanelVoluntarioDatos().getTextCP().getText())) {                
+
+            if ( !TestDatos.isCodigoPostal(vista.getPanelVoluntarioDatos().getTextCP().getText())) {
                 vista.getPanelVoluntarioDatos().getTextCP().setForeground(Color.RED);
                 datosCorrectos = false;
             }
-            
-            if ( !TestDatos.isTelefonoOFax(vista.getPanelVoluntarioDatos().getTextTelMovil().getText())) {                
+
+            if ( !TestDatos.isTelefonoOFax(vista.getPanelVoluntarioDatos().getTextTelMovil().getText())) {
                 vista.getPanelVoluntarioDatos().getTextTelMovil().setForeground(Color.RED);
                 datosCorrectos = false;
             }
-            
-            if ( !TestDatos.isTelefonoOFax(vista.getPanelVoluntarioDatos().getTextTelFijo().getText())) {                
+
+            if ( !TestDatos.isTelefonoOFax(vista.getPanelVoluntarioDatos().getTextTelFijo().getText())) {
                 vista.getPanelVoluntarioDatos().getTextTelFijo().setForeground(Color.RED);
                 datosCorrectos = false;
             }
-            
+
             if (!datosCorrectos) {
                 vista.getPanelVoluntarioDatos().setTextLabelError("Los campos en rojo tienes errores.");
             } else {
@@ -397,18 +398,18 @@ public class ControladorVoluntario {
                     v.setLocalidad(vista.getPanelVoluntarioDatos().getTextLocalidad().getText());
                     v.setTelefonoMovil(vista.getPanelVoluntarioDatos().getTextTelMovil().getText());
                     v.setTelefonoFijo(vista.getPanelVoluntarioDatos().getTextTelFijo().getText());
-                    /*  
+                    /*
                      * Codificar password con md5 mas un salto
                      */
                     String password = ControladorPrincipal.getInstance().md5(vista.getPanelVoluntarioDatos().getTextPassword().getText() + ControladorPrincipal.getInstance().getSalto());
                     v.setPassword(password);
-                    
+
                     if (insertarVoluntario(v)) {
                         vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario añadido correctamente.");
                     } else {
                         vista.getPanelVoluntarioDatos().setTextLabelError("El voluntario no ha sido añadido.");
                     }
-                    
+
                 } // Modificacion Voluntario
                 else {
                     voluntario_temp.setNIF(vista.getPanelVoluntarioDatos().getTextNIF().getText());
@@ -425,7 +426,7 @@ public class ControladorVoluntario {
                     voluntario_temp.setTelefonoMovil(vista.getPanelVoluntarioDatos().getTextTelMovil().getText());
                     voluntario_temp.setTelefonoFijo(vista.getPanelVoluntarioDatos().getTextTelFijo().getText());
                     voluntario_temp.setPassword(vista.getPanelVoluntarioDatos().getTextPassword().getText());
-                    
+
                     if (modificarVoluntario(voluntario_temp)) {
                         vista.getPanelVoluntarioDatos().setTextLabelError("Voluntario modificado correctamente.");
                     } else {
@@ -435,10 +436,10 @@ public class ControladorVoluntario {
             }
         }
     }
-    
+
     private void anadirKeyListener () {
         TextKeyListener keyListener = new TextKeyListener();
-        
+
         vista.getPanelVoluntarioDatos().getTextApellidos().addKeyListener(keyListener);
         vista.getPanelVoluntarioDatos().getTextCP().addKeyListener(keyListener);
         vista.getPanelVoluntarioDatos().getTextDomicilio().addKeyListener(keyListener);
@@ -449,7 +450,7 @@ public class ControladorVoluntario {
         vista.getPanelVoluntarioDatos().getTextTelFijo().addKeyListener(keyListener);
         vista.getPanelVoluntarioDatos().getTextTelMovil().addKeyListener(keyListener);
     }
-    
+
     // Cuando el usuario escribe, cambia el color en negro si habia errores y el color estaba rojo
     class TextKeyListener implements KeyListener {
 
@@ -467,7 +468,7 @@ public class ControladorVoluntario {
         @Override
         public void keyReleased(KeyEvent ke) {
         }
-        
+
     }
 
     class btBorrarVoluntarioListener implements ActionListener {
@@ -477,7 +478,7 @@ public class ControladorVoluntario {
             vista.getPanelVoluntarioDatos().borrarCampos();
         }
     }
-    
+
     class BtEliminarVoluntario implements ActionListener {
 
         @Override
@@ -489,11 +490,11 @@ public class ControladorVoluntario {
                     vista.getPanelVoluntarioDatos().setTextLabelError("Error : el Voluntario no ha sido eliminado del sistema.");
                 }
             }
-            
+
         }
-        
+
     }
-    
+
     class BtVerVoluntarioListener implements ActionListener{
 
         @Override
@@ -504,7 +505,7 @@ public class ControladorVoluntario {
                 mostrarVistaModificarVoluntario();
             }
         }
-        
+
     }
 
     class BtBuscarVoluntarioListener implements ActionListener {
@@ -576,7 +577,7 @@ public class ControladorVoluntario {
 
                 }
             };
-            
+
             vista.getPanelVoluntarioBuscar().getTablaBusqueda().setModel(tableModel);
         }
 
