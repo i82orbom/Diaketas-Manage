@@ -1,10 +1,7 @@
 
 package Vistas.Paneles.BolsaTrabajo;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class PanelOfertaDatos extends javax.swing.JPanel {
 
@@ -125,6 +122,9 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
         taCualificacion.setText(texto);
     }
 
+	public JLabel getMensajeError(){
+		return labelError;
+	}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -149,11 +149,11 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         labelCIF = new javax.swing.JLabel();
         labelSector = new javax.swing.JLabel();
-        cbSector = new javax.swing.JComboBox();
         textCIF = new javax.swing.JTextField();
         BTEliminarSector = new javax.swing.JButton();
         textNuevoSector = new javax.swing.JTextField();
         BTGuardarSector = new javax.swing.JButton();
+        cbSector = new javax.swing.JComboBox();
         jLabel68 = new javax.swing.JLabel();
         jLabel69 = new javax.swing.JLabel();
         jLabel71 = new javax.swing.JLabel();
@@ -165,6 +165,7 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
         BTModificar = new javax.swing.JButton();
         BTGuardarCambios = new javax.swing.JButton();
         BTEliminar = new javax.swing.JButton();
+        labelError = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
@@ -248,8 +249,6 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
 
         labelSector.setText("Sector");
 
-        cbSector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Economico" }));
-
         textCIF.setText("CIF/ NIF");
 
         BTEliminarSector.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
@@ -273,11 +272,11 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                 .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(BTEliminarSector)
-                .add(18, 18, 18)
+                .add(68, 68, 68)
                 .add(textNuevoSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(BTGuardarSector)
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -290,8 +289,8 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                             .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                                 .add(textCIF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(labelCIF)
-                                .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(labelSector)))
+                                .add(labelSector)
+                                .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                         .add(jPanel2Layout.createSequentialGroup()
                             .addContainerGap()
                             .add(BTEliminarSector))
@@ -351,22 +350,15 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
 
         BTEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
 
+        labelError.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelError.setForeground(new java.awt.Color(255, 0, 0));
+        labelError.setText("Error");
+        labelError.setToolTipText("");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(28, 28, 28)
-                        .add(jLabel71))
-                    .add(layout.createSequentialGroup()
-                        .add(30, 30, 30)
-                        .add(jLabel69))
-                    .add(layout.createSequentialGroup()
-                        .add(31, 31, 31)
-                        .add(jLabel68)))
-                .add(0, 0, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -391,6 +383,21 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(BTEliminar)
                         .add(309, 309, 309))))
+            .add(layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(28, 28, 28)
+                        .add(jLabel71))
+                    .add(layout.createSequentialGroup()
+                        .add(30, 30, 30)
+                        .add(jLabel69))
+                    .add(layout.createSequentialGroup()
+                        .add(31, 31, 31)
+                        .add(jLabel68))
+                    .add(layout.createSequentialGroup()
+                        .add(358, 358, 358)
+                        .add(labelError, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 309, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .add(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -407,7 +414,9 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                 .add(jLabel71)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(labelError)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 27, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(BTGuardar)
                     .add(BTEliminar)
@@ -439,6 +448,7 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
     private javax.swing.JLabel labelCIF;
     private javax.swing.JLabel labelDescripcionOferta;
     private javax.swing.JLabel labelDuracionContrato;
+    private javax.swing.JLabel labelError;
     private javax.swing.JLabel labelMeses;
     private javax.swing.JLabel labelNPuestos;
     private javax.swing.JLabel labelSector;

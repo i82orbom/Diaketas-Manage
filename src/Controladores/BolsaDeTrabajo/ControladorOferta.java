@@ -2,10 +2,12 @@
 package Controladores.BolsaDeTrabajo;
 
 import Controladores.ControladorBolsaTrabajo;
+import Controladores.ControladorErrores;
 import Controladores.ControladorPrincipal;
 import Controladores.TestDatos;
 import JDBC.C_EmpresaJDBC;
 import JDBC.OfertaJDBC;
+import JDBC.SectorJDBC;
 import Modelo.Oferta;
 import Modelo.Sector;
 import Vistas.Paneles.BolsaTrabajo.VistaBolsaTrabajo;
@@ -68,7 +70,7 @@ public class ControladorOferta {
 
 		// Buscar Ofertas
 		vista.getOfertasBuscar().getBTBuscar().addActionListener(new ListenerBtBuscarOferta());
-		vista.getOfertasBuscar().getBTEliminar().addActionListener(new ListenerBtEliminarOferta());
+		vista.getOfertasBuscar().getBTEliminar().addActionListener(new ListenerBtEliminarOfertaBuscada());
 		vista.getOfertasBuscar().getBTConsultar().addActionListener(new ListenerBtConsultarOferta());
 
 	}
@@ -80,6 +82,14 @@ public class ControladorOferta {
 
 	/* Métodos del controlador */
 	public boolean insertarOferta(Oferta oferta){
+		try{
+			OfertaJDBC.getInstance().insertarOferta(oferta);
+		}
+		catch (SQLException ex){
+			ControladorErrores.mostrarError("Error al insertar una oferta\n"+ex);
+			return false;
+		}
+
 		return true;
 	}
 
@@ -99,10 +109,10 @@ public class ControladorOferta {
 		ArrayList<Oferta> listaOfertas = new ArrayList<Oferta>();
 
 		try{
-			listaOfertas = OfertaJDBC.getInstance().filtartOfertas(sector,antiguedad);
+			listaOfertas = OfertaJDBC.getInstance().filtrarOfertas(CIF,sector,antiguedad);
 		}
 		catch (SQLException ex){
-			JOptionPane.showMessageDialog(null, "Error al obtener la lista de ofertas:\n"+ex.getMessage());
+			ControladorErrores.mostrarError("Error al obtener la lista de ofertas:\n"+ex.getMessage());
 		}
 
 		return listaOfertas;
@@ -114,12 +124,20 @@ public class ControladorOferta {
 	}
 
 	public boolean eliminarOferta(Oferta oferta){
+		JOptionPane.showConfirmDialog(vista, vista);
 		boolean exito = true;
 
 		return exito;
 	}
 
 	public boolean insertarSector(Sector sector){
+		System.out.print(this);
+		try{
+			SectorJDBC.getInstance().InsertarSector(sector);
+		}
+		catch (SQLException ex){
+//			JOptionPane.
+		}
 		return true;
 	}
 
@@ -159,7 +177,7 @@ public class ControladorOferta {
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Guardar Oferta");
 			Oferta  oferta = new Oferta();		// Se crea el objeto oferta
-/*
+
 			oferta.setCualificacionRequerida(vista.getOfertaDatos().getTextoCualificacion());
 			oferta.setDescripcionOferta(vista.getOfertaDatos().getTextoDescripcionOferta());
 			oferta.setDuracionContrato(Integer.parseInt(vista.getOfertaDatos().getTextoNPuestos()));
@@ -167,13 +185,15 @@ public class ControladorOferta {
 			oferta.setTipoContrato(vista.getOfertaDatos().getTextoTipoContrato());
 
 //			oferta.setIdSector(SectorJDBC.getInstance().getOID(vista.getOfertaDatos().getcbSector()));
-			try { oferta.setIdEmpresa(C_EmpresaJDBC.getInstance().obtenerC_Empresa((vista.getOfertaDatos().getTextoCIF())).getOIDEmpresa());
+/*			try { oferta.setIdEmpresa(C_EmpresaJDBC.getInstance().obtenerC_Empresa((vista.getOfertaDatos().getTextoCIF())).getOIDEmpresa());
 			} catch (SQLException ex){ }
 			oferta.setIdVoluntario(ControladorPrincipal.getInstance().getVoluntario().getOID());
-
-			oferta.setFecha(new Date());	// Fecha actual
 */
-			insertarOferta(oferta);			// Se envia el objeto al controlador
+			oferta.setFecha(new Date());	// Fecha actual
+
+			if (!insertarOferta(oferta)){			// Se envia el objeto al controlador
+				vista.getOfertaDatos().getMensajeError().setText("La oferta no ha sido añadida");
+			}
 		}
 	}
 
@@ -305,17 +325,29 @@ public class ControladorOferta {
 		}
 	}
 
+	public class ListenerBtEliminarOfertaBuscada implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Eliminar Oferta");
+
+			if (vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
+				if (eliminarOferta(listaOfertas.get(vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow()))){
+					ControladorErrores.mostrarMensaje("La oferta ha sido borrada");
+				}
+			}
+		}
+	}
+
 	public class ListenerBtConsultarOferta implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Consultar Oferta");
-/*			if (vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
+			if (vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
                 ofertaConsultada = listaOfertas.get(vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow());
-                vista.getOfertaDatos().consultarOferta(ofertaConsultada);
-*/				ControladorBolsaTrabajo.getInstance(vista).mostrarConsultarOferta(ofertaConsultada);
-//				vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);		// Revisar esta linea
-  //          }
+				ControladorBolsaTrabajo.getInstance(vista).mostrarConsultarOferta(ofertaConsultada);
+			}
 		}
 	}
 

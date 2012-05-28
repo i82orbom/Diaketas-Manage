@@ -1,6 +1,7 @@
 
 package Controladores.Voluntario;
 
+import Controladores.ControladorErrores;
 import JDBC.AyudaJDBC;
 import Modelo.Ayuda;
 import Modelo.TipoAyuda;
@@ -54,18 +55,18 @@ public class ControladorAyuda {
         }
         return instancia;
     }
-    
+
     private PanelVoluntarioAyudas vista;
     // list de tipo de ayuda para la tabla
     private ArrayList<TipoAyuda> tiposAyuda;
     // tipo de ayuda seleccionado en el comboBox
     private TipoAyuda tipoAyudaSeleccionado;
-    
+
     private String[] columnNamesTipoAyuda = {"Titulo", "Descripcion", "Monetaria"};
 
     public ControladorAyuda(PanelVoluntarioAyudas vista) {
         this.vista = vista;
-     
+
         actualizarTipoAyuda();
 
         this.vista.getBtnGuardarTipoAyuda().addActionListener(new BtGuardarTipoAyudaListener());
@@ -174,7 +175,7 @@ public class ControladorAyuda {
     // TODO Metodos JDBC
     private boolean registrarAyuda(Ayuda ayuda) {
         boolean exito;
-        
+
             // TODO test ayuda.getBeneficiarioDeAyuda().getNIF() exite
             // TODO test datos
         try {
@@ -183,25 +184,25 @@ public class ControladorAyuda {
             Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-        
+
         if (ayuda.getTipo_ayuda().isMonetaria()) {
             exito = ControladorContabilidad.getInstance(null).registrarGastoAyuda(ayuda.getImporte(), ayuda.getObservaciones(), ayuda);
         }
-        
+
         return exito;
     }
-    
+
     private boolean datosNuevoTipoAyuda (TipoAyuda tipoAyuda) {
         boolean exito = false;
-        
+
         boolean tipoAyudaExiste = true;
-        try {   
+        try {
             tipoAyudaExiste = AyudaJDBC.getInstance().comprobarTipoAyuda(tipoAyuda.getTitulo());
         } catch (SQLException ex) {
             // TODO pop up error
             Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         if (!tipoAyudaExiste) {
             try {
                 exito = AyudaJDBC.getInstance().insertarTipoAyuda(tipoAyuda);
@@ -209,12 +210,12 @@ public class ControladorAyuda {
                 Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            JOptionPane.showMessageDialog(vista, "El tipo de ayuda ya existe en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+            ControladorErrores.mostrarError("El tipo de ayuda ya existe en el sistema");
         }
-        
+
         return exito;
     }
-    
+
     public ArrayList<TipoAyuda> obtenerTiposAyuda () {
         ArrayList<TipoAyuda> temp_tiposAyuda;
         try {
@@ -225,29 +226,29 @@ public class ControladorAyuda {
         }
         return temp_tiposAyuda;
     }
-    
+
     private boolean modificarAyuda (Ayuda ayuda) {
         boolean exito = false;
-        
+
             // TODO test si tipoayuda existe
-        try {   
+        try {
             exito = AyudaJDBC.getInstance().modificarDatosAyuda(ayuda, ayuda.getVoluntarioQueOtorga());
         } catch (SQLException ex) {
             Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return exito;
     }
-    
+
     private boolean modificarTypoAyuda (TipoAyuda tipoAyuda) {
         boolean exito = false;
-        
-        try {    
+
+        try {
             exito = AyudaJDBC.getInstance().modificarDatosTipoAyuda(tipoAyuda);
         } catch (SQLException ex) {
             Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return exito;
     }
 
@@ -274,28 +275,28 @@ public class ControladorAyuda {
         return exito;
     }
     // TODO Listeners de los botones
-    
+
     class BtGuardarTipoAyudaListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
             boolean datosCorrectos = true;
             vista.getLabelErrorTipoAyuda().setVisible(false);
-            
+
             if (vista.getTextTipoAyuda().getText().equals("")) {
                 datosCorrectos = false;
             }
-            
+
             if (vista.getDescripcionTipoAyuda().getText().equals("")) {
                 datosCorrectos = false;
             }
-            
+
             if (datosCorrectos) {
                 TipoAyuda tipoAyuda = new TipoAyuda();
                 tipoAyuda.setTitulo(vista.getTextTipoAyuda().getText());
                 tipoAyuda.setDescripcion(vista.getDescripcionTipoAyuda().getText());
                 tipoAyuda.setMonetaria(vista.getIsMonetaria().isSelected());
-                
+
                 if (datosNuevoTipoAyuda(tipoAyuda)) {
                     vista.getTextTipoAyuda().setText("");
                     vista.getDescripcionTipoAyuda().setText("");
@@ -307,7 +308,7 @@ public class ControladorAyuda {
             }
         }
     }
-    
+
     class BtBorrarTipoAyudaListener implements ActionListener {
 
         @Override
@@ -326,15 +327,15 @@ public class ControladorAyuda {
                 }
             }
         }
-        
+
     }
-    
+
     class BtGuardarAyudaListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
-        
+
     }
 }

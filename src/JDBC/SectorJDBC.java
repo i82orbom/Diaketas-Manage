@@ -28,29 +28,67 @@ public class SectorJDBC {
     
     }
     
-    public ResultSet obtenerSector (Sector sector )throws SQLException{
+    public boolean EliminarSector(Sector sector) throws SQLException{
         DriverJDBC driver = DriverJDBC.getInstance();
-	Boolean exito;
-        ResultSet rs;
-        
-        String sql1 = "SELECT DESCRIPCION FROM Sector WHERE OID = '"+sector.getDescripcion()+"'";
-        rs = driver.seleccionar(sql1);
+        String sql = "DELETE FROM Sector WHERE OID = "+sector.getOID();
+        try {
+            driver.inicioTransaccion();
+            driver.seleccionar(sql);
+            driver.commit();
+        }
+        catch (SQLException ea){
+            driver.rollback();
+            throw ea;
+        }
+        finally{
+            driver.finTransaccion();
+        }
+        return true;
+    }
+    
+    public boolean InsertarSector(Sector sector) throws SQLException{
+        DriverJDBC driver = DriverJDBC.getInstance();
+        String sql = "INSERT INTO Sector (Descripcion) VALUES ('"+sector.getDescripcion()+"')";
         
         try{
-			driver.inicioTransaccion();
-			driver.insertar(sql1);
-			driver.commit();
-		}
-		catch (SQLException ex){
-			driver.rollback();
-			exito = false;
-			throw ex;
-		}
-		finally {
-			driver.finTransaccion();
-		}
-
-		return rs;
+            driver.inicioTransaccion();
+            driver.insertar(sql);
+            driver.commit();
+        }
+        catch (SQLException ea){
+            driver.rollback();
+            throw ea;
+        }
+        finally{
+            driver.finTransaccion();
+        }
+        return true;
+    }
+    public ArrayList<Sector> ListadoSectores () throws SQLException{
+        DriverJDBC driver = DriverJDBC.getInstance();
+        ArrayList<Sector> lista_sectores = new ArrayList<Sector>();
+        Sector Temp;
+        String sql = "SELECT * FROM Sector";
+        ResultSet resultado;
+        try{
+        
+            driver.conectar();
+            resultado = driver.seleccionar(sql);
+            
+            while (resultado.next()){
+                Temp = new Sector();
+                Temp.setOID(resultado.getInt("OID"));
+                Temp.setDescripcion(resultado.getString("Descripcion"));
+                lista_sectores.add(Temp);
+            }    
+        }
+        catch (SQLException ea){
+            throw ea;
+        }
+        finally {
+            driver.desconectar();
+        }
+        return lista_sectores;
     }
     
     

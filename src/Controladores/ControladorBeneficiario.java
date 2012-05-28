@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -163,9 +162,8 @@ public class ControladorBeneficiario {
             try {
                 BeneficiarioJDBC.getInstance().anadirBeneficiario(beneficiario);
             } catch (SQLException se) {
-                            JOptionPane.showMessageDialog(null, "Error al añadir beneficiario:\n"+se.getMessage());
-                System.err.println(se.getMessage());
-                return false;
+				ControladorErrores.mostrarError("Error al añadir beneficiario:\n"+se.getMessage());
+				return false;
             }
 
             return true;
