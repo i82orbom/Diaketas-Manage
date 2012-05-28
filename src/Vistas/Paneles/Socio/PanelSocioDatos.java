@@ -129,9 +129,51 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                 textMovilSocio.setText(datos[13]);
                 textUsuarioSocio.setText(datos[14]);
 				labelError.setVisible(false);
-        }
+				textCantidadColaboracionSocio.setText(datos[15]);
+				textFechaColaboracionSocio.setText(datos[16]);
+				textConceptoColaboracionSocio.setText(datos[17]);
+				if(!"".equals(datos[18]))
+					cbTipoColaboracionSocio.setSelectedIndex(Integer.parseInt(datos[18]));
+				else
+					cbTipoColaboracionSocio.setSelectedIndex(0);
+				if(!"".equals(datos[19]))
+					cbFechaInicialColaboracionSocio.setSelectedIndex(Integer.parseInt(datos[19]));
+				else
+					cbFechaInicialColaboracionSocio.setSelectedIndex(0);
+				if(!"".equals(datos[20]))
+					cbFechaFinalColaboracionSocio.setSelectedIndex(Integer.parseInt(datos[20]));
+				else
+					cbFechaFinalColaboracionSocio.setSelectedIndex(0);
+				//Poner la tabla colaboraciones vacia
+				//Poner la tabla cuota vacia
+				textCantidadCuotaSocio.setText("");
+				textIntervaloCuotaSocio.setText("");
+				textFechaInicioCuotaSocio.setText("");
+				textFechaFinalCuotaSocio.setText("");
+		}
+//-------------------------------------->PANEL COLABORACIONES<-------------------------------------------//
+		public JButton getBtGuardarColaboracion(){
+			return btGuardarColaboracionSocio;
+		}
 		
-//-------------------------------------->PANEL CUOTA<-------------------------------------------//
+		public String getCantidadColabroacionSocio(){
+			return textCantidadColaboracionSocio.getText();
+		}
+		
+		public String getFechaColaboracionSocio(){
+			return textFechaColaboracionSocio.getText();
+		}
+		
+		public String getConceptoColaboracionSocio(){
+			return textConceptoColaboracionSocio.getText();
+		}
+		
+		public String getTipoColaboracionSocio(){
+			return cbTipoColaboracionSocio.getName();
+					
+		}
+		
+		//-------------------------------------->PANEL CUOTA<-------------------------------------------//
         public JButton getBtBorrarCuotaSocio() {
 			return btEliminarCuotaSocio;
 		}
@@ -152,6 +194,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
 		public String obtenerFechaFinCuotaSocio(){
 			return textFechaFinalCuotaSocio.getText();
 		}
+		
 		
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -515,17 +558,20 @@ public class PanelSocioDatos extends javax.swing.JPanel {
 
         tableColaboracionesSocio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Cantidad", "Fecha", "Concepto", "Tipo", "Confirmada por"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane8.setViewportView(tableColaboracionesSocio);
 
         label2.setForeground(new java.awt.Color(255, 0, 0));
@@ -580,23 +626,22 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cbTipoColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(textConceptoColaboracionSocio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGroup(PanelColaboracionesSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelColaboracionesSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelColaboracionesSocioLayout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbFechaInicialColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(PanelColaboracionesSocioLayout.createSequentialGroup()
-                            .addGap(27, 27, 27)
-                            .addGroup(PanelColaboracionesSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cbFechaFinalColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(PanelColaboracionesSocioLayout.createSequentialGroup()
-                                    .addGap(31, 31, 31)
-                                    .addComponent(btBuscarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btEliminarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(PanelColaboracionesSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelColaboracionesSocioLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbFechaInicialColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelColaboracionesSocioLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(btGuardarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(27, 27, 27)
+                        .addGroup(PanelColaboracionesSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbFechaFinalColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelColaboracionesSocioLayout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addGroup(PanelColaboracionesSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btGuardarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(PanelColaboracionesSocioLayout.createSequentialGroup()
+                                        .addComponent(btBuscarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btEliminarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelColaboracionesSocioLayout.setVerticalGroup(
@@ -623,8 +668,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                         .addGap(20, 20, 20)
                         .addGroup(PanelColaboracionesSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textConceptoColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(99, Short.MAX_VALUE))
+                            .addComponent(textConceptoColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(PanelColaboracionesSocioLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(cbFechaInicialColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -634,9 +678,9 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                         .addGroup(PanelColaboracionesSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btBuscarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btEliminarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btGuardarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76))))
+                        .addGap(112, 112, 112)
+                        .addComponent(btGuardarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         jTabbedPane.addTab("Colaboraciones", PanelColaboracionesSocio);
@@ -648,19 +692,27 @@ public class PanelSocioDatos extends javax.swing.JPanel {
         jLabel28.setText("Cuotas");
 
         jScrollPane11.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane11.setBorder(null);
 
+        tableCuotasSocio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tableCuotasSocio.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         tableCuotasSocio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Cantidad", "Fecha inicio", "Fecha de finalizacion", "Intervalo de pago", "Ultimo pago"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableCuotasSocio.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane11.setViewportView(tableCuotasSocio);
 
         jLabel65.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N

@@ -33,7 +33,6 @@ import java.util.ArrayList;
  */
 public class Beneficiario extends Persona {
 
-    private Long OID;
     private String estadoCivil;
     private String nacionalidad;
     private String nivelDeEstudio;
@@ -239,14 +238,5 @@ public class Beneficiario extends Persona {
     public void setViviendaObservaciones(String viviendaObservaciones) {
         this.viviendaObservaciones = viviendaObservaciones;
     }
-
-    public void setOID(Long OID) {
-        this.OID = OID;
-    }
-
-    public Long getOID() {
-        return OID;
-    }
-   
 
 }

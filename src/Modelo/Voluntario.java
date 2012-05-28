@@ -1,24 +1,24 @@
 /**
- ** NOMBRE CLASE: 
+ ** NOMBRE CLASE:
  **	 Voluntario.java
  **
  ** DESCRIPCION:
  **       Abstracción de Voluntario
- **       
+ **
  **
  ** DESARROLLADO POR:
  *        Francisco José Beltrán Rodriguez (FBR)
- *	   
- **        
+ *
+ **
  ** SUPERVISADO POR:
- **       Adolfo Arcoya Nieto (AAN)   
+ **       Adolfo Arcoya Nieto (AAN)
  **
  ** HISTORIA:
  ** 	000 - Mar 24, 2012 - FBR - Creacion
- *      
+ *
  **
  ** NOTAS:
- **   
+ **
  **
  */
 package Modelo;
@@ -30,11 +30,11 @@ import java.util.ArrayList;
  * @author Jobero
  */
  public class Voluntario extends Persona {
-    
-     private Long OID;
+
      private String password;
-     public static int PASSWORD_ID = 9;
-     
+
+	 public static int PASSWORD_ID = 10;
+
      private ArrayList<Modificacion> modificaciones;
      private ArrayList<Ayuda> ayudasDadas;
 
@@ -91,14 +91,6 @@ import java.util.ArrayList;
       */
      public void setPassword(String password) {
          this.password = password;
-     }
-
-     public void setOID(Long OID) {
-         this.OID = OID;
-     }
-
-     public Long getOID() {
-         return OID;
      }
 
 }
