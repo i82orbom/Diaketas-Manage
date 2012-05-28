@@ -203,7 +203,7 @@ CREATE TABLE Colaboracion (
 
 CREATE TABLE Sector (
 	OID INTEGER
-	, Descripccion VARCHAR (100)  NOT NULL
+	, descripcion VARCHAR (100)  NOT NULL
 	, PRIMARY KEY (OID)
 );
 

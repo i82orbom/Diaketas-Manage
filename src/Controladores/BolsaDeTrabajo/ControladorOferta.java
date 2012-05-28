@@ -69,9 +69,9 @@ public class ControladorOferta {
 		vista.getOfertaDatos().getBTEliminar().addActionListener(new ListenerBtEliminarOferta());
 
 		// Buscar Ofertas
-		vista.getOfertasBuscar().getBTBuscar().addActionListener(new ListenerBtBuscarOferta());
-		vista.getOfertasBuscar().getBTEliminar().addActionListener(new ListenerBtEliminarOfertaBuscada());
-		vista.getOfertasBuscar().getBTConsultar().addActionListener(new ListenerBtConsultarOferta());
+		vista.getOfertaBuscar().getBTBuscar().addActionListener(new ListenerBtBuscarOferta());
+		vista.getOfertaBuscar().getBTEliminar().addActionListener(new ListenerBtEliminarOfertaBuscada());
+		vista.getOfertaBuscar().getBTConsultar().addActionListener(new ListenerBtConsultarOferta());
 
 	}
 
@@ -256,9 +256,10 @@ public class ControladorOferta {
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Buscar Oferta");
 
-			String CIFEmpresa = vista.getOfertasBuscar().gettextCIFEmpresa();
-			String sectorBusqueda = vista.getOfertasBuscar().getcbSector();
-			String antiguedad = vista.getOfertasBuscar().getcbAntiguedad();
+			String CIFEmpresa = vista.getOfertaBuscar().gettextoCIFEmpresa();
+			String sectorBusqueda = vista.getOfertaBuscar().getcbSector();
+			String antiguedad = vista.getOfertaBuscar().getAntiguedad();
+
 			final String[] columnNames = {"CIF", "Razón Social", "Sector", "Fecha de oferta"};
 			listaOfertas = obtenerListaOfertas(CIFEmpresa, sectorBusqueda, antiguedad);
 
@@ -321,7 +322,7 @@ public class ControladorOferta {
 
 			};
 
-			vista.getOfertasBuscar().gettablaBusquedaOferta().setModel(tableModel);
+			vista.getOfertaBuscar().gettablaBusquedaOferta().setModel(tableModel);
 		}
 	}
 
@@ -331,8 +332,8 @@ public class ControladorOferta {
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Eliminar Oferta");
 
-			if (vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
-				if (eliminarOferta(listaOfertas.get(vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow()))){
+			if (vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
+				if (eliminarOferta(listaOfertas.get(vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow()))){
 					ControladorErrores.mostrarMensaje("La oferta ha sido borrada");
 				}
 			}
@@ -344,8 +345,8 @@ public class ControladorOferta {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Consultar Oferta");
-			if (vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
-                ofertaConsultada = listaOfertas.get(vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow());
+			if (vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
+                ofertaConsultada = listaOfertas.get(vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow());
 				ControladorBolsaTrabajo.getInstance(vista).mostrarConsultarOferta(ofertaConsultada);
 			}
 		}

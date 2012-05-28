@@ -41,11 +41,12 @@ public class VistaBolsaTrabajo extends javax.swing.JPanel {
 		return this.panelBolsaTrabajoInicio;
 	}
 
-	public PanelOfertaInicio getOfertasInicio(){
+	/* ____ Paneles para ofertas ____ */
+	public PanelOfertaInicio getOfertaInicio(){
 		return this.panelOfertaInicio;
 	}
 
-	public PanelOfertaBuscar getOfertasBuscar(){
+	public PanelOfertaBuscar getOfertaBuscar(){
 		return this.panelOfertaBuscar;
 	}
 
@@ -53,6 +54,7 @@ public class VistaBolsaTrabajo extends javax.swing.JPanel {
 		return this.panelOfertaDatos;
 	}
 
+	/* ____ Paneles para demandas ____ */
 	public PanelDemandaInicio getDemandasInicio(){
 		return this.panelDemandaInicio;
 	}
@@ -93,8 +95,8 @@ public class VistaBolsaTrabajo extends javax.swing.JPanel {
         panelBolsaTrabajo.add(panelDemandaInicio, "demandaInicio");
         panelBolsaTrabajo.add(panelDemandaBuscar, "demandaBuscar");
         panelBolsaTrabajo.add(panelDemandaDatos, "demandaDatos");
-        panelBolsaTrabajo.add(panelOfertaInicio, "ofertasInicio");
-        panelBolsaTrabajo.add(panelOfertaBuscar, "ofertasBuscar");
+        panelBolsaTrabajo.add(panelOfertaInicio, "ofertaInicio");
+        panelBolsaTrabajo.add(panelOfertaBuscar, "ofertaBuscar");
         panelBolsaTrabajo.add(panelOfertaDatos, "ofertaDatos");
 
         add(panelBolsaTrabajo, java.awt.BorderLayout.CENTER);

@@ -3,6 +3,7 @@ package Vistas.Paneles.BolsaTrabajo;
 
 import Vistas.Paneles.Beneficiario.*;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 
@@ -31,15 +32,21 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
         return BTBuscar;
     }
 
-    public String getcbAntiguedad(){
-        return cbAntiguedad.getSelectedItem().toString();
+    public JComboBox getcbAntiguedad(){
+        return cbAntiguedad;
+    }
+
+	public String getAntiguedad(){
+		int antiguedad = cbAntiguedad.getSelectedIndex();
+		if (antiguedad>12) return "null";
+		return antiguedad+"";
     }
 
     public String getcbSector(){
         return cbSector.getSelectedItem().toString();
     }
 
-	public String gettextCIFEmpresa(){
+	public String gettextoCIFEmpresa(){
 		return textCIFEmpresa.getText();
 	}
 

@@ -65,8 +65,8 @@ public class ControladorBolsaTrabajo {
         vista.getBolsaTrabajoInicio().anadirListenerbtOfertasEmpleo(new btOfertasInicioListener());
         vista.getDemandasInicio().anadirListenerbtConsultarDemanda(new btConsultarDemandaListener());
         vista.getDemandasInicio().anadirListenerbtNuevaDemanda(new btNuevaDemandaListener ());
-        vista.getOfertasInicio().anadirListenerbtBuscarOfertas(new btBuscarOfertas());
-        vista.getOfertasInicio().anadirListenerbtNuevaOferta(new btNuevaOferta());
+        vista.getOfertaInicio().anadirListenerbtBuscarOfertas(new btBuscarOfertas());
+        vista.getOfertaInicio().anadirListenerbtNuevaOferta(new btNuevaOferta());
     }
 
 /* __________________________    IMPLEMENTACION DE MOSTAR VISTAS    ________________*/
@@ -102,7 +102,7 @@ public class ControladorBolsaTrabajo {
     }
 
 	// Paneles para ofertas
-	public void mostrarOfertasInicio(){
+	public void mostrarOfertaInicio(){
         vista.showPanel(VistaBolsaTrabajo.PanelOfertaInicio);
         vista.getBarraDeNavigacion().setTextLabelNivel2("Ofertas");
     }
@@ -229,7 +229,7 @@ public class ControladorBolsaTrabajo {
 
 		@Override
 		public void actionPerformed (ActionEvent ea){
-			mostrarOfertasInicio();
+			mostrarOfertaInicio();
 		}
 	}
 
@@ -266,7 +266,7 @@ public class ControladorBolsaTrabajo {
 					mostrarDemandasInicio();
 				}
 				else
-					mostrarOfertasInicio();
+					mostrarOfertaInicio();
 			}
 		}
 	}
