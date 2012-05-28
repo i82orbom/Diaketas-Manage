@@ -31,6 +31,7 @@ import java.util.Date;
  * @author Jobero
  */
 public abstract class Persona {
+	private Long OID;
     private String NIF;
     private String nombre;
     private String apellidos;
@@ -43,16 +44,24 @@ public abstract class Persona {
     private String telefonoMovil;
     private String telefonoFijo;
 
-    public static int  NIF_ID = 0;
-    public static int  NOMBRE_ID = 1;
-    public static int  APELLIDOS_ID = 2;
-    public static int  FECHA_DE_NACIMIENTO_ID = 3;
-    public static int  DOMICILIO_ID = 4;
-    public static int  CP_ID = 5;
-    public static int  LOCALIDAD_ID = 6;
-    public static int  TELEFONO_MOVIL_ID = 7;
-    public static int  TELEFONO_FIJO_ID = 8;
+	public static int  OID_ID = 0;
+    public static int  NIF_ID = 1;
+    public static int  NOMBRE_ID = 2;
+    public static int  APELLIDOS_ID = 3;
+    public static int  FECHA_DE_NACIMIENTO_ID = 4;
+    public static int  DOMICILIO_ID = 5;
+    public static int  CP_ID = 6;
+    public static int  LOCALIDAD_ID = 7;
+    public static int  TELEFONO_MOVIL_ID = 8;
+    public static int  TELEFONO_FIJO_ID = 9;
 
+	public void setOID(Long OID) {
+         this.OID = OID;
+     }
+
+	public Long getOID() {
+		return OID;
+	}
 
     /**
      * Constructor por defecto

@@ -227,7 +227,7 @@ public class SocioJDBC {
     public ArrayList<Socio> obtenerListadoSocios(String tipoBusqueda, String valor) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "SELECT * FROM Socio s, C_Persona p WHERE "+tipoBusqueda+"='"+valor+"' AND s.OIDC_Persona=p.OID";
+        String sql = "SELECT * FROM Socio s, C_Persona p, Colaborador c WHERE "+tipoBusqueda+"='"+valor+"' AND s.OID=p.OID AND s.OID=c.OID AND p.OID=C.OID";
         ArrayList<Socio> listaSocios = new ArrayList<Socio>();
         Socio socio = null;
         
@@ -235,7 +235,7 @@ public class SocioJDBC {
             driver.conectar();
             ResultSet rs = driver.seleccionar(sql);
 
-            if(rs.next()){
+            while(rs.next()){
                 socio = new Socio();
                 socio.setUsuario(rs.getString("usuario"));
                 socio.setContrasena(rs.getString("contrasena"));
@@ -243,7 +243,7 @@ public class SocioJDBC {
                 socio.setDNI(rs.getString("DNI"));
                 socio.setNombre(rs.getString("Nombre"));
                 socio.setApellidos(rs.getString("Apellidos"));
-                socio.setFechaDeNacimiento(rs.getDate("FechaDeNacimiento"));
+                socio.setFechaDeNacimiento(rs.getDate("FechaNacimiento"));
 
                 char bufSexo[] = new char[1];
                 try {
@@ -253,7 +253,7 @@ public class SocioJDBC {
                 }
                 socio.setSexo(bufSexo[0]);
 
-                socio.setCP(rs.getString("CodigoPostal"));
+                socio.setCP(rs.getString("CP"));
                 socio.setDireccion(rs.getString("Direccion"));
                 socio.setEmail(rs.getString("Email"));
                 socio.setLocalidad(rs.getString("Localidad"));
