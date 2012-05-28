@@ -151,13 +151,20 @@ public class ControladorBolsaTrabajo {
 		vista.getOfertaDatos().getBTEliminarSector().setVisible(false);
 
 		vista.getOfertaDatos().getTextCIF().setEnabled(false);
+		vista.getOfertaDatos().getTextCIF().setText(oferta.getEmpresa().getCIF());
 		vista.getOfertaDatos().getcbSector().setEnabled(false);
+		vista.getOfertaDatos().getcbSector().setSelectedItem(oferta.getSector().getDescripcion());
 		vista.getOfertaDatos().getTextNuevoSector().setVisible(false);
 		vista.getOfertaDatos().gettaDescripcionOferta().setEditable(false);
+		vista.getOfertaDatos().gettaDescripcionOferta().setText(oferta.getDescripcionOferta());
 		vista.getOfertaDatos().gettextNPuestos().setEditable(false);
+		vista.getOfertaDatos().gettextNPuestos().setText(oferta.getPlazasOfertadas()+"");
 		vista.getOfertaDatos().getcbTipoContrato().setEnabled(false);
+		vista.getOfertaDatos().getcbTipoContrato().setSelectedItem(oferta.getTipoContrato());
 		vista.getOfertaDatos().gettextDuracionContrato().setEditable(false);
+		vista.getOfertaDatos().gettextDuracionContrato().setText(oferta.getDuracionContrato()+"");
 		vista.getOfertaDatos().gettaCualificacion().setEditable(false);
+		vista.getOfertaDatos().gettaCualificacion().setText(oferta.getCualificacionRequerida());
 
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
 		vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Ofertas");
