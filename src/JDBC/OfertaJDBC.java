@@ -96,7 +96,7 @@ public class OfertaJDBC {
 	public ArrayList<Oferta> filtrarOfertas (String empresa, String sector,String antiguedad)throws SQLException{
             DriverJDBC driver = DriverJDBC.getInstance();
             Date fecha_limite;
-            String sql = "SELECT * FROM Oferta o, Sector s, C_Empresa c WHERE s.Descripcion= '"+sector+"' AND s.OID = o.OIDSector AND (CURDATE()- '"+antiguedad+"')> o.Fecha AND '"+empresa+"'= c.CIF AND c.OID =o.OIDEmpresa ";
+            String sql = "SELECT * FROM Oferta o, Sector s, C_Empresa c WHERE s.descripcion= '"+sector+"' AND s.OID = o.OIDSector AND (CURDATE()- '"+antiguedad+"')> o.Fecha AND '"+empresa+"'= c.CIF AND c.OID =o.OIDEmpresa ";
             ArrayList<Oferta> lista_oferta = new ArrayList<Oferta>();
 
             try{
@@ -139,8 +139,22 @@ public class OfertaJDBC {
 
       public boolean ActualizarOferta (Oferta oferta) throws SQLException{
           DriverJDBC driver = DriverJDBC.getInstance();
-      return true;
-
+          String sql = "UPDATE Oferta SET OID='"+oferta.getOID()+"',cualificacionRequerida='"+oferta.getCualificacionRequerida()+"',descripcionOferta='"+oferta.getDescripcionOferta()+"',duracionContrato='"+oferta.getDuracionContrato()+"',fecha='"+oferta.getFecha()+"',plazasOfertadas='"+oferta.getPlazasOfertadas()+"',tipoContrato='"+oferta.getTipoContrato()+"',sector='"+oferta.getSector()+"',empresa='"+oferta.getEmpresa()+"',voluntario='"+oferta.getVoluntario()+"'";
+          
+          try {
+            driver.conectar();
+            driver.actualizar(sql);
+            
+        }
+        catch (SQLException ex){
+            throw ex;
+        }
+        finally {
+            driver.desconectar();
+        }
+        return true;
+         
+      
       }
 
 }
