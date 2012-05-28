@@ -81,6 +81,14 @@ public class ControladorOferta {
 
 	/* Métodos del controlador */
 	public boolean insertarOferta(Oferta oferta){
+		try{
+			OfertaJDBC.getInstance().insertarOferta(oferta);
+		}
+		catch (SQLException ex){
+			ControladorErrores.mostrarError("Error al insertar una oferta\n"+ex);
+			return false;
+		}
+
 		return true;
 	}
 
@@ -100,7 +108,7 @@ public class ControladorOferta {
 		ArrayList<Oferta> listaOfertas = new ArrayList<Oferta>();
 
 		try{
-			listaOfertas = OfertaJDBC.getInstance().filtrarOfertas(sector,antiguedad);
+			listaOfertas = OfertaJDBC.getInstance().filtrarOfertas(CIF,sector,antiguedad);
 		}
 		catch (SQLException ex){
 			ControladorErrores.mostrarError("Error al obtener la lista de ofertas:\n"+ex.getMessage());
@@ -167,7 +175,7 @@ public class ControladorOferta {
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Guardar Oferta");
 			Oferta  oferta = new Oferta();		// Se crea el objeto oferta
-/*
+
 			oferta.setCualificacionRequerida(vista.getOfertaDatos().getTextoCualificacion());
 			oferta.setDescripcionOferta(vista.getOfertaDatos().getTextoDescripcionOferta());
 			oferta.setDuracionContrato(Integer.parseInt(vista.getOfertaDatos().getTextoNPuestos()));
@@ -175,13 +183,15 @@ public class ControladorOferta {
 			oferta.setTipoContrato(vista.getOfertaDatos().getTextoTipoContrato());
 
 //			oferta.setIdSector(SectorJDBC.getInstance().getOID(vista.getOfertaDatos().getcbSector()));
-			try { oferta.setIdEmpresa(C_EmpresaJDBC.getInstance().obtenerC_Empresa((vista.getOfertaDatos().getTextoCIF())).getOIDEmpresa());
+/*			try { oferta.setIdEmpresa(C_EmpresaJDBC.getInstance().obtenerC_Empresa((vista.getOfertaDatos().getTextoCIF())).getOIDEmpresa());
 			} catch (SQLException ex){ }
 			oferta.setIdVoluntario(ControladorPrincipal.getInstance().getVoluntario().getOID());
-
-			oferta.setFecha(new Date());	// Fecha actual
 */
-			insertarOferta(oferta);			// Se envia el objeto al controlador
+			oferta.setFecha(new Date());	// Fecha actual
+
+			if (!insertarOferta(oferta)){			// Se envia el objeto al controlador
+				vista.getOfertaDatos().getMensajeError().setText("La oferta no ha sido añadida");
+			}
 		}
 	}
 
