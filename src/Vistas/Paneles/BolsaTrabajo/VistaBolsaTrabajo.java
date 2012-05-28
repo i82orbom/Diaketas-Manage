@@ -14,15 +14,12 @@ import java.awt.CardLayout;
 public class VistaBolsaTrabajo extends javax.swing.JPanel {
 
 	public static String PanelInicio = "inicio";
-	public static String PanelDemandaInicio = "demandasInicio";
-	public static String PanelOfertasInicio = "ofertasInicio";
-	public static String PanelNuevaDemanda = "nuevademanda";
-	public static String PanelOfertaDatos = "datosoferta";
-
-	public static String PanelConsultarDemandas = "consultardemandas";
-	public static String PanelModificarDemanda = "modificardemanda";
-	public static String PanelBuscarDemandas = "buscardemandas";
-	public static String PanelBuscarOfertas = "buscarofertas";
+	public static String PanelDemandaInicio = "demandaInicio";
+	public static String PanelDemandaBuscar = "demandaBuscar";
+	public static String PanelDemandaDatos = "demandaDatos";
+	public static String PanelOfertaInicio = "ofertaInicio";
+	public static String PanelOfertaBuscar = "ofertaBuscar";
+	public static String PanelOfertaDatos = "ofertaDatos";
 
 	/**
 	 * Creates new form VistaBolsaTrabajo
@@ -44,38 +41,30 @@ public class VistaBolsaTrabajo extends javax.swing.JPanel {
 		return this.panelBolsaTrabajoInicio;
 	}
 
-	public PanelOfertasInicio getOfertasInicio(){
-		return this.panelOfertasInicio1;
+	public PanelOfertaInicio getOfertasInicio(){
+		return this.panelOfertaInicio;
 	}
 
-	public PanelOfertasBuscar getOfertasBuscar(){
-		return this.panelOfertasBuscar;
+	public PanelOfertaBuscar getOfertasBuscar(){
+		return this.panelOfertaBuscar;
 	}
 
 	public PanelOfertaDatos getOfertaDatos(){
-		return this.panelDatosOferta;
+		return this.panelOfertaDatos;
 	}
 
-	public PanelDemandasInicio getDemandasInicio(){
-		return this.panelDemandasInicio;
+	public PanelDemandaInicio getDemandasInicio(){
+		return this.panelDemandaInicio;
 	}
 
-	public PanelNuevaDemanda getDemandaDatos(){
-		return this.panelNuevaDemanda;
+	public PanelDemandaDatos getDemandaDatos(){
+		return this.panelDemandaDatos;
 	}
 
-	public PanelDemandanteBuscar getDemandaBuscar(){
-		return this.panelDemandanteBuscar;
+	public PanelDemandaBuscar getDemandaBuscar(){
+		return this.panelDemandaBuscar;
 	}
 
-/*	public PanelConsultarDemanda getConsultarDemanda(){
-		return this.panelConsultarDemanda;
-	}
-
-	public PanelModificarDemanda getModificarDemanda(){
-		return this.panelModificarDemanda;
-	}
-*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,30 +76,26 @@ public class VistaBolsaTrabajo extends javax.swing.JPanel {
 
         barraDeNavegacion = new Vistas.BarraDeNavegacion();
         panelBolsaTrabajo = new javax.swing.JPanel();
-        panelConsultarDemanda = new Vistas.Paneles.BolsaTrabajo.PanelConsultarDemanda();
-        panelDemandanteBuscar = new Vistas.Paneles.BolsaTrabajo.PanelDemandanteBuscar();
-        panelModificarDemanda = new Vistas.Paneles.BolsaTrabajo.PanelModificarDemanda();
-        panelNuevaDemanda = new Vistas.Paneles.BolsaTrabajo.PanelNuevaDemanda();
-        panelDatosOferta = new Vistas.Paneles.BolsaTrabajo.PanelOfertaDatos();
-        panelOfertasBuscar = new Vistas.Paneles.BolsaTrabajo.PanelOfertasBuscar();
-        panelDemandasInicio = new Vistas.Paneles.BolsaTrabajo.PanelDemandasInicio();
-        panelOfertasInicio1 = new Vistas.Paneles.BolsaTrabajo.PanelOfertasInicio();
         panelBolsaTrabajoInicio = new Vistas.Paneles.BolsaTrabajo.PanelBolsaTrabajoInicio();
+        panelDemandaInicio = new Vistas.Paneles.BolsaTrabajo.PanelDemandaInicio();
+        panelDemandaBuscar = new Vistas.Paneles.BolsaTrabajo.PanelDemandaBuscar();
+        panelDemandaDatos = new Vistas.Paneles.BolsaTrabajo.PanelDemandaDatos();
+        panelOfertaInicio = new Vistas.Paneles.BolsaTrabajo.PanelOfertaInicio();
+        panelOfertaBuscar = new Vistas.Paneles.BolsaTrabajo.PanelOfertaBuscar();
+        panelOfertaDatos = new Vistas.Paneles.BolsaTrabajo.PanelOfertaDatos();
 
         setPreferredSize(new java.awt.Dimension(1000, 600));
         setLayout(new java.awt.BorderLayout());
         add(barraDeNavegacion, java.awt.BorderLayout.PAGE_START);
 
         panelBolsaTrabajo.setLayout(new java.awt.CardLayout());
-        panelBolsaTrabajo.add(panelConsultarDemanda, "consultardemandas");
-        panelBolsaTrabajo.add(panelDemandanteBuscar, "buscardemandas");
-        panelBolsaTrabajo.add(panelModificarDemanda, "modificardemanda");
-        panelBolsaTrabajo.add(panelNuevaDemanda, "nuevademanda");
-        panelBolsaTrabajo.add(panelDatosOferta, "datosoferta");
-        panelBolsaTrabajo.add(panelOfertasBuscar, "buscarofertas");
-        panelBolsaTrabajo.add(panelDemandasInicio, "demandasInicio");
-        panelBolsaTrabajo.add(panelOfertasInicio1, "ofertasInicio");
         panelBolsaTrabajo.add(panelBolsaTrabajoInicio, "inicio");
+        panelBolsaTrabajo.add(panelDemandaInicio, "demandaInicio");
+        panelBolsaTrabajo.add(panelDemandaBuscar, "demandaBuscar");
+        panelBolsaTrabajo.add(panelDemandaDatos, "demandaDatos");
+        panelBolsaTrabajo.add(panelOfertaInicio, "ofertasInicio");
+        panelBolsaTrabajo.add(panelOfertaBuscar, "ofertasBuscar");
+        panelBolsaTrabajo.add(panelOfertaDatos, "ofertaDatos");
 
         add(panelBolsaTrabajo, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -118,13 +103,11 @@ public class VistaBolsaTrabajo extends javax.swing.JPanel {
     private Vistas.BarraDeNavegacion barraDeNavegacion;
     private javax.swing.JPanel panelBolsaTrabajo;
     private Vistas.Paneles.BolsaTrabajo.PanelBolsaTrabajoInicio panelBolsaTrabajoInicio;
-    private Vistas.Paneles.BolsaTrabajo.PanelConsultarDemanda panelConsultarDemanda;
-    private Vistas.Paneles.BolsaTrabajo.PanelDemandanteBuscar panelDemandanteBuscar;
-    private Vistas.Paneles.BolsaTrabajo.PanelDemandasInicio panelDemandasInicio;
-    private Vistas.Paneles.BolsaTrabajo.PanelModificarDemanda panelModificarDemanda;
-    private Vistas.Paneles.BolsaTrabajo.PanelNuevaDemanda panelNuevaDemanda;
-    private Vistas.Paneles.BolsaTrabajo.PanelOfertaDatos panelDatosOferta;
-    private Vistas.Paneles.BolsaTrabajo.PanelOfertasBuscar panelOfertasBuscar;
-    private Vistas.Paneles.BolsaTrabajo.PanelOfertasInicio panelOfertasInicio1;
+    private Vistas.Paneles.BolsaTrabajo.PanelDemandaInicio panelDemandaInicio;
+    private Vistas.Paneles.BolsaTrabajo.PanelDemandaBuscar panelDemandaBuscar;
+    private Vistas.Paneles.BolsaTrabajo.PanelDemandaDatos panelDemandaDatos;
+    private Vistas.Paneles.BolsaTrabajo.PanelOfertaInicio panelOfertaInicio;
+    private Vistas.Paneles.BolsaTrabajo.PanelOfertaBuscar panelOfertaBuscar;
+    private Vistas.Paneles.BolsaTrabajo.PanelOfertaDatos panelOfertaDatos;
     // End of variables declaration//GEN-END:variables
 }

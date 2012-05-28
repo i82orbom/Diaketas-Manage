@@ -82,28 +82,28 @@ public class ControladorBolsaTrabajo {
     }
 
     public void mostarNuevaDemanda(){
-        vista.showPanel(VistaBolsaTrabajo.PanelNuevaDemanda);
+        vista.showPanel(VistaBolsaTrabajo.PanelDemandaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Nueva Demanda");
     }
 
     public void mostrarConsultarDemandas(){
-        vista.showPanel(VistaBolsaTrabajo.PanelConsultarDemandas);
+        vista.showPanel(VistaBolsaTrabajo.PanelDemandaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Demanda");
     }
 
     public void mostrarModificarDemanda() {
-        vista.showPanel(VistaBolsaTrabajo.PanelModificarDemanda);
+        vista.showPanel(VistaBolsaTrabajo.PanelDemandaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Demanda");
     }
 
     public void mostrarBuscarDemanda() {
-        vista.showPanel(VistaBolsaTrabajo.PanelBuscarDemandas);
+        vista.showPanel(VistaBolsaTrabajo.PanelDemandaBuscar);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Buscar Demanda");
     }
 
 	// Paneles para ofertas
 	public void mostrarOfertasInicio(){
-        vista.showPanel(VistaBolsaTrabajo.PanelOfertasInicio);
+        vista.showPanel(VistaBolsaTrabajo.PanelOfertaInicio);
         vista.getBarraDeNavigacion().setTextLabelNivel2("Ofertas");
     }
 
@@ -194,7 +194,7 @@ public class ControladorBolsaTrabajo {
     }
 
 	public void mostrarBuscarOferta() {
-        vista.showPanel(VistaBolsaTrabajo.PanelBuscarOfertas);
+        vista.showPanel(VistaBolsaTrabajo.PanelOfertaBuscar);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Buscar Oferta");
     }
 

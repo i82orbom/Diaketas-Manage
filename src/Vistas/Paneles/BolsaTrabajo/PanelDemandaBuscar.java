@@ -15,46 +15,46 @@ import javax.swing.JTextField;
  *
  * @author psylock
  */
-public class PanelDemandanteBuscar extends javax.swing.JPanel {
-  
-    
+public class PanelDemandaBuscar extends javax.swing.JPanel {
+
+
     /**
      * Creates new form PanelBeneficiarioBuscar
      */
-    public PanelDemandanteBuscar() {
+    public PanelDemandaBuscar() {
         initComponents();
     }
-    
+
     public JButton getBTBuscar(){
         return BTBuscar;
     }
-    
+
     public JButton getBTEliminar(){
         return BTEliminar;
     }
-    
+
     public JButton getBTModificar(){
         return BTEliminar;
     }
-    
+
     public String getcbSector(){
         return cbSector.getSelectedItem().toString();
     }
-    
+
     public String getcbAntiguedad(){
         return cbAntiguedad.getSelectedItem().toString();
     }
-    
+
     public JTable getTablaBusquedaDemandante(){
         return tablaBusquedaDemandante;
     }
-    
+
     public String getTextBusquedaDemandanteDNI(){
         return textBusquedaDemandanteDNI.getText();
     }
-    
-    
-    
+
+
+
 
 
     /**
