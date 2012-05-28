@@ -136,7 +136,7 @@ public class ControladorOferta {
 			SectorJDBC.getInstance().InsertarSector(sector);
 		}
 		catch (SQLException ex){
-//			JOptionPane.
+			ControladorErrores.mostrarError("Error al guardar sector:\n"+ex);
 		}
 		return true;
 	}
@@ -158,6 +158,7 @@ public class ControladorOferta {
 			Sector sector = new Sector();
 			sector.setDescripcion(vista.getOfertaDatos().getTextoSector());
 			insertarSector(sector);
+			ControladorBolsaTrabajo.getInstance(null).mostrarNuevaOferta();
 		}
 	}
 

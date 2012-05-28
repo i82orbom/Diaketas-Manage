@@ -49,7 +49,7 @@ public class OfertaJDBC {
 
 		return exito;
     }
-    
+
     public boolean eliminarOferta (Oferta oferta) throws SQLException{
         boolean exito = true;
         DriverJDBC driver = DriverJDBC.getInstance();
@@ -69,9 +69,9 @@ public class OfertaJDBC {
 		}
 
 		return exito;
-    
+
     }
-        
+
     public boolean obtenerOferta (String oferta)throws SQLException{
         boolean exito = true;
         DriverJDBC driver = DriverJDBC.getInstance();
@@ -94,19 +94,19 @@ public class OfertaJDBC {
     }
 
 	public ArrayList<Oferta> filtrarOfertas (String empresa, String sector,String antiguedad)throws SQLException{
-            DriverJDBC driver = DriverJDBC.getInstance(); 
+            DriverJDBC driver = DriverJDBC.getInstance();
             Date fecha_limite;
-            String sql = "SELECT * FROM Oferta o, Sector s, C_Empresa c WHERE s.Descripccion= '"+sector+"' AND s.OID = o.OIDSector AND (CURDATE()- '"+antiguedad+"')> o.Fecha AND '"+empresa+"'= c.CIF AND c.OID =o.OIDEmpresa ";
+            String sql = "SELECT * FROM Oferta o, Sector s, C_Empresa c WHERE s.Descripcion= '"+sector+"' AND s.OID = o.OIDSector AND (CURDATE()- '"+antiguedad+"')> o.Fecha AND '"+empresa+"'= c.CIF AND c.OID =o.OIDEmpresa ";
             ArrayList<Oferta> lista_oferta = new ArrayList<Oferta>();
-            
+
             try{
-            
+
                 Oferta temp;
                 C_Empresa temp2;
-                
+
 		driver.conectar();
 		ResultSet resultados = driver.seleccionar(sql);
-                
+
                 while(resultados.next()){
                     temp = new Oferta();
                     temp.setCualificacionRequerida(resultados.getString("CualificacionRequerida"));
@@ -119,28 +119,28 @@ public class OfertaJDBC {
                     temp.setPlazasOfertadas(resultados.getInt("PlazasOfertadas"));
                     temp.getSector().setDescripcion(resultados.getString("Descripcion"));
                     temp.setTipoContrato(resultados.getString("TipoContrato"));
-                    
-                    
-                    
+
+
+
                     lista_oferta.add(temp);
-                    
+
                }
             }
-            
+
             catch (SQLException ex){
 			throw ex;
 		}
 		finally {
 			driver.desconectar();
 		}
-            
+
             return lista_oferta;
         }
-        
+
       public boolean ActualizarOferta (Oferta oferta) throws SQLException{
           DriverJDBC driver = DriverJDBC.getInstance();
       return true;
-      
+
       }
 
 }

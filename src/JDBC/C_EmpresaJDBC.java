@@ -67,7 +67,7 @@ public class C_EmpresaJDBC {
      */
     public boolean añadirC_Empresa(C_Empresa e) throws SQLException{
 		DriverJDBC driver = DriverJDBC.getInstance();
-		String sql = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, codigoPostal, TelefonoFijo, TelefonoMovil, Email) VALUES ('"
+		String sql = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, CP, TelefonoFijo, TelefonoMovil, Email) VALUES ('"
 				+ e.getDireccion()+"','"+e.getLocalidad()+"','"+e.getProvincia()+"','"+e.getCP()+"','"+e.getTelefonoFijo()+"',,'"+e.getTelefonoMovil()+"','"+e.getEmail()+"')";
 		String sql2 = "INSERT INTO C_Empresa (OID, CIF, Nombre, Fax, DireccionWeb) VALUES ("
 				+ "LAST_INSERT_ID(),'"+e.getCIF()+"','"+e.getNombre()+"','"+e.getFax()+"','"+e.getDireccionWeb()+"')";
@@ -97,7 +97,7 @@ public class C_EmpresaJDBC {
      */
     public boolean modificarDatosC_Empresa(C_Empresa e) throws SQLException{
 
-        DriverJDBC driver = DriverJDBC.getInstance();     
+        DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "UPDATE Colaborador SET Direccion='"+e.getDireccion()+"', Localidad='"+e.getLocalidad()+"', Provincia='"+e.getProvincia()+"', codigoPostal='"+e.getCP()+"', TelefonoFijo='"+e.getTelefonoFijo()+"', TelefonoMovil='"+e.getTelefonoMovil()+"', Email='"+e.getEmail()+"WHERE OID="+e.getOIDColaborador()+"'";
         String sql2 = "UPDATE C_Empresa SET CIF='"+e.getCIF()+"', Nombre='"+e.getNombre()+"', Fax='"+e.getFax()+"', DireccionWeb='"+e.getDireccionWeb()+"WHERE OID="+e.getOIDEmpresa()+"'";
 
@@ -158,7 +158,7 @@ public class C_EmpresaJDBC {
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "SELECT * FROM Colaborador c, C_Empresa e WHERE (e.CIF='"+cif+"') AND c.OID=e.OID";
         C_Empresa Empresa = null;
-        
+
         try {
             driver.conectar();
             ResultSet rs = driver.seleccionar(sql);
@@ -204,7 +204,7 @@ public class C_EmpresaJDBC {
         String sql = "SELECT * FROM C_Empresa e, Colaborador c WHERE "+tipoBusqueda+"='"+valor+"' AND e.OID=c.";
         ArrayList<C_Empresa> listaC_Empresa = new ArrayList<C_Empresa>();
         C_Empresa Empresa = null;
-        
+
         try {
             driver.conectar();
             ResultSet resultados = driver.seleccionar(sql);
@@ -237,14 +237,14 @@ public class C_EmpresaJDBC {
 
         return listaC_Empresa;
     }
-    
+
     public ResultSet obtenerC_empresa (Sector sector )throws SQLException{
         DriverJDBC driver = DriverJDBC.getInstance();
         ResultSet rs;
-        
+
         String sql1 = "SELECT OID FROM C_empresa WHERE OID = '"+C_Empresa.CIF_ID+"'";
         rs = driver.seleccionar(sql1);
-        
+
             try{
                     driver.inicioTransaccion();
                     driver.insertar(sql1);

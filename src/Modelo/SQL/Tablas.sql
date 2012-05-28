@@ -202,13 +202,12 @@ CREATE TABLE Colaboracion (
 );
 
 CREATE TABLE Sector (
-	OID INTEGER
+	OID INTEGER PRIMARY KEY AUTO_INCREMENT
 	, descripcion VARCHAR (100)  NOT NULL
-	, PRIMARY KEY (OID)
 );
 
 CREATE TABLE Oferta (
-	OID INTEGER
+	OID INTEGER PRIMARY KEY AUTO_INCREMENT
 	, OIDSector INTEGER
 	, OIDEmpresa INTEGER
 	, OIDVoluntario INTEGER
@@ -224,11 +223,10 @@ CREATE TABLE Oferta (
 			REFERENCES C_Empresa (OID)
 	, CONSTRAINT Fk_OIDOferta4 FOREIGN KEY (OIDVoluntario)
 			REFERENCES Voluntario (OID)
-
 );
 
 CREATE TABLE Demanda (
-	OID INTEGER
+	OID INTEGER PRIMARY KEY AUTO_INCREMENT
 	, OIDSector INTEGER
 	, OIDBeneficiario INTEGER
 	, OIDVoluntario INTEGER
@@ -250,3 +248,12 @@ INSERT INTO Colaborador VALUES (0,'Sin dirección', '', '', '00000', '', '', '')
 UPDATE Colaborador SET OID = 0 WHERE CP = '00000';
 INSERT INTO C_Persona VALUES (0, '00000000a', 'Anónimo', '', '0001-01-01', 'M');
 INSERT INTO socio VALUES (0,'anonimo','');
+
+INSERT INTO Colaborador (Direccion, Localidad, Provincia, cp, TelefonoFijo, TelefonoMovil, Email) VALUES ("C/La calle, 7","motril","granada", "12345","1234568798","234568798","a@emp.com");
+INSERT INTO C_Empresa (OID, CIF, Nombre, Fax, DireccionWeb) VALUES (LAST_INSERT_ID(),'a12345678b','mi empresa','233445567','www.pagina.com');
+
+INSERT INTO sector(Descripcion) Values ("Construccion");
+INSERT INTO sector(Descripcion) Values ("Carpinteria");
+INSERT INTO sector(Descripcion) Values ("Hosteleria");
+
+INSERT INTO oferta values (null,3,2,1,"Manipulador de alimentos","Trabajo de camarero en Hotel Carapan",3,"2012-03-01",10,"Fijo");
