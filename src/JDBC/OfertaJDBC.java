@@ -11,6 +11,7 @@ package JDBC;
 
 import Controladores.TestDatos;
 import Modelo.*;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class OfertaJDBC {
 
         try{
 			driver.inicioTransaccion();
-			driver.insertar(sql1);
+			driver.eliminar(sql1);
 			driver.commit();
 		}
 		catch (SQLException ex){
@@ -78,7 +79,7 @@ public class OfertaJDBC {
 
         try{
 			driver.inicioTransaccion();
-			driver.insertar(sql1);
+			driver.seleccionar(sql1);
 			driver.commit();
 		}
 		catch (SQLException ex){
@@ -94,7 +95,45 @@ public class OfertaJDBC {
 
 	public ArrayList<Oferta> filtrarOfertas (String empresa, String sector,String antiguedad)throws SQLException{
             DriverJDBC driver = DriverJDBC.getInstance(); 
+            Date fecha_limite;
+            String sql = "SELECT * FROM Oferta o, Sector s, C_Empresa c WHERE s.Descripcion= '"+sector+"' AND s.OID = o.OIDSector AND (CURDATE()- '"+antiguedad+"')> o.Fecha AND '"+empresa+"'= c.CIF AND c.OID =o.OIDEmpresa ";
             ArrayList<Oferta> lista_oferta = new ArrayList<Oferta>();
+            
+            try{
+            
+                Oferta temp;
+                C_Empresa temp2;
+                
+		driver.conectar();
+		ResultSet resultados = driver.seleccionar(sql);
+                
+                while(resultados.next()){
+                    temp = new Oferta();
+                    temp.setCualificacionRequerida(resultados.getString("CualificacionRequerida"));
+                    temp.setDescripcionOferta(resultados.getString("DescripcionOferta"));
+                    temp.setDuracionContrato(resultados.getInt("DuracionContrato"));
+                    temp.getEmpresa().setCIF(resultados.getString("CIF"));
+                    temp.getEmpresa().setNombre(resultados.getString("Nombre"));
+                    temp.setFecha(resultados.getDate("Fecha"));
+                    temp.setOID(resultados.getLong("OID"));
+                    temp.setPlazasOfertadas(resultados.getInt("PlazasOfertadas"));
+                    temp.getSector().setDescripcion(resultados.getString("Descripcion"));
+                    temp.setTipoContrato(resultados.getString("TipoContrato"));
+                    
+                    
+                    
+                    lista_oferta.add(temp);
+                    
+               }
+            }
+            
+            catch (SQLException ex){
+			throw ex;
+		}
+		finally {
+			driver.desconectar();
+		}
+            
             return lista_oferta;
         }
 
