@@ -1,8 +1,10 @@
 
 package Vistas.Paneles.BolsaTrabajo;
 
-import Modelo.Oferta;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class PanelOfertaDatos extends javax.swing.JPanel {
 
@@ -12,37 +14,6 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
 	public PanelOfertaDatos() {
 		initComponents();
 	}
-
-	/* __________ Estados del panel _________ */
-	public void nuevaOferta () {
-/*
-		borrarCampos();
-		btBorrar.setVisible(true);
-		btEliminar.setVisible(false);
-		labelError.setVisible(false);
-*/
-	}
-
-	public void consultarOferta(Oferta oferta){
-
-	}
-
-    public void modificarOferta (Oferta oferta) {
-/*		btBorrar.setVisible(false);
-		btEliminar.setVisible(true);
-		labelError.setVisible(false);
-		textApellidos.setText(voluntario.getApellidos());
-		textCP.setText(voluntario.getCP());
-		textDomicilio.setText(voluntario.getDomicilio());
-		textFechaNacimiento.setText(formatter.format(voluntario.getFechaDENacimiento()));
-		textLocalidad.setText(voluntario.getLocalidad());
-		textNIF.setText(voluntario.getNIF());
-		textNombre.setText(voluntario.getNombre());
-		textTelMovil.setText(voluntario.getTelefonoMovil());
-		textTelFijo.setText(voluntario.getTelefonoFijo());
-		textPassword.setText("");
-*/	}
-
 
 	/* Botones del panel */
 	public JButton getBTGuardarSector(){
@@ -74,53 +45,83 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
 	}
 
 	/* Campos del panel */
-	public String getTextCIF(){
-		return TextCIF.getText();
+	public String getTextoCIF(){
+		return textCIF.getText();
 	}
-	public void setTextCIF(String texto){
-		TextCIF.setText(texto);
+	public JTextField getTextCIF(){
+		return textCIF;
+	}
+	public void setTextoCIF(String texto){
+		textCIF.setText(texto);
 	}
 
-	public String getcbSector(){
+	public String getTextoSector(){
 		return cbSector.getSelectedItem().toString();
 	}
-
-	public String getTextNuevoSector(){
-		return TextNuevoSector.getText();
+	public JComboBox getcbSector(){
+		return cbSector;
 	}
-	public void setTextNuevoSector(String texto){
-		TextNuevoSector.setText(texto);
+	public void setTextoSector(String texto){
+		cbSector.setSelectedItem(texto);
 	}
 
-	public String gettaDescripcionOferta(){
+	public String getTextoNuevoSector(){
+		return textNuevoSector.getText();
+	}
+	public JTextField getTextNuevoSector(){
+		return textNuevoSector;
+	}
+	public void setTextoNuevoSector(String texto){
+		textNuevoSector.setText(texto);
+	}
+
+	public String getTextoDescripcionOferta(){
 		return taDescripcionOferta.getText();
 	}
-	public void settaDescripcionOferta(String texto){
+	public JTextArea gettaDescripcionOferta(){
+		return taDescripcionOferta;
+	}
+	public void setTextoDescripcionOferta(String texto){
 		taDescripcionOferta.setText(texto);
 	}
 
-	public String getTextNPuestos(){
-		return TextNPuestos.getText();
+	public String getTextoNPuestos(){
+		return textNPuestos.getText();
 	}
-	public void setTextNPuestos(String texto){
-		TextNPuestos.setText(texto);
+	public JTextField gettextNPuestos(){
+		return textNPuestos;
+	}
+	public void setTextoNPuestos(String texto){
+		textNPuestos.setText(texto);
 	}
 
-	public String getcbTipoContrato(){
+	public String getTextoTipoContrato(){
 		return cbTipoContrato.getSelectedItem().toString();
 	}
-
-	public String getTextDuracionContrato(){
-		return TextDuracionContrato.getText();
+	public JComboBox getcbTipoContrato(){
+		return cbTipoContrato;
 	}
-	public void setTextDuracionContrato(String texto){
-		TextDuracionContrato.setText(texto);
+	public void getTextoTipoContrato(String texto){
+		cbTipoContrato.setSelectedItem(texto);
 	}
 
-	public String gettaCualificacion(){
+	public String getTextoDuracionContrato(){
+		return textDuracionContrato.getText();
+	}
+	public JTextField gettextDuracionContrato(){
+		return textDuracionContrato;
+	}
+	public void setTextoDuracionContrato(String texto){
+		textDuracionContrato.setText(texto);
+	}
+
+	public String getTextoCualificacion(){
 		return taCualificacion.getText();
 	}
-	public void settaCualificacion(String texto){
+	public JTextArea gettaCualificacion(){
+		return taCualificacion;
+	}
+	public void setTextoCualificacion(String texto){
         taCualificacion.setText(texto);
     }
 
@@ -141,17 +142,17 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
         taDescripcionOferta = new javax.swing.JTextArea();
         labelTipoContrato = new javax.swing.JLabel();
         labelDuracionContrato = new javax.swing.JLabel();
-        TextNPuestos = new javax.swing.JTextField();
+        textNPuestos = new javax.swing.JTextField();
         cbTipoContrato = new javax.swing.JComboBox();
         labelMeses = new javax.swing.JLabel();
-        TextDuracionContrato = new javax.swing.JTextField();
+        textDuracionContrato = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         labelCIF = new javax.swing.JLabel();
         labelSector = new javax.swing.JLabel();
         cbSector = new javax.swing.JComboBox();
-        TextCIF = new javax.swing.JTextField();
+        textCIF = new javax.swing.JTextField();
         BTEliminarSector = new javax.swing.JButton();
-        TextNuevoSector = new javax.swing.JTextField();
+        textNuevoSector = new javax.swing.JTextField();
         BTGuardarSector = new javax.swing.JButton();
         jLabel68 = new javax.swing.JLabel();
         jLabel69 = new javax.swing.JLabel();
@@ -186,13 +187,13 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
 
         labelDuracionContrato.setText("Duracion de contrato");
 
-        TextNPuestos.setText("Numero");
+        textNPuestos.setText("Numero");
 
         cbTipoContrato.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fijo", "Temporal" }));
 
         labelMeses.setText("Meses");
 
-        TextDuracionContrato.setText("12");
+        textDuracionContrato.setText("12");
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -208,7 +209,7 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                             .add(jPanel1Layout.createSequentialGroup()
                                 .add(labelNPuestos)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                .add(TextNPuestos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 61, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(textNPuestos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 61, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(53, 53, 53)
                                 .add(labelTipoContrato)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
@@ -216,10 +217,10 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                                 .add(39, 39, 39)
                                 .add(labelDuracionContrato)
                                 .add(18, 18, 18)
-                                .add(TextDuracionContrato, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(textDuracionContrato, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(labelMeses)))
-                        .add(0, 333, Short.MAX_VALUE)))
+                        .add(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -234,10 +235,10 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                     .add(labelNPuestos)
                     .add(labelTipoContrato)
                     .add(labelDuracionContrato)
-                    .add(TextNPuestos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(textNPuestos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(cbTipoContrato, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(labelMeses)
-                    .add(TextDuracionContrato, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(textDuracionContrato, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(7, 7, 7))
         );
 
@@ -249,11 +250,11 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
 
         cbSector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Economico" }));
 
-        TextCIF.setText("CIF/ NIF");
+        textCIF.setText("CIF/ NIF");
 
         BTEliminarSector.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
 
-        TextNuevoSector.setText("Nuevo Sector");
+        textNuevoSector.setText("Nuevo Sector");
 
         BTGuardarSector.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
 
@@ -265,7 +266,7 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                 .add(40, 40, 40)
                 .add(labelCIF)
                 .add(18, 18, 18)
-                .add(TextCIF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(textCIF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(76, 76, 76)
                 .add(labelSector)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
@@ -273,7 +274,7 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(BTEliminarSector)
                 .add(18, 18, 18)
-                .add(TextNuevoSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(textNuevoSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(BTGuardarSector)
                 .addContainerGap(255, Short.MAX_VALUE))
@@ -287,7 +288,7 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                         .add(jPanel2Layout.createSequentialGroup()
                             .add(21, 21, 21)
                             .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                .add(TextCIF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(textCIF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(labelCIF)
                                 .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(labelSector)))
@@ -296,7 +297,7 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                             .add(BTEliminarSector))
                         .add(jPanel2Layout.createSequentialGroup()
                             .add(21, 21, 21)
-                            .add(TextNuevoSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                            .add(textNuevoSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -340,6 +341,9 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
         BTGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
 
         BTLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
+        BTLimpiar.setMaximumSize(new java.awt.Dimension(65, 41));
+        BTLimpiar.setMinimumSize(new java.awt.Dimension(65, 41));
+        BTLimpiar.setPreferredSize(new java.awt.Dimension(65, 41));
 
         BTModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/modificar.png"))); // NOI18N
 
@@ -352,30 +356,6 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(0, 0, Short.MAX_VALUE)
-                        .add(BTGuardar)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(BTModificar)
-                        .add(8, 8, 8)
-                        .add(BTGuardarCambios)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(BTLimpiar)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(BTEliminar)
-                        .add(332, 332, 332))
-                    .add(layout.createSequentialGroup()
-                        .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-            .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
                         .add(28, 28, 28)
@@ -387,6 +367,30 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                         .add(31, 31, 31)
                         .add(jLabel68)))
                 .add(0, 0, Short.MAX_VALUE))
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(0, 0, Short.MAX_VALUE)
+                        .add(BTGuardar)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(BTModificar)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(BTGuardarCambios)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(BTLimpiar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(BTEliminar)
+                        .add(309, 309, 309))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -403,14 +407,14 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                 .add(jLabel71)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 53, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(BTGuardar)
                     .add(BTEliminar)
                     .add(BTGuardarCambios)
-                    .add(BTLimpiar)
+                    .add(BTLimpiar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(BTModificar))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .add(49, 49, 49))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -422,10 +426,6 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
     private javax.swing.JButton BTGuardarSector;
     private javax.swing.JButton BTLimpiar;
     private javax.swing.JButton BTModificar;
-    private javax.swing.JTextField TextCIF;
-    private javax.swing.JTextField TextDuracionContrato;
-    private javax.swing.JTextField TextNPuestos;
-    private javax.swing.JTextField TextNuevoSector;
     private javax.swing.JComboBox cbSector;
     private javax.swing.JComboBox cbTipoContrato;
     private javax.swing.JLabel jLabel68;
@@ -445,5 +445,9 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
     private javax.swing.JLabel labelTipoContrato;
     private javax.swing.JTextArea taCualificacion;
     private javax.swing.JTextArea taDescripcionOferta;
+    private javax.swing.JTextField textCIF;
+    private javax.swing.JTextField textDuracionContrato;
+    private javax.swing.JTextField textNPuestos;
+    private javax.swing.JTextField textNuevoSector;
     // End of variables declaration//GEN-END:variables
 }
