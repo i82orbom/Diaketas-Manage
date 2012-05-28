@@ -99,7 +99,7 @@ public class ControladorOferta {
 		ArrayList<Oferta> listaOfertas = new ArrayList<Oferta>();
 
 		try{
-			listaOfertas = OfertaJDBC.getInstance().filtartOfertas(sector,antiguedad);
+			listaOfertas = OfertaJDBC.getInstance().filtrarOfertas(sector,antiguedad);
 		}
 		catch (SQLException ex){
 			JOptionPane.showMessageDialog(null, "Error al obtener la lista de ofertas:\n"+ex.getMessage());
