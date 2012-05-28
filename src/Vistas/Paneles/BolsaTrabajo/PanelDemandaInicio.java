@@ -11,12 +11,12 @@ import java.awt.event.ActionListener;
  *
  * @author psylock
  */
-public class PanelDemandasInicio extends javax.swing.JPanel {
+public class PanelDemandaInicio extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelBeneficiarioInicio
      */
-    public PanelDemandasInicio() {
+    public PanelDemandaInicio() {
         initComponents();
     }
 
@@ -25,12 +25,12 @@ public class PanelDemandasInicio extends javax.swing.JPanel {
     public void anadirListenerbtConsultarDemanda(ActionListener listener){
         this.btConsultarDemanda.addActionListener(listener);
     }
-    
+
     public void anadirListenerbtNuevaDemanda(ActionListener listener){
         this.btNuevaDemanda.addActionListener(listener);
     }
-    
-    
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

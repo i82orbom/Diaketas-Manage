@@ -11,12 +11,12 @@ import java.awt.event.ActionListener;
  *
  * @author psylock
  */
-public class PanelOfertasInicio extends javax.swing.JPanel {
+public class PanelOfertaInicio extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelBeneficiarioInicio
      */
-    public PanelOfertasInicio() {
+    public PanelOfertaInicio() {
         initComponents();
     }
 

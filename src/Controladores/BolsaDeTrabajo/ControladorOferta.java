@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
@@ -69,7 +70,7 @@ public class ControladorOferta {
 
 		// Buscar Ofertas
 		vista.getOfertasBuscar().getBTBuscar().addActionListener(new ListenerBtBuscarOferta());
-		vista.getOfertasBuscar().getBTEliminar().addActionListener(new ListenerBtEliminarOferta());
+		vista.getOfertasBuscar().getBTEliminar().addActionListener(new ListenerBtEliminarOfertaBuscada());
 		vista.getOfertasBuscar().getBTConsultar().addActionListener(new ListenerBtConsultarOferta());
 
 	}
@@ -123,6 +124,7 @@ public class ControladorOferta {
 	}
 
 	public boolean eliminarOferta(Oferta oferta){
+		JOptionPane.showConfirmDialog(vista, vista);
 		boolean exito = true;
 
 		return exito;
@@ -323,17 +325,29 @@ public class ControladorOferta {
 		}
 	}
 
+	public class ListenerBtEliminarOfertaBuscada implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Eliminar Oferta");
+
+			if (vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
+				if (eliminarOferta(listaOfertas.get(vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow()))){
+					ControladorErrores.mostrarMensaje("La oferta ha sido borrada");
+				}
+			}
+		}
+	}
+
 	public class ListenerBtConsultarOferta implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Consultar Oferta");
-/*			if (vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
+			if (vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
                 ofertaConsultada = listaOfertas.get(vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow());
-                vista.getOfertaDatos().consultarOferta(ofertaConsultada);
-*/				ControladorBolsaTrabajo.getInstance(vista).mostrarConsultarOferta(ofertaConsultada);
-//				vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);		// Revisar esta linea
-  //          }
+				ControladorBolsaTrabajo.getInstance(vista).mostrarConsultarOferta(ofertaConsultada);
+			}
 		}
 	}
 

@@ -10,12 +10,12 @@ import javax.swing.table.JTableHeader;
  *
  * @author psylock
  */
-public class PanelOfertasBuscar extends javax.swing.JPanel {
+public class PanelOfertaBuscar extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelBeneficiarioBuscar
      */
-    public PanelOfertasBuscar() {
+    public PanelOfertaBuscar() {
         initComponents();
     }
 
