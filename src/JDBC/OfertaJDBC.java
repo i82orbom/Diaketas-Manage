@@ -48,6 +48,28 @@ public class OfertaJDBC {
 
 		return exito;
     }
+    
+    public boolean eliminarOferta (Oferta oferta) throws SQLException{
+        boolean exito = true;
+        DriverJDBC driver = DriverJDBC.getInstance();
+        String sql1 = "DELETE  FROM oferta WHERE OID = '"+oferta.getOID()+"'";
+
+        try{
+			driver.inicioTransaccion();
+			driver.insertar(sql1);
+			driver.commit();
+		}
+		catch (SQLException ex){
+			driver.rollback();
+			throw ex;
+		}
+		finally {
+			driver.finTransaccion();
+		}
+
+		return exito;
+    
+    }
         
     public boolean obtenerOferta (Oferta oferta)throws SQLException{
         boolean exito = true;
@@ -70,8 +92,9 @@ public class OfertaJDBC {
 		return exito;
     }
 
-	public ArrayList<Oferta> filtrarOfertas (String sector,String antiguedad)throws SQLException{
-             ArrayList<Oferta> lista_oferta = new ArrayList<Oferta>();
+	public ArrayList<Oferta> filtrarOfertas (String empresa, String sector,String antiguedad)throws SQLException{
+            DriverJDBC driver = DriverJDBC.getInstance(); 
+            ArrayList<Oferta> lista_oferta = new ArrayList<Oferta>();
             return lista_oferta;
         }
 
