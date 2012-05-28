@@ -32,7 +32,8 @@ public class OfertaJDBC {
     public boolean insertarOferta (Oferta oferta)throws SQLException{
         boolean exito = true;
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql1 = "INSERT INTO Oferta (cualificacionRequerida, descripcionOferta ,duracionContrato, fecha, plazasOfertadas, tipoContrato, idSector, idEmpresa, idVoluntario) VALUES ('"+oferta.getCualificacionRequerida()+"','"+oferta.getDescripcionOferta()+"','"+oferta.getDuracionContrato()+"','"+oferta.getFecha()+"','"+oferta.getPlazasOfertadas()+"','"+oferta.getTipoContrato()+"','"+oferta.getSector().getOID()+"','"+oferta.getEmpresa().getOIDEmpresa()+"','"+oferta.getVoluntario().getOID()+"')";
+        String sql1 = "INSERT INTO Oferta (cualificacionRequerida, descripcionOferta ,duracionContrato, fecha, plazasOfertadas, tipoContrato, oidSector, oidEmpresa, oidVoluntario) VALUES ('"
+				+oferta.getCualificacionRequerida()+"','"+oferta.getDescripcionOferta()+"','"+oferta.getDuracionContrato()+"','"+TestDatos.formatterBD.format(oferta.getFecha())+"','"+oferta.getPlazasOfertadas()+"','"+oferta.getTipoContrato()+"','"+oferta.getSector().getOID()+"','"+oferta.getEmpresa().getOID()+"','"+oferta.getVoluntario().getOID()+"')";
 
         try{
 			driver.inicioTransaccion();
@@ -137,14 +138,13 @@ public class OfertaJDBC {
             return lista_oferta;
         }
 
-      public boolean ActualizarOferta (Oferta oferta) throws SQLException{
-          DriverJDBC driver = DriverJDBC.getInstance();
-          String sql = "UPDATE Oferta SET OID='"+oferta.getOID()+"',cualificacionRequerida='"+oferta.getCualificacionRequerida()+"',descripcionOferta='"+oferta.getDescripcionOferta()+"',duracionContrato='"+oferta.getDuracionContrato()+"',fecha='"+oferta.getFecha()+"',plazasOfertadas='"+oferta.getPlazasOfertadas()+"',tipoContrato='"+oferta.getTipoContrato()+"',sector='"+oferta.getSector()+"',empresa='"+oferta.getEmpresa()+"',voluntario='"+oferta.getVoluntario()+"'";
-          
-          try {
-            driver.conectar();
-            driver.actualizar(sql);
-            
+	public boolean ActualizarOferta (Oferta oferta) throws SQLException{
+		DriverJDBC driver = DriverJDBC.getInstance();
+		String sql = "UPDATE Oferta SET OID='"+oferta.getOID()+"',cualificacionRequerida='"+oferta.getCualificacionRequerida()+"',descripcionOferta='"+oferta.getDescripcionOferta()+"',duracionContrato='"+oferta.getDuracionContrato()+"',fecha='"+oferta.getFecha()+"',plazasOfertadas='"+oferta.getPlazasOfertadas()+"',tipoContrato='"+oferta.getTipoContrato()+"',sector='"+oferta.getSector()+"',empresa='"+oferta.getEmpresa()+"',voluntario='"+oferta.getVoluntario()+"'";
+
+		try {
+			driver.conectar();
+			driver.actualizar(sql);
         }
         catch (SQLException ex){
             throw ex;
@@ -152,9 +152,8 @@ public class OfertaJDBC {
         finally {
             driver.desconectar();
         }
+
         return true;
-         
-      
-      }
+	}
 
 }

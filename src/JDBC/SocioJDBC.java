@@ -104,9 +104,9 @@ public class SocioJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
 
-        String sql = "UPDATE Colaborador SET Direccion='"+socio.getDireccion()+"', Localidad='"+socio.getLocalidad()+"', Provincia='"+socio.getProvincia()+"', codigoPostal='"+socio.getCP()+"',TelefonoFijo='"+socio.getTelefonoFijo()+"', TelefonoMovil='"+socio.getTelefonoMovil()+"', Email='"+socio.getEmail()+"WHERE OID="+socio.getOIDColaborador()+"'";
-        String sql2 = "UPDATE C_Persona SET DNI='"+socio.getDNI()+"', Nombre='"+socio.getNombre()+"', Apellidos='"+socio.getApellidos()+"', FechaDeNacimiento='"+socio.getFechaDeNacimiento()+"WHERE OID="+socio.getOIDPersona()+"'";
-        String sql3 = "UPDATE Socio SET usuario='"+socio.getUsuario()+"', contrasena='"+socio.getContrasena()+"WHERE OID="+socio.getOIDSocio()+"'";
+        String sql = "UPDATE Colaborador SET Direccion='"+socio.getDireccion()+"', Localidad='"+socio.getLocalidad()+"', Provincia='"+socio.getProvincia()+"', codigoPostal='"+socio.getCP()+"',TelefonoFijo='"+socio.getTelefonoFijo()+"', TelefonoMovil='"+socio.getTelefonoMovil()+"', Email='"+socio.getEmail()+"WHERE OID="+socio.getOID()+"'";
+        String sql2 = "UPDATE C_Persona SET DNI='"+socio.getDNI()+"', Nombre='"+socio.getNombre()+"', Apellidos='"+socio.getApellidos()+"', FechaDeNacimiento='"+socio.getFechaDeNacimiento()+"WHERE OID="+socio.getOID()+"'";
+        String sql3 = "UPDATE Socio SET usuario='"+socio.getUsuario()+"', contrasena='"+socio.getContrasena()+"WHERE OID="+socio.getOID()+"'";
 
         try{
                 driver.inicioTransaccion();
@@ -135,13 +135,13 @@ public class SocioJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
 
-        String sql = "UPDATE Colaboracion SET OID=OID_Anonimo WHERE OID='"+socio.getOIDSocio()+"'";
-        String sql2 = "UPDATE PagoCuota SET OID=OID_Anonimo WHERE OIDSocio='"+socio.getOIDSocio()+"'";
-        String sql3 = "UPDATE Cuota SET fechaFin=fechaUltimoPago WHERE OIDSocio='"+socio.getOIDSocio()+"'";
-        String sql4 = "UPDATE Cuota SET OIDSocio=OID_Anonimo WHERE OIDSocio='"+socio.getOIDSocio()+"'";
-        String sql5 = "DELETE FROM Socio WHERE OID='"+socio.getOIDSocio()+"'";
-        String sql6 = "DELETE FROM C_Persona WHERE OID='"+socio.getOIDPersona()+"'";
-        String sql7 = "DELETE FROM Colaborador WHERE OID='"+socio.getOIDColaborador()+"'";
+        String sql = "UPDATE Colaboracion SET OID=OID_Anonimo WHERE OID='"+socio.getOID()+"'";
+        String sql2 = "UPDATE PagoCuota SET OID=OID_Anonimo WHERE OIDSocio='"+socio.getOID()+"'";
+        String sql3 = "UPDATE Cuota SET fechaFin=fechaUltimoPago WHERE OIDSocio='"+socio.getOID()+"'";
+        String sql4 = "UPDATE Cuota SET OIDSocio=OID_Anonimo WHERE OIDSocio='"+socio.getOID()+"'";
+        String sql5 = "DELETE FROM Socio WHERE OID='"+socio.getOID()+"'";
+        String sql6 = "DELETE FROM C_Persona WHERE OID='"+socio.getOID()+"'";
+        String sql7 = "DELETE FROM Colaborador WHERE OID='"+socio.getOID()+"'";
 
         try{
                 driver.inicioTransaccion();
@@ -217,14 +217,14 @@ public class SocioJDBC {
             return socio;
 
     }
-	
+
 	 public boolean comprobarUsuarioUnico(String Usuario) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
 
         String sql = "SELECT * FROM Colaborador c, C_Persona p, Socio s WHERE (s.Usuario='"+Usuario+"') AND c.OID=p.OID AND s.OID=p.OID AND s.OID=c.OID";
         boolean existe = true;
-        
+
          try {
             driver.conectar();
             ResultSet rs = driver.seleccionar(sql);
@@ -240,8 +240,8 @@ public class SocioJDBC {
 		}
 		finally{
 			driver.desconectar();
-		}  
-		
+		}
+
 		return existe;
     }
 
@@ -314,7 +314,7 @@ public class SocioJDBC {
         Date fechaActual = null;
         Cuota c = new Cuota();
 
-        String sql = "SELECT * FROM Cuota c WHERE c.OIDSocio='"+socio.getOIDSocio()+"' AND (c.FechaFin > '"+fechaActual.getTime()+"' OR c.FechaFin <> NULL)";
+        String sql = "SELECT * FROM Cuota c WHERE c.OIDSocio='"+socio.getOID()+"' AND (c.FechaFin > '"+fechaActual.getTime()+"' OR c.FechaFin <> NULL)";
 
         try {
             driver.conectar();

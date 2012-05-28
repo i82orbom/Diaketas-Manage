@@ -8,6 +8,7 @@ import Controladores.TestDatos;
 import JDBC.C_EmpresaJDBC;
 import JDBC.OfertaJDBC;
 import JDBC.SectorJDBC;
+import Modelo.C_Empresa;
 import Modelo.Oferta;
 import Modelo.Sector;
 import Vistas.Paneles.BolsaTrabajo.VistaBolsaTrabajo;
@@ -177,7 +178,8 @@ public class ControladorOferta {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Guardar Oferta");
-			Oferta  oferta = new Oferta();		// Se crea el objeto oferta
+			Oferta oferta = new Oferta();		// Se crea el objeto oferta
+			C_Empresa empresa = null;
 
 			oferta.setCualificacionRequerida(vista.getOfertaDatos().getTextoCualificacion());
 			oferta.setDescripcionOferta(vista.getOfertaDatos().getTextoDescripcionOferta());
@@ -185,13 +187,22 @@ public class ControladorOferta {
 			oferta.setPlazasOfertadas(Integer.parseInt(vista.getOfertaDatos().getTextoNPuestos()));
 			oferta.setTipoContrato(vista.getOfertaDatos().getTextoTipoContrato());
 
-//			oferta.setIdSector(SectorJDBC.getInstance().getOID(vista.getOfertaDatos().getcbSector()));
-/*			try { oferta.setIdEmpresa(C_EmpresaJDBC.getInstance().obtenerC_Empresa((vista.getOfertaDatos().getTextoCIF())).getOIDEmpresa());
-			} catch (SQLException ex){ }
-			oferta.setIdVoluntario(ControladorPrincipal.getInstance().getVoluntario().getOID());
-*/
-			oferta.setFecha(new Date());	// Fecha actual
+			int sector = vista.getOfertaDatos().getcbSector().getSelectedIndex();
+			oferta.setSector(ControladorBolsaTrabajo.getInstance(null).getSectores().get(sector));
+//			System.out.println(oferta.getSector().getOID()+": " + oferta.getSector().getDescripcion());
 
+			try {
+				empresa = C_EmpresaJDBC.getInstance().obtenerC_Empresa((vista.getOfertaDatos().getTextoCIF()));
+				if (empresa==null) ControladorErrores.mostrarError("El CIF no se corresponde con una empresa");
+			} catch (SQLException ex){
+				ControladorErrores.mostrarError("Error al consultar empresa:\n"+ex);
+			}
+			oferta.setEmpresa(empresa);
+
+			System.out.println(oferta.getEmpresa().getCIF()+": " +oferta.getEmpresa().getOID()+": "+ oferta.getEmpresa().getEmail());
+
+			oferta.setVoluntario(ControladorPrincipal.getInstance().getVoluntario());
+			oferta.setFecha(new Date());
 			if (!insertarOferta(oferta)){			// Se envia el objeto al controlador
 				vista.getOfertaDatos().getMensajeError().setText("La oferta no ha sido añadida");
 			}

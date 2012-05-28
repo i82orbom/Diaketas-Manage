@@ -1,25 +1,25 @@
 /**
- ** NOMBRE CLASE: 
+ ** NOMBRE CLASE:
  **	  ColaboracionJDBC.java
  **
  ** DESCRIPCION:
- **       Abstracción JDBC de Colaboración 
- **       
+ **       Abstracción JDBC de Colaboración
+ **
  **
  ** DESARROLLADO POR:
  **       Francisco José Legaza Bailon (PLB)
- **	   
- **        
+ **
+ **
  ** SUPERVISADO POR:
- **       
+ **
  **
  ** HISTORIA:
- ** 	000 - Abril 26, 2012 - PLB - Creacion 
- **   
- **      
+ ** 	000 - Abril 26, 2012 - PLB - Creacion
+ **
+ **
  **
  ** NOTAS:
- **   
+ **
  **
  */
 package JDBC;
@@ -36,21 +36,21 @@ import java.util.Date;
  * @author PLB
  */
 public class ColaboracionJDBC {
-    
+
     /**
      * Instancia ColaboracionJDBC
      */
     private static ColaboracionJDBC instancia;
-    
+
     /**
      * Constructor
      */
-    private ColaboracionJDBC(){  
+    private ColaboracionJDBC(){
     }
-    
+
     /**
      * Devuelve una instancia de la clase, sino la devuelve
-     * @return 
+     * @return
      */
     public static ColaboracionJDBC getInstance(){
         if(instancia == null)
@@ -58,23 +58,23 @@ public class ColaboracionJDBC {
         return instancia;
 
     }
-    
+
     /**
      * Añadir una Colaboracion en el sistema
      * @param c
      * @return true Si se ha podido añadir la colaboracion
-     * @throws SQLException 
+     * @throws SQLException
      */
     public boolean añadirColaboracion(Colaboracion c) throws SQLException{
-        
+
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "INSERT INTO Colaboracion (Cantidad, Fecha, DNIoCIF, OID) VALUES ('"+c.getImporte()+"','"+c.getFecha()+"','"+c.getOIDColaborador()+"','"+c.getOIDColaboracion()+"')";
-        
+        String sql = "INSERT INTO Colaboracion (Cantidad, Fecha, DNIoCIF, OID) VALUES ('"+c.getImporte()+"','"+c.getFecha()+"','"+c.getOID()+"','"+c.getOIDColaboracion()+"')";
+
         try{
             driver.inicioTransaccion();
-            driver.insertar(sql);           
+            driver.insertar(sql);
             driver.commit();
-            
+
         }
         catch (SQLException ex){
             driver.rollback();
@@ -84,17 +84,17 @@ public class ColaboracionJDBC {
             driver.finTransaccion();
 	}
         return true;
-        
+
     }
-    
+
     /**
      * Elimina una Colaboracion del sistema
      * @param c
      * @return true Si se ha podido eliminar
-     * @throws SQLException 
+     * @throws SQLException
      */
     public boolean eliminarColaboracion(Colaboracion c) throws SQLException{
-        
+
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "DELETE FROM Colaboracion WHERE OID= '"+c.getOIDColaboracion()+"'";
 
@@ -102,7 +102,7 @@ public class ColaboracionJDBC {
             driver.inicioTransaccion();
             driver.insertar(sql);
             driver.commit();
-            
+
         }
         catch (SQLException ex){
             driver.rollback();
@@ -113,24 +113,24 @@ public class ColaboracionJDBC {
 	}
         return true;
     }
-    
+
     /**
      * Muestra un listado de todas las Colaboraciones en un intervalo de tiempo
      * @param c
      * @param FechaInicio
      * @param FechaFin
      * @return listaColaboraciones Listado con las Colaboraciones
-     * @throws SQLException 
+     * @throws SQLException
      */
     public ArrayList<Colaboracion> HistorialColaboraciones(Colaborador c, Date FechaInicio, Date FechaFin) throws SQLException{
-     
+
         DriverJDBC driver = DriverJDBC.getInstance();
-        
-        String sql = "SELECT * FROM Colaboracion c, Movimiento m WHERE c.OIDColaborador='"+c.getOIDColaborador()+"' AND m.Fecha>='"+FechaInicio+"' AND m.Fecha<='"+FechaFin+"'";
-        
+
+        String sql = "SELECT * FROM Colaboracion c, Movimiento m WHERE c.OIDColaborador='"+c.getOID()+"' AND m.Fecha>='"+FechaInicio+"' AND m.Fecha<='"+FechaFin+"'";
+
         ArrayList<Colaboracion> listaColaboraciones = new ArrayList<Colaboracion>();
         Colaboracion colaboracion = null;
-        
+
         try {
             driver.conectar();
             ResultSet rs = driver.seleccionar(sql);
@@ -152,6 +152,6 @@ public class ColaboracionJDBC {
 	}
         return listaColaboraciones;
     }
-    
-    
+
+
 }

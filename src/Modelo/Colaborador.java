@@ -28,7 +28,7 @@ package Modelo;
  */
 public abstract class Colaborador{
 
-    private int OID;
+    private Long OID;
     private String Direccion;
     private String Localidad;
     private String Provincia;
@@ -57,7 +57,7 @@ public abstract class Colaborador{
      * Obtener el OID del Colaborador
      * @return OID
      */
-    public int getOIDColaborador() {
+    public Long getOID() {
         return OID;
     }
 
@@ -65,7 +65,7 @@ public abstract class Colaborador{
      * Asignar el OID a un Colaborador
      * @param OID
      */
-    public void setOIDColaborador(int OID) {
+    public void setOID(Long OID) {
         this.OID = OID;
     }
 

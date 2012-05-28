@@ -37,6 +37,8 @@ import java.util.ArrayList;
  */
 public class C_EmpresaJDBC {
 
+	private int OID_Anonimo = 0;
+
     /**
      * Instancia C_EmpresaJDBC
      */
@@ -98,8 +100,8 @@ public class C_EmpresaJDBC {
     public boolean modificarDatosC_Empresa(C_Empresa e) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "UPDATE Colaborador SET Direccion='"+e.getDireccion()+"', Localidad='"+e.getLocalidad()+"', Provincia='"+e.getProvincia()+"', codigoPostal='"+e.getCP()+"', TelefonoFijo='"+e.getTelefonoFijo()+"', TelefonoMovil='"+e.getTelefonoMovil()+"', Email='"+e.getEmail()+"WHERE OID="+e.getOIDColaborador()+"'";
-        String sql2 = "UPDATE C_Empresa SET CIF='"+e.getCIF()+"', Nombre='"+e.getNombre()+"', Fax='"+e.getFax()+"', DireccionWeb='"+e.getDireccionWeb()+"WHERE OID="+e.getOIDEmpresa()+"'";
+        String sql = "UPDATE Colaborador SET Direccion='"+e.getDireccion()+"', Localidad='"+e.getLocalidad()+"', Provincia='"+e.getProvincia()+"', codigoPostal='"+e.getCP()+"', TelefonoFijo='"+e.getTelefonoFijo()+"', TelefonoMovil='"+e.getTelefonoMovil()+"', Email='"+e.getEmail()+"WHERE OID="+e.getOID()+"'";
+        String sql2 = "UPDATE C_Empresa SET CIF='"+e.getCIF()+"', Nombre='"+e.getNombre()+"', Fax='"+e.getFax()+"', DireccionWeb='"+e.getDireccionWeb()+"WHERE OID="+e.getOID()+"'";
 
         try{
             driver.inicioTransaccion();
@@ -126,9 +128,9 @@ public class C_EmpresaJDBC {
     public boolean eliminarC_Empresa(C_Empresa e) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "UPDATE Colaboracion SET OID=OID_Anonimo WHERE OID='"+e.getOIDEmpresa()+"'";
-        String sql2 = "DELETE FROM C_Empresa WHERE OID='"+e.getOIDEmpresa()+"'";
-        String sql3 = "DELETE FROM Colaborador WHERE OID='"+e.getOIDColaborador()+"'";
+        String sql = "UPDATE Colaboracion SET OID="+OID_Anonimo+" WHERE OID='"+e.getOID()+"'";
+        String sql2 = "DELETE FROM C_Empresa WHERE OID='"+e.getOID()+"'";
+        String sql3 = "DELETE FROM Colaborador WHERE OID='"+e.getOID()+"'";
 
         try{
             driver.inicioTransaccion();
@@ -165,30 +167,29 @@ public class C_EmpresaJDBC {
 
             if(rs.next()){
                 Empresa = new C_Empresa();
+				Empresa.setOID(Long.parseLong(rs.getString("OID")));
                 Empresa.setCIF(rs.getString("CIF"));
                 Empresa.setNombre(rs.getString("Nombre"));
                 Empresa.setDireccionWeb(rs.getString("DireccionWeb"));
                 Empresa.setFax(rs.getString("Fax"));
 
-
-                Empresa.setCP(rs.getString("CodigoPostal"));
+                Empresa.setCP(rs.getString("CP"));
                 Empresa.setDireccion(rs.getString("Direccion"));
                 Empresa.setEmail(rs.getString("Email"));
                 Empresa.setLocalidad(rs.getString("Localidad"));
                 Empresa.setProvincia(rs.getString("Provincia"));
                 Empresa.setTelefonoFijo(rs.getString("TelefonoFijo"));
                 Empresa.setTelefonoMovil(rs.getString("TelefonoMovil"));
-
             }
         }
         catch (SQLException ex){
             throw ex;
-	}
-	finally{
-		driver.desconectar();
-	}
+		}
+		finally{
+			driver.desconectar();
+		}
 
-            return Empresa;
+		return Empresa;
     }
 
     /**

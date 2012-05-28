@@ -90,7 +90,7 @@ public class ControladorPagoCuota {
         pc.setFecha(Date.valueOf(datos[PagoCuota.CONCEPTO_ID]));
         pc.setImporte(Integer.parseInt(datos[PagoCuota.IMPORTE_ID]));
         pc.setOIDVoluntario((v.getOID().intValue()));
-        pc.setOIDSocio(socio.getOIDSocio());
+        pc.setOID(socio.getOID());
 
 
         try {
@@ -104,7 +104,7 @@ public class ControladorPagoCuota {
 
     public boolean eliminarPagoCuota (PagoCuota pc) {
         Socio s = new Socio();
-        s.setOIDSocio(pc.getOIDSocio());
+        s.setOID(pc.getOID());
         Cuota c;
         try {
             c = SocioJDBC.getInstance().obtenerCuotaActiva(s);

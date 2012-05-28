@@ -28,7 +28,6 @@ package Modelo;
  */
 public class Socio extends C_Persona{
 
-    private int OID;
     private String usuario;
     private String contrasena;
 
@@ -39,22 +38,6 @@ public class Socio extends C_Persona{
      * Constructor por defecto
      */
     public Socio(){
-    }
-
-    /**
-     * Obtener el OID del Socio
-     * @return OID
-     */
-    public int getOIDSocio() {
-        return OID;
-    }
-
-    /**
-     * Asignar un OID a un Socio
-     * @param OID
-     */
-    public void setOIDSocio(int OID) {
-        this.OID = OID;
     }
 
     /**

@@ -30,7 +30,6 @@ import java.util.Date;
  */
 public class C_Persona extends Colaborador{
 
-    private int OID;
     private String DNI;
     private String Nombre;
     private String Apellidos;
@@ -48,22 +47,6 @@ public class C_Persona extends Colaborador{
      * Constructor por defecto
      */
     public C_Persona(){
-    }
-
-    /**
-     * Obtener el OID de la Persona
-     * @return OID
-     */
-    public int getOIDPersona() {
-        return OID;
-    }
-
-    /**
-     * Asignar un OID a una Persona
-     * @param OID
-     */
-    public void setOIDPersona(int OID) {
-        this.OID = OID;
     }
 
     /**

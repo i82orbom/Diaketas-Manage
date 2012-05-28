@@ -44,6 +44,10 @@ public class ControladorBolsaTrabajo {
     private VistaBolsaTrabajo vista;
 	private ArrayList<Sector> sectores;
 
+	public ArrayList<Sector> getSectores(){
+		return sectores;
+	}
+
 	public static ControladorBolsaTrabajo getInstance (VistaBolsaTrabajo panelBolsaTrabajo){
 		if(instancia == null){
 			instancia = new ControladorBolsaTrabajo(panelBolsaTrabajo);
@@ -129,7 +133,7 @@ public class ControladorBolsaTrabajo {
 		try {
 			sectores = SectorJDBC.getInstance().ListadoSectores();
 		} catch (SQLException ex) {
-			Logger.getLogger(ControladorBolsaTrabajo.class.getName()).log(Level.SEVERE, null, ex);
+			ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex);
 		}
 
 		for (int i=0;i<sectores.size();i++){

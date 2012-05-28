@@ -97,8 +97,8 @@ public class C_PersonaJDBC {
     public boolean modificarDatosC_Persona(C_Persona persona) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "UPDATE Colaborador SET Direccion='"+persona.getDireccion()+"', Localidad='"+persona.getLocalidad()+"', Provincia='"+persona.getProvincia()+"', codigoPostal='"+persona.getCP()+"', TelefonoFijo='"+persona.getTelefonoFijo()+"', TelefonoMovil='"+persona.getTelefonoMovil()+"', Email='"+persona.getEmail()+"WHERE OID="+persona.getOIDColaborador()+"'";
-        String sql2 = "UPDATE C_Persona SET DNI='"+persona.getDNI()+"', Nombre='"+persona.getNombre()+"', Apellidos='"+persona.getApellidos()+"', FechaDeNacimiento='"+persona.getFechaDeNacimiento()+"WHERE OID="+persona.getOIDPersona()+"'";
+        String sql = "UPDATE Colaborador SET Direccion='"+persona.getDireccion()+"', Localidad='"+persona.getLocalidad()+"', Provincia='"+persona.getProvincia()+"', codigoPostal='"+persona.getCP()+"', TelefonoFijo='"+persona.getTelefonoFijo()+"', TelefonoMovil='"+persona.getTelefonoMovil()+"', Email='"+persona.getEmail()+"WHERE OID="+persona.getOID()+"'";
+        String sql2 = "UPDATE C_Persona SET DNI='"+persona.getDNI()+"', Nombre='"+persona.getNombre()+"', Apellidos='"+persona.getApellidos()+"', FechaDeNacimiento='"+persona.getFechaDeNacimiento()+"WHERE OID="+persona.getOID()+"'";
 
         try{
             driver.inicioTransaccion();
@@ -127,9 +127,9 @@ public class C_PersonaJDBC {
     public boolean eliminarC_Persona(C_Persona persona) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "UPDATE Colaboracion SET OID=OID_Anonimo WHERE OID='"+persona.getOIDPersona()+"'";
-        String sql2 = "DELETE FROM C_Persona WHERE OID='"+persona.getOIDPersona()+"'";
-        String sql3 = "DELETE FROM Colaborador WHERE OID='"+persona.getOIDPersona()+"'";
+        String sql = "UPDATE Colaboracion SET OID=OID_Anonimo WHERE OID='"+persona.getOID()+"'";
+        String sql2 = "DELETE FROM C_Persona WHERE OID='"+persona.getOID()+"'";
+        String sql3 = "DELETE FROM Colaborador WHERE OID='"+persona.getOID()+"'";
 
         try{
             driver.inicioTransaccion();
@@ -159,15 +159,15 @@ public class C_PersonaJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
 
-        String sql = "SELECT * FROM Colaborador c, C_Persona p WHERE (p.OID='"+OIDPersona+"') AND c.OID=p.OIDColaborador";
+        String sql = "SELECT * FROM Colaborador c, C_Persona p WHERE (p.OID='"+OIDPersona+"') AND c.OID=p.OID";
         C_Persona Persona = null;
-        
-        
+
+
         try {
             driver.conectar();
             ResultSet rs = driver.seleccionar(sql);
-        
-        
+
+
             if(rs.next()){
                 Persona = new C_Persona();
 
@@ -198,7 +198,7 @@ public class C_PersonaJDBC {
 	}
 	finally{
 		driver.desconectar();
-	}     
+	}
 
         return Persona;
     }
@@ -216,7 +216,7 @@ public class C_PersonaJDBC {
         String sql = "SELECT * FROM C_Persona p, Colaborador c WHERE "+tipoBusqueda+"='"+valor+"' AND p.OID=c.OID";
         ArrayList<C_Persona> listaC_Persona = new ArrayList<C_Persona>();
         C_Persona Persona = null;
-        
+
         try {
             driver.conectar();
             ResultSet resultados = driver.seleccionar(sql);
@@ -269,10 +269,10 @@ public class C_PersonaJDBC {
     public boolean hacerSocio(C_Persona persona, String usuarioN, String contrasena) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "INSERT INTO Socio (OIDC_Persona, OIDColaborador, usuario, contrasena) VALUES ('"+persona.getOIDPersona()+"','"+persona.getOIDColaborador()+"','"+usuarioN+"','"+contrasena+"')";
+        String sql = "INSERT INTO Socio (OID, usuario, contrasena) VALUES ('"+persona.getOID()+"','"+usuarioN+"','"+contrasena+"')";
 
         try{
-            driver.inicioTransaccion();           
+            driver.inicioTransaccion();
             driver.insertar(sql);
             driver.commit();
 

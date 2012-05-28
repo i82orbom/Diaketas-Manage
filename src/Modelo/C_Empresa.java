@@ -29,7 +29,6 @@ package Modelo;
  */
 public class C_Empresa extends Colaborador{
 
-    private Long OID;
     private String CIF;
     private String Nombre;
     private String DireccionWeb;
@@ -46,22 +45,6 @@ public class C_Empresa extends Colaborador{
      * Constructor por defecto
      */
     public C_Empresa() {
-    }
-
-    /**
-     * Obtener el OID de la Empresa
-     * @return OID
-     */
-    public Long getOIDEmpresa() {
-        return OID;
-    }
-
-    /**
-     * Asignar un OID a una Empresa
-     * @param OID
-     */
-    public void setOIDEmpresa(Long OID) {
-        this.OID = OID;
     }
 
     /**
