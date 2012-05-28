@@ -72,10 +72,10 @@ public class OfertaJDBC {
     
     }
         
-    public boolean obtenerOferta (Oferta oferta)throws SQLException{
+    public boolean obtenerOferta (String oferta)throws SQLException{
         boolean exito = true;
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql1 = " SELECT * FROM Oferta WHERE OID = '"+oferta.getOID()+"'";
+        String sql1 = " SELECT * FROM Oferta WHERE OID = '"+oferta+"'";
 
         try{
 			driver.inicioTransaccion();
@@ -136,5 +136,11 @@ public class OfertaJDBC {
             
             return lista_oferta;
         }
+        
+      public boolean ActualizarOferta (Oferta oferta) throws SQLException{
+          DriverJDBC driver = DriverJDBC.getInstance();
+      return true;
+      
+      }
 
 }
