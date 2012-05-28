@@ -149,11 +149,11 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         labelCIF = new javax.swing.JLabel();
         labelSector = new javax.swing.JLabel();
-        cbSector = new javax.swing.JComboBox();
         textCIF = new javax.swing.JTextField();
         BTEliminarSector = new javax.swing.JButton();
         textNuevoSector = new javax.swing.JTextField();
         BTGuardarSector = new javax.swing.JButton();
+        cbSector = new javax.swing.JComboBox();
         jLabel68 = new javax.swing.JLabel();
         jLabel69 = new javax.swing.JLabel();
         jLabel71 = new javax.swing.JLabel();
@@ -248,8 +248,6 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
 
         labelSector.setText("Sector");
 
-        cbSector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Economico" }));
-
         textCIF.setText("CIF/ NIF");
 
         BTEliminarSector.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
@@ -273,11 +271,11 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                 .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(BTEliminarSector)
-                .add(18, 18, 18)
+                .add(68, 68, 68)
                 .add(textNuevoSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 124, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(BTGuardarSector)
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -290,8 +288,8 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                             .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                                 .add(textCIF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(labelCIF)
-                                .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(labelSector)))
+                                .add(labelSector)
+                                .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                         .add(jPanel2Layout.createSequentialGroup()
                             .addContainerGap()
                             .add(BTEliminarSector))

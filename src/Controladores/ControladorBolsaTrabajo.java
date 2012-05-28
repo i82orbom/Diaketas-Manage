@@ -3,11 +3,17 @@ package Controladores;
 
 import Controladores.BolsaDeTrabajo.ControladorDemanda;
 import Controladores.BolsaDeTrabajo.ControladorOferta;
+import JDBC.SectorJDBC;
 import Modelo.Oferta;
+import Modelo.Sector;
 import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.BolsaTrabajo.VistaBolsaTrabajo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  ** NOMBRE CLASE:
@@ -36,8 +42,9 @@ public class ControladorBolsaTrabajo {
 
     private static ControladorBolsaTrabajo instancia;
     private VistaBolsaTrabajo vista;
+	private ArrayList<Sector> sectores;
 
-    public static ControladorBolsaTrabajo getInstance (VistaBolsaTrabajo panelBolsaTrabajo){
+	public static ControladorBolsaTrabajo getInstance (VistaBolsaTrabajo panelBolsaTrabajo){
 		if(instancia == null){
 			instancia = new ControladorBolsaTrabajo(panelBolsaTrabajo);
 		}
@@ -118,6 +125,16 @@ public class ControladorBolsaTrabajo {
 		vista.getOfertaDatos().getcbTipoContrato().setEnabled(true);
 		vista.getOfertaDatos().gettextDuracionContrato().setEditable(true);
 		vista.getOfertaDatos().gettaCualificacion().setEditable(true);
+
+		try {
+			sectores = SectorJDBC.getInstance().ListadoSectores();
+		} catch (SQLException ex) {
+			Logger.getLogger(ControladorBolsaTrabajo.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		for (int i=0;i<sectores.size();i++){
+			vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+		}
 
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
 		vista.getBarraDeNavigacion().setTextLabelNivel3("Nueva Oferta");

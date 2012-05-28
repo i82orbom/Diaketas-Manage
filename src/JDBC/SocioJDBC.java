@@ -103,10 +103,10 @@ public class SocioJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
 
-        String sql = "UPDATE Colaborador SET Direccion='"+socio.getDireccion()+"', Localidad='"+socio.getLocalidad()+"', Provincia='"+socio.getProvincia()+"', codigoPostal='"+socio.getCP()+"',TelefonoFijo='"+socio.getTelefonoFijo()+"', TelefonoMovil='"+socio.getTelefonoMovil()+"', Email='"+socio.getEmail()+"WHERE OID="+socio.getOIDColaborador()+"'";      
-        String sql2 = "UPDATE C_Persona SET DNI='"+socio.getDNI()+"', Nombre='"+socio.getNombre()+"', Apellidos='"+socio.getApellidos()+"', FechaDeNacimiento='"+socio.getFechaDeNacimiento()+"WHERE OID="+socio.getOIDPersona()+"'";       
+        String sql = "UPDATE Colaborador SET Direccion='"+socio.getDireccion()+"', Localidad='"+socio.getLocalidad()+"', Provincia='"+socio.getProvincia()+"', codigoPostal='"+socio.getCP()+"',TelefonoFijo='"+socio.getTelefonoFijo()+"', TelefonoMovil='"+socio.getTelefonoMovil()+"', Email='"+socio.getEmail()+"WHERE OID="+socio.getOIDColaborador()+"'";
+        String sql2 = "UPDATE C_Persona SET DNI='"+socio.getDNI()+"', Nombre='"+socio.getNombre()+"', Apellidos='"+socio.getApellidos()+"', FechaDeNacimiento='"+socio.getFechaDeNacimiento()+"WHERE OID="+socio.getOIDPersona()+"'";
         String sql3 = "UPDATE Socio SET usuario='"+socio.getUsuario()+"', contrasena='"+socio.getContrasena()+"WHERE OID="+socio.getOIDSocio()+"'";
-       
+
         try{
                 driver.inicioTransaccion();
                 driver.insertar(sql);
@@ -141,7 +141,7 @@ public class SocioJDBC {
         String sql5 = "DELETE FROM Socio WHERE OIDSocio='"+socio.getOIDSocio()+"'";
         String sql6 = "DELETE FROM C_Persona WHERE OID='"+socio.getOIDPersona()+"'";
         String sql7 = "DELETE FROM Colaborador WHERE OID='"+socio.getOIDColaborador()+"'";
-        
+
         try{
                 driver.inicioTransaccion();
                 driver.insertar(sql);
@@ -175,7 +175,7 @@ public class SocioJDBC {
 
         String sql = "SELECT * FROM Colaborador c, C_Persona p, Socio s WHERE (p.DNI='"+DNI+"') AND c.OID=p.OIDColaborador AND s.OIDC_Persona=p.OID";
         Socio socio = null;
-        
+
          try {
             driver.conectar();
             ResultSet rs = driver.seleccionar(sql);
@@ -212,7 +212,7 @@ public class SocioJDBC {
 	}
 	finally{
 		driver.desconectar();
-	}  
+	}
             return socio;
 
     }
@@ -227,10 +227,10 @@ public class SocioJDBC {
     public ArrayList<Socio> obtenerListadoSocios(String tipoBusqueda, String valor) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "SELECT * FROM Socio s, C_Persona p, Colaborador c WHERE "+tipoBusqueda+"='"+valor+"' AND s.OID=p.OID AND s.OID=c.OID AND p.OID=C.OID";
+        String sql = "SELECT * FROM Socio s, C_Persona p, Colaborador c WHERE "+tipoBusqueda+" LIKE '%"+valor+"%' AND s.OID=p.OID AND s.OID=c.OID AND p.OID=C.OID";
         ArrayList<Socio> listaSocios = new ArrayList<Socio>();
         Socio socio = null;
-        
+
         try {
             driver.conectar();
             ResultSet rs = driver.seleccionar(sql);
@@ -269,7 +269,7 @@ public class SocioJDBC {
 	}
 	finally{
 		driver.desconectar();
-	} 
+	}
         return listaSocios;
 
     }
@@ -287,7 +287,7 @@ public class SocioJDBC {
         Cuota c = new Cuota();
 
         String sql = "SELECT * FROM Cuota c WHERE c.OIDSocio='"+socio.getOIDSocio()+"' AND (c.FechaFin > '"+fechaActual.getTime()+"' OR c.FechaFin <> NULL)";
-        
+
         try {
             driver.conectar();
             ResultSet rs = driver.seleccionar(sql);
