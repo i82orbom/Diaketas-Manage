@@ -10,15 +10,17 @@ import JDBC.PagoCuotaJDBC;
 import JDBC.SocioJDBC;
 import Modelo.*;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
-import Vistas.Paneles.Socio.VistaSocio;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
 
 /**
  ** NOMBRE CLASE:
@@ -50,6 +52,7 @@ public class ControladorSocio{
 		* PATRON DE DISEÑO SINGLETON
 		*/
 	private static ControladorSocio instancia = null;
+	private static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
 	// TODO vista
 	public static ControladorSocio getInstance(VistaColaboradores pvista) {
@@ -63,12 +66,17 @@ public class ControladorSocio{
 
 	private VistaColaboradores vista;
 	Socio socio_temp = null;
+	ArrayList<Socio> socios = null;
+	private String[] columnNames = {"DNI", "Nombre", "Localidad", "Provincia", "Teléfono", "Movil", "CP"};
 
 	public ControladorSocio(VistaColaboradores pvista) {
 		vista = pvista;
 
 		vista.getPanelSocioDatos().getBtGuardarDatosSocio().addActionListener(new btGuardarDatosSocioListener());
 		vista.getPanelSocioDatos().getBtBorrarDatosSocio().addActionListener(new btBorrarDatosSocioListener());
+		vista.getPanelSocioDatos().getBtGuardarCuotaSocio().addActionListener(new btGuardarCuotaSocioListener());
+		
+		vista.getPanelSocioBuscar().getBtBuscarSocio().addActionListener(new btBuscarSocioListener());
 	}
 
 
@@ -92,6 +100,8 @@ public class ControladorSocio{
 		socio.setLocalidad(datos[Socio.LOCALIDAD_ID]);
 		socio.setProvincia(datos[Socio.PROVINCIA_ID]);
 		socio.setCP(datos[Socio.CP_ID]);
+		socio.setTelefonoFijo(datos[Socio.TELEFONO1_ID]);
+		socio.setTelefonoMovil(datos[Socio.TELEFONO2_ID]);
 
 		boolean exito;
 		try {
@@ -134,7 +144,8 @@ public class ControladorSocio{
 		socio.setLocalidad(datos[Socio.LOCALIDAD_ID]);
 		socio.setProvincia(datos[Socio.PROVINCIA_ID]);
 		socio.setCP(datos[Socio.CP_ID]);
-
+		socio.setTelefonoFijo(datos[Socio.TELEFONO1_ID]);
+		socio.setTelefonoMovil(datos[Socio.TELEFONO2_ID]);
 		boolean exito;
 		try {
 				exito = SocioJDBC.getInstance().modificarDatosSocio(socio);
@@ -156,9 +167,10 @@ public class ControladorSocio{
 	}
 
 	public ArrayList<Socio> buscarSocio (String tipoBusqueta, String valor) {
-		ArrayList<Socio> socios;
+		//ArrayList<Socio> socios;
 		try {
 			socios = SocioJDBC.getInstance().obtenerListadoSocios(tipoBusqueta, valor);
+			System.out.println(socios.size());
 		} catch (SQLException ex) {
 			Logger.getLogger(ControladorC_Persona.class.getName()).log(Level.SEVERE, null, ex);
 			return null;
@@ -231,19 +243,19 @@ public class ControladorSocio{
 		if (!TestDatos.isEmail(datos[Socio.EMAIL_ID]))
 			return false;
 
-		if (!TestDatos.isOnlyLetter(datos[Socio.NOMBRE_ID]))
+		if (!TestDatos.isNombre(datos[Socio.NOMBRE_ID]))
 			return false;
 
-		if (!TestDatos.isOnlyLetter(datos[Socio.APELLIDOS_ID]))
+		if (!TestDatos.isNombre(datos[Socio.APELLIDOS_ID]))
 			return false;
 
-		if (!TestDatos.isOnlyLetter(datos[Socio.DIRECCION_ID]))
+		if (!TestDatos.isDomicilio(datos[Socio.DIRECCION_ID]))
 			return false;
 
-		if (!TestDatos.isOnlyLetter(datos[Socio.LOCALIDAD_ID]))
+		if (!TestDatos.isNombre(datos[Socio.LOCALIDAD_ID]))
 			return false;
 
-		if (!TestDatos.isOnlyLetter(datos[Socio.PROVINCIA_ID]))
+		if (!TestDatos.isNombre(datos[Socio.PROVINCIA_ID]))
 			return false;
 
 		if (!TestDatos.isOnlyLetterOrDigit(datos[Socio.USUARIO_ID]))
@@ -330,13 +342,17 @@ public class ControladorSocio{
 			}
 		}
 	}
+	
+	/**
+		* Listener controlador del boton Eliminar socio
+	*/
 	public class btBorrarDatosSocioListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(socio_temp==null){
-				String[] datos = new String[15];
-				for(int i=0; i<15; i++)
+				String[] datos = new String[25];
+				for(int i=0; i<25; i++)
 				datos[i]="";
 				vista.getPanelSocioDatos().escribirSocioDatos(datos);
 			}
@@ -351,16 +367,124 @@ public class ControladorSocio{
 		}
 
 	}
+	
+	/**
+		* Listener controlador del boton Guardar Cuota socio
+	*/
+	public class btGuardarCuotaSocioListener implements ActionListener{
 
-	public class ListenerBtLimpiarDatosSocio implements ActionListener{
-		String[] datos;
 		@Override
 		public void actionPerformed(ActionEvent e) {
-					datos = new String[19];
-					for(int i=0; i<19; i++)
-						datos[i]="";
-						//vista.escribirDatosGeneralesSocioDatos(datos);
+			String[] datos= new String[5];
+			datos[Cuota.CANTIDAD]= vista.getPanelSocioDatos().obtenerCantidadCuotaSocio();
+			datos[Cuota.FECHA_FIN] = vista.getPanelSocioDatos().obtenerFechaFinCuotaSocio();
+			datos[Cuota.FECHA_INICIO] = vista.getPanelSocioDatos().obtenerFechaIniCuotaSocio();
+			datos[Cuota.INTERFALO_PAGOS] = vista.getPanelSocioDatos().obtenerIntervaloCuotaSocio();
+			//datos[Cuota.FECHA_ULTIMO_PAGO] = vista.getPanelSocioDatos().obtenerFechaIniCuotaSocio();
+			if(socio_temp!=null)
+				ControladorCuota.getInstance(vista).anadirCuota(datos, socio_temp);
+			else{
+				socio_temp=obtenerSocio(vista.getPanelSocioDatos().obtenerDNISocio());
+				if(socio_temp==null){
+					System.out.println("No se a elegido un socio");
 				}
+				else
+					ControladorCuota.getInstance(vista).anadirCuota(datos, socio_temp);
+			}	
+		}
 	}
+	
+	/**
+		* Listener controlador del boton Guardar Colaboracion socio
+	*/
+	
+	public class btBuscarSocioListener implements ActionListener{
 
+		@Override
+		public void actionPerformed(ActionEvent e) { 
+			String valor = vista.getPanelSocioBuscar().getValorBusquedaSocio();
+			String tipo = vista.getPanelSocioBuscar().getTipoBusquedaSocio();
+			if(tipo.equals("DNI/NIF/Pasaporte"))
+				tipo="DNI";
+			else if(tipo.equals("Teléfono Fijo"))
+				tipo="TelefonoFijo";
+			else if(tipo.equals("Movil"))
+				tipo="TelefonoMovil";
+			else if(tipo.equals("Dirección"))
+				tipo="Domicilio";
+			else if(tipo.equals("Código Postal"))
+				tipo="CP";
+			
+			//System.out.println("tipo: "+tipo);
+			
+			socios = buscarSocio(tipo, valor);
+			
+			 TableModel tableModel = new TableModel() {
+
+                @Override
+                public int getRowCount() {
+                    return socios.size();
+                }
+
+                @Override
+                public int getColumnCount() {
+                    return columnNames.length;
+                }
+
+                @Override
+                public String getColumnName(int i) {
+                    return columnNames[i];
+                }
+
+                @Override
+                public Class<?> getColumnClass(int i) {
+                    return String.class;
+                }
+
+                @Override
+                public boolean isCellEditable(int i, int i1) {
+                    return false;
+                }
+
+                @Override
+                public Object getValueAt(int row, int col) {
+                    switch (col) {
+                        case 0:
+                            return socios.get(row).getDNI();
+                        case 1:
+                            return socios.get(row).getNombre();
+                        case 2:
+                            return socios.get(row).getLocalidad();
+                        case 3:
+                            return socios.get(row).getDireccion();
+                        case 4:
+                            return socios.get(row).getTelefonoFijo();
+						case 5:
+                            return socios.get(row).getTelefonoMovil();
+						case 6:
+                            return socios.get(row).getCP();
+                    }
+                    return "";
+                }
+
+                @Override
+                public void setValueAt(Object o, int row, int col) {
+                    throw new UnsupportedOperationException("Not supported yet.");
+                }
+
+                @Override
+                public void addTableModelListener(TableModelListener tl) {
+
+                }
+
+                @Override
+                public void removeTableModelListener(TableModelListener tl) {
+
+                }
+            };
+            
+            vista.getPanelSocioBuscar().getTablaBusqueda().setModel(tableModel);
+		}
+	
+	}
 }
