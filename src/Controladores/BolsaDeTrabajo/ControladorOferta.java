@@ -307,17 +307,14 @@ public class ControladorOferta {
 
 				@Override
 				public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-					throw new UnsupportedOperationException("Not supported yet.");
 				}
 
 				@Override
 				public void addTableModelListener(TableModelListener l) {
-					throw new UnsupportedOperationException("Not supported yet.");
 				}
 
 				@Override
 				public void removeTableModelListener(TableModelListener l) {
-					throw new UnsupportedOperationException("Not supported yet.");
 				}
 
 			};
