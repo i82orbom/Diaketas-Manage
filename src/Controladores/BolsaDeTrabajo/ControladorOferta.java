@@ -342,14 +342,12 @@ public class ControladorOferta {
 	public class ListenerBtConsultarOferta implements ActionListener{
 
 		@Override
-	public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e) {
 			System.out.println("Consultar Oferta");
-/*			if (vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
+			if (vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
                 ofertaConsultada = listaOfertas.get(vista.getOfertasBuscar().gettablaBusquedaOferta().getSelectedRow());
-                vista.getOfertaDatos().consultarOferta(ofertaConsultada);
-*/				ControladorBolsaTrabajo.getInstance(vista).mostrarConsultarOferta(ofertaConsultada);
-//				vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);		// Revisar esta linea
-  //          }
+				ControladorBolsaTrabajo.getInstance(vista).mostrarConsultarOferta(ofertaConsultada);
+			}
 		}
 	}
 
