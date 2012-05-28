@@ -4,6 +4,7 @@
  */
 package Vistas.Paneles.Socio;
 
+import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
@@ -18,7 +19,9 @@ public class PanelSocioBuscar extends javax.swing.JPanel {
      */
     public PanelSocioBuscar() {
         initComponents();
-    }
+		tableBuscarSocio.setBackground(Color.white);
+		tableBuscarSocio.setForeground(Color.blue);
+	}
 
 	public JButton getBtBuscarSocio(){
 		return btBuscar;
@@ -34,6 +37,15 @@ public class PanelSocioBuscar extends javax.swing.JPanel {
 	public JTable getTablaBusqueda() {
         return tableBuscarSocio;
     }
+	
+	public JButton getBtConsultarSocio(){
+		return btConsultar;
+	}
+	
+	public JButton getBtEliminarSocio(){
+		return btEliminar;
+	}
+			
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,6 +72,7 @@ public class PanelSocioBuscar extends javax.swing.JPanel {
 
         btEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
 
+        cbBuscarSocio.setBackground(new java.awt.Color(254, 254, 254));
         cbBuscarSocio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DNI/NIF/Pasaporte", "Nombre", "Dirección", "Localidad", "Teléfono Fijo", "Movil", "Código Postal" }));
 
         btConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/modificar.png"))); // NOI18N
