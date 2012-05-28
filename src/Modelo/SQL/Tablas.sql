@@ -245,3 +245,8 @@ CREATE TABLE Demanda (
 
 INSERT INTO Persona (`OID`, `NIF`, `Nombre`, `Apellidos`, `FechaNacimiento`, `CP`, `TelefonoFijo`, `TelefonoMovil`, `Domicilio`, `Localidad`) VALUES (1, '12345678A', 'admin', 'admin', '1990-04-03', 11321, 666999666, 999666999, 'C/Falsa 123', 'Granada');
 INSERT INTO Voluntario (`OID`, `Password`) VALUES (1, 'cd15bf6a6c78f04336aa85a722ceb148');
+
+INSERT INTO Colaborador VALUES (0,'Sin dirección', '', '', '00000', '', '', '');
+UPDATE Colaborador SET OID = 0 WHERE CP = '00000';
+INSERT INTO C_Persona VALUES (0, '00000000a', 'Anónimo', '', '0001-01-01', 'M');
+INSERT INTO socio VALUES (0,'anonimo','');
