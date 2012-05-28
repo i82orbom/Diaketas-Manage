@@ -10,8 +10,11 @@ import JDBC.PagoCuotaJDBC;
 import JDBC.SocioJDBC;
 import Modelo.*;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -19,6 +22,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
@@ -67,7 +73,7 @@ public class ControladorSocio{
 	private VistaColaboradores vista;
 	Socio socio_temp = null;
 	ArrayList<Socio> socios = null;
-	private String[] columnNames = {"DNI", "Nombre", "Localidad", "Provincia", "Teléfono", "Movil", "CP"};
+	private String[] columnNames = {"DNI", "Nombre", "Direccion", "Localidad", "Teléfono", "Movil", "CP"};
 
 	public ControladorSocio(VistaColaboradores pvista) {
 		vista = pvista;
@@ -77,32 +83,19 @@ public class ControladorSocio{
 		vista.getPanelSocioDatos().getBtGuardarCuotaSocio().addActionListener(new btGuardarCuotaSocioListener());
 		
 		vista.getPanelSocioBuscar().getBtBuscarSocio().addActionListener(new btBuscarSocioListener());
+		vista.getPanelSocioBuscar().getBtEliminarSocio().addActionListener(new btEliminarSocioListener());
 	}
 
 
-	public boolean anadirSocio(String[] datos) {
-		if (!comprobarDatos(datos)){
-			System.out.println("Errores en los datos");
-			return false;
-		}
-		Socio socio = new Socio();
-		socio.setUsuario(datos[Socio.USUARIO_ID]);
-		// cryptar password en MD5
-		socio.setContrasena(ControladorVoluntario.genContrasena());
-
-		socio.setDNI(datos[Socio.DNI_ID]);
-		socio.setNombre(datos[Socio.NOMBRE_ID]);
-		socio.setApellidos(datos[Socio.APELLIDOS_ID]);
-		socio.setSexo(datos[Socio.SEXO_ID].charAt(0));
-		socio.setFechaDeNacimiento(Date.valueOf(datos[Socio.FECHA_DE_NACIMIENTO_ID]));
-		socio.setEmail(datos[Socio.EMAIL_ID]);
-		socio.setDireccion(datos[Socio.DIRECCION_ID]);
-		socio.setLocalidad(datos[Socio.LOCALIDAD_ID]);
-		socio.setProvincia(datos[Socio.PROVINCIA_ID]);
-		socio.setCP(datos[Socio.CP_ID]);
-		socio.setTelefonoFijo(datos[Socio.TELEFONO1_ID]);
-		socio.setTelefonoMovil(datos[Socio.TELEFONO2_ID]);
-
+	public boolean anadirSocio(Socio socio) {
+		if (obtenerSocio(socio.getDNI())!= null) {
+            JOptionPane.showMessageDialog(null, "Un socio con este DNI ya existe.");
+            return false;
+        }
+		if (comprobarUsuarioUnico(socio.getUsuario())) {
+            JOptionPane.showMessageDialog(null, "Un socio con este Usuario ya existe.");
+            return false;
+        } 
 		boolean exito;
 		try {
 				exito = SocioJDBC.getInstance().añadirSocio(socio);
@@ -123,29 +116,25 @@ public class ControladorSocio{
 		}
 		return socio;
 	}
-
-	public boolean modificarSocio (String[] datos) {
-		if (!comprobarDatos(datos))
-			return false;
-
-		// TODO test password MD5
-
-		Socio socio = new Socio();
-		socio.setUsuario(datos[Socio.USUARIO_ID]);
-
-		socio.setDNI(datos[Socio.DNI_ID]);
-		socio.setNombre(datos[Socio.NOMBRE_ID]);
-		socio.setApellidos(datos[Socio.APELLIDOS_ID]);
-		socio.setSexo(datos[Socio.SEXO_ID].charAt(0));
-		socio.setFechaDeNacimiento(Date.valueOf(datos[Socio.FECHA_DE_NACIMIENTO_ID]));
-
-		socio.setEmail(datos[Socio.EMAIL_ID]);
-		socio.setDireccion(datos[Socio.DIRECCION_ID]);
-		socio.setLocalidad(datos[Socio.LOCALIDAD_ID]);
-		socio.setProvincia(datos[Socio.PROVINCIA_ID]);
-		socio.setCP(datos[Socio.CP_ID]);
-		socio.setTelefonoFijo(datos[Socio.TELEFONO1_ID]);
-		socio.setTelefonoMovil(datos[Socio.TELEFONO2_ID]);
+	
+	public boolean comprobarUsuarioUnico (String DNI) {
+		boolean existe=false;
+		try {
+			existe = SocioJDBC.getInstance().comprobarUsuarioUnico(DNI);
+		} catch (SQLException ex) {
+			Logger.getLogger(ControladorSocio.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return existe;
+	}
+	public boolean modificarSocio (Socio socio) {
+		if (obtenerSocio(socio.getDNI())!= null) {
+            JOptionPane.showMessageDialog(null, "Un socio con este DNI ya existe.");
+            return false;
+        }
+		if (comprobarUsuarioUnico(socio.getUsuario())) {
+            JOptionPane.showMessageDialog(null, "Un socio con este Usuario ya existe.");
+            return false;
+        } 
 		boolean exito;
 		try {
 				exito = SocioJDBC.getInstance().modificarDatosSocio(socio);
@@ -170,7 +159,6 @@ public class ControladorSocio{
 		//ArrayList<Socio> socios;
 		try {
 			socios = SocioJDBC.getInstance().obtenerListadoSocios(tipoBusqueta, valor);
-			System.out.println(socios.size());
 		} catch (SQLException ex) {
 			Logger.getLogger(ControladorC_Persona.class.getName()).log(Level.SEVERE, null, ex);
 			return null;
@@ -301,31 +289,84 @@ public class ControladorSocio{
 	public class btGuardarDatosSocioListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			String[] datos = new String[14];
+            boolean datosCorrectos = true;
 
-			datos[Socio.NOMBRE_ID] = vista.getPanelSocioDatos().obtenerNombreSocio();
-			datos[Socio.APELLIDOS_ID] = vista.getPanelSocioDatos().obtenerApellidosSocio();
-			datos[Socio.EMAIL_ID] = vista.getPanelSocioDatos().obtenerCorreoSocio();
-			datos[Socio.DNI_ID] = vista.getPanelSocioDatos().obtenerDNISocio();
-			datos[Socio.SEXO_ID] = vista.getPanelSocioDatos().obtenerSexoSocio();
-			try {
-				datos[Socio.FECHA_DE_NACIMIENTO_ID] = vista.getPanelSocioDatos().obtenerFNSocio();
-			} catch (ParseException ex) {
-				Logger.getLogger(ControladorSocio.class.getName()).log(Level.SEVERE, null, ex);
-			}
-			datos[Socio.DIRECCION_ID] = vista.getPanelSocioDatos().obtenerDomicilioSocio();
-			datos[Socio.LOCALIDAD_ID] = vista.getPanelSocioDatos().obtenerLocalidadSocio();
-			datos[Socio.PROVINCIA_ID] = vista.getPanelSocioDatos().obtenerProvinciaSocio();
-			datos[Socio.CP_ID] = vista.getPanelSocioDatos().obtenerCPSocio();
-			datos[Socio.TELEFONO1_ID] = vista.getPanelSocioDatos().obtenerTelfSocio();
-			datos[Socio.TELEFONO2_ID] = vista.getPanelSocioDatos().obtenerMovilSocio();
-			datos[Socio.USUARIO_ID] = vista.getPanelSocioDatos().obtenerUsuarioSocio();
+			if( !TestDatos.isNombre( vista.getPanelSocioDatos().getTextNombre().getText()) ) {
+                vista.getPanelSocioDatos().getTextNombre().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isNombre( vista.getPanelSocioDatos().getTextApellidos().getText()) ) {
+                vista.getPanelSocioDatos().getTextApellidos().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isDNI( vista.getPanelSocioDatos().getTextDNI().getText()) ) {
+                vista.getPanelSocioDatos().getTextDNI().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isFecha( vista.getPanelSocioDatos().getTextFN().getText()) ) {
+                vista.getPanelSocioDatos().getTextFN().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isEmail( vista.getPanelSocioDatos().getTextEmail().getText()) ) {
+                vista.getPanelSocioDatos().getTextEmail().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isDomicilio( vista.getPanelSocioDatos().getTextDomicilio().getText()) ) {
+                vista.getPanelSocioDatos().getTextDomicilio().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isNombre( vista.getPanelSocioDatos().getTextLocalidad().getText()) ) {
+                vista.getPanelSocioDatos().getTextLocalidad().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isNombre( vista.getPanelSocioDatos().getTextProvincia().getText()) ) {
+                vista.getPanelSocioDatos().getTextProvincia().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isCodigoPostal( vista.getPanelSocioDatos().getTextCP().getText()) ) {
+                vista.getPanelSocioDatos().getTextCP().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isTelefonoOFax( vista.getPanelSocioDatos().getTextTelfFijo().getText()) ) {
+                vista.getPanelSocioDatos().getTextTelfFijo().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isTelefonoOFax( vista.getPanelSocioDatos().getTextTelMovil().getText()) ) {
+                vista.getPanelSocioDatos().getTextTelMovil().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isNombre(vista.getPanelSocioDatos().getTextNombre().getText()) ) {
+                vista.getPanelSocioDatos().getTextNombre().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			
+			if (!datosCorrectos) {
+                vista.getPanelSocioDatos().setTextLabelError("Los campos en rojo tienes errores.");
+            } else {
 
-			String password = ControladorPrincipal.getInstance().md5(vista.getPanelSocioDatos().obtenerDNISocio()+ControladorPrincipal.getInstance().getSalto());
-			datos[Socio.CONTRASENA_ID] = password;
 			if(socio_temp==null){
-				System.out.println("anadiendoSocio");
-				boolean exito = anadirSocio(datos);
+				Socio socio = new Socio();
+				socio.setNombre(vista.getPanelSocioDatos().getTextNombre().getText());
+				socio.setApellidos(vista.getPanelSocioDatos().getTextApellidos().getText());
+				socio.setDNI(vista.getPanelSocioDatos().getTextDNI().getText());
+				try {
+					socio.setFechaDeNacimiento(TestDatos.formatter.parse(vista.getPanelSocioDatos().getTextFN().getText()));
+				} catch (ParseException ex) {
+					Logger.getLogger(ControladorSocio.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				socio.setEmail(vista.getPanelSocioDatos().getTextEmail().getText());
+				socio.setDireccion(vista.getPanelSocioDatos().getTextDomicilio().getText());
+				socio.setProvincia(vista.getPanelSocioDatos().getTextProvincia().getText());
+				socio.setLocalidad(vista.getPanelSocioDatos().getTextLocalidad().getText());
+				socio.setCP(vista.getPanelSocioDatos().getTextCP().getText());
+				socio.setTelefonoFijo(vista.getPanelSocioDatos().getTextTelfFijo().getText());
+				socio.setTelefonoMovil(vista.getPanelSocioDatos().getTextTelMovil().getText());
+				socio.setUsuario(vista.getPanelSocioDatos().getTextUsuario().getText());
+
+				String password = ControladorPrincipal.getInstance().md5(vista.getPanelSocioDatos().getTextDNI().getText() + ControladorPrincipal.getInstance().getSalto());
+                socio.setContrasena(password);		
+				
+				boolean exito = anadirSocio(socio);
 				if (exito) {
 						vista.getPanelSocioDatos().setTextLabelError("Socio añadido correctamente.");
 				} else {
@@ -333,16 +374,71 @@ public class ControladorSocio{
 				}
 			}
 			else{
-				boolean exito = modificarSocio(datos);
+				socio_temp.setNombre(vista.getPanelSocioDatos().getTextNombre().getText());
+				socio_temp.setApellidos(vista.getPanelSocioDatos().getTextApellidos().getText());
+				socio_temp.setDNI(vista.getPanelSocioDatos().getTextDNI().getText());
+				try {
+					socio_temp.setFechaDeNacimiento(TestDatos.formatter.parse(vista.getPanelSocioDatos().getTextFN().getText()));
+				} catch (ParseException ex) {
+					Logger.getLogger(ControladorSocio.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				socio_temp.setEmail(vista.getPanelSocioDatos().getTextEmail().getText());
+				socio_temp.setDireccion(vista.getPanelSocioDatos().getTextDomicilio().getText());
+				socio_temp.setProvincia(vista.getPanelSocioDatos().getTextProvincia().getText());
+				socio_temp.setLocalidad(vista.getPanelSocioDatos().getTextLocalidad().getText());
+				socio_temp.setCP(vista.getPanelSocioDatos().getTextCP().getText());
+				socio_temp.setTelefonoFijo(vista.getPanelSocioDatos().getTextTelfFijo().getText());
+				socio_temp.setTelefonoMovil(vista.getPanelSocioDatos().getTextTelMovil().getText());
+				socio_temp.setUsuario(vista.getPanelSocioDatos().getTextUsuario().getText());
+
+				String password = ControladorPrincipal.getInstance().md5(vista.getPanelSocioDatos().getTextDNI().getText() + ControladorPrincipal.getInstance().getSalto());
+                socio_temp.setContrasena(password);		
+				boolean exito = modificarSocio(socio_temp);
 				if (exito) {
 						vista.getPanelSocioDatos().setTextLabelError("Socio modificado correctamente.");
 				} else {
 						vista.getPanelSocioDatos().setTextLabelError("El Socio no ha sido modificado.");
 				}
 			}
+			}
 		}
 	}
-	
+	private void anadirKeyListener () {
+        TextKeyListener keyListener = new TextKeyListener();
+        
+        vista.getPanelSocioDatos().getTextNombre().addKeyListener(keyListener);
+        vista.getPanelSocioDatos().getTextApellidos().addKeyListener(keyListener);
+        vista.getPanelSocioDatos().getTextDNI().addKeyListener(keyListener);
+        vista.getPanelSocioDatos().getTextFN().addKeyListener(keyListener);
+        vista.getPanelSocioDatos().getTextEmail().addKeyListener(keyListener);
+        vista.getPanelSocioDatos().getTextDomicilio().addKeyListener(keyListener);
+        vista.getPanelSocioDatos().getTextLocalidad().addKeyListener(keyListener);
+        vista.getPanelSocioDatos().getTextProvincia().addKeyListener(keyListener);
+        vista.getPanelSocioDatos().getTextCP().addKeyListener(keyListener);
+		vista.getPanelSocioDatos().getTextTelMovil().addKeyListener(keyListener);
+		vista.getPanelSocioDatos().getTextTelfFijo().addKeyListener(keyListener);
+		vista.getPanelSocioDatos().getTextUsuario().addKeyListener(keyListener);
+    }
+    
+    // Cuando el usuario escribe, cambia el color en negro si habia errores y el color estaba rojo
+    class TextKeyListener implements KeyListener {
+
+        @Override
+        public void keyTyped(KeyEvent ke) {
+            if (ke.getSource().getClass() == JTextField.class || ke.getSource().getClass() == JFormattedTextField.class) {
+                ((JTextField)ke.getSource()).setForeground(Color.black);
+            }
+        }
+
+        @Override
+        public void keyPressed(KeyEvent ke) {
+        }
+
+        @Override
+        public void keyReleased(KeyEvent ke) {
+        }
+        
+    }
 	/**
 		* Listener controlador del boton Eliminar socio
 	*/
@@ -384,9 +480,8 @@ public class ControladorSocio{
 			if(socio_temp!=null)
 				ControladorCuota.getInstance(vista).anadirCuota(datos, socio_temp);
 			else{
-				socio_temp=obtenerSocio(vista.getPanelSocioDatos().obtenerDNISocio());
+				socio_temp=obtenerSocio(vista.getPanelSocioDatos().getTextDNI().getText());
 				if(socio_temp==null){
-					System.out.println("No se a elegido un socio");
 				}
 				else
 					ControladorCuota.getInstance(vista).anadirCuota(datos, socio_temp);
@@ -395,7 +490,7 @@ public class ControladorSocio{
 	}
 	
 	/**
-		* Listener controlador del boton Guardar Colaboracion socio
+		* Listener controlador del boton Buscar Colaboracion socio
 	*/
 	
 	public class btBuscarSocioListener implements ActionListener{
@@ -414,13 +509,12 @@ public class ControladorSocio{
 				tipo="Domicilio";
 			else if(tipo.equals("Código Postal"))
 				tipo="CP";
-			
-			//System.out.println("tipo: "+tipo);
-			
+						
 			socios = buscarSocio(tipo, valor);
 			
 			 TableModel tableModel = new TableModel() {
-
+				
+				
                 @Override
                 public int getRowCount() {
                     return socios.size();
@@ -454,9 +548,9 @@ public class ControladorSocio{
                         case 1:
                             return socios.get(row).getNombre();
                         case 2:
-                            return socios.get(row).getLocalidad();
-                        case 3:
                             return socios.get(row).getDireccion();
+                        case 3:
+                            return socios.get(row).getLocalidad();
                         case 4:
                             return socios.get(row).getTelefonoFijo();
 						case 5:
@@ -485,6 +579,87 @@ public class ControladorSocio{
             
             vista.getPanelSocioBuscar().getTablaBusqueda().setModel(tableModel);
 		}
+	}
 	
+	public class btEliminarSocioListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String DNI=null;
+			Socio s = new Socio();
+			int filaSeleccionada = vista.getPanelSocioBuscar().getTablaBusqueda().getSelectedRow();
+			if(filaSeleccionada!=-1)
+				DNI = vista.getPanelSocioBuscar().getTablaBusqueda().getValueAt(filaSeleccionada, 0).toString();
+			if(DNI!=null){
+				s = obtenerSocio(DNI);
+				eliminarSocio(s);
+				TableModel tableModel = new TableModel() {
+
+					@Override
+					public int getRowCount() {
+						return socios.size();
+					}
+
+					@Override
+					public int getColumnCount() {
+						return columnNames.length;
+					}
+
+					@Override
+					public String getColumnName(int i) {
+						return columnNames[i];
+					}
+
+					@Override
+					public Class<?> getColumnClass(int i) {
+						return String.class;
+					}
+
+					@Override
+					public boolean isCellEditable(int i, int i1) {
+						return false;
+					}
+
+					@Override
+					public Object getValueAt(int row, int col) {
+						switch (col) {
+							case 0:
+								return socios.get(row).getDNI();
+							case 1:
+								return socios.get(row).getNombre();
+							case 2:
+								return socios.get(row).getDireccion();
+							case 3:
+								return socios.get(row).getLocalidad();
+							case 4:
+								return socios.get(row).getTelefonoFijo();
+							case 5:
+								return socios.get(row).getTelefonoMovil();
+							case 6:
+								return socios.get(row).getCP();
+						}
+						return "";
+					}
+
+					@Override
+					public void setValueAt(Object o, int row, int col) {
+						throw new UnsupportedOperationException("Not supported yet.");
+					}
+
+					@Override
+					public void addTableModelListener(TableModelListener tl) {
+
+					}
+
+					@Override
+					public void removeTableModelListener(TableModelListener tl) {
+
+					}
+				};
+
+				vista.getPanelSocioBuscar().getTablaBusqueda().setModel(tableModel);
+			}
+		}
+		
 	}
 }

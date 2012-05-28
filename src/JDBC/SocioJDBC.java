@@ -24,6 +24,7 @@
  */
 package JDBC;
 
+import Controladores.TestDatos;
 import Modelo.Cuota;
 import Modelo.Socio;
 import java.io.IOException;
@@ -72,7 +73,7 @@ public class SocioJDBC {
     public boolean añadirSocio(Socio socio) throws SQLException{
 	DriverJDBC driver = DriverJDBC.getInstance();
 	String sql1 = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, CP, TelefonoFijo, TelefonoMovil, Email) VALUES ('"+socio.getDireccion()+"','"+socio.getLocalidad()+"','"+socio.getProvincia()+"','"+socio.getCP()+"','"+socio.getTelefonoFijo()+"','"+socio.getTelefonoMovil()+"','"+socio.getEmail()+"')";
-        String sql2 = "INSERT INTO C_Persona (OID, DNI, Nombre, Apellidos, FechaNacimiento,Sexo) VALUES (LAST_INSERT_ID(),'"+socio.getDNI()+"','"+socio.getNombre()+"','"+socio.getApellidos()+"','"+socio.getFechaDeNacimiento()+"','"+socio.getSexo()+"')";
+        String sql2 = "INSERT INTO C_Persona (OID, DNI, Nombre, Apellidos, FechaNacimiento,Sexo) VALUES (LAST_INSERT_ID(),'"+socio.getDNI()+"','"+socio.getNombre()+"','"+socio.getApellidos()+"','"+TestDatos.formatterBD.format(socio.getFechaDeNacimiento())+"','"+socio.getSexo()+"')";
         String sql3 = "INSERT INTO Socio (OID, usuario, contrasena) VALUES (LAST_INSERT_ID(),'"+socio.getUsuario()+"','"+socio.getContrasena()+"')";
 
         try{
@@ -138,7 +139,7 @@ public class SocioJDBC {
         String sql2 = "UPDATE PagoCuota SET OID=OID_Anonimo WHERE OIDSocio='"+socio.getOIDSocio()+"'";
         String sql3 = "UPDATE Cuota SET fechaFin=fechaUltimoPago WHERE OIDSocio='"+socio.getOIDSocio()+"'";
         String sql4 = "UPDATE Cuota SET OIDSocio=OID_Anonimo WHERE OIDSocio='"+socio.getOIDSocio()+"'";
-        String sql5 = "DELETE FROM Socio WHERE OIDSocio='"+socio.getOIDSocio()+"'";
+        String sql5 = "DELETE FROM Socio WHERE OID='"+socio.getOIDSocio()+"'";
         String sql6 = "DELETE FROM C_Persona WHERE OID='"+socio.getOIDPersona()+"'";
         String sql7 = "DELETE FROM Colaborador WHERE OID='"+socio.getOIDColaborador()+"'";
 
@@ -173,7 +174,7 @@ public class SocioJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
 
-        String sql = "SELECT * FROM Colaborador c, C_Persona p, Socio s WHERE (p.DNI='"+DNI+"') AND c.OID=p.OIDColaborador AND s.OIDC_Persona=p.OID";
+        String sql = "SELECT * FROM Colaborador c, C_Persona p, Socio s WHERE (p.DNI='"+DNI+"') AND c.OID=p.OID AND s.OID=p.OID AND s.OID=c.OID";
         Socio socio = null;
 
          try {
@@ -182,13 +183,13 @@ public class SocioJDBC {
 
             if(rs.next()){
                 socio = new Socio();
-                socio.setUsuario(rs.getString("usuario"));
+                socio.setUsuario(rs.getString("Usuario"));
                 socio.setContrasena(rs.getString("contrasena"));
 
                 socio.setDNI(rs.getString("DNI"));
                 socio.setNombre(rs.getString("Nombre"));
                 socio.setApellidos(rs.getString("Apellidos"));
-                socio.setFechaDeNacimiento(rs.getDate("FechaDeNacimiento"));
+                socio.setFechaDeNacimiento(rs.getDate("FechaNacimiento"));
 
                 char bufSexo[] = new char[1];
                 try {
@@ -198,7 +199,7 @@ public class SocioJDBC {
                 }
                 socio.setSexo(bufSexo[0]);
 
-                socio.setCP(rs.getString("CodigoPostal"));
+                socio.setCP(rs.getString("CP"));
                 socio.setDireccion(rs.getString("Direccion"));
                 socio.setEmail(rs.getString("Email"));
                 socio.setLocalidad(rs.getString("Localidad"));
@@ -215,6 +216,33 @@ public class SocioJDBC {
 	}
             return socio;
 
+    }
+	
+	 public boolean comprobarUsuarioUnico(String Usuario) throws SQLException{
+
+        DriverJDBC driver = DriverJDBC.getInstance();
+
+        String sql = "SELECT * FROM Colaborador c, C_Persona p, Socio s WHERE (s.Usuario='"+Usuario+"') AND c.OID=p.OID AND s.OID=p.OID AND s.OID=c.OID";
+        boolean existe = true;
+        
+         try {
+            driver.conectar();
+            ResultSet rs = driver.seleccionar(sql);
+
+            if(rs.next()){
+				existe = true;
+            }
+			else
+				existe = false;
+        }
+        catch (SQLException ex){
+            throw ex;
+		}
+		finally{
+			driver.desconectar();
+		}  
+		
+		return existe;
     }
 
     /**

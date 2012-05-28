@@ -4,9 +4,10 @@
  */
 package Vistas.Paneles.Socio;
 
+import java.awt.Color;
+import java.awt.TextField;
 import java.text.ParseException;
-import javax.swing.JButton;
-import javax.swing.JTabbedPane;
+import javax.swing.*;
 
 /**
  *
@@ -45,111 +46,98 @@ public class PanelSocioDatos extends javax.swing.JPanel {
 		labelError.setVisible(true);
 	}
 	
-	public String obtenerNombreSocio(){
-		return textNombreSocio.getText();
+	public JTextField getTextNombre(){
+		return jTextNombre;
 	}
-        public String obtenerApellidosSocio(){
-		return textApellidosSocio.getText();
+        public JTextField getTextApellidos(){
+		return jTextApellidos;
 	}
-        public String obtenerDNISocio(){
-		return textDNISocio.getText();
+        public JTextField getTextDNI(){
+		return jTextDNI;
 	}
-        public String obtenerNacionalidadSocio(){
-		return textCorreoSocio.getText();
-	}
-        public String obtenerCorreoSocio(){
-                return textCorreoSocio.getText();
+        public JTextField getTextEmail(){
+                return jTextEmail;
         }
         
-        public String obtenerFNSocio() throws ParseException{
-			//public java.sql.Date obtenerFNSocio() throws ParseException{
-			String Fecha = new String();
-			String Dia = textDiaNacimientoSocio.getText();
-			String Mes = textMesNacimientoSocio.getText();
-			String Ano = textAnoNacimientoSocio.getText();
-			Fecha=Dia+"/"+Mes+"/"+Ano;
-			return Fecha;
-			//java.sql.Date var = java.sql.Date.valueOf(Fecha);
-			//return var;                        
+        public JFormattedTextField getTextFN(){
+			return jFormattedTextFechaNacimiento;
         }
-        public String obtenerSexoSocio(){
-            
-		if(radioSexoMasculinoSocio.isSelected())
-                    return "H";
-                else
-                    return "M";
-                
-	}
-        public String obtenerLocalidadSocio(){
-                return textLocalidadSocio.getText();
+        public String getSexo(){
+			if(radioSexoMasculinoSocio.isSelected())
+				return "H";
+			else
+				return "M";
+
+		}
+        public JTextField getTextLocalidad(){
+                return jTextLocalidad;
         }
         
-        public String obtenerProvinciaSocio(){
-                return textProvinciaSocio.getText();
+        public JTextField getTextProvincia(){
+                return jTextProvincia;
         }        
         
-        public String obtenerDomicilioSocio(){
-                return textDomicilioSocio.getText();
+        public JTextField getTextDomicilio(){
+                return jTextDomicilio;
         }
         
-        public String obtenerCPSocio(){
-                return textCPSocio.getText();
+        public JTextField getTextCP(){
+                return jTextCP;
         }
         
-        public String obtenerTelfSocio(){
-                return textTefSocio.getText();
+        public JTextField getTextTelfFijo(){
+                return jTextTelefono;
         }
                 
-        public String obtenerMovilSocio(){
-                return textMovilSocio.getText();
+        public JTextField getTextTelMovil(){
+                return jTextMovil;
         }
         
-        public String obtenerUsuarioSocio(){
-                return textUsuarioSocio.getText();
+        public JTextField getTextUsuario(){
+                return jTextUsuario;
         }
         
 		public void escribirSocioDatos(String[] datos){
 
-				textNombreSocio.setText(datos[0]);
-				textApellidosSocio.setText(datos[1]);
-				textDNISocio.setText(datos[2]);
-				textCorreoSocio.setText(datos[3]);
-				textDiaNacimientoSocio.setText(datos[4]);
-				textMesNacimientoSocio.setText(datos[5]);
-				textAnoNacimientoSocio.setText(datos[6]);
-                if(datos[7].equals("M"))
+				jTextNombre.setText(datos[0]);
+				jTextApellidos.setText(datos[1]);
+				jTextDNI.setText(datos[2]);
+				jTextEmail.setText(datos[3]);
+				jFormattedTextFechaNacimiento.setText(datos[4]);
+                if(datos[5].equals("M"))
                     radioSexoFemeninoSocio.setSelected(true);
                 else
                     radioSexoMasculinoSocio.setSelected(true);
-                textLocalidadSocio.setText(datos[8]);
-                textProvinciaSocio.setText(datos[9]);
-                textDomicilioSocio.setText(datos[10]);
-                textCPSocio.setText(datos[11]);  
-                textTefSocio.setText(datos[12]);
-                textMovilSocio.setText(datos[13]);
-                textUsuarioSocio.setText(datos[14]);
+                jTextLocalidad.setText(datos[6]);
+                jTextProvincia.setText(datos[7]);
+                jTextDomicilio.setText(datos[8]);
+                jTextCP.setText(datos[9]);  
+                jTextTelefono.setText(datos[10]);
+                jTextMovil.setText(datos[11]);
+                jTextUsuario.setText(datos[12]);
 				labelError.setVisible(false);
-				textCantidadColaboracionSocio.setText(datos[15]);
-				textFechaColaboracionSocio.setText(datos[16]);
-				textConceptoColaboracionSocio.setText(datos[17]);
-				if(!"".equals(datos[18]))
+				
+				textCantidadColaboracionSocio.setText(datos[13]);
+				textFechaColaboracionSocio.setText(datos[14]);
+				textConceptoColaboracionSocio.setText(datos[15]);
+				if(!"".equals(datos[16]))
 					cbTipoColaboracionSocio.setSelectedIndex(Integer.parseInt(datos[18]));
 				else
 					cbTipoColaboracionSocio.setSelectedIndex(0);
-				if(!"".equals(datos[19]))
+				if(!"".equals(datos[17]))
 					cbFechaInicialColaboracionSocio.setSelectedIndex(Integer.parseInt(datos[19]));
 				else
 					cbFechaInicialColaboracionSocio.setSelectedIndex(0);
-				if(!"".equals(datos[20]))
+				if(!"".equals(datos[18]))
 					cbFechaFinalColaboracionSocio.setSelectedIndex(Integer.parseInt(datos[20]));
 				else
 					cbFechaFinalColaboracionSocio.setSelectedIndex(0);
 				//Poner la tabla colaboraciones vacia
 				//Poner la tabla cuota vacia
-				textCantidadCuotaSocio.setText("");
-				textIntervaloCuotaSocio.setText("");
-				textFechaInicioCuotaSocio.setText("");
-				textFechaFinalCuotaSocio.setText("");
+				textCantidadCuotaSocio.setText(datos[19]);
+				textIntervaloCuotaSocio.setText(datos[20]);
+				textFechaInicioCuotaSocio.setText(datos[21]);
+				textFechaFinalCuotaSocio.setText(datos[22]);
 		}
 //-------------------------------------->PANEL COLABORACIONES<-------------------------------------------//
 		public JButton getBtGuardarColaboracion(){
@@ -204,43 +192,39 @@ public class PanelSocioDatos extends javax.swing.JPanel {
         jTabbedPane = new javax.swing.JTabbedPane();
         PanelDatosSocio = new javax.swing.JPanel();
         label7 = new java.awt.Label();
-        label8 = new java.awt.Label();
-        label9 = new java.awt.Label();
-        label10 = new java.awt.Label();
-        textNombreSocio = new java.awt.TextField();
-        textDNISocio = new java.awt.TextField();
-        textCorreoSocio = new java.awt.TextField();
-        label11 = new java.awt.Label();
-        label12 = new java.awt.Label();
-        textApellidosSocio = new java.awt.TextField();
-        textDiaNacimientoSocio = new java.awt.TextField();
-        label13 = new java.awt.Label();
-        textMesNacimientoSocio = new java.awt.TextField();
-        textAnoNacimientoSocio = new java.awt.TextField();
         label14 = new java.awt.Label();
-        label15 = new java.awt.Label();
-        label16 = new java.awt.Label();
         radioSexoFemeninoSocio = new javax.swing.JRadioButton();
         label17 = new java.awt.Label();
-        label18 = new java.awt.Label();
-        label19 = new java.awt.Label();
-        label20 = new java.awt.Label();
-        label21 = new java.awt.Label();
         label22 = new java.awt.Label();
-        label23 = new java.awt.Label();
-        label24 = new java.awt.Label();
-        textDomicilioSocio = new java.awt.TextField();
-        textLocalidadSocio = new java.awt.TextField();
-        textProvinciaSocio = new java.awt.TextField();
-        textCPSocio = new java.awt.TextField();
-        label26 = new java.awt.Label();
-        textMovilSocio = new java.awt.TextField();
-        textTefSocio = new java.awt.TextField();
-        textUsuarioSocio = new java.awt.TextField();
         btGuardarDatosSocio = new javax.swing.JButton();
         btLimpiarDatosSocio = new javax.swing.JButton();
         radioSexoMasculinoSocio = new javax.swing.JRadioButton();
         labelError = new javax.swing.JLabel();
+        jTextNombre = new javax.swing.JTextField();
+        jTextDNI = new javax.swing.JTextField();
+        jTextEmail = new javax.swing.JTextField();
+        jTextDomicilio = new javax.swing.JTextField();
+        jTextLocalidad = new javax.swing.JTextField();
+        jTextCP = new javax.swing.JTextField();
+        jTextTelefono = new javax.swing.JTextField();
+        jTextMovil = new javax.swing.JTextField();
+        jTextProvincia = new javax.swing.JTextField();
+        jTextApellidos = new javax.swing.JTextField();
+        jTextUsuario = new javax.swing.JTextField();
+        jFormattedTextFechaNacimiento = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        Localidad = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         PanelColaboracionesSocio = new javax.swing.JPanel();
         label1 = new java.awt.Label();
         jScrollPane8 = new javax.swing.JScrollPane();
@@ -285,44 +269,8 @@ public class PanelSocioDatos extends javax.swing.JPanel {
         label7.setForeground(new java.awt.Color(255, 51, 51));
         label7.setText("Datos personales");
 
-        label8.setText("Nombre");
-
-        label9.setText("DNI/Pasaporte");
-
-        label10.setText("E-Mail");
-
-        textNombreSocio.setText("Nombre");
-
-        textDNISocio.setName("");
-        textDNISocio.setText("DNI/Pasaporte");
-        textDNISocio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textDNISocioActionPerformed(evt);
-            }
-        });
-
-        textCorreoSocio.setText("Correo Electronico");
-
-        label11.setText("Apellidos");
-
-        label12.setText("Nacido el");
-
-        textApellidosSocio.setText("Apellidos");
-
-        textDiaNacimientoSocio.setText("dia");
-
-        label13.setText("de");
-
-        textMesNacimientoSocio.setText("mes");
-
-        textAnoNacimientoSocio.setText("año");
-
         label14.setText("de");
         label14.setVisible(false);
-
-        label15.setText("de");
-
-        label16.setText("Sexo");
 
         radioSexoFemeninoSocio.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroupSexo.add(radioSexoFemeninoSocio);
@@ -331,36 +279,8 @@ public class PanelSocioDatos extends javax.swing.JPanel {
         label17.setForeground(new java.awt.Color(255, 0, 0));
         label17.setText("Datos de contacto");
 
-        label18.setText("Domicilio");
-
-        label19.setText("Localidad");
-
-        label20.setText("Código Postal");
-
-        label21.setText("Teléfono");
-
         label22.setForeground(new java.awt.Color(255, 0, 0));
         label22.setText("Datos de acceso");
-
-        label23.setText("Provincia");
-
-        label24.setText("Nombre de usuario");
-
-        textDomicilioSocio.setText("Calle, número, escalera, piso");
-
-        textLocalidadSocio.setText("Localidad");
-
-        textProvinciaSocio.setText("Provincia");
-
-        textCPSocio.setText("Código Postal");
-
-        label26.setText("Movil");
-
-        textMovilSocio.setText("Movil");
-
-        textTefSocio.setText("Telefono");
-
-        textUsuarioSocio.setText("Nombre de usuario");
 
         btGuardarDatosSocio.setBackground(new java.awt.Color(255, 255, 255));
         btGuardarDatosSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
@@ -380,6 +300,56 @@ public class PanelSocioDatos extends javax.swing.JPanel {
         labelError.setForeground(new java.awt.Color(255, 51, 51));
         labelError.setText("Error");
 
+        jTextNombre.setText("Nombre");
+
+        jTextDNI.setText("DNI/Pasaporte");
+
+        jTextEmail.setText("E-mail");
+
+        jTextDomicilio.setText("Domicilio");
+
+        jTextLocalidad.setText("Localidad");
+
+        jTextCP.setText("Codigo Postal");
+
+        jTextTelefono.setText("Telefono fijo");
+
+        jTextMovil.setText("Telefono Movil");
+
+        jTextProvincia.setText("Provincia");
+
+        jTextApellidos.setText("Apellidos");
+
+        jTextUsuario.setText("Usuario");
+
+        jFormattedTextFechaNacimiento.setText("Fecha de nacimiento");
+
+        jLabel1.setText("Nombre");
+
+        jLabel2.setText("DNI / NIF/ Pasaporte");
+
+        jLabel3.setText("E-Mail");
+
+        jLabel4.setText("Domicilio");
+
+        Localidad.setText("Nombre");
+
+        jLabel6.setText("Código Postal");
+
+        jLabel7.setText("Teléfono");
+
+        jLabel9.setText("Apellidos");
+
+        jLabel10.setText("Fecha Nacimiento");
+
+        jLabel11.setText("Sexo");
+
+        jLabel8.setText("Nombre de Usuario");
+
+        jLabel12.setText("Provincia");
+
+        jLabel13.setText("Movil");
+
         javax.swing.GroupLayout PanelDatosSocioLayout = new javax.swing.GroupLayout(PanelDatosSocio);
         PanelDatosSocio.setLayout(PanelDatosSocioLayout);
         PanelDatosSocioLayout.setHorizontalGroup(
@@ -387,160 +357,148 @@ public class PanelSocioDatos extends javax.swing.JPanel {
             .addGroup(PanelDatosSocioLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PanelDatosSocioLayout.createSequentialGroup()
                         .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(PanelDatosSocioLayout.createSequentialGroup()
-                                    .addComponent(label18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(38, 38, 38)
-                                    .addComponent(textDomicilioSocio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelDatosSocioLayout.createSequentialGroup()
-                                    .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(textNombreSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(textDNISocio, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                                            .addComponent(textCorreoSocio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelDatosSocioLayout.createSequentialGroup()
-                                    .addComponent(label19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(36, 36, 36)
-                                    .addComponent(textLocalidadSocio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelDatosSocioLayout.createSequentialGroup()
-                                    .addComponent(label20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(textTefSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(textCPSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelDatosSocioLayout.createSequentialGroup()
-                                    .addComponent(label24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(21, 21, 21)
-                                    .addComponent(textUsuarioSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btGuardarDatosSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(PanelDatosSocioLayout.createSequentialGroup()
-                                    .addComponent(label21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(385, 385, 385))))
+                            .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelDatosSocioLayout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(PanelDatosSocioLayout.createSequentialGroup()
+                        .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PanelDatosSocioLayout.createSequentialGroup()
+                                .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(Localidad)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextCP, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(PanelDatosSocioLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(29, 29, 29)
+                        .addComponent(btGuardarDatosSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
+                        .addComponent(btLimpiarDatosSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelDatosSocioLayout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(23, 23, 23)
+                                .addComponent(radioSexoMasculinoSocio)
                                 .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(PanelDatosSocioLayout.createSequentialGroup()
-                                        .addComponent(radioSexoMasculinoSocio)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(radioSexoFemeninoSocio))
-                                    .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(PanelDatosSocioLayout.createSequentialGroup()
-                                            .addComponent(textDiaNacimientoSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(4, 4, 4)
-                                            .addComponent(label14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(12, 12, 12)
-                                            .addComponent(label13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(19, 19, 19)
-                                            .addComponent(textMesNacimientoSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(25, 25, 25)
-                                            .addComponent(label15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(textAnoNacimientoSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(textApellidosSocio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(textProvinciaSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textMovilSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(PanelDatosSocioLayout.createSequentialGroup()
-                                .addGap(71, 71, 71)
-                                .addComponent(btLimpiarDatosSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(98, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosSocioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(276, 276, 276))
+                                        .addGap(141, 141, 141)
+                                        .addComponent(label14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(PanelDatosSocioLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(radioSexoFemeninoSocio))))
+                            .addComponent(jTextApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextMovil, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19))))
+            .addGroup(PanelDatosSocioLayout.createSequentialGroup()
+                .addGap(248, 248, 248)
+                .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         PanelDatosSocioLayout.setVerticalGroup(
             PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDatosSocioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelDatosSocioLayout.createSequentialGroup()
                         .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textNombreSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(textApellidosSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                        .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(13, 13, 13))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosSocioLayout.createSequentialGroup()
+                        .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2))
+                    .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jFormattedTextFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10)))
                 .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textAnoNacimientoSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PanelDatosSocioLayout.createSequentialGroup()
                         .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textDNISocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textCorreoSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(PanelDatosSocioLayout.createSequentialGroup()
-                            .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(textMesNacimientoSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelDatosSocioLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
                                 .addComponent(label14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textDiaNacimientoSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(radioSexoFemeninoSocio)
-                                .addComponent(radioSexoMasculinoSocio)))
-                        .addGroup(PanelDatosSocioLayout.createSequentialGroup()
-                            .addComponent(label12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(label16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(PanelDatosSocioLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelDatosSocioLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3))
+                            .addGroup(PanelDatosSocioLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(radioSexoMasculinoSocio)
+                                    .addComponent(radioSexoFemeninoSocio))))
+                        .addGap(31, 31, 31)
                         .addComponent(label17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textDomicilioSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textLocalidadSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(label23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textProvinciaSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(label20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textCPSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosSocioLayout.createSequentialGroup()
+                                .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))
+                                .addGap(32, 32, 32))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosSocioLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Localidad)
+                                    .addComponent(jTextLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jTextProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jTextCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)
+                        .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel13)
+                            .addComponent(jTextMovil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(PanelDatosSocioLayout.createSequentialGroup()
-                        .addComponent(label21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(textTefSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textMovilSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(textUsuarioSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel11)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(label22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
                 .addComponent(labelError)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btLimpiarDatosSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btGuardarDatosSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -642,7 +600,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                                         .addComponent(btBuscarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(btEliminarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         PanelColaboracionesSocioLayout.setVerticalGroup(
             PanelColaboracionesSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -680,7 +638,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                             .addComponent(btEliminarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(112, 112, 112)
                         .addComponent(btGuardarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
 
         jTabbedPane.addTab("Colaboraciones", PanelColaboracionesSocio);
@@ -769,7 +727,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                         .addComponent(btGuardarCuotaSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btEliminarCuotaSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         PanelCuotasSocioLayout.setVerticalGroup(
             PanelCuotasSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -777,7 +735,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel28)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelCuotasSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelCuotasSocioLayout.createSequentialGroup()
@@ -808,28 +766,21 @@ public class PanelSocioDatos extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 965, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jTabbedPane)
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jTabbedPane)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textDNISocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDNISocioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textDNISocioActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Localidad;
     private javax.swing.JPanel PanelColaboracionesSocio;
     private javax.swing.JPanel PanelCuotasSocio;
     private javax.swing.JPanel PanelDatosSocio;
@@ -844,65 +795,60 @@ public class PanelSocioDatos extends javax.swing.JPanel {
     private javax.swing.JComboBox cbFechaFinalColaboracionSocio;
     private javax.swing.JComboBox cbFechaInicialColaboracionSocio;
     private javax.swing.JComboBox cbTipoColaboracionSocio;
+    private javax.swing.JFormattedTextField jFormattedTextFechaNacimiento;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane;
+    private javax.swing.JTextField jTextApellidos;
+    private javax.swing.JTextField jTextCP;
+    private javax.swing.JTextField jTextDNI;
+    private javax.swing.JTextField jTextDomicilio;
+    private javax.swing.JTextField jTextEmail;
+    private javax.swing.JTextField jTextLocalidad;
+    private javax.swing.JTextField jTextMovil;
+    private javax.swing.JTextField jTextNombre;
+    private javax.swing.JTextField jTextProvincia;
+    private javax.swing.JTextField jTextTelefono;
+    private javax.swing.JTextField jTextUsuario;
     private java.awt.Label label1;
-    private java.awt.Label label10;
-    private java.awt.Label label11;
-    private java.awt.Label label12;
-    private java.awt.Label label13;
     private java.awt.Label label14;
-    private java.awt.Label label15;
-    private java.awt.Label label16;
     private java.awt.Label label17;
-    private java.awt.Label label18;
-    private java.awt.Label label19;
     private java.awt.Label label2;
-    private java.awt.Label label20;
-    private java.awt.Label label21;
     private java.awt.Label label22;
-    private java.awt.Label label23;
-    private java.awt.Label label24;
-    private java.awt.Label label26;
     private java.awt.Label label3;
     private java.awt.Label label4;
     private java.awt.Label label5;
     private java.awt.Label label6;
     private java.awt.Label label7;
-    private java.awt.Label label8;
-    private java.awt.Label label9;
     private javax.swing.JLabel labelError;
     private javax.swing.JRadioButton radioSexoFemeninoSocio;
     private javax.swing.JRadioButton radioSexoMasculinoSocio;
     private javax.swing.JTable tableColaboracionesSocio;
     private javax.swing.JTable tableCuotasSocio;
-    private java.awt.TextField textAnoNacimientoSocio;
-    private java.awt.TextField textApellidosSocio;
-    private java.awt.TextField textCPSocio;
     private java.awt.TextField textCantidadColaboracionSocio;
     private javax.swing.JTextField textCantidadCuotaSocio;
     private java.awt.TextField textConceptoColaboracionSocio;
-    private java.awt.TextField textCorreoSocio;
-    private java.awt.TextField textDNISocio;
-    private java.awt.TextField textDiaNacimientoSocio;
-    private java.awt.TextField textDomicilioSocio;
     private java.awt.TextField textFechaColaboracionSocio;
     private javax.swing.JTextField textFechaFinalCuotaSocio;
     private javax.swing.JTextField textFechaInicioCuotaSocio;
     private javax.swing.JTextField textIntervaloCuotaSocio;
-    private java.awt.TextField textLocalidadSocio;
-    private java.awt.TextField textMesNacimientoSocio;
-    private java.awt.TextField textMovilSocio;
-    private java.awt.TextField textNombreSocio;
-    private java.awt.TextField textProvinciaSocio;
-    private java.awt.TextField textTefSocio;
-    private java.awt.TextField textUsuarioSocio;
     // End of variables declaration//GEN-END:variables
 }
