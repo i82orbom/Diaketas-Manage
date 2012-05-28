@@ -3,6 +3,7 @@ package Controladores;
 
 import Controladores.BolsaDeTrabajo.ControladorDemanda;
 import Controladores.BolsaDeTrabajo.ControladorOferta;
+import Modelo.Oferta;
 import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.BolsaTrabajo.VistaBolsaTrabajo;
 import java.awt.event.ActionEvent;
@@ -100,17 +101,71 @@ public class ControladorBolsaTrabajo {
     }
 
     public void mostrarNuevaOferta() {
+		vista.getOfertaDatos().getBTGuardar().setVisible(true);
+		vista.getOfertaDatos().getBTLimpiar().setVisible(true);
+		vista.getOfertaDatos().getBTModificar().setVisible(false);
+		vista.getOfertaDatos().getBTGuardarCambios().setVisible(false);
+		vista.getOfertaDatos().getBTEliminar().setVisible(false);
+
+		vista.getOfertaDatos().getBTGuardarSector().setVisible(true);
+		vista.getOfertaDatos().getBTEliminarSector().setVisible(true);
+
+		vista.getOfertaDatos().getTextCIF().setEnabled(true);
+		vista.getOfertaDatos().getcbSector().setEnabled(true);
+		vista.getOfertaDatos().getTextNuevoSector().setVisible(true);
+		vista.getOfertaDatos().gettaDescripcionOferta().setEditable(true);
+		vista.getOfertaDatos().gettextNPuestos().setEditable(true);
+		vista.getOfertaDatos().getcbTipoContrato().setEnabled(true);
+		vista.getOfertaDatos().gettextDuracionContrato().setEditable(true);
+		vista.getOfertaDatos().gettaCualificacion().setEditable(true);
+
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
 		vista.getBarraDeNavigacion().setTextLabelNivel3("Nueva Oferta");
     }
 
-    public void mostrarConsultarOfertas(){
-        vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
-        vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Ofertas");
+    public void mostrarConsultarOferta(Oferta oferta){
+		vista.getOfertaDatos().getBTGuardar().setVisible(false);
+		vista.getOfertaDatos().getBTLimpiar().setVisible(false);
+		vista.getOfertaDatos().getBTModificar().setVisible(true);
+		vista.getOfertaDatos().getBTGuardarCambios().setVisible(false);
+		vista.getOfertaDatos().getBTEliminar().setVisible(true);
+
+		vista.getOfertaDatos().getBTGuardarSector().setVisible(false);
+		vista.getOfertaDatos().getBTEliminarSector().setVisible(false);
+
+		vista.getOfertaDatos().getTextCIF().setEnabled(false);
+		vista.getOfertaDatos().getcbSector().setEnabled(false);
+		vista.getOfertaDatos().getTextNuevoSector().setVisible(false);
+		vista.getOfertaDatos().gettaDescripcionOferta().setEditable(false);
+		vista.getOfertaDatos().gettextNPuestos().setEditable(false);
+		vista.getOfertaDatos().getcbTipoContrato().setEnabled(false);
+		vista.getOfertaDatos().gettextDuracionContrato().setEditable(false);
+		vista.getOfertaDatos().gettaCualificacion().setEditable(false);
+
+		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
+		vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Ofertas");
     }
 
-    public void mostrarModificarOferta() {
-        vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
+    public void mostrarModificarOferta(Oferta oferta) {
+		vista.getOfertaDatos().getBTGuardar().setVisible(false);
+		vista.getOfertaDatos().getBTLimpiar().setVisible(false);
+		vista.getOfertaDatos().getBTModificar().setVisible(false);
+		vista.getOfertaDatos().getBTGuardarCambios().setVisible(true);
+		vista.getOfertaDatos().getBTEliminar().setVisible(true);
+
+		vista.getOfertaDatos().getBTGuardarSector().setVisible(true);
+		vista.getOfertaDatos().getBTEliminarSector().setVisible(true);
+
+		vista.getOfertaDatos().getTextCIF().setEnabled(true);
+		vista.getOfertaDatos().getcbSector().setEnabled(true);
+		vista.getOfertaDatos().getTextNuevoSector().setVisible(true);
+		vista.getOfertaDatos().gettaDescripcionOferta().setEditable(true);
+		vista.getOfertaDatos().gettextNPuestos().setEditable(true);
+		vista.getOfertaDatos().getcbTipoContrato().setEnabled(true);
+		vista.getOfertaDatos().gettextDuracionContrato().setEditable(true);
+		vista.getOfertaDatos().gettaCualificacion().setEditable(true);
+
+		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Oferta");
     }
 

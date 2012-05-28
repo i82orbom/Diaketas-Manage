@@ -247,5 +247,6 @@ public class Beneficiario extends Persona {
     public Long getOID() {
         return OID;
     }
+   
 
 }
