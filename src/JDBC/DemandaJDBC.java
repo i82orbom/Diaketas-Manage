@@ -4,6 +4,7 @@
  */
 package JDBC;
 
+import Controladores.TestDatos;
 import Modelo.Demanda;
 import Modelo.Beneficiario;
 import Modelo.Voluntario;
@@ -32,7 +33,7 @@ public class DemandaJDBC {
         
         DriverJDBC driver = DriverJDBC.getInstance();
         boolean exito=true;
-        String sql = "INSERT INTO Demanda(OID,OIDSector,OIDBeneficiario,OIDVoluntario,DescripcionVidaLaboral,Fecha) VALUES ('"+demanda.getOID()+"','"+demanda.getIdSector().getOID() +"','"+demanda.getIdBeneficiario().getOID() +"','"+demanda.getIdVoluntario().getOID()+"','"+demanda.getDescripcionValidaLaboral()+"','"+demanda.getFecha()+"')";                                                            
+        String sql = "INSERT INTO Demanda(OIDSector,OIDBeneficiario,OIDVoluntario,DescripcionVidaLaboral,Fecha) VALUES ("+demanda.getIdSector().getOID() +","+demanda.getIdBeneficiario().getOID() +","+demanda.getIdVoluntario().getOID()+",'"+demanda.getDescripcionValidaLaboral()+"','"+TestDatos.formatterBD.format(demanda.getFecha())+"')";                                                            
         
         driver.inicioTransaccion();
         try{
@@ -50,12 +51,12 @@ public class DemandaJDBC {
     }
     public boolean EliminarDemanda (Demanda demanda) throws SQLException{
     
-        boolean exito = true;
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "DELETE FROM Demanda WHERE OID = '"+demanda.getOID()+"'";
         
-        driver.inicioTransaccion();
+        
         try {
+            driver.inicioTransaccion();
             driver.eliminar(sql);
             driver.commit();
         }
@@ -66,7 +67,7 @@ public class DemandaJDBC {
         finally {
             driver.finTransaccion();
         }
-        return exito;
+        return true;
     }
    
     public ArrayList<Demanda> FiltrarDemandas(String TipoBusqueda , String Valor) throws SQLException{
@@ -117,7 +118,7 @@ public class DemandaJDBC {
                 
                 lista_demandas.add(temp);
             }
-            return lista_demandas; 
+             
         }
         catch (SQLException ex){
             throw ex;
@@ -125,7 +126,7 @@ public class DemandaJDBC {
         finally {
             driver.desconectar();
         }
-           
+        return lista_demandas;  
     }
     
     public boolean ActualizarDemanda (Demanda demanda) throws SQLException {
