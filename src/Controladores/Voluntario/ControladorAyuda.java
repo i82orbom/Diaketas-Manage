@@ -173,7 +173,7 @@ public class ControladorAyuda {
     }
 
     // TODO Metodos JDBC
-    private boolean registrarAyuda(Ayuda ayuda) {
+    public boolean registrarAyuda(Ayuda ayuda) {
         boolean exito;
 
             // TODO test ayuda.getBeneficiarioDeAyuda().getNIF() exite

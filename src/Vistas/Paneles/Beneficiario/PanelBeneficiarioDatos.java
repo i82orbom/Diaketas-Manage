@@ -10,7 +10,9 @@ import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -28,175 +30,208 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
      */
     public PanelBeneficiarioDatos() {
         initComponents();
-		labelError.setVisible(false);
+        labelError.setVisible(false);
     }
 
-	public void setTextLabelError (String text) {
+    public void setTextLabelError(String text) {
         labelError.setText(text);
         labelError.setVisible(true);
     }
 
-	public void setColorLabelNombre (Color cf){
-		labelNombre.setForeground(cf);
-	}
-	public void setColorLabelApellidos (Color cf){
-		labelApellidos.setForeground(cf);
-	}
-	public void setColorLabelNIF (Color cf){
-		labelNIF.setForeground(cf);
-	}
-	public void setColorLabelFechaNacimiento (Color cf){
-		labelFechaNacimiento.setForeground(cf);
-	}
-	public void setColorLabelNacionalidad (Color cf){
-		labelNacionalidad.setForeground(cf);
-	}
-	public void setColorLabelProfesion (Color cf){
-		labelProfesion.setForeground(cf);
-	}
-	public void setColorLabelOcupacion (Color cf){
-		labelOcupacion.setForeground(cf);
-	}
-	public void setColorLabelTelefonoFijo (Color cf){
-		labelTelefonoFijo.setForeground(cf);
-	}
-	public void setColorLabelTelefonoMovil (Color cf){
-		labelTelefonoMovil.setForeground(cf);
-	}
-	public void setColorLabelDomicilio (Color cf){
-		labelDomicilio.setForeground(cf);
-	}
-	public void setColorLabelLocalidad (Color cf){
-		labelLocalidad.setForeground(cf);
-	}
-	public void setColorLabelCP (Color cf){
-		labelCP.setForeground(cf);
-	}
-	public void setColorLabelObservaciones (Color cf){
-		labelObservaciones.setForeground(cf);
-	}
-	public void setColorLabelSituacionEconomica (Color cf){
-		labelSituacionEconomica.setForeground(cf);
-	}
-	public void setColorLabelViviendaPrecio (Color cf){
-		labelViviendaPrecio.setForeground(cf);
-	}
-	public void setColorLabelViviendaEspecificacion (Color cf){
-		labelViviendaEspecificacion.setForeground(cf);
-	}
+    public void setColorLabelNombre(Color cf) {
+        labelNombre.setForeground(cf);
+    }
 
-	public void setColorLabels(Color cf){
-		labelNombre.setForeground(cf);
-		labelNIF.setForeground(cf);
-		labelApellidos.setForeground(cf);
-		labelFechaNacimiento.setForeground(cf);
-		labelNacionalidad.setForeground(cf);
-		labelProfesion.setForeground(cf);
-		labelOcupacion.setForeground(cf);
-		labelTelefonoFijo.setForeground(cf);
-		labelTelefonoMovil.setForeground(cf);
-		labelDomicilio.setForeground(cf);
-		labelLocalidad.setForeground(cf);
-		labelCP.setForeground(cf);
-		labelObservaciones.setForeground(cf);
-		labelSituacionEconomica.setForeground(cf);
-		labelViviendaPrecio.setForeground(cf);
-		labelViviendaEspecificacion.setForeground(cf);
+    public void setColorLabelApellidos(Color cf) {
+        labelApellidos.setForeground(cf);
+    }
 
-	}
-	public void limpiarFormulario() {
-		// Limpio los campos
-		labelError.setVisible(false);
-		textNombre.setText("");
-		textApellidos.setText("");
-		textNIF.setText("");
-		textFechaNacimiento.setText("");
-		textNacionalidad.setText("");
-		cbEstadoCivil.setSelectedIndex(0);
-		cbNivelEstudios.setSelectedIndex(0);
-		textProfesion.setText("");
-		textOcupacion.setText("");
-		textTelefonoFijo.setText("");
-		textTelefonoMovil.setText("");
-		textDomicilio.setText("");
-		textLocalidad.setText("");
-		textCP.setText("");
-		textObservaciones.setText("");
-		textSituacionEconomica.setText("");
+    public void setColorLabelNIF(Color cf) {
+        labelNIF.setForeground(cf);
+    }
 
-		cbTipoVivienda.setSelectedIndex(0);
-		textPrecioVivienda.setText("");
-		textEspecificarTipoVivienda.setText("");
+    public void setColorLabelFechaNacimiento(Color cf) {
+        labelFechaNacimiento.setForeground(cf);
+    }
 
-		setColorLabels(Color.black);
-	}
+    public void setColorLabelNacionalidad(Color cf) {
+        labelNacionalidad.setForeground(cf);
+    }
 
-	public JTable getTbIntervenciones() {
-            return tbIntervenciones;
+    public void setColorLabelProfesion(Color cf) {
+        labelProfesion.setForeground(cf);
+    }
+
+    public void setColorLabelOcupacion(Color cf) {
+        labelOcupacion.setForeground(cf);
+    }
+
+    public void setColorLabelTelefonoFijo(Color cf) {
+        labelTelefonoFijo.setForeground(cf);
+    }
+
+    public void setColorLabelTelefonoMovil(Color cf) {
+        labelTelefonoMovil.setForeground(cf);
+    }
+
+    public void setColorLabelDomicilio(Color cf) {
+        labelDomicilio.setForeground(cf);
+    }
+
+    public void setColorLabelLocalidad(Color cf) {
+        labelLocalidad.setForeground(cf);
+    }
+
+    public void setColorLabelCP(Color cf) {
+        labelCP.setForeground(cf);
+    }
+
+    public void setColorLabelObservaciones(Color cf) {
+        labelObservaciones.setForeground(cf);
+    }
+
+    public void setColorLabelSituacionEconomica(Color cf) {
+        labelSituacionEconomica.setForeground(cf);
+    }
+
+    public void setColorLabelViviendaPrecio(Color cf) {
+        labelViviendaPrecio.setForeground(cf);
+    }
+
+    public void setColorLabelViviendaEspecificacion(Color cf) {
+        labelViviendaEspecificacion.setForeground(cf);
+    }
+
+    public void setColorLabels(Color cf) {
+        labelNombre.setForeground(cf);
+        labelNIF.setForeground(cf);
+        labelApellidos.setForeground(cf);
+        labelFechaNacimiento.setForeground(cf);
+        labelNacionalidad.setForeground(cf);
+        labelProfesion.setForeground(cf);
+        labelOcupacion.setForeground(cf);
+        labelTelefonoFijo.setForeground(cf);
+        labelTelefonoMovil.setForeground(cf);
+        labelDomicilio.setForeground(cf);
+        labelLocalidad.setForeground(cf);
+        labelCP.setForeground(cf);
+        labelObservaciones.setForeground(cf);
+        labelSituacionEconomica.setForeground(cf);
+        labelViviendaPrecio.setForeground(cf);
+        labelViviendaEspecificacion.setForeground(cf);
+
+    }
+
+    public void limpiarFormulario() {
+        // Limpio los campos
+        labelError.setVisible(false);
+        textNombre.setText("");
+        textApellidos.setText("");
+        textNIF.setText("");
+        textFechaNacimiento.setText("");
+        textNacionalidad.setText("");
+        cbEstadoCivil.setSelectedIndex(0);
+        cbNivelEstudios.setSelectedIndex(0);
+        textProfesion.setText("");
+        textOcupacion.setText("");
+        textTelefonoFijo.setText("");
+        textTelefonoMovil.setText("");
+        textDomicilio.setText("");
+        textLocalidad.setText("");
+        textCP.setText("");
+        textObservaciones.setText("");
+        textSituacionEconomica.setText("");
+
+        cbTipoVivienda.setSelectedIndex(0);
+        textPrecioVivienda.setText("");
+        textEspecificarTipoVivienda.setText("");
+
+        setColorLabels(Color.black);
+    }
+
+    public JTable getTbIntervenciones() {
+        return tbIntervenciones;
+    }
+
+    //Rellenar datos generales a partir de un Beneficiario
+    public void actualizarDatosGenerales(Beneficiario b) {
+        textNombre.setText(b.getNombre());
+        textApellidos.setText(b.getApellidos());
+        textNIF.setText(b.getNIF());
+        textFechaNacimiento.setText(formateadorFecha.format(b.getFechaDENacimiento()));
+        textNacionalidad.setText(b.getNacionalidad());
+        textProfesion.setText(b.getProfesion());
+        textOcupacion.setText(b.getOcupacion());
+        textTelefonoFijo.setText(b.getTelefonoFijo());
+        textTelefonoMovil.setText(b.getTelefonoMovil());
+        textDomicilio.setText(b.getDomicilio());
+        textLocalidad.setText(b.getLocalidad());
+        textCP.setText(b.getCP());
+        textObservaciones.setText(b.getObservaciones());
+        textSituacionEconomica.setText(b.getSituacionEconomica());
+        textPrecioVivienda.setText(Float.toString(b.getViviendaAlquiler()));
+        textEspecificarTipoVivienda.setText(b.getViviendaObservaciones());
+        cbEstadoCivil.setSelectedItem(b.getEstadoCivil());
+        cbNivelEstudios.setSelectedItem(b.getNivelDeEstudio());
+        cbTipoVivienda.setSelectedItem(b.getVivienda());
+    }
+
+    public void actualizarTiposAyuda(ArrayList<TipoAyuda> tiposAyuda) {
+        cbTiposAyuda.removeAllItems();
+        for (TipoAyuda ta : tiposAyuda) {
+            cbTiposAyuda.addItem(ta);
         }
+    }
 
-	//Rellenar datos generales a partir de un Beneficiario
-	public void actualizarDatosGenerales(Beneficiario b){
-		textNombre.setText(b.getNombre());
-		textApellidos.setText(b.getApellidos());
-		textNIF.setText(b.getNIF());
-		textFechaNacimiento.setText(formateadorFecha.format(b.getFechaDENacimiento()));
-		textNacionalidad.setText(b.getNacionalidad());
-		textProfesion.setText(b.getProfesion());
-		textOcupacion.setText(b.getOcupacion());
-		textTelefonoFijo.setText(b.getTelefonoFijo());
-		textTelefonoMovil.setText(b.getTelefonoMovil());
-		textDomicilio.setText(b.getDomicilio());
-		textLocalidad.setText(b.getLocalidad());
-		textCP.setText(b.getCP());
-		textObservaciones.setText(b.getObservaciones());
-		textSituacionEconomica.setText(b.getSituacionEconomica());
-		textPrecioVivienda.setText(Float.toString(b.getViviendaAlquiler()));
-		textEspecificarTipoVivienda.setText(b.getViviendaObservaciones());
-		cbEstadoCivil.setSelectedItem(b.getEstadoCivil());
-		cbNivelEstudios.setSelectedItem(b.getNivelDeEstudio());
-		cbTipoVivienda.setSelectedItem(b.getVivienda());
-	}
-	public void actualizarTiposAyuda(ArrayList<TipoAyuda> tiposAyuda) {
-		cbTiposAyuda.removeAllItems();
-		for(TipoAyuda ta:tiposAyuda){
-			cbTiposAyuda.addItem(ta);
-		}
-	}
+    // getters de los campos
+    public JButton getBtBorrar() {
+        return btBorrar;
+    }
 
-	// getters de los campos
-	public JButton getBtBorrar() {
-		return btBorrar;
-	}
-
-	public JButton getBtGuardar() {
+    public JButton getBtGuardar() {
         return btGuardar;
     }
 
+    public JComboBox getCbTiposAyuda() {
+        return cbTiposAyuda;
+    }
+
+    public JTextField getTextImporteBeneficiario() {
+        return textImporteBeneficiario;
+    }
+
+    public JTextField getTextObservacionesIntervencionBeneficiario() {
+        return textObservacionesIntervencionBeneficiario;
+    }
+
+    public JButton getBtGuardarIntervencionBeneficiario() {
+        return btGuardarIntervencionBeneficiario;
+    }
+
     public String[] getDatosPersonales() {
-		String []datos = new String[24];
+        String[] datos = new String[24];
 
-		datos[Beneficiario.NOMBRE_ID] = textNombre.getText();
-		datos[Beneficiario.APELLIDOS_ID] = textApellidos.getText();
-		datos[Beneficiario.NIF_ID] = textNIF.getText();
-		datos[Beneficiario.FECHA_DE_NACIMIENTO_ID] = textFechaNacimiento.getText();
-		datos[Beneficiario.NACIONALIDAD_ID] = textNacionalidad.getText();
-		datos[Beneficiario.ESTADO_CIVIL_ID] = cbEstadoCivil.getSelectedItem().toString();
-		datos[Beneficiario.NIVELESTUDIOS_ID] = cbNivelEstudios.getSelectedItem().toString();
-		datos[Beneficiario.PROFESION_ID] = textProfesion.getText();
-		datos[Beneficiario.OCUPACION_ID] = textOcupacion.getText();
-		datos[Beneficiario.TELEFONO_FIJO_ID] = textTelefonoFijo.getText();
-		datos[Beneficiario.TELEFONO_MOVIL_ID] = textTelefonoMovil.getText();
-		datos[Beneficiario.DOMICILIO_ID] = textDomicilio.getText();
-		datos[Beneficiario.LOCALIDAD_ID] = textLocalidad.getText();
-		datos[Beneficiario.CP_ID] = textCP.getText();
-		datos[Beneficiario.OBSERVACIONES_ID] = textObservaciones.getText();
-		datos[Beneficiario.SITUACION_ECONOMICA_ID] = textSituacionEconomica.getText();
-		datos[Beneficiario.VIVIENDA_ID] =cbTipoVivienda.getSelectedItem().toString();
-		datos[Beneficiario.VIVIENDA_ALQUILER_ID] = textPrecioVivienda.getText();
-		datos[Beneficiario.VIVIENDA_OBSERVACIONES_ID] = textEspecificarTipoVivienda.getText();
+        datos[Beneficiario.NOMBRE_ID] = textNombre.getText();
+        datos[Beneficiario.APELLIDOS_ID] = textApellidos.getText();
+        datos[Beneficiario.NIF_ID] = textNIF.getText();
+        datos[Beneficiario.FECHA_DE_NACIMIENTO_ID] = textFechaNacimiento.getText();
+        datos[Beneficiario.NACIONALIDAD_ID] = textNacionalidad.getText();
+        datos[Beneficiario.ESTADO_CIVIL_ID] = cbEstadoCivil.getSelectedItem().toString();
+        datos[Beneficiario.NIVELESTUDIOS_ID] = cbNivelEstudios.getSelectedItem().toString();
+        datos[Beneficiario.PROFESION_ID] = textProfesion.getText();
+        datos[Beneficiario.OCUPACION_ID] = textOcupacion.getText();
+        datos[Beneficiario.TELEFONO_FIJO_ID] = textTelefonoFijo.getText();
+        datos[Beneficiario.TELEFONO_MOVIL_ID] = textTelefonoMovil.getText();
+        datos[Beneficiario.DOMICILIO_ID] = textDomicilio.getText();
+        datos[Beneficiario.LOCALIDAD_ID] = textLocalidad.getText();
+        datos[Beneficiario.CP_ID] = textCP.getText();
+        datos[Beneficiario.OBSERVACIONES_ID] = textObservaciones.getText();
+        datos[Beneficiario.SITUACION_ECONOMICA_ID] = textSituacionEconomica.getText();
+        datos[Beneficiario.VIVIENDA_ID] = cbTipoVivienda.getSelectedItem().toString();
+        datos[Beneficiario.VIVIENDA_ALQUILER_ID] = textPrecioVivienda.getText();
+        datos[Beneficiario.VIVIENDA_OBSERVACIONES_ID] = textEspecificarTipoVivienda.getText();
 
-		return datos;
+        return datos;
     }
 
     /**
