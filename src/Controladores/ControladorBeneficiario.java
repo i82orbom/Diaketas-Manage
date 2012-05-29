@@ -44,7 +44,7 @@ import javax.swing.table.TableModel;
  *	002 - 20 May 2012 - ARS - Comprobar datos del beneficiario
  *      003 - 23 May 2012 - JAEG - Buscar y consultar beneficiarios
  *      004 - 24 May 2012 - JAEG - Consultar intervenciones del beneficiario
- *      004 - 29 May 2012 - RC - Guardar intervenciones del beneficiario
+ *      004 - 29 May 2012 - RC - Guardar intervenciones del beneficiario y limpiar campos
  ** NOTAS:
  **
  **
@@ -109,6 +109,7 @@ public class ControladorBeneficiario {
         vista.getPanelDatos().getBtGuardar().addActionListener(new btGuardarBeneficiarioListener());
         vista.getPanelDatos().getBtBorrar().addActionListener(new btBorrarBeneficiarioListener());
         vista.getPanelDatos().getBtGuardarIntervencionBeneficiario().addActionListener(new BtGuardarIntervencionesListener());
+        vista.getPanelDatos().getBtEliminarIntervencionBeneficiario().addActionListener(new BtEliminarIntervencionesListener());
 
         vista.getPanelBuscar().getBtBuscarBeneficiarios().addActionListener(new btBuscarBeneficiariosListener());
         vista.getPanelBuscar().getBtVerBeneficiarioBusqueda().addActionListener(new btVerBeneficiarioListener());
@@ -517,7 +518,7 @@ public class ControladorBeneficiario {
             }
             
             if (!datosCorrectos) {
-                // TODO mostrar texto error
+                vista.getPanelDatos().setTextLabelErrorAyuda("Error : la ayuda no ha sido anadido.");
             } else {
                 Ayuda ayuda = new Ayuda();
                 ayuda.setBeneficiarioDeAyuda(benef);
@@ -532,10 +533,20 @@ public class ControladorBeneficiario {
                 if (exito) {
                     benef = consultarBeneficiario(benef.getNIF());
                     actualizarTablaAyuda();
+                    vista.getPanelDatos().limpiarCamposAyuda();
                 } else {
-                    
+                    vista.getPanelDatos().setTextLabelErrorAyuda("Error : la ayuda no ha sido anadido.");
                 }
             }
         }
+    }
+    
+    class BtEliminarIntervencionesListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            // TODO
+        }
+        
     }
 }
