@@ -12,6 +12,7 @@ import Modelo.C_Empresa;
 import Modelo.Oferta;
 import Modelo.Sector;
 import Vistas.Paneles.BolsaTrabajo.VistaBolsaTrabajo;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -150,6 +151,25 @@ public class ControladorOferta {
 		return true;
 	}
 
+	public void limpiarFormulario(){
+		vista.getOfertaDatos().setTextoCIF("");
+		vista.getOfertaDatos().setTextoNuevoSector("");
+		vista.getOfertaDatos().setTextoDescripcionOferta("");
+		vista.getOfertaDatos().setTextoNPuestos("");
+		vista.getOfertaDatos().setTextoDuracionContrato("");
+		vista.getOfertaDatos().setTextoCualificacion("");
+		vista.getOfertaDatos().getlabelError().setText("");
+	}
+	public void setColorLabels(Color c){
+		vista.getOfertaDatos().getlabelCIF().setForeground(c);
+		vista.getOfertaDatos().getlabelSector().setForeground(c);
+		vista.getOfertaDatos().getlabelDescripcionOferta().setForeground(c);
+		vista.getOfertaDatos().getlabelNPuestos().setForeground(c);
+		vista.getOfertaDatos().getlabelTipoContrato().setForeground(c);
+		vista.getOfertaDatos().getlabelDuracionContrato().setForeground(c);
+		vista.getOfertaDatos().getlabelCualificacion().setForeground(c);
+	}
+
 	/* Clases para ActionListener */
 	public class ListenerBtGuardarSector implements ActionListener{
 
@@ -177,35 +197,72 @@ public class ControladorOferta {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Guardar Oferta");
-			Oferta oferta = new Oferta();		// Se crea el objeto oferta
+			Oferta oferta = new Oferta();		// Se crean los objetos
 			C_Empresa empresa = null;
+			boolean exito = true;
 
-			oferta.setCualificacionRequerida(vista.getOfertaDatos().getTextoCualificacion());
-			oferta.setDescripcionOferta(vista.getOfertaDatos().getTextoDescripcionOferta());
-			oferta.setDuracionContrato(Integer.parseInt(vista.getOfertaDatos().getTextoNPuestos()));
-			oferta.setPlazasOfertadas(Integer.parseInt(vista.getOfertaDatos().getTextoNPuestos()));
-			oferta.setTipoContrato(vista.getOfertaDatos().getTextoTipoContrato());
+			/* ________ Comprobamos los datos _______ */
+			setColorLabels(Color.black);
+			vista.getOfertaDatos().getlabelError().setText("");
 
-			int sector = vista.getOfertaDatos().getcbSector().getSelectedIndex();
-			oferta.setSector(ControladorBolsaTrabajo.getInstance(null).getSectores().get(sector));
+			String CIF = vista.getOfertaDatos().getTextoCIF();
+			String descripcion = vista.getOfertaDatos().getTextoDescripcionOferta();
+			String duracion = vista.getOfertaDatos().getTextoDuracionContrato();
+			String nPuestos = vista.getOfertaDatos().getTextoNPuestos();
+			String cualificacion = vista.getOfertaDatos().getTextoCualificacion();
+
+			if (!TestDatos.isCIF(CIF)){
+				exito = false; vista.getOfertaDatos().getlabelCIF().setForeground(Color.red);
+			}
+			if (!TestDatos.isNombre(descripcion)) {
+				exito = false; vista.getOfertaDatos().getlabelDescripcionOferta().setForeground(Color.red);
+			}
+			if (!TestDatos.isOnlyDigit(nPuestos)) {
+				exito = false; vista.getOfertaDatos().getlabelNPuestos().setForeground(Color.red);
+			}
+			if (!TestDatos.isOnlyDigit(duracion)) {
+				exito = false; vista.getOfertaDatos().getlabelDuracionContrato().setForeground(Color.red);
+			}
+			if (!TestDatos.isNombre(cualificacion)) {
+				exito = false; vista.getOfertaDatos().getlabelCualificacion().setForeground(Color.red);
+			}
+
+			if (!exito){
+				vista.getOfertaDatos().getlabelError().setText("Los datos no son válidos");
+			}
+			else {
+				try {
+					empresa = C_EmpresaJDBC.getInstance().obtenerC_Empresa(CIF);
+				} catch (SQLException ex){
+					exito = false; ControladorErrores.mostrarError("Error al consultar empresa:\n"+ex);
+				}
+				if (empresa==null){
+					vista.getOfertaDatos().getlabelError().setText("La empresa no está registrada");
+					vista.getOfertaDatos().getlabelCIF().setForeground(Color.red);
+					exito = false;
+				}
+
+				if (exito){
+					oferta.setEmpresa(empresa);
+					int sector = vista.getOfertaDatos().getcbSector().getSelectedIndex();
+					oferta.setSector(ControladorBolsaTrabajo.getInstance(null).getSectores().get(sector));
+					oferta.setDescripcionOferta(descripcion);
+					oferta.setDuracionContrato(Integer.parseInt(duracion));
+					oferta.setPlazasOfertadas(Integer.parseInt(nPuestos));
+					oferta.setTipoContrato(vista.getOfertaDatos().getTextoTipoContrato());
+					oferta.setCualificacionRequerida(cualificacion);
+					oferta.setVoluntario(ControladorPrincipal.getInstance().getVoluntario());
+					oferta.setFecha(new Date());
+					if (!insertarOferta(oferta)){			// Se envia el objeto al controlador
+						vista.getOfertaDatos().getlabelError().setText("La oferta no ha sido añadida");
+					}
+					else {
+						vista.getOfertaDatos().getlabelError().setText("Se ha añadido una oferta");
+					}
+				}
+			}
 //			System.out.println(oferta.getSector().getOID()+": " + oferta.getSector().getDescripcion());
-
-			try {
-				empresa = C_EmpresaJDBC.getInstance().obtenerC_Empresa((vista.getOfertaDatos().getTextoCIF()));
-				if (empresa==null) ControladorErrores.mostrarError("El CIF no se corresponde con una empresa");
-			} catch (SQLException ex){
-				ControladorErrores.mostrarError("Error al consultar empresa:\n"+ex);
-			}
-			oferta.setEmpresa(empresa);
-
-			System.out.println(oferta.getEmpresa().getCIF()+": " +oferta.getEmpresa().getOID()+": "+ oferta.getEmpresa().getEmail());
-
-			oferta.setVoluntario(ControladorPrincipal.getInstance().getVoluntario());
-			oferta.setFecha(new Date());
-			if (!insertarOferta(oferta)){			// Se envia el objeto al controlador
-				vista.getOfertaDatos().getMensajeError().setText("La oferta no ha sido añadida");
-			}
+//			System.out.println(oferta.getEmpresa().getCIF()+": " +oferta.getEmpresa().getOID()+": "+ oferta.getEmpresa().getEmail());
 		}
 	}
 
@@ -213,12 +270,8 @@ public class ControladorOferta {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			vista.getOfertaDatos().setTextoCIF("");
-			vista.getOfertaDatos().setTextoNuevoSector("");
-			vista.getOfertaDatos().setTextoDescripcionOferta("");
-			vista.getOfertaDatos().setTextoNPuestos("");
-			vista.getOfertaDatos().setTextoDuracionContrato("");
-			vista.getOfertaDatos().setTextoCualificacion("");
+			limpiarFormulario();
+			setColorLabels(Color.black);
 		}
 	}
 

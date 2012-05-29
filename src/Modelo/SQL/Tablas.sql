@@ -250,7 +250,7 @@ INSERT INTO C_Persona VALUES (0, '00000000a', 'Anónimo', '', '0001-01-01', 'M')
 INSERT INTO socio VALUES (0,'anonimo','');
 
 INSERT INTO Colaborador (Direccion, Localidad, Provincia, cp, TelefonoFijo, TelefonoMovil, Email) VALUES ("C/La calle, 7","motril","granada", "12345","1234568798","234568798","a@emp.com");
-INSERT INTO C_Empresa (OID, CIF, Nombre, Fax, DireccionWeb) VALUES (LAST_INSERT_ID(),'a12345678b','mi empresa','233445567','www.pagina.com');
+INSERT INTO C_Empresa (OID, CIF, Nombre, Fax, DireccionWeb) VALUES (LAST_INSERT_ID(),'a12345678','mi empresa','233445567','www.pagina.com');
 
 INSERT INTO sector(Descripcion) Values ("Construccion");
 INSERT INTO sector(Descripcion) Values ("Carpinteria");
