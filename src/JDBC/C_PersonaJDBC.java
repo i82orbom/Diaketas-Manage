@@ -102,8 +102,8 @@ public class C_PersonaJDBC {
 
         try{
             driver.inicioTransaccion();
-            driver.insertar(sql);
-            driver.insertar(sql2);
+            driver.actualizar(sql);
+            driver.actualizar(sql2);
             driver.commit();
 
         }
@@ -133,9 +133,9 @@ public class C_PersonaJDBC {
 
         try{
             driver.inicioTransaccion();
-            driver.insertar(sql);
-            driver.insertar(sql2);
-            driver.insertar(sql3);
+            driver.actualizar(sql);
+            driver.eliminar(sql2);
+            driver.eliminar(sql3);
             driver.commit();
 
         }

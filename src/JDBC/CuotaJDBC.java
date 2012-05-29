@@ -100,7 +100,7 @@ public class CuotaJDBC {
 
         try{
             driver.inicioTransaccion();
-            driver.insertar(sql);
+            driver.actualizar(sql);
             driver.commit();
 
         }
@@ -127,7 +127,7 @@ public class CuotaJDBC {
 
         try{
             driver.inicioTransaccion();
-            driver.insertar(sql);
+            driver.actualizar(sql);
             driver.commit();
 
         }
@@ -156,7 +156,7 @@ public class CuotaJDBC {
 
         try{
             driver.inicioTransaccion();
-            driver.insertar(sql);
+            driver.actualizar(sql);
             driver.commit();
 
         }
@@ -183,7 +183,7 @@ public class CuotaJDBC {
 
         try{
             driver.inicioTransaccion();
-            driver.insertar(sql2);
+            driver.eliminar(sql2);
             driver.commit();
 
         }
