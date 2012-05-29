@@ -143,6 +143,73 @@ public class ControladorBeneficiario {
         vista.getBarraDeNavigacion().setTextLabelNivel2("Modificar Beneficiario");
     }
 
+    private void actualizarTablaAyuda() {
+        if (benef != null) {
+            /*
+             * Actualizar intervenciones
+             */
+            vista.getPanelDatos().getTbIntervenciones().setModel(new TableModel() {
+
+                @Override
+                public int getRowCount() {
+                    return benef.getAyudasPrestadas().size();
+                }
+
+                @Override
+                public int getColumnCount() {
+                    return columnasIntervenciones.length;
+                }
+
+                @Override
+                public String getColumnName(int columnIndex) {
+                    return columnasIntervenciones[columnIndex];
+                }
+
+                @Override
+                public Class<?> getColumnClass(int columnIndex) {
+                    return String.class;
+                }
+
+                @Override
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return false;
+                }
+
+                @Override
+                public Object getValueAt(int rowIndex, int columnIndex) {
+                    switch (columnIndex) {
+                        case 0:
+                            return formateador.format(benef.getAyudasPrestadas().get(rowIndex).getFecha());
+                        case 1:
+                            return benef.getAyudasPrestadas().get(rowIndex).getTipo_ayuda().getTitulo();
+                        case 2:
+                            return benef.getAyudasPrestadas().get(rowIndex).getImporte();
+                        case 3:
+                            return benef.getAyudasPrestadas().get(rowIndex).getObservaciones();
+                        case 4:
+                            return benef.getAyudasPrestadas().get(rowIndex).getVoluntarioQueOtorga().getApellidos() + ", " + benef.getAyudasPrestadas().get(rowIndex).getVoluntarioQueOtorga().getNombre();
+                        default:
+                            return "";
+                    }
+
+                }
+
+                @Override
+                public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+                    throw new UnsupportedOperationException("Not supported yet.");
+                }
+
+                @Override
+                public void addTableModelListener(TableModelListener l) {
+                }
+
+                @Override
+                public void removeTableModelListener(TableModelListener l) {
+                }
+            });
+        }
+    }
+
     private boolean insertarBeneficiario(String[] datos) {
         if (this.comprobarDatos(datos) == false) {
             return false;
@@ -195,6 +262,18 @@ public class ControladorBeneficiario {
             return null;
         }
         return benefs;
+    }
+
+    private Beneficiario consultarBeneficiario(String dni) {
+        Beneficiario beneficiario = null;
+        
+        try {
+            beneficiario = BeneficiarioJDBC.getInstance().obtenerBeneficiario(dni);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBeneficiario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return beneficiario;
     }
 
     private boolean comprobarDatos(String[] datos) {
@@ -413,68 +492,7 @@ public class ControladorBeneficiario {
                 tiposAyuda = ControladorAyuda.getInstance(null).obtenerTiposAyuda();
                 vista.getPanelDatos().actualizarTiposAyuda(tiposAyuda);
                 vista.getPanelDatos().actualizarDatosGenerales(benef);
-                /*
-                 * Actualizar intervenciones
-                 */
-                vista.getPanelDatos().getTbIntervenciones().setModel(new TableModel() {
-
-                    @Override
-                    public int getRowCount() {
-                        return benef.getAyudasPrestadas().size();
-                    }
-
-                    @Override
-                    public int getColumnCount() {
-                        return columnasIntervenciones.length;
-                    }
-
-                    @Override
-                    public String getColumnName(int columnIndex) {
-                        return columnasIntervenciones[columnIndex];
-                    }
-
-                    @Override
-                    public Class<?> getColumnClass(int columnIndex) {
-                        return String.class;
-                    }
-
-                    @Override
-                    public boolean isCellEditable(int rowIndex, int columnIndex) {
-                        return false;
-                    }
-
-                    @Override
-                    public Object getValueAt(int rowIndex, int columnIndex) {
-                        switch (columnIndex) {
-                            case 0:
-                                return formateador.format(benef.getAyudasPrestadas().get(rowIndex).getFecha());
-                            case 1:
-                                return benef.getAyudasPrestadas().get(rowIndex).getTipo_ayuda().getTitulo();
-                            case 2:
-                                return benef.getAyudasPrestadas().get(rowIndex).getImporte();
-                            case 3:
-                                return benef.getAyudasPrestadas().get(rowIndex).getObservaciones();
-                            case 4:
-                                return benef.getAyudasPrestadas().get(rowIndex).getVoluntarioQueOtorga().getApellidos() + ", " + benef.getAyudasPrestadas().get(rowIndex).getVoluntarioQueOtorga().getNombre();
-                            default:
-                                return "";
-                        }
-
-                    }
-
-                    @Override
-                    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-                        throw new UnsupportedOperationException("Not supported yet.");
-                    }
-
-                    @Override
-                    public void addTableModelListener(TableModelListener l) {
-                    }
-
-                    @Override
-                    public void removeTableModelListener(TableModelListener l) {
-                    }
-                });
+                actualizarTablaAyuda();
                 mostrarVistaModificarBeneficiario();
             }
         }
@@ -511,7 +529,8 @@ public class ControladorBeneficiario {
                 boolean exito = ControladorAyuda.getInstance(null).registrarAyuda(ayuda);
                 
                 if (exito) {
-                    //benef = o
+                    benef = consultarBeneficiario(benef.getNIF());
+                    actualizarTablaAyuda();
                 } else {
                     
                 }
