@@ -46,7 +46,7 @@ public class SocioJDBC {
      *
      */
     private static SocioJDBC instancia;
-
+	private static int OID_Anonimo = 0; 
     /**
      * Constructor
      *
@@ -104,9 +104,10 @@ public class SocioJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
 
-        String sql = "UPDATE Colaborador SET Direccion='"+socio.getDireccion()+"', Localidad='"+socio.getLocalidad()+"', Provincia='"+socio.getProvincia()+"', codigoPostal='"+socio.getCP()+"',TelefonoFijo='"+socio.getTelefonoFijo()+"', TelefonoMovil='"+socio.getTelefonoMovil()+"', Email='"+socio.getEmail()+"WHERE OID="+socio.getOID()+"'";
-        String sql2 = "UPDATE C_Persona SET DNI='"+socio.getDNI()+"', Nombre='"+socio.getNombre()+"', Apellidos='"+socio.getApellidos()+"', FechaDeNacimiento='"+socio.getFechaDeNacimiento()+"WHERE OID="+socio.getOID()+"'";
-        String sql3 = "UPDATE Socio SET usuario='"+socio.getUsuario()+"', contrasena='"+socio.getContrasena()+"WHERE OID="+socio.getOID()+"'";
+        String sql = "UPDATE Colaborador SET Direccion='"+socio.getDireccion()+"', Localidad='"+socio.getLocalidad()+"', Provincia='"+socio.getProvincia()+"', CP='"+socio.getCP()+"',TelefonoFijo='"+socio.getTelefonoFijo()+"', TelefonoMovil='"+socio.getTelefonoMovil()+"', Email='"+socio.getEmail()+"'WHERE OID='"+socio.getOID()+"'";
+        String sql2 = "UPDATE C_Persona SET DNI='"+socio.getDNI()+"', Nombre='"+socio.getNombre()+"', Apellidos='"+socio.getApellidos()+"', FechaNacimiento='"+TestDatos.formatterBD.format(socio.getFechaDeNacimiento())+"', Sexo='"+socio.getSexo()+"'WHERE OID='"+socio.getOID()+"'";
+		System.out.println(sql2);
+        String sql3 = "UPDATE Socio SET usuario='"+socio.getUsuario()+"', contrasena='"+socio.getContrasena()+"'WHERE OID='"+socio.getOID()+"'";
 
         try{
                 driver.inicioTransaccion();
@@ -134,34 +135,36 @@ public class SocioJDBC {
     public boolean eliminarSocio(Socio socio) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-
-        String sql = "UPDATE Colaboracion SET OID=OID_Anonimo WHERE OID='"+socio.getOID()+"'";
-        String sql2 = "UPDATE PagoCuota SET OID=OID_Anonimo WHERE OIDSocio='"+socio.getOID()+"'";
+		boolean exito=false;
+        String sql = "UPDATE Colaboracion SET OID="+OID_Anonimo+" WHERE OID='"+socio.getOID()+"'";
+        String sql2 = "UPDATE PagoCuota SET OID="+OID_Anonimo+" WHERE OIDSocio='"+socio.getOID()+"'";
         String sql3 = "UPDATE Cuota SET fechaFin=fechaUltimoPago WHERE OIDSocio='"+socio.getOID()+"'";
-        String sql4 = "UPDATE Cuota SET OIDSocio=OID_Anonimo WHERE OIDSocio='"+socio.getOID()+"'";
+        String sql4 = "UPDATE Cuota SET OIDSocio="+OID_Anonimo+" WHERE OIDSocio='"+socio.getOID()+"'";
         String sql5 = "DELETE FROM Socio WHERE OID='"+socio.getOID()+"'";
         String sql6 = "DELETE FROM C_Persona WHERE OID='"+socio.getOID()+"'";
         String sql7 = "DELETE FROM Colaborador WHERE OID='"+socio.getOID()+"'";
 
         try{
                 driver.inicioTransaccion();
-                driver.insertar(sql);
-                driver.insertar(sql2);
-                driver.insertar(sql3);
-                driver.insertar(sql4);
-                driver.insertar(sql5);
-                driver.insertar(sql6);
-                driver.insertar(sql7);
+                driver.actualizar(sql);
+                driver.actualizar(sql2);
+                driver.actualizar(sql3);
+                driver.actualizar(sql4);
+                driver.eliminar(sql5);
+                driver.eliminar(sql6);
+                driver.eliminar(sql7);
                 driver.commit();
+				exito=true;
         }
         catch (SQLException ex){
                 driver.rollback();
+				exito=false;
                 throw ex;
         }
         finally{
                 driver.finTransaccion();
         }
-        return true;
+        return exito;
     }
 
     /**
@@ -183,6 +186,7 @@ public class SocioJDBC {
 
             if(rs.next()){
                 socio = new Socio();
+				socio.setOID(rs.getLong("OID"));
                 socio.setUsuario(rs.getString("Usuario"));
                 socio.setContrasena(rs.getString("contrasena"));
 
@@ -265,6 +269,7 @@ public class SocioJDBC {
 
             while(rs.next()){
                 socio = new Socio();
+				socio.setOID(rs.getLong("OID"));
                 socio.setUsuario(rs.getString("usuario"));
                 socio.setContrasena(rs.getString("contrasena"));
 
