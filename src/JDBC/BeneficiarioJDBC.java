@@ -26,7 +26,7 @@
  *      007 - Abr 15, 2012 - FBR - Modifiacion de sentencias SQL y métodos
  **     008 - May 18, 2012 - ARS - Modifiacion de sentencias SQL para incluir OID. Se puede añadir beneficiario bien
  *      009 - May 23, 2012 - JAEG - Modificada sentencia SQL del metodo obtenerListadoBeneficiario()
- *      010 - May 29, 2012 - RC - Modificada sentencia SQL del metodo obtenerBeneficiario() para que incluye el OID
+ *      010 - May 29, 2012 - RC - Modificada sentencia SQL de los metodos obtenerBeneficiario() y obtenerListadoBeneficiario para que incluye el OID
  *
  ** NOTAS:
  **
@@ -79,7 +79,7 @@ public class BeneficiarioJDBC {
 
     public Beneficiario obtenerBeneficiario(String DNI) throws SQLException {
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "SELECT * FROM beneficiario b, persona p WHERE (p.NIF='" + DNI + "') AND p.NIF=b.NIF";
+        String sql = "SELECT * FROM beneficiario b, persona p WHERE (p.NIF='" + DNI + "') AND p.OID=b.OID";
         Beneficiario benef = null;
 
         try {
@@ -151,6 +151,7 @@ public class BeneficiarioJDBC {
 
             while (resultados.next()) {
                 temp = new Beneficiario();
+                temp.setOID(resultados.getLong("OID"));
                 temp.setNIF(resultados.getString("NIF"));
                 temp.setNivelDeEstudio(resultados.getString("NivelDeEstudio"));
                 temp.setObservaciones(resultados.getString("Observaciones"));

@@ -523,6 +523,7 @@ public class ControladorBeneficiario {
                 ayuda.setBeneficiarioDeAyuda(benef);
                 ayuda.setFecha(new Date());
                 ayuda.setImporte(Integer.parseInt(vista.getPanelDatos().getTextImporteBeneficiario().getText()));
+                ayuda.setObservaciones(vista.getPanelDatos().getTextObservacionesIntervencionBeneficiario().getText());
                 ayuda.setTipo_ayuda((TipoAyuda)vista.getPanelDatos().getCbTiposAyuda().getSelectedItem());
                 ayuda.setVoluntarioQueOtorga(ControladorPrincipal.getInstance().getVoluntario());
                 
