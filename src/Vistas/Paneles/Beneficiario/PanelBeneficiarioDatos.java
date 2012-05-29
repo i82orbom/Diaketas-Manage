@@ -20,6 +20,7 @@ import javax.swing.JTextField;
  *
  * HISTORIAL:
  *      000 - 23 May 2012 - JAEG - Añadida funcion para insertar los datos generales. Eliminado "lugar de nacimiento" (dato no existente en el modelo)
+ *      001 - 29 May 2012 - RC - Adicion getter y labelErrorAyuda
  */
 public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 
@@ -31,11 +32,17 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
     public PanelBeneficiarioDatos() {
         initComponents();
         labelError.setVisible(false);
+        labelErrorAyuda.setVisible(false);
     }
 
     public void setTextLabelError(String text) {
         labelError.setText(text);
         labelError.setVisible(true);
+    }
+    
+    public void setTextLabelErrorAyuda(String text) {
+        labelErrorAyuda.setText(text);
+        labelErrorAyuda.setVisible(true);
     }
 
     public void setColorLabelNombre(Color cf) {
@@ -148,6 +155,13 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 
         setColorLabels(Color.black);
     }
+    
+    public void limpiarCamposAyuda () {
+        labelErrorAyuda.setVisible(false);
+        textImporteBeneficiario.setText("");
+        textObservacionesIntervencionBeneficiario.setText("");
+        cbTiposAyuda.setSelectedIndex(0);
+    }
 
     public JTable getTbIntervenciones() {
         return tbIntervenciones;
@@ -206,6 +220,10 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 
     public JButton getBtGuardarIntervencionBeneficiario() {
         return btGuardarIntervencionBeneficiario;
+    }
+
+    public JButton getBtEliminarIntervencionBeneficiario() {
+        return btEliminarIntervencionBeneficiario;
     }
 
     public String[] getDatosPersonales() {
@@ -301,6 +319,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         jLabel61 = new javax.swing.JLabel();
         textImporteBeneficiario = new javax.swing.JTextField();
         cbTiposAyuda = new javax.swing.JComboBox();
+        labelErrorAyuda = new javax.swing.JLabel();
         PanelSituacionFamiliar = new javax.swing.JPanel();
         cbParentescoBeneficiario = new javax.swing.JComboBox();
         jLabel57 = new javax.swing.JLabel();
@@ -581,8 +600,10 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         PanelIntervenciones.setBackground(new java.awt.Color(255, 255, 255));
 
         btGuardarIntervencionBeneficiario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/save_f2.png"))); // NOI18N
+        btGuardarIntervencionBeneficiario.setToolTipText("Guardar");
 
-        btEliminarIntervencionBeneficiario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
+        btEliminarIntervencionBeneficiario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
+        btEliminarIntervencionBeneficiario.setToolTipText("Eliminar ayuda");
 
         jLabel59.setForeground(new java.awt.Color(255, 0, 0));
         jLabel59.setText("Intervenciones realizadas");
@@ -603,6 +624,10 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 
         jLabel61.setText("Concepto");
 
+        labelErrorAyuda.setForeground(new java.awt.Color(255, 0, 51));
+        labelErrorAyuda.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelErrorAyuda.setText("error");
+
         org.jdesktop.layout.GroupLayout PanelIntervencionesLayout = new org.jdesktop.layout.GroupLayout(PanelIntervenciones);
         PanelIntervenciones.setLayout(PanelIntervencionesLayout);
         PanelIntervencionesLayout.setHorizontalGroup(
@@ -615,9 +640,11 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                         .add(PanelIntervencionesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabel59)
                             .add(PanelIntervencionesLayout.createSequentialGroup()
-                                .add(763, 763, 763)
+                                .add(260, 260, 260)
+                                .add(labelErrorAyuda, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 414, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(57, 57, 57)
                                 .add(btGuardarIntervencionBeneficiario)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(38, 38, 38)
                                 .add(btEliminarIntervencionBeneficiario))
                             .add(PanelIntervencionesLayout.createSequentialGroup()
                                 .add(PanelIntervencionesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -654,11 +681,17 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
                 .add(PanelIntervencionesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel62)
                     .add(textObservacionesIntervencionBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(20, 20, 20)
                 .add(PanelIntervencionesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, btGuardarIntervencionBeneficiario)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, btEliminarIntervencionBeneficiario))
-                .addContainerGap())
+                    .add(PanelIntervencionesLayout.createSequentialGroup()
+                        .add(20, 20, 20)
+                        .add(PanelIntervencionesLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, btGuardarIntervencionBeneficiario)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, btEliminarIntervencionBeneficiario))
+                        .addContainerGap())
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, PanelIntervencionesLayout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(labelErrorAyuda)
+                        .add(23, 23, 23))))
         );
 
         jTabbedPane1.addTab("Intervenciones", PanelIntervenciones);
@@ -802,6 +835,7 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
     private javax.swing.JLabel labelDatosPersonales;
     private javax.swing.JLabel labelDomicilio;
     private javax.swing.JLabel labelError;
+    private javax.swing.JLabel labelErrorAyuda;
     private javax.swing.JLabel labelEstadoCivil;
     private javax.swing.JLabel labelFechaNacimiento;
     private javax.swing.JLabel labelLocalidad;
