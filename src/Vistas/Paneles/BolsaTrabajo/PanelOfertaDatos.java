@@ -42,6 +42,9 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
 	}
 
 	/* Campos del panel */
+	public JLabel getlabelCIF(){
+		return labelCIF;
+	}
 	public String getTextoCIF(){
 		return textCIF.getText();
 	}
@@ -52,6 +55,9 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
 		textCIF.setText(texto);
 	}
 
+	public JLabel getlabelSector(){
+		return labelSector;
+	}
 	public String getTextoSector(){
 		return cbSector.getSelectedItem().toString();
 	}
@@ -72,6 +78,9 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
 		textNuevoSector.setText(texto);
 	}
 
+	public JLabel getlabelDescripcionOferta(){
+		return labelDescripcionOferta;
+	}
 	public String getTextoDescripcionOferta(){
 		return taDescripcionOferta.getText();
 	}
@@ -82,6 +91,9 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
 		taDescripcionOferta.setText(texto);
 	}
 
+	public JLabel getlabelNPuestos(){
+		return labelNPuestos;
+	}
 	public String getTextoNPuestos(){
 		return textNPuestos.getText();
 	}
@@ -92,6 +104,9 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
 		textNPuestos.setText(texto);
 	}
 
+	public JLabel getlabelTipoContrato(){
+		return labelTipoContrato;
+	}
 	public String getTextoTipoContrato(){
 		return cbTipoContrato.getSelectedItem().toString();
 	}
@@ -102,6 +117,9 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
 		cbTipoContrato.setSelectedItem(texto);
 	}
 
+	public JLabel getlabelDuracionContrato(){
+		return labelDuracionContrato;
+	}
 	public String getTextoDuracionContrato(){
 		return textDuracionContrato.getText();
 	}
@@ -112,6 +130,9 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
 		textDuracionContrato.setText(texto);
 	}
 
+	public JLabel getlabelCualificacion(){
+		return labelCualificacion;
+	}
 	public String getTextoCualificacion(){
 		return taCualificacion.getText();
 	}
@@ -122,7 +143,7 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
         taCualificacion.setText(texto);
     }
 
-	public JLabel getMensajeError(){
+	public JLabel getlabelError(){
 		return labelError;
 	}
 
@@ -160,6 +181,7 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         taCualificacion = new javax.swing.JTextArea();
+        labelCualificacion = new javax.swing.JLabel();
         BTGuardar = new javax.swing.JButton();
         BTLimpiar = new javax.swing.JButton();
         BTModificar = new javax.swing.JButton();
@@ -320,21 +342,29 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
         taCualificacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102)));
         jScrollPane2.setViewportView(taCualificacion);
 
+        labelCualificacion.setText("Cualificacion");
+
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jScrollPane2)
+                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel3Layout.createSequentialGroup()
+                        .add(labelCualificacion, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 89, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(0, 0, Short.MAX_VALUE))
+                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 956, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(labelCualificacion)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .add(23, 23, 23))
         );
 
         BTGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
@@ -413,10 +443,10 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                 .add(18, 18, 18)
                 .add(jLabel71)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
                 .add(labelError)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(BTGuardar)
                     .add(BTEliminar)
@@ -446,6 +476,7 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelCIF;
+    private javax.swing.JLabel labelCualificacion;
     private javax.swing.JLabel labelDescripcionOferta;
     private javax.swing.JLabel labelDuracionContrato;
     private javax.swing.JLabel labelError;

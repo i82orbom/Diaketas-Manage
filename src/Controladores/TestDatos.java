@@ -57,18 +57,18 @@ public class TestDatos {
     }
 
     public static boolean isCIF (String CIF) {
-        if (CIF.length() != 10)
+        if (CIF.length() != 9)
             return false;
 
         if (!Character.isLetter(CIF.charAt(0)))
                 return false;
 
-        for (int i=1; i<9; i++) {
+        for (int i=1; i<8; i++) {
             if (!Character.isDigit(CIF.charAt(i)))
                 return false;
         }
 
-        if (!Character.isLetterOrDigit(CIF.charAt(9)))
+        if (!Character.isLetterOrDigit(CIF.charAt(8)))
                 return false;
 
         return true;

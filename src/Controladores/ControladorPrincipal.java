@@ -52,17 +52,19 @@ public class ControladorPrincipal {
         return instancia;
 
     }
-
     private Ventana vista;
-	private Voluntario voluntario;
+    private Voluntario voluntario;
 
-    /* Salto para la codificación de la contraseña (para login y registro) */
-    private String salto="Mary Popins";
+    /*
+     * Salto para la codificación de la contraseña (para login y registro)
+     */
+    private String salto = "Mary Popins";
 
-	/**
-	 * Constructor de la clase
-	 * @param pvista Panel de vista de inicio
-	 */
+    /**
+     * Constructor de la clase
+     *
+     * @param pvista Panel de vista de inicio
+     */
     private ControladorPrincipal(Ventana pvista) {
 
         /**
@@ -90,9 +92,10 @@ public class ControladorPrincipal {
         vista.getVistaInicial().anadirListenerbtBolsaTrabajo(new BtBolsaTrabajoListener());
     }
 
-	/**
-	 * Para que los controladores especificos pregunta al controlador principal de volver a la vista de inicio
-	 */
+    /**
+     * Para que los controladores especificos pregunta al controlador principal
+     * de volver a la vista de inicio
+     */
     public void mostrarVistaInicio() {
         vista.showPanel(Ventana.panelInicio);
     }
@@ -101,82 +104,82 @@ public class ControladorPrincipal {
         return salto;
     }
 
-	/* Funcion para generar hash md5 a partir de una cadena */
+    /*
+     * Funcion para generar hash md5 a partir de una cadena
+     */
     public String md5(String s) {
-    		try {
-    	        // Create MD5 Hash
-    	        MessageDigest digest = java.security.MessageDigest
-    	                .getInstance("MD5");
-    	        digest.update(s.getBytes());
-    	        byte messageDigest[] = digest.digest();
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
 
-    	        // Create Hex String
-    	        StringBuffer hexString = new StringBuffer();
-    	        for (int i = 0; i < messageDigest.length; i++) {
-    	            String h = Integer.toHexString(0xFF & messageDigest[i]);
-    	            while (h.length() < 2)
-    	                h = "0" + h;
-    	            hexString.append(h);
-    	        }
-    	        return hexString.toString();
+            // Create Hex String
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < messageDigest.length; i++) {
+                String h = Integer.toHexString(0xFF & messageDigest[i]);
+                while (h.length() < 2) {
+                    h = "0" + h;
+                }
+                hexString.append(h);
+            }
+            return hexString.toString();
 
-    	    } catch (NoSuchAlgorithmException e) {
-    	        e.printStackTrace();
-    	    }
-    	    return "";
-    	}
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 
-	public Voluntario getVoluntario(){
-		return voluntario;
-	}
+    public Voluntario getVoluntario() {
+        return voluntario;
+    }
 
     // Listeners botones
     class BtConectarseListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-			boolean exito = true;
+            boolean exito = true;
 
-			try {
-				voluntario = JDBC.VoluntarioJDBC.getInstance().obtenerVoluntario(vista.getVistaLogin().getTextFieldIdUsuario().getText());
-			}
-			catch (SQLException ex){
-				exito = false;
+            try {
+                voluntario = JDBC.VoluntarioJDBC.getInstance().obtenerVoluntario(vista.getVistaLogin().getTextFieldIdUsuario().getText());
+            } catch (SQLException ex) {
+                exito = false;
                 vista.getVistaLogin().mostrarErrorLogin("Hubo un problema con la Base de Datos");
 //				Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
 //				System.err.println("Error al conectar a la base de datos:\n"+ex);
-			}
+            }
 
-			if (exito){
-				// Comprobamos que el voluntario existe
-				if (voluntario == null) exito = false;
+            if (exito) {
+                // Comprobamos que el voluntario existe
+                if (voluntario == null) {
+                    exito = false;
+                } // La contraseña se corresponde
+                else if (!voluntario.getPassword().equals(md5(vista.getVistaLogin().getTextFieldContrasena().getText() + getSalto()))) {
+                    voluntario = null;
+                    exito = false;
+                }
 
-				// La contraseña se corresponde
-				else
-					if (!voluntario.getPassword().equals(md5(vista.getVistaLogin().getTextFieldContrasena().getText()+getSalto()))){
-						voluntario = null;
-						exito = false;
-					}
+                if (exito) {
+                    vista.getVistaLogin().mostrarErrorLogin("");
+                    // Limpiar el formulario de inicio de sesion
+                    vista.showPanel(Ventana.panelInicio);
+                } else {
+                    vista.getVistaLogin().mostrarErrorLogin("Nombre usuario y/o contraseña no válidos");
+                }
 
-				if (exito){
-					vista.getVistaLogin().mostrarErrorLogin("");
-					// Limpiar el formulario de inicio de sesion
-					vista.showPanel(Ventana.panelInicio);
-				}
-				else vista.getVistaLogin().mostrarErrorLogin("Nombre usuario y/o contraseña no válidos");
-
-			}
-		}
+            }
+        }
     }
 
     class BtDesconectarseListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-			voluntario = null;
+            voluntario = null;
             vista.showPanel(Ventana.panelLogin);
         }
-
     }
 
     class BtVoluntarioListener implements ActionListener {
@@ -187,29 +190,27 @@ public class ControladorPrincipal {
         }
     }
 
-	class BtBeneficiarioListener implements ActionListener {
+    class BtBeneficiarioListener implements ActionListener {
 
-		@Override
+        @Override
         public void actionPerformed(ActionEvent ae) {
             vista.showPanel(Ventana.panelBeneficiario);
         }
-     }
+    }
 
-	class BtColaboradoresListener implements ActionListener {
+    class BtColaboradoresListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
             vista.showPanel(Ventana.panelColaboradores);
         }
-     }
+    }
 
-	class BtBolsaTrabajoListener implements ActionListener {
+    class BtBolsaTrabajoListener implements ActionListener {
 
-		@Override
-		public void actionPerformed(ActionEvent ae) {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
             vista.showPanel(Ventana.panelBolsaTrabajo);
         }
-
-     }
-
+    }
 }

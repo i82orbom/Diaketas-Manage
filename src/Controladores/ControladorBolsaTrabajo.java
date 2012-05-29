@@ -112,6 +112,8 @@ public class ControladorBolsaTrabajo {
     }
 
     public void mostrarNuevaOferta() {
+		vista.getOfertaDatos().getlabelError().setText("");
+
 		vista.getOfertaDatos().getBTGuardar().setVisible(true);
 		vista.getOfertaDatos().getBTLimpiar().setVisible(true);
 		vista.getOfertaDatos().getBTModificar().setVisible(false);
@@ -145,6 +147,8 @@ public class ControladorBolsaTrabajo {
     }
 
     public void mostrarConsultarOferta(Oferta oferta){
+		vista.getOfertaDatos().getlabelError().setText("");
+
 		vista.getOfertaDatos().getBTGuardar().setVisible(false);
 		vista.getOfertaDatos().getBTLimpiar().setVisible(false);
 		vista.getOfertaDatos().getBTModificar().setVisible(true);
@@ -175,6 +179,8 @@ public class ControladorBolsaTrabajo {
     }
 
     public void mostrarModificarOferta(Oferta oferta) {
+		vista.getOfertaDatos().getlabelError().setText("");
+
 		vista.getOfertaDatos().getBTGuardar().setVisible(false);
 		vista.getOfertaDatos().getBTLimpiar().setVisible(false);
 		vista.getOfertaDatos().getBTModificar().setVisible(false);
