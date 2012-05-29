@@ -19,8 +19,15 @@ public class PanelSocioBuscar extends javax.swing.JPanel {
      */
     public PanelSocioBuscar() {
         initComponents();
+		labelError.setVisible(false);
 		tableBuscarSocio.setBackground(Color.white);
 		tableBuscarSocio.setForeground(Color.blue);
+		cbBuscarSocio.setBackground(Color.white);
+		cbBuscarSocio.setForeground(Color.black);
+	}
+	public void setTextLabelError (String text) {
+		labelError.setText(text);
+		labelError.setVisible(true);
 	}
 
 	public JButton getBtBuscarSocio(){
@@ -45,7 +52,7 @@ public class PanelSocioBuscar extends javax.swing.JPanel {
 	public JButton getBtEliminarSocio(){
 		return btEliminar;
 	}
-			
+	
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,17 +70,20 @@ public class PanelSocioBuscar extends javax.swing.JPanel {
         jScrollPane12 = new javax.swing.JScrollPane();
         tableBuscarSocio = new javax.swing.JTable();
         textBuscarSocio = new javax.swing.JTextField();
+        labelError = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel81.setText("Buscar por:");
 
+        btBuscar.setBackground(new java.awt.Color(255, 255, 255));
         btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
+        btBuscar.setBorder(null);
 
         btEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
 
-        cbBuscarSocio.setBackground(new java.awt.Color(254, 254, 254));
         cbBuscarSocio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DNI/NIF/Pasaporte", "Nombre", "Dirección", "Localidad", "Teléfono Fijo", "Movil", "Código Postal" }));
+        cbBuscarSocio.setBorder(null);
 
         btConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/modificar.png"))); // NOI18N
 
@@ -99,12 +109,21 @@ public class PanelSocioBuscar extends javax.swing.JPanel {
         jScrollPane12.setViewportView(tableBuscarSocio);
 
         textBuscarSocio.setText("Buscar");
+        textBuscarSocio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        textBuscarSocio.setSelectionColor(new java.awt.Color(102, 204, 255));
+
+        labelError.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        labelError.setForeground(new java.awt.Color(255, 51, 51));
+        labelError.setText("Error");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(266, Short.MAX_VALUE)
+                .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(249, 249, 249))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(101, 101, 101)
@@ -127,7 +146,10 @@ public class PanelSocioBuscar extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(467, Short.MAX_VALUE)
+                .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -139,8 +161,8 @@ public class PanelSocioBuscar extends javax.swing.JPanel {
                         .addComponent(cbBuscarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel81))
                     .addGap(44, 44, 44)
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
-                    .addGap(18, 18, 18)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btConsultar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -154,6 +176,7 @@ public class PanelSocioBuscar extends javax.swing.JPanel {
     private javax.swing.JComboBox cbBuscarSocio;
     private javax.swing.JLabel jLabel81;
     private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JLabel labelError;
     private javax.swing.JTable tableBuscarSocio;
     private javax.swing.JTextField textBuscarSocio;
     // End of variables declaration//GEN-END:variables

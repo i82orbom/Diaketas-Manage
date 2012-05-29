@@ -4,9 +4,12 @@
  */
 package Vistas.Paneles.Socio;
 
+import Controladores.TestDatos;
+import Modelo.Socio;
 import java.awt.Color;
 import java.awt.TextField;
 import java.text.ParseException;
+import java.util.Formatter;
 import javax.swing.*;
 
 /**
@@ -14,6 +17,7 @@ import javax.swing.*;
  * @author Alberto
  */
 public class PanelSocioDatos extends javax.swing.JPanel {
+	java.text.SimpleDateFormat sdf=new java.text.SimpleDateFormat("dd/MM/yyyy");
 
     /**
      * Creates new form PanelSocioDatos
@@ -62,11 +66,11 @@ public class PanelSocioDatos extends javax.swing.JPanel {
         public JFormattedTextField getTextFN(){
 			return jFormattedTextFechaNacimiento;
         }
-        public String getSexo(){
+        public char getSexo(){
 			if(radioSexoMasculinoSocio.isSelected())
-				return "H";
+				return 'H';
 			else
-				return "M";
+				return 'M';
 
 		}
         public JTextField getTextLocalidad(){
@@ -97,6 +101,28 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                 return jTextUsuario;
         }
         
+		public void modificarSocio(Socio socio){
+
+				jTextNombre.setText(socio.getNombre());
+				jTextApellidos.setText(socio.getApellidos());
+				jTextDNI.setText(socio.getDNI() );
+				jTextEmail.setText(socio.getEmail());
+				jFormattedTextFechaNacimiento.setText(sdf.format(socio.getFechaDeNacimiento()));
+                if(socio.getSexo()=='M')
+                    radioSexoFemeninoSocio.setSelected(true);
+                else
+                    radioSexoMasculinoSocio.setSelected(true);
+                jTextLocalidad.setText(socio.getLocalidad());
+                jTextProvincia.setText(socio.getProvincia());
+                jTextDomicilio.setText(socio.getDireccion());
+                jTextCP.setText(socio.getCP());  
+                jTextTelefono.setText(socio.getTelefonoFijo());
+                jTextMovil.setText(socio.getTelefonoMovil());
+                jTextUsuario.setText(socio.getUsuario());
+				labelError.setVisible(false);
+				
+		}
+		
 		public void escribirSocioDatos(String[] datos){
 
 				jTextNombre.setText(datos[0]);
@@ -332,7 +358,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
 
         jLabel4.setText("Domicilio");
 
-        Localidad.setText("Nombre");
+        Localidad.setText("Localidad");
 
         jLabel6.setText("Código Postal");
 
@@ -417,8 +443,8 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                             .addComponent(jTextMovil, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19))))
             .addGroup(PanelDatosSocioLayout.createSequentialGroup()
-                .addGap(248, 248, 248)
-                .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(380, 380, 380)
+                .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         PanelDatosSocioLayout.setVerticalGroup(
@@ -490,19 +516,22 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                     .addGroup(PanelDatosSocioLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel11)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addComponent(labelError)
                 .addGap(18, 18, 18)
                 .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btLimpiarDatosSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btGuardarDatosSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                    .addGroup(PanelDatosSocioLayout.createSequentialGroup()
+                        .addComponent(jTextUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addComponent(labelError)
+                        .addGap(18, 18, 18)
+                        .addGroup(PanelDatosSocioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btLimpiarDatosSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btGuardarDatosSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25))
+                    .addGroup(PanelDatosSocioLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addContainerGap())))
         );
 
         jTabbedPane.addTab("Datos", PanelDatosSocio);
@@ -851,4 +880,6 @@ public class PanelSocioDatos extends javax.swing.JPanel {
     private javax.swing.JTextField textFechaInicioCuotaSocio;
     private javax.swing.JTextField textIntervaloCuotaSocio;
     // End of variables declaration//GEN-END:variables
+
+	
 }
