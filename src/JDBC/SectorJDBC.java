@@ -90,6 +90,21 @@ public class SectorJDBC {
         }
         return lista_sectores;
     }
-    
+    public int ConsultarSector(String nombre) throws SQLException{
+        DriverJDBC driver = DriverJDBC.getInstance();
+        ResultSet resultado;
+        String sql = "SELECT OID FROM descripcion = "+nombre;
+        try{
+            driver.conectar();
+            resultado=driver.seleccionar(sql);
+        }
+        catch(SQLException ea){
+            throw ea;
+        }
+        finally {
+            driver.desconectar();
+        }
+        return resultado.getInt("OID");
+    }
     
 }

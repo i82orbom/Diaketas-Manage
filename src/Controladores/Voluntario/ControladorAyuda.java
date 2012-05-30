@@ -227,7 +227,7 @@ public class ControladorAyuda {
         return temp_tiposAyuda;
     }
 
-    private boolean modificarAyuda (Ayuda ayuda) {
+    public boolean modificarAyuda (Ayuda ayuda) {
         boolean exito = false;
 
             // TODO test si tipoayuda existe
@@ -252,11 +252,10 @@ public class ControladorAyuda {
         return exito;
     }
 
-    private boolean eliminarAyuda(Ayuda ayuda) {
+    public boolean eliminarAyuda(Ayuda ayuda) {
         boolean exito = false;
 
         try {
-            // TODO jdbc ayuda
             exito = AyudaJDBC.getInstance().eliminarDatosAyuda(ayuda.getOID());
         } catch (SQLException ex) {
             Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);

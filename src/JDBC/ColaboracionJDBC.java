@@ -75,7 +75,7 @@ public class ColaboracionJDBC {
         try{
             driver.inicioTransaccion();
             driver.insertar(sql);
-			driver.insertar(sql2);
+            driver.insertar(sql2);
             driver.commit();
 
         }

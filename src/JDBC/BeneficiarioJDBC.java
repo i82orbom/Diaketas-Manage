@@ -27,7 +27,7 @@
  **     008 - May 18, 2012 - ARS - Modifiacion de sentencias SQL para incluir OID. Se puede añadir beneficiario bien
  *      009 - May 23, 2012 - JAEG - Modificada sentencia SQL del metodo obtenerListadoBeneficiario()
  *      010 - May 29, 2012 - RC - Modificada sentencia SQL de los metodos obtenerBeneficiario() y obtenerListadoBeneficiario para que incluye el OID
- *
+ *      011 - May 30, 2012 - JAEG - Arreglada funcion "datosFamiliares"
  ** NOTAS:
  **
  **
@@ -261,9 +261,9 @@ public class BeneficiarioJDBC {
         return true;
     }
 
-    public ArrayList<Persona> datosFamiliares(String beneficiario_DNI) throws SQLException {
+    public ArrayList<Persona> datosFamiliares(Long OIDBenef) throws SQLException {
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "SELECT * FROM persona p, familia f WHERE (f.PersonaNIF1='" + beneficiario_DNI + "') AND p.NIF=f.PersonaNIF2";
+        String sql = "SELECT * FROM persona p, familia f WHERE f.OID_Bene1="+OIDBenef+" AND p.OID=f.OID_Bene2";
         ArrayList<Persona> familiares = new ArrayList<Persona>();
 
         try {
@@ -282,6 +282,7 @@ public class BeneficiarioJDBC {
                 temp.setTelefonoMovil(resultados.getString("TelefonoMovil"));
                 temp.setDomicilio(resultados.getString("Domicilio"));
                 temp.setLocalidad(resultados.getString("Localidad"));
+                temp.setParentesco(resultados.getString("Parentesco"));
 
                 familiares.add(temp);
             }

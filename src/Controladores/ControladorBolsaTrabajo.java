@@ -12,8 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  ** NOMBRE CLASE:
@@ -132,15 +130,11 @@ public class ControladorBolsaTrabajo {
 		vista.getOfertaDatos().gettextDuracionContrato().setEditable(true);
 		vista.getOfertaDatos().gettaCualificacion().setEditable(true);
 
-		try {
-			sectores = SectorJDBC.getInstance().ListadoSectores();
-		} catch (SQLException ex) {
-			ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex);
-		}
-
-		for (int i=0;i<sectores.size();i++){
+		vista.getOfertaDatos().getcbSector().removeAllItems();
+		try { sectores = SectorJDBC.getInstance().ListadoSectores();}
+		catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
+		for (int i=0;i<sectores.size();i++)
 			vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
-		}
 
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
 		vista.getBarraDeNavigacion().setTextLabelNivel3("Nueva Oferta");
@@ -199,12 +193,25 @@ public class ControladorBolsaTrabajo {
 		vista.getOfertaDatos().gettextDuracionContrato().setEditable(true);
 		vista.getOfertaDatos().gettaCualificacion().setEditable(true);
 
+		vista.getOfertaDatos().getcbSector().removeAllItems();
+		try { sectores = SectorJDBC.getInstance().ListadoSectores();}
+		catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
+		for (int i=0;i<sectores.size();i++)
+			vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Oferta");
     }
 
 	public void mostrarBuscarOferta() {
-        vista.showPanel(VistaBolsaTrabajo.PanelOfertaBuscar);
+		vista.getOfertaBuscar().getcbSector().removeAllItems();
+		try { sectores = SectorJDBC.getInstance().ListadoSectores();}
+		catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
+		vista.getOfertaBuscar().getcbSector().addItem("Cualquiera");
+		for (int i=0;i<sectores.size();i++)
+			vista.getOfertaBuscar().getcbSector().addItem(sectores.get(i).getDescripcion());
+
+		vista.showPanel(VistaBolsaTrabajo.PanelOfertaBuscar);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Buscar Oferta");
     }
 

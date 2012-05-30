@@ -111,6 +111,7 @@ public class C_EmpresaJDBC {
 
         }
         catch (SQLException ex){
+            driver.rollback();
             throw ex;
 	}
         finally {
@@ -128,24 +129,30 @@ public class C_EmpresaJDBC {
     public boolean eliminarC_Empresa(C_Empresa e) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "UPDATE Colaboracion SET OID="+OID_Anonimo+" WHERE OID='"+e.getOID()+"'";
-        String sql2 = "DELETE FROM C_Empresa WHERE OID='"+e.getOID()+"'";
-        String sql3 = "DELETE FROM Colaborador WHERE OID='"+e.getOID()+"'";
+        String sqls = "SELECT * FROM C_Empresa WHERE OID='"+e.getOID()+"'";
+        ResultSet rs = driver.seleccionar(sqls);
+        
+        if (rs.next()){
+            String sql = "UPDATE Colaboracion SET OID="+OID_Anonimo+" WHERE OID='"+e.getOID()+"'";
+            String sql2 = "DELETE FROM C_Empresa WHERE OID='"+e.getOID()+"'";
+            String sql3 = "DELETE FROM Colaborador WHERE OID='"+e.getOID()+"'";
 
-        try{
-            driver.inicioTransaccion();
-            driver.actualizar(sql);
-            driver.eliminar(sql2);
-            driver.eliminar(sql3);
-            driver.commit();
+            try{
+                driver.inicioTransaccion();
+                driver.actualizar(sql);
+                driver.eliminar(sql2);
+                driver.eliminar(sql3);
+                driver.commit();
 
+            }
+            catch (SQLException ex){
+                driver.rollback();
+                throw ex;
+            }
+            finally {
+                driver.finTransaccion();
+            }
         }
-        catch (SQLException ex){
-            throw ex;
-	}
-        finally {
-            driver.finTransaccion();
-	}
         return true;
     }
 
@@ -201,7 +208,7 @@ public class C_EmpresaJDBC {
     public ArrayList<C_Empresa> buscarC_Empresa(String tipoBusqueda, String valor) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "SELECT * FROM C_Empresa e, Colaborador c WHERE "+tipoBusqueda+"='"+valor+"' AND e.OID=c.";
+        String sql = "SELECT * FROM C_Empresa e, Colaborador c WHERE "+tipoBusqueda+"='"+valor+"'";
         ArrayList<C_Empresa> listaC_Empresa = new ArrayList<C_Empresa>();
         C_Empresa Empresa = null;
 
@@ -238,6 +245,7 @@ public class C_EmpresaJDBC {
         return listaC_Empresa;
     }
 
+    /* ¿QUIEN HA HECHO ESTO?
     public ResultSet obtenerC_empresa (Sector sector )throws SQLException{
         DriverJDBC driver = DriverJDBC.getInstance();
         ResultSet rs;
@@ -260,5 +268,7 @@ public class C_EmpresaJDBC {
 
 	return rs;
     }
+    * 
+    */
 
 }
