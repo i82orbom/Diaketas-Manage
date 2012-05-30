@@ -1,10 +1,12 @@
 
 package Controladores.Voluntario;
 
-import Controladores.TestDatos;
 import JDBC.ColaboracionJDBC;
 import Modelo.Colaboracion;
 import Modelo.Colaborador;
+import Vistas.Paneles.Socio.VistaSocio;
+import Vistas.Paneles.Voluntario.VistaVoluntario;
+import java.awt.event.KeyListener;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -41,36 +43,42 @@ public class ControladorColaboracion {
 
     private static ControladorColaboracion instancia;
 
-    /*
-    public static ControladorColaboracion getInstance(PanelVoluntarioColaboracion pvista){
+    
+    public static ControladorColaboracion getInstance(VistaVoluntario pvista){
         if (instancia == null)
             instancia = new ControladorColaboracion(pvista);
 
         return instancia;
 
     }
+	public static ControladorColaboracion getInstance(VistaSocio pvista){
+        if (instancia == null)
+            instancia = new ControladorColaboracion(pvista);
 
-    private PanelVoluntarioColaboracion vista;
+        return instancia;
 
-    public ControladorColaboracion(PanelVoluntarioColaboracion vista) {
-        this.vista = vista;
-    }*/
+    }
+    private VistaVoluntario vistaVoluntario;
+    private VistaSocio vistaSocio;
 
-    public Colaboracion anadirColaboracion (Colaboracion colaboracion){
+    public ControladorColaboracion(VistaVoluntario vista) {
+        this.vistaVoluntario = vista;
+		
+    }
+	
+	public ControladorColaboracion(VistaSocio vista) {
+        this.vistaSocio = vista;
+	}
 
-        Colaboracion c = new Colaboracion();
-
-        c.setConcepto(colaboracion.getConcepto());
-        c.setFecha(colaboracion.getFecha());
-        c.setImporte(colaboracion.getImporte());
-
-
+    public boolean anadirColaboracion (Colaboracion colaboracion){
+		boolean exito=true;
         try {
-            ColaboracionJDBC.getInstance().añadirColaboracion(c);
+            exito=ColaboracionJDBC.getInstance().añadirColaboracion(colaboracion);
         } catch (SQLException ex) {
+			exito=false;
             Logger.getLogger(ControladorColaboracion.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return exito;
     }
 
     public boolean eliminarColaboracion (Colaboracion c) {

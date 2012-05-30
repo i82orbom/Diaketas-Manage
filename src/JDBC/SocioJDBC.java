@@ -136,6 +136,7 @@ public class SocioJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
 		boolean exito=false;
+		
         String sql = "UPDATE Colaboracion SET OID="+OID_Anonimo+" WHERE OID='"+socio.getOID()+"'";
         String sql2 = "UPDATE PagoCuota SET OID="+OID_Anonimo+" WHERE OIDSocio='"+socio.getOID()+"'";
         String sql3 = "UPDATE Cuota SET fechaFin=fechaUltimoPago WHERE OIDSocio='"+socio.getOID()+"'";

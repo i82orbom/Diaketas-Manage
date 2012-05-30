@@ -4,6 +4,7 @@ package Controladores.Colaborador;
 import Controladores.ControladorColaboradores;
 import Controladores.ControladorPrincipal;
 import Controladores.TestDatos;
+import Controladores.Voluntario.ControladorColaboracion;
 import Controladores.Voluntario.ControladorVoluntario;
 import JDBC.ColaboracionJDBC;
 import JDBC.CuotaJDBC;
@@ -11,6 +12,7 @@ import JDBC.PagoCuotaJDBC;
 import JDBC.SocioJDBC;
 import Modelo.*;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
+import Vistas.Paneles.Socio.VistaSocio;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -59,8 +61,7 @@ public class ControladorSocio{
 		* PATRON DE DISEÑO SINGLETON
 		*/
 	private static ControladorSocio instancia = null;
-	private static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-
+	
 	// TODO vista
 	public static ControladorSocio getInstance(VistaColaboradores pvista) {
 
@@ -71,20 +72,24 @@ public class ControladorSocio{
 
 	}
 
-		private VistaColaboradores vista;
+	private VistaColaboradores vista;
 	Socio socio_temp = null;
 	ArrayList<Socio> socios = null;
 	private String[] columnNames = {"DNI", "Nombre", "Direccion", "Localidad", "Teléfono", "Movil", "CP"};
 
 	public ControladorSocio(VistaColaboradores pvista) {
+		
 		vista = pvista;
-
+		ControladorColaboracion.getInstance(vista.getVistaSocio());
+		
 		vista.getPanelSocioDatos().getBtGuardarDatosSocio().addActionListener(new btGuardarDatosSocioListener());
 		vista.getPanelSocioDatos().getBtBorrarDatosSocio().addActionListener(new btBorrarDatosSocioListener());
 		
 		vista.getPanelSocioBuscar().getBtBuscarSocio().addActionListener(new btBuscarSocioListener());
 		vista.getPanelSocioBuscar().getBtEliminarSocio().addActionListener(new btEliminarSocioListener());
 		vista.getPanelSocioBuscar().getBtConsultarSocio().addActionListener(new btConsultarSocioListener());
+		vista.getPanelSocioDatos().getBtGuardarColaboracion().addActionListener(new btGuardarColaboracionesListener());
+		
 		anadirKeyListener();
 	}
     
@@ -215,43 +220,6 @@ public class ControladorSocio{
 		return pagos;
 	}
 
-	// proba los datos pero no sabemos cual son los datos que no son correcto
-	private boolean comprobarDatos(String[] datos) {
-		// cada campo debe ser not null
-		for (int i=0; i<datos.length; i++) {
-			if (datos[i].length() < 1)
-				return false;
-		}
-
-		if (!TestDatos.isDNI(datos[Socio.DNI_ID]))
-			return false;
-
-		if (!TestDatos.isCodigoPostal(datos[Socio.CP_ID]))
-			return false;
-
-		if (!TestDatos.isEmail(datos[Socio.EMAIL_ID]))
-			return false;
-
-		if (!TestDatos.isNombre(datos[Socio.NOMBRE_ID]))
-			return false;
-
-		if (!TestDatos.isNombre(datos[Socio.APELLIDOS_ID]))
-			return false;
-
-		if (!TestDatos.isDomicilio(datos[Socio.DIRECCION_ID]))
-			return false;
-
-		if (!TestDatos.isNombre(datos[Socio.LOCALIDAD_ID]))
-			return false;
-
-		if (!TestDatos.isNombre(datos[Socio.PROVINCIA_ID]))
-			return false;
-
-		if (!TestDatos.isOnlyLetterOrDigit(datos[Socio.USUARIO_ID]))
-			return false;
-
-		return true;
-	}
 	/**
 		* Listener controlador del boton Guardar datos socio
 	*/
@@ -392,6 +360,10 @@ public class ControladorSocio{
 		vista.getPanelSocioDatos().getTextTelMovil().addKeyListener(keyListener);
 		vista.getPanelSocioDatos().getTextTelfFijo().addKeyListener(keyListener);
 		vista.getPanelSocioDatos().getTextUsuario().addKeyListener(keyListener);
+		vista.getPanelSocioDatos().getTextCantidadColaboracion().addKeyListener(keyListener);
+		vista.getPanelSocioDatos().getTextFechaColaboracion().addKeyListener(keyListener);
+		vista.getPanelSocioDatos().getTextConceptoColaboracion().addKeyListener(keyListener);
+
     }
     
     // Cuando el usuario escribe, cambia el color en negro si habia errores y el color estaba rojo
@@ -690,7 +662,48 @@ public class ControladorSocio{
 		vista.getPanelSocioDatos().getTextTelfFijo().setForeground(Color.BLACK);
 		vista.getPanelSocioDatos().getTextTelMovil().setForeground(Color.BLACK);
 		vista.getPanelSocioDatos().getTextUsuario().setForeground(Color.BLACK);
+	}
+	
+	
+	public class btGuardarColaboracionesListener implements ActionListener{
+		private boolean datosCorrectos=true;
+		Colaboracion colaboracion=null;
 
-
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			System.out.println("entrando");
+			if( !TestDatos.isMoney( vista.getPanelSocioDatos().getTextCantidadColaboracion().getText()) ) {
+                vista.getPanelSocioDatos().getTextCantidadColaboracion().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isFecha( vista.getPanelSocioDatos().getTextFechaColaboracion().getText()) ) {
+                vista.getPanelSocioDatos().getTextFechaColaboracion().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isOnlyLetterOrDigit( vista.getPanelSocioDatos().getTextConceptoColaboracion().getText()) ) {
+                vista.getPanelSocioDatos().getTextConceptoColaboracion().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if (!datosCorrectos) {
+                vista.getPanelSocioDatos().setTextLabelErrorColaboracion("Los campos en rojo tienes errores.");
+            }
+			else {
+				vista.getPanelSocioDatos().setTextLabelErrorColaboracionVisible(false);
+				if(colaboracion==null){
+					System.out.println("Enttrando2");
+					colaboracion = new Colaboracion();
+					colaboracion.setImporte(Float.parseFloat(vista.getPanelSocioDatos().getTextCantidadColaboracion().getText()));
+					colaboracion.setConcepto(vista.getPanelSocioDatos().getTextConceptoColaboracion().getText());
+					try {	
+						colaboracion.setFecha(TestDatos.formatter.parse(vista.getPanelSocioDatos().getTextFechaColaboracion().getText()));				
+					} catch (ParseException ex) {
+						Logger.getLogger(ControladorColaboracion.class.getName()).log(Level.SEVERE, null, ex);
+					}
+					System.out.println("Colaboraicon añadida");
+					ControladorColaboracion.getInstance(vista.getVistaSocio()).anadirColaboracion(colaboracion);
+				}
+			}
+		}
 	}
 }

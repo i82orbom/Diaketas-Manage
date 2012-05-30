@@ -125,7 +125,7 @@ public class TestDatos {
 
     public static boolean isOnlyLetterOrDigit (String s) {
         for (int i=0; i<s.length(); i++) {
-            if (!Character.isLetterOrDigit(s.charAt(i)))
+            if (!Character.isLetterOrDigit(s.charAt(i)) && s.charAt(i)!=',' && s.charAt(i)!='.')
                 return false;
         }
         return true;
@@ -163,10 +163,26 @@ public class TestDatos {
 	 * @param s cadena a comprobar
 	 * @return True si la cadena es una fecha válida
 	 */
+
 	public static boolean isFecha(String fecha){
         Pattern p = Pattern.compile("\\d\\d/\\d\\d/\\d\\d\\d\\d$");
         Matcher m = p.matcher(fecha.toUpperCase());
         return m.matches();
 	}
+	public static boolean isMoney (String numero) {
+        int num_Comas=0;		
+		boolean correcto=true;
+		
+		for (int i=0; i<numero.length(); i++) {
+            if (!Character.isDigit(numero.charAt(i)) && numero.charAt(i)!=',' && numero.charAt(i)!='.')
+                correcto=false;
+			if(numero.charAt(i)==',' || numero.charAt(i)=='.')
+				num_Comas++;
+        }
+		if(num_Comas>1 && correcto)
+			correcto = false;
+		
+		return correcto;
+    }
 
 }
