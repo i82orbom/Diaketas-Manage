@@ -64,7 +64,7 @@ public class SectorJDBC {
         }
         return true;
     }
-    public ArrayList<Sector> ObtenerSectores () throws SQLException{
+    public ArrayList<Sector> ListadoSectores () throws SQLException{
         DriverJDBC driver = DriverJDBC.getInstance();
         ArrayList<Sector> lista_sectores = new ArrayList<Sector>();
         Sector Temp;
