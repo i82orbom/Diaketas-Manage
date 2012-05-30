@@ -31,7 +31,7 @@ import java.util.Date;
  * @author Jobero
  */
 public abstract class Persona {
-	private Long OID;
+    private Long OID;
     private String NIF;
     private String nombre;
     private String apellidos;
