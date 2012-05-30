@@ -24,6 +24,7 @@
  */
 package JDBC;
 
+import Controladores.TestDatos;
 import Modelo.Colaboracion;
 import Modelo.Colaborador;
 import java.sql.ResultSet;
@@ -68,11 +69,13 @@ public class ColaboracionJDBC {
     public boolean añadirColaboracion(Colaboracion c) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "INSERT INTO Colaboracion (Cantidad, Fecha, DNIoCIF, OID) VALUES ('"+c.getImporte()+"','"+c.getFecha()+"','"+c.getOID()+"','"+c.getOIDColaboracion()+"')";
+        String sql = "INSERT INTO Movimiento (Cantidad, Concepto, Fecha) VALUES ('"+c.getImporte()+"','"+c.getConcepto()+"','"+TestDatos.formatterBD.format(c.getFecha())+"')";
+        String sql2 = "INSERT INTO Colaboracion (OID, OIDVoluntario, OIDColaborador) VALUES (LAST_INSERT_ID()'"+c.getOIDVoluntario()+"','"+c.getOIDColaborador()+"')";
 
         try{
             driver.inicioTransaccion();
             driver.insertar(sql);
+            driver.insertar(sql2);
             driver.commit();
 
         }

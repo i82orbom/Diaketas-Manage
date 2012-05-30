@@ -175,11 +175,16 @@ public class ControladorOferta {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Guardar Sector");
+//			System.out.println("Guardar Sector");
 			Sector sector = new Sector();
-			sector.setDescripcion(vista.getOfertaDatos().getTextoSector());
-			insertarSector(sector);
-			ControladorBolsaTrabajo.getInstance(null).mostrarNuevaOferta();
+			String sectorNuevo = vista.getOfertaDatos().getTextoNuevoSector();
+			if (!TestDatos.isOnlyLetter(sectorNuevo))
+				vista.getOfertaDatos().getlabelError().setText("Error en los datos para añadir sector");
+			else {
+				sector.setDescripcion(sectorNuevo);
+				if (insertarSector(sector)) ControladorBolsaTrabajo.getInstance(null).mostrarNuevaOferta();
+				else vista.getOfertaDatos().getlabelError().setText("Error al añadir sector");
+			}
 		}
 	}
 
@@ -322,8 +327,13 @@ public class ControladorOferta {
 			System.out.println("Buscar Oferta");
 
 			String CIFEmpresa = vista.getOfertaBuscar().gettextoCIFEmpresa();
-			String sectorBusqueda = vista.getOfertaBuscar().getcbSector();
+			int sectorBusquedaPos = vista.getOfertaBuscar().getcbSector().getSelectedIndex();
+			String sectorBusqueda;
+			if (sectorBusquedaPos == 0) sectorBusqueda = "";
+			else sectorBusqueda = ControladorBolsaTrabajo.getInstance(null).getSectores().get(sectorBusquedaPos-1).getOID()+"";
 			String antiguedad = vista.getOfertaBuscar().getAntiguedad();
+
+//			System.out.println("CIF: "+CIFEmpresa+" Sector: "+sectorBusqueda+" Antiguedad: "+antiguedad);
 
 			final String[] columnNames = {"CIF", "Razón Social", "Sector", "Fecha de oferta"};
 			listaOfertas = obtenerListaOfertas(CIFEmpresa, sectorBusqueda, antiguedad);

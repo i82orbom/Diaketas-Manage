@@ -106,7 +106,6 @@ public class SocioJDBC {
 
         String sql = "UPDATE Colaborador SET Direccion='"+socio.getDireccion()+"', Localidad='"+socio.getLocalidad()+"', Provincia='"+socio.getProvincia()+"', CP='"+socio.getCP()+"',TelefonoFijo='"+socio.getTelefonoFijo()+"', TelefonoMovil='"+socio.getTelefonoMovil()+"', Email='"+socio.getEmail()+"'WHERE OID='"+socio.getOID()+"'";
         String sql2 = "UPDATE C_Persona SET DNI='"+socio.getDNI()+"', Nombre='"+socio.getNombre()+"', Apellidos='"+socio.getApellidos()+"', FechaNacimiento='"+TestDatos.formatterBD.format(socio.getFechaDeNacimiento())+"', Sexo='"+socio.getSexo()+"'WHERE OID='"+socio.getOID()+"'";
-		System.out.println(sql2);
         String sql3 = "UPDATE Socio SET usuario='"+socio.getUsuario()+"', contrasena='"+socio.getContrasena()+"'WHERE OID='"+socio.getOID()+"'";
 
         try{
@@ -135,7 +134,7 @@ public class SocioJDBC {
     public boolean eliminarSocio(Socio socio) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-		boolean exito=false;
+		
         String sql = "UPDATE Colaboracion SET OID="+OID_Anonimo+" WHERE OID='"+socio.getOID()+"'";
         String sql2 = "UPDATE PagoCuota SET OID="+OID_Anonimo+" WHERE OIDSocio='"+socio.getOID()+"'";
         String sql3 = "UPDATE Cuota SET fechaFin=fechaUltimoPago WHERE OIDSocio='"+socio.getOID()+"'";
@@ -154,17 +153,15 @@ public class SocioJDBC {
                 driver.eliminar(sql6);
                 driver.eliminar(sql7);
                 driver.commit();
-				exito=true;
         }
         catch (SQLException ex){
                 driver.rollback();
-				exito=false;
                 throw ex;
         }
         finally{
                 driver.finTransaccion();
         }
-        return exito;
+        return true;
     }
 
     /**

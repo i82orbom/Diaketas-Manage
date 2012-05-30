@@ -42,8 +42,11 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
 		return antiguedad+"";
     }
 
-    public String getcbSector(){
+    public String getTextoSector(){
         return cbSector.getSelectedItem().toString();
+    }
+    public JComboBox getcbSector(){
+        return cbSector;
     }
 
 	public String gettextoCIFEmpresa(){
@@ -101,11 +104,9 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
 
         labelSectorBusqueda.setText("Sector Busqueda");
 
-        cbSector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Construccion", "Electricidad", "Carpinteria", "Fontaneria", " " }));
-
         labelAntiguedad.setText("Antiguedad");
 
-        cbAntiguedad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1 mes", "2 meses", "3 meses", "4 meses", "5 meses", "6 meses", "7 meses", "8 meses", "9 meses", "10 meses", "11 meses", "12 meses", "mas de 1 año", " " }));
+        cbAntiguedad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1 mes", "2 meses", "3 meses", "4 meses", "5 meses", "6 meses", "7 meses", "8 meses", "9 meses", "10 meses", "11 meses", "12 meses", "mas de 1 año" }));
 
         BTEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
 

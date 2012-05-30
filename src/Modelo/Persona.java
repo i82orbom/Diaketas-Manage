@@ -16,7 +16,7 @@
  ** HISTORIA:
  ** 	000 - Mar 24, 2012 - FBR - Creacion
  *      001 - Mar 29, 2012 - FBR - Se ha añadido un vector para indicar los familiares
- **
+ **     002 - May 30, 2012 - JAEG - Añadido parametro parentesco
  ** NOTAS:
  **
  **
@@ -31,12 +31,13 @@ import java.util.Date;
  * @author Jobero
  */
 public abstract class Persona {
-	private Long OID;
+    private Long OID;
     private String NIF;
     private String nombre;
     private String apellidos;
     private Date fechaDENacimiento;
     private ArrayList<Persona> familia;
+    private String parentesco;
 
     private String domicilio;
     private String CP;
@@ -83,6 +84,22 @@ public abstract class Persona {
      */
     public void setCP(String CP) {
         this.CP = CP;
+    }
+
+    public ArrayList<Persona> getFamilia() {
+        return familia;
+    }
+
+    public void setFamilia(ArrayList<Persona> familia) {
+        this.familia = familia;
+    }
+
+    public String getParentesco() {
+        return parentesco;
+    }
+
+    public void setParentesco(String parentesco) {
+        this.parentesco = parentesco;
     }
 
     /**

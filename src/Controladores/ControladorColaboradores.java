@@ -1,9 +1,8 @@
 
 package Controladores;
 
-import Controladores.Colaborador.ControladorC_Empresa;
-import Controladores.Colaborador.ControladorC_Persona;
 import Controladores.Colaborador.ControladorSocio;
+import Controladores.Voluntario.ControladorColaboracion;
 import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
 import java.awt.event.ActionEvent;
@@ -59,6 +58,7 @@ public class ControladorColaboradores {
 	vista = pvista;
 
 	ControladorSocio.getInstance(vista);
+	
 	//ControladorC_Empresa.getInstance(vista.getVistaEmpresa());
 	//ControladorC_Persona.getInstance(vista.getVistaColaborador());
 
@@ -74,7 +74,7 @@ public class ControladorColaboradores {
         vista.getPanelEmpresaInicio().anadirListenerbtNuevoEmpresa(new btNuevaEmpresaListener());
         vista.getPanelColaboradorInicio().anadirListenerbtNuevoColaborador(new btNuevoColaboradorListener());
         vista.getPanelColaboradorInicio().anadirListenerbtBuscarColaborador(new btBuscarColaboradorListener());
-
+		
         // al principio mostrar la vista de inicio
         mostrarVistaInicio();
 
