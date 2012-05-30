@@ -509,6 +509,13 @@ public class ControladorBeneficiario {
                 datosCorrectos = false;
             }
             
+            try {
+                Integer.parseInt(vista.getPanelDatos().getTextImporteBeneficiario().getText());
+            } catch (Exception e) {
+                vista.getPanelDatos().setTextLabelErrorAyuda("El importe debe ser un numero.");
+                datosCorrectos = false;
+            }
+            
             if (vista.getPanelDatos().getTextImporteBeneficiario().getText().equals("")) {
                 datosCorrectos = false;
             }
@@ -523,6 +530,7 @@ public class ControladorBeneficiario {
                 Ayuda ayuda = new Ayuda();
                 ayuda.setBeneficiarioDeAyuda(benef);
                 ayuda.setFecha(new Date());
+                
                 ayuda.setImporte(Integer.parseInt(vista.getPanelDatos().getTextImporteBeneficiario().getText()));
                 ayuda.setObservaciones(vista.getPanelDatos().getTextObservacionesIntervencionBeneficiario().getText());
                 ayuda.setTipo_ayuda((TipoAyuda)vista.getPanelDatos().getCbTiposAyuda().getSelectedItem());
