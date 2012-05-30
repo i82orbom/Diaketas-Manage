@@ -5,6 +5,7 @@ import Controladores.Voluntario.ControladorAyuda;
 import JDBC.BeneficiarioJDBC;
 import Modelo.Ayuda;
 import Modelo.Beneficiario;
+import Modelo.Persona;
 import Modelo.TipoAyuda;
 import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.Beneficiario.VistaBeneficiario;
@@ -44,7 +45,8 @@ import javax.swing.table.TableModel;
  *	002 - 20 May 2012 - ARS - Comprobar datos del beneficiario
  *      003 - 23 May 2012 - JAEG - Buscar y consultar beneficiarios
  *      004 - 24 May 2012 - JAEG - Consultar intervenciones del beneficiario
- *      004 - 29 May 2012 - RC - Guardar intervenciones del beneficiario y limpiar campos
+ *      005 - 29 May 2012 - RC - Guardar intervenciones del beneficiario y limpiar campos
+ *      006 - 30 May 2012 - JAEG - Añadidas funciones para mostrar familaires del beneficiario
  ** NOTAS:
  **
  **
@@ -78,6 +80,7 @@ public class ControladorBeneficiario {
      */
     String[] columnasBuscarBeneficiario = {"NIF", "Nombre y Apellidos", "Fecha Nacimiento", "Localidad", "Teléfono Móvil"};
     String[] columnasIntervenciones = {"Fecha", "Concepto", "Importe", "Observaciones", "Voluntario"};
+    String[] columnasFamiliares = {"Nombre y Apellidos", "Fecha nacimiento", "Parentesco","Ocupacion"};
     /*
      * Listado con el tipo de ayudas disponibles
      */
@@ -133,6 +136,7 @@ public class ControladorBeneficiario {
         }
         benef = null;
         vista.getPanelDatos().getTbIntervenciones().setModel(new DefaultTableModel(columnasIntervenciones, 0));
+        vista.getPanelDatos().getTbFamiliares().setModel(new DefaultTableModel(columnasFamiliares,0));
         vista.showPanel(VistaBeneficiario.panelDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel1("Beneficiario");
         vista.getBarraDeNavigacion().setTextLabelNivel2("Nuevo Beneficiario");
@@ -210,6 +214,67 @@ public class ControladorBeneficiario {
             });
         }
     }
+    
+    private void actualizarTablaFamiliares(){
+        vista.getPanelDatos().getTbFamiliares().setModel(new TableModel() {
+
+            @Override
+            public int getRowCount() {
+                return benef.getFamilia().size();
+            }
+
+            @Override
+            public int getColumnCount() {
+               return columnasFamiliares.length;
+            }
+
+            @Override
+            public String getColumnName(int columnIndex) {
+                return columnasFamiliares[columnIndex];
+            }
+
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+               return String.class;
+            }
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+
+            @Override
+            public Object getValueAt(int rowIndex, int columnIndex) {
+                switch(columnIndex){
+                    case 0:
+                        return benef.getFamilia().get(rowIndex).getApellidos()+", "+benef.getFamilia().get(rowIndex).getNombre();
+                    case 1:
+                        return formateador.format(benef.getFamilia().get(rowIndex).getFechaDENacimiento());
+                    case 2:
+                        return benef.getFamilia().get(rowIndex).getParentesco();
+                    case 3:
+                        return benef.getFamilia().get(rowIndex).getNIF();
+                    default:
+                        return "";
+                }
+            }
+
+            @Override
+            public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+
+            @Override
+            public void addTableModelListener(TableModelListener l) {
+               
+            }
+
+            @Override
+            public void removeTableModelListener(TableModelListener l) {
+                
+            }
+        });
+    }
 
     private boolean insertarBeneficiario(String[] datos) {
         if (this.comprobarDatos(datos) == false) {
@@ -263,6 +328,17 @@ public class ControladorBeneficiario {
             return null;
         }
         return benefs;
+    }
+    
+    private ArrayList<Persona> consultarFamiliares(Long OIDBenef){
+        ArrayList<Persona> famis;
+        try {
+            famis=BeneficiarioJDBC.getInstance().datosFamiliares(OIDBenef);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBeneficiario.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return famis;
     }
 
     private Beneficiario consultarBeneficiario(String dni) {
@@ -491,9 +567,11 @@ public class ControladorBeneficiario {
             if (vista.getPanelBuscar().getTablaBusquedaBeneficiario().getSelectedRow() != -1) {
                 benef = beneficiarios.get(vista.getPanelBuscar().getTablaBusquedaBeneficiario().getSelectedRow());
                 tiposAyuda = ControladorAyuda.getInstance(null).obtenerTiposAyuda();
+                benef.setFamilia(consultarFamiliares(benef.getOID()));
                 vista.getPanelDatos().actualizarTiposAyuda(tiposAyuda);
                 vista.getPanelDatos().actualizarDatosGenerales(benef);
                 actualizarTablaAyuda();
+                actualizarTablaFamiliares();
                 mostrarVistaModificarBeneficiario();
             }
         }
