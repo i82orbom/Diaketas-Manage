@@ -165,6 +165,15 @@ public class ControladorColaboradores {
             if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_NIVEL1)) {
                 mostrarVistaInicio();
             }
+			
+			if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_NIVEL2)) {
+				if(vista.getBarraDeNavigacion().getTextLebelNivel2().equalsIgnoreCase("Socio"))
+					mostrarVistaSocio();
+				if(vista.getBarraDeNavigacion().getTextLebelNivel2().equalsIgnoreCase("Empresa"))
+					mostrarVistaEmpresa();
+				if(vista.getBarraDeNavigacion().getTextLebelNivel2().equalsIgnoreCase("Colaborador"))
+					mostrarVistaColaborador();
+			}
         }
     }
 	   
