@@ -44,31 +44,16 @@ public class ControladorColaboracion {
     private static ControladorColaboracion instancia;
 
     
-    public static ControladorColaboracion getInstance(VistaVoluntario pvista){
+    public static ControladorColaboracion getInstance(){
         if (instancia == null)
-            instancia = new ControladorColaboracion(pvista);
+            instancia = new ControladorColaboracion();
 
         return instancia;
 
     }
-	public static ControladorColaboracion getInstance(VistaSocio pvista){
-        if (instancia == null)
-            instancia = new ControladorColaboracion(pvista);
-
-        return instancia;
-
-    }
-    private VistaVoluntario vistaVoluntario;
-    private VistaSocio vistaSocio;
-
-    public ControladorColaboracion(VistaVoluntario vista) {
-        this.vistaVoluntario = vista;
-		
-    }
-	
-	public ControladorColaboracion(VistaSocio vista) {
-        this.vistaSocio = vista;
-	}
+    //private VistaVoluntario vistaVoluntario;
+    //private VistaSocio vistaSocio;
+	private ControladorColaboracion () {}
 
     public boolean anadirColaboracion (Colaboracion colaboracion){
 		boolean exito=true;

@@ -70,7 +70,7 @@ public class ColaboracionJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "INSERT INTO Movimiento (Cantidad, Concepto, Fecha) VALUES ('"+c.getImporte()+"','"+c.getConcepto()+"','"+TestDatos.formatterBD.format(c.getFecha())+"')";
-        String sql2 = "INSERT INTO Colaboracion (OID, OIDVoluntario, OIDColaborador) VALUES (LAST_INSERT_ID()'"+c.getOIDVoluntario()+"','"+c.getOIDColaborador()+"')";
+        String sql2 = "INSERT INTO Colaboracion (OID, OIDVoluntario, OIDColaborador) VALUES (LAST_INSERT_ID(),'"+c.getOIDVoluntario()+"','"+c.getOIDColaborador()+"')";
 
         try{
             driver.inicioTransaccion();

@@ -5,14 +5,12 @@ import Controladores.ControladorColaboradores;
 import Controladores.ControladorPrincipal;
 import Controladores.TestDatos;
 import Controladores.Voluntario.ControladorColaboracion;
-import Controladores.Voluntario.ControladorVoluntario;
 import JDBC.ColaboracionJDBC;
 import JDBC.CuotaJDBC;
 import JDBC.PagoCuotaJDBC;
 import JDBC.SocioJDBC;
 import Modelo.*;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
-import Vistas.Paneles.Socio.VistaSocio;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +19,6 @@ import java.awt.event.KeyListener;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,12 +72,13 @@ public class ControladorSocio{
 	private VistaColaboradores vista;
 	Socio socio_temp = null;
 	ArrayList<Socio> socios = null;
+	
 	private String[] columnNames = {"DNI", "Nombre", "Direccion", "Localidad", "Teléfono", "Movil", "CP"};
 
 	public ControladorSocio(VistaColaboradores pvista) {
 		
 		vista = pvista;
-		ControladorColaboracion.getInstance(vista.getVistaSocio());
+		//ControladorColaboracion.getInstance(vista.getVistaSocio());
 		
 		vista.getPanelSocioDatos().getBtGuardarDatosSocio().addActionListener(new btGuardarDatosSocioListener());
 		vista.getPanelSocioDatos().getBtBorrarDatosSocio().addActionListener(new btBorrarDatosSocioListener());
@@ -666,13 +664,10 @@ public class ControladorSocio{
 	
 	
 	public class btGuardarColaboracionesListener implements ActionListener{
-		private boolean datosCorrectos=true;
-		Colaboracion colaboracion=null;
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-			System.out.println("entrando");
+		boolean datosCorrectos=true;			
 			if( !TestDatos.isMoney( vista.getPanelSocioDatos().getTextCantidadColaboracion().getText()) ) {
                 vista.getPanelSocioDatos().getTextCantidadColaboracion().setForeground(Color.RED);
                 datosCorrectos = false;
@@ -690,9 +685,9 @@ public class ControladorSocio{
             }
 			else {
 				vista.getPanelSocioDatos().setTextLabelErrorColaboracionVisible(false);
-				if(colaboracion==null){
-					System.out.println("Enttrando2");
-					colaboracion = new Colaboracion();
+				//Tipo es colaboracion
+				if(vista.getPanelSocioDatos().getTipoColaboracion().equals("Colaboracion")){
+					Colaboracion colaboracion = new Colaboracion();
 					colaboracion.setImporte(Float.parseFloat(vista.getPanelSocioDatos().getTextCantidadColaboracion().getText()));
 					colaboracion.setConcepto(vista.getPanelSocioDatos().getTextConceptoColaboracion().getText());
 					try {	
@@ -700,8 +695,27 @@ public class ControladorSocio{
 					} catch (ParseException ex) {
 						Logger.getLogger(ControladorColaboracion.class.getName()).log(Level.SEVERE, null, ex);
 					}
-					System.out.println("Colaboraicon añadida");
-					ControladorColaboracion.getInstance(vista.getVistaSocio()).anadirColaboracion(colaboracion);
+					socio_temp = obtenerSocio(vista.getPanelSocioDatos().getTextDNI().getText());
+					colaboracion.setOIDColaborador(socio_temp.getOID());
+					colaboracion.setOIDVoluntario(ControladorPrincipal.getInstance().getVoluntario().getOID());
+
+					ControladorColaboracion.getInstance().anadirColaboracion(colaboracion);
+				}
+				//Tipo es cuota
+				else{
+					PagoCuota pago= new PagoCuota();
+					pago.setImporte(Float.parseFloat(vista.getPanelSocioDatos().getTextCantidadColaboracion().getText()));
+					pago.setConcepto(vista.getPanelSocioDatos().getTextConceptoColaboracion().getText());
+					try {	
+						pago.setFecha(TestDatos.formatter.parse(vista.getPanelSocioDatos().getTextFechaColaboracion().getText()));				
+					} catch (ParseException ex) {
+						Logger.getLogger(ControladorColaboracion.class.getName()).log(Level.SEVERE, null, ex);
+					}
+					socio_temp = obtenerSocio(vista.getPanelSocioDatos().getTextDNI().getText());
+					//pago.setOIDSocio(socio_temp.getOID());
+					//pago.setOIDVoluntario(ControladorPrincipal.getInstance().getVoluntario().getOID());
+
+					//ControladorColaboracion.getInstance().anadir(pago);
 				}
 			}
 		}
