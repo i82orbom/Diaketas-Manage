@@ -102,7 +102,7 @@ public class PagoCuotaJDBC {
 
         try{
             driver.inicioTransaccion();
-            driver.insertar(sql);
+            driver.eliminar(sql);
             driver.commit();
         }
         catch (SQLException ex){

@@ -103,7 +103,7 @@ public class ColaboracionJDBC {
 
         try{
             driver.inicioTransaccion();
-            driver.insertar(sql);
+            driver.eliminar(sql);
             driver.commit();
 
         }

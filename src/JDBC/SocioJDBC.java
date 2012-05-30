@@ -111,9 +111,9 @@ public class SocioJDBC {
 
         try{
                 driver.inicioTransaccion();
-                driver.insertar(sql);
-                driver.insertar(sql2);
-                driver.insertar(sql3);
+                driver.actualizar(sql);
+                driver.actualizar(sql2);
+                driver.actualizar(sql3);
                 driver.commit();
         }
         catch (SQLException ex){
@@ -222,32 +222,35 @@ public class SocioJDBC {
             return socio;
 
     }
-
-	 public boolean comprobarUsuarioUnico(String Usuario) throws SQLException{
+    /**
+     * Comprueba si un usuario ya exito o no
+     * @param Usuario
+     * @return true si existe ya ese usuario en el sistema
+     * @throws SQLException 
+     */
+    public boolean comprobarUsuarioUnico(String Usuario) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
 
         String sql = "SELECT * FROM Colaborador c, C_Persona p, Socio s WHERE (s.Usuario='"+Usuario+"') AND c.OID=p.OID AND s.OID=p.OID AND s.OID=c.OID";
         boolean existe = true;
 
-         try {
+        try {
             driver.conectar();
             ResultSet rs = driver.seleccionar(sql);
 
             if(rs.next()){
-				existe = true;
-            }
-			else
-				existe = false;
+                existe = true;
+            }else
+                existe = false;
         }
         catch (SQLException ex){
             throw ex;
-		}
-		finally{
-			driver.desconectar();
-		}
-
-		return existe;
+	}
+	finally{
+            driver.desconectar();
+	}
+        return existe;
     }
 
     /**
