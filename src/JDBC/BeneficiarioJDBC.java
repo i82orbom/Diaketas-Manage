@@ -198,6 +198,7 @@ public class BeneficiarioJDBC {
             ResultSet resultados = driver.seleccionar(sql);
             while (resultados.next()) {
                 Ayuda aux = new Ayuda();
+                aux.setOID((resultados.getLong("OID")));
                 aux.setBeneficiarioDeAyuda(null);
                 aux.setFecha(resultados.getDate("Fecha"));
                 aux.setImporte(resultados.getFloat("Importe"));

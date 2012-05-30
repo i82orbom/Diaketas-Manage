@@ -16,6 +16,7 @@
  ** HISTORIA:
  ** 	000 - Mar 24, 2012 - FBR - Creacion
  **     001 - Mar 26, 2012 - FBR - Tipo de 'fecha' cambiado a string, tiene que ser del formato YYYY-MM-DD
+ *      002 - May 30, 2012 - RC - Cambio OID en long
  *      
  **
  ** NOTAS:
@@ -37,7 +38,7 @@ public class Ayuda {
     private Date fecha;
     private float importe;
     private String observaciones;
-    private String OID;
+    private long OID;
     
     private ArrayList<Modificacion> modificaciones;
     private ArrayList<Movimiento> movimientos;
@@ -56,7 +57,7 @@ public class Ayuda {
      * 
      * @return OID
      */
-    public String getOID() {
+    public long getOID() {
         return OID;
     }
 
@@ -64,7 +65,7 @@ public class Ayuda {
      * 
      * @param OID
      */
-    public void setOID(String OID) {
+    public void setOID(long OID) {
         this.OID = OID;
     }
 

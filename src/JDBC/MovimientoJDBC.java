@@ -116,7 +116,7 @@ public class MovimientoJDBC {
                   ayu.setFecha(rs2.getDate("Fecha"));
                   ayu.setImporte(rs2.getFloat("Importe"));
                   ayu.setObservaciones(rs2.getString("Observaciones"));
-                  ayu.setOID(rs2.getString("OID"));
+                  ayu.setOID(rs2.getLong("OID"));
                   
                   lista_ayudas.add(ayu);
                   
@@ -167,7 +167,7 @@ public class MovimientoJDBC {
                   ayu.setFecha(rs2.getDate("Fecha"));
                   ayu.setImporte(rs2.getFloat("Importe"));
                   ayu.setObservaciones(rs2.getString("Observaciones"));
-                  ayu.setOID(rs2.getString("OID"));
+                  ayu.setOID(rs2.getLong("OID"));
                   
                   lista_ayudas.add(ayu);
                   

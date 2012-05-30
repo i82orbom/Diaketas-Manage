@@ -72,7 +72,7 @@ public class AyudaJDBC {
         while (resultado.next()) {
             temp = new Ayuda();
 
-            temp.setOID(resultado.getString("OID"));
+            temp.setOID(resultado.getLong("OID"));
             temp.setFecha(resultado.getDate("Fecha"));
             temp.setObservaciones(resultado.getString("Observaciones"));
             temp.setImporte(resultado.getFloat("Importe"));
@@ -115,7 +115,7 @@ public class AyudaJDBC {
 
         while (resultados.next()) {
             ayuda = new Ayuda();
-            ayuda.setOID(resultados.getString("OID"));
+            ayuda.setOID(resultados.getLong("OID"));
             ayuda.setFecha(resultados.getDate("Fecha"));
             ayuda.setImporte(resultados.getFloat("Importe"));
             ayuda.setObservaciones("Observaciones");
@@ -171,7 +171,7 @@ public class AyudaJDBC {
 
     }
 
-    public boolean eliminarDatosAyuda(String ayudaOID) throws SQLException {
+    public boolean eliminarDatosAyuda(long ayudaOID) throws SQLException {
 
         DriverJDBC driver = DriverJDBC.getInstance();
         driver.conectar();

@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -142,6 +143,7 @@ public class ControladorBeneficiario {
             vista.getPanelDatos().limpiarFormulario();
         }
         benef = null;
+        ayudaSeleccionada = null;
         vista.getPanelDatos().getTbIntervenciones().setModel(new DefaultTableModel(columnasIntervenciones, 0));
         vista.getPanelDatos().getTbFamiliares().setModel(new DefaultTableModel(columnasFamiliares,0));
         vista.showPanel(VistaBeneficiario.panelDatos);
@@ -151,6 +153,7 @@ public class ControladorBeneficiario {
 
     private void mostrarVistaModificarBeneficiario() {
         vista.showPanel(VistaBeneficiario.panelDatos);
+        ayudaSeleccionada = null;
         vista.getBarraDeNavigacion().setTextLabelNivel1("Beneficiario");
         vista.getBarraDeNavigacion().setTextLabelNivel2("Modificar Beneficiario");
     }
@@ -643,7 +646,15 @@ public class ControladorBeneficiario {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            // TODO
+            if(JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar la ayuda?", "Eliminar Ayuda", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                if (ControladorAyuda.getInstance(null).eliminarAyuda(ayudaSeleccionada)) {
+                    vista.getPanelDatos().setTextLabelErrorAyuda("La ayuda ha sido eliminado del sistema.");
+                    benef = consultarBeneficiario(benef.getNIF());
+                    actualizarTablaAyuda();
+                } else {
+                    vista.getPanelDatos().setTextLabelErrorAyuda("Error : la ayuda no ha sido eliminado del sistema.");
+                }
+            }
         }   
     }
     
