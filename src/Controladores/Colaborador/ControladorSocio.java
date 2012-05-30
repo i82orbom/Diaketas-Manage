@@ -715,7 +715,7 @@ public class ControladorSocio{
 					//pago.setOIDSocio(socio_temp.getOID());
 					//pago.setOIDVoluntario(ControladorPrincipal.getInstance().getVoluntario().getOID());
 
-					ControladorColaboracion.getInstance().anadir(pago);
+					//ControladorColaboracion.getInstance().anadir(pago);
 				}
 			}
 		}
