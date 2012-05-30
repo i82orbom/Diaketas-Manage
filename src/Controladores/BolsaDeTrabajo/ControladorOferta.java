@@ -50,7 +50,8 @@ public class ControladorOferta {
 	private static ControladorOferta instancia;
 	private VistaBolsaTrabajo vista;
 	private Oferta ofertaConsultada;
-	ArrayList<Oferta> listaOfertas;
+	private ArrayList<Oferta> listaOfertas;
+	private ArrayList<Sector> sectores;
 
 	private ControladorOferta(VistaBolsaTrabajo pvista){
 		/* Establece como ventana padre la pasada como parámetro */
@@ -170,6 +171,98 @@ public class ControladorOferta {
 		vista.getOfertaDatos().getlabelCualificacion().setForeground(c);
 	}
 
+	/*_____ Funciones para mostrar vistas _____*/
+	public void mostrarOfertaNueva(){
+		vista.getOfertaDatos().getlabelError().setText("");
+
+		vista.getOfertaDatos().getBTGuardar().setVisible(true);
+		vista.getOfertaDatos().getBTLimpiar().setVisible(true);
+		vista.getOfertaDatos().getBTModificar().setVisible(false);
+		vista.getOfertaDatos().getBTGuardarCambios().setVisible(false);
+		vista.getOfertaDatos().getBTEliminar().setVisible(false);
+
+		vista.getOfertaDatos().getBTGuardarSector().setVisible(true);
+		vista.getOfertaDatos().getBTEliminarSector().setVisible(true);
+
+		vista.getOfertaDatos().getTextCIF().setEnabled(true);
+		vista.getOfertaDatos().getcbSector().setEnabled(true);
+		vista.getOfertaDatos().getTextNuevoSector().setVisible(true);
+		vista.getOfertaDatos().gettaDescripcionOferta().setEditable(true);
+		vista.getOfertaDatos().gettextNPuestos().setEditable(true);
+		vista.getOfertaDatos().getcbTipoContrato().setEnabled(true);
+		vista.getOfertaDatos().gettextDuracionContrato().setEditable(true);
+		vista.getOfertaDatos().gettaCualificacion().setEditable(true);
+
+		vista.getOfertaDatos().getcbSector().removeAllItems();
+		try { sectores = SectorJDBC.getInstance().ListadoSectores();}
+		catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
+		for (int i=0;i<sectores.size();i++)
+			vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+	}
+	public void mostrarOfertaConsultada(){
+		vista.getOfertaDatos().getlabelError().setText("");
+
+		vista.getOfertaDatos().getBTGuardar().setVisible(false);
+		vista.getOfertaDatos().getBTLimpiar().setVisible(false);
+		vista.getOfertaDatos().getBTModificar().setVisible(true);
+		vista.getOfertaDatos().getBTGuardarCambios().setVisible(false);
+		vista.getOfertaDatos().getBTEliminar().setVisible(true);
+
+		vista.getOfertaDatos().getBTGuardarSector().setVisible(false);
+		vista.getOfertaDatos().getBTEliminarSector().setVisible(false);
+/*
+		vista.getOfertaDatos().getTextCIF().setEnabled(false);
+		vista.getOfertaDatos().getTextCIF().setText(oferta.getEmpresa().getCIF());
+		vista.getOfertaDatos().getcbSector().setEnabled(false);
+		vista.getOfertaDatos().getcbSector().setSelectedItem(oferta.getSector().getDescripcion());
+		vista.getOfertaDatos().getTextNuevoSector().setVisible(false);
+		vista.getOfertaDatos().gettaDescripcionOferta().setEditable(false);
+		vista.getOfertaDatos().gettaDescripcionOferta().setText(oferta.getDescripcionOferta());
+		vista.getOfertaDatos().gettextNPuestos().setEditable(false);
+		vista.getOfertaDatos().gettextNPuestos().setText(oferta.getPlazasOfertadas()+"");
+		vista.getOfertaDatos().getcbTipoContrato().setEnabled(false);
+		vista.getOfertaDatos().getcbTipoContrato().setSelectedItem(oferta.getTipoContrato());
+		vista.getOfertaDatos().gettextDuracionContrato().setEditable(false);
+		vista.getOfertaDatos().gettextDuracionContrato().setText(oferta.getDuracionContrato()+"");
+		vista.getOfertaDatos().gettaCualificacion().setEditable(false);
+		vista.getOfertaDatos().gettaCualificacion().setText(oferta.getCualificacionRequerida());
+*/	}
+	public void mostrarOfertaModificar(){
+		vista.getOfertaDatos().getlabelError().setText("");
+
+		vista.getOfertaDatos().getBTGuardar().setVisible(false);
+		vista.getOfertaDatos().getBTLimpiar().setVisible(false);
+		vista.getOfertaDatos().getBTModificar().setVisible(false);
+		vista.getOfertaDatos().getBTGuardarCambios().setVisible(true);
+		vista.getOfertaDatos().getBTEliminar().setVisible(true);
+
+		vista.getOfertaDatos().getBTGuardarSector().setVisible(true);
+		vista.getOfertaDatos().getBTEliminarSector().setVisible(true);
+
+		vista.getOfertaDatos().getTextCIF().setEnabled(true);
+		vista.getOfertaDatos().getcbSector().setEnabled(true);
+		vista.getOfertaDatos().getTextNuevoSector().setVisible(true);
+		vista.getOfertaDatos().gettaDescripcionOferta().setEditable(true);
+		vista.getOfertaDatos().gettextNPuestos().setEditable(true);
+		vista.getOfertaDatos().getcbTipoContrato().setEnabled(true);
+		vista.getOfertaDatos().gettextDuracionContrato().setEditable(true);
+		vista.getOfertaDatos().gettaCualificacion().setEditable(true);
+
+		vista.getOfertaDatos().getcbSector().removeAllItems();
+		try { sectores = SectorJDBC.getInstance().ListadoSectores();}
+		catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
+		for (int i=0;i<sectores.size();i++)
+			vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+	}
+	public void mostrarOfertaBuscar(){
+		vista.getOfertaBuscar().getcbSector().removeAllItems();
+		try { sectores = SectorJDBC.getInstance().ListadoSectores();}
+		catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
+		vista.getOfertaBuscar().getcbSector().addItem("Cualquiera");
+		for (int i=0;i<sectores.size();i++)
+			vista.getOfertaBuscar().getcbSector().addItem(sectores.get(i).getDescripcion());
+	}
+
 	/* Clases para ActionListener */
 	public class ListenerBtGuardarSector implements ActionListener{
 
@@ -250,7 +343,7 @@ public class ControladorOferta {
 				if (exito){
 					oferta.setEmpresa(empresa);
 					int sector = vista.getOfertaDatos().getcbSector().getSelectedIndex();
-					oferta.setSector(ControladorBolsaTrabajo.getInstance(null).getSectores().get(sector));
+					oferta.setSector(sectores.get(sector));
 					oferta.setDescripcionOferta(descripcion);
 					oferta.setDuracionContrato(Integer.parseInt(duracion));
 					oferta.setPlazasOfertadas(Integer.parseInt(nPuestos));
@@ -330,7 +423,7 @@ public class ControladorOferta {
 			int sectorBusquedaPos = vista.getOfertaBuscar().getcbSector().getSelectedIndex();
 			String sectorBusqueda;
 			if (sectorBusquedaPos == 0) sectorBusqueda = "";
-			else sectorBusqueda = ControladorBolsaTrabajo.getInstance(null).getSectores().get(sectorBusquedaPos-1).getOID()+"";
+			else sectorBusqueda = sectores.get(sectorBusquedaPos-1).getOID()+"";
 			String antiguedad = vista.getOfertaBuscar().getAntiguedad();
 
 //			System.out.println("CIF: "+CIFEmpresa+" Sector: "+sectorBusqueda+" Antiguedad: "+antiguedad);

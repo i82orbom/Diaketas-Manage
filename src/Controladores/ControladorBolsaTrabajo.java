@@ -40,11 +40,6 @@ public class ControladorBolsaTrabajo {
 
     private static ControladorBolsaTrabajo instancia;
     private VistaBolsaTrabajo vista;
-	private ArrayList<Sector> sectores;
-
-	public ArrayList<Sector> getSectores(){
-		return sectores;
-	}
 
 	public static ControladorBolsaTrabajo getInstance (VistaBolsaTrabajo panelBolsaTrabajo){
 		if(instancia == null){
@@ -110,107 +105,21 @@ public class ControladorBolsaTrabajo {
     }
 
     public void mostrarNuevaOferta() {
-		vista.getOfertaDatos().getlabelError().setText("");
-
-		vista.getOfertaDatos().getBTGuardar().setVisible(true);
-		vista.getOfertaDatos().getBTLimpiar().setVisible(true);
-		vista.getOfertaDatos().getBTModificar().setVisible(false);
-		vista.getOfertaDatos().getBTGuardarCambios().setVisible(false);
-		vista.getOfertaDatos().getBTEliminar().setVisible(false);
-
-		vista.getOfertaDatos().getBTGuardarSector().setVisible(true);
-		vista.getOfertaDatos().getBTEliminarSector().setVisible(true);
-
-		vista.getOfertaDatos().getTextCIF().setEnabled(true);
-		vista.getOfertaDatos().getcbSector().setEnabled(true);
-		vista.getOfertaDatos().getTextNuevoSector().setVisible(true);
-		vista.getOfertaDatos().gettaDescripcionOferta().setEditable(true);
-		vista.getOfertaDatos().gettextNPuestos().setEditable(true);
-		vista.getOfertaDatos().getcbTipoContrato().setEnabled(true);
-		vista.getOfertaDatos().gettextDuracionContrato().setEditable(true);
-		vista.getOfertaDatos().gettaCualificacion().setEditable(true);
-
-		vista.getOfertaDatos().getcbSector().removeAllItems();
-		try { sectores = SectorJDBC.getInstance().ListadoSectores();}
-		catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
-		for (int i=0;i<sectores.size();i++)
-			vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
-
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
 		vista.getBarraDeNavigacion().setTextLabelNivel3("Nueva Oferta");
     }
 
     public void mostrarConsultarOferta(Oferta oferta){
-		vista.getOfertaDatos().getlabelError().setText("");
-
-		vista.getOfertaDatos().getBTGuardar().setVisible(false);
-		vista.getOfertaDatos().getBTLimpiar().setVisible(false);
-		vista.getOfertaDatos().getBTModificar().setVisible(true);
-		vista.getOfertaDatos().getBTGuardarCambios().setVisible(false);
-		vista.getOfertaDatos().getBTEliminar().setVisible(true);
-
-		vista.getOfertaDatos().getBTGuardarSector().setVisible(false);
-		vista.getOfertaDatos().getBTEliminarSector().setVisible(false);
-
-		vista.getOfertaDatos().getTextCIF().setEnabled(false);
-		vista.getOfertaDatos().getTextCIF().setText(oferta.getEmpresa().getCIF());
-		vista.getOfertaDatos().getcbSector().setEnabled(false);
-		vista.getOfertaDatos().getcbSector().setSelectedItem(oferta.getSector().getDescripcion());
-		vista.getOfertaDatos().getTextNuevoSector().setVisible(false);
-		vista.getOfertaDatos().gettaDescripcionOferta().setEditable(false);
-		vista.getOfertaDatos().gettaDescripcionOferta().setText(oferta.getDescripcionOferta());
-		vista.getOfertaDatos().gettextNPuestos().setEditable(false);
-		vista.getOfertaDatos().gettextNPuestos().setText(oferta.getPlazasOfertadas()+"");
-		vista.getOfertaDatos().getcbTipoContrato().setEnabled(false);
-		vista.getOfertaDatos().getcbTipoContrato().setSelectedItem(oferta.getTipoContrato());
-		vista.getOfertaDatos().gettextDuracionContrato().setEditable(false);
-		vista.getOfertaDatos().gettextDuracionContrato().setText(oferta.getDuracionContrato()+"");
-		vista.getOfertaDatos().gettaCualificacion().setEditable(false);
-		vista.getOfertaDatos().gettaCualificacion().setText(oferta.getCualificacionRequerida());
-
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
-		vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Ofertas");
+		vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Oferta");
     }
 
     public void mostrarModificarOferta(Oferta oferta) {
-		vista.getOfertaDatos().getlabelError().setText("");
-
-		vista.getOfertaDatos().getBTGuardar().setVisible(false);
-		vista.getOfertaDatos().getBTLimpiar().setVisible(false);
-		vista.getOfertaDatos().getBTModificar().setVisible(false);
-		vista.getOfertaDatos().getBTGuardarCambios().setVisible(true);
-		vista.getOfertaDatos().getBTEliminar().setVisible(true);
-
-		vista.getOfertaDatos().getBTGuardarSector().setVisible(true);
-		vista.getOfertaDatos().getBTEliminarSector().setVisible(true);
-
-		vista.getOfertaDatos().getTextCIF().setEnabled(true);
-		vista.getOfertaDatos().getcbSector().setEnabled(true);
-		vista.getOfertaDatos().getTextNuevoSector().setVisible(true);
-		vista.getOfertaDatos().gettaDescripcionOferta().setEditable(true);
-		vista.getOfertaDatos().gettextNPuestos().setEditable(true);
-		vista.getOfertaDatos().getcbTipoContrato().setEnabled(true);
-		vista.getOfertaDatos().gettextDuracionContrato().setEditable(true);
-		vista.getOfertaDatos().gettaCualificacion().setEditable(true);
-
-		vista.getOfertaDatos().getcbSector().removeAllItems();
-		try { sectores = SectorJDBC.getInstance().ListadoSectores();}
-		catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
-		for (int i=0;i<sectores.size();i++)
-			vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
-
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Oferta");
     }
 
 	public void mostrarBuscarOferta() {
-		vista.getOfertaBuscar().getcbSector().removeAllItems();
-		try { sectores = SectorJDBC.getInstance().ListadoSectores();}
-		catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
-		vista.getOfertaBuscar().getcbSector().addItem("Cualquiera");
-		for (int i=0;i<sectores.size();i++)
-			vista.getOfertaBuscar().getcbSector().addItem(sectores.get(i).getDescripcion());
-
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaBuscar);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Buscar Oferta");
     }
