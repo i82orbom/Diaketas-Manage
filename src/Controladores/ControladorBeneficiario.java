@@ -12,6 +12,8 @@ import Vistas.Paneles.Beneficiario.VistaBeneficiario;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -86,6 +88,10 @@ public class ControladorBeneficiario {
      */
     ArrayList<TipoAyuda> tiposAyuda;
     /*
+     * Ayuda seleccionada en la tabla de ayuda
+     */
+    Ayuda ayudaSeleccionada;
+    /*
      * Formateador de fechas
      */
     private SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
@@ -113,6 +119,7 @@ public class ControladorBeneficiario {
         vista.getPanelDatos().getBtBorrar().addActionListener(new btBorrarBeneficiarioListener());
         vista.getPanelDatos().getBtGuardarIntervencionBeneficiario().addActionListener(new BtGuardarIntervencionesListener());
         vista.getPanelDatos().getBtEliminarIntervencionBeneficiario().addActionListener(new BtEliminarIntervencionesListener());
+        vista.getPanelDatos().getTbIntervenciones().addMouseListener(new TablaAyudaListener());
 
         vista.getPanelBuscar().getBtBuscarBeneficiarios().addActionListener(new btBuscarBeneficiariosListener());
         vista.getPanelBuscar().getBtVerBeneficiarioBusqueda().addActionListener(new btVerBeneficiarioListener());
@@ -213,6 +220,11 @@ public class ControladorBeneficiario {
                 }
             });
         }
+    }
+    
+    private void actualizarCampoAyuda () {
+        vista.getPanelDatos().getTextImporteBeneficiario().setText(Float.toString(ayudaSeleccionada.getImporte()));
+        vista.getPanelDatos().getTextObservacionesIntervencionBeneficiario().setText(ayudaSeleccionada.getObservaciones());
     }
     
     private void actualizarTablaFamiliares(){
@@ -632,6 +644,33 @@ public class ControladorBeneficiario {
         @Override
         public void actionPerformed(ActionEvent ae) {
             // TODO
+        }   
+    }
+    
+    class TablaAyudaListener implements MouseListener{
+
+        @Override
+        public void mouseClicked(MouseEvent me) {
+            if (vista.getPanelDatos().getTbIntervenciones().getSelectedRow() != -1) {
+                ayudaSeleccionada = benef.getAyudasPrestadas().get(vista.getPanelDatos().getTbIntervenciones().getSelectedRow());
+                actualizarCampoAyuda();
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent me) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent me) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent me) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent me) {
         }
         
     }
