@@ -157,13 +157,7 @@
     <Component class="javax.swing.JComboBox" name="cbSector">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="Construccion"/>
-            <StringItem index="1" value="Electricidad"/>
-            <StringItem index="2" value="Carpinteria"/>
-            <StringItem index="3" value="Fontaneria"/>
-            <StringItem index="4" value=" "/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
     </Component>
@@ -175,7 +169,7 @@
     <Component class="javax.swing.JComboBox" name="cbAntiguedad">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="14">
+          <StringArray count="13">
             <StringItem index="0" value="1 mes"/>
             <StringItem index="1" value="2 meses"/>
             <StringItem index="2" value="3 meses"/>
@@ -189,7 +183,6 @@
             <StringItem index="10" value="11 meses"/>
             <StringItem index="11" value="12 meses"/>
             <StringItem index="12" value="mas de 1 a&#xf1;o"/>
-            <StringItem index="13" value=" "/>
           </StringArray>
         </Property>
       </Properties>
