@@ -19,6 +19,7 @@ import javax.swing.*;
  *      000 - 23 May 2012 - JAEG - Añadida funcion para insertar los datos generales. Eliminado "lugar de nacimiento" (dato no existente en el modelo)
  *      001 - 29 May 2012 - RC - Adicion getter y labelErrorAyuda
  *      002 - 30 May 2012 - JAEG - Añadida consulta de familiares del beneficiario
+ *      003 - 30 May 2012 - RC - adicion boton limpiar campos de ayuda
  */
 public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 

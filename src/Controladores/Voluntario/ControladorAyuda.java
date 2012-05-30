@@ -230,7 +230,6 @@ public class ControladorAyuda {
     public boolean modificarAyuda (Ayuda ayuda) {
         boolean exito = false;
 
-            // TODO test si tipoayuda existe
         try {
             exito = AyudaJDBC.getInstance().modificarDatosAyuda(ayuda, ayuda.getVoluntarioQueOtorga());
         } catch (SQLException ex) {

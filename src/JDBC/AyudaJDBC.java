@@ -21,6 +21,7 @@
  *      003 - Abr 15, 2012 - FBR - Corrección consultas SQL
  *      004 - Mayo 27, 2012 - RC - Corrección consultas SQL
  *      005 - Mayo 29, 2012 - RC - Corrección consultas SQL registrar datos ayuda
+ *      006 - Mayo 30, 2012 - RC - Corrección consultas SQL modificar datos ayuda
  *      
  **
  ** NOTAS:
@@ -209,7 +210,7 @@ public class AyudaJDBC {
 
 
         if (exito) {
-            String sql2 = "INSERT INTO modificacionayuda (AyudaOID,VoluntarioNIF,Fecha) VALUES ('" + temp.getOID() + "','" + voluntario.getNIF() + "','" + fecha_actual.toString() + "')";
+            String sql2 = "INSERT INTO modificacionayuda (AyudaOID,OID_Volun,Fecha) VALUES ('" + temp.getOID() + "','" + voluntario.getOID() + "','" + TestDatos.formatterBD.format(fecha_actual) + "')";
             exito = driver.insertar(sql2);
         } else {
             System.out.println("Error al realizar el UPDATE en la base de datos");
