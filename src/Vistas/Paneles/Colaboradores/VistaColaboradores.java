@@ -93,6 +93,9 @@ public class VistaColaboradores extends javax.swing.JPanel {
     public PanelColaboradorBuscar getPanelColaboradorBuscar(){
         return this.panelColaboradorBuscar;
     }
+	public VistaSocio getVistaSocio(){
+		return vistaSocio;
+	}
 
 	
 
@@ -117,6 +120,7 @@ public class VistaColaboradores extends javax.swing.JPanel {
         panelColaboradorInicio = new Vistas.Paneles.Colaborador.PanelColaboradorInicio();
         panelColaboradorDatos = new Vistas.Paneles.Colaborador.PanelColaboradorDatos();
         panelColaboradorBuscar = new Vistas.Paneles.Colaborador.PanelColaboradorBuscar();
+        vistaSocio = new Vistas.Paneles.Socio.VistaSocio();
 
         setLayout(new java.awt.BorderLayout());
         add(barraDeNavegacion, java.awt.BorderLayout.PAGE_START);
@@ -132,6 +136,7 @@ public class VistaColaboradores extends javax.swing.JPanel {
         panelColaboradores.add(panelColaboradorInicio, "colaboradorInicio");
         panelColaboradores.add(panelColaboradorDatos, "colaboradorDatos");
         panelColaboradores.add(panelColaboradorBuscar, "colaboradorBuscar");
+        panelColaboradores.add(vistaSocio, "card12");
 
         add(panelColaboradores, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -148,5 +153,6 @@ public class VistaColaboradores extends javax.swing.JPanel {
     private Vistas.Paneles.Socio.PanelSocioBuscar panelSocioBuscar;
     private Vistas.Paneles.Socio.PanelSocioDatos panelSocioDatos;
     private Vistas.Paneles.Socio.PanelSocioInicio panelSocioInicio;
+    private Vistas.Paneles.Socio.VistaSocio vistaSocio;
     // End of variables declaration//GEN-END:variables
 }
