@@ -646,16 +646,21 @@ public class ControladorBeneficiario {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if(JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar la ayuda?", "Eliminar Ayuda", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-                if (ControladorAyuda.getInstance(null).eliminarAyuda(ayudaSeleccionada)) {
-                    vista.getPanelDatos().setTextLabelErrorAyuda("La ayuda ha sido eliminado del sistema.");
-                    benef = consultarBeneficiario(benef.getNIF());
-                    actualizarTablaAyuda();
-                } else {
-                    vista.getPanelDatos().setTextLabelErrorAyuda("Error : la ayuda no ha sido eliminado del sistema.");
+            vista.getPanelDatos().getLabelErrorAyuda().setVisible(false);
+            if (vista.getPanelDatos().getTbIntervenciones().getSelectedRow() != -1) {
+                if (JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar la ayuda?", "Eliminar Ayuda", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    if (ControladorAyuda.getInstance(null).eliminarAyuda(ayudaSeleccionada)) {
+                        vista.getPanelDatos().setTextLabelErrorAyuda("La ayuda ha sido eliminado del sistema.");
+                        benef = consultarBeneficiario(benef.getNIF());
+                        actualizarTablaAyuda();
+                    } else {
+                        vista.getPanelDatos().setTextLabelErrorAyuda("Error : la ayuda no ha sido eliminado del sistema.");
+                    }
                 }
+            } else {
+                vista.getPanelDatos().setTextLabelErrorAyuda("Selecciona una ayuda.");
             }
-        }   
+        }
     }
     
     class TablaAyudaListener implements MouseListener{
