@@ -224,7 +224,6 @@ public class ControladorVoluntario {
 
     private boolean modificarVoluntario(Voluntario v) {
 
-
         if(!"".equals(v.getPassword()))
             v.setPassword(ControladorPrincipal.getInstance().md5(v.getPassword()+ControladorPrincipal.getInstance().getSalto()));
         else
