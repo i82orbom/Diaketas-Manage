@@ -4,6 +4,10 @@
  */
 package Vistas.Paneles.Empresa;
 
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Alberto
@@ -16,7 +20,27 @@ public class PanelEmpresaBuscar extends javax.swing.JPanel {
     public PanelEmpresaBuscar() {
         initComponents();
     }
+    
+    public JTextField getBuscarEmpresa(){
+        return JtextBuscarEmpresa;
+    }
 
+    public JButton getBtConsultarEmpresa(){
+        return btConsultarEmpresa;
+    }
+    
+    public JButton getBtEliminarEmpresa(){
+        return btEliminarEmpresa;
+    }
+    
+    public JButton getBtBuscarEmpresa(){
+        return btBuscarEmpresa;
+    }
+    
+    public JTable getTbBuscadorEmpresas(){
+        return tableBuscarEmpresa;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,22 +50,24 @@ public class PanelEmpresaBuscar extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        textBuscarEmpresa = new javax.swing.JTextField();
-        jLabel102 = new javax.swing.JLabel();
+        JtextBuscarEmpresa = new javax.swing.JTextField();
+        jLabelBuscarPor = new javax.swing.JLabel();
         cbTipoBusquedaEmpresa = new javax.swing.JComboBox();
-        btEmpresaBuscar = new javax.swing.JButton();
+        btBuscarEmpresa = new javax.swing.JButton();
         jScrollPane20 = new javax.swing.JScrollPane();
         tableBuscarEmpresa = new javax.swing.JTable();
         btConsultarEmpresa = new javax.swing.JButton();
         btEliminarEmpresa = new javax.swing.JButton();
 
-        textBuscarEmpresa.setText("Buscar");
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel102.setText("Buscar por:");
+        JtextBuscarEmpresa.setText("Buscar");
+
+        jLabelBuscarPor.setText("Buscar por:");
 
         cbTipoBusquedaEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo de busqueda", " " }));
 
-        btEmpresaBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
+        btBuscarEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
 
         tableBuscarEmpresa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,14 +107,14 @@ public class PanelEmpresaBuscar extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btEliminarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel102)
+                        .addComponent(jLabelBuscarPor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbTipoBusquedaEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 797, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(textBuscarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JtextBuscarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btEmpresaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btBuscarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(72, 72, 72))
         );
         layout.setVerticalGroup(
@@ -96,11 +122,11 @@ public class PanelEmpresaBuscar extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btEmpresaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textBuscarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btBuscarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JtextBuscarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel102)
+                    .addComponent(jLabelBuscarPor)
                     .addComponent(cbTipoBusquedaEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane20, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
@@ -112,13 +138,13 @@ public class PanelEmpresaBuscar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField JtextBuscarEmpresa;
+    private javax.swing.JButton btBuscarEmpresa;
     private javax.swing.JButton btConsultarEmpresa;
     private javax.swing.JButton btEliminarEmpresa;
-    private javax.swing.JButton btEmpresaBuscar;
     private javax.swing.JComboBox cbTipoBusquedaEmpresa;
-    private javax.swing.JLabel jLabel102;
+    private javax.swing.JLabel jLabelBuscarPor;
     private javax.swing.JScrollPane jScrollPane20;
     private javax.swing.JTable tableBuscarEmpresa;
-    private javax.swing.JTextField textBuscarEmpresa;
     // End of variables declaration//GEN-END:variables
 }
