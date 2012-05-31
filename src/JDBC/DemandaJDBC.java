@@ -20,7 +20,7 @@ public class DemandaJDBC {
     
     private static DemandaJDBC instancia;
     
-    public DemandaJDBC getInstance(){
+    public static DemandaJDBC getInstance(){
         if (instancia == null) 
             instancia = new DemandaJDBC();
         return instancia;

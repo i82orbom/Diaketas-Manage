@@ -370,6 +370,11 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
         );
 
         BTGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
+        BTGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTGuardarActionPerformed(evt);
+            }
+        });
 
         BTLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
         BTLimpiar.setMaximumSize(new java.awt.Dimension(65, 41));
@@ -458,6 +463,10 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                 .add(49, 49, 49))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BTGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BTGuardarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTEliminar;

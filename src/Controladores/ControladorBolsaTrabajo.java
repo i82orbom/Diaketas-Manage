@@ -4,6 +4,7 @@ package Controladores;
 import Controladores.BolsaDeTrabajo.ControladorDemanda;
 import Controladores.BolsaDeTrabajo.ControladorOferta;
 import JDBC.SectorJDBC;
+import Modelo.Demanda;
 import Modelo.Oferta;
 import Modelo.Sector;
 import Vistas.BarraDeNavegacion;
@@ -79,16 +80,36 @@ public class ControladorBolsaTrabajo {
     }
 
     public void mostarNuevaDemanda(){
+        vista.getDemandaDatos().getlabelError().setText("");
+
+        vista.getDemandaDatos().getbtGuardar().setVisible(true);
+        vista.getDemandaDatos().getbtLimpiar().setVisible(true);
+        vista.getDemandaDatos().getBTModificar().setVisible(false);
+        vista.getDemandaDatos().getBTGuardarCambios().setVisible(false);
+        vista.getDemandaDatos().getBTEliminar().setVisible(false);
+
+
+        vista.getDemandaDatos().getTextNIF().setEnabled(true);
+        vista.getDemandaDatos().getcbSector().setEnabled(true);
+        vista.getDemandaDatos().getTaHistoriaLaboral().setEditable(true);
+
+        try {
+                vista.getDemandaDatos().getcbSector().removeAllItems();
+                ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
+                for (int i=0;i<sectores.size();i++)
+                        vista.getDemandaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+        }catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
+
         vista.showPanel(VistaBolsaTrabajo.PanelDemandaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Nueva Demanda");
     }
 
-    public void mostrarConsultarDemandas(){
+    public void mostrarConsultarDemandas(Demanda demanda){
         vista.showPanel(VistaBolsaTrabajo.PanelDemandaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Demanda");
     }
 
-    public void mostrarModificarDemanda() {
+    public void mostrarModificarDemanda(Demanda demanda) {
         vista.showPanel(VistaBolsaTrabajo.PanelDemandaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Demanda");
     }
