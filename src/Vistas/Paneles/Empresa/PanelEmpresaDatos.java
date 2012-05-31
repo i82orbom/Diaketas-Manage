@@ -4,8 +4,8 @@
  */
 package Vistas.Paneles.Empresa;
 
+import java.awt.Color;
 import javax.swing.JButton;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -22,50 +22,124 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
         initComponents();
     }
 
+    /* CAMPOS */
     public JTextField getTextNombre(){
         return jTextNombre;
+    }
+    
+    public void setColorLabelNombre(Color cf) {
+        jLabelNombre.setForeground(cf);
     }
     
     public JTextField getTextCIF(){
         return jTextCIF;
     }
     
+    public void setColorLabelCIF(Color cf) {
+        jLabelCIF.setForeground(cf);
+    }
+    
     public JTextField getTextDireccionWeb(){
         return jTextDireccionWeb;
     }
     
-    public JTextField getTextDomicilio(){
-        return jTextDomicilio;
+    public void setColorLabelDireccionWeb(Color cf) {
+        jLabelDireccionWeb.setForeground(cf);
+    }
+    
+    public JTextField getTextDireccion(){
+        return jTextDireccion;
+    }
+    
+    public void setColorLabelDireccion(Color cf) {
+        jLabelDireccion.setForeground(cf);
     }
     
     public JTextField getTextLocalidad(){
         return jTextLocalidad;
     }
     
+    public void setColorLabelLocalidad(Color cf) {
+        jLabelLocalidad.setForeground(cf);
+    }
+    
     public JTextField getTextProvincia(){
         return jTextProvincia;
+    }
+    
+    public void setColorLabelProvincia(Color cf) {
+        jLabelProvincia.setForeground(cf);
     }
     
     public JTextField getTextCP(){
         return jTextCP;
     }
     
+    public void setColorLabelCP(Color cf) {
+        jLabelCP.setForeground(cf);
+    }
+    
     public JTextField getTextTelefonoFijo(){
         return jTextTelefonoFijo;
+    }
+    
+    public void setColorLabelTelefonoFijo(Color cf) {
+        jLabelTelefonoFijo.setForeground(cf);
     }
     
     public JTextField getTextTelefonoMovil(){
         return jTextTelefonoMovil;
     }
     
+    public void setColorLabelTelefonoMovil(Color cf) {
+        jLabelTelefonoMovil.setForeground(cf);
+    }
+    
     public JTextField getTextFax(){
         return jTextFax;
+    }
+    
+    public void setColorLabelFax(Color cf) {
+        jLabelFax.setForeground(cf);
     }
     
     public JTextField getTextEmail(){
         return jTextEmail;
     }
     
+    public void setColorLabelEmail(Color cf) {
+        jLabelEmail.setForeground(cf);
+    }
+    
+    public void setColorLabels(Color cf){
+        jLabelNombre.setForeground(cf);
+        jLabelCIF.setForeground(cf);
+        jLabelDireccionWeb.setForeground(cf);
+        jLabelCP.setForeground(cf);
+        jLabelLocalidad.setForeground(cf);
+        jLabelProvincia.setForeground(cf);
+        jLabelDireccion.setForeground(cf);
+        jLabelTelefonoFijo.setForeground(cf);
+        jLabelTelefonoMovil.setForeground(cf);
+        jLabelFax.setForeground(cf);
+        jLabelEmail.setForeground(cf);
+    }
+    
+    public void limpiarCampos(){
+        setColorLabels(Color.black);
+        jTextNombre.setText("");
+        jTextCIF.setText("");
+        jTextDireccionWeb.setText("");
+        jTextDireccion.setText("");
+        jTextProvincia.setText("");
+        jTextLocalidad.setText("");
+        jTextFax.setText("");
+        jTextEmail.setText("");
+        jTextTelefonoFijo.setText("");
+        jTextTelefonoMovil.setText("");
+    }
+    
+    /* BOTONES */
     public JButton getBtGuardarEmpresa(){
         return btGuardarEmpresa;
     }
@@ -105,7 +179,7 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
         jTextNombre = new javax.swing.JTextField();
         jTextCIF = new javax.swing.JTextField();
         jTextDireccionWeb = new javax.swing.JTextField();
-        jTextDomicilio = new javax.swing.JTextField();
+        jTextDireccion = new javax.swing.JTextField();
         jTextLocalidad = new javax.swing.JTextField();
         jTextProvincia = new javax.swing.JTextField();
         jTextCP = new javax.swing.JTextField();
@@ -118,7 +192,7 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
         jLabelNombre = new javax.swing.JLabel();
         jLabelCIF = new javax.swing.JLabel();
         jLabelDireccionWeb = new javax.swing.JLabel();
-        jLabelDomicilio = new javax.swing.JLabel();
+        jLabelDireccion = new javax.swing.JLabel();
         jLabelLocalidad = new javax.swing.JLabel();
         jLabelCP = new javax.swing.JLabel();
         jLabelTelefonoFijo = new javax.swing.JLabel();
@@ -168,8 +242,8 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
         jLabelDireccionWeb.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelDireccionWeb.setText("DireccionWeb");
 
-        jLabelDomicilio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabelDomicilio.setText("Domicilio");
+        jLabelDireccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelDireccion.setText("Direccion");
 
         jLabelLocalidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelLocalidad.setText("Localidad");
@@ -202,7 +276,7 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
                     .addComponent(jLabelNombre)
                     .addComponent(jLabelCIF)
                     .addComponent(jLabelDireccionWeb)
-                    .addComponent(jLabelDomicilio)
+                    .addComponent(jLabelDireccion)
                     .addComponent(jLabelLocalidad)
                     .addComponent(jLabelCP)
                     .addComponent(jLabelTelefonoFijo)
@@ -211,7 +285,7 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
                 .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosEmpresaLayout.createSequentialGroup()
                         .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextDomicilio)
+                            .addComponent(jTextDireccion)
                             .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
                                 .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
@@ -283,8 +357,8 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
                 .addComponent(jLabelDatosContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelDomicilio)
-                    .addComponent(jTextDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelDireccion)
+                    .addComponent(jTextDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
@@ -503,8 +577,8 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelConcepto;
     private javax.swing.JLabel jLabelDatosContacto;
     private javax.swing.JLabel jLabelDatosEmpresa;
+    private javax.swing.JLabel jLabelDireccion;
     private javax.swing.JLabel jLabelDireccionWeb;
-    private javax.swing.JLabel jLabelDomicilio;
     private javax.swing.JLabel jLabelEmail;
     private javax.swing.JLabel jLabelFax;
     private javax.swing.JLabel jLabelFecha;
@@ -520,8 +594,8 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
     private javax.swing.JTextField jTextCP;
     private javax.swing.JTextField jTextCantidad;
     private javax.swing.JTextField jTextConcepto;
+    private javax.swing.JTextField jTextDireccion;
     private javax.swing.JTextField jTextDireccionWeb;
-    private javax.swing.JTextField jTextDomicilio;
     private javax.swing.JTextField jTextEmail;
     private javax.swing.JTextField jTextFax;
     private javax.swing.JTextField jTextLocalidad;
