@@ -105,16 +105,44 @@ public class ControladorBolsaTrabajo {
     }
 
     public void mostrarNuevaOferta() {
+		vista.getOfertaDatos().getlabelError().setText("");
+
+		vista.getOfertaDatos().getBTGuardar().setVisible(true);
+		vista.getOfertaDatos().getBTLimpiar().setVisible(true);
+		vista.getOfertaDatos().getBTModificar().setVisible(false);
+		vista.getOfertaDatos().getBTGuardarCambios().setVisible(false);
+		vista.getOfertaDatos().getBTEliminar().setVisible(false);
+
+		vista.getOfertaDatos().getBTGuardarSector().setVisible(true);
+		vista.getOfertaDatos().getBTEliminarSector().setVisible(true);
+
+		vista.getOfertaDatos().getTextCIF().setEnabled(true);
+		vista.getOfertaDatos().getcbSector().setEnabled(true);
+		vista.getOfertaDatos().getTextNuevoSector().setVisible(true);
+		vista.getOfertaDatos().gettaDescripcionOferta().setEditable(true);
+		vista.getOfertaDatos().gettextNPuestos().setEditable(true);
+		vista.getOfertaDatos().getcbTipoContrato().setEnabled(true);
+		vista.getOfertaDatos().gettextDuracionContrato().setEditable(true);
+		vista.getOfertaDatos().gettaCualificacion().setEditable(true);
+
+		vista.getOfertaDatos().getcbSector().removeAllItems();
+		try {
+			ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
+			for (int i=0;i<sectores.size();i++)
+				vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+		}
+		catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
+
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
 		vista.getBarraDeNavigacion().setTextLabelNivel3("Nueva Oferta");
     }
 
-    public void mostrarConsultarOferta(Oferta oferta){
+    public void mostrarConsultarOferta(){
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
 		vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Oferta");
     }
 
-    public void mostrarModificarOferta(Oferta oferta) {
+    public void mostrarModificarOferta() {
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Oferta");
     }

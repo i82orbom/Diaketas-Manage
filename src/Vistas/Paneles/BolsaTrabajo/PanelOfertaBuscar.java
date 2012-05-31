@@ -1,6 +1,8 @@
 
 package Vistas.Paneles.BolsaTrabajo;
 
+import Modelo.Sector;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -57,6 +59,17 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
         return tablaBusquedaOferta;
     }
 
+	public ArrayList<Sector> setSectores(){
+		return sectores;
+	}
+	public void setSectores(ArrayList<Sector> s){
+		sectores = s;
+		cbSector.removeAllItems();
+		for (int i=0;i<s.size();i++){
+			cbSector.addItem(s.get(i).getDescripcion());
+		}
+	}
+	private ArrayList<Sector> sectores;
 
     /**
      * This method is called from within the constructor to initialize the form.

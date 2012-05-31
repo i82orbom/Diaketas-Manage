@@ -20,36 +20,36 @@ public class SectorJDBC {
 
     private SectorJDBC(){
     }
-    
+
     public static SectorJDBC getInstance(){
         if(instancia == null)
              instancia = new SectorJDBC();
         return instancia;
-    
+
     }
-    
+
     public boolean EliminarSector(Sector sector) throws SQLException{
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "DELETE FROM Sector WHERE OID = "+sector.getOID();
+
         try {
-            driver.inicioTransaccion();
-            driver.seleccionar(sql);
-            driver.commit();
+            driver.conectar();
+            driver.eliminar(sql);
         }
         catch (SQLException ea){
-            driver.rollback();
             throw ea;
         }
         finally{
-            driver.finTransaccion();
-        }
-        return true;
+            driver.desconectar();
+		}
+
+		return true;
     }
-    
+
     public boolean InsertarSector(Sector sector) throws SQLException{
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "INSERT INTO Sector (Descripcion) VALUES ('"+sector.getDescripcion()+"')";
-        
+
         try{
             driver.inicioTransaccion();
             driver.insertar(sql);
@@ -64,23 +64,24 @@ public class SectorJDBC {
         }
         return true;
     }
-    public ArrayList<Sector> ListadoSectores () throws SQLException{
+
+	public ArrayList<Sector> ListadoSectores () throws SQLException{
         DriverJDBC driver = DriverJDBC.getInstance();
         ArrayList<Sector> lista_sectores = new ArrayList<Sector>();
         Sector Temp;
         String sql = "SELECT * FROM Sector";
         ResultSet resultado;
-        try{
-        
-            driver.conectar();
+
+		try{
+		    driver.conectar();
             resultado = driver.seleccionar(sql);
-            
+
             while (resultado.next()){
                 Temp = new Sector();
                 Temp.setOID(resultado.getInt("OID"));
                 Temp.setDescripcion(resultado.getString("Descripcion"));
                 lista_sectores.add(Temp);
-            }    
+            }
         }
         catch (SQLException ea){
             throw ea;
@@ -90,13 +91,20 @@ public class SectorJDBC {
         }
         return lista_sectores;
     }
-    public int ConsultarSector(String nombre) throws SQLException{
+
+	public Sector ConsultarSector(String nombre) throws SQLException{
         DriverJDBC driver = DriverJDBC.getInstance();
+        String sql = "SELECT * FROM sector WHERE descripcion = '"+nombre+"'";
+		Sector sector = new Sector();
         ResultSet resultado;
-        String sql = "SELECT OID FROM descripcion = "+nombre;
-        try{
+
+		try{
             driver.conectar();
             resultado=driver.seleccionar(sql);
+			if (resultado.next()){
+				sector.setOID(resultado.getInt("OID"));
+				sector.setDescripcion(resultado.getString("descripcion"));
+			}
         }
         catch(SQLException ea){
             throw ea;
@@ -104,7 +112,8 @@ public class SectorJDBC {
         finally {
             driver.desconectar();
         }
-        return resultado.getInt("OID");
+
+		return sector;
     }
-    
+
 }

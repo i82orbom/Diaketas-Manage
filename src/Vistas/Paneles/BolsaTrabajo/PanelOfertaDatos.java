@@ -1,6 +1,8 @@
 
 package Vistas.Paneles.BolsaTrabajo;
 
+import Modelo.Sector;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class PanelOfertaDatos extends javax.swing.JPanel {
