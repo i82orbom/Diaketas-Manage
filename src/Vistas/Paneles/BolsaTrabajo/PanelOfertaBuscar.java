@@ -5,6 +5,7 @@ import Modelo.Sector;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 
 /**
@@ -59,18 +60,6 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
         return tablaBusquedaOferta;
     }
 
-	public ArrayList<Sector> setSectores(){
-		return sectores;
-	}
-	public void setSectores(ArrayList<Sector> s){
-		sectores = s;
-		cbSector.removeAllItems();
-		for (int i=0;i<s.size();i++){
-			cbSector.addItem(s.get(i).getDescripcion());
-		}
-	}
-	private ArrayList<Sector> sectores;
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -98,19 +87,25 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
 
         tablaBusquedaOferta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"F12344322", "Reformas chapuza", "Construccion", "12/01/2012"},
-                {null, null, null, null}
+
             },
             new String [] {
                 "CIF", "Razon Social", "Sector", "Fecha Demanda"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane5.setViewportView(tablaBusquedaOferta);
@@ -127,7 +122,7 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
 
         BTBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
 
-        labelCIFEmpresa.setText("CIF Empresa");
+        labelCIFEmpresa.setText("Empresa");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);

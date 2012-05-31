@@ -78,7 +78,7 @@ public class SectorJDBC {
 
             while (resultado.next()){
                 Temp = new Sector();
-                Temp.setOID(resultado.getInt("OID"));
+                Temp.setOID(resultado.getLong("OID"));
                 Temp.setDescripcion(resultado.getString("Descripcion"));
                 lista_sectores.add(Temp);
             }
@@ -102,7 +102,7 @@ public class SectorJDBC {
             driver.conectar();
             resultado=driver.seleccionar(sql);
 			if (resultado.next()){
-				sector.setOID(resultado.getInt("OID"));
+				sector.setOID(resultado.getLong("OID"));
 				sector.setDescripcion(resultado.getString("descripcion"));
 			}
         }

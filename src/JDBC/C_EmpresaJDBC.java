@@ -131,7 +131,7 @@ public class C_EmpresaJDBC {
         DriverJDBC driver = DriverJDBC.getInstance();
         String sqls = "SELECT * FROM C_Empresa WHERE OID='"+e.getOID()+"'";
         ResultSet rs = driver.seleccionar(sqls);
-        
+
         if (rs.next()){
             String sql = "UPDATE Colaboracion SET OID="+OID_Anonimo+" WHERE OID='"+e.getOID()+"'";
             String sql2 = "DELETE FROM C_Empresa WHERE OID='"+e.getOID()+"'";
@@ -191,11 +191,11 @@ public class C_EmpresaJDBC {
         }
         catch (SQLException ex){
             throw ex;
-	}
-	finally{
-		driver.desconectar();
-	}
-	return Empresa;
+		}
+		finally{
+			driver.desconectar();
+		}
+		return Empresa;
     }
 
     /**
@@ -245,30 +245,40 @@ public class C_EmpresaJDBC {
         return listaC_Empresa;
     }
 
-    /* ¿QUIEN HA HECHO ESTO?
-    public ResultSet obtenerC_empresa (Sector sector )throws SQLException{
-        DriverJDBC driver = DriverJDBC.getInstance();
-        ResultSet rs;
+	public C_Empresa consultarC_Empresa(String empresaNombre)throws SQLException{
+		DriverJDBC driver = DriverJDBC.getInstance();
+		C_Empresa empresa = null;
+		String sql = "SELECT * FROM Colaborador c, C_Empresa e WHERE (e.nombre = '"+empresaNombre+"') AND c.OID=e.OID";
 
-        String sql1 = "SELECT OID FROM C_empresa WHERE OID = '"+C_Empresa.CIF_ID+"'";
-        rs = driver.seleccionar(sql1);
+        try {
+            driver.conectar();
+            ResultSet rs = driver.seleccionar(sql);
 
-            try{
-                    driver.inicioTransaccion();
-                    driver.insertar(sql1);
-                    driver.commit();
-            }
-            catch (SQLException ex){
-                    driver.rollback();
-                    throw ex;
-            }
-            finally {
-                    driver.finTransaccion();
-            }
+            if(rs.next()){
+                empresa = new C_Empresa();
+				empresa.setOID(Long.parseLong(rs.getString("OID")));
+                empresa.setCIF(rs.getString("CIF"));
+                empresa.setNombre(rs.getString("Nombre"));
+                empresa.setDireccionWeb(rs.getString("DireccionWeb"));
+                empresa.setFax(rs.getString("Fax"));
 
-	return rs;
-    }
-    * 
-    */
+                empresa.setCP(rs.getString("CP"));
+                empresa.setDireccion(rs.getString("Direccion"));
+                empresa.setEmail(rs.getString("Email"));
+                empresa.setLocalidad(rs.getString("Localidad"));
+                empresa.setProvincia(rs.getString("Provincia"));
+                empresa.setTelefonoFijo(rs.getString("TelefonoFijo"));
+                empresa.setTelefonoMovil(rs.getString("TelefonoMovil"));
+            }
+        }
+        catch (SQLException ex){
+            throw ex;
+		}
+		finally{
+			driver.desconectar();
+		}
+
+		return empresa;
+	}
 
 }

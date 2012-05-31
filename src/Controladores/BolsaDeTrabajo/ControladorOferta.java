@@ -85,13 +85,6 @@ public class ControladorOferta {
 
 	/*_____ Métodos privados _____*/
 	private void rellenarcbSectores(){
-		vista.getOfertaDatos().getcbSector().removeAllItems();
-		try {
-			ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
-			for (int i=0;i<sectores.size();i++)
-				vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
-		}
-		catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
 	}
 	private void limpiarFormulario(){
 		vista.getOfertaDatos().setTextoCIF("");
@@ -169,11 +162,30 @@ public class ControladorOferta {
 		return true;
 	}
 
-	public ArrayList<Oferta> obtenerListaOfertas(String CIF, String sector, String antiguedad){
-		try{
-			listaOfertas = OfertaJDBC.getInstance().filtrarOfertas(CIF,sector,antiguedad);
+	public ArrayList<Oferta> obtenerListaOfertas(String empresaNombre, String sectorDesc, String antiguedad){
+		Long empresaOID = -1l, sectorOID = -1l;
+
+		if (!empresaNombre.equals("")){
+			C_Empresa empresa = null;
+			try{ empresa = C_EmpresaJDBC.getInstance().consultarC_Empresa(empresaNombre);
+			} catch (SQLException ex){
+				ControladorErrores.mostrarError("Error al obtener el sector:\n"+ex);
+			}
+			empresaOID = empresa.getOID();
 		}
-		catch (SQLException ex){
+
+		if (!sectorDesc.equals("")){
+			Sector sector = null;
+			try{ sector = SectorJDBC.getInstance().ConsultarSector(sectorDesc);
+			} catch (SQLException ex){
+				ControladorErrores.mostrarError("Error al obtener el sector:\n"+ex);
+			}
+			sectorOID = sector.getOID();
+		}
+
+		try{
+			listaOfertas = OfertaJDBC.getInstance().filtrarOfertas(empresaOID, sectorOID, antiguedad);
+		} catch (SQLException ex){
 			ControladorErrores.mostrarError("Error al obtener la lista de ofertas:\n"+ex.getMessage());
 		}
 
@@ -241,90 +253,6 @@ public class ControladorOferta {
 		boolean exito = true;
 
 		return exito;
-	}
-
-	/*_____ Funciones para mostrar vistas _____*/
-	public void mostrarOfertaNueva(){
-		vista.getOfertaDatos().getlabelError().setText("");
-
-		vista.getOfertaDatos().getBTGuardar().setVisible(true);
-		vista.getOfertaDatos().getBTLimpiar().setVisible(true);
-		vista.getOfertaDatos().getBTModificar().setVisible(false);
-		vista.getOfertaDatos().getBTGuardarCambios().setVisible(false);
-		vista.getOfertaDatos().getBTEliminar().setVisible(false);
-
-		vista.getOfertaDatos().getBTGuardarSector().setVisible(true);
-		vista.getOfertaDatos().getBTEliminarSector().setVisible(true);
-
-		vista.getOfertaDatos().getTextCIF().setEnabled(true);
-		vista.getOfertaDatos().getcbSector().setEnabled(true);
-		vista.getOfertaDatos().getTextNuevoSector().setVisible(true);
-		vista.getOfertaDatos().gettaDescripcionOferta().setEditable(true);
-		vista.getOfertaDatos().gettextNPuestos().setEditable(true);
-		vista.getOfertaDatos().getcbTipoContrato().setEnabled(true);
-		vista.getOfertaDatos().gettextDuracionContrato().setEditable(true);
-		vista.getOfertaDatos().gettaCualificacion().setEditable(true);
-
-		rellenarcbSectores();
-	}
-	public void mostrarOfertaConsultada(Oferta oferta){
-		vista.getOfertaDatos().getlabelError().setText("");
-
-		vista.getOfertaDatos().getBTGuardar().setVisible(false);
-		vista.getOfertaDatos().getBTLimpiar().setVisible(false);
-		vista.getOfertaDatos().getBTModificar().setVisible(true);
-		vista.getOfertaDatos().getBTGuardarCambios().setVisible(false);
-		vista.getOfertaDatos().getBTEliminar().setVisible(true);
-
-		vista.getOfertaDatos().getBTGuardarSector().setVisible(false);
-		vista.getOfertaDatos().getBTEliminarSector().setVisible(false);
-
-		vista.getOfertaDatos().getTextCIF().setEnabled(false);
-		vista.getOfertaDatos().getTextCIF().setText(oferta.getEmpresa().getCIF());
-		vista.getOfertaDatos().getcbSector().setEnabled(false);
-		vista.getOfertaDatos().getcbSector().setSelectedItem(oferta.getSector().getDescripcion());
-		vista.getOfertaDatos().getTextNuevoSector().setVisible(false);
-		vista.getOfertaDatos().gettaDescripcionOferta().setEditable(false);
-		vista.getOfertaDatos().gettaDescripcionOferta().setText(oferta.getDescripcionOferta());
-		vista.getOfertaDatos().gettextNPuestos().setEditable(false);
-		vista.getOfertaDatos().gettextNPuestos().setText(oferta.getPlazasOfertadas()+"");
-		vista.getOfertaDatos().getcbTipoContrato().setEnabled(false);
-		vista.getOfertaDatos().getcbTipoContrato().setSelectedItem(oferta.getTipoContrato());
-		vista.getOfertaDatos().gettextDuracionContrato().setEditable(false);
-		vista.getOfertaDatos().gettextDuracionContrato().setText(oferta.getDuracionContrato()+"");
-		vista.getOfertaDatos().gettaCualificacion().setEditable(false);
-		vista.getOfertaDatos().gettaCualificacion().setText(oferta.getCualificacionRequerida());
-
-		ControladorBolsaTrabajo.getInstance(null).mostrarNuevaOferta();
-	}
-	public void mostrarOfertaModificar(){
-		vista.getOfertaDatos().getlabelError().setText("");
-
-		vista.getOfertaDatos().getBTGuardar().setVisible(false);
-		vista.getOfertaDatos().getBTLimpiar().setVisible(false);
-		vista.getOfertaDatos().getBTModificar().setVisible(false);
-		vista.getOfertaDatos().getBTGuardarCambios().setVisible(true);
-		vista.getOfertaDatos().getBTEliminar().setVisible(true);
-
-		vista.getOfertaDatos().getBTGuardarSector().setVisible(true);
-		vista.getOfertaDatos().getBTEliminarSector().setVisible(true);
-
-		vista.getOfertaDatos().getTextCIF().setEnabled(true);
-		vista.getOfertaDatos().getcbSector().setEnabled(true);
-		vista.getOfertaDatos().getTextNuevoSector().setVisible(true);
-		vista.getOfertaDatos().gettaDescripcionOferta().setEditable(true);
-		vista.getOfertaDatos().gettextNPuestos().setEditable(true);
-		vista.getOfertaDatos().getcbTipoContrato().setEnabled(true);
-		vista.getOfertaDatos().gettextDuracionContrato().setEditable(true);
-		vista.getOfertaDatos().gettaCualificacion().setEditable(true);
-
-		rellenarcbSectores();
-
-		ControladorBolsaTrabajo.getInstance(null).mostrarModificarOferta();
-	}
-	public void mostrarOfertaBuscar(){
-		rellenarcbSectores();
-		vista.getOfertaBuscar().getcbSector().addItem("Cualquiera");
 	}
 
 	/* Clases para ActionListener */
@@ -437,7 +365,7 @@ public class ControladorOferta {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			mostrarOfertaModificar();
+			ControladorBolsaTrabajo.getInstance(null).mostrarConsultarOferta(ofertaConsultada);
 		}
 	}
 
@@ -463,11 +391,11 @@ public class ControladorOferta {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			String CIFEmpresa = vista.getOfertaBuscar().gettextoCIFEmpresa();
-			String sectorDesc = vista.getOfertaBuscar().getcbSector().getSelectedItem().toString();
+			String empresa = vista.getOfertaBuscar().gettextoCIFEmpresa();
+			String sectorDesc = vista.getOfertaBuscar().getTextoSector();
 			String antiguedad = vista.getOfertaBuscar().getAntiguedad();
 
-			listaOfertas = obtenerListaOfertas(CIFEmpresa, sectorDesc, antiguedad);
+			obtenerListaOfertas(empresa, sectorDesc, antiguedad);
 		}
 	}
 
@@ -491,7 +419,7 @@ public class ControladorOferta {
 		public void actionPerformed(ActionEvent e) {
 			if (vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
                 ofertaConsultada = listaOfertas.get(vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow());
-				mostrarOfertaConsultada(ofertaConsultada);
+				ControladorBolsaTrabajo.getInstance(null).mostrarModificarOferta(ofertaConsultada);
 			}
 		}
 	}
