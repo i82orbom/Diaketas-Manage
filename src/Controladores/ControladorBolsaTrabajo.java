@@ -199,7 +199,6 @@ public class ControladorBolsaTrabajo {
 					vista.getOfertaDatos().getcbSector().setSelectedIndex(i);
 				}
 			}
-			vista.getOfertaDatos().getcbSector().setSelectedItem(oferta.getSector().getDescripcion());
 		}catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
 
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);

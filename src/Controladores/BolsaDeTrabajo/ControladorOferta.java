@@ -233,16 +233,17 @@ public class ControladorOferta {
 		}
 	}
 
-	public ArrayList<Oferta> obtenerListaOfertas(String empresaNombre, String sectorDesc, String antiguedad){
+	public void obtenerListaOfertas(String empresaNombre, String sectorDesc, String antiguedad){
 		Long empresaOID = -1l, sectorOID = -1l;
 
 		if (!empresaNombre.equals("")){
 			C_Empresa empresa = null;
 			try{ empresa = C_EmpresaJDBC.getInstance().consultarC_Empresa(empresaNombre);
 			} catch (SQLException ex){
-				ControladorErrores.mostrarError("Error al obtener el sector:\n"+ex);
+				ControladorErrores.mostrarError("Error al obtener la empresa:\n"+ex);
 			}
-			empresaOID = empresa.getOID();
+			if (empresa!=null) empresaOID = empresa.getOID();
+//			else empresaOID = 0l;
 		}
 
 		if (!sectorDesc.equals("")){
@@ -251,17 +252,17 @@ public class ControladorOferta {
 			} catch (SQLException ex){
 				ControladorErrores.mostrarError("Error al obtener el sector:\n"+ex);
 			}
-			sectorOID = sector.getOID();
+			if (sector!=null) sectorOID = sector.getOID();
+//			else sectorOID = 0l;
 		}
 
-		try{
+		try {
 			listaOfertas = OfertaJDBC.getInstance().filtrarOfertas(empresaOID, sectorOID, antiguedad);
 			actualizarTablaOfertas();
 		} catch (SQLException ex){
 			ControladorErrores.mostrarError("Error al obtener la lista de ofertas:\n"+ex.getMessage());
 		}
 
-		return listaOfertas;
 	}
 
 	public void eliminarOferta(Oferta oferta){
@@ -480,7 +481,8 @@ public class ControladorOferta {
 		public void actionPerformed(ActionEvent e) {
 			String empresa = vista.getOfertaBuscar().gettextoCIFEmpresa();
 			String sectorDesc = vista.getOfertaBuscar().getTextoSector();
-			String antiguedad = vista.getOfertaBuscar().getAntiguedad();
+			String antiguedad = vista.getOfertaBuscar().getAntiguedad()+"";
+System.out.println("Antiguedad seleccionada: "+antiguedad);
 
 			obtenerListaOfertas(empresa, sectorDesc, antiguedad);
 		}
