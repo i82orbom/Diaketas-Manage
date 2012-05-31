@@ -84,8 +84,6 @@ public class ControladorOferta {
 	}
 
 	/*_____ Métodos privados _____*/
-	private void rellenarcbSectores(){
-	}
 	private void limpiarFormulario(){
 		vista.getOfertaDatos().setTextoCIF("");
 		vista.getOfertaDatos().setTextoNuevoSector("");
@@ -105,91 +103,8 @@ public class ControladorOferta {
 		vista.getOfertaDatos().getlabelCualificacion().setForeground(c);
 	}
 
-
-	/*______ Métodos del controlador ______*/
-	public void insertarSector(Sector sector){
-		try{
-			SectorJDBC.getInstance().InsertarSector(sector);
-			vista.getOfertaDatos().getlabelError().setText("El nuevo sector ha sido añadido");
-		}catch (SQLException ex){
-			ControladorErrores.mostrarError("Error al guardar sector:\n"+ex);
-			vista.getOfertaDatos().getlabelError().setText("El sector no ha sido añadido");
-		}
-
-		rellenarcbSectores();
-	}
-
-	public void eliminarSector(String desc){
-		Sector sector;
-		try {
-			sector = SectorJDBC.getInstance().ConsultarSector(desc);
-
-			try{
-				SectorJDBC.getInstance().EliminarSector(sector);
-				vista.getOfertaDatos().getlabelError().setText("Sector eliminado correctamente");
-			}
-			catch (SQLException ex){
-				ControladorErrores.mostrarError("Error al eliminar sector:\n"+ex);
-			}
-			rellenarcbSectores();
-		}
-		catch (SQLException ex){
-			ControladorErrores.mostrarError("Error al obtener sector:\n"+ex);
-		}
-
-	}
-
-	public void insertarOferta(Oferta oferta){
-		try{
-			OfertaJDBC.getInstance().insertarOferta(oferta);
-			vista.getOfertaDatos().getlabelError().setText("La oferta ha sido añadida");
-		}
-		catch (SQLException ex){
-			ControladorErrores.mostrarError("Error al insertar una oferta\n"+ex);
-			vista.getOfertaDatos().getlabelError().setText("La oferta no ha sido añadida");
-		}
-	}
-
-	public Oferta obtenerDatosOferta(int oid){
-		Oferta oferta = new Oferta();
-
-
-		return oferta;
-	}
-
-	public boolean actualizarOferta(Oferta of){
-
-		return true;
-	}
-
-	public ArrayList<Oferta> obtenerListaOfertas(String empresaNombre, String sectorDesc, String antiguedad){
-		Long empresaOID = -1l, sectorOID = -1l;
-
-		if (!empresaNombre.equals("")){
-			C_Empresa empresa = null;
-			try{ empresa = C_EmpresaJDBC.getInstance().consultarC_Empresa(empresaNombre);
-			} catch (SQLException ex){
-				ControladorErrores.mostrarError("Error al obtener el sector:\n"+ex);
-			}
-			empresaOID = empresa.getOID();
-		}
-
-		if (!sectorDesc.equals("")){
-			Sector sector = null;
-			try{ sector = SectorJDBC.getInstance().ConsultarSector(sectorDesc);
-			} catch (SQLException ex){
-				ControladorErrores.mostrarError("Error al obtener el sector:\n"+ex);
-			}
-			sectorOID = sector.getOID();
-		}
-
-		try{
-			listaOfertas = OfertaJDBC.getInstance().filtrarOfertas(empresaOID, sectorOID, antiguedad);
-		} catch (SQLException ex){
-			ControladorErrores.mostrarError("Error al obtener la lista de ofertas:\n"+ex.getMessage());
-		}
-
-		TableModel tableModel = new TableModel() {
+	private void actualizarTablaOfertas(){
+				TableModel tableModel = new TableModel() {
 			@Override
 			public int getRowCount() {
 				return listaOfertas.size();
@@ -244,15 +159,125 @@ public class ControladorOferta {
 
 		};
 		vista.getOfertaBuscar().gettablaBusquedaOferta().setModel(tableModel);
+	}
+
+
+	/*______ Métodos del controlador ______*/
+	public void insertarSector(Sector sector){
+		try{
+			SectorJDBC.getInstance().InsertarSector(sector);
+			vista.getOfertaDatos().getlabelError().setText("El nuevo sector ha sido añadido");
+		}catch (SQLException ex){
+			ControladorErrores.mostrarError("Error al guardar sector:\n"+ex);
+			vista.getOfertaDatos().getlabelError().setText("El sector no ha sido añadido");
+		}
+
+		try {
+			vista.getOfertaDatos().getcbSector().removeAllItems();
+			ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
+			for (int i=0;i<sectores.size();i++)
+				vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+		}catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
+	}
+
+	public void eliminarSector(String desc){
+		Sector sector;
+		try {
+			sector = SectorJDBC.getInstance().ConsultarSector(desc);
+
+			try{
+				SectorJDBC.getInstance().EliminarSector(sector);
+				vista.getOfertaDatos().getlabelError().setText("Sector eliminado correctamente");
+			}
+			catch (SQLException ex){
+				ControladorErrores.mostrarError("Error al eliminar sector:\n"+ex);
+			}
+			try {
+				vista.getOfertaDatos().getcbSector().removeAllItems();
+				ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
+				for (int i=0;i<sectores.size();i++)
+					vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+			}catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
+		}
+		catch (SQLException ex){
+			ControladorErrores.mostrarError("Error al obtener sector:\n"+ex);
+		}
+
+	}
+
+	public void insertarOferta(Oferta oferta){
+		try{
+			OfertaJDBC.getInstance().insertarOferta(oferta);
+			vista.getOfertaDatos().getlabelError().setText("La oferta ha sido añadida");
+		}
+		catch (SQLException ex){
+			ControladorErrores.mostrarError("Error al insertar una oferta\n"+ex);
+			vista.getOfertaDatos().getlabelError().setText("La oferta no ha sido añadida");
+		}
+	}
+
+	public Oferta obtenerDatosOferta(int oid){
+		Oferta oferta = new Oferta();
+
+
+		return oferta;
+	}
+
+	public void actualizarOferta(Oferta of){
+		try{
+			OfertaJDBC.getInstance().ActualizarOferta(of);
+			vista.getOfertaDatos().getlabelError().setText("La oferta ha sido actualizada");
+		}
+		catch (SQLException ex){
+			ControladorErrores.mostrarError("La oferta no ha podido actualizarse:\n"+ex);
+		}
+	}
+
+	public ArrayList<Oferta> obtenerListaOfertas(String empresaNombre, String sectorDesc, String antiguedad){
+		Long empresaOID = -1l, sectorOID = -1l;
+
+		if (!empresaNombre.equals("")){
+			C_Empresa empresa = null;
+			try{ empresa = C_EmpresaJDBC.getInstance().consultarC_Empresa(empresaNombre);
+			} catch (SQLException ex){
+				ControladorErrores.mostrarError("Error al obtener el sector:\n"+ex);
+			}
+			empresaOID = empresa.getOID();
+		}
+
+		if (!sectorDesc.equals("")){
+			Sector sector = null;
+			try{ sector = SectorJDBC.getInstance().ConsultarSector(sectorDesc);
+			} catch (SQLException ex){
+				ControladorErrores.mostrarError("Error al obtener el sector:\n"+ex);
+			}
+			sectorOID = sector.getOID();
+		}
+
+		try{
+			listaOfertas = OfertaJDBC.getInstance().filtrarOfertas(empresaOID, sectorOID, antiguedad);
+			actualizarTablaOfertas();
+		} catch (SQLException ex){
+			ControladorErrores.mostrarError("Error al obtener la lista de ofertas:\n"+ex.getMessage());
+		}
 
 		return listaOfertas;
 	}
 
-	public boolean eliminarOferta(Oferta oferta){
-		JOptionPane.showConfirmDialog(vista, vista);
-		boolean exito = true;
-
-		return exito;
+	public void eliminarOferta(Oferta oferta){
+		if(JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar la oferta?", "Eliminar Oferta", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+			try{
+				OfertaJDBC.getInstance().eliminarOferta(oferta);
+				ControladorErrores.mostrarMensaje("La oferta ha sido eliminada");
+			}
+			catch (SQLException ex){
+				ControladorErrores.mostrarError("La oferta no se ha eliminad:\n"+ex);
+			}
+		}
+		listaOfertas.remove(oferta);
+		ofertaConsultada = null;
+		actualizarTablaOfertas();
+		ControladorBolsaTrabajo.getInstance(null).mostrarBuscarOferta();
 	}
 
 	/* Clases para ActionListener */
@@ -344,6 +369,7 @@ public class ControladorOferta {
 					oferta.setVoluntario(ControladorPrincipal.getInstance().getVoluntario());
 					oferta.setFecha(new Date());
 
+					vista.getOfertaDatos().getlabelError().setText("");
 					insertarOferta(oferta);
 				}
 			}
@@ -365,7 +391,7 @@ public class ControladorOferta {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			ControladorBolsaTrabajo.getInstance(null).mostrarConsultarOferta(ofertaConsultada);
+			ControladorBolsaTrabajo.getInstance(null).mostrarModificarOferta(ofertaConsultada);
 		}
 	}
 
@@ -374,6 +400,67 @@ public class ControladorOferta {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			C_Empresa empresa = null;
+			boolean exito = true;
+
+			/* ________ Comprobamos los datos _______ */
+			setColorLabels(Color.black);
+			vista.getOfertaDatos().getlabelError().setText("");
+
+			String CIF = vista.getOfertaDatos().getTextoCIF();
+			String descripcion = vista.getOfertaDatos().getTextoDescripcionOferta();
+			String duracion = vista.getOfertaDatos().getTextoDuracionContrato();
+			String nPuestos = vista.getOfertaDatos().getTextoNPuestos();
+			String cualificacion = vista.getOfertaDatos().getTextoCualificacion();
+
+			if (!TestDatos.isCIF(CIF)){
+				exito = false; vista.getOfertaDatos().getlabelCIF().setForeground(Color.red);
+			}
+			if (!TestDatos.isNombre(descripcion)) {
+				exito = false; vista.getOfertaDatos().getlabelDescripcionOferta().setForeground(Color.red);
+			}
+			if (!TestDatos.isOnlyDigit(nPuestos)) {
+				exito = false; vista.getOfertaDatos().getlabelNPuestos().setForeground(Color.red);
+			}
+			if (!TestDatos.isOnlyDigit(duracion)) {
+				exito = false; vista.getOfertaDatos().getlabelDuracionContrato().setForeground(Color.red);
+			}
+			if (!TestDatos.isNombre(cualificacion)) {
+				exito = false; vista.getOfertaDatos().getlabelCualificacion().setForeground(Color.red);
+			}
+
+			if (!exito){
+				vista.getOfertaDatos().getlabelError().setText("Los datos no son válidos");
+			}
+			else {
+				try {
+					empresa = C_EmpresaJDBC.getInstance().obtenerC_Empresa(CIF);
+				} catch (SQLException ex){
+					exito = false; ControladorErrores.mostrarError("Error al consultar empresa:\n"+ex);
+				}
+				if (empresa==null){
+					vista.getOfertaDatos().getlabelError().setText("La empresa no está registrada");
+					vista.getOfertaDatos().getlabelCIF().setForeground(Color.red);
+					exito = false;
+				}
+
+				if (exito){
+					ofertaConsultada.setEmpresa(empresa);
+					String descSector = vista.getOfertaDatos().getcbSector().getSelectedItem().toString();
+					try{ ofertaConsultada.setSector(SectorJDBC.getInstance().ConsultarSector(descSector));}
+					catch (SQLException ex){ControladorErrores.mostrarError("Hubo un error con el sector:\n"+ex);}
+					ofertaConsultada.setDescripcionOferta(descripcion);
+					ofertaConsultada.setDuracionContrato(Integer.parseInt(duracion));
+					ofertaConsultada.setPlazasOfertadas(Integer.parseInt(nPuestos));
+					ofertaConsultada.setTipoContrato(vista.getOfertaDatos().getTextoTipoContrato());
+					ofertaConsultada.setCualificacionRequerida(cualificacion);
+					ofertaConsultada.setVoluntario(ControladorPrincipal.getInstance().getVoluntario());
+					ofertaConsultada.setFecha(new Date());
+
+					vista.getOfertaDatos().getlabelError().setText("");
+					actualizarOferta(ofertaConsultada);
+				}
+			}
 		}
 	}
 
@@ -405,10 +492,10 @@ public class ControladorOferta {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
-				if (eliminarOferta(listaOfertas.get(vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow()))){
-					ControladorErrores.mostrarMensaje("La oferta ha sido borrada");
-				}
+				ofertaConsultada = listaOfertas.get(vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow());
 			}
+			if (ofertaConsultada!=null) eliminarOferta(ofertaConsultada);
+			else ControladorErrores.mostrarAlerta("No hay ninguna oferta seleccionada.");
 		}
 	}
 
@@ -419,7 +506,7 @@ public class ControladorOferta {
 		public void actionPerformed(ActionEvent e) {
 			if (vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
                 ofertaConsultada = listaOfertas.get(vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow());
-				ControladorBolsaTrabajo.getInstance(null).mostrarModificarOferta(ofertaConsultada);
+				ControladorBolsaTrabajo.getInstance(null).mostrarConsultarOferta(ofertaConsultada);
 			}
 		}
 	}
