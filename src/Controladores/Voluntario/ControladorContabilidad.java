@@ -1,10 +1,13 @@
 
 package Controladores.Voluntario;
 
+import Controladores.TestDatos;
 import JDBC.MovimientoJDBC;
 import Modelo.Ayuda;
 import Modelo.Movimiento;
 import Vistas.Paneles.Voluntario.PanelVoluntarioContabilidad;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,12 +54,18 @@ public class ControladorContabilidad {
     }
         
     private PanelVoluntarioContabilidad vista;
+    
+    private ArrayList<Movimiento> gastos;
+    private ArrayList<Movimiento> ingresos;
 
     public ControladorContabilidad(PanelVoluntarioContabilidad vista) {
         this.vista = vista;
+        
+        vista.getBtBuscar().addActionListener(new BtBuscarContabilidad());
+        vista.getFieldFechaFin().setText(TestDatos.formatter.format(new Date()));
     }
 
-    // TODO Metodos JDBC
+    // Metodos JDBC
     public boolean registrarGasto(float importe, String concepto) {
         // TODO comprobar datos
 
@@ -128,4 +137,22 @@ public class ControladorContabilidad {
         return balance;
     }
     // TODO Listeners de los botones
+    
+    class BtBuscarContabilidad implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            Date fechaInicio = new Date();
+            Date fechaFin = new Date();
+            try { 
+                fechaInicio = TestDatos.formatter.parse(vista.getFieldFechaInicio().getText());
+                fechaFin = TestDatos.formatter.parse(vista.getFieldFechaFin().getText()); 
+            } catch (Exception e) {
+                vista.setTextLabelError("Fecha : dd/MM/YYYY");
+            }
+            
+            vista.getCuadroBalance().setText(Float.toString(obtenerContabilidad(fechaInicio, fechaFin)));
+        }
+        
+    }
 }

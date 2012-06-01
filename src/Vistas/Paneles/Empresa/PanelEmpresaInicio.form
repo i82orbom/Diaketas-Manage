@@ -18,7 +18,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-              <Component id="btNuevoEmpresa" min="-2" pref="265" max="-2" attributes="0"/>
+              <Component id="btNuevaEmpresa" min="-2" pref="265" max="-2" attributes="0"/>
               <EmptySpace pref="290" max="32767" attributes="0"/>
               <Component id="btBuscarEmpresa" min="-2" pref="263" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
@@ -30,7 +30,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="btNuevoEmpresa" min="-2" pref="244" max="-2" attributes="0"/>
+                  <Component id="btNuevaEmpresa" min="-2" pref="244" max="-2" attributes="0"/>
                   <Component id="btBuscarEmpresa" min="-2" pref="244" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="154" max="32767" attributes="0"/>
@@ -39,7 +39,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btNuevoEmpresa">
+    <Component class="javax.swing.JButton" name="btNuevaEmpresa">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="14" style="1"/>

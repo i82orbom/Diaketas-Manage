@@ -4,6 +4,11 @@
  */
 package Vistas.Paneles.Voluntario;
 
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author raphaelcolleau
@@ -15,7 +20,31 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
      */
     public PanelVoluntarioContabilidad() {
         initComponents();
+        labelError.setVisible(false);
     }
+
+    public JButton getBtBuscar() {
+        return btBuscar;
+    }
+
+    public JTextField getCuadroBalance() {
+        return cuadroBalance;
+    }
+
+    public JFormattedTextField getFieldFechaFin() {
+        return fieldFechaFin;
+    }
+
+    public JFormattedTextField getFieldFechaInicio() {
+        return fieldFechaInicio;
+    }
+
+    public void setTextLabelError(String error) {
+        labelError.setVisible(true);
+        labelError.setText(error);
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,9 +65,10 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        btnObtenerContabilidad = new javax.swing.JButton();
         cuadroBalance = new javax.swing.JTextField();
         btBuscar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        labelError = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 550));
@@ -102,11 +132,13 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
         jLabel19.setForeground(new java.awt.Color(255, 0, 0));
         jLabel19.setText("Listado de gastos");
 
-        btnObtenerContabilidad.setText("Obtener Contabilidad");
-        btnObtenerContabilidad.setActionCommand("obtenerContabilidad");
-
         btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
         btBuscar.setActionCommand("buscarBeneficiarioDNI");
+
+        jLabel1.setText("Contabilidad");
+
+        labelError.setForeground(new java.awt.Color(255, 0, 0));
+        labelError.setText("Label error");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -118,28 +150,38 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
                     .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 376, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel18))
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                    .add(fieldFechaInicio, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                                    .add(fieldFechaFin))
+                                .add(35, 35, 35))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                    .add(cuadroBalance)
+                                    .add(labelError, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
+                                .add(12, 12, 12))))
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
-                                .add(18, 18, 18)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(fieldFechaInicio, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 123, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jLabel16)
-                                    .add(jLabel17)
-                                    .add(fieldFechaFin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 128, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(btnObtenerContabilidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                .add(61, 61, 61)
+                                .add(jLabel16))
                             .add(layout.createSequentialGroup()
-                                .add(62, 62, 62)
-                                .add(btBuscar)))
-                        .add(0, 0, Short.MAX_VALUE))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 12, Short.MAX_VALUE)
-                        .add(cuadroBalance, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 178, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(67, 67, 67)
+                                .add(jLabel17))
+                            .add(layout.createSequentialGroup()
+                                .add(75, 75, 75)
+                                .add(btBuscar))
+                            .add(layout.createSequentialGroup()
+                                .add(57, 57, 57)
+                                .add(jLabel1)))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 61, Short.MAX_VALUE)))
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabel19)
                     .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 397, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .add(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -150,41 +192,44 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
                     .add(jLabel19))
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(layout.createSequentialGroup()
-                        .add(67, 67, 67)
+                        .add(73, 73, 73)
                         .add(jLabel16)
-                        .add(18, 18, 18)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(fieldFechaInicio, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(27, 27, 27)
                         .add(jLabel17)
                         .add(18, 18, 18)
                         .add(fieldFechaFin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(34, 34, 34)
                         .add(btBuscar)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(btnObtenerContabilidad)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 87, Short.MAX_VALUE)
+                        .add(labelError)
+                        .add(56, 56, 56)
+                        .add(jLabel1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(cuadroBalance, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(53, 53, 53))
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(20, 20, 20)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
-                            .add(jScrollPane1))
-                        .addContainerGap(17, Short.MAX_VALUE))))
+                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
+                            .add(jScrollPane2))
+                        .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBuscar;
-    private javax.swing.JButton btnObtenerContabilidad;
     private javax.swing.JTextField cuadroBalance;
     private javax.swing.JFormattedTextField fieldFechaFin;
     private javax.swing.JFormattedTextField fieldFechaInicio;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelError;
     private javax.swing.JTable tablaListaGastos;
     private javax.swing.JTable tablaListaIngresos;
     // End of variables declaration//GEN-END:variables
