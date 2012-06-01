@@ -6,8 +6,11 @@ package Vistas.Paneles.Voluntario;
 
 import Modelo.Voluntario;
 import java.awt.Color;
+import java.awt.Component;
 import java.text.SimpleDateFormat;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
@@ -28,7 +31,7 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
     }
     
     public void nuevoVoluntario () {
-        borrarCampos();
+        limpiarCampos();
         btBorrar.setVisible(true);
         btEliminar.setVisible(false);
         labelError.setVisible(false);
@@ -51,11 +54,12 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
     }
 
     public void setTextLabelError (String text) {
+        labelError.setForeground(Color.red);
         labelError.setText(text);
         labelError.setVisible(true);
     }
 
-    public void borrarCampos () {
+    public void limpiarCampos () {
         labelError.setVisible(false);
         textApellidos.setText("");
         textCP.setText("");
@@ -122,8 +126,54 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
     public JTextField getTextPassword() {
         return textPassword;
     }
-    
 
+    public JLabel getlApellidos() {
+        return lApellidos;
+    }
+
+    public JLabel getlCP() {
+        return lCP;
+    }
+
+    public JLabel getlDomicilio() {
+        return lDomicilio;
+    }
+
+    public JLabel getlFechaNacimiento() {
+        return lFechaNacimiento;
+    }
+
+    public JLabel getlLocalidad() {
+        return lLocalidad;
+    }
+
+    public JLabel getlNIF() {
+        return lNIF;
+    }
+
+    public JLabel getlNombre() {
+        return lNombre;
+    }
+
+    public JLabel getlPassword() {
+        return lPassword;
+    }
+
+    public JLabel getlTelFijo() {
+        return lTelFijo;
+    }
+
+    public JLabel getlTelMovil() {
+        return lTelMovil;
+    }
+    
+    public void setColorLabels (Color c) {
+        for (Component comp : this.getComponents()) {
+            if (comp.getClass() == JLabel.class) {
+                comp.setForeground(c);
+            }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -134,19 +184,19 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lNombre = new javax.swing.JLabel();
+        lNIF = new javax.swing.JLabel();
+        lDomicilio = new javax.swing.JLabel();
+        lLocalidad = new javax.swing.JLabel();
         textNombre = new javax.swing.JTextField();
         textNIF = new javax.swing.JTextField();
         textDomicilio = new javax.swing.JTextField();
         textLocalidad = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        lApellidos = new javax.swing.JLabel();
+        lFechaNacimiento = new javax.swing.JLabel();
+        lTelMovil = new javax.swing.JLabel();
+        lCP = new javax.swing.JLabel();
+        lTelFijo = new javax.swing.JLabel();
         textApellidos = new javax.swing.JTextField();
         textTelMovil = new javax.swing.JTextField();
         textCP = new javax.swing.JTextField();
@@ -157,7 +207,7 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
         labelError = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        lPassword = new javax.swing.JLabel();
         textPassword = new javax.swing.JTextField();
         btEliminar = new javax.swing.JButton();
 
@@ -166,23 +216,23 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1000, 550));
         setPreferredSize(new java.awt.Dimension(1000, 550));
 
-        jLabel2.setText("Nombre");
+        lNombre.setText("Nombre");
 
-        jLabel3.setText("NIF/DNI/Pasaporte");
+        lNIF.setText("NIF/DNI/Pasaporte");
 
-        jLabel6.setText("Domicilio");
+        lDomicilio.setText("Domicilio");
 
-        jLabel7.setText("Localidad");
+        lLocalidad.setText("Localidad");
 
-        jLabel9.setText("Apellidos");
+        lApellidos.setText("Apellidos");
 
-        jLabel10.setText("Nacido el");
+        lFechaNacimiento.setText("Nacido el");
 
-        jLabel12.setText("Teléfono Movil");
+        lTelMovil.setText("Teléfono Movil");
 
-        jLabel13.setText("Código Postal");
+        lCP.setText("Código Postal");
 
-        jLabel14.setText("Teléfono Fijo");
+        lTelFijo.setText("Teléfono Fijo");
 
         textFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
@@ -204,7 +254,7 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel4.setText("Datos de Acceso");
 
-        jLabel15.setText("Password");
+        lPassword.setText("Password");
 
         btEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
         btEliminar.setToolTipText("Eliminar el Voluntario");
@@ -219,13 +269,13 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
                     .add(layout.createSequentialGroup()
                         .add(90, 90, 90)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel6)
-                            .add(jLabel7)
+                            .add(lDomicilio)
+                            .add(lLocalidad)
                             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                                 .add(layout.createSequentialGroup()
                                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(jLabel2)
-                                        .add(jLabel15))
+                                        .add(lNombre)
+                                        .add(lPassword))
                                     .add(98, 98, 98)
                                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                         .add(textPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 243, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -239,9 +289,9 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
                                             .add(btBorrar))))
                                 .add(layout.createSequentialGroup()
                                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(jLabel3)
-                                        .add(jLabel9)
-                                        .add(jLabel14))
+                                        .add(lNIF)
+                                        .add(lApellidos)
+                                        .add(lTelFijo))
                                     .add(18, 18, 18)
                                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                                         .add(textApellidos)
@@ -253,9 +303,9 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
                                                 .add(org.jdesktop.layout.GroupLayout.LEADING, textTelFijo))
                                             .add(52, 52, 52)
                                             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                                .add(jLabel10)
-                                                .add(jLabel12)
-                                                .add(jLabel13))
+                                                .add(lFechaNacimiento)
+                                                .add(lTelMovil)
+                                                .add(lCP))
                                             .add(42, 42, 42)
                                             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                                 .add(textCP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 87, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -278,39 +328,39 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
                 .add(jLabel1)
                 .add(27, 27, 27)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(lNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(textNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel9)
+                    .add(lApellidos)
                     .add(textApellidos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(9, 9, 9)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(lNIF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(textNIF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel10)
+                    .add(lFechaNacimiento)
                     .add(textFechaNacimiento, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(10, 10, 10)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(textTelFijo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel14)
-                    .add(jLabel12)
+                    .add(lTelFijo)
+                    .add(lTelMovil)
                     .add(textTelMovil, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(8, 8, 8)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(lDomicilio, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(textDomicilio, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(textCP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel13)
+                    .add(lCP)
                     .add(textLocalidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(lLocalidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(31, 31, 31)
                 .add(jLabel4)
                 .add(27, 27, 27)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel15)
+                    .add(lPassword)
                     .add(textPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
@@ -333,17 +383,17 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btGuardar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lApellidos;
+    private javax.swing.JLabel lCP;
+    private javax.swing.JLabel lDomicilio;
+    private javax.swing.JLabel lFechaNacimiento;
+    private javax.swing.JLabel lLocalidad;
+    private javax.swing.JLabel lNIF;
+    private javax.swing.JLabel lNombre;
+    private javax.swing.JLabel lPassword;
+    private javax.swing.JLabel lTelFijo;
+    private javax.swing.JLabel lTelMovil;
     private javax.swing.JLabel labelError;
     private javax.swing.JTextField textApellidos;
     private javax.swing.JTextField textCP;
