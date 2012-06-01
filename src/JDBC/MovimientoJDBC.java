@@ -26,6 +26,7 @@
  */
 package JDBC;
 
+import Controladores.TestDatos;
 import Modelo.Ayuda;
 import Modelo.Movimiento;
 import java.sql.ResultSet;
@@ -60,11 +61,8 @@ public class MovimientoJDBC {
          
           ResultSet resultado;
           DriverJDBC driver = DriverJDBC.getInstance() ;
-          
-          String fecha_ini_string = fecha_inicial.toString();
-          String fecha_fin_string = fecha_final.toString();
        
-          String consulta = "SELECT Importe FROM movimiento WHERE Fecha BETWEEN '"+fecha_ini_string+"' AND '"+fecha_fin_string+"'";
+          String consulta = "SELECT Cantidad FROM movimiento WHERE Fecha BETWEEN '"+TestDatos.formatterBD.format(fecha_inicial) +"' AND '"+TestDatos.formatterBD.format(fecha_final)+"'";
           
           try{
               driver.conectar();
@@ -73,9 +71,9 @@ public class MovimientoJDBC {
               while (resultado.next()){
               
                   if("I".equalsIgnoreCase(resultado.getString("tipo")))
-                      total = total + resultado.getFloat("Importe");
+                      total = total + resultado.getFloat("Cantidad");
                   else if ("G".equalsIgnoreCase(resultado.getString("tipo")))
-                      total = total - resultado.getFloat("Importe");  
+                      total = total - resultado.getFloat("Cantidad");  
               }      
          
           }catch (SQLException ex) {
