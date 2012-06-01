@@ -2,16 +2,20 @@
 package Controladores.Colaborador;
 
 import Controladores.TestDatos;
+import Controladores.Voluntario.ControladorColaboracion;
 import JDBC.C_EmpresaJDBC;
 import Modelo.C_Empresa;
+import Modelo.Colaboracion;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  ** NOMBRE CLASE: *	ControladorC_Empresa
@@ -56,15 +60,19 @@ public class ControladorC_Empresa {
 
     }
 
+    
+
     C_Empresa C_Empresa_temp;
+    
+    Colaboracion Colaboracion_temp;
     
     private VistaColaboradores vista;
 
     public ControladorC_Empresa(VistaColaboradores pvista) {
         this.vista = pvista;
         
-        vista.getPanelEmpresaInicio().anadirListenerbtNuevoEmpresa(new btNuevaEmpresaListener());
-        vista.getPanelEmpresaInicio().anadirListenerbtBuscarEmpresa(new btBuscarEmpresaListener());
+        vista.getPanelEmpresaInicio().anadirListenerbtNuevaEmpresa(new btNuevaEmpresaListener());
+        vista.getPanelEmpresaInicio().anadirListenerbtBuscarEmpresa(new btBuscadorEmpresaListener());
         
         vista.getPanelEmpresaDatos().getBtGuardarEmpresa().addActionListener(new btGuardarDatosEmpresaListener());
         vista.getPanelEmpresaDatos().getBtLimpiarEmpresa().addActionListener(new btLimpiarDatosEmpresaListener());
@@ -72,7 +80,7 @@ public class ControladorC_Empresa {
         vista.getPanelEmpresaDatos().getBtEliminarColaboracionesEmpresa().addActionListener(new btEliminarColaboracionesEmpresaListener());
         vista.getPanelEmpresaDatos().getBtBuscarColaboracionesEmpresa().addActionListener(new btBuscarColaboracionesEmpresaListener());
         
-        vista.getPanelEmpresaBuscar().getBtBuscarEmpresa().addActionListener(new btBuscadorEmpresaListener());
+        vista.getPanelEmpresaBuscar().getBtBuscarEmpresa().addActionListener(new btBuscarEmpresaListener());
         vista.getPanelEmpresaBuscar().getBtConsultarEmpresa().addActionListener(new btConsultarEmpresaListener());
         vista.getPanelEmpresaBuscar().getBtEliminarEmpresa().addActionListener(new btEliminarEmpresaListener());
         
@@ -280,10 +288,26 @@ public class ControladorC_Empresa {
         
     }
     
-    class btBuscarColaboracionesEmpresaListener implements ActionListener {
+    /* BOTONES PANEL_EMPRESA_INICIO */
+    class btNuevaEmpresaListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+        }
+    }
+    
+    class btBuscadorEmpresaListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
+    }
+    
+    /* BOTONES PANEL_EMPRESA_DATOS */
+    class btBuscarColaboracionesEmpresaListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) { 
         }
     }
 
@@ -291,6 +315,18 @@ public class ControladorC_Empresa {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            vista.getPanelEmpresaDatos().getLabelErrorColaboraciones().setVisible(false);
+            if (vista.getPanelEmpresaDatos().getTbColaboracionesEmpresa().getSelectedRow() != -1) {
+                if (JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar la colaboracion?", "Eliminar Colaboracion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    if (ControladorColaboracion.getInstance().eliminarColaboracion(Colaboracion_temp)) {
+                        vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("La colaboracion ha sido eliminada del sistema.");
+                    } else {
+                        vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("Error : la colaboracion no ha sido eliminada del sistema.");
+                    }
+                }
+            } else {
+                vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("Selecciona una ayuda.");
+            }
         }
     }
 
@@ -298,6 +334,51 @@ public class ControladorC_Empresa {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            
+            boolean datosValidos=true;
+            
+            if(vista.getPanelEmpresaDatos().getTextImporte().getText().equals("")){
+                vista.getPanelEmpresaDatos().setColorLabelImporte(Color.red);
+                datosValidos = false;
+            }
+            
+            if(vista.getPanelEmpresaDatos().getTextConcepto().getText().equals("")){
+                vista.getPanelEmpresaDatos().setColorLabelConcepto(Color.red);
+                datosValidos = false;
+            }
+            
+            if(vista.getPanelEmpresaDatos().getTextFecha().getText().equals("")){
+                vista.getPanelEmpresaDatos().setColorLabelFecha(Color.red);
+                datosValidos = false;
+            }
+            
+            if(!datosValidos){
+                vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("Los campos en rojo están mal");
+            }else{
+                if(Colaboracion_temp==null){
+                    Colaboracion c = new Colaboracion();
+                    c.setImporte(Float.parseFloat(vista.getPanelEmpresaDatos().getTextImporte().getText()));
+                    c.setConcepto(vista.getPanelEmpresaDatos().getTextConcepto().getText());
+                    c.setFecha(new Date());
+                    
+                    boolean exito = ControladorColaboracion.getInstance().anadirColaboracion(c);
+                    if (exito)
+                        vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("Colaboración añadida");
+                    else
+                        vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("Colaboracion no añadida");
+                }else{
+                    Colaboracion_temp.setImporte(Float.parseFloat(vista.getPanelEmpresaDatos().getTextImporte().getText()));
+                    Colaboracion_temp.setConcepto(vista.getPanelEmpresaDatos().getTextConcepto().getText());
+                    Colaboracion_temp.setFecha(new Date());
+                    
+                    boolean exito = ControladorColaboracion.getInstance().anadirColaboracion(Colaboracion_temp);
+                    if (exito)
+                        vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("Colaboración modificada");
+                    else
+                        vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("Colaboracion no modificada");
+                }
+            }
+            
         }
     }
 
@@ -314,14 +395,28 @@ public class ControladorC_Empresa {
         @Override
         public void actionPerformed(ActionEvent e) {
             
-            
-            
-            
-            
-            
+            String[] datos = vista.getPanelEmpresaDatos().getDatosPersonales();
+            if (C_Empresa_temp != null) {
+                
+                boolean exito = modificarC_Empresa(datos);
+                if (exito) 
+                    vista.getPanelEmpresaDatos().setTextLabelError("Beneficiario modificado correctamente.");
+                else 
+                    vista.getPanelEmpresaDatos().setTextLabelError("El beneficiario no ha sido modificado.");
+                
+            } else {
+                
+                boolean exito = anadirC_Empresa(datos);
+                if (exito)
+                    vista.getPanelEmpresaDatos().setTextLabelError("Beneficiario añadido correctamente.");
+                else
+                    vista.getPanelEmpresaDatos().setTextLabelError("El beneficiario no ha sido añadido.");   
+            }
+   
         }
     }
 
+    /* BOTONES PANEL_EMPRESA_BUSCAR */
     class btConsultarEmpresaListener implements ActionListener {
 
         @Override
@@ -332,22 +427,7 @@ public class ControladorC_Empresa {
     class btEliminarEmpresaListener implements ActionListener {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-        }
-    }
-    
-    class btBuscadorEmpresaListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-    }
-    
-    class btNuevaEmpresaListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e) {            
         }
     }
     

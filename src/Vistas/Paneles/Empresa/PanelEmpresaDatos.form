@@ -138,6 +138,10 @@
                               <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                               <Component id="jLabelDatosContacto" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
+                              <Component id="jLabelError" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -226,6 +230,8 @@
                                   <Component id="jTextFax" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelFax" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="jLabelError" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -384,6 +390,11 @@
                 <Property name="text" type="java.lang.String" value="Provincia"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="jLabelError">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Mensaje de Error"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="PanelColaboracionesEmpresa">
@@ -418,15 +429,15 @@
                                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="jLabelConcepto" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabelCantidad" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelImporte" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Component id="jTextCantidad" min="-2" pref="177" max="-2" attributes="0"/>
+                                              <Component id="jTextImporte" min="-2" pref="177" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
                                               <Component id="jLabelFecha" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace pref="28" max="32767" attributes="0"/>
+                                              <EmptySpace pref="44" max="32767" attributes="0"/>
                                               <Component id="jFormattedTextFecha" min="-2" pref="135" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="jTextConcepto" max="32767" attributes="0"/>
@@ -437,7 +448,7 @@
                                       <Component id="jScrollPane1" min="-2" pref="623" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="36" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -453,6 +464,11 @@
                           <Component id="cbFechaFinalEmpresa" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="369" max="-2" attributes="0"/>
+                      <Component id="jLabelErrorColaboraciones" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -481,9 +497,9 @@
                       <Component id="jLabelAñadirColaboracion" min="-2" pref="21" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabelCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelImporte" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelFecha" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextImporte" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jFormattedTextFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -491,7 +507,9 @@
                           <Component id="jLabelConcepto" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextConcepto" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="jLabelErrorColaboraciones" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -538,7 +556,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextConcepto">
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextCantidad">
+            <Component class="javax.swing.JTextField" name="jTextImporte">
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFecha">
             </Component>
@@ -558,12 +576,12 @@
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir Colaboraci&#xf3;n"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabelCantidad">
+            <Component class="javax.swing.JLabel" name="jLabelImporte">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="12" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Cantidad"/>
+                <Property name="text" type="java.lang.String" value="Importe"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelFecha">
@@ -630,6 +648,11 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JLabel" name="jLabelErrorColaboraciones">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Mensaje de Error"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

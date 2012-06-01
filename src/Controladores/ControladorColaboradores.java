@@ -71,7 +71,7 @@ public class ControladorColaboradores {
         vista.getPanelSocioInicio().anadirListenerbtNuevoSocio(new btNuevoSocioListener());
         vista.getPanelSocioInicio().anadirListenerbtBuscarSocio(new btBuscarSocioListener());
         vista.getPanelEmpresaInicio().anadirListenerbtBuscarEmpresa(new btBuscarEmpresaListener());
-        vista.getPanelEmpresaInicio().anadirListenerbtNuevoEmpresa(new btNuevaEmpresaListener());
+        vista.getPanelEmpresaInicio().anadirListenerbtNuevaEmpresa(new btNuevaEmpresaListener());
         vista.getPanelColaboradorInicio().anadirListenerbtNuevoColaborador(new btNuevoColaboradorListener());
         vista.getPanelColaboradorInicio().anadirListenerbtBuscarColaborador(new btBuscarColaboradorListener());
 		
