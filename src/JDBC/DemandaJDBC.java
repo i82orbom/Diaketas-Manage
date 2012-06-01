@@ -48,10 +48,10 @@ public class DemandaJDBC {
         }
         return exito;
     }
-    public void EliminarDemanda (int oid) throws SQLException{
+    public void EliminarDemanda (Demanda demanda) throws SQLException{
     
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "DELETE FROM Demanda WHERE OID = "+oid;
+        String sql = "DELETE FROM Demanda WHERE OID = "+demanda.getOID();
         
         try {
             driver.conectar();

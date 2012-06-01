@@ -5,8 +5,12 @@ import Controladores.ControladorBolsaTrabajo;
 import Controladores.ControladorErrores;
 import Controladores.ControladorPrincipal;
 import Controladores.TestDatos;
-import JDBC.*;
-import Modelo.*;
+import JDBC.BeneficiarioJDBC;
+import JDBC.DemandaJDBC;
+import JDBC.SectorJDBC;
+import Modelo.Beneficiario;
+import Modelo.Demanda;
+import Modelo.Sector;
 import Vistas.Paneles.BolsaTrabajo.VistaBolsaTrabajo;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -46,6 +50,8 @@ public class ControladorDemanda {
 	private VistaBolsaTrabajo vista;
         private Demanda demandaConsultada;
 	ArrayList<Demanda> listaDemandas;
+        String[] columnNames = {"DNI", "Nombre y Apellidos", "Sector", "Fecha de demanda"};
+        
 	private ControladorDemanda(VistaBolsaTrabajo pvista){
 		/**
 		* Establece como ventana padre la pasada como parámetro
@@ -62,7 +68,7 @@ public class ControladorDemanda {
 		vista.getDemandaDatos().getBTGuardarCambios().addActionListener(new ListenerBtActualizarDemanda());
 		vista.getDemandaDatos().getBTEliminar().addActionListener(new ListenerBtEliminarDemanda());
 
-		// Buscar Ofertas
+		// Buscar Demandas
 		vista.getDemandaBuscar().getBTBuscar().addActionListener(new ListenerBtBuscarDemanda());
 		vista.getDemandaBuscar().getBTEliminar().addActionListener(new ListenerBtEliminarDemandaBuscada());
 		vista.getDemandaBuscar().getBTBuscar().addActionListener(new ListenerBtConsultarDemanda());
@@ -72,8 +78,64 @@ public class ControladorDemanda {
 		if (instancia == null) instancia = new ControladorDemanda(panelDemanda);
 		return instancia;
 	}
+        
         private void actualizarTablaDemandas(){
-            
+            TableModel tableModel = new TableModel() {
+                @Override
+                public int getRowCount() {
+                    return listaDemandas.size();
+                }
+
+                @Override
+                public int getColumnCount() {
+                    return columnNames.length;
+                }
+
+                @Override
+                public String getColumnName(int i) {
+                    return columnNames[i];
+                }
+
+                @Override
+                public Class<?> getColumnClass(int i) {
+                    return String.class;
+                }
+
+                @Override
+                public boolean isCellEditable(int i, int i1) {
+                    return false;
+                }
+
+                @Override
+                public Object getValueAt(int fil, int col) {
+                    switch (col) {
+                        case 0:
+                            return listaDemandas.get(fil).getIdBeneficiario().getNIF();
+                        case 1:
+                            return listaDemandas.get(fil).getIdBeneficiario().getNombre()+listaDemandas.get(fil).getIdBeneficiario().getApellidos();
+                        case 2:
+                            return listaDemandas.get(fil).getIdSector().getDescripcion();
+                        case 3:
+                            return TestDatos.formatter.format(listaDemandas.get(fil).getFecha());
+                    }
+                    return "";
+                }
+
+                @Override
+                public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+                }
+
+                @Override
+                public void addTableModelListener(TableModelListener l) {
+                }
+
+                @Override
+                public void removeTableModelListener(TableModelListener l) {
+                }
+
+            };
+            vista.getDemandaBuscar().getTablaBusquedaDemandante().setModel(tableModel);
+
             
         } 
 	/* Métodos del controlador */
@@ -93,14 +155,18 @@ public class ControladorDemanda {
 
 	public Demanda obtenerDatosDemanda(int oid){
 		Demanda demanda = new Demanda();
-
-
 		return demanda;
 	}
 
-	public boolean actualizarDemanda(Demanda de){
+	public void actualizarDemanda(Demanda de){
 
-		return true;
+		try{
+			DemandaJDBC.getInstance().ActualizarDemanda(de);
+			vista.getOfertaDatos().getlabelError().setText("La demanda ha sido actualizada");
+		}
+		catch (SQLException ex){
+			ControladorErrores.mostrarError("La demanda no ha podido actualizarse:\n"+ex);
+		}
 	}
 
 	public ArrayList<Demanda> obtenerListaDemandas(String DNI, String sectorDesc, int antiguedad){
@@ -139,17 +205,24 @@ public class ControladorDemanda {
 		return a;
 	}
 
-	public boolean eliminarDemanda(Demanda demanda){
-		JOptionPane.showConfirmDialog(vista, vista);
-		boolean exito = true;
-
-		return exito;
+	public void eliminarDemanda(Demanda demanda){
+                if(JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar la demanda?", "Eliminar Demanda", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                    try{
+                            DemandaJDBC.getInstance().EliminarDemanda(demanda);
+                            ControladorErrores.mostrarMensaje("La demanda ha sido eliminada");
+                    }
+                    catch (SQLException ex){
+                            ControladorErrores.mostrarError("La demanda no se ha eliminad:\n"+ex);
+                    }
+		}
+		listaDemandas.remove(demanda);
+		demandaConsultada = null;
+		actualizarTablaDemandas();
+		ControladorBolsaTrabajo.getInstance(null).mostrarBuscarDemanda();
+                
 	}
 
-	
-	public boolean validarDatosDemanda(Demanda demanda){
-		return true;
-	}
+
 
         public void setColorLabels(Color c){
 		vista.getDemandaDatos().getLabelNif().setForeground(c);
@@ -242,24 +315,54 @@ public class ControladorDemanda {
 
 	public class ListenerBtActualizarDemanda implements ActionListener{
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			System.out.println("Actualizar Demanda");
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Actualizar Demanda");
+                Beneficiario beneficiario = null;
+                boolean exito = true;
 
-			demandaConsultada.setDescripcionValidaLaboral(vista.getDemandaDatos().getTextoHistoriaLaboral());
-/*			ofertaConsultada.setDescripcionOferta(vista.getOfertaDatos().getTextoDescripcionOferta());
-			ofertaConsultada.setDuracionContrato(Integer.parseInt(vista.getOfertaDatos().getTextoNPuestos()));
-			ofertaConsultada.setPlazasOfertadas(Integer.parseInt(vista.getOfertaDatos().getTextoNPuestos()));
-			ofertaConsultada.setTipoContrato(vista.getOfertaDatos().getTextoTipoContrato());
-//			ofertaConsultada.setIdSector(SectorJDBC.getInstance().getOID(vista.getOfertaDatos().getcbSector()));*/
-			try { demandaConsultada.setIdBeneficiario(BeneficiarioJDBC.getInstance().obtenerBeneficiario(vista.getDemandaDatos().getTextoNIF()));
-			} catch (SQLException ex){
-			}
-			demandaConsultada.setIdVoluntario(ControladorPrincipal.getInstance().getVoluntario());
-			demandaConsultada.setFecha(new Date());	// Fecha actual
+                /*Comprobamos los datos*/
+                setColorLabels(Color.black);
 
-			actualizarDemanda(demandaConsultada);			// Se envia el objeto al controlador
-		}
+                vista.getDemandaDatos().getlabelError().setForeground(Color.red);
+                vista.getDemandaDatos().getlabelError().setText(""); 
+
+                String DNI = vista.getDemandaDatos().getTextoNIF();
+                String HistorialLaboral = vista.getDemandaDatos().getTextoHistoriaLaboral();
+
+                if(!TestDatos.isDNI(DNI)){
+                    exito = false; vista.getDemandaDatos().getLabelNif().setForeground(Color.red);
+                }
+                if (!TestDatos.isNombre(HistorialLaboral)) {
+                    exito = false; vista.getDemandaDatos().getLabelHistorialLaboral().setForeground(Color.red);
+                }
+                if(!exito){
+                    vista.getDemandaDatos().getlabelError().setForeground(Color.red);
+                    vista.getDemandaDatos().getlabelError().setText("Los datos no son válidos");
+                }else{			// Se envia el objeto al controlador
+                    try{
+                        beneficiario = BeneficiarioJDBC.getInstance().obtenerBeneficiario(DNI);
+                    }catch(SQLException ex){
+                        exito = false; ControladorErrores.mostrarError("Error al consultar beneficiario");
+                    }
+                    if (beneficiario==null){
+                            vista.getDemandaDatos().getlabelError().setText("El beneficiario no esta registrado");
+                            vista.getDemandaDatos().getLabelNif().setForeground(Color.red);
+                            exito = false;
+                    }
+                    if (exito){
+                        demandaConsultada.setIdBeneficiario(beneficiario);
+                        String descSector = vista.getDemandaDatos().getcbSector().getSelectedItem().toString();
+                        try{ demandaConsultada.setIdSector(SectorJDBC.getInstance().ConsultarSector(descSector));}
+                        catch (SQLException ex){ControladorErrores.mostrarError("Hubo un error con el sector:\n"+ex);}
+                        demandaConsultada.setDescripcionValidaLaboral(HistorialLaboral);
+                        demandaConsultada.setIdVoluntario(ControladorPrincipal.getInstance().getVoluntario());
+                        demandaConsultada.setFecha(new Date());
+                        vista.getDemandaDatos().getlabelError().setText("");
+                        actualizarDemanda(demandaConsultada);
+                    }
+                }
+            }
 	}
 
 	public class ListenerBtEliminarDemanda implements ActionListener{
@@ -290,24 +393,24 @@ public class ControladorDemanda {
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Eliminar Demanda");
 
-			if (vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow() != -1) {
-				if (eliminarDemanda(listaDemandas.get(vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow()))){
-					ControladorErrores.mostrarMensaje("La demanda ha sido borrada");
-				}
+                        if (vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow() != -1) {
+                            demandaConsultada = listaDemandas.get(vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow());
 			}
+			if (demandaConsultada!=null) eliminarDemanda(demandaConsultada);
+			else ControladorErrores.mostrarAlerta("No hay ninguna demanda seleccionada.");
 		}
 	}
 
 	public class ListenerBtConsultarDemanda implements ActionListener{
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			System.out.println("Consultar Oferta");
-			if (vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow() != -1) {
-                demandaConsultada = listaDemandas.get(vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow());
-				ControladorBolsaTrabajo.getInstance(null).mostrarConsultarDemandas(demandaConsultada);
-			}
-		}
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Consultar Oferta");
+                if (vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow() != -1) {
+                    demandaConsultada = listaDemandas.get(vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow());
+                    ControladorBolsaTrabajo.getInstance(null).mostrarConsultarDemandas(demandaConsultada);
+                }
+            }
 	}
 
 }
