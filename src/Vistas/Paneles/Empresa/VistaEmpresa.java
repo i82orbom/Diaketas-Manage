@@ -19,8 +19,6 @@ public class VistaEmpresa extends javax.swing.JPanel {
     public static String panelBuscar = "buscar";
     public static String panelDatos = "datos";
 
-
-
     /**
      * Creates new form PanelVoluntario
      */
@@ -28,14 +26,11 @@ public class VistaEmpresa extends javax.swing.JPanel {
         initComponents();
     }
 
-    // getter panel
     public BarraDeNavegacion getBarraDeNavegacion() {
-        //System.out.println("Barra de navegacion Vista socio");
         return barraDeNavegacion;
     }
 
     public PanelEmpresaInicio getPanelEmpresaInicio() {
-        System.out.println("Panel socio inico vista socio datos");
         return panelEmpresaInicio;
     }
 
@@ -51,7 +46,6 @@ public class VistaEmpresa extends javax.swing.JPanel {
     public void showPanel (String panel) {
         CardLayout cardLayout =  (CardLayout)panelEmpresa.getLayout();
         cardLayout.show(panelEmpresa, panel);
-        System.out.println("ShowPanel vista Socio"); 
     }
 
     

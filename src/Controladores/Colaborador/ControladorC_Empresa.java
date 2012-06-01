@@ -7,15 +7,20 @@ import JDBC.C_EmpresaJDBC;
 import Modelo.C_Empresa;
 import Modelo.Colaboracion;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
+import Vistas.Paneles.Empresa.VistaEmpresa;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  ** NOMBRE CLASE: *	ControladorC_Empresa
@@ -51,7 +56,7 @@ public class ControladorC_Empresa {
     private static ControladorC_Empresa instancia = null;
 
     
-    public static ControladorC_Empresa getInstance(VistaColaboradores pvista) {
+    public static ControladorC_Empresa getInstance(VistaEmpresa pvista) {
 
         if (instancia == null) {
             instancia = new ControladorC_Empresa(pvista);
@@ -59,16 +64,14 @@ public class ControladorC_Empresa {
         return instancia;
 
     }
-
     
-
     C_Empresa C_Empresa_temp;
     
     Colaboracion Colaboracion_temp;
     
-    private VistaColaboradores vista;
+    private VistaEmpresa vista;
 
-    public ControladorC_Empresa(VistaColaboradores pvista) {
+    public ControladorC_Empresa(VistaEmpresa pvista) {
         this.vista = pvista;
         
         vista.getPanelEmpresaInicio().anadirListenerbtNuevaEmpresa(new btNuevaEmpresaListener());
@@ -86,9 +89,30 @@ public class ControladorC_Empresa {
         
         anadirKeyListener();
         
-        // mostrarVistaInicio();
+        mostrarVistaInicio();
     }
 
+    /* MOSTRAR INICIO */
+    private void mostrarVistaInicio() {
+        vista.showPanel(VistaEmpresa.panelInicio);
+        vista.getBarraDeNavegacion().setTextLabelNivel1("Colaborador Empresa");
+    }
+
+    /* MOSTRAR NUEVA Y BUSCAR EMPRESA */
+    private void mostrarVistaBuscarEmpresa() {
+        vista.showPanel(VistaEmpresa.panelBuscar);
+        vista.getBarraDeNavegacion().setTextLabelNivel1("Colaborador Empresa");
+        vista.getBarraDeNavegacion().setTextLabelNivel2("Buscar");
+    }
+
+    private void mostrarVistaNuevaEmpresa() {
+        C_Empresa_temp = null;
+        vista.showPanel(VistaEmpresa.panelDatos);
+        vista.getPanelEmpresaDatos().limpiarCampos();
+        vista.getBarraDeNavegacion().setTextLabelNivel1("Colaborador Empresa");
+        vista.getBarraDeNavegacion().setTextLabelNivel2("Nueva Empresa");
+    }
+    
     
     /**
      * 
@@ -284,15 +308,49 @@ public class ControladorC_Empresa {
     }
 
     private void anadirKeyListener() {
+        TextKeyListener keyListener = new TextKeyListener();
         
+        vista.getPanelEmpresaDatos().getTextNombre().addKeyListener(keyListener);
+        vista.getPanelEmpresaDatos().getTextCIF().addKeyListener(keyListener);
+        vista.getPanelEmpresaDatos().getTextDireccionWeb().addKeyListener(keyListener);
+        vista.getPanelEmpresaDatos().getTextFax().addKeyListener(keyListener);
+
+        vista.getPanelEmpresaDatos().getTextDireccion().addKeyListener(keyListener);
+        vista.getPanelEmpresaDatos().getTextProvincia().addKeyListener(keyListener);
+        vista.getPanelEmpresaDatos().getTextLocalidad().addKeyListener(keyListener);
+        vista.getPanelEmpresaDatos().getTextTelefonoFijo().addKeyListener(keyListener);
+        vista.getPanelEmpresaDatos().getTextTelefonoMovil().addKeyListener(keyListener);
+        vista.getPanelEmpresaDatos().getTextEmail().addKeyListener(keyListener);
         
+        vista.getPanelEmpresaDatos().getTextImporte().addKeyListener(keyListener);
+        vista.getPanelEmpresaDatos().getTextConcepto().addKeyListener(keyListener);
+        vista.getPanelEmpresaDatos().getTextFecha().addKeyListener(keyListener);
     }
     
+    class TextKeyListener implements KeyListener {
+
+        @Override
+        public void keyTyped(KeyEvent ke) {
+            if (ke.getSource().getClass() == JTextField.class || ke.getSource().getClass() == JFormattedTextField.class) {
+                ((JTextField)ke.getSource()).setForeground(Color.black);
+            }
+        }
+
+        @Override
+        public void keyPressed(KeyEvent ke) {
+        }
+
+        @Override
+        public void keyReleased(KeyEvent ke) {
+        }
+        
+    }
     /* BOTONES PANEL_EMPRESA_INICIO */
     class btNuevaEmpresaListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            mostrarVistaNuevaEmpresa();
         }
     }
     
@@ -300,6 +358,7 @@ public class ControladorC_Empresa {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            mostrarVistaBuscarEmpresa();
         }
     }
     
