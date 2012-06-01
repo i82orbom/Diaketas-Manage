@@ -389,6 +389,7 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
 
         labelError.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelError.setForeground(new java.awt.Color(255, 0, 0));
+        labelError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelError.setText("Error");
         labelError.setToolTipText("");
 
@@ -396,6 +397,18 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(28, 28, 28)
+                        .add(jLabel71))
+                    .add(layout.createSequentialGroup()
+                        .add(30, 30, 30)
+                        .add(jLabel69))
+                    .add(layout.createSequentialGroup()
+                        .add(31, 31, 31)
+                        .add(jLabel68)))
+                .add(0, 841, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -419,22 +432,10 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                         .add(BTLimpiar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(BTEliminar)
-                        .add(309, 309, 309))))
-            .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(28, 28, 28)
-                        .add(jLabel71))
-                    .add(layout.createSequentialGroup()
-                        .add(30, 30, 30)
-                        .add(jLabel69))
-                    .add(layout.createSequentialGroup()
-                        .add(31, 31, 31)
-                        .add(jLabel68))
-                    .add(layout.createSequentialGroup()
-                        .add(358, 358, 358)
-                        .add(labelError, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 309, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .add(0, 0, Short.MAX_VALUE))
+                        .add(309, 309, 309))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(labelError, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

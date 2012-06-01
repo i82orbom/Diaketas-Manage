@@ -6,6 +6,7 @@ import Controladores.ControladorErrores;
 import Controladores.ControladorPrincipal;
 import Controladores.TestDatos;
 import JDBC.C_EmpresaJDBC;
+import JDBC.DemandaJDBC;
 import JDBC.OfertaJDBC;
 import JDBC.SectorJDBC;
 import Modelo.C_Empresa;
@@ -181,28 +182,52 @@ public class ControladorOferta {
 	}
 
 	public void eliminarSector(String desc){
-		Sector sector;
+		Sector sector=null;
+		boolean tieneOfertas=true, tieneDemandas=true;
 		try {
 			sector = SectorJDBC.getInstance().ConsultarSector(desc);
+		} catch (SQLException ex){
+			ControladorErrores.mostrarError("Error al obtener sector:\n"+ex);
+		}
 
-			try{
+
+		if (sector!=null){
+/*			try {
+				tieneDemandas = DemandaJDBC.getInstance().ConsultarDemandaSector(sector.getOID());
+			} catch (SQLException ex){
+				ControladorErrores.mostrarError("Error al obtener demandas del sector:\n"+ex);
+			}
+*//*
+			try {
+				tieneOfertas = OfertaJDBC.getInstance().ConsultarOfertaSector(sector.getOID());
+			} catch (SQLException ex){
+				ControladorErrores.mostrarError("Error al obtener ofertas del sector:\n"+ex);
+			}
+*/		}
+
+		if (tieneDemandas){
+			vista.getOfertaDatos().getlabelError().setText("El sector no puede ser eliminado. Hay demandas en este sector.");
+		}
+		else if (tieneOfertas){
+			vista.getOfertaDatos().getlabelError().setText("El sector no puede ser eliminado. Hay ofertas en este sector.");
+		}
+		else {
+			try {
 				SectorJDBC.getInstance().EliminarSector(sector);
 				vista.getOfertaDatos().getlabelError().setText("Sector eliminado correctamente");
 			}
 			catch (SQLException ex){
 				ControladorErrores.mostrarError("Error al eliminar sector:\n"+ex);
 			}
-			try {
-				vista.getOfertaDatos().getcbSector().removeAllItems();
-				ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
-				for (int i=0;i<sectores.size();i++)
-					vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
-			}catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
-		}
-		catch (SQLException ex){
-			ControladorErrores.mostrarError("Error al obtener sector:\n"+ex);
 		}
 
+		// Recargo la lista de sectores
+		try {
+			vista.getOfertaDatos().getcbSector().removeAllItems();
+			ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
+			for (int i=0;i<sectores.size();i++)
+				vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+		}catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
 	}
 
 	public void insertarOferta(Oferta oferta){
@@ -358,16 +383,17 @@ public class ControladorOferta {
 				}
 
 				if (exito){
-					oferta.setEmpresa(empresa);
 					String descSector = vista.getOfertaDatos().getcbSector().getSelectedItem().toString();
 					try{ oferta.setSector(SectorJDBC.getInstance().ConsultarSector(descSector));}
 					catch (SQLException ex){ControladorErrores.mostrarError("Hubo un error con el sector:\n"+ex);}
+					oferta.setEmpresa(empresa);
+					oferta.setVoluntario(ControladorPrincipal.getInstance().getVoluntario());
+
 					oferta.setDescripcionOferta(descripcion);
 					oferta.setDuracionContrato(Integer.parseInt(duracion));
 					oferta.setPlazasOfertadas(Integer.parseInt(nPuestos));
 					oferta.setTipoContrato(vista.getOfertaDatos().getTextoTipoContrato());
 					oferta.setCualificacionRequerida(cualificacion);
-					oferta.setVoluntario(ControladorPrincipal.getInstance().getVoluntario());
 					oferta.setFecha(new Date());
 
 					vista.getOfertaDatos().getlabelError().setText("");
