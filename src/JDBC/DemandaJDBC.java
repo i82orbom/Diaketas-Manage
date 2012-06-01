@@ -190,5 +190,29 @@ public class DemandaJDBC {
         }
         return temp;
     }
+    
+    public boolean ConsultarDemandaSector (int oid) throws SQLException {
+    
+        DriverJDBC driver = DriverJDBC.getInstance();
+        String sql = "SELECT * FROM Sector WHERE OID ="+oid;
+        ResultSet resultado;
+        boolean exito;
+        
+        try{
+            driver.conectar();
+            resultado=driver.seleccionar(sql);
+            if(resultado.next())
+                exito=true;
+            else
+                exito = false;
+        }
+        catch( SQLException ea){
+            throw(ea);
+        }
+        finally{
+            driver.desconectar();
+        }
+        return exito;
+    }
    
 }
