@@ -60,11 +60,17 @@ public class Ventana extends javax.swing.JFrame {
         setTitle("Diaketas");
         setBackground(new java.awt.Color(135, 170, 235));
         setBounds(new java.awt.Rectangle(0, 0, 1000, 600));
+        setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 600));
         setName("Diaketas");
+        setPreferredSize(new java.awt.Dimension(1000, 665));
         setResizable(false);
         getContentPane().setLayout(new java.awt.CardLayout());
+
+        vistaLogin.setName("Diaketas");
         getContentPane().add(vistaLogin, "login");
+        vistaLogin.getAccessibleContext().setAccessibleName("Diaketas");
+
         getContentPane().add(vistaInicial, "inicio");
         getContentPane().add(vistaVoluntario, "voluntario");
         getContentPane().add(vistaBeneficiario, "beneficiario");

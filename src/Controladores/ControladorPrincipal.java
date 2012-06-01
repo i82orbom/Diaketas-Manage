@@ -96,8 +96,8 @@ public class ControladorPrincipal {
         vista.getVistaInicial().anadirListenerbtBolsaTrabajo(new BtBolsaTrabajoListener());
         
         // Para probar
-        //vista.getVistaLogin().getTextFieldIdUsuario().setText("12345678A");
-        //vista.getVistaLogin().getTextFieldContrasena().setText("admin");
+        vista.getVistaLogin().getTextFieldIdUsuario().setText("12345678A");
+        vista.getVistaLogin().getTextFieldContrasena().setText("admin");
     }
 
     /**

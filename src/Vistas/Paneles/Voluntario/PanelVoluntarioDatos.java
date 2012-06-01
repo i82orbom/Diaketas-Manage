@@ -187,24 +187,27 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
         textFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
         btGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/save_f2.png"))); // NOI18N
+        btGuardar.setToolTipText("Guardar");
         btGuardar.setActionCommand("guardarDatosVoluntario");
 
         btBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
+        btBorrar.setToolTipText("Limpiar los campos");
         btBorrar.setActionCommand("borrarDatosVoluntario");
 
         labelError.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         labelError.setForeground(new java.awt.Color(255, 51, 51));
         labelError.setText("Error");
 
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel1.setText("Datos Personales");
 
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel4.setText("Datos de Acceso");
 
         jLabel15.setText("Password");
 
         btEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
+        btEliminar.setToolTipText("Eliminar el Voluntario");
         btEliminar.setActionCommand("borrarDatosVoluntario");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
@@ -212,62 +215,68 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(90, 90, 90)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel6)
-                    .add(jLabel7)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                        .add(layout.createSequentialGroup()
-                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                .add(jLabel2)
-                                .add(jLabel1)
-                                .add(jLabel4)
-                                .add(jLabel15))
-                            .add(27, 27, 27)
-                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                .add(textPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 243, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(layout.createSequentialGroup()
-                                    .add(btGuardar)
-                                    .add(40, 40, 40)
-                                    .add(labelError, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 363, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 71, Short.MAX_VALUE)
-                                    .add(btEliminar)
-                                    .add(18, 18, 18)
-                                    .add(btBorrar))))
-                        .add(layout.createSequentialGroup()
-                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                .add(jLabel3)
-                                .add(jLabel9)
-                                .add(jLabel14))
-                            .add(18, 18, 18)
+                    .add(layout.createSequentialGroup()
+                        .add(90, 90, 90)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel6)
+                            .add(jLabel7)
                             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                .add(textApellidos)
-                                .add(textNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 272, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(layout.createSequentialGroup()
-                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                        .add(textLocalidad, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-                                        .add(org.jdesktop.layout.GroupLayout.LEADING, textNIF)
-                                        .add(org.jdesktop.layout.GroupLayout.LEADING, textTelFijo))
-                                    .add(52, 52, 52)
                                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(jLabel10)
-                                        .add(jLabel12)
-                                        .add(jLabel13))
-                                    .add(42, 42, 42)
+                                        .add(jLabel2)
+                                        .add(jLabel15))
+                                    .add(98, 98, 98)
                                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(textCP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 87, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                            .add(org.jdesktop.layout.GroupLayout.LEADING, textFechaNacimiento, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                                            .add(org.jdesktop.layout.GroupLayout.LEADING, textTelMovil))))
-                                .add(textDomicilio)))))
-                .addContainerGap(140, Short.MAX_VALUE))
+                                        .add(textPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 243, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(layout.createSequentialGroup()
+                                            .add(btGuardar)
+                                            .add(40, 40, 40)
+                                            .add(labelError, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 363, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 71, Short.MAX_VALUE)
+                                            .add(btEliminar)
+                                            .add(18, 18, 18)
+                                            .add(btBorrar))))
+                                .add(layout.createSequentialGroup()
+                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                        .add(jLabel3)
+                                        .add(jLabel9)
+                                        .add(jLabel14))
+                                    .add(18, 18, 18)
+                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                        .add(textApellidos)
+                                        .add(textNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 272, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(layout.createSequentialGroup()
+                                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                                .add(textLocalidad, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                                                .add(org.jdesktop.layout.GroupLayout.LEADING, textNIF)
+                                                .add(org.jdesktop.layout.GroupLayout.LEADING, textTelFijo))
+                                            .add(52, 52, 52)
+                                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                                .add(jLabel10)
+                                                .add(jLabel12)
+                                                .add(jLabel13))
+                                            .add(42, 42, 42)
+                                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                                .add(textCP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 87, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                                    .add(org.jdesktop.layout.GroupLayout.LEADING, textFechaNacimiento, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                                                    .add(org.jdesktop.layout.GroupLayout.LEADING, textTelMovil))))
+                                        .add(textDomicilio))))))
+                    .add(layout.createSequentialGroup()
+                        .add(156, 156, 156)
+                        .add(jLabel1))
+                    .add(layout.createSequentialGroup()
+                        .add(160, 160, 160)
+                        .add(jLabel4)))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(46, 46, 46)
+                .add(37, 37, 37)
                 .add(jLabel1)
-                .add(18, 18, 18)
+                .add(27, 27, 27)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(textNombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -297,9 +306,9 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
                     .add(jLabel13)
                     .add(textLocalidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(38, 38, 38)
+                .add(31, 31, 31)
                 .add(jLabel4)
-                .add(20, 20, 20)
+                .add(27, 27, 27)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel15)
                     .add(textPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -313,7 +322,7 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
                             .add(btBorrar)
                             .add(btGuardar)
                             .add(btEliminar))))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         btBorrar.getAccessibleContext().setAccessibleDescription("Borrar los campos\n");

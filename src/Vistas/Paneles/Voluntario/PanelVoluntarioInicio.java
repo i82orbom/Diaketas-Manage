@@ -66,7 +66,7 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
 
         btNuevoVoluntario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/vol.png"))); // NOI18N
         btNuevoVoluntario.setActionCommand("nuevoVoluntario");
-        add(btNuevoVoluntario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, 183));
+        add(btNuevoVoluntario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, -1, 183));
 
         btBuscarVoluntario.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btBuscarVoluntario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/lupa.png"))); // NOI18N
@@ -74,7 +74,7 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
         btBuscarVoluntario.setActionCommand("buscarVoluntario");
         btBuscarVoluntario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btBuscarVoluntario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        add(btBuscarVoluntario, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 60, -1, -1));
+        add(btBuscarVoluntario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 90, -1, -1));
 
         btContabilidad.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btContabilidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/contabilidad.jpg"))); // NOI18N
@@ -82,7 +82,7 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
         btContabilidad.setActionCommand("contabilidad");
         btContabilidad.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btContabilidad.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        add(btContabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 297, 169, 183));
+        add(btContabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 169, 183));
 
         btAyudas.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btAyudas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/images.jpg"))); // NOI18N
@@ -90,7 +90,7 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
         btAyudas.setActionCommand("ayudas");
         btAyudas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btAyudas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        add(btAyudas, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 297, 166, 183));
+        add(btAyudas, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 330, 166, 183));
 
         btColaboraciones.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btColaboraciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/monigote-devoluciones_1.jpg"))); // NOI18N
@@ -98,7 +98,7 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
         btColaboraciones.setActionCommand("contabilidad");
         btColaboraciones.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btColaboraciones.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        add(btColaboraciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 297, 166, 183));
+        add(btColaboraciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, 166, 183));
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAyudas;
