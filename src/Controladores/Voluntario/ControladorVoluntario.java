@@ -377,7 +377,7 @@ public class ControladorVoluntario {
             }
 
             if (!datosCorrectos) {
-                vista.getPanelVoluntarioDatos().setTextLabelError("Los campos en rojo tienes errores.");
+                vista.getPanelVoluntarioDatos().setTextLabelError("Los campos en rojo tienen errores.");
             } else {
 
                 // Nuevo Voluntario
