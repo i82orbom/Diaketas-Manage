@@ -6,8 +6,6 @@ import JDBC.SocioJDBC;
 import Modelo.Cuota;
 import Modelo.Socio;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -43,51 +41,41 @@ public class ControladorCuota {
      */
     private static ControladorCuota instancia = null;
 
-    public static ControladorCuota getInstance(VistaColaboradores colaborador) {
+    public static ControladorCuota getInstance() {
 
         if (instancia == null) {
-            instancia = new ControladorCuota(colaborador);
+            instancia = new ControladorCuota();
         }
         return instancia;
 
     }
 
 	
-    private VistaColaboradores vista;
 
-    public ControladorCuota(VistaColaboradores pvista) {
-		vista=pvista;
-		
+    public ControladorCuota() {		
 	}
 
-    public boolean anadirCuota (String[] datos, Socio s){
+    public boolean anadirCuota (Cuota cuota){
         // TODO comprobar datos
+		Cuota cuota_activa = null;
 
-        Cuota cuota;
         try {
-            cuota = SocioJDBC.getInstance().obtenerCuotaActiva(s);
+            cuota_activa = SocioJDBC.getInstance().obtenerCuotaActiva(cuota.getSocio());
         } catch (SQLException ex) {
             Logger.getLogger(ControladorCuota.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         boolean exito;
-
-        try {
-            exito = CuotaJDBC.getInstance().cancelarCuota(cuota);
-            if (!exito)
-                return false;
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorCuota.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-
-        cuota = new Cuota();
-        cuota.setCantidad(Integer.parseInt(datos[Cuota.CANTIDAD]));
-        cuota.setFechaFin(Date.valueOf(datos[Cuota.FECHA_FIN]));
-        cuota.setFechaInicial(Date.valueOf(datos[Cuota.FECHA_INICIO]));
-        cuota.setFechaUltimoPago(Date.valueOf(datos[Cuota.FECHA_ULTIMO_PAGO]));
-        cuota.setIntervaloPagos(Date.valueOf(datos[Cuota.INTERFALO_PAGOS]));
-
+		if(cuota_activa.getSocio()!=null){
+			try {
+				exito = CuotaJDBC.getInstance().cancelarCuota(cuota_activa);
+				if (!exito)
+					return false;
+			} catch (SQLException ex) {
+				Logger.getLogger(ControladorCuota.class.getName()).log(Level.SEVERE, null, ex);
+				return false;
+			}
+		}
         try {
             return CuotaJDBC.getInstance().añadirCuota(cuota);
         } catch (SQLException ex) {

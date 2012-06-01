@@ -153,10 +153,10 @@ CREATE TABLE Socio (
 );
 
 CREATE TABLE Cuota (
-	  OID INTEGER
+	  OID INTEGER AUTO_INCREMENT
 	, OIDSocio INTEGER
 	, Cantidad FLOAT NOT NULL
-	, IntervalosPagos DATE NOT NULL
+	, IntervalosPagos INT NOT NULL
 	, FechaInicio DATE NOT NULL
 	, FechaFin DATE
 	, FechaUltimoPago DATE

@@ -24,6 +24,7 @@
  */
 package JDBC;
 
+import Controladores.TestDatos;
 import Modelo.Cuota;
 import Modelo.Socio;
 import java.sql.ResultSet;
@@ -68,7 +69,7 @@ public class CuotaJDBC {
     public boolean añadirCuota(Cuota c) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "INSERT INTO Cuota (Importe, intervaloPagos, fechaInicial, fechaFin, OIDSocio) VALUES ('"+c.getCantidad()+"','"+c.getIntervaloPagos()+"','"+c.getFechaInicio()+"','"+c.getFechaFin()+"','"+c.getOIDSocio()+"')";
+        String sql = "INSERT INTO Cuota (Cantidad, IntervalosPagos, FechaInicio, FechaFin, OIDSocio) VALUES ('"+c.getCantidad()+"','"+c.getIntervaloPagos()+"','"+TestDatos.formatterBD.format(c.getFechaInicio())+"','"+TestDatos.formatterBD.format(c.getFechaFin())+"','"+c.getSocio().getOID()+"')";
 
         try{
             driver.inicioTransaccion();
@@ -96,7 +97,7 @@ public class CuotaJDBC {
     public boolean actualizarUltimoPago(Cuota c) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "UPDATE Cuota SET fechaUltimoPago='"+c.getFechaUltimoPago()+"'+'"+c.getIntervaloPagos()+"' WHERE OIDSocio='"+c.getOIDSocio()+"'";
+        String sql = "UPDATE Cuota SET FechaUltimoPago='"+c.getFechaUltimoPago()+"'+'"+c.getIntervaloPagos()+"' WHERE OIDSocio='"+c.getSocio().getOID()+"'";
 
         try{
             driver.inicioTransaccion();
@@ -123,7 +124,7 @@ public class CuotaJDBC {
     public boolean atrasarUltimoPago(Cuota c) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "UPDATE Cuota SET fechaUltimoPago='"+c.getFechaUltimoPago()+"'-'"+c.getIntervaloPagos()+"' WHERE OIDSocio='"+c.getOIDSocio()+"'";
+        String sql = "UPDATE Cuota SET FechaUltimoPago='"+c.getFechaUltimoPago()+"'-'"+c.getIntervaloPagos()+"' WHERE OIDSocio='"+c.getSocio().getOID()+"'";
 
         try{
             driver.inicioTransaccion();
@@ -134,11 +135,11 @@ public class CuotaJDBC {
         catch (SQLException ex){
             driver.rollback();
             throw ex;
-	}
-        finally {
-            driver.finTransaccion();
-	}
-        return true;
+		}
+			finally {
+				driver.finTransaccion();
+		}
+			return true;
     }
 
     /**
@@ -151,7 +152,7 @@ public class CuotaJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
 
-        Date fechaActual = null;
+        Date fechaActual = new Date();
         String sql = "UPDATE Cuota SET FechaFin='"+fechaActual.getTime()+" WHERE Cuota.OID='"+c.getOIDCuota()+"'";
 
         try{
@@ -217,11 +218,13 @@ public class CuotaJDBC {
 
             if(rs.next()){
                 Cuota cuota = new Cuota();
+				cuota.setOIDCuota(rs.getLong("OID"));
+				//cuota.setSocio(rs.getLong("OIDSocio"));
                 cuota.setCantidad(rs.getDouble("Cantidad"));
-                cuota.setFechaFin(rs.getDate("fechaFin"));
-                cuota.setFechaInicial(rs.getDate("fechaInicial"));
-                cuota.setFechaUltimoPago(rs.getDate("fechaUltimoPago"));
-                cuota.setIntervaloPagos(rs.getDate("intervaloPagos"));
+                cuota.setFechaFin(rs.getDate("FechaFin"));
+                cuota.setFechaInicial(rs.getDate("FechaInicio"));
+                cuota.setFechaUltimoPago(rs.getDate("FechaUltimoPago"));
+                cuota.setIntervaloPagos(rs.getInt("IntervalosPagos"));
 
                 listaCuotas.add(cuota);
             }
@@ -252,11 +255,13 @@ public class CuotaJDBC {
 
             if(rs.next()){
                 Cuota cuota = new Cuota();
+				cuota.setOIDCuota(rs.getLong("OID"));
+				cuota.setSocio(s);
                 cuota.setCantidad(rs.getDouble("Cantidad"));
-                cuota.setFechaFin(rs.getDate("fechaFin"));
-                cuota.setFechaInicial(rs.getDate("fechaInicial"));
-                cuota.setFechaUltimoPago(rs.getDate("fechaUltimoPago"));
-                cuota.setIntervaloPagos(rs.getDate("intervaloPagos"));
+                cuota.setFechaFin(rs.getDate("FechaFin"));
+                cuota.setFechaInicial(rs.getDate("FechaInicio"));
+                cuota.setFechaUltimoPago(rs.getDate("FechaUltimoPago"));
+                cuota.setIntervaloPagos(rs.getInt("IntervalosPagos"));
 
                 listaCuotas.add(cuota);
             }

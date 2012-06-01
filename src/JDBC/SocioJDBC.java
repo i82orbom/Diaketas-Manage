@@ -316,21 +316,23 @@ public class SocioJDBC {
     public Cuota obtenerCuotaActiva(Socio socio) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        Date fechaActual = null;
+        Date fechaActual = new Date();
         Cuota c = new Cuota();
-
-        String sql = "SELECT * FROM Cuota c WHERE c.OIDSocio='"+socio.getOID()+"' AND (c.FechaFin > '"+fechaActual.getTime()+"' OR c.FechaFin <> NULL)";
-
+		
+        String sql = "SELECT * FROM Cuota c WHERE c.OIDSocio='"+socio.getOID()+"' AND (c.FechaFin > '"+TestDatos.formatterBD.format(fechaActual)+"' OR c.FechaFin <> NULL)";
         try {
             driver.conectar();
             ResultSet rs = driver.seleccionar(sql);
 
             if(rs.next()){
+				c.setOIDCuota(rs.getLong("OID"));
+				c.setSocio(socio);
                 c.setCantidad(rs.getDouble("Cantidad"));
-                c.setFechaFin(rs.getDate("fechaFin"));
-                c.setFechaInicial(rs.getDate("fechaInicial"));
-                c.setFechaUltimoPago(rs.getDate("fechaUltimoPago"));
-                c.setIntervaloPagos(rs.getDate("intervaloPagos"));
+                c.setFechaFin(rs.getDate("FechaFin"));
+                c.setFechaInicial(rs.getDate("FechaInicio"));
+                c.setFechaUltimoPago(rs.getDate("FechaUltimoPago"));
+                c.setIntervaloPagos(rs.getInt("IntervalosPagos"));
+				c.setSocio(socio);
             }
         }
         catch (SQLException ex){
