@@ -99,7 +99,7 @@ public class ControladorCuota {
 
 
         try {
-            CuotaJDBC.getInstance().historialCuotas(s);
+            cuotas = CuotaJDBC.getInstance().historialCuotas(s);
         } catch (SQLException ex) {
             Logger.getLogger(ControladorCuota.class.getName()).log(Level.SEVERE, null, ex);
         }

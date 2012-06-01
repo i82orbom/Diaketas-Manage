@@ -319,6 +319,7 @@ public class ControladorSocio{
 				
 				boolean exito = anadirSocio(socio);
 				if (exito) {
+						socio_temp = obtenerSocio(socio.getDNI());
 						vista.getPanelSocioDatos().setTextLabelError("Socio añadido correctamente.");
 				} else {
 						vista.getPanelSocioDatos().setTextLabelError("El Socio no ha sido añadido.");
@@ -630,8 +631,9 @@ public class ControladorSocio{
 				socio_temp = obtenerSocio(DNI);
 				vista.getPanelSocioDatos().modificarSocio(socio_temp);
 				cuotas = ControladorCuota.getInstance().verHistorialCuotas(socio_temp);
-				//if(cuotas.size()>0)
-					//actualizarTablaCuotas();
+				if(cuotas!=null)
+					actualizarTablaCuotas();
+			
 				ControladorColaboradores.getInstance(vista).mostrarVistaModificarSocio();
 			}
 		}
@@ -713,9 +715,11 @@ public class ControladorSocio{
 					ControladorCuota.getInstance().anadirCuota(cuota);
 					cuota = obtenerCuota(socio_temp);
 					cuotas = ControladorCuota.getInstance().verHistorialCuotas(socio_temp);
-					if(cuotas.size()>0)
-						actualizarTablaCuotas();
-					vista.getPanelSocioDatos().setTextLabelErrorCuota("La cuota a sido añadida");
+					if(cuotas==null)
+						cuotas = new ArrayList<Cuota>();
+					cuotas.add(cuota);
+					actualizarTablaCuotas();
+					vista.getPanelSocioDatos().setTextLabelErrorCuota("La cuota ha sido añadida");
 				}
 			}
 		}
