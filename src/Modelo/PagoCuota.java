@@ -28,9 +28,9 @@ package Modelo;
  */
 public class PagoCuota extends Movimiento{
     
-    private int OID;
-    private int OIDVoluntario;
-    private int OIDSocio;
+    private Long OID;
+    private Voluntario voluntario;
+    private Socio socio;
     
     /**
      * Constructor por defecto
@@ -42,7 +42,7 @@ public class PagoCuota extends Movimiento{
      * Obtener el OID del Pago de una Cuota
      * @return OID
      */
-    public int getOIDPagoCuota() {
+    public Long getOIDPagoCuota() {
         return OID;
     }
     
@@ -50,40 +50,23 @@ public class PagoCuota extends Movimiento{
      * Asignar un OID al Pago de una Cuota
      * @param OID
      */
-    public void setOIDPagoCuota(int OID) {
+    public void setOIDPagoCuota(Long OID) {
         this.OID = OID;
     }            
-    
-    /**
-     * Obtener el OID del Voluntario en un Pago de una Cuota
-     * @return OIDVoluntario
-     */
-    public int getOIDVoluntario() {
-        return OIDVoluntario;
-    }
-    
-    /**
-     * Asignar un OID al Voluntario del Pago de una Cuota
-     * @param OIDVoluntario
-     */
-    public void setOIDVoluntario(int OIDVoluntario) {
-        this.OIDVoluntario = OIDVoluntario;
-    } 
-    
-    /**
-     * Obtener el OID del Socio en un Pago de una Cuota
-     * @return OIDSocio
-     */
-    public int getOIDSocio() {
-        return OIDSocio;
-    }
-    
-    /**
-     * Asignar un OID al Socio del Pago de una Cuota
-     * @param OIDSocio
-     */
-    public void setOIDSocio(int OIDSocio) {
-        this.OIDSocio = OIDSocio;
-    } 
-    
+	
+    public Socio getSocio() {
+		return socio;
+	}
+
+	public void setSocio(Socio socio) {
+		this.socio = socio;
+	}
+
+	public Voluntario getVoluntario() {
+		return voluntario;
+	}
+
+	public void setVoluntario(Voluntario voluntario) {
+		this.voluntario = voluntario;
+	}    
 }

@@ -30,10 +30,10 @@ import java.util.Date;
  */
 public class Cuota {
       
-    private int OID;
-    private int OIDSocio;
+    private Long OID;
+    private Socio socio;
     private double cantidad;
-    private Date intervaloPagos;
+    private int intervaloPagos;
     private Date fechaInicio;
     private Date fechaFin;
     private Date fechaUltimoPago;
@@ -53,7 +53,7 @@ public class Cuota {
      * Obtener el OID de la Cuota
      * @return OID
      */
-    public int getOIDCuota() {
+    public Long getOIDCuota() {
         return OID;
     }
     
@@ -61,24 +61,24 @@ public class Cuota {
      * Asignar un OID a una Cuota
      * @param OID
      */
-    public void setOIDCuota(int OID) {
+    public void setOIDCuota(Long OID) {
         this.OID = OID;
     }
     
     /**
-     * Obtener el OID del Socio
-     * @return OIDSocio
+     * Obtener el Socio
+     * @return socio
      */
-    public int getOIDSocio() {
-        return OIDSocio;
+    public Socio getSocio() {
+        return socio;
     }
     
     /**
-     * Asignar un OID a el Socio
-     * @param OIDSocio
+     * Asignar un Socio 
+     * @param s
      */
-    public void setOIDSocio(int OIDSocio) {
-        this.OIDSocio = OIDSocio;
+    public void setSocio(Socio s) {
+        this.socio = s;
     }
     
     /**
@@ -101,7 +101,7 @@ public class Cuota {
      * Obtener el Intervalo de los Pagos de la Cuota
      * @return intervaloPagos
      */
-    public Date getIntervaloPagos() {
+    public int getIntervaloPagos() {
         return intervaloPagos;
     }
     
@@ -109,7 +109,7 @@ public class Cuota {
      * Asignar el Intervalo de los Pagos de la Cuota
      * @param intervaloPagos
      */
-    public void setIntervaloPagos(Date intervaloPagos) {
+    public void setIntervaloPagos(int intervaloPagos) {
         this.intervaloPagos = intervaloPagos;
     }
     

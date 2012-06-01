@@ -51,7 +51,7 @@ public class ControladorDemanda {
         private Demanda demandaConsultada;
 	ArrayList<Demanda> listaDemandas;
         String[] columnNames = {"DNI", "Nombre y Apellidos", "Sector", "Fecha de demanda"};
-        
+
 	private ControladorDemanda(VistaBolsaTrabajo pvista){
 		/**
 		* Establece como ventana padre la pasada como parámetro
@@ -78,7 +78,7 @@ public class ControladorDemanda {
 		if (instancia == null) instancia = new ControladorDemanda(panelDemanda);
 		return instancia;
 	}
-        
+
         private void actualizarTablaDemandas(){
             TableModel tableModel = new TableModel() {
                 @Override
@@ -136,8 +136,8 @@ public class ControladorDemanda {
             };
             vista.getDemandaBuscar().getTablaBusquedaDemandante().setModel(tableModel);
 
-            
-        } 
+
+        }
 	/* Métodos del controlador */
 	public boolean insertarDemanda(Demanda demanda){
 		try{
@@ -189,9 +189,9 @@ public class ControladorDemanda {
 			}
 			sectorOID = sector.getOID();
 		}
-
+//¡¡¡REVISA ESTOOOOOOOOOOOOOOOOO!!!!!
 		try{
-			listaDemandas = DemandaJDBC.getInstance().FiltrarDemandas(DNI, sectorDesc, antiguedad);
+			listaDemandas = DemandaJDBC.getInstance().FiltrarDemandas(Long.parseLong(DNI), Long.parseLong(sectorDesc), antiguedad);
 			actualizarTablaDemandas();
 		} catch (SQLException ex){
 			ControladorErrores.mostrarError("Error al obtener la lista de ofertas:\n"+ex.getMessage());
@@ -206,9 +206,9 @@ public class ControladorDemanda {
 	}
 
 	public void eliminarDemanda(Demanda demanda){
-                if(JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar la demanda?", "Eliminar Demanda", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+/*                if(JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar la demanda?", "Eliminar Demanda", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
                     try{
-                            DemandaJDBC.getInstance().EliminarDemanda(demanda);
+                            DemandaJDBC.getInstance().EliminarDemanda(demanda.getOID());
                             ControladorErrores.mostrarMensaje("La demanda ha sido eliminada");
                     }
                     catch (SQLException ex){
@@ -219,7 +219,7 @@ public class ControladorDemanda {
 		demandaConsultada = null;
 		actualizarTablaDemandas();
 		ControladorBolsaTrabajo.getInstance(null).mostrarBuscarDemanda();
-                
+*/
 	}
 
 
@@ -229,11 +229,11 @@ public class ControladorDemanda {
                 vista.getDemandaDatos().getLabelSector().setForeground(c);
                 vista.getDemandaDatos().getLabelHistorialLaboral().setForeground(c);
 	}
-        
+
 	/* Clases para ActionListener */
 
 
-        
+
 	public class ListenerBtGuardarDemanda implements ActionListener{
 
 		@Override
@@ -241,18 +241,18 @@ public class ControladorDemanda {
 			Demanda  demanda = new Demanda();		// Se crean los objetos
                         Beneficiario beneficiario = null;
                         boolean exito = true;
-                        
+
                         /*Comprobamos los datos*/
                         setColorLabels(Color.black);
-                        
+
                         vista.getDemandaDatos().getlabelError().setForeground(Color.red);
-                        vista.getDemandaDatos().getlabelError().setText(""); 
-                        
+                        vista.getDemandaDatos().getlabelError().setText("");
+
                         String DNI = vista.getDemandaDatos().getTextoNIF();
                         String HistorialLaboral = vista.getDemandaDatos().getTextoHistoriaLaboral();
                         demanda.setDescripcionValidaLaboral(vista.getDemandaDatos().getTextoHistoriaLaboral());
             		demanda.setFecha(new Date());	// Fecha actual
-                        
+
                         if(!TestDatos.isDNI(DNI)){
                             exito = false; vista.getDemandaDatos().getLabelNif().setForeground(Color.red);
                         }
@@ -325,7 +325,7 @@ public class ControladorDemanda {
                 setColorLabels(Color.black);
 
                 vista.getDemandaDatos().getlabelError().setForeground(Color.red);
-                vista.getDemandaDatos().getlabelError().setText(""); 
+                vista.getDemandaDatos().getlabelError().setText("");
 
                 String DNI = vista.getDemandaDatos().getTextoNIF();
                 String HistorialLaboral = vista.getDemandaDatos().getTextoHistoriaLaboral();

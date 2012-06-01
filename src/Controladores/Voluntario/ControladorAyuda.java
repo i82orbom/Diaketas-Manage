@@ -67,7 +67,7 @@ public class ControladorAyuda {
     public ControladorAyuda(PanelVoluntarioAyudas vista) {
         this.vista = vista;
 
-        actualizarTipoAyuda();
+        //actualizarTipoAyuda();
 
         this.vista.getBtnGuardarTipoAyuda().addActionListener(new BtGuardarTipoAyudaListener());
         this.vista.getBtnEliminarTipoAyuda().addActionListener(new BtBorrarTipoAyudaListener());

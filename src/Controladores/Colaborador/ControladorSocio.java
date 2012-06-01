@@ -72,8 +72,10 @@ public class ControladorSocio{
 	private VistaColaboradores vista;
 	Socio socio_temp = null;
 	ArrayList<Socio> socios = null;
+	ArrayList<Cuota> cuotas = null;
 	
 	private String[] columnNames = {"DNI", "Nombre", "Direccion", "Localidad", "Teléfono", "Movil", "CP"};
+	private String[] columnNamesCuotas = {"Cantidad", "Fecha Inicio", "Fecha Final", "Intervalo de Pagos", "Ulitmo Pago"};
 
 	public ControladorSocio(VistaColaboradores pvista) {
 		
@@ -82,11 +84,12 @@ public class ControladorSocio{
 		
 		vista.getPanelSocioDatos().getBtGuardarDatosSocio().addActionListener(new btGuardarDatosSocioListener());
 		vista.getPanelSocioDatos().getBtBorrarDatosSocio().addActionListener(new btBorrarDatosSocioListener());
+		vista.getPanelSocioDatos().getBtGuardarColaboracion().addActionListener(new btGuardarColaboracionesListener());
+		vista.getPanelSocioDatos().getBtGuardarCuotaSocio().addActionListener(new btGuardarCuotaListener());
 		
 		vista.getPanelSocioBuscar().getBtBuscarSocio().addActionListener(new btBuscarSocioListener());
 		vista.getPanelSocioBuscar().getBtEliminarSocio().addActionListener(new btEliminarSocioListener());
 		vista.getPanelSocioBuscar().getBtConsultarSocio().addActionListener(new btConsultarSocioListener());
-		vista.getPanelSocioDatos().getBtGuardarColaboracion().addActionListener(new btGuardarColaboracionesListener());
 		
 		anadirKeyListener();
 	}
@@ -130,6 +133,7 @@ public class ControladorSocio{
 		}
 		return existe;
 	}
+	
 	public boolean modificarSocio (Socio socio) {
 		if (obtenerSocio(socio.getDNI())!= null && !socio_temp.getDNI().equals(socio.getDNI()) ) {
             JOptionPane.showMessageDialog(null, "Un socio con este DNI ya existe.");
@@ -170,7 +174,17 @@ public class ControladorSocio{
 
 		return socios;
 	}
-
+	public Cuota obtenerCuota (Socio socio) {
+		Cuota cuota = null;
+		try {
+			cuota = SocioJDBC.getInstance().obtenerCuotaActiva(socio);
+		} catch (SQLException ex) {
+			Logger.getLogger(ControladorCuota.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+		return cuota;
+	}
+	
 	public boolean cancelarCuota (Cuota c) {
 		if (c.getFechaUltimoPago() == c.getFechaInicio()) {
 			try {
@@ -185,7 +199,7 @@ public class ControladorSocio{
 				Logger.getLogger(ControladorCuota.class.getName()).log(Level.SEVERE, null, ex);
 			}
 		}
-		return false;
+		return true;
 	}
 
 	public ArrayList<Movimiento> historialPagosCuotas (Socio socio, Date fechaInicio, Date fechaFin) {
@@ -411,31 +425,6 @@ public class ControladorSocio{
 	}
 	
 	/**
-		* Listener controlador del boton Guardar Cuota socio
-	*/
-	public class btGuardarCuotaSocioListener implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			String[] datos= new String[5];
-			datos[Cuota.CANTIDAD]= vista.getPanelSocioDatos().obtenerCantidadCuotaSocio();
-			datos[Cuota.FECHA_FIN] = vista.getPanelSocioDatos().obtenerFechaFinCuotaSocio();
-			datos[Cuota.FECHA_INICIO] = vista.getPanelSocioDatos().obtenerFechaIniCuotaSocio();
-			datos[Cuota.INTERFALO_PAGOS] = vista.getPanelSocioDatos().obtenerIntervaloCuotaSocio();
-			//datos[Cuota.FECHA_ULTIMO_PAGO] = vista.getPanelSocioDatos().obtenerFechaIniCuotaSocio();
-			if(socio_temp!=null)
-				ControladorCuota.getInstance(vista).anadirCuota(datos, socio_temp);
-			else{
-				socio_temp=obtenerSocio(vista.getPanelSocioDatos().getTextDNI().getText());
-				if(socio_temp==null){
-				}
-				else
-					ControladorCuota.getInstance(vista).anadirCuota(datos, socio_temp);
-			}	
-		}
-	}
-	
-	/**
 		* Listener controlador del boton Buscar Colaboracion socio
 	*/
 	
@@ -551,71 +540,7 @@ public class ControladorSocio{
 						else
 							System.out.println("El socio no a sido eliminado");							
 
-						TableModel tableModel = new TableModel() {
-
-							@Override
-							public int getRowCount() {
-								return socios.size();
-							}
-
-							@Override
-							public int getColumnCount() {
-								return columnNames.length;
-							}
-
-							@Override
-							public String getColumnName(int i) {
-								return columnNames[i];
-							}
-
-							@Override
-							public Class<?> getColumnClass(int i) {
-								return String.class;
-							}
-
-							@Override
-							public boolean isCellEditable(int i, int i1) {
-								return false;
-							}
-
-							@Override
-							public Object getValueAt(int row, int col) {
-								switch (col) {
-									case 0:
-										return socios.get(row).getDNI();
-									case 1:
-										return socios.get(row).getNombre();
-									case 2:
-										return socios.get(row).getDireccion();
-									case 3:
-										return socios.get(row).getLocalidad();
-									case 4:
-										return socios.get(row).getTelefonoFijo();
-									case 5:
-										return socios.get(row).getTelefonoMovil();
-									case 6:
-										return socios.get(row).getCP();
-								}
-								return "";
-							}
-
-							@Override
-							public void setValueAt(Object o, int row, int col) {
-								throw new UnsupportedOperationException("Not supported yet.");
-							}
-
-							@Override
-							public void addTableModelListener(TableModelListener tl) {
-
-							}
-
-							@Override
-							public void removeTableModelListener(TableModelListener tl) {
-
-							}
-						};
-
-						vista.getPanelSocioBuscar().getTablaBusqueda().setModel(tableModel);
+						actualizarTablaBuscar();
 						vista.getPanelSocioBuscar().setTextLabelError("El Socio ha sido eliminado del sistema.");
 					}
 					else {
@@ -626,6 +551,72 @@ public class ControladorSocio{
 		}		
 	}
 	
+	void actualizarTablaBuscar(){
+		TableModel tableModel = new TableModel() {
+
+			@Override
+			public int getRowCount() {
+				return socios.size();
+			}
+
+			@Override
+			public int getColumnCount() {
+				return columnNames.length;
+			}
+
+			@Override
+			public String getColumnName(int i) {
+				return columnNames[i];
+			}
+
+			@Override
+			public Class<?> getColumnClass(int i) {
+				return String.class;
+			}
+
+			@Override
+			public boolean isCellEditable(int i, int i1) {
+				return false;
+			}
+
+			@Override
+			public Object getValueAt(int row, int col) {
+				switch (col) {
+					case 0:
+						return socios.get(row).getDNI();
+					case 1:
+						return socios.get(row).getNombre();
+					case 2:
+						return socios.get(row).getDireccion();
+					case 3:
+						return socios.get(row).getLocalidad();
+					case 4:
+						return socios.get(row).getTelefonoFijo();
+					case 5:
+						return socios.get(row).getTelefonoMovil();
+					case 6:
+						return socios.get(row).getCP();
+				}
+				return "";
+			}
+
+			@Override
+			public void setValueAt(Object o, int row, int col) {
+				throw new UnsupportedOperationException("Not supported yet.");
+			}
+
+			@Override
+			public void addTableModelListener(TableModelListener tl) {
+
+			}
+
+			@Override
+			public void removeTableModelListener(TableModelListener tl) {
+
+			}
+		};
+		vista.getPanelSocioBuscar().getTablaBusqueda().setModel(tableModel);
+	}
 	public class btConsultarSocioListener implements ActionListener{
 
 		@Override
@@ -638,6 +629,9 @@ public class ControladorSocio{
 			if(DNI!=null){
 				socio_temp = obtenerSocio(DNI);
 				vista.getPanelSocioDatos().modificarSocio(socio_temp);
+				cuotas = ControladorCuota.getInstance().verHistorialCuotas(socio_temp);
+				//if(cuotas.size()>0)
+					//actualizarTablaCuotas();
 				ControladorColaboradores.getInstance(vista).mostrarVistaModificarSocio();
 			}
 		}
@@ -662,6 +656,136 @@ public class ControladorSocio{
 		vista.getPanelSocioDatos().getTextUsuario().setForeground(Color.BLACK);
 	}
 	
+	/**
+		* Listener controlador del boton Guardar Cuota socio
+	*/
+	public class btGuardarCuotaListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			boolean datosCorrectos = true;
+			
+			if( !TestDatos.isMoney( vista.getPanelSocioDatos().getTextCantidadCuota().getText()) ) {
+                vista.getPanelSocioDatos().getTextCantidadCuota().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isOnlyDigit( vista.getPanelSocioDatos().getTextIntervaloCuotaSocio().getText()) ) {
+                vista.getPanelSocioDatos().getTextIntervaloCuotaSocio().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isFecha( vista.getPanelSocioDatos().getTextFechaIniCuotaSocio().getText()) ) {
+                vista.getPanelSocioDatos().getTextFechaIniCuotaSocio().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isFecha( vista.getPanelSocioDatos().getTextFechaFinCuotaSocio().getText()) ) {
+                vista.getPanelSocioDatos().getTextFechaFinCuotaSocio().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if(!datosCorrectos){
+                vista.getPanelSocioDatos().setTextLabelErrorCuota("Los campos en rojo tienes errores.");
+			}
+			else{
+				vista.getPanelSocioDatos().setTextLabelErrorCuotaVisible(false);
+				Cuota cuota = new Cuota();
+				
+				cuota.setCantidad(Double.parseDouble(vista.getPanelSocioDatos().getTextCantidadCuota().getText()));
+				cuota.setIntervaloPagos(Integer.parseInt(vista.getPanelSocioDatos().getTextIntervaloCuotaSocio().getText()));
+				try {
+					cuota.setFechaInicial(TestDatos.formatter.parse(vista.getPanelSocioDatos().getTextFechaIniCuotaSocio().getText()));
+				} catch (ParseException ex) {
+					Logger.getLogger(ControladorSocio.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				try {
+					cuota.setFechaFin(TestDatos.formatter.parse(vista.getPanelSocioDatos().getTextFechaFinCuotaSocio().getText()));
+				} catch (ParseException ex) {
+					Logger.getLogger(ControladorSocio.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				try {
+					cuota.setFechaUltimoPago(TestDatos.formatter.parse(vista.getPanelSocioDatos().getTextFechaIniCuotaSocio().getText()));
+				} catch (ParseException ex) {
+					Logger.getLogger(ControladorSocio.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				cuota.setSocio(socio_temp);
+				if(cuota.getFechaInicio().after(cuota.getFechaFin())){
+					vista.getPanelSocioDatos().setTextLabelErrorCuota("La fecha inicial es superior a la fecha final");
+				}
+				else{
+					ControladorCuota.getInstance().anadirCuota(cuota);
+					cuota = obtenerCuota(socio_temp);
+					cuotas = ControladorCuota.getInstance().verHistorialCuotas(socio_temp);
+					if(cuotas.size()>0)
+						actualizarTablaCuotas();
+					vista.getPanelSocioDatos().setTextLabelErrorCuota("La cuota a sido añadida");
+				}
+			}
+		}
+	}
+	void actualizarTablaCuotas(){
+		TableModel tableModel = new TableModel() {
+
+			@Override
+			public int getRowCount() {
+				return cuotas.size();
+			}
+
+			@Override
+			public int getColumnCount() {
+				return columnNamesCuotas.length;
+			}
+
+			@Override
+			public String getColumnName(int i) {
+				return columnNamesCuotas[i];
+			}
+
+			@Override
+			public Class<?> getColumnClass(int i) {
+				return String.class;
+			}
+
+			@Override
+			public boolean isCellEditable(int i, int i1) {
+				return false;
+			}
+
+			@Override
+			public Object getValueAt(int row, int col) {
+				switch (col) {
+					case 0:
+						return cuotas.get(row).getCantidad();
+					case 1:
+						return cuotas.get(row).getFechaInicio();
+					case 2:
+						return cuotas.get(row).getFechaFin();
+					case 3:
+						return cuotas.get(row).getIntervaloPagos();
+					case 4:
+						return cuotas.get(row).getFechaUltimoPago();
+				}
+				return "";
+			}
+
+			@Override
+			public void setValueAt(Object o, int row, int col) {
+				throw new UnsupportedOperationException("Not supported yet.");
+			}
+
+			@Override
+			public void addTableModelListener(TableModelListener tl) {
+
+			}
+
+			@Override
+			public void removeTableModelListener(TableModelListener tl) {
+
+			}
+		};
+		vista.getPanelSocioDatos().getTablaCuotas().setModel(tableModel);
+	}
+	
+	/**
+		* Listener controlador del boton Guardar Colaboracion socio
+	*/
 	
 	public class btGuardarColaboracionesListener implements ActionListener{
 
@@ -676,7 +800,7 @@ public class ControladorSocio{
                 vista.getPanelSocioDatos().getTextFechaColaboracion().setForeground(Color.RED);
                 datosCorrectos = false;
             }
-			if( !TestDatos.isOnlyLetterOrDigit( vista.getPanelSocioDatos().getTextConceptoColaboracion().getText()) ) {
+			if( !TestDatos.isDomicilio( vista.getPanelSocioDatos().getTextConceptoColaboracion().getText()) ) {
                 vista.getPanelSocioDatos().getTextConceptoColaboracion().setForeground(Color.RED);
                 datosCorrectos = false;
             }
@@ -700,6 +824,7 @@ public class ControladorSocio{
 					colaboracion.setOIDVoluntario(ControladorPrincipal.getInstance().getVoluntario().getOID());
 
 					ControladorColaboracion.getInstance().anadirColaboracion(colaboracion);
+					vista.getPanelSocioDatos().setTextLabelErrorColaboracion("La colaboracion ha sido añadida");
 				}
 				//Tipo es cuota
 				else{
@@ -712,10 +837,11 @@ public class ControladorSocio{
 						Logger.getLogger(ControladorColaboracion.class.getName()).log(Level.SEVERE, null, ex);
 					}
 					socio_temp = obtenerSocio(vista.getPanelSocioDatos().getTextDNI().getText());
-					//pago.setOIDSocio(socio_temp.getOID());
-					//pago.setOIDVoluntario(ControladorPrincipal.getInstance().getVoluntario().getOID());
+					pago.setSocio(socio_temp);
+					pago.setVoluntario(ControladorPrincipal.getInstance().getVoluntario());
 
-					//ControladorColaboracion.getInstance().anadir(pago);
+					ControladorPagoCuota.getInstance().anadirPagoCuota(pago);
+					vista.getPanelSocioDatos().setTextLabelErrorColaboracion("El pago de la cuota ha sido añadido");
 				}
 			}
 		}

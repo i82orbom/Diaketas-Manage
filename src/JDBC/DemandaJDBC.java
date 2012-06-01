@@ -48,10 +48,10 @@ public class DemandaJDBC {
         }
         return exito;
     }
-    public void EliminarDemanda (Demanda demanda) throws SQLException{
+    public void EliminarDemanda (int OID) throws SQLException{
     
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "DELETE FROM Demanda WHERE OID = "+demanda.getOID();
+        String sql = "DELETE FROM Demanda WHERE OID = "+OID;
         
         try {
             driver.conectar();
@@ -65,7 +65,7 @@ public class DemandaJDBC {
         }
     }
    
-    public ArrayList<Demanda> FiltrarDemandas(String DNI , String Sector , int meses) throws SQLException{
+    public ArrayList<Demanda> FiltrarDemandas(long OIDBeneficiario , long OIDSector , int meses) throws SQLException{
         
         DriverJDBC driver = DriverJDBC.getInstance();
         BeneficiarioJDBC bene = BeneficiarioJDBC.getInstance();
@@ -79,7 +79,11 @@ public class DemandaJDBC {
         Calendar fecha = Calendar.getInstance();
         meses = meses * -1;
         fecha.add(Calendar.MONTH, meses);
-        String sql = "SELECT Persona p,Sector s,Demanda d WHERE p.NIF LIKE'%"+DNI+"%',s.descripcion LIKE'%"+Sector+"%',d.Fecha <='"+fecha+"'"; 
+        
+        String sql = "SELECT * FROM Demanda WHERE '1' = '1'";
+        if( OIDBeneficiario > 0) sql.concat("AND OIDBeneficiario = "+OIDBeneficiario);
+        if( OIDSector > 0) sql.concat("AND OIDSector ="+OIDSector);
+        
         try{
             driver.conectar();
             resultado = driver.seleccionar(sql);
@@ -185,6 +189,30 @@ public class DemandaJDBC {
             driver.desconectar();
         }
         return temp;
+    }
+    
+    public boolean ConsultarDemandaSector (int oid) throws SQLException {
+    
+        DriverJDBC driver = DriverJDBC.getInstance();
+        String sql = "SELECT * FROM Sector WHERE OID ="+oid;
+        ResultSet resultado;
+        boolean exito;
+        
+        try{
+            driver.conectar();
+            resultado=driver.seleccionar(sql);
+            if(resultado.next())
+                exito=true;
+            else
+                exito = false;
+        }
+        catch( SQLException ea){
+            throw(ea);
+        }
+        finally{
+            driver.desconectar();
+        }
+        return exito;
     }
    
 }

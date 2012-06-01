@@ -58,22 +58,11 @@ public class ControladorPagoCuota {
     public ControladorPagoCuota() {
     }
 
-    public boolean anadirPagoCuota (String[] datos, Voluntario v) {
-
-        if (!ComprobarDatos(datos))
-            return false;
-
-        Socio socio;
-        try {
-            socio = SocioJDBC.getInstance().obtenerSocio(v.getNIF());
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorPagoCuota.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
+    public boolean anadirPagoCuota (PagoCuota pago) {
 
         Cuota cuota;
         try {
-            cuota = SocioJDBC.getInstance().obtenerCuotaActiva(socio);
+            cuota = SocioJDBC.getInstance().obtenerCuotaActiva(pago.getSocio());
         } catch (SQLException ex) {
             Logger.getLogger(ControladorPagoCuota.class.getName()).log(Level.SEVERE, null, ex);
             return false;
@@ -85,16 +74,8 @@ public class ControladorPagoCuota {
             return false;
         }
 
-        PagoCuota pc = new PagoCuota();
-        pc.setConcepto(datos[PagoCuota.CONCEPTO_ID]);
-        pc.setFecha(Date.valueOf(datos[PagoCuota.CONCEPTO_ID]));
-        pc.setImporte(Integer.parseInt(datos[PagoCuota.IMPORTE_ID]));
-        pc.setOIDVoluntario((v.getOID().intValue()));
-        pc.setOID(socio.getOID());
-
-
         try {
-            PagoCuotaJDBC.getInstance().añadirPagoCuota(pc);
+            PagoCuotaJDBC.getInstance().añadirPagoCuota(pago);
         } catch (SQLException ex) {
             Logger.getLogger(ControladorPagoCuota.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -133,18 +114,4 @@ public class ControladorPagoCuota {
 
         return true;
     }
-
-    private boolean ComprobarDatos (String[] datos) {
-        // cada campo debe ser not null
-        for (int i=0; i<datos.length; i++) {
-            if (datos[i].length() < 1)
-                return false;
-        }
-
-        if (!TestDatos.isOnlyDigit(datos[PagoCuota.IMPORTE_ID]))
-            return false;
-
-        return true;
-    }
-
 }

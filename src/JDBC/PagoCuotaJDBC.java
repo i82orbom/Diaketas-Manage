@@ -69,7 +69,7 @@ public class PagoCuotaJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "INSERT INTO Movimiento (importe, fecha, concepto) VALUES ('"+pc.getImporte()+"','"+pc.getFecha()+"','"+pc.getConcepto()+"')";
-        String sql2 = "INSERT INTO PagoCuota (OIDSocio, OIDVoluntario, OID) VALUES ('"+pc.getOIDSocio()+"','"+pc.getOIDVoluntario()+"',LAST_INSERT_ID())";
+        String sql2 = "INSERT INTO PagoCuota (OIDSocio, OIDVoluntario, OID) VALUES ('"+pc.getSocio().getOID()+"','"+pc.getVoluntario().getOID()+"',LAST_INSERT_ID())";
 
         try{
             driver.inicioTransaccion();
