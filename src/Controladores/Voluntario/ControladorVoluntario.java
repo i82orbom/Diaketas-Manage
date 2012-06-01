@@ -332,47 +332,52 @@ public class ControladorVoluntario {
             boolean datosCorrectos = true;
 
             if( !TestDatos.isDNI( vista.getPanelVoluntarioDatos().getTextNIF().getText()) ) {
-                vista.getPanelVoluntarioDatos().getTextNIF().setForeground(Color.RED);
+                vista.getPanelVoluntarioDatos().getlNIF().setForeground(Color.RED);
                 datosCorrectos = false;
             }
 
             if ( !TestDatos.isNombre(vista.getPanelVoluntarioDatos().getTextNombre().getText())) {
-                vista.getPanelVoluntarioDatos().getTextNombre().setForeground(Color.RED);
+                vista.getPanelVoluntarioDatos().getlNombre().setForeground(Color.RED);
                 datosCorrectos = false;
             }
 
             if ( !TestDatos.isNombre(vista.getPanelVoluntarioDatos().getTextApellidos().getText())) {
-                vista.getPanelVoluntarioDatos().getTextApellidos().setForeground(Color.RED);
+                vista.getPanelVoluntarioDatos().getlApellidos().setForeground(Color.RED);
                 datosCorrectos = false;
             }
 
             if ( !TestDatos.isFecha(vista.getPanelVoluntarioDatos().getTextFechaNacimiento().getText())) {
-                vista.getPanelVoluntarioDatos().getTextFechaNacimiento().setForeground(Color.RED);
+                vista.getPanelVoluntarioDatos().getlFechaNacimiento().setForeground(Color.RED);
                 datosCorrectos = false;
             }
 
             if ( !TestDatos.isDomicilio(vista.getPanelVoluntarioDatos().getTextDomicilio().getText())) {
-                vista.getPanelVoluntarioDatos().getTextDomicilio().setForeground(Color.RED);
+                vista.getPanelVoluntarioDatos().getlDomicilio().setForeground(Color.RED);
                 datosCorrectos = false;
             }
 
             if ( !TestDatos.isDomicilio(vista.getPanelVoluntarioDatos().getTextLocalidad().getText())) {
-                vista.getPanelVoluntarioDatos().getTextLocalidad().setForeground(Color.RED);
+                vista.getPanelVoluntarioDatos().getlLocalidad().setForeground(Color.RED);
                 datosCorrectos = false;
             }
 
             if ( !TestDatos.isCodigoPostal(vista.getPanelVoluntarioDatos().getTextCP().getText())) {
-                vista.getPanelVoluntarioDatos().getTextCP().setForeground(Color.RED);
+                vista.getPanelVoluntarioDatos().getlCP().setForeground(Color.RED);
                 datosCorrectos = false;
             }
 
             if ( !TestDatos.isTelefonoOFax(vista.getPanelVoluntarioDatos().getTextTelMovil().getText())) {
-                vista.getPanelVoluntarioDatos().getTextTelMovil().setForeground(Color.RED);
+                vista.getPanelVoluntarioDatos().getlTelMovil().setForeground(Color.RED);
                 datosCorrectos = false;
             }
 
             if ( !TestDatos.isTelefonoOFax(vista.getPanelVoluntarioDatos().getTextTelFijo().getText())) {
-                vista.getPanelVoluntarioDatos().getTextTelFijo().setForeground(Color.RED);
+                vista.getPanelVoluntarioDatos().getlTelFijo().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+            
+            if (!TestDatos.isOnlyLetterOrDigit(vista.getPanelVoluntarioDatos().getTextPassword().getText())) {
+                vista.getPanelVoluntarioDatos().getlPassword().setForeground(Color.RED);
                 datosCorrectos = false;
             }
 
@@ -448,6 +453,7 @@ public class ControladorVoluntario {
         vista.getPanelVoluntarioDatos().getTextNombre().addKeyListener(keyListener);
         vista.getPanelVoluntarioDatos().getTextTelFijo().addKeyListener(keyListener);
         vista.getPanelVoluntarioDatos().getTextTelMovil().addKeyListener(keyListener);
+        vista.getPanelVoluntarioDatos().getTextPassword().addKeyListener(keyListener);
     }
 
     // Cuando el usuario escribe, cambia el color en negro si habia errores y el color estaba rojo
@@ -456,7 +462,7 @@ public class ControladorVoluntario {
         @Override
         public void keyTyped(KeyEvent ke) {
             if (ke.getSource().getClass() == JTextField.class || ke.getSource().getClass() == JFormattedTextField.class) {
-                ((JTextField)ke.getSource()).setForeground(Color.black);
+                vista.getPanelVoluntarioDatos().setColorLabels(Color.BLACK);
             }
         }
 
@@ -474,7 +480,7 @@ public class ControladorVoluntario {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            vista.getPanelVoluntarioDatos().borrarCampos();
+            vista.getPanelVoluntarioDatos().limpiarCampos();
         }
     }
 
