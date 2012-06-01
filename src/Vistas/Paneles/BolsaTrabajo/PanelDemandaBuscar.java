@@ -26,7 +26,7 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
     }
 
     public JButton getBTBuscar(){
-        return BTBuscar;
+        return BTBuscar3;
     }
 
     public JButton getBTEliminar(){
@@ -37,14 +37,18 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
         return BTEliminar;
     }
 
-    public String getcbSector(){
-        return cbSector.getSelectedItem().toString();
-    }
+       public JComboBox getcbSector(){
+        return cbSector;
+   }
 
     public String getcbAntiguedad(){
         return cbAntiguedad.getSelectedItem().toString();
     }
-
+    
+    public String getTextoSector(){
+        return cbSector.getSelectedItem().toString();
+    }
+    
     public JTable getTablaBusquedaDemandante(){
         return tablaBusquedaDemandante;
     }
@@ -53,9 +57,10 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
         return textBusquedaDemandanteDNI.getText();
     }
 
-
-
-
+    	public int getAntiguedad(){
+		return cbAntiguedad.getSelectedIndex();
+		
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,7 +81,7 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
         cbAntiguedad = new javax.swing.JComboBox();
         BTEliminar = new javax.swing.JButton();
         BTModificar = new javax.swing.JButton();
-        BTBuscar = new javax.swing.JButton();
+        BTBuscar3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
@@ -108,7 +113,12 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
 
         BTModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/modificar.png"))); // NOI18N
 
-        BTBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/consultar.png"))); // NOI18N
+        BTBuscar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
+        BTBuscar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTBuscar3ActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -133,10 +143,10 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
                         .add(jLabel65)
                         .add(18, 18, 18)
                         .add(cbAntiguedad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(175, 175, 175))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(BTBuscar)
                         .add(18, 18, 18)
+                        .add(BTBuscar3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(112, 112, 112))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(BTModificar)
                         .add(18, 18, 18)
                         .add(BTEliminar)
@@ -145,28 +155,32 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(51, 51, 51)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel63)
-                    .add(jLabel64)
-                    .add(textBusquedaDemandanteDNI, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel65)
-                    .add(cbAntiguedad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(43, 43, 43)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(jLabel63)
+                        .add(jLabel64)
+                        .add(textBusquedaDemandanteDNI, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(cbSector, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jLabel65)
+                        .add(cbAntiguedad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(BTBuscar3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(jScrollPane5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
                 .add(87, 87, 87)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                        .add(BTEliminar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(BTModificar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .add(BTBuscar))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(BTEliminar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(BTModificar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BTBuscar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTBuscar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BTBuscar3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BTBuscar;
+    private javax.swing.JButton BTBuscar3;
     private javax.swing.JButton BTEliminar;
     private javax.swing.JButton BTModificar;
     private javax.swing.JComboBox cbAntiguedad;

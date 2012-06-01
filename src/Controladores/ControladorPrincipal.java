@@ -6,6 +6,8 @@ import Modelo.Voluntario;
 import Vistas.Ventana;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -29,7 +31,8 @@ import java.sql.SQLException;
  *
  * HISTORIA:
  *      000 - 10 May 2012 - RC - Creacion
- *		001 - 23 May 2012 - ARS - Mejora para eliminar la conexion contunia a la BD
+ *      001 - 23 May 2012 - ARS - Mejora para eliminar la conexion contunia a la BD
+ *      002 - 1 Jun 2012 - RC - Se puede connectarse pulsando el boton "enter" en el teclado
  *
  * NOTAS:
  *
@@ -85,11 +88,16 @@ public class ControladorPrincipal {
 
         // adicion de los listeners cuyo el controlador se encarga
         vista.getVistaLogin().anadirListenerBtConectarse(new BtConectarseListener());
+        vista.getVistaLogin().getTextFieldContrasena().addKeyListener(new ConnectarseKeyListener());
         vista.getVistaInicial().anadirListenerbtVoluntario(new BtVoluntarioListener());
         vista.getVistaInicial().anadirListenerbtBeneficiario(new BtBeneficiarioListener());
         vista.getVistaInicial().anadirListenerbtDesconectase(new BtDesconectarseListener());
         vista.getVistaInicial().anadirListenerbtColaboradores(new BtColaboradoresListener());
         vista.getVistaInicial().anadirListenerbtBolsaTrabajo(new BtBolsaTrabajoListener());
+        
+        // Para probar
+        vista.getVistaLogin().getTextFieldIdUsuario().setText("12345678A");
+        vista.getVistaLogin().getTextFieldContrasena().setText("admin");
     }
 
     /**
@@ -135,42 +143,66 @@ public class ControladorPrincipal {
         return voluntario;
     }
 
+    private void connectar() {
+        boolean exito = true;
+
+        try {
+            voluntario = JDBC.VoluntarioJDBC.getInstance().obtenerVoluntario(vista.getVistaLogin().getTextFieldIdUsuario().getText());
+        } catch (SQLException ex) {
+            exito = false;
+            vista.getVistaLogin().mostrarErrorLogin("Hubo un problema con la Base de Datos");
+//				Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//				System.err.println("Error al conectar a la base de datos:\n"+ex);
+        }
+
+        if (exito) {
+            // Comprobamos que el voluntario existe
+            if (voluntario == null) {
+                exito = false;
+            } // La contraseña se corresponde
+            else if (!voluntario.getPassword().equals(md5(vista.getVistaLogin().getTextFieldContrasena().getText() + getSalto()))) {
+                voluntario = null;
+                exito = false;
+            }
+
+            if (exito) {
+                vista.getVistaLogin().mostrarErrorLogin("");
+                // Limpiar el formulario de inicio de sesion
+                vista.showPanel(Ventana.panelInicio);
+            } else {
+                vista.getVistaLogin().mostrarErrorLogin("Nombre usuario y/o contraseña no válidos");
+            }
+
+        }
+    }
+
     // Listeners botones
     class BtConectarseListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            boolean exito = true;
+            connectar();
+        }
+    }
+    
+    class ConnectarseKeyListener implements KeyListener {
 
-            try {
-                voluntario = JDBC.VoluntarioJDBC.getInstance().obtenerVoluntario(vista.getVistaLogin().getTextFieldIdUsuario().getText());
-            } catch (SQLException ex) {
-                exito = false;
-                vista.getVistaLogin().mostrarErrorLogin("Hubo un problema con la Base de Datos");
-//				Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-//				System.err.println("Error al conectar a la base de datos:\n"+ex);
-            }
+        @Override
+        public void keyTyped(KeyEvent ke) {
+            
+        }
 
-            if (exito) {
-                // Comprobamos que el voluntario existe
-                if (voluntario == null) {
-                    exito = false;
-                } // La contraseña se corresponde
-                else if (!voluntario.getPassword().equals(md5(vista.getVistaLogin().getTextFieldContrasena().getText() + getSalto()))) {
-                    voluntario = null;
-                    exito = false;
-                }
+        @Override
+        public void keyPressed(KeyEvent ke) {
+        }
 
-                if (exito) {
-                    vista.getVistaLogin().mostrarErrorLogin("");
-                    // Limpiar el formulario de inicio de sesion
-                    vista.showPanel(Ventana.panelInicio);
-                } else {
-                    vista.getVistaLogin().mostrarErrorLogin("Nombre usuario y/o contraseña no válidos");
-                }
-
+        @Override
+        public void keyReleased(KeyEvent ke) {
+            if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                connectar();
             }
         }
+        
     }
 
     class BtDesconectarseListener implements ActionListener {
@@ -179,6 +211,8 @@ public class ControladorPrincipal {
         public void actionPerformed(ActionEvent ae) {
             voluntario = null;
             vista.showPanel(Ventana.panelLogin);
+            vista.getVistaLogin().getTextFieldIdUsuario().setText("");
+            vista.getVistaLogin().getTextFieldContrasena().setText("");
         }
     }
 

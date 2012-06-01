@@ -4,6 +4,7 @@ package Controladores;
 import Controladores.BolsaDeTrabajo.ControladorDemanda;
 import Controladores.BolsaDeTrabajo.ControladorOferta;
 import JDBC.SectorJDBC;
+import Modelo.Demanda;
 import Modelo.Oferta;
 import Modelo.Sector;
 import Vistas.BarraDeNavegacion;
@@ -40,11 +41,6 @@ public class ControladorBolsaTrabajo {
 
     private static ControladorBolsaTrabajo instancia;
     private VistaBolsaTrabajo vista;
-	private ArrayList<Sector> sectores;
-
-	public ArrayList<Sector> getSectores(){
-		return sectores;
-	}
 
 	public static ControladorBolsaTrabajo getInstance (VistaBolsaTrabajo panelBolsaTrabajo){
 		if(instancia == null){
@@ -84,21 +80,88 @@ public class ControladorBolsaTrabajo {
     }
 
     public void mostarNuevaDemanda(){
+        vista.getDemandaDatos().getlabelError().setText("");
+
+        vista.getDemandaDatos().getbtGuardar().setVisible(true);
+        vista.getDemandaDatos().getbtLimpiar().setVisible(true);
+        vista.getDemandaDatos().getBTModificar().setVisible(false);
+        vista.getDemandaDatos().getBTGuardarCambios().setVisible(false);
+        vista.getDemandaDatos().getBTEliminar().setVisible(false);
+
+
+        vista.getDemandaDatos().getTextNIF().setEnabled(true);
+        vista.getDemandaDatos().getcbSector().setEnabled(true);
+        vista.getDemandaDatos().getTaHistoriaLaboral().setEnabled(true);
+        vista.getDemandaDatos().getTextNIF().setEditable(true);
+        vista.getDemandaDatos().getcbSector().setEditable(true);
+        vista.getDemandaDatos().getTaHistoriaLaboral().setEditable(true);
+        try {
+                vista.getDemandaDatos().getcbSector().removeAllItems();
+                ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
+                for (int i=0;i<sectores.size();i++)
+                        vista.getDemandaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+        }catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
+
         vista.showPanel(VistaBolsaTrabajo.PanelDemandaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Nueva Demanda");
     }
 
-    public void mostrarConsultarDemandas(){
+    public void mostrarConsultarDemandas(Demanda demanda){
+        vista.getOfertaDatos().getlabelError().setText("");
+
+        vista.getDemandaDatos().getbtGuardar().setVisible(false);
+        vista.getDemandaDatos().getbtLimpiar().setVisible(false);
+        vista.getDemandaDatos().getBTModificar().setVisible(true);
+        vista.getDemandaDatos().getBTGuardarCambios().setVisible(false);
+        vista.getDemandaDatos().getBTEliminar().setVisible(true);
+
+        vista.getDemandaDatos().getTextNIF().setEnabled(false);
+        vista.getDemandaDatos().getcbSector().setEnabled(false);
+        vista.getDemandaDatos().getTaHistoriaLaboral().setEnabled(false);
+        vista.getDemandaDatos().getTextNIF().setText(demanda.getIdBeneficiario().getNIF());
+        vista.getDemandaDatos().getcbSector().setSelectedItem(demanda.getIdSector().getDescripcion());
+        vista.getDemandaDatos().getTaHistoriaLaboral().setText(demanda.getDescripcionValidaLaboral());
+
         vista.showPanel(VistaBolsaTrabajo.PanelDemandaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Demanda");
     }
 
-    public void mostrarModificarDemanda() {
+    public void mostrarModificarDemanda(Demanda demanda) {
+        vista.getDemandaDatos().getlabelError().setText("");
+
+        vista.getDemandaDatos().getbtGuardar().setVisible(false);
+        vista.getDemandaDatos().getbtLimpiar().setVisible(false);
+        vista.getDemandaDatos().getBTModificar().setVisible(false);
+        vista.getDemandaDatos().getBTGuardarCambios().setVisible(true);
+        vista.getDemandaDatos().getBTEliminar().setVisible(true);
+
+
+        vista.getDemandaDatos().getTextNIF().setEnabled(true);
+        vista.getDemandaDatos().getcbSector().setEnabled(true);
+        vista.getDemandaDatos().getTaHistoriaLaboral().setEnabled(true);
+        vista.getDemandaDatos().getTextNIF().setEditable(true);
+        vista.getDemandaDatos().getcbSector().setEditable(true);
+        vista.getDemandaDatos().getTaHistoriaLaboral().setEditable(true);
+        try {
+                vista.getDemandaDatos().getcbSector().removeAllItems();
+                ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
+                for (int i=0;i<sectores.size();i++)
+                        vista.getDemandaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+        }catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
+
         vista.showPanel(VistaBolsaTrabajo.PanelDemandaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Demanda");
     }
 
     public void mostrarBuscarDemanda() {
+        try {
+            vista.getDemandaBuscar().getcbSector().removeAllItems();
+            ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
+            for (int i=0;i<sectores.size();i++)
+                vista.getDemandaBuscar().getcbSector().addItem(sectores.get(i).getDescripcion());
+            vista.getDemandaBuscar().getcbSector().addItem("");
+        }catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
+
         vista.showPanel(VistaBolsaTrabajo.PanelDemandaBuscar);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Buscar Demanda");
     }
@@ -130,11 +193,12 @@ public class ControladorBolsaTrabajo {
 		vista.getOfertaDatos().gettextDuracionContrato().setEditable(true);
 		vista.getOfertaDatos().gettaCualificacion().setEditable(true);
 
-		vista.getOfertaDatos().getcbSector().removeAllItems();
-		try { sectores = SectorJDBC.getInstance().ListadoSectores();}
-		catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
-		for (int i=0;i<sectores.size();i++)
-			vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+		try {
+			vista.getOfertaDatos().getcbSector().removeAllItems();
+			ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
+			for (int i=0;i<sectores.size();i++)
+				vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+		}catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
 
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
 		vista.getBarraDeNavigacion().setTextLabelNivel3("Nueva Oferta");
@@ -169,7 +233,7 @@ public class ControladorBolsaTrabajo {
 		vista.getOfertaDatos().gettaCualificacion().setText(oferta.getCualificacionRequerida());
 
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
-		vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Ofertas");
+		vista.getBarraDeNavigacion().setTextLabelNivel3("Consultar Oferta");
     }
 
     public void mostrarModificarOferta(Oferta oferta) {
@@ -193,23 +257,30 @@ public class ControladorBolsaTrabajo {
 		vista.getOfertaDatos().gettextDuracionContrato().setEditable(true);
 		vista.getOfertaDatos().gettaCualificacion().setEditable(true);
 
-		vista.getOfertaDatos().getcbSector().removeAllItems();
-		try { sectores = SectorJDBC.getInstance().ListadoSectores();}
-		catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
-		for (int i=0;i<sectores.size();i++)
-			vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+
+		try {
+			vista.getOfertaDatos().getcbSector().removeAllItems();
+			ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
+			for (int i=0;i<sectores.size();i++){
+				vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+				if (oferta.getSector().getDescripcion().equals(sectores.get(i).getDescripcion())){
+					vista.getOfertaDatos().getcbSector().setSelectedIndex(i);
+				}
+			}
+		}catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
 
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Oferta");
     }
 
 	public void mostrarBuscarOferta() {
-		vista.getOfertaBuscar().getcbSector().removeAllItems();
-		try { sectores = SectorJDBC.getInstance().ListadoSectores();}
-		catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
-		vista.getOfertaBuscar().getcbSector().addItem("Cualquiera");
-		for (int i=0;i<sectores.size();i++)
-			vista.getOfertaBuscar().getcbSector().addItem(sectores.get(i).getDescripcion());
+		try {
+			vista.getOfertaBuscar().getcbSector().removeAllItems();
+			ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
+			for (int i=0;i<sectores.size();i++)
+				vista.getOfertaBuscar().getcbSector().addItem(sectores.get(i).getDescripcion());
+			vista.getOfertaBuscar().getcbSector().addItem("");
+		}catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
 
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaBuscar);
         vista.getBarraDeNavigacion().setTextLabelNivel3("Buscar Oferta");

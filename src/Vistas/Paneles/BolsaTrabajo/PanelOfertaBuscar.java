@@ -1,11 +1,12 @@
 
 package Vistas.Paneles.BolsaTrabajo;
 
-import Vistas.Paneles.Beneficiario.*;
+import Modelo.Sector;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -20,6 +21,7 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
         initComponents();
     }
 
+	/* ________ Botones de la vista ________*/
     public JButton getBTEliminar(){
         return BTEliminar;
     }
@@ -36,10 +38,9 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
         return cbAntiguedad;
     }
 
-	public String getAntiguedad(){
-		int antiguedad = cbAntiguedad.getSelectedIndex();
-		if (antiguedad>12) return "null";
-		return antiguedad+"";
+	/* ________ Campos de la vista ________*/
+	public int getAntiguedad(){
+		return cbAntiguedad.getSelectedIndex();
     }
 
     public String getTextoSector(){
@@ -56,7 +57,6 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
     public JTable gettablaBusquedaOferta(){
         return tablaBusquedaOferta;
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,19 +85,25 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
 
         tablaBusquedaOferta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"F12344322", "Reformas chapuza", "Construccion", "12/01/2012"},
-                {null, null, null, null}
+
             },
             new String [] {
                 "CIF", "Razon Social", "Sector", "Fecha Demanda"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane5.setViewportView(tablaBusquedaOferta);
@@ -106,7 +112,7 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
 
         labelAntiguedad.setText("Antiguedad");
 
-        cbAntiguedad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1 mes", "2 meses", "3 meses", "4 meses", "5 meses", "6 meses", "7 meses", "8 meses", "9 meses", "10 meses", "11 meses", "12 meses", "mas de 1 año" }));
+        cbAntiguedad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todas", "1 mes", "2 meses", "3 meses", "4 meses", "5 meses", "6 meses", "7 meses", "8 meses", "9 meses", "10 meses", "11 meses", "mas de 1 año" }));
 
         BTEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
 
@@ -114,7 +120,7 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
 
         BTBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
 
-        labelCIFEmpresa.setText("CIF Empresa");
+        labelCIFEmpresa.setText("Empresa");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);

@@ -120,6 +120,7 @@ public class ControladorBeneficiario {
         vista.getPanelDatos().getBtBorrar().addActionListener(new btBorrarBeneficiarioListener());
         vista.getPanelDatos().getBtGuardarIntervencionBeneficiario().addActionListener(new BtGuardarIntervencionesListener());
         vista.getPanelDatos().getBtEliminarIntervencionBeneficiario().addActionListener(new BtEliminarIntervencionesListener());
+        vista.getPanelDatos().getBtLimpiarCamposAyuda().addActionListener(new BtLimpiarCamposAyudaListener());
         vista.getPanelDatos().getTbIntervenciones().addMouseListener(new TablaAyudaListener());
 
         vista.getPanelBuscar().getBtBuscarBeneficiarios().addActionListener(new btBuscarBeneficiariosListener());
@@ -228,6 +229,7 @@ public class ControladorBeneficiario {
     private void actualizarCampoAyuda () {
         vista.getPanelDatos().getTextImporteBeneficiario().setText(Float.toString(ayudaSeleccionada.getImporte()));
         vista.getPanelDatos().getTextObservacionesIntervencionBeneficiario().setText(ayudaSeleccionada.getObservaciones());
+        // TODO actualizar comboBox
     }
     
     private void actualizarTablaFamiliares(){
@@ -289,6 +291,14 @@ public class ControladorBeneficiario {
                 
             }
         });
+    }
+    
+    private void limpiarCamposAyuda() {
+        vista.getPanelDatos().getTextImporteBeneficiario().setText("");
+        vista.getPanelDatos().getTextObservacionesIntervencionBeneficiario().setText("");
+        vista.getPanelDatos().getCbTiposAyuda().setSelectedIndex(0);
+        ayudaSeleccionada = null;
+        vista.getPanelDatos().getTbIntervenciones().removeRowSelectionInterval(0, benef.getAyudasPrestadas().size() - 1);
     }
 
     private boolean insertarBeneficiario(String[] datos) {
@@ -603,7 +613,7 @@ public class ControladorBeneficiario {
             }
             
             try {
-                Integer.parseInt(vista.getPanelDatos().getTextImporteBeneficiario().getText());
+                Float.parseFloat(vista.getPanelDatos().getTextImporteBeneficiario().getText());
             } catch (Exception e) {
                 vista.getPanelDatos().setTextLabelErrorAyuda("El importe debe ser un numero.");
                 datosCorrectos = false;
@@ -620,24 +630,43 @@ public class ControladorBeneficiario {
             if (!datosCorrectos) {
                 vista.getPanelDatos().setTextLabelErrorAyuda("Error : la ayuda no ha sido anadido.");
             } else {
-                Ayuda ayuda = new Ayuda();
-                ayuda.setBeneficiarioDeAyuda(benef);
-                ayuda.setFecha(new Date());
-                
-                ayuda.setImporte(Integer.parseInt(vista.getPanelDatos().getTextImporteBeneficiario().getText()));
-                ayuda.setObservaciones(vista.getPanelDatos().getTextObservacionesIntervencionBeneficiario().getText());
-                ayuda.setTipo_ayuda((TipoAyuda)vista.getPanelDatos().getCbTiposAyuda().getSelectedItem());
-                ayuda.setVoluntarioQueOtorga(ControladorPrincipal.getInstance().getVoluntario());
-                
-                boolean exito = ControladorAyuda.getInstance(null).registrarAyuda(ayuda);
-                
-                if (exito) {
-                    benef = consultarBeneficiario(benef.getNIF());
-                    actualizarTablaAyuda();
-                    vista.getPanelDatos().limpiarCamposAyuda();
+                if (ayudaSeleccionada == null) {
+                    Ayuda ayuda = new Ayuda();
+                    ayuda.setBeneficiarioDeAyuda(benef);
+                    ayuda.setFecha(new Date());
+
+                    ayuda.setImporte(Float.parseFloat(vista.getPanelDatos().getTextImporteBeneficiario().getText()));
+                    ayuda.setObservaciones(vista.getPanelDatos().getTextObservacionesIntervencionBeneficiario().getText());
+                    ayuda.setTipo_ayuda((TipoAyuda) vista.getPanelDatos().getCbTiposAyuda().getSelectedItem());
+                    ayuda.setVoluntarioQueOtorga(ControladorPrincipal.getInstance().getVoluntario());
+
+                    boolean exito = ControladorAyuda.getInstance(null).registrarAyuda(ayuda);
+                    if (exito) {
+                        benef = consultarBeneficiario(benef.getNIF());
+                        actualizarTablaAyuda();
+                        vista.getPanelDatos().limpiarCamposAyuda();
+                    } else {
+                        vista.getPanelDatos().setTextLabelErrorAyuda("Error : la ayuda no ha sido anadido.");
+                    }
                 } else {
-                    vista.getPanelDatos().setTextLabelErrorAyuda("Error : la ayuda no ha sido anadido.");
+                    ayudaSeleccionada.setFecha(new Date());
+
+                    ayudaSeleccionada.setImporte(Float.parseFloat(vista.getPanelDatos().getTextImporteBeneficiario().getText()));
+                    ayudaSeleccionada.setObservaciones(vista.getPanelDatos().getTextObservacionesIntervencionBeneficiario().getText());
+                    ayudaSeleccionada.setTipo_ayuda((TipoAyuda) vista.getPanelDatos().getCbTiposAyuda().getSelectedItem());
+                    ayudaSeleccionada.setVoluntarioQueOtorga(ControladorPrincipal.getInstance().getVoluntario());
+                    
+                    boolean exito = ControladorAyuda.getInstance(null).modificarAyuda(ayudaSeleccionada);
+                    if (exito) {
+                        benef = consultarBeneficiario(benef.getNIF());
+                        actualizarTablaAyuda();
+                        vista.getPanelDatos().limpiarCamposAyuda();
+                    } else {
+                        vista.getPanelDatos().setTextLabelErrorAyuda("Error : la ayuda no ha sido modificado.");
+                    }
                 }
+
+
             }
         }
     }
@@ -646,16 +675,31 @@ public class ControladorBeneficiario {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if(JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar la ayuda?", "Eliminar Ayuda", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-                if (ControladorAyuda.getInstance(null).eliminarAyuda(ayudaSeleccionada)) {
-                    vista.getPanelDatos().setTextLabelErrorAyuda("La ayuda ha sido eliminado del sistema.");
-                    benef = consultarBeneficiario(benef.getNIF());
-                    actualizarTablaAyuda();
-                } else {
-                    vista.getPanelDatos().setTextLabelErrorAyuda("Error : la ayuda no ha sido eliminado del sistema.");
+            vista.getPanelDatos().getLabelErrorAyuda().setVisible(false);
+            if (vista.getPanelDatos().getTbIntervenciones().getSelectedRow() != -1) {
+                if (JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar la ayuda?", "Eliminar Ayuda", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    if (ControladorAyuda.getInstance(null).eliminarAyuda(ayudaSeleccionada)) {
+                        vista.getPanelDatos().setTextLabelErrorAyuda("La ayuda ha sido eliminado del sistema.");
+                        benef = consultarBeneficiario(benef.getNIF());
+                        actualizarTablaAyuda();
+                        limpiarCamposAyuda();
+                    } else {
+                        vista.getPanelDatos().setTextLabelErrorAyuda("Error : la ayuda no ha sido eliminado del sistema.");
+                    }
                 }
+            } else {
+                vista.getPanelDatos().setTextLabelErrorAyuda("Selecciona una ayuda.");
             }
-        }   
+        }
+    }
+    
+    class BtLimpiarCamposAyudaListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            limpiarCamposAyuda();
+        }
+
     }
     
     class TablaAyudaListener implements MouseListener{

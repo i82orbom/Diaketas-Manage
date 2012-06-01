@@ -4,6 +4,10 @@ package Controladores.Colaborador;
 import Controladores.TestDatos;
 import JDBC.C_EmpresaJDBC;
 import Modelo.C_Empresa;
+import Vistas.Paneles.Colaboradores.VistaColaboradores;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -18,6 +22,7 @@ import java.util.logging.Logger;
  *
  * DESARROLLADO POR:
  *      Raphael Colleau (RC)
+ *      Francisco Jose Legaza Bailón (PLB)
  *
  *
  * SUPERVISADO POR:
@@ -41,8 +46,8 @@ public class ControladorC_Empresa {
      */
     private static ControladorC_Empresa instancia = null;
 
-    /* TODO vista
-    public static ControladorC_Empresa getInstance(PanelColaboradorC_Empresa pvista) {
+    
+    public static ControladorC_Empresa getInstance(VistaColaboradores pvista) {
 
         if (instancia == null) {
             instancia = new ControladorC_Empresa(pvista);
@@ -51,12 +56,37 @@ public class ControladorC_Empresa {
 
     }
 
-    private PanelColaboradorC_Empresa vista;
+    C_Empresa C_Empresa_temp;
+    
+    private VistaColaboradores vista;
 
-    public ControladorC_Empresa(PanelColaboradorC_Empresa vista) {
-        this.vista = vista;
-    }*/
+    public ControladorC_Empresa(VistaColaboradores pvista) {
+        this.vista = pvista;
+        
+        vista.getPanelEmpresaInicio().anadirListenerbtNuevoEmpresa(new btNuevaEmpresaListener());
+        vista.getPanelEmpresaInicio().anadirListenerbtBuscarEmpresa(new btBuscarEmpresaListener());
+        
+        vista.getPanelEmpresaDatos().getBtGuardarEmpresa().addActionListener(new btGuardarDatosEmpresaListener());
+        vista.getPanelEmpresaDatos().getBtLimpiarEmpresa().addActionListener(new btLimpiarDatosEmpresaListener());
+        vista.getPanelEmpresaDatos().getBtGuardarColaboracionesEmpresa().addActionListener(new btGuardarColaboracionesEmpresaListener());
+        vista.getPanelEmpresaDatos().getBtEliminarColaboracionesEmpresa().addActionListener(new btEliminarColaboracionesEmpresaListener());
+        vista.getPanelEmpresaDatos().getBtBuscarColaboracionesEmpresa().addActionListener(new btBuscarColaboracionesEmpresaListener());
+        
+        vista.getPanelEmpresaBuscar().getBtBuscarEmpresa().addActionListener(new btBuscadorEmpresaListener());
+        vista.getPanelEmpresaBuscar().getBtConsultarEmpresa().addActionListener(new btConsultarEmpresaListener());
+        vista.getPanelEmpresaBuscar().getBtEliminarEmpresa().addActionListener(new btEliminarEmpresaListener());
+        
+        anadirKeyListener();
+        
+        // mostrarVistaInicio();
+    }
 
+    
+    /**
+     * 
+     * @param datos
+     * @return 
+     */
     public boolean anadirC_Empresa(String[] datos) {
 
         if (!ComprobarDatos(datos))
@@ -87,7 +117,12 @@ public class ControladorC_Empresa {
 
         return exito;
     }
-
+    
+    /**
+     * 
+     * @param CIF
+     * @return 
+     */
     public C_Empresa obtenerC_Empresa (String CIF) {
         C_Empresa tempE;
 
@@ -101,6 +136,11 @@ public class ControladorC_Empresa {
         return tempE;
     }
 
+    /**
+     * 
+     * @param datos
+     * @return 
+     */
     public boolean modificarC_Empresa (String[] datos) {
         if (!ComprobarDatos(datos))
             return false;
@@ -132,6 +172,11 @@ public class ControladorC_Empresa {
         return exito;
     }
 
+    /**
+     * 
+     * @param tempE
+     * @return 
+     */
     public boolean eliminarC_Empresa (C_Empresa tempE) {
         boolean exito;
         try {
@@ -143,6 +188,12 @@ public class ControladorC_Empresa {
         return exito;
     }
 
+    /**
+     * 
+     * @param tipoBusqueta
+     * @param valor
+     * @return 
+     */
     public ArrayList<C_Empresa> buscarC_Empresa (String tipoBusqueta, String valor) {
         ArrayList<C_Empresa> personas;
 
@@ -156,39 +207,64 @@ public class ControladorC_Empresa {
         return personas;
     }
 
-    // proba los datos pero no sabemos cual son los datos que no son correcto
+    /**
+     * 
+     * @param datos
+     * @return 
+     */
     private boolean ComprobarDatos (String[] datos) {
-        // proba los datos que deben ser not null
-        for (int i=0; i<8; i++) {
-            if (datos[i].length() < 1)
-                return false;
+        
+        vista.getPanelEmpresaDatos().setColorLabels(Color.black);
+
+        if (!TestDatos.isCIF(datos[C_Empresa.CIF_ID])){
+            vista.getPanelEmpresaDatos().setColorLabelCIF(Color.red);
+            return false;
         }
 
-        if (!TestDatos.isCIF(datos[C_Empresa.CIF_ID]))
+        if (!TestDatos.isCodigoPostal(datos[C_Empresa.CP_ID])){
+            vista.getPanelEmpresaDatos().setColorLabelCP(Color.red);
             return false;
+        }
 
-        if (!TestDatos.isCodigoPostal(datos[C_Empresa.CP_ID]))
+        if (!TestDatos.isEmail(datos[C_Empresa.EMAIL_ID])){
+            vista.getPanelEmpresaDatos().setColorLabelEmail(Color.red);
             return false;
+        }
 
-        if (!TestDatos.isEmail(datos[C_Empresa.EMAIL_ID]))
+        if (!TestDatos.isTelefonoOFax(datos[C_Empresa.TELEFONO1_ID])){
+            vista.getPanelEmpresaDatos().setColorLabelTelefonoFijo(Color.red);
             return false;
-
-        if (!TestDatos.isTelefonoOFax(datos[C_Empresa.TELEFONO1_ID]))
+        }
+        
+        if (!TestDatos.isTelefonoOFax(datos[C_Empresa.TELEFONO2_ID])){
+            vista.getPanelEmpresaDatos().setColorLabelTelefonoMovil(Color.red);
             return false;
+        }
 
-        if (!TestDatos.isOnlyLetter(datos[C_Empresa.NOMBRE_ID]))
+        if (!TestDatos.isOnlyLetter(datos[C_Empresa.NOMBRE_ID])){
+            vista.getPanelEmpresaDatos().setColorLabelNombre(Color.red);
             return false;
+        }
 
-        if (!TestDatos.isOnlyLetter(datos[C_Empresa.DIRECCION_ID]))
+        if (!TestDatos.isOnlyLetter(datos[C_Empresa.DIRECCION_ID])){
+            vista.getPanelEmpresaDatos().setColorLabelDireccion(Color.red);
             return false;
-
-        if (!TestDatos.isOnlyLetter(datos[C_Empresa.LOCALIDAD_ID]))
+        }
+        
+        if (!TestDatos.isOnlyLetter(datos[C_Empresa.DIRECCION_WEB_ID])){
+            vista.getPanelEmpresaDatos().setColorLabelDireccion(Color.red);
             return false;
+        }
 
-        if (!TestDatos.isOnlyLetter(datos[C_Empresa.PROVINCIA_ID]))
+        if (!TestDatos.isOnlyLetter(datos[C_Empresa.LOCALIDAD_ID])){
+            vista.getPanelEmpresaDatos().setColorLabelLocalidad(Color.red);
             return false;
+        }
 
-
+        if (!TestDatos.isOnlyLetter(datos[C_Empresa.PROVINCIA_ID])){
+            vista.getPanelEmpresaDatos().setColorLabelProvincia(Color.red);
+            return false;
+        }
 
         if (datos[C_Empresa.TELEFONO2_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[C_Empresa.TELEFONO2_ID]))
             return false;
@@ -197,5 +273,88 @@ public class ControladorC_Empresa {
             return false;
 
         return true;
+    }
+
+    private void anadirKeyListener() {
+        
+        
+    }
+    
+    class btBuscarColaboracionesEmpresaListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
+    }
+
+    class btEliminarColaboracionesEmpresaListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
+    }
+
+    class btGuardarColaboracionesEmpresaListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
+    }
+
+    class btLimpiarDatosEmpresaListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            vista.getPanelEmpresaDatos().limpiarCampos();
+        }
+    }
+
+    class btGuardarDatosEmpresaListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            
+            
+            
+            
+            
+            
+        }
+    }
+
+    class btConsultarEmpresaListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
+    }
+
+    class btEliminarEmpresaListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
+    }
+    
+    class btBuscadorEmpresaListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+    }
+    
+    class btNuevaEmpresaListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
+    }
+    
+    class btBuscarEmpresaListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
     }
 }

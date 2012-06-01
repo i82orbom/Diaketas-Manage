@@ -1,6 +1,8 @@
 
 package Vistas.Paneles.BolsaTrabajo;
 
+import Modelo.Sector;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class PanelOfertaDatos extends javax.swing.JPanel {
@@ -368,6 +370,11 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
         );
 
         BTGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
+        BTGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTGuardarActionPerformed(evt);
+            }
+        });
 
         BTLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
         BTLimpiar.setMaximumSize(new java.awt.Dimension(65, 41));
@@ -382,6 +389,7 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
 
         labelError.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelError.setForeground(new java.awt.Color(255, 0, 0));
+        labelError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelError.setText("Error");
         labelError.setToolTipText("");
 
@@ -389,6 +397,18 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(28, 28, 28)
+                        .add(jLabel71))
+                    .add(layout.createSequentialGroup()
+                        .add(30, 30, 30)
+                        .add(jLabel69))
+                    .add(layout.createSequentialGroup()
+                        .add(31, 31, 31)
+                        .add(jLabel68)))
+                .add(0, 841, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -412,22 +432,10 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                         .add(BTLimpiar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(BTEliminar)
-                        .add(309, 309, 309))))
-            .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(28, 28, 28)
-                        .add(jLabel71))
-                    .add(layout.createSequentialGroup()
-                        .add(30, 30, 30)
-                        .add(jLabel69))
-                    .add(layout.createSequentialGroup()
-                        .add(31, 31, 31)
-                        .add(jLabel68))
-                    .add(layout.createSequentialGroup()
-                        .add(358, 358, 358)
-                        .add(labelError, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 309, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .add(0, 0, Short.MAX_VALUE))
+                        .add(309, 309, 309))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(labelError, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -456,6 +464,10 @@ public class PanelOfertaDatos extends javax.swing.JPanel {
                 .add(49, 49, 49))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BTGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BTGuardarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTEliminar;

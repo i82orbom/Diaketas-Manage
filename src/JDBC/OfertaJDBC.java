@@ -94,49 +94,58 @@ public class OfertaJDBC {
 		return exito;
     }
 
-	public ArrayList<Oferta> filtrarOfertas (String empresa, String sector,String antiguedad)throws SQLException{
-            DriverJDBC driver = DriverJDBC.getInstance();
-            Date fecha_limite;
-            String sql = "SELECT * FROM Oferta o, Sector s, C_Empresa c WHERE s.descripcion= '"+sector+"' AND s.OID = o.OIDSector AND (CURDATE()- '"+antiguedad+"')> o.Fecha AND '"+empresa+"'= c.CIF AND c.OID =o.OIDEmpresa ";
-            ArrayList<Oferta> lista_oferta = new ArrayList<Oferta>();
+	public ArrayList<Oferta> filtrarOfertas (Long empresa, Long sector, String antiguedad)throws SQLException{
+		DriverJDBC driver = DriverJDBC.getInstance();
+		Date fecha_limite;
+		String sql = "SELECT * FROM Oferta o WHERE '1'='1' ";
 
-            try{
-
-                Oferta temp;
-                C_Empresa temp2;
-
-		driver.conectar();
-		ResultSet resultados = driver.seleccionar(sql);
-
-                while(resultados.next()){
-                    temp = new Oferta();
-                    temp.setCualificacionRequerida(resultados.getString("CualificacionRequerida"));
-                    temp.setDescripcionOferta(resultados.getString("DescripcionOferta"));
-                    temp.setDuracionContrato(resultados.getInt("DuracionContrato"));
-                    temp.getEmpresa().setCIF(resultados.getString("CIF"));
-                    temp.getEmpresa().setNombre(resultados.getString("Nombre"));
-                    temp.setFecha(resultados.getDate("Fecha"));
-                    temp.setOID(resultados.getLong("OID"));
-                    temp.setPlazasOfertadas(resultados.getInt("PlazasOfertadas"));
-                    temp.getSector().setDescripcion(resultados.getString("Descripcion"));
-                    temp.setTipoContrato(resultados.getString("TipoContrato"));
+		if (empresa>0) sql += " AND o.oidempresa = "+empresa;
+		if (sector>0) sql += " AND o.OIDsector = "+sector+"";
 
 
+//		s.descripcion= '"+sector+"' AND s.OID = o.OIDSector AND (CURDATE()- '"+antiguedad+"')> o.Fecha";
+		ArrayList<Oferta> lista_oferta = new ArrayList<Oferta>();
 
-                    lista_oferta.add(temp);
+		try{
+			Oferta temp;
+			Sector tempSector = new Sector();
+			C_Empresa tempEmpresa = new C_Empresa();
 
-               }
-            }
+			driver.conectar();
+			ResultSet resultados = driver.seleccionar(sql);
 
-            catch (SQLException ex){
+			while(resultados.next()){
+				temp = new Oferta();
+				temp.setOID(resultados.getLong("OID"));
+				temp.setCualificacionRequerida(resultados.getString("CualificacionRequerida"));
+				temp.setDescripcionOferta(resultados.getString("DescripcionOferta"));
+				temp.setDuracionContrato(resultados.getInt("DuracionContrato"));
+				temp.setFecha(resultados.getDate("Fecha"));
+				temp.setPlazasOfertadas(resultados.getInt("PlazasOfertadas"));
+				temp.setTipoContrato(resultados.getString("TipoContrato"));
+
+				tempEmpresa.setOID(resultados.getLong("OIDempresa"));
+				tempEmpresa.setCIF("CIF");
+				temp.setEmpresa(tempEmpresa);
+
+				tempSector.setOID(resultados.getLong("OIDsector"));
+				tempSector.setDescripcion("Decripcion");
+				temp.setSector(tempSector);
+
+				lista_oferta.add(temp);
+			}
+		}
+		catch (SQLException ex){
 			throw ex;
 		}
 		finally {
 			driver.desconectar();
 		}
 
-            return lista_oferta;
-        }
+
+
+		return lista_oferta;
+	}
 
 	public boolean ActualizarOferta (Oferta oferta) throws SQLException{
 		DriverJDBC driver = DriverJDBC.getInstance();

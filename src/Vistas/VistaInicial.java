@@ -77,7 +77,7 @@ public class VistaInicial extends javax.swing.JPanel {
                 btColaboradoresActionPerformed(evt);
             }
         });
-        add(btColaboradores, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 250, 190));
+        add(btColaboradores, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 250, 190));
 
         btBeneficiario.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btBeneficiario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/bene.png"))); // NOI18N
@@ -87,7 +87,7 @@ public class VistaInicial extends javax.swing.JPanel {
         btBeneficiario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btBeneficiario.setPreferredSize(new java.awt.Dimension(161, 159));
         btBeneficiario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        add(btBeneficiario, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 250, 190));
+        add(btBeneficiario, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 250, 190));
 
         btVoluntario.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btVoluntario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/imgVolunt.jpg"))); // NOI18N
@@ -96,7 +96,7 @@ public class VistaInicial extends javax.swing.JPanel {
         btVoluntario.setActionCommand("entrarAPanelVoluntarios");
         btVoluntario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btVoluntario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        add(btVoluntario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 250, 190));
+        add(btVoluntario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 250, 190));
 
         btBolsaTrabajo.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btBolsaTrabajo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/imgBolsa.jpg"))); // NOI18N
@@ -104,10 +104,10 @@ public class VistaInicial extends javax.swing.JPanel {
         btBolsaTrabajo.setActionCommand("entrarAPanelBolsaTrabajo");
         btBolsaTrabajo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btBolsaTrabajo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        add(btBolsaTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 330, 250, 190));
+        add(btBolsaTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, 250, 190));
 
         btDesconectarse.setText("Desconectarse");
-        add(btDesconectarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, -1, -1));
+        add(btDesconectarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btColaboradoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btColaboradoresActionPerformed

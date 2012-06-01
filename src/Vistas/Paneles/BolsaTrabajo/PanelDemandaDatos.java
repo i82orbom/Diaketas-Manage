@@ -5,10 +5,7 @@
 package Vistas.Paneles.BolsaTrabajo;
 
 import Vistas.Paneles.Beneficiario.*;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
@@ -32,7 +29,22 @@ public class PanelDemandaDatos extends javax.swing.JPanel {
         return btLimpiar;
     }
 
-    public String getTextNIF(){
+    public JButton getBTGuardarCambios() {
+        return BTGuardarCambios;
+    }
+
+    public JButton getBTEliminar() {
+        return BTEliminar;
+    }
+
+    public JButton getBTModificar() {
+        return BTModificar;
+    }
+
+    public JTextField getTextNIF(){
+        return TextNIF;
+    }
+    public String getTextoNIF(){
         return TextNIF.getText();
     }
 
@@ -40,18 +52,40 @@ public class PanelDemandaDatos extends javax.swing.JPanel {
         this.TextNIF.setText(texto);
     }
 
-    public String getcbSector(){
-        return cbSector.getSelectedItem().toString();
+   public JComboBox getcbSector(){
+        return cbSector;
+   }
+
+    public JTextArea getTaHistoriaLaboral() {
+        return taHistoriaLaboral;
     }
 
-
-    public String gettaHistoriaLaboral(){
+    public String getTextoHistoriaLaboral(){
         return taHistoriaLaboral.getText();
     }
 
-    public void setTaHistoriaLaboral(String texto) {
+    public void setTextoHistoriaLaboral(String texto) {
         this.taHistoriaLaboral.setText(texto);
     }
+    public JLabel getlabelError(){
+		return labelError;
+	}
+
+    public JLabel getLabelNif() {
+        return jLabel66;
+    }
+
+    public JLabel getLabelSector() {
+        return jLabel64;
+    }
+
+    public JLabel getLabelHistorialLaboral() {
+        return jLabel65;
+    }
+    
+    
+    
+    
 
 
     /**
@@ -76,6 +110,10 @@ public class PanelDemandaDatos extends javax.swing.JPanel {
         TextNIF = new javax.swing.JTextField();
         jLabel68 = new javax.swing.JLabel();
         jLabel69 = new javax.swing.JLabel();
+        BTEliminar = new javax.swing.JButton();
+        BTGuardarCambios = new javax.swing.JButton();
+        BTModificar = new javax.swing.JButton();
+        labelError = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
@@ -92,6 +130,11 @@ public class PanelDemandaDatos extends javax.swing.JPanel {
         jLabel65.setText("Historia Laboral");
 
         cbSector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Construccion", "Electricidad", "Carpinteria", "Fontaneria", " " }));
+        cbSector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbSectorActionPerformed(evt);
+            }
+        });
 
         taHistoriaLaboral.setColumns(20);
         taHistoriaLaboral.setRows(5);
@@ -166,24 +209,26 @@ public class PanelDemandaDatos extends javax.swing.JPanel {
         jLabel69.setForeground(java.awt.Color.red);
         jLabel69.setText("Datos Laborales");
 
+        BTEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
+
+        BTGuardarCambios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
+        BTGuardarCambios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTGuardarCambiosActionPerformed(evt);
+            }
+        });
+
+        BTModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/modificar.png"))); // NOI18N
+
+        labelError.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelError.setForeground(new java.awt.Color(255, 0, 0));
+        labelError.setText("Error");
+        labelError.setToolTipText("");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(0, 455, Short.MAX_VALUE)
-                        .add(btGuardar)
-                        .add(18, 18, 18)
-                        .add(btLimpiar)
-                        .add(389, 389, 389))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
@@ -193,6 +238,31 @@ public class PanelDemandaDatos extends javax.swing.JPanel {
                         .add(22, 22, 22)
                         .add(jLabel68)))
                 .add(0, 0, Short.MAX_VALUE))
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(0, 361, Short.MAX_VALUE)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                .add(btGuardar)
+                                .add(18, 18, 18)
+                                .add(BTModificar)
+                                .add(18, 18, 18)
+                                .add(BTGuardarCambios)
+                                .add(18, 18, 18)
+                                .add(btLimpiar)
+                                .add(18, 18, 18)
+                                .add(BTEliminar)
+                                .add(129, 129, 129))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                .add(labelError, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 309, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(320, 320, 320))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -205,15 +275,32 @@ public class PanelDemandaDatos extends javax.swing.JPanel {
                 .add(jLabel69)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(34, 34, 34)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(btLimpiar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(btGuardar, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(13, 13, 13)
+                .add(labelError)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(btLimpiar)
+                        .add(BTEliminar))
+                    .add(BTGuardarCambios)
+                    .add(BTModificar)
+                    .add(btGuardar))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BTGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTGuardarCambiosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BTGuardarCambiosActionPerformed
+
+    private void cbSectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSectorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbSectorActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BTEliminar;
+    private javax.swing.JButton BTGuardarCambios;
+    private javax.swing.JButton BTModificar;
     private javax.swing.JTextField TextNIF;
     private javax.swing.JButton btGuardar;
     private javax.swing.JButton btLimpiar;
@@ -226,6 +313,7 @@ public class PanelDemandaDatos extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelError;
     private javax.swing.JTextArea taHistoriaLaboral;
     // End of variables declaration//GEN-END:variables
 }
