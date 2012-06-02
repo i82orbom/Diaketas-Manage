@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author Alberto
+ * @author Francisco
  */
 public class PanelEmpresaDatos extends javax.swing.JPanel {
 
@@ -514,7 +514,7 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Cantidad", "Fecha", "Concepto", "Confirmado por"
+                "Importe", "Fecha", "Concepto", "Confirmado por"
             }
         ) {
             Class[] types = new Class [] {
@@ -549,26 +549,24 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
                         .addGroup(PanelColaboracionesEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelColaboraciones)
                             .addComponent(jLabelAñadirColaboracion)))
-                    .addGroup(PanelColaboracionesEmpresaLayout.createSequentialGroup()
-                        .addGroup(PanelColaboracionesEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelColaboracionesEmpresaLayout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addGroup(PanelColaboracionesEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelConcepto)
-                                    .addComponent(jLabelImporte))
-                                .addGap(18, 18, 18)
-                                .addGroup(PanelColaboracionesEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(PanelColaboracionesEmpresaLayout.createSequentialGroup()
-                                        .addComponent(jTextImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(190, 190, 190)
-                                        .addComponent(jLabelFecha)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                                        .addComponent(jFormattedTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTextConcepto)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelColaboracionesEmpresaLayout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGroup(PanelColaboracionesEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelColaboracionesEmpresaLayout.createSequentialGroup()
+                            .addGap(47, 47, 47)
+                            .addGroup(PanelColaboracionesEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabelConcepto)
+                                .addComponent(jLabelImporte))
+                            .addGap(18, 18, 18)
+                            .addGroup(PanelColaboracionesEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(PanelColaboracionesEmpresaLayout.createSequentialGroup()
+                                    .addComponent(jTextImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(190, 190, 190)
+                                    .addComponent(jLabelFecha)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                                    .addComponent(jFormattedTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextConcepto)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelColaboracionesEmpresaLayout.createSequentialGroup()
+                            .addGap(52, 52, 52)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(PanelColaboracionesEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelColaboracionesEmpresaLayout.createSequentialGroup()
                         .addGroup(PanelColaboracionesEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)

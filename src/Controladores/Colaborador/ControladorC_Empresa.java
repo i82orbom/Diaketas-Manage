@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -21,6 +22,8 @@ import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
 
 /**
  ** NOMBRE CLASE: *	ControladorC_Empresa
@@ -67,9 +70,17 @@ public class ControladorC_Empresa {
     
     C_Empresa C_Empresa_temp;
     
+    private ArrayList<C_Empresa> empresas;
+    private ArrayList<Colaboracion> ColaboracionesEmpresa;
+    
     Colaboracion Colaboracion_temp;
     
     private VistaEmpresa vista;
+    
+    private SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+    
+    private String[] columnasEmpresa = {"CIF", "Nombre", "DireccionWeb", "Localidad", "Fax"};
+    private String[] columnasColaboracionEmpresa = {"Importe", "Fecha ", "Concepto", "Confirmado por"};
 
     public ControladorC_Empresa(VistaEmpresa pvista) {
         this.vista = pvista;
@@ -113,6 +124,25 @@ public class ControladorC_Empresa {
         vista.getBarraDeNavegacion().setTextLabelNivel2("Nueva Empresa");
     }
     
+    
+    private void mostrarVistaModificarEmpresa() {
+        vista.showPanel(VistaEmpresa.panelDatos);
+        vista.getBarraDeNavegacion().setTextLabelNivel1("Colaborador Empresa");
+        vista.getBarraDeNavegacion().setTextLabelNivel2("Modificar Empresa");
+    }
+    
+    private void actualizarTablaColaboraciones(){
+        /*
+        if(C_Empresa_temp!=null){
+            
+            vista.getPanelEmpresaDatos().getTbColaboracionesEmpresa().setModel(new TableModel(){
+                
+   
+                        
+            });
+        }
+        */
+    }
     
     /**
      * 
@@ -376,15 +406,15 @@ public class ControladorC_Empresa {
         public void actionPerformed(ActionEvent e) {
             vista.getPanelEmpresaDatos().getLabelErrorColaboraciones().setVisible(false);
             if (vista.getPanelEmpresaDatos().getTbColaboracionesEmpresa().getSelectedRow() != -1) {
-                if (JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar la colaboracion?", "Eliminar Colaboracion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                if (JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar la colaboración?", "Eliminar Colaboración", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                     if (ControladorColaboracion.getInstance().eliminarColaboracion(Colaboracion_temp)) {
-                        vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("La colaboracion ha sido eliminada del sistema.");
+                        vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("La colaboración ha sido eliminada del sistema.");
                     } else {
-                        vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("Error : la colaboracion no ha sido eliminada del sistema.");
+                        vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("Error : la colaboración no ha sido eliminada del sistema.");
                     }
                 }
             } else {
-                vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("Selecciona una ayuda.");
+                vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("Selecciona una colaboración.");
             }
         }
     }
@@ -459,17 +489,17 @@ public class ControladorC_Empresa {
                 
                 boolean exito = modificarC_Empresa(datos);
                 if (exito) 
-                    vista.getPanelEmpresaDatos().setTextLabelError("Beneficiario modificado correctamente.");
+                    vista.getPanelEmpresaDatos().setTextLabelError("Empresa modificada correctamente.");
                 else 
-                    vista.getPanelEmpresaDatos().setTextLabelError("El beneficiario no ha sido modificado.");
+                    vista.getPanelEmpresaDatos().setTextLabelError("La Empresa no ha sido modificada.");
                 
             } else {
                 
                 boolean exito = anadirC_Empresa(datos);
                 if (exito)
-                    vista.getPanelEmpresaDatos().setTextLabelError("Beneficiario añadido correctamente.");
+                    vista.getPanelEmpresaDatos().setTextLabelError("Empresa añadida correctamente.");
                 else
-                    vista.getPanelEmpresaDatos().setTextLabelError("El beneficiario no ha sido añadido.");   
+                    vista.getPanelEmpresaDatos().setTextLabelError("La Empresa no ha sido añadida.");   
             }
    
         }
@@ -480,13 +510,33 @@ public class ControladorC_Empresa {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            if(vista.getPanelEmpresaBuscar().getTbBuscadorEmpresas().getSelectedRow() != -1){
+                C_Empresa_temp = empresas.get(vista.getPanelEmpresaBuscar().getTbBuscadorEmpresas().getSelectedRow());
+                String CIF = vista.getPanelEmpresaBuscar().getTbBuscadorEmpresas().getValueAt(vista.getPanelEmpresaBuscar().getTbBuscadorEmpresas().getSelectedRow(), 0).toString();
+                C_Empresa_temp = obtenerC_Empresa(CIF);
+                // Colaboraciones empresa...
+                mostrarVistaModificarEmpresa();
+            }
         }
     }
 
     class btEliminarEmpresaListener implements ActionListener {
 
         @Override
-        public void actionPerformed(ActionEvent e) {            
+        public void actionPerformed(ActionEvent e) {
+            vista.getPanelEmpresaBuscar().getLabelError().setVisible(false);
+            if (vista.getPanelEmpresaBuscar().getTbBuscadorEmpresas().getSelectedRow() != -1) {
+                if (JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar la empresa?", "Eliminar Empresa", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    if (ControladorC_Empresa.getInstance(null).eliminarC_Empresa(C_Empresa_temp)) {
+                        vista.getPanelEmpresaBuscar().setTextLabelError("La Empresa ha sido eliminada del sistema.");
+                    } else {
+                        vista.getPanelEmpresaBuscar().setTextLabelError("Error : la Empresa no ha sido eliminada del sistema.");
+                    }
+                }
+            } else {
+                vista.getPanelEmpresaBuscar().setTextLabelError("Selecciona una empresa");
+            }
+            
         }
     }
     
@@ -494,6 +544,72 @@ public class ControladorC_Empresa {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            String dato = vista.getPanelEmpresaBuscar().getTextBusquedaEmpresa();
+            String tipoDato = vista.getPanelEmpresaBuscar().getTipoDatoBusquedaEmpresa();
+            empresas = buscarC_Empresa(tipoDato, dato);
+            TableModel tabla = new TableModel() {
+
+                @Override
+                public int getRowCount() {
+                    return empresas.size();
+                }
+
+                @Override
+                public int getColumnCount() {
+                    return columnasEmpresa.length;
+                }
+
+                @Override
+                public String getColumnName(int columnIndex) {
+                    return columnasEmpresa[columnIndex];
+                }
+
+                @Override
+                public Class<?> getColumnClass(int columnIndex) {
+                    return String.class;
+                }
+
+                @Override
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return false;
+                }
+
+                @Override
+                public Object getValueAt(int rowIndex, int columnIndex) {
+                    switch (columnIndex) {
+                        case 0:
+                            return empresas.get(rowIndex).getCIF();
+                        case 1:
+                            return empresas.get(rowIndex).getNombre();
+                        case 2:
+                            return empresas.get(rowIndex).getDireccionWeb();
+                        case 3:
+                            return empresas.get(rowIndex).getLocalidad();
+                        case 4:
+                            return empresas.get(rowIndex).getFax();
+                        default:
+                            return "";
+                    }
+                }
+
+                @Override
+                public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+                    throw new UnsupportedOperationException("Not supported yet.");
+                }
+
+                @Override
+                public void addTableModelListener(TableModelListener l) {
+                    throw new UnsupportedOperationException("Not supported yet.");
+                }
+
+                @Override
+                public void removeTableModelListener(TableModelListener l) {
+                    throw new UnsupportedOperationException("Not supported yet.");
+                }
+                
+                
+            };
+            vista.getPanelEmpresaBuscar().getTbBuscadorEmpresas().setModel(tabla); 
         }
     }
 }

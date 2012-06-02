@@ -5,12 +5,13 @@
 package Vistas.Paneles.Empresa;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
  *
- * @author Alberto
+ * @author PLB
  */
 public class PanelEmpresaBuscar extends javax.swing.JPanel {
 
@@ -19,10 +20,28 @@ public class PanelEmpresaBuscar extends javax.swing.JPanel {
      */
     public PanelEmpresaBuscar() {
         initComponents();
+        jLabelError.setVisible(false);
+    }
+    
+    public JLabel getLabelError() {
+        return jLabelError;
+    }
+    
+    public void setTextLabelError(String text){
+        jLabelError.setText(text);
+        jLabelError.setVisible(true);
     }
     
     public JTextField getBuscarEmpresa(){
         return JtextBuscarEmpresa;
+    }
+    
+    public String getTextBusquedaEmpresa() {
+        return JtextBuscarEmpresa.getText();
+    }
+    
+    public String getTipoDatoBusquedaEmpresa() {
+        return cbTipoBusquedaEmpresa.getSelectedItem().toString();
     }
 
     public JButton getBtConsultarEmpresa(){
@@ -58,6 +77,7 @@ public class PanelEmpresaBuscar extends javax.swing.JPanel {
         tableBuscarEmpresa = new javax.swing.JTable();
         btConsultarEmpresa = new javax.swing.JButton();
         btEliminarEmpresa = new javax.swing.JButton();
+        jLabelError = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -77,15 +97,22 @@ public class PanelEmpresaBuscar extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "DNI", "Nombre", "Apellidos", "Localidad", "Fecha Nacimiento"
+                "CIF", "Nombre", "DireccionWeb", "Localidad", "Fax"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane20.setViewportView(tableBuscarEmpresa);
@@ -93,6 +120,8 @@ public class PanelEmpresaBuscar extends javax.swing.JPanel {
         btConsultarEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/modificar.png"))); // NOI18N
 
         btEliminarEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
+
+        jLabelError.setText("Mensaje de Error");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -102,7 +131,9 @@ public class PanelEmpresaBuscar extends javax.swing.JPanel {
                 .addContainerGap(131, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(373, 373, 373)
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabelError)
+                        .addGap(328, 328, 328)
                         .addComponent(btConsultarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btEliminarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -131,9 +162,10 @@ public class PanelEmpresaBuscar extends javax.swing.JPanel {
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane20, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btConsultarEmpresa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btEliminarEmpresa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btConsultarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEliminarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelError, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -144,6 +176,7 @@ public class PanelEmpresaBuscar extends javax.swing.JPanel {
     private javax.swing.JButton btEliminarEmpresa;
     private javax.swing.JComboBox cbTipoBusquedaEmpresa;
     private javax.swing.JLabel jLabelBuscarPor;
+    private javax.swing.JLabel jLabelError;
     private javax.swing.JScrollPane jScrollPane20;
     private javax.swing.JTable tableBuscarEmpresa;
     // End of variables declaration//GEN-END:variables
