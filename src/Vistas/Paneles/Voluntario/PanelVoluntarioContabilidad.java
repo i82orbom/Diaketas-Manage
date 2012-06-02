@@ -4,10 +4,7 @@
  */
 package Vistas.Paneles.Voluntario;
 
-import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
@@ -27,6 +24,14 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
         return btBuscar;
     }
 
+	public JTable getTbIngresos(){
+		return tablaListaIngresos;
+	}
+	
+	public JTable getTbGastos(){
+		return tablaListaGastos;
+	}
+	
     public JTextField getCuadroBalance() {
         return cuadroBalance;
     }
@@ -43,8 +48,6 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
         labelError.setVisible(true);
         labelError.setText(error);
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.

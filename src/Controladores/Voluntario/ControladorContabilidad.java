@@ -2,9 +2,10 @@
 package Controladores.Voluntario;
 
 import Controladores.TestDatos;
+import JDBC.C_EmpresaJDBC;
+import JDBC.C_PersonaJDBC;
 import JDBC.MovimientoJDBC;
-import Modelo.Ayuda;
-import Modelo.Movimiento;
+import Modelo.*;
 import Vistas.Paneles.Voluntario.PanelVoluntarioContabilidad;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
 
 /**
  ** NOMBRE CLASE:
@@ -57,6 +60,94 @@ public class ControladorContabilidad {
     
     private ArrayList<Movimiento> gastos;
     private ArrayList<Movimiento> ingresos;
+	
+	String[] columnasGastos = {"Fecha","Gasto","Dni"};
+	String[] columnasIngresos = {"Fecha","Ingreso","Dni"};
+	
+	private SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+	
+	/*
+	 * El arrayList de ingresos debe estar rellenado
+	 */
+	private void actualizarTablaIngresos(){
+		vista.getTbIngresos().setModel(new TableModel() {
+
+			@Override
+			public int getRowCount() {
+				return ingresos.size();
+			}
+
+			@Override
+			public int getColumnCount() {
+				return columnasIngresos.length;
+			}
+
+			@Override
+			public String getColumnName(int columnIndex) {
+				return columnasIngresos[columnIndex];
+			}
+
+			@Override
+			public Class<?> getColumnClass(int i) {
+				return String.class;
+			}
+
+			@Override
+			public boolean isCellEditable(int rowIndex, int columnIndex) {
+				return false;
+			}
+
+			@Override
+			public Object getValueAt(int rowIndex, int columnIndex) {
+			Colaboracion col;
+			C_Empresa emp;
+			C_Persona per;
+				switch(columnIndex){
+					case 0:
+						return formateador.format(ingresos.get(rowIndex).getFecha());
+					case 1:
+						return ingresos.get(rowIndex).getImporte();
+					case 2:
+						if(ingresos.get(rowIndex).getClass() == Colaboracion.class){
+							col = (Colaboracion)ingresos.get(rowIndex);
+							try{
+								emp = C_EmpresaJDBC.getInstance().obtenerC_Empresa(col.getOIDColaborador());
+								return emp.getCIF();
+							}
+							catch(SQLException ex){
+								Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
+							}
+							try{
+								per = C_PersonaJDBC.getInstance().obtenerC_Persona(col.getOIDColaborador().toString());
+								return per.getDNI();
+							}
+							catch(SQLException ex){
+								Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
+							}
+							return "";
+						}
+						
+					default: return "";
+				}
+			}
+
+			@Override
+			public void setValueAt(Object o, int i, int i1) {
+				
+			}
+
+			@Override
+			public void addTableModelListener(TableModelListener tl) {
+				
+			}
+
+			@Override
+			public void removeTableModelListener(TableModelListener tl) {
+				
+			}
+			
+		});
+	}
 
     public ControladorContabilidad(PanelVoluntarioContabilidad vista) {
         this.vista = vista;
