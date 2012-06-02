@@ -67,13 +67,11 @@ public class ControladorAyuda {
     public ControladorAyuda(PanelVoluntarioAyudas vista) {
         this.vista = vista;
 
-        actualizarTipoAyuda();
-
         this.vista.getBtnGuardarTipoAyuda().addActionListener(new BtGuardarTipoAyudaListener());
         this.vista.getBtnEliminarTipoAyuda().addActionListener(new BtBorrarTipoAyudaListener());
     }
 
-    private void actualizarTipoAyuda() {
+    public void actualizarTipoAyuda() {
         try {
             tiposAyuda = AyudaJDBC.getInstance().obtenerDatosTipoAyuda();
         } catch (SQLException ex) {

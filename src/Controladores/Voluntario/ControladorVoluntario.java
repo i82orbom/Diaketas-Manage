@@ -146,6 +146,7 @@ public class ControladorVoluntario {
 
     private void mostrarVistaAyudas() {
         vista.showPanel(VistaVoluntario.panelAyudas);
+        ControladorAyuda.getInstance(null).actualizarTipoAyuda();
         vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
         vista.getBarraDeNavegacion().setTextLabelNivel2("Ayudas");
     }
