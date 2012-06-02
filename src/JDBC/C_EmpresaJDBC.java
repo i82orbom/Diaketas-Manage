@@ -197,6 +197,42 @@ public class C_EmpresaJDBC {
 		}
 		return Empresa;
     }
+	
+	public C_Empresa obtenerC_Empresa(Long OID) throws SQLException{
+
+        DriverJDBC driver = DriverJDBC.getInstance();
+        String sql = "SELECT * FROM Colaborador c, C_Empresa e WHERE (e.OID='"+OID.toString()+"') AND c.OID=e.OID";
+        C_Empresa Empresa = null;
+
+        try {
+            driver.conectar();
+            ResultSet rs = driver.seleccionar(sql);
+
+            if(rs.next()){
+                Empresa = new C_Empresa();
+				Empresa.setOID(Long.parseLong(rs.getString("OID")));
+                Empresa.setCIF(rs.getString("CIF"));
+                Empresa.setNombre(rs.getString("Nombre"));
+                Empresa.setDireccionWeb(rs.getString("DireccionWeb"));
+                Empresa.setFax(rs.getString("Fax"));
+
+                Empresa.setCP(rs.getString("CP"));
+                Empresa.setDireccion(rs.getString("Direccion"));
+                Empresa.setEmail(rs.getString("Email"));
+                Empresa.setLocalidad(rs.getString("Localidad"));
+                Empresa.setProvincia(rs.getString("Provincia"));
+                Empresa.setTelefonoFijo(rs.getString("TelefonoFijo"));
+                Empresa.setTelefonoMovil(rs.getString("TelefonoMovil"));
+            }
+        }
+        catch (SQLException ex){
+            throw ex;
+		}
+		finally{
+			driver.desconectar();
+		}
+		return Empresa;
+    }
 
     /**
      * Obtener un listado de todos los Colaboradores Empresa del sistema
