@@ -23,8 +23,8 @@ public class PanelEmpresaInicio extends javax.swing.JPanel {
         btBuscarEmpresa.addActionListener(listener);
     }
     
-    public void anadirListenerbtNuevoEmpresa(ActionListener listener){
-        btNuevoEmpresa.addActionListener(listener);
+    public void anadirListenerbtNuevaEmpresa(ActionListener listener){
+        btNuevaEmpresa.addActionListener(listener);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,15 +35,15 @@ public class PanelEmpresaInicio extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btNuevoEmpresa = new javax.swing.JButton();
+        btNuevaEmpresa = new javax.swing.JButton();
         btBuscarEmpresa = new javax.swing.JButton();
 
-        btNuevoEmpresa.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        btNuevoEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/usu.png"))); // NOI18N
-        btNuevoEmpresa.setText("NUEVA EMPRESA");
-        btNuevoEmpresa.setActionCommand("contabilidad");
-        btNuevoEmpresa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btNuevoEmpresa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btNuevaEmpresa.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btNuevaEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/usu.png"))); // NOI18N
+        btNuevaEmpresa.setText("NUEVA EMPRESA");
+        btNuevaEmpresa.setActionCommand("contabilidad");
+        btNuevaEmpresa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btNuevaEmpresa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         btBuscarEmpresa.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btBuscarEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/lupa.png"))); // NOI18N
@@ -58,7 +58,7 @@ public class PanelEmpresaInicio extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(89, 89, 89)
-                .addComponent(btNuevoEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btNuevaEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
                 .addComponent(btBuscarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93))
@@ -68,13 +68,13 @@ public class PanelEmpresaInicio extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(152, 152, 152)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btNuevoEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btNuevaEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btBuscarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(154, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBuscarEmpresa;
-    private javax.swing.JButton btNuevoEmpresa;
+    private javax.swing.JButton btNuevaEmpresa;
     // End of variables declaration//GEN-END:variables
 }

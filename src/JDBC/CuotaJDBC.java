@@ -97,7 +97,8 @@ public class CuotaJDBC {
     public boolean actualizarUltimoPago(Cuota c) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "UPDATE Cuota SET FechaUltimoPago='"+c.getFechaUltimoPago()+"'+'"+c.getIntervaloPagos()+"' WHERE OIDSocio='"+c.getSocio().getOID()+"'";
+        String sql = "UPDATE Cuota SET FechaUltimoPago='"+TestDatos.formatterBD.format(c.getFechaUltimoPago())+"'+'"+c.getIntervaloPagos()+"' WHERE OIDSocio='"+c.getSocio().getOID()+"'";
+		System.out.println(sql);
 
         try{
             driver.inicioTransaccion();
@@ -153,8 +154,7 @@ public class CuotaJDBC {
         DriverJDBC driver = DriverJDBC.getInstance();
 
         Date fechaActual = new Date();
-        String sql = "UPDATE Cuota SET FechaFin='"+fechaActual.getTime()+" WHERE Cuota.OID='"+c.getOIDCuota()+"'";
-
+        String sql = "UPDATE Cuota SET FechaFin='"+TestDatos.formatterBD.format(fechaActual.getTime())+"' WHERE Cuota.OID='"+c.getOIDCuota()+"'";
         try{
             driver.inicioTransaccion();
             driver.actualizar(sql);
@@ -253,7 +253,7 @@ public class CuotaJDBC {
             driver.conectar();
             ResultSet rs = driver.seleccionar(sql);
 
-            if(rs.next()){
+            while(rs.next()){
                 Cuota cuota = new Cuota();
 				cuota.setOIDCuota(rs.getLong("OID"));
 				cuota.setSocio(s);

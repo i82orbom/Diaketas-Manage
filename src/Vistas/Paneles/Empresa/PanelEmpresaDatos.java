@@ -4,8 +4,10 @@
  */
 package Vistas.Paneles.Empresa;
 
+import Modelo.C_Empresa;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -20,8 +22,28 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
      */
     public PanelEmpresaDatos() {
         initComponents();
+        jLabelError.setVisible(false);
+        jLabelErrorColaboraciones.setVisible(false);
     }
 
+    public JLabel getLabelError() {
+        return jLabelError;
+    }
+    
+    public void setTextLabelError(String text){
+        jLabelError.setText(text);
+        jLabelError.setVisible(true);
+    }
+    
+    public JLabel getLabelErrorColaboraciones(){
+        return jLabelErrorColaboraciones;
+    }
+    
+    public void setTextLabelErrorColaboraciones(String text){
+        jLabelErrorColaboraciones.setText(text);
+        jLabelErrorColaboraciones.setVisible(true);
+    }
+    
     /* CAMPOS */
     public JTextField getTextNombre(){
         return jTextNombre;
@@ -111,6 +133,30 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
         jLabelEmail.setForeground(cf);
     }
     
+    public JTextField getTextImporte(){
+        return jTextImporte;
+    }
+    
+    public void setColorLabelImporte(Color cf){
+        jLabelImporte.setForeground(cf);
+    }
+    
+    public JTextField getTextConcepto(){
+        return jTextConcepto;
+    }
+    
+    public void setColorLabelConcepto(Color cf){
+        jLabelConcepto.setForeground(cf);
+    }
+    
+    public JTextField getTextFecha(){
+        return jFormattedTextFecha;
+    }
+    
+    public void setColorLabelFecha(Color cf){
+        jLabelFecha.setForeground(cf);
+    }
+    
     public void setColorLabels(Color cf){
         jLabelNombre.setForeground(cf);
         jLabelCIF.setForeground(cf);
@@ -127,6 +173,8 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
     
     public void limpiarCampos(){
         setColorLabels(Color.black);
+        jLabelError.setVisible(false);
+        jLabelErrorColaboraciones.setVisible(false);
         jTextNombre.setText("");
         jTextCIF.setText("");
         jTextDireccionWeb.setText("");
@@ -137,6 +185,23 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
         jTextEmail.setText("");
         jTextTelefonoFijo.setText("");
         jTextTelefonoMovil.setText("");
+    }
+    
+    public String[] getDatosPersonales() {
+        String[] datos = new String[24];
+
+        datos[C_Empresa.NOMBRE_ID] = jTextNombre.getText();
+        datos[C_Empresa.CIF_ID] = jTextCIF.getText();
+        datos[C_Empresa.DIRECCION_WEB_ID] = jTextDireccionWeb.getText();
+        datos[C_Empresa.TELEFONO1_ID] = jTextTelefonoFijo.getText();
+        datos[C_Empresa.TELEFONO2_ID] = jTextTelefonoMovil.getText();
+        datos[C_Empresa.DIRECCION_ID] = jTextDireccion.getText();
+        datos[C_Empresa.LOCALIDAD_ID] = jTextLocalidad.getText();
+        datos[C_Empresa.CP_ID] = jTextCP.getText();
+        datos[C_Empresa.FAX_ID] = jTextFax.getText();
+        datos[C_Empresa.EMAIL_ID] = jTextEmail.getText();
+       
+        return datos;
     }
     
     /* BOTONES */
@@ -200,6 +265,7 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
         jLabelTelefonoMovil = new javax.swing.JLabel();
         jLabelEmail = new javax.swing.JLabel();
         jLabelProvincia = new javax.swing.JLabel();
+        jLabelError = new javax.swing.JLabel();
         PanelColaboracionesEmpresa = new javax.swing.JPanel();
         btGuardarColaboracionesEmpresa = new javax.swing.JButton();
         btBuscarColaboracionesEmpresa = new javax.swing.JButton();
@@ -207,15 +273,16 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
         cbFechaFinalEmpresa = new javax.swing.JComboBox();
         cbFechaInicialEmpresa = new javax.swing.JComboBox();
         jTextConcepto = new javax.swing.JTextField();
-        jTextCantidad = new javax.swing.JTextField();
+        jTextImporte = new javax.swing.JTextField();
         jFormattedTextFecha = new javax.swing.JFormattedTextField();
         jLabelColaboraciones = new javax.swing.JLabel();
         jLabelAñadirColaboracion = new javax.swing.JLabel();
-        jLabelCantidad = new javax.swing.JLabel();
+        jLabelImporte = new javax.swing.JLabel();
         jLabelFecha = new javax.swing.JLabel();
         jLabelConcepto = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableColaboracionesEmpresa = new javax.swing.JTable();
+        jLabelErrorColaboraciones = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -265,6 +332,8 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
 
         jLabelProvincia.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelProvincia.setText("Provincia");
+
+        jLabelError.setText("Mensaje de Error");
 
         javax.swing.GroupLayout PanelDatosEmpresaLayout = new javax.swing.GroupLayout(PanelDatosEmpresa);
         PanelDatosEmpresa.setLayout(PanelDatosEmpresaLayout);
@@ -325,7 +394,10 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
                         .addComponent(jLabelDatosEmpresa))
                     .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addComponent(jLabelDatosContacto)))
+                        .addComponent(jLabelDatosContacto))
+                    .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
+                        .addGap(222, 222, 222)
+                        .addComponent(jLabelError)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
@@ -393,6 +465,8 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
                         .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelFax))
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabelError)
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
@@ -423,8 +497,8 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
         jLabelAñadirColaboracion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelAñadirColaboracion.setText("Añadir Colaboración");
 
-        jLabelCantidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabelCantidad.setText("Cantidad");
+        jLabelImporte.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelImporte.setText("Importe");
 
         jLabelFecha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelFecha.setText("Fecha");
@@ -462,6 +536,8 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
         jTableColaboracionesEmpresa.getColumnModel().getColumn(0).setResizable(false);
         jTableColaboracionesEmpresa.getColumnModel().getColumn(1).setResizable(false);
 
+        jLabelErrorColaboraciones.setText("Mensaje de Error");
+
         javax.swing.GroupLayout PanelColaboracionesEmpresaLayout = new javax.swing.GroupLayout(PanelColaboracionesEmpresa);
         PanelColaboracionesEmpresa.setLayout(PanelColaboracionesEmpresaLayout);
         PanelColaboracionesEmpresaLayout.setHorizontalGroup(
@@ -479,20 +555,20 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
                                 .addGap(47, 47, 47)
                                 .addGroup(PanelColaboracionesEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabelConcepto)
-                                    .addComponent(jLabelCantidad))
+                                    .addComponent(jLabelImporte))
                                 .addGap(18, 18, 18)
                                 .addGroup(PanelColaboracionesEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(PanelColaboracionesEmpresaLayout.createSequentialGroup()
-                                        .addComponent(jTextCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(190, 190, 190)
                                         .addComponent(jLabelFecha)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                                         .addComponent(jFormattedTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jTextConcepto)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelColaboracionesEmpresaLayout.createSequentialGroup()
                                 .addGap(52, 52, 52)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 36, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(PanelColaboracionesEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelColaboracionesEmpresaLayout.createSequentialGroup()
                         .addGroup(PanelColaboracionesEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -503,6 +579,10 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
                     .addComponent(cbFechaInicialEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbFechaFinalEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
+            .addGroup(PanelColaboracionesEmpresaLayout.createSequentialGroup()
+                .addGap(369, 369, 369)
+                .addComponent(jLabelErrorColaboraciones)
+                .addContainerGap())
         );
         PanelColaboracionesEmpresaLayout.setVerticalGroup(
             PanelColaboracionesEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,15 +607,17 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
                 .addComponent(jLabelAñadirColaboracion, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(PanelColaboracionesEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCantidad)
+                    .addComponent(jLabelImporte)
                     .addComponent(jLabelFecha)
-                    .addComponent(jTextCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextImporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(PanelColaboracionesEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelConcepto)
                     .addComponent(jTextConcepto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(116, 116, 116))
+                .addGap(42, 42, 42)
+                .addComponent(jLabelErrorColaboraciones)
+                .addGap(60, 60, 60))
         );
 
         jTabbedPane4.addTab("Colaboraciones", PanelColaboracionesEmpresa);
@@ -572,7 +654,6 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelAñadirColaboracion;
     private javax.swing.JLabel jLabelCIF;
     private javax.swing.JLabel jLabelCP;
-    private javax.swing.JLabel jLabelCantidad;
     private javax.swing.JLabel jLabelColaboraciones;
     private javax.swing.JLabel jLabelConcepto;
     private javax.swing.JLabel jLabelDatosContacto;
@@ -580,8 +661,11 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelDireccion;
     private javax.swing.JLabel jLabelDireccionWeb;
     private javax.swing.JLabel jLabelEmail;
+    private javax.swing.JLabel jLabelError;
+    private javax.swing.JLabel jLabelErrorColaboraciones;
     private javax.swing.JLabel jLabelFax;
     private javax.swing.JLabel jLabelFecha;
+    private javax.swing.JLabel jLabelImporte;
     private javax.swing.JLabel jLabelLocalidad;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JLabel jLabelProvincia;
@@ -592,12 +676,12 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
     private javax.swing.JTable jTableColaboracionesEmpresa;
     private javax.swing.JTextField jTextCIF;
     private javax.swing.JTextField jTextCP;
-    private javax.swing.JTextField jTextCantidad;
     private javax.swing.JTextField jTextConcepto;
     private javax.swing.JTextField jTextDireccion;
     private javax.swing.JTextField jTextDireccionWeb;
     private javax.swing.JTextField jTextEmail;
     private javax.swing.JTextField jTextFax;
+    private javax.swing.JTextField jTextImporte;
     private javax.swing.JTextField jTextLocalidad;
     private javax.swing.JTextField jTextNombre;
     private javax.swing.JTextField jTextProvincia;
