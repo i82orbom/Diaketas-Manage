@@ -153,6 +153,6 @@ public class ControladorContabilidad {
             
             vista.getCuadroBalance().setText(Float.toString(obtenerContabilidad(fechaInicio, fechaFin)));
         }
-        
+       
     }
 }
