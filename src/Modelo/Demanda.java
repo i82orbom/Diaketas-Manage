@@ -1,23 +1,23 @@
 /**
- ** NOMBRE CLASE: 
+ ** NOMBRE CLASE:
  **	  Demanda.java
  **
  ** DESCRIPCION:
  **       Abstracción de una Demanda
- **       
+ **
  **
  ** DESARROLLADO POR:
  **       Juan Antonio Aranda Ortega
- **	   
- **        
+ **
+ **
  ** SUPERVISADO POR:
- **       
+ **
  **
  ** HISTORIA:
- ** 	000 - Mayo 22, 2012 - Creacion 
+ ** 	000 - Mayo 22, 2012 - Creacion
  **
  ** NOTAS:
- **   
+ **
  **
  */
 
@@ -25,23 +25,23 @@ package Modelo;
 import java.util.Date;
 
 public class Demanda {
-    
+
     //Atributos propios
     private Long OID;
     private String descripcionValidaLaboral;
     private Date fecha;
-    
+
     //Claves externas
-    private Sector idSector;
-    private Beneficiario idBeneficiario;
-    private Voluntario idVoluntario;
+    private Sector sector;
+    private Beneficiario beneficiario;
+    private Voluntario voluntario;
 
     /**
      * Constructor Vacio
      */
     public Demanda() {
     }
-    
+
     /**
     * Constructor con todos los atributos
     * @param OID
@@ -49,18 +49,18 @@ public class Demanda {
     * @param fecha
     * @param idSector
     * @param idBeneficiario
-    * @param idVoluntario 
+    * @param idVoluntario
     */
-    public Demanda(Long OID, String descripcionValidaLaboral, Date fecha, Sector idSector, Beneficiario idBeneficiario, Voluntario idVoluntario) {
+    public Demanda(Long OID, String descripcionValidaLaboral, Date fecha, Sector sector, Beneficiario beneficiario, Voluntario voluntario) {
         this.OID = OID;
         this.descripcionValidaLaboral = descripcionValidaLaboral;
         this.fecha = fecha;
-        this.idSector = idSector;
-        this.idBeneficiario = idBeneficiario;
-        this.idVoluntario = idVoluntario;
+        this.sector = sector;
+        this.beneficiario = beneficiario;
+        this.voluntario = voluntario;
     }
-    
-    
+
+
     //Métodos get y set
     public Long getOID() {
         return OID;
@@ -86,28 +86,28 @@ public class Demanda {
         this.fecha = fecha;
     }
 
-    public Beneficiario getIdBeneficiario() {
-        return idBeneficiario;
+    public Beneficiario getBeneficiario() {
+        return beneficiario;
     }
 
-    public void setIdBeneficiario(Beneficiario idBeneficiario) {
-        this.idBeneficiario = idBeneficiario;
+    public void setBeneficiario(Beneficiario beneficiario) {
+        this.beneficiario = beneficiario;
     }
 
-    public Sector getIdSector() {
-        return idSector;
+    public Sector getSector() {
+        return sector;
     }
 
-    public void setIdSector(Sector idSector) {
-        this.idSector = idSector;
+    public void setSector(Sector idSector) {
+        this.sector = idSector;
     }
 
-    public Voluntario getIdVoluntario() {
-        return idVoluntario;
+    public Voluntario getVoluntario() {
+        return voluntario;
     }
 
-    public void setIdVoluntario(Voluntario idVoluntario) {
-        this.idVoluntario = idVoluntario;
+    public void setVoluntario(Voluntario idVoluntario) {
+        this.voluntario = idVoluntario;
     }
-        
+
 }
