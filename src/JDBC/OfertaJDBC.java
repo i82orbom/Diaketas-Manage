@@ -175,10 +175,10 @@ public class OfertaJDBC {
         return true;
 	}
         
-        public boolean ConsultarOfertaSector (int oid) throws SQLException {
+        public boolean ConsultarOfertaSector (Long oid) throws SQLException {
     
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "SELECT * FROM Sector WHERE OID ="+oid;
+        String sql = "SELECT * FROM Oferta WHERE OIDSector ="+oid;
         ResultSet resultado;
         boolean exito;
         

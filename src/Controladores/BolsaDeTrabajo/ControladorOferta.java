@@ -183,7 +183,7 @@ public class ControladorOferta {
 
 	public void eliminarSector(String desc){
 		Sector sector=null;
-		boolean tieneOfertas=true, tieneDemandas=true;
+		boolean tieneOfertas=false, tieneDemandas=false;
 		try {
 			sector = SectorJDBC.getInstance().ConsultarSector(desc);
 		} catch (SQLException ex){
@@ -197,13 +197,13 @@ public class ControladorOferta {
 			} catch (SQLException ex){
 				ControladorErrores.mostrarError("Error al obtener demandas del sector:\n"+ex);
 			}
-*//*
+*/
 			try {
 				tieneOfertas = OfertaJDBC.getInstance().ConsultarOfertaSector(sector.getOID());
 			} catch (SQLException ex){
 				ControladorErrores.mostrarError("Error al obtener ofertas del sector:\n"+ex);
 			}
-*/		}
+		}
 
 		if (tieneDemandas){
 			vista.getOfertaDatos().getlabelError().setText("El sector no puede ser eliminado. Hay demandas en este sector.");
