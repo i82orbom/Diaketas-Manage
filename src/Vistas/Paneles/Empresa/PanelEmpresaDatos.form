@@ -92,16 +92,18 @@
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabelEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabelTelefonoMovil" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" attributes="0">
-                                                      <Component id="jLabelTelefonoMovil" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                                       <Component id="jTextTelefonoMovil" pref="120" max="32767" attributes="0"/>
-                                                      <EmptySpace pref="72" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" attributes="0">
-                                                      <Component id="jLabelEmail" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                                       <Component id="jTextEmail" max="32767" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -141,18 +143,13 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
                               <Component id="jLabelError" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+                              <Component id="btGuardarEmpresa" min="-2" pref="27" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btLimpiarEmpresa" min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="445" max="-2" attributes="0"/>
-                          <Component id="btGuardarEmpresa" min="-2" pref="27" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btLimpiarEmpresa" min="-2" pref="33" max="-2" attributes="0"/>
-                          <EmptySpace pref="388" max="32767" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="0" pref="386" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -180,7 +177,7 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabelDatosContacto" min="-2" pref="21" max="-2" attributes="0"/>
-                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                      <EmptySpace pref="28" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabelDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -207,20 +204,20 @@
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jTextTelefonoMovil" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelTelefonoMovil" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="12" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jTextEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+                              <EmptySpace pref="51" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabelTelefonoFijo" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTextTelefonoFijo" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -230,20 +227,21 @@
                                   <Component id="jTextFax" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelFax" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Component id="jLabelError" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                      </Group>
-                  </Group>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="376" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btLimpiarEmpresa" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="btGuardarEmpresa" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btGuardarEmpresa" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="btLimpiarEmpresa" min="-2" pref="29" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="55" pref="25" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="61" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -434,9 +432,9 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="jTextImporte" min="-2" pref="177" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
+                                          <EmptySpace pref="237" max="32767" attributes="0"/>
                                           <Component id="jLabelFecha" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="65" max="32767" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jFormattedTextFecha" min="-2" pref="135" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jTextConcepto" max="32767" attributes="0"/>
@@ -449,16 +447,14 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="btBuscarColaboracionesEmpresa" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
-                                  <Component id="btGuardarColaboracionesEmpresa" alignment="1" min="-2" pref="27" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btEliminarColaboracionesEmpresa" min="-2" pref="23" max="-2" attributes="0"/>
-                          </Group>
                           <Component id="cbFechaInicialEmpresa" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
                           <Component id="cbFechaFinalEmpresa" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                          <Component id="btGuardarColaboracionesEmpresa" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btBuscarColaboracionesEmpresa" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="btEliminarColaboracionesEmpresa" min="-2" pref="23" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
@@ -476,12 +472,12 @@
                       <Component id="cbFechaInicialEmpresa" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="cbFechaFinalEmpresa" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btBuscarColaboracionesEmpresa" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
-                          <Component id="btEliminarColaboracionesEmpresa" alignment="1" min="-2" pref="31" max="-2" attributes="0"/>
-                      </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="btBuscarColaboracionesEmpresa" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="btEliminarColaboracionesEmpresa" min="-2" pref="31" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btGuardarColaboracionesEmpresa" min="-2" pref="26" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
