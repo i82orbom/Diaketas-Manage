@@ -122,7 +122,7 @@ public class DemandaJDBC {
    */
     public ArrayList<Demanda> FiltrarDemandas(long OIDBeneficiario , long OIDSector , int meses) throws SQLException{
 		DriverJDBC driver = DriverJDBC.getInstance();
-		ResultSet resultado, resultado_1;
+		ResultSet resultado;
 
 		ArrayList<Demanda> listaDemandas = new ArrayList<Demanda>();
 		Beneficiario beneficiario;
@@ -154,31 +154,42 @@ public class DemandaJDBC {
 				temp.setOID(resultado.getLong("OID"));
 				temp.setDescripcionValidaLaboral(resultado.getString("DescripcionVidaLaboral"));
 				temp.setFecha(resultado.getDate("Fecha"));
+
 				beneficiario.setOID(resultado.getLong("OIDBeneficiario"));
+				temp.setBeneficiario(beneficiario);
+
 //				voluntario.setOID(resultado.getLong("OIDVoluntario"));
+//				temp.setVoluntario(voluntario);
+
 				sector.setOID(resultado.getLong("OIDSector"));
+				temp.setSector(sector);
+
+				//____ Añadimos la demanda al arraylist ____
+				listaDemandas.add(temp);
+			}
+
+			for (Demanda d:listaDemandas){
+				sector = d.getSector();
+				beneficiario = d.getBeneficiario();
+//				voluntario = d.getVoluntario();
 
 				//____ Obtenemos el sector ____
 				String sql1 = "SELECT * FROM Sector WHERE OID ="+sector.getOID();
-				resultado_1=driver.seleccionar(sql1);
-				sector.setDescripcion(resultado_1.getString("Descripcion"));
-				temp.setSector(sector);
+				resultado = driver.seleccionar(sql1);
+				sector.setDescripcion(resultado.getString("Descripcion"));
 
 				//____ Obtenemos el beneficiario ____
 				sql1 = "SELECT NIF FROM Persona WHERE OID = "+beneficiario.getOID();
-				resultado_1 = driver.seleccionar(sql1);
-				beneficiario = BeneficiarioJDBC.getInstance().obtenerBeneficiario(resultado_1.getString("NIF"));
-				temp.setBeneficiario(beneficiario);
+				resultado = driver.seleccionar(sql1);
+				beneficiario = BeneficiarioJDBC.getInstance().obtenerBeneficiario(resultado.getString("NIF"));
 
 				//____ Obtenemos el voluntario ____
 /*				sql1 = "SELECT NIF FROM Persona WHERE OID = "+voluntario.getOID();
-				resultado_1 = driver.seleccionar(sql1);
+				resultado = driver.seleccionar(sql1);
 				voluntario = VoluntarioJDBC.getInstance().obtenerVoluntario(resultado_1.getString("NIF"));
 				temp.setVoluntario(voluntario);
 */
 
-				//____ Añadimos la demanda al arraylist ____
-				listaDemandas.add(temp);
 			}
 		}
 		catch (SQLException ex){
