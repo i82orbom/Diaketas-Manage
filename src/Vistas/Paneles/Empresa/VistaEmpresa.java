@@ -77,6 +77,8 @@ public class VistaEmpresa extends javax.swing.JPanel {
         panelEmpresa.setMinimumSize(new java.awt.Dimension(1000, 550));
         panelEmpresa.setPreferredSize(new java.awt.Dimension(1000, 550));
         panelEmpresa.setLayout(new java.awt.CardLayout());
+
+        panelEmpresaInicio.setBackground(new java.awt.Color(255, 255, 255));
         panelEmpresa.add(panelEmpresaInicio, "empresaInicio");
         panelEmpresa.add(panelEmpresaDatos, "empresaDatos");
         panelEmpresa.add(panelEmpresaBuscar, "empresaBuscar");

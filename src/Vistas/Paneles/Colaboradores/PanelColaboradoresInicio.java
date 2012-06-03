@@ -51,27 +51,24 @@ public class PanelColaboradoresInicio extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
 
-        btColaborador.setBackground(new java.awt.Color(255, 255, 255));
         btColaborador.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/monigotes_redimensionados.png"))); // NOI18N
         btColaborador.setText("COLABORADORES");
         btColaborador.setActionCommand("nuevoBeneficiario");
-        btColaborador.setBorder(null);
         btColaborador.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btColaborador.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        btSocio.setBackground(new java.awt.Color(255, 255, 255));
         btSocio.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/socios.jpg"))); // NOI18N
         btSocio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btSocio.setLabel("SOCIO");
+        btSocio.setMaximumSize(new java.awt.Dimension(215, 183));
+        btSocio.setMinimumSize(new java.awt.Dimension(215, 183));
         btSocio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        btEmpresa.setBackground(new java.awt.Color(255, 255, 255));
         btEmpresa.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/empresas-redimensionada.jpg"))); // NOI18N
         btEmpresa.setText("EMPRESA");
-        btEmpresa.setActionCommand("nuevoBeneficiario");
-        btEmpresa.setBorder(null);
         btEmpresa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btEmpresa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 

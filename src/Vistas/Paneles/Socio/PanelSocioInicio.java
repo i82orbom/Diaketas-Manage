@@ -40,21 +40,15 @@ public class PanelSocioInicio extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
 
-        btNuevoSocio.setBackground(new java.awt.Color(255, 255, 255));
         btNuevoSocio.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btNuevoSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/usu.png"))); // NOI18N
         btNuevoSocio.setText("Nuevo Socio");
-        btNuevoSocio.setActionCommand("contabilidad");
-        btNuevoSocio.setBorder(null);
         btNuevoSocio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btNuevoSocio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        btBuscarSocio.setBackground(new java.awt.Color(255, 255, 255));
         btBuscarSocio.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btBuscarSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/lupa.png"))); // NOI18N
         btBuscarSocio.setText("BUSCAR");
-        btBuscarSocio.setActionCommand("buscarVoluntario");
-        btBuscarSocio.setBorder(null);
         btBuscarSocio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btBuscarSocio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
@@ -63,20 +57,20 @@ public class PanelSocioInicio extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(btNuevoSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
-                .addComponent(btBuscarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(134, 134, 134))
+                .addGap(204, 204, 204)
+                .addComponent(btNuevoSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
+                .addComponent(btBuscarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(170, 170, 170))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btBuscarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btNuevoSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addGap(154, 154, 154)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btBuscarSocio)
+                    .addComponent(btNuevoSocio))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -38,6 +38,8 @@ public class PanelEmpresaInicio extends javax.swing.JPanel {
         btNuevaEmpresa = new javax.swing.JButton();
         btBuscarEmpresa = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         btNuevaEmpresa.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btNuevaEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/usu.png"))); // NOI18N
         btNuevaEmpresa.setText("NUEVA EMPRESA");
