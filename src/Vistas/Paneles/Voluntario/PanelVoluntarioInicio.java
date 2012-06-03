@@ -62,11 +62,9 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1000, 550));
         setMinimumSize(new java.awt.Dimension(1000, 550));
         setPreferredSize(new java.awt.Dimension(1000, 550));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btNuevoVoluntario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/vol.png"))); // NOI18N
         btNuevoVoluntario.setActionCommand("nuevoVoluntario");
-        add(btNuevoVoluntario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, -1, 183));
 
         btBuscarVoluntario.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btBuscarVoluntario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/lupa.png"))); // NOI18N
@@ -74,7 +72,6 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
         btBuscarVoluntario.setActionCommand("buscarVoluntario");
         btBuscarVoluntario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btBuscarVoluntario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        add(btBuscarVoluntario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 90, -1, -1));
 
         btContabilidad.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btContabilidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/contabilidad.jpg"))); // NOI18N
@@ -82,7 +79,6 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
         btContabilidad.setActionCommand("contabilidad");
         btContabilidad.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btContabilidad.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        add(btContabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 169, 183));
 
         btAyudas.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btAyudas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/images.jpg"))); // NOI18N
@@ -90,7 +86,6 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
         btAyudas.setActionCommand("ayudas");
         btAyudas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btAyudas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        add(btAyudas, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 330, 166, 183));
 
         btColaboraciones.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btColaboraciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/monigote-devoluciones_1.jpg"))); // NOI18N
@@ -98,7 +93,38 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
         btColaboraciones.setActionCommand("contabilidad");
         btColaboraciones.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btColaboraciones.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        add(btColaboraciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, 166, 183));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btNuevoVoluntario)
+                        .addGap(243, 243, 243)
+                        .addComponent(btBuscarVoluntario))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btContabilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(151, 151, 151)
+                        .addComponent(btColaboraciones, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(144, 144, 144)
+                        .addComponent(btAyudas, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btNuevoVoluntario, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btBuscarVoluntario))
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btContabilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btColaboraciones, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btAyudas, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAyudas;

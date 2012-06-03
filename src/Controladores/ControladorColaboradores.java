@@ -1,6 +1,6 @@
-
 package Controladores;
 
+import Controladores.Colaborador.ControladorC_Empresa;
 import Controladores.Colaborador.ControladorSocio;
 import Controladores.Voluntario.ControladorColaboracion;
 import Vistas.BarraDeNavegacion;
@@ -58,7 +58,7 @@ public class ControladorColaboradores {
 	vista = pvista;
 
 	ControladorSocio.getInstance(vista);
-	
+	ControladorC_Empresa.getInstance(vista);
 	//ControladorC_Empresa.getInstance(vista.getVistaEmpresa());
 	//ControladorC_Persona.getInstance(vista.getVistaColaborador());
 
@@ -74,7 +74,7 @@ public class ControladorColaboradores {
         vista.getPanelEmpresaInicio().anadirListenerbtNuevaEmpresa(new btNuevaEmpresaListener());
         vista.getPanelColaboradorInicio().anadirListenerbtNuevoColaborador(new btNuevoColaboradorListener());
         vista.getPanelColaboradorInicio().anadirListenerbtBuscarColaborador(new btBuscarColaboradorListener());
-		
+
         // al principio mostrar la vista de inicio
         mostrarVistaInicio();
 
@@ -119,14 +119,21 @@ public class ControladorColaboradores {
         vista.getBarraDeNavigacion().setTextLabelNivel3("Buscar");
     }
 
-    private void mostrarVistaEmpresaNuevo(){
+    public void mostrarVistaEmpresaNuevo(){
         vista.showPanel(VistaColaboradores.panelempresaDatos);
         vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
         vista.getBarraDeNavigacion().setTextLabelNivel2("Empresa");
-        vista.getBarraDeNavigacion().setTextLabelNivel3("Datos");
+        vista.getBarraDeNavigacion().setTextLabelNivel3("Nuevo Empresa");
+    }
+    
+    public void mostrarVistaEmpresaModificar(){
+        vista.showPanel(VistaColaboradores.panelempresaDatos);
+        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
+        vista.getBarraDeNavigacion().setTextLabelNivel2("Empresa");
+        vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Empresa");
     }
 
-    private void mostrarVistaEmpresaBuscar(){
+    public void mostrarVistaEmpresaBuscar(){
         vista.showPanel(VistaColaboradores.panelempresaBuscar);
         vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
         vista.getBarraDeNavigacion().setTextLabelNivel2("Empresa");
@@ -165,7 +172,7 @@ public class ControladorColaboradores {
             if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_NIVEL1)) {
                 mostrarVistaInicio();
             }
-			
+
 			if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_NIVEL2)) {
 				if(vista.getBarraDeNavigacion().getTextLebelNivel2().equalsIgnoreCase("Socio"))
 					mostrarVistaSocio();
@@ -176,8 +183,8 @@ public class ControladorColaboradores {
 			}
         }
     }
-	   
-	
+
+
     // listeners de los botones
     class btSocioListener implements ActionListener {
         @Override

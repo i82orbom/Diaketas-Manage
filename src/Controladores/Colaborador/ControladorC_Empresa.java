@@ -1,6 +1,6 @@
-
 package Controladores.Colaborador;
 
+import Controladores.ControladorColaboradores;
 import Controladores.TestDatos;
 import Controladores.Voluntario.ControladorColaboracion;
 import JDBC.C_EmpresaJDBC;
@@ -59,7 +59,7 @@ public class ControladorC_Empresa {
     private static ControladorC_Empresa instancia = null;
 
     
-    public static ControladorC_Empresa getInstance(VistaEmpresa pvista) {
+    public static ControladorC_Empresa getInstance(VistaColaboradores pvista) {
 
         if (instancia == null) {
             instancia = new ControladorC_Empresa(pvista);
@@ -75,14 +75,14 @@ public class ControladorC_Empresa {
     
     Colaboracion Colaboracion_temp;
     
-    private VistaEmpresa vista;
+    private VistaColaboradores vista;
     
     private SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
     
     private String[] columnasEmpresa = {"CIF", "Nombre", "DireccionWeb", "Localidad", "Fax"};
     private String[] columnasColaboracionEmpresa = {"Importe", "Fecha ", "Concepto", "Confirmado por"};
 
-    public ControladorC_Empresa(VistaEmpresa pvista) {
+    public ControladorC_Empresa(VistaColaboradores pvista) {
         this.vista = pvista;
         
         vista.getPanelEmpresaInicio().anadirListenerbtNuevaEmpresa(new btNuevaEmpresaListener());
@@ -99,36 +99,6 @@ public class ControladorC_Empresa {
         vista.getPanelEmpresaBuscar().getBtEliminarEmpresa().addActionListener(new btEliminarEmpresaListener());
         
         anadirKeyListener();
-        
-        mostrarVistaInicio();
-    }
-
-    /* MOSTRAR INICIO */
-    private void mostrarVistaInicio() {
-        vista.showPanel(VistaEmpresa.panelInicio);
-        vista.getBarraDeNavegacion().setTextLabelNivel1("Colaborador Empresa");
-    }
-
-    /* MOSTRAR NUEVA Y BUSCAR EMPRESA */
-    private void mostrarVistaBuscarEmpresa() {
-        vista.showPanel(VistaEmpresa.panelBuscar);
-        vista.getBarraDeNavegacion().setTextLabelNivel1("Colaborador Empresa");
-        vista.getBarraDeNavegacion().setTextLabelNivel2("Buscar");
-    }
-
-    private void mostrarVistaNuevaEmpresa() {
-        C_Empresa_temp = null;
-        vista.showPanel(VistaEmpresa.panelDatos);
-        vista.getPanelEmpresaDatos().limpiarCampos();
-        vista.getBarraDeNavegacion().setTextLabelNivel1("Colaborador Empresa");
-        vista.getBarraDeNavegacion().setTextLabelNivel2("Nueva Empresa");
-    }
-    
-    
-    private void mostrarVistaModificarEmpresa() {
-        vista.showPanel(VistaEmpresa.panelDatos);
-        vista.getBarraDeNavegacion().setTextLabelNivel1("Colaborador Empresa");
-        vista.getBarraDeNavegacion().setTextLabelNivel2("Modificar Empresa");
     }
     
     private void actualizarTablaColaboraciones(){
@@ -380,7 +350,7 @@ public class ControladorC_Empresa {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            mostrarVistaNuevaEmpresa();
+            ControladorColaboradores.getInstance(null).mostrarVistaEmpresaNuevo();
         }
     }
     
@@ -388,7 +358,7 @@ public class ControladorC_Empresa {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            mostrarVistaBuscarEmpresa();
+            ControladorColaboradores.getInstance(null).mostrarVistaEmpresaBuscar();
         }
     }
     
@@ -515,7 +485,7 @@ public class ControladorC_Empresa {
                 String CIF = vista.getPanelEmpresaBuscar().getTbBuscadorEmpresas().getValueAt(vista.getPanelEmpresaBuscar().getTbBuscadorEmpresas().getSelectedRow(), 0).toString();
                 C_Empresa_temp = obtenerC_Empresa(CIF);
                 // Colaboraciones empresa...
-                mostrarVistaModificarEmpresa();
+                ControladorColaboradores.getInstance(null).mostrarVistaEmpresaModificar();
             }
         }
     }

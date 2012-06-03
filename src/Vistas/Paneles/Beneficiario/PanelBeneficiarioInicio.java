@@ -60,31 +60,31 @@ public class PanelBeneficiarioInicio extends javax.swing.JPanel {
         btBuscarBeneficiario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btBuscarBeneficiario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(217, 217, 217)
-                .add(btNuevoBeneficiario)
-                .add(116, 116, 116)
-                .add(btBuscarBeneficiario)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(217, 217, 217)
+                .addComponent(btNuevoBeneficiario)
+                .addGap(116, 116, 116)
+                .addComponent(btBuscarBeneficiario)
                 .addContainerGap(235, Short.MAX_VALUE))
         );
 
-        layout.linkSize(new java.awt.Component[] {btBuscarBeneficiario, btNuevoBeneficiario}, org.jdesktop.layout.GroupLayout.HORIZONTAL);
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btBuscarBeneficiario, btNuevoBeneficiario});
 
         layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(183, 183, 183)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(btBuscarBeneficiario, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 197, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(btNuevoBeneficiario))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(183, 183, 183)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btBuscarBeneficiario, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btNuevoBeneficiario))
                 .addContainerGap(220, Short.MAX_VALUE))
         );
 
-        layout.linkSize(new java.awt.Component[] {btBuscarBeneficiario, btNuevoBeneficiario}, org.jdesktop.layout.GroupLayout.VERTICAL);
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btBuscarBeneficiario, btNuevoBeneficiario});
 
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -75,32 +75,73 @@ public class VistaLogin extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
         setPreferredSize(new java.awt.Dimension(1000, 600));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imgLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/Acceso_Usuarios.png"))); // NOI18N
-        add(imgLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
 
         labelTitulo.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         labelTitulo.setForeground(new java.awt.Color(255, 0, 0));
         labelTitulo.setText("BIENVENIDO A DIAKETAS");
-        add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 480, 50));
 
         labelUsuario.setText("USUARIO");
-        add(labelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, -1, -1));
 
         labelContrasena.setText("CONTRASEÑA");
-        add(labelContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
-        add(textFieldIdUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 320, 222, -1));
 
         btConectarse.setText("Entrar");
         btConectarse.setActionCommand("accionLogin");
-        add(btConectarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 420, 134, 27));
-        add(textFieldContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, 222, -1));
 
         textErrorLogin.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         textErrorLogin.setForeground(new java.awt.Color(255, 0, 0));
         textErrorLogin.setText("ERROR AL HACER LOGIN. INTÉNTELO DE NUEVO.");
-        add(textErrorLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 500, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(imgLogo)
+                .addGap(87, 87, 87)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(labelUsuario)
+                        .addGap(54, 54, 54)
+                        .addComponent(textFieldIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(labelContrasena)
+                        .addGap(53, 53, 53)
+                        .addComponent(textFieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(270, 270, 270)
+                        .addComponent(btConectarse, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(490, 490, 490)
+                .addComponent(textErrorLogin))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imgLogo)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 90, 90)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelUsuario)
+                            .addComponent(textFieldIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelContrasena)
+                            .addComponent(textFieldContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addComponent(btConectarse, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(21, 21, 21)
+                .addComponent(textErrorLogin))
+        );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConectarse;
