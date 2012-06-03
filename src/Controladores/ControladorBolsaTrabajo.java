@@ -118,8 +118,8 @@ public class ControladorBolsaTrabajo {
         vista.getDemandaDatos().getTextNIF().setEnabled(false);
         vista.getDemandaDatos().getcbSector().setEnabled(false);
         vista.getDemandaDatos().getTaHistoriaLaboral().setEnabled(false);
-        vista.getDemandaDatos().getTextNIF().setText(demanda.getIdBeneficiario().getNIF());
-        vista.getDemandaDatos().getcbSector().setSelectedItem(demanda.getIdSector().getDescripcion());
+        vista.getDemandaDatos().getTextNIF().setText(demanda.getBeneficiario().getNIF());
+        vista.getDemandaDatos().getcbSector().setSelectedItem(demanda.getSector().getDescripcion());
         vista.getDemandaDatos().getTaHistoriaLaboral().setText(demanda.getDescripcionValidaLaboral());
 
         vista.showPanel(VistaBolsaTrabajo.PanelDemandaDatos);
