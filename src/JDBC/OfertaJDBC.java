@@ -15,6 +15,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class OfertaJDBC {
     private static OfertaJDBC instancia;
@@ -96,25 +97,28 @@ public class OfertaJDBC {
 
 	public ArrayList<Oferta> filtrarOfertas (Long empresa, Long sector, String antiguedad)throws SQLException{
 		DriverJDBC driver = DriverJDBC.getInstance();
-		Date fecha_limite;
+		Calendar fecha = Calendar.getInstance();
+                ArrayList<Oferta> Lista_ofertas = new ArrayList<Oferta>();
+                Oferta temp;
+                int meses = Integer.parseInt(antiguedad);
+                meses = meses * -1;
+                fecha.add(Calendar.MONTH, meses);
+                
 		String sql = "SELECT * FROM Oferta o WHERE '1'='1' ";
-
-		if (empresa>0) sql += " AND o.oidempresa = "+empresa;
-		if (sector>0) sql += " AND o.OIDsector = "+sector+"";
-
-
-//		s.descripcion= '"+sector+"' AND s.OID = o.OIDSector AND (CURDATE()- '"+antiguedad+"')> o.Fecha";
-		ArrayList<Oferta> lista_oferta = new ArrayList<Oferta>();
-
+                if (empresa>0) sql.concat(" AND OIDEmpresa = "+empresa);
+		if (sector>0) sql.concat(" AND OIDSector = "+sector);
+                if (meses>0) sql.concat("AND Fecha <= "+fecha);
+                System.out.printf("asdfasd");
 		try{
-			Oferta temp;
-			Sector tempSector = new Sector();
-			C_Empresa tempEmpresa = new C_Empresa();
 
 			driver.conectar();
-			ResultSet resultados = driver.seleccionar(sql);
+			ResultSet resultados, resultado_1;
+                        resultados = driver.seleccionar(sql);
 
 			while(resultados.next()){
+                            
+                                /* obtener datos oferta*/
+                                 
 				temp = new Oferta();
 				temp.setOID(resultados.getLong("OID"));
 				temp.setCualificacionRequerida(resultados.getString("CualificacionRequerida"));
@@ -123,16 +127,22 @@ public class OfertaJDBC {
 				temp.setFecha(resultados.getDate("Fecha"));
 				temp.setPlazasOfertadas(resultados.getInt("PlazasOfertadas"));
 				temp.setTipoContrato(resultados.getString("TipoContrato"));
+                                
+                                /* obtener datos empresa */
+                                
+                                String sql1 = "SELECT * FROM C_Empresa WHERE OID = '"+resultados.getInt("OIDEmpresa")+"'"; 
+                                resultado_1=driver.seleccionar(sql1);
+                                temp.getEmpresa().setNombre(resultado_1.getString("Nombre"));
+                                
 
-				tempEmpresa.setOID(resultados.getLong("OIDempresa"));
-				tempEmpresa.setCIF("CIF");
-				temp.setEmpresa(tempEmpresa);
+                                
+                                /* obtener datos sector */
 
-				tempSector.setOID(resultados.getLong("OIDsector"));
-				tempSector.setDescripcion("Decripcion");
-				temp.setSector(tempSector);
-
-				lista_oferta.add(temp);
+                                sql1 = "SELECT * FROM Sector WHERE OID = '"+resultados.getInt("OIDSector")+"'"; 
+                                resultado_1=driver.seleccionar(sql1);
+                                temp.getSector().setDescripcion(resultado_1.getString("Descripcion"));
+                                
+				Lista_ofertas.add(temp);
 			}
 		}
 		catch (SQLException ex){
@@ -144,12 +154,12 @@ public class OfertaJDBC {
 
 
 
-		return lista_oferta;
+		return Lista_ofertas;
 	}
 
 	public boolean ActualizarOferta (Oferta oferta) throws SQLException{
 		DriverJDBC driver = DriverJDBC.getInstance();
-		String sql = "UPDATE Oferta SET OID='"+oferta.getOID()+"',cualificacionRequerida='"+oferta.getCualificacionRequerida()+"',descripcionOferta='"+oferta.getDescripcionOferta()+"',duracionContrato='"+oferta.getDuracionContrato()+"',fecha='"+oferta.getFecha()+"',plazasOfertadas='"+oferta.getPlazasOfertadas()+"',tipoContrato='"+oferta.getTipoContrato()+"',sector='"+oferta.getSector()+"',empresa='"+oferta.getEmpresa()+"',voluntario='"+oferta.getVoluntario()+"'";
+		String sql = "UPDATE Oferta SET OID='"+oferta.getOID()+"',CualificacionRequerida='"+oferta.getCualificacionRequerida()+"',DescripcionOferta='"+oferta.getDescripcionOferta()+"',DuracionContrato='"+oferta.getDuracionContrato()+"',Fecha='"+oferta.getFecha()+"',PlazasOfertadas='"+oferta.getPlazasOfertadas()+"',TipoContrato='"+oferta.getTipoContrato()+"',OIDSector='"+oferta.getSector().getOID()+"',OIDEmpresa='"+oferta.getEmpresa().getOID()+"',OIDVoluntario='"+oferta.getVoluntario().getOID()+"'";
 
 		try {
 			driver.conectar();
@@ -164,5 +174,29 @@ public class OfertaJDBC {
 
         return true;
 	}
-
+        
+        public boolean ConsultarOfertaSector (int oid) throws SQLException {
+    
+        DriverJDBC driver = DriverJDBC.getInstance();
+        String sql = "SELECT * FROM Sector WHERE OID ="+oid;
+        ResultSet resultado;
+        boolean exito;
+        
+        try{
+            driver.conectar();
+            resultado=driver.seleccionar(sql);
+            if(resultado.next())
+                exito=true;
+            else
+                exito = false;
+        }
+        catch( SQLException ea){
+            throw(ea);
+        }
+        finally{
+            driver.desconectar();
+        }
+        return exito;
+    }
+   
 }
