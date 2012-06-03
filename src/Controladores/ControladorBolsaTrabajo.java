@@ -107,7 +107,7 @@ public class ControladorBolsaTrabajo {
     }
 
     public void mostrarConsultarDemandas(Demanda demanda){
-        vista.getOfertaDatos().getlabelError().setText("");
+        vista.getDemandaDatos().getlabelError().setText("");
 
         vista.getDemandaDatos().getbtGuardar().setVisible(false);
         vista.getDemandaDatos().getbtLimpiar().setVisible(false);

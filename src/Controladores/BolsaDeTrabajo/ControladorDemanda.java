@@ -71,7 +71,7 @@ public class ControladorDemanda {
 		// Buscar Demandas
 		vista.getDemandaBuscar().getBTBuscar().addActionListener(new ListenerBtBuscarDemanda());
 		vista.getDemandaBuscar().getBTEliminar().addActionListener(new ListenerBtEliminarDemandaBuscada());
-		vista.getDemandaBuscar().getBTBuscar().addActionListener(new ListenerBtConsultarDemanda());
+		vista.getDemandaBuscar().getBTConsultar().addActionListener(new ListenerBtConsultarDemanda());
 	}
 
 	public static ControladorDemanda getInstance(VistaBolsaTrabajo panelDemanda){
@@ -158,7 +158,7 @@ public class ControladorDemanda {
 
 		try{
 			DemandaJDBC.getInstance().ActualizarDemanda(de);
-			vista.getOfertaDatos().getlabelError().setText("La demanda ha sido actualizada");
+			vista.getDemandaDatos().getlabelError().setText("La demanda ha sido actualizada");
 		}
 		catch (SQLException ex){
 			ControladorErrores.mostrarError("La demanda no ha podido actualizarse:\n"+ex);
@@ -279,7 +279,7 @@ public class ControladorDemanda {
 						vista.getDemandaDatos().getlabelError().setText("La demanda no ha sido añadida");
 					}
 					else {
-						vista.getOfertaDatos().getlabelError().setText("Se ha añadido una oferta");
+						vista.getDemandaDatos().getlabelError().setText("Se ha añadido una demanda");
 					}
 				}
                         }

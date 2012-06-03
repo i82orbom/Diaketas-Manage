@@ -61,7 +61,10 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
 		return cbAntiguedad.getSelectedIndex();
 		
     }
-
+        
+    public JButton getBTConsultar(){
+        return BTModificar;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
