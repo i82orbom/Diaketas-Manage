@@ -73,10 +73,8 @@ public class VistaColaborador extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
         setPreferredSize(new java.awt.Dimension(1000, 600));
-        setLayout(new java.awt.BorderLayout());
 
         barraDeNavegacion.setAlignmentX(10.0F);
-        add(barraDeNavegacion, java.awt.BorderLayout.PAGE_START);
 
         panelColaborador.setMaximumSize(new java.awt.Dimension(1000, 550));
         panelColaborador.setMinimumSize(new java.awt.Dimension(1000, 550));
@@ -85,10 +83,25 @@ public class VistaColaborador extends javax.swing.JPanel {
 
         panelColaboradorInicio.setBackground(new java.awt.Color(255, 255, 255));
         panelColaborador.add(panelColaboradorInicio, "inicio");
+
+        panelColaboradorDatos.setBackground(new java.awt.Color(255, 255, 255));
         panelColaborador.add(panelColaboradorDatos, "datos");
         panelColaborador.add(panelColaboradorBuscar, "buscar");
 
-        add(panelColaborador, java.awt.BorderLayout.CENTER);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(barraDeNavegacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(barraDeNavegacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(panelColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Vistas.BarraDeNavegacion barraDeNavegacion;

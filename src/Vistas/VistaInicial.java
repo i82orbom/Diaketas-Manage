@@ -58,7 +58,6 @@ public class VistaInicial extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btColaboradores.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btColaboradores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/socio.png"))); // NOI18N
@@ -77,7 +76,6 @@ public class VistaInicial extends javax.swing.JPanel {
                 btColaboradoresActionPerformed(evt);
             }
         });
-        add(btColaboradores, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 250, 190));
 
         btBeneficiario.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btBeneficiario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/bene.png"))); // NOI18N
@@ -87,7 +85,6 @@ public class VistaInicial extends javax.swing.JPanel {
         btBeneficiario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btBeneficiario.setPreferredSize(new java.awt.Dimension(161, 159));
         btBeneficiario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        add(btBeneficiario, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 250, 190));
 
         btVoluntario.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btVoluntario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/imgVolunt.jpg"))); // NOI18N
@@ -96,7 +93,6 @@ public class VistaInicial extends javax.swing.JPanel {
         btVoluntario.setActionCommand("entrarAPanelVoluntarios");
         btVoluntario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btVoluntario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        add(btVoluntario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 250, 190));
 
         btBolsaTrabajo.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btBolsaTrabajo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/imgBolsa.jpg"))); // NOI18N
@@ -104,10 +100,41 @@ public class VistaInicial extends javax.swing.JPanel {
         btBolsaTrabajo.setActionCommand("entrarAPanelBolsaTrabajo");
         btBolsaTrabajo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btBolsaTrabajo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        add(btBolsaTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, 250, 190));
 
         btDesconectarse.setText("Desconectarse");
-        add(btDesconectarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(840, 840, 840)
+                .addComponent(btDesconectarse))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(btColaboradores, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(200, 200, 200)
+                .addComponent(btBeneficiario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(btVoluntario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(200, 200, 200)
+                .addComponent(btBolsaTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(btDesconectarse)
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btColaboradores, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btBeneficiario, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btVoluntario, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btBolsaTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btColaboradoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btColaboradoresActionPerformed

@@ -297,55 +297,42 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
         jLabelDatosContacto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelDatosContacto.setText("Datos de Contacto");
 
-        jLabelDatosEmpresa.setBackground(new java.awt.Color(255, 255, 255));
         jLabelDatosEmpresa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelDatosEmpresa.setText("Datos de Empresa");
 
-        jLabelNombre.setBackground(new java.awt.Color(255, 255, 255));
         jLabelNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelNombre.setText("Nombre");
 
-        jLabelCIF.setBackground(new java.awt.Color(255, 255, 255));
         jLabelCIF.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelCIF.setText("CIF");
 
-        jLabelDireccionWeb.setBackground(new java.awt.Color(255, 255, 255));
         jLabelDireccionWeb.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelDireccionWeb.setText("DireccionWeb");
 
-        jLabelDireccion.setBackground(new java.awt.Color(255, 255, 255));
         jLabelDireccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelDireccion.setText("Direccion");
 
-        jLabelLocalidad.setBackground(new java.awt.Color(255, 255, 255));
         jLabelLocalidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelLocalidad.setText("Localidad");
 
-        jLabelCP.setBackground(new java.awt.Color(255, 255, 255));
         jLabelCP.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelCP.setText("Código Postal");
 
-        jLabelTelefonoFijo.setBackground(new java.awt.Color(255, 255, 255));
         jLabelTelefonoFijo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelTelefonoFijo.setText("Teléfono Fijo");
 
-        jLabelFax.setBackground(new java.awt.Color(255, 255, 255));
         jLabelFax.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelFax.setText("FAX");
 
-        jLabelTelefonoMovil.setBackground(new java.awt.Color(255, 255, 255));
         jLabelTelefonoMovil.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelTelefonoMovil.setText("Móvil");
 
-        jLabelEmail.setBackground(new java.awt.Color(255, 255, 255));
         jLabelEmail.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelEmail.setText("E-mail");
 
         jLabelProvincia.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelProvincia.setText("Provincia");
 
-        jLabelError.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelError.setForeground(new java.awt.Color(255, 0, 0));
         jLabelError.setText("Mensaje de Error");
 
         javax.swing.GroupLayout PanelDatosEmpresaLayout = new javax.swing.GroupLayout(PanelDatosEmpresa);
@@ -355,67 +342,70 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
             .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
-                        .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelNombre)
-                            .addComponent(jLabelCIF)
-                            .addComponent(jLabelDireccionWeb)
-                            .addComponent(jLabelDireccion)
-                            .addComponent(jLabelLocalidad)
-                            .addComponent(jLabelCP)
-                            .addComponent(jLabelTelefonoFijo)
-                            .addComponent(jLabelFax))
-                        .addGap(67, 67, 67)
-                        .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosEmpresaLayout.createSequentialGroup()
-                                .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextDireccion)
-                                    .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
-                                        .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
-                                                .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(jTextTelefonoFijo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                                                    .addComponent(jTextCP, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jTextFax))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
-                                                        .addComponent(jLabelTelefonoMovil)
-                                                        .addGap(19, 19, 19)
-                                                        .addComponent(jTextTelefonoMovil, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
-                                                        .addComponent(jLabelEmail)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addComponent(jTextEmail)
-                                                        .addGap(7, 7, 7))))
-                                            .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
-                                                .addComponent(jTextLocalidad, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabelProvincia)
-                                                .addGap(23, 23, 23)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(98, 98, 98))
+                    .addComponent(jLabelNombre)
+                    .addComponent(jLabelCIF)
+                    .addComponent(jLabelDireccionWeb)
+                    .addComponent(jLabelDireccion)
+                    .addComponent(jLabelLocalidad)
+                    .addComponent(jLabelCP)
+                    .addComponent(jLabelTelefonoFijo)
+                    .addComponent(jLabelFax))
+                .addGap(67, 67, 67)
+                .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosEmpresaLayout.createSequentialGroup()
+                        .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextDireccion)
                             .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
-                                .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextDireccionWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextCIF, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
+                                        .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jTextTelefonoFijo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                                            .addComponent(jTextCP, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFax))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
+                                                .addComponent(jLabelTelefonoMovil)
+                                                .addGap(19, 19, 19)
+                                                .addComponent(jTextTelefonoMovil, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
+                                                .addComponent(jLabelEmail)
+                                                .addGap(19, 19, 19)
+                                                .addComponent(jTextEmail))))
+                                    .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
+                                        .addComponent(jTextLocalidad, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabelProvincia)
+                                        .addGap(23, 23, 23)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(98, 98, 98))
                     .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
                         .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDatosContacto)
-                            .addComponent(jLabelDatosEmpresa))
+                            .addComponent(jTextDireccionWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextCIF, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
-                .addGap(222, 222, 222)
-                .addComponent(jLabelError)
-                .addGap(114, 114, 114)
-                .addComponent(btGuardarEmpresa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btLimpiarEmpresa)
+                .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jLabelDatosEmpresa))
+                    .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabelDatosContacto))
+                    .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
+                        .addGap(222, 222, 222)
+                        .addComponent(jLabelError)))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
+                    .addGap(445, 445, 445)
+                    .addComponent(btGuardarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(btLimpiarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(388, Short.MAX_VALUE)))
         );
         PanelDatosEmpresaLayout.setVerticalGroup(
             PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -437,7 +427,7 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
                     .addComponent(jLabelNombre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelDatosContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDireccion)
                     .addComponent(jTextDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -457,7 +447,16 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
                             .addComponent(jLabelProvincia))
                         .addGap(30, 30, 30)))
                 .addGap(9, 9, 9)
-                .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
+                        .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextTelefonoMovil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelTelefonoMovil))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelEmail))
+                        .addGap(120, 120, 120))
                     .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
                         .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelTelefonoFijo)
@@ -466,25 +465,16 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
                         .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelFax))
-                        .addGap(39, 39, 39))
-                    .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
-                        .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextTelefonoMovil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelTelefonoMovil))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                        .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelEmail))
-                        .addGap(42, 42, 42)))
-                .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
                         .addComponent(jLabelError)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
-                        .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btGuardarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btLimpiarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(15, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelDatosEmpresaLayout.createSequentialGroup()
+                    .addGap(376, 376, 376)
+                    .addGroup(PanelDatosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btLimpiarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btGuardarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addContainerGap(61, Short.MAX_VALUE)))
         );
 
         jTabbedPane4.addTab("Datos", PanelDatosEmpresa);
@@ -571,7 +561,7 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
                                     .addComponent(jTextImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(190, 190, 190)
                                     .addComponent(jLabelFecha)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                                     .addComponent(jFormattedTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jTextConcepto)))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelColaboracionesEmpresaLayout.createSequentialGroup()
@@ -607,7 +597,7 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
                 .addComponent(btGuardarColaboracionesEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(PanelColaboracionesEmpresaLayout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addComponent(jLabelColaboraciones, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
