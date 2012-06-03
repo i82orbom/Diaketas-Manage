@@ -39,8 +39,6 @@ public class PanelColaboradorInicio extends javax.swing.JPanel {
         btNuevoColaborador = new javax.swing.JButton();
         btBuscarColaborador = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-
         btNuevoColaborador.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btNuevoColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/usu.png"))); // NOI18N
         btNuevoColaborador.setText("NUEVO COLABORADOR");

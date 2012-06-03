@@ -49,8 +49,6 @@ public class PanelAñadirColaboracion extends javax.swing.JPanel {
         textFechaColaboradorAñadir = new javax.swing.JTextField();
         jLabel75 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-
         btLimpiarColaboradorAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
 
         jLabel76.setForeground(new java.awt.Color(255, 0, 0));

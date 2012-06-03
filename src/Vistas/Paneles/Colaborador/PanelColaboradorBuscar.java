@@ -35,8 +35,6 @@ public class PanelColaboradorBuscar extends javax.swing.JPanel {
         jScrollPane21 = new javax.swing.JScrollPane();
         tableBuscarSocio2 = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-
         textBuscarSocio2.setText("Buscar");
 
         btBuscar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
@@ -97,7 +95,7 @@ public class PanelColaboradorBuscar extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 558, Short.MAX_VALUE)
+            .addGap(0, 550, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(3, 3, 3)

@@ -51,25 +51,30 @@ public class PanelColaboradoresInicio extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
 
+        btColaborador.setBackground(new java.awt.Color(255, 255, 255));
         btColaborador.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/monigotes_redimensionados.png"))); // NOI18N
         btColaborador.setText("COLABORADORES");
         btColaborador.setActionCommand("nuevoBeneficiario");
+        btColaborador.setBorder(null);
         btColaborador.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btColaborador.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        btSocio.setBackground(new java.awt.Color(255, 255, 255));
         btSocio.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/socios.jpg"))); // NOI18N
-        btSocio.setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        btSocio.setText("SOCIO");
+        btSocio.setActionCommand("buscarBeneficiario");
+        btSocio.setBorder(null);
         btSocio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btSocio.setLabel("SOCIO");
-        btSocio.setMaximumSize(new java.awt.Dimension(215, 183));
-        btSocio.setMinimumSize(new java.awt.Dimension(215, 183));
         btSocio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        btEmpresa.setBackground(new java.awt.Color(255, 255, 255));
         btEmpresa.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/empresas-redimensionada.jpg"))); // NOI18N
         btEmpresa.setText("EMPRESA");
+        btEmpresa.setActionCommand("nuevoBeneficiario");
+        btEmpresa.setBorder(null);
         btEmpresa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btEmpresa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
@@ -78,26 +83,32 @@ public class PanelColaboradoresInicio extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(95, 95, 95)
+                .add(60, 60, 60)
                 .add(btColaborador, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 231, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 402, Short.MAX_VALUE)
-                .add(btSocio, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(99, 99, 99))
-            .add(layout.createSequentialGroup()
-                .add(406, 406, 406)
-                .add(btEmpresa)
-                .addContainerGap())
+                .addContainerGap(709, Short.MAX_VALUE))
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createSequentialGroup()
+                    .addContainerGap(396, Short.MAX_VALUE)
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                            .add(btEmpresa)
+                            .add(352, 352, 352))
+                        .add(org.jdesktop.layout.GroupLayout.TRAILING, btSocio))
+                    .add(53, 53, 53)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(82, 82, 82)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(btSocio, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(btColaborador, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 181, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(84, 84, 84)
-                .add(btEmpresa)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .add(89, 89, 89)
+                .add(btColaborador, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 181, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(330, Short.MAX_VALUE))
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createSequentialGroup()
+                    .add(84, 84, 84)
+                    .add(btSocio)
+                    .add(70, 70, 70)
+                    .add(btEmpresa)
+                    .addContainerGap(100, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
