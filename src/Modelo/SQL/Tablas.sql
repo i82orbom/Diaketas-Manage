@@ -241,8 +241,11 @@ CREATE TABLE Demanda (
 );
 
 
-INSERT INTO Persona (`OID`, `NIF`, `Nombre`, `Apellidos`, `FechaNacimiento`, `CP`, `TelefonoFijo`, `TelefonoMovil`, `Domicilio`, `Localidad`) VALUES (1, '12345678A', 'admin', 'admin', '1990-04-03', 11321, 666999666, 999666999, 'C/Falsa 123', 'Granada');
-INSERT INTO Voluntario (`OID`, `Password`) VALUES (1, 'cd15bf6a6c78f04336aa85a722ceb148');
+INSERT INTO Persona (`NIF`, `Nombre`, `Apellidos`, `FechaNacimiento`, `CP`, `TelefonoFijo`, `TelefonoMovil`, `Domicilio`, `Localidad`) VALUES ('11111111A', 'admin', 'admin', '1990-04-03', 11321, 666999666, 999666999, 'C/Falsa 123', 'Granada');
+INSERT INTO Beneficiario VALUES (LAST_INSERT_ID(),"asdfas"," "," "," "," "," "," "," ",123," ");
+
+INSERT INTO Persona (`NIF`, `Nombre`, `Apellidos`, `FechaNacimiento`, `CP`, `TelefonoFijo`, `TelefonoMovil`, `Domicilio`, `Localidad`) VALUES ('12345678A', 'admin', 'admin', '1990-04-03', 11321, 666999666, 999666999, 'C/Falsa 123', 'Granada');
+INSERT INTO Voluntario (OID,Password) VALUES (LAST_INSERT_ID(),'cd15bf6a6c78f04336aa85a722ceb148');
 
 INSERT INTO Colaborador VALUES (0,'Sin dirección', '', '', '00000', '', '', '');
 UPDATE Colaborador SET OID = 0 WHERE CP = '00000';
@@ -257,3 +260,4 @@ INSERT INTO sector(Descripcion) Values ("Carpinteria");
 INSERT INTO sector(Descripcion) Values ("Hosteleria");
 
 INSERT INTO oferta values (null,3,2,1,"Manipulador de alimentos","Trabajo de camarero en Hotel Carapan",3,"2012-03-01",10,"Fijo");
+INSERT INTO demanda (OIDSector,OIDBeneficiario,OIDVoluntario,DescripcionVidaLaboral,Fecha)values (1,1,2,"asdfasd","2010-04-03");
