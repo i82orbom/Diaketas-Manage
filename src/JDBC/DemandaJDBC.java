@@ -48,7 +48,7 @@ public class DemandaJDBC {
         }
         return exito;
     }
-    public void EliminarDemanda (int OID) throws SQLException{
+    public void EliminarDemanda (Long OID) throws SQLException{
     
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "DELETE FROM Demanda WHERE OID = "+OID;

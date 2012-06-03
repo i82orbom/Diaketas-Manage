@@ -153,10 +153,6 @@ public class ControladorDemanda {
 		return true;
 	}
 
-	public Demanda obtenerDatosDemanda(int oid){
-		Demanda demanda = new Demanda();
-		return demanda;
-	}
 
 	public void actualizarDemanda(Demanda de){
 
@@ -178,7 +174,7 @@ public class ControladorDemanda {
 			} catch (SQLException ex){
 				ControladorErrores.mostrarError("Error al obtener el Beneficiario:\n"+ex);
 			}
-			beneficiarioOID = beneficiario.getOID();
+			if(beneficiario!=null) beneficiarioOID = beneficiario.getOID();
 		}
 
 		if (!sectorDesc.equals("")){
@@ -187,14 +183,14 @@ public class ControladorDemanda {
 			} catch (SQLException ex){
 				ControladorErrores.mostrarError("Error al obtener el sector:\n"+ex);
 			}
-			sectorOID = sector.getOID();
+			if (sector!=null) sectorOID = sector.getOID();
 		}
-//¡¡¡REVISA ESTOOOOOOOOOOOOOOOOO!!!!!
+
 		try{
-			listaDemandas = DemandaJDBC.getInstance().FiltrarDemandas(Long.parseLong(DNI), Long.parseLong(sectorDesc), antiguedad);
+			listaDemandas = DemandaJDBC.getInstance().FiltrarDemandas(beneficiarioOID, sectorOID, antiguedad);
 			actualizarTablaDemandas();
 		} catch (SQLException ex){
-			ControladorErrores.mostrarError("Error al obtener la lista de ofertas:\n"+ex.getMessage());
+			ControladorErrores.mostrarError("Error al obtener la lista de demandas:\n"+ex.getMessage());
 		}
 
 		return listaDemandas;
@@ -206,7 +202,7 @@ public class ControladorDemanda {
 	}
 
 	public void eliminarDemanda(Demanda demanda){
-/*                if(JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar la demanda?", "Eliminar Demanda", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                if(JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar la demanda?", "Eliminar Demanda", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
                     try{
                             DemandaJDBC.getInstance().EliminarDemanda(demanda.getOID());
                             ControladorErrores.mostrarMensaje("La demanda ha sido eliminada");
@@ -219,7 +215,7 @@ public class ControladorDemanda {
 		demandaConsultada = null;
 		actualizarTablaDemandas();
 		ControladorBolsaTrabajo.getInstance(null).mostrarBuscarDemanda();
-*/
+
 	}
 
 
