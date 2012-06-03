@@ -110,11 +110,11 @@ public class ControladorDemanda {
                 public Object getValueAt(int fil, int col) {
                     switch (col) {
                         case 0:
-                            return listaDemandas.get(fil).getIdBeneficiario().getNIF();
+                            return listaDemandas.get(fil).getIdBeneficiario().getNIF()+ " 1";
                         case 1:
-                            return listaDemandas.get(fil).getIdBeneficiario().getNombre()+listaDemandas.get(fil).getIdBeneficiario().getApellidos();
+                            return listaDemandas.get(fil).getIdBeneficiario().getNombre()+ " "+listaDemandas.get(fil).getIdBeneficiario().getApellidos();
                         case 2:
-                            return listaDemandas.get(fil).getIdSector().getDescripcion();
+                            return listaDemandas.get(fil).getIdSector().getDescripcion()+ " 3";
                         case 3:
                             return TestDatos.formatter.format(listaDemandas.get(fil).getFecha());
                     }
@@ -165,7 +165,7 @@ public class ControladorDemanda {
 		}
 	}
 
-	public ArrayList<Demanda> obtenerListaDemandas(String DNI, String sectorDesc, int antiguedad){
+	public ArrayList<Demanda> obtenerListaDemandas(String DNI, String sectorDesc, String antiguedad){
 		Long beneficiarioOID = -1l, sectorOID = -1l;
 
 		if (!DNI.equals("")){
@@ -188,7 +188,8 @@ public class ControladorDemanda {
 
 		try{
 			listaDemandas = DemandaJDBC.getInstance().FiltrarDemandas(beneficiarioOID, sectorOID, antiguedad);
-			actualizarTablaDemandas();
+			System.out.println("Tamaño lista "+listaDemandas.size());
+                        actualizarTablaDemandas();
 		} catch (SQLException ex){
 			ControladorErrores.mostrarError("Error al obtener la lista de demandas:\n"+ex.getMessage());
 		}
@@ -196,10 +197,6 @@ public class ControladorDemanda {
 		return listaDemandas;
 	}
 
-	public ArrayList<Demanda> filtrarDemandas(String s){
-		ArrayList<Demanda> a = new ArrayList<Demanda>();
-		return a;
-	}
 
 	public void eliminarDemanda(Demanda demanda){
                 if(JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar la demanda?", "Eliminar Demanda", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
@@ -377,7 +374,7 @@ public class ControladorDemanda {
 			System.out.println("Buscar Demanda");
 			String empresa = vista.getDemandaBuscar().getTextBusquedaDemandanteDNI();
 			String sectorDesc = vista.getDemandaBuscar().getTextoSector();
-			int antiguedad = vista.getDemandaBuscar().getAntiguedad();
+			String antiguedad = vista.getDemandaBuscar().getAntiguedad()+"";
 
 			obtenerListaDemandas(empresa, sectorDesc, antiguedad);
 		}
@@ -401,7 +398,7 @@ public class ControladorDemanda {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Consultar Oferta");
+                System.out.println("Consultar Demanda");
                 if (vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow() != -1) {
                     demandaConsultada = listaDemandas.get(vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow());
                     ControladorBolsaTrabajo.getInstance(null).mostrarConsultarDemandas(demandaConsultada);
