@@ -83,11 +83,9 @@ public class PanelSocioBuscar extends javax.swing.JPanel {
         btEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
 
         cbBuscarSocio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DNI/NIF/Pasaporte", "Nombre", "Dirección", "Localidad", "Teléfono Fijo", "Movil", "Código Postal" }));
-        cbBuscarSocio.setBorder(null);
 
         btConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/modificar.png"))); // NOI18N
 
-        jScrollPane12.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane12.setBorder(null);
 
         tableBuscarSocio.setModel(new javax.swing.table.DefaultTableModel(
@@ -109,8 +107,9 @@ public class PanelSocioBuscar extends javax.swing.JPanel {
         jScrollPane12.setViewportView(tableBuscarSocio);
 
         textBuscarSocio.setText("Buscar");
-        textBuscarSocio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        textBuscarSocio.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         textBuscarSocio.setSelectionColor(new java.awt.Color(102, 204, 255));
+        textBuscarSocio.setSelectionStart(0);
 
         labelError.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         labelError.setForeground(new java.awt.Color(255, 51, 51));
@@ -162,7 +161,7 @@ public class PanelSocioBuscar extends javax.swing.JPanel {
                         .addComponent(jLabel81))
                     .addGap(44, 44, 44)
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btConsultar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))

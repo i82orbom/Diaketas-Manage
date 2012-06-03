@@ -82,6 +82,8 @@ public class VistaColaborador extends javax.swing.JPanel {
         panelColaborador.setMinimumSize(new java.awt.Dimension(1000, 550));
         panelColaborador.setPreferredSize(new java.awt.Dimension(1000, 550));
         panelColaborador.setLayout(new java.awt.CardLayout());
+
+        panelColaboradorInicio.setBackground(new java.awt.Color(255, 255, 255));
         panelColaborador.add(panelColaboradorInicio, "inicio");
         panelColaborador.add(panelColaboradorDatos, "datos");
         panelColaborador.add(panelColaboradorBuscar, "buscar");

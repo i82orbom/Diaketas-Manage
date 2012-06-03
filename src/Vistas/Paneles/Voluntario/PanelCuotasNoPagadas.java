@@ -40,6 +40,8 @@ public class PanelCuotasNoPagadas extends javax.swing.JPanel {
         textFechaCuotas = new javax.swing.JTextField();
         btGuardarCuota = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         tableCuotras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},

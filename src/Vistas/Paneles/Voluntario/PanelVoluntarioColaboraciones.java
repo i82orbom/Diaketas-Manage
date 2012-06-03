@@ -38,6 +38,8 @@ public class PanelVoluntarioColaboraciones extends javax.swing.JPanel {
         btAñadirColaboraciones = new javax.swing.JButton();
         btComprobarPagos = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         btAñadirColaboraciones.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btAñadirColaboraciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/colaborador_1.jpg"))); // NOI18N
         btAñadirColaboraciones.setText("Añadir Colaboraciones");
