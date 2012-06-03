@@ -187,7 +187,8 @@ public class ControladorDemanda {
 		}
 
 		try{
-			listaDemandas = DemandaJDBC.getInstance().FiltrarDemandas(beneficiarioOID, sectorOID, antiguedad);
+                        //System.out.println("Sector OID");
+			listaDemandas = DemandaJDBC.getInstance().FiltrarDemandas(beneficiarioOID,sectorOID, Integer.parseInt(antiguedad));
 			System.out.println("Tamaño lista "+listaDemandas.size());
                         actualizarTablaDemandas();
 		} catch (SQLException ex){
