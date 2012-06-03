@@ -224,41 +224,41 @@ public class ControladorDemanda {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Demanda  demanda = new Demanda();		// Se crean los objetos
-						Beneficiario beneficiario = null;
-						boolean exito = true;
+                        Beneficiario beneficiario = null;
+                        boolean exito = true;
 
-						/*Comprobamos los datos*/
-						setColorLabels(Color.black);
+                        /*Comprobamos los datos*/
+                        setColorLabels(Color.black);
 
-						vista.getDemandaDatos().getlabelError().setForeground(Color.red);
-						vista.getDemandaDatos().getlabelError().setText("");
+                        vista.getDemandaDatos().getlabelError().setForeground(Color.red);
+                        vista.getDemandaDatos().getlabelError().setText("");
 
-						String DNI = vista.getDemandaDatos().getTextoNIF();
-						String HistorialLaboral = vista.getDemandaDatos().getTextoHistoriaLaboral();
-						demanda.setDescripcionValidaLaboral(vista.getDemandaDatos().getTextoHistoriaLaboral());
-					demanda.setFecha(new Date());	// Fecha actual
+                        String DNI = vista.getDemandaDatos().getTextoNIF();
+                        String HistorialLaboral = vista.getDemandaDatos().getTextoHistoriaLaboral();
+                        demanda.setDescripcionValidaLaboral(vista.getDemandaDatos().getTextoHistoriaLaboral());
+                demanda.setFecha(new Date());	// Fecha actual
 
-						if(!TestDatos.isDNI(DNI)){
-							exito = false; vista.getDemandaDatos().getLabelNif().setForeground(Color.red);
-						}
-						if (!TestDatos.isNombre(HistorialLaboral)) {
-							exito = false; vista.getDemandaDatos().getLabelHistorialLaboral().setForeground(Color.red);
-			}
-						if(!exito){
-							vista.getDemandaDatos().getlabelError().setForeground(Color.red);
-							vista.getDemandaDatos().getlabelError().setText("Los datos no son válidos");
-						}else{			// Se envia el objeto al controlador
-							try{
-								beneficiario = BeneficiarioJDBC.getInstance().obtenerBeneficiario(DNI);
-							}catch(SQLException ex){
-								exito = false; ControladorErrores.mostrarError("Error al obtener el beneficiario");
-							}
-							if (beneficiario==null){
-									vista.getDemandaDatos().getlabelError().setText("El beneficiario no esta registrado");
-									vista.getDemandaDatos().getLabelNif().setForeground(Color.red);
-									exito = false;
-							}
-							if (exito){
+                        if(!TestDatos.isDNI(DNI)){
+                                exito = false; vista.getDemandaDatos().getLabelNif().setForeground(Color.red);
+                        }
+                        if (!TestDatos.isNombre(HistorialLaboral)) {
+                                exito = false; vista.getDemandaDatos().getLabelHistorialLaboral().setForeground(Color.red);
+}
+                        if(!exito){
+                                vista.getDemandaDatos().getlabelError().setForeground(Color.red);
+                                vista.getDemandaDatos().getlabelError().setText("Los datos no son válidos");
+                        }else{			// Se envia el objeto al controlador
+                                try{
+                                        beneficiario = BeneficiarioJDBC.getInstance().obtenerBeneficiario(DNI);
+                                }catch(SQLException ex){
+                                        exito = false; ControladorErrores.mostrarError("Error al obtener el beneficiario");
+                                }
+                                if (beneficiario==null){
+                                                vista.getDemandaDatos().getlabelError().setText("El beneficiario no esta registrado");
+                                                vista.getDemandaDatos().getLabelNif().setForeground(Color.red);
+                                                exito = false;
+                                }
+                                if (exito){
 					demanda.setBeneficiario(beneficiario);
 					String descSector = vista.getDemandaDatos().getcbSector().getSelectedItem().toString();
 					try{ demanda.setSector(SectorJDBC.getInstance().ConsultarSector(descSector));}

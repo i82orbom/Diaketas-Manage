@@ -93,7 +93,6 @@ public class ControladorBolsaTrabajo {
         vista.getDemandaDatos().getcbSector().setEnabled(true);
         vista.getDemandaDatos().getTaHistoriaLaboral().setEnabled(true);
         vista.getDemandaDatos().getTextNIF().setEditable(true);
-        vista.getDemandaDatos().getcbSector().setEditable(true);
         vista.getDemandaDatos().getTaHistoriaLaboral().setEditable(true);
         try {
                 vista.getDemandaDatos().getcbSector().removeAllItems();

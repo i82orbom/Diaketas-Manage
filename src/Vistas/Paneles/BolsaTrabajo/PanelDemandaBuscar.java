@@ -92,7 +92,7 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
 
         tablaBusquedaDemandante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"12345678E", "Pepe Morillas Bonico", "Construccion", null}
+
             },
             new String [] {
                 "DNI", "Nombre y Apellidos", "Sector", "Fecha Demanda"
