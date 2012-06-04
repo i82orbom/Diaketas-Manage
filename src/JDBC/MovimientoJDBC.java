@@ -61,18 +61,22 @@ public class MovimientoJDBC {
           float ingresosSuma = 0;
           float gastosSuma = 0;
                   
+          if (ingresos != null){
+            for (int i = 0; i < ingresos.size(); ++i){
+                   ingresosSuma += ingresos.get(i).getImporte();
+             }
           
-          for (int i = 0; i < ingresos.size(); ++i){
-              ingresosSuma += ingresos.get(i).getImporte();
           }
           
-           for (int i = 0; i < gastos.size(); ++i){
-              gastosSuma += gastos.get(i).getImporte();
-          }
+          if (gastos != null){
+            for (int i = 0; i < gastos.size(); ++i){
+                gastosSuma += gastos.get(i).getImporte();
+             }
            
-           gastosSuma *= -1;
+            gastosSuma *= -1;
+          }
           
-           return (ingresosSuma + gastosSuma);
+         return (ingresosSuma + gastosSuma);
      }
      
      public ArrayList<Movimiento> obtenerDatosGastos(Date fecha_inicial, Date fecha_final) throws SQLException{
@@ -82,7 +86,7 @@ public class MovimientoJDBC {
         DriverJDBC driver = DriverJDBC.getInstance();
         ResultSet rs = null;
         
-        String consulta = "SELECT m.OID, Cantidad, Concepto, Fecha FROM Movimiento m join Gasto on m.OID= Gasto.OID WHERE Fecha BETWEEN '" + fecha_final + "' AND '" + fecha_final + "';";
+        String consulta = "SELECT m.OID, Cantidad, Concepto, Fecha FROM Movimiento m join Gasto on m.OID= Gasto.OID WHERE Fecha BETWEEN '" + TestDatos.formatterBD.format(fecha_inicial) + "' AND '" + TestDatos.formatterBD.format(fecha_final) + "';";
         
         try{
             driver.conectar();
@@ -119,8 +123,8 @@ public class MovimientoJDBC {
         DriverJDBC driver = DriverJDBC.getInstance();
         ResultSet rs = null;
         
-        String consulta = "SELECT m.OID, Cantidad, Concepto, Fecha FROM Movimiento m join PagoCuota on m.OID= PagoCuota.OID WHERE Fecha BETWEEN '" + fecha_final + "' AND '" + fecha_final + "';";
-        
+        String consulta = "SELECT m.OID, Cantidad, Concepto, Fecha FROM Movimiento m join PagoCuota on m.OID= PagoCuota.OID WHERE Fecha BETWEEN '" + TestDatos.formatterBD.format(fecha_inicial) + "' AND '" + TestDatos.formatterBD.format(fecha_final) + "';";
+
         try{
             driver.conectar();
             rs = driver.seleccionar(consulta);
@@ -143,8 +147,7 @@ public class MovimientoJDBC {
             return null;
         }
         
-        consulta = "SELECT m.OID, Cantidad, Concepto, Fecha FROM Movimiento m join Colaboracion on m.OID= Colaboracion.OID WHERE Fecha BETWEEN '" + fecha_final + "' AND '" + fecha_final + "';";
-        
+        consulta = "SELECT m.OID, Cantidad, Concepto, Fecha FROM Movimiento m join Colaboracion on m.OID= Colaboracion.OID WHERE Fecha BETWEEN '" + TestDatos.formatterBD.format(fecha_inicial) + "' AND '" + TestDatos.formatterBD.format(fecha_final) + "';";
         try{
             driver.conectar();
             rs = driver.seleccionar(consulta);
