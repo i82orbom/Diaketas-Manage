@@ -88,7 +88,7 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
         btAyudas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         btColaboraciones.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        btColaboraciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/monigote-devoluciones_1.jpg"))); // NOI18N
+        btColaboraciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/monigote-devoluciones.png"))); // NOI18N
         btColaboraciones.setText("Colaboraciones");
         btColaboraciones.setActionCommand("contabilidad");
         btColaboraciones.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);

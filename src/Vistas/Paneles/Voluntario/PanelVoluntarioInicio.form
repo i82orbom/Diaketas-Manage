@@ -125,7 +125,7 @@
           <Font name="Lucida Grande" size="14" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/images/monigote-devoluciones_1.jpg"/>
+          <Image iconType="3" name="/Vista/images/monigote-devoluciones.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Colaboraciones"/>
         <Property name="actionCommand" type="java.lang.String" value="contabilidad"/>
