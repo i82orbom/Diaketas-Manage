@@ -222,31 +222,28 @@ public class ControladorContabilidad {
 		});	
 	}
 	
-    private void obtenerIngresos(Date fechaInicial, Date fechaFin) {
-        
+    private ArrayList<Movimiento> obtenerIngresos(Date fechaInicial, Date fechaFin) {
         try {
-            ingresos = MovimientoJDBC.getInstance().obtenerDatosIngresos(fechaInicial, fechaFin);
+            this.ingresos = MovimientoJDBC.getInstance().obtenerDatosIngresos(fechaInicial, fechaFin);
+            return this.ingresos;
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
     }
 
-    private void obtenerGastos(Date fechaInicial, Date fechaFin) {
+    private ArrayList<Movimiento> obtenerGastos(Date fechaInicial, Date fechaFin) {
         
         try {
-            gastos = MovimientoJDBC.getInstance().obtenerDatosGastos(fechaInicial, fechaFin);
+            this.gastos = MovimientoJDBC.getInstance().obtenerDatosGastos(fechaInicial, fechaFin);
+            return this.gastos;
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
     }
 	
-	private float obtenerBalance(Date fechaInicial, Date fechaFin){
-            try {
-               return MovimientoJDBC.getInstance().obtenerBalance(fechaInicial, fechaFin);
-            } catch (SQLException ex) {
-                return Integer.MIN_VALUE;
-            }
-	}
+    private float obtenerBalance(){
+        return MovimientoJDBC.getInstance().obtenerBalance(this.ingresos, this.gastos);
+    }
 	
     public ControladorContabilidad(PanelVoluntarioContabilidad vista) {
         this.vista = vista;
@@ -290,14 +287,15 @@ public class ControladorContabilidad {
                 vista.setTextLabelError("Fecha : dd/MM/YYYY");
             }
             
-            vista.getCuadroBalance().setText(Float.toString(obtenerBalance(fechaInicio, fechaFin)));
+            vista.getCuadroBalance().setText(Float.toString(obtenerBalance()));
             
             // Hay que hacer esto para actualizar las variables y de esta forma actualizar la tabla de ingresos y gastos
-            obtenerIngresos(fechaInicio, fechaFin);
-            obtenerGastos(fechaInicio, fechaFin);
             
-            actualizarTablaGastos();
-            actualizarTablaIngresos();
+            if (!(obtenerIngresos(fechaInicio, fechaFin) == null || obtenerGastos(fechaInicio, fechaFin) == null)){
+
+                actualizarTablaGastos();
+                actualizarTablaIngresos();
+            }
         }
        
     }

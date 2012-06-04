@@ -56,15 +56,11 @@ public class MovimientoJDBC {
 
      }
      
-     public float obtenerBalance(Date fecha_inicial, Date fecha_final) throws SQLException{
+     public float obtenerBalance(ArrayList<Movimiento> ingresos, ArrayList<Movimiento> gastos){
          
           float ingresosSuma = 0;
           float gastosSuma = 0;
-          
-          // Primero se obtienen los Ingresos
-          
-          ArrayList<Movimiento> ingresos = this.obtenerDatosIngresos(fecha_inicial, fecha_final);
-          ArrayList<Movimiento> gastos = this.obtenerDatosGastos(fecha_inicial, fecha_final);
+                  
           
           for (int i = 0; i < ingresos.size(); ++i){
               ingresosSuma += ingresos.get(i).getImporte();
