@@ -100,25 +100,34 @@ public class OfertaJDBC {
 		Calendar fecha = Calendar.getInstance();
                 ArrayList<Oferta> Lista_ofertas = new ArrayList<Oferta>();
                 Oferta temp;
+                Sector temp2;
+                C_Empresa temp3;
+                System.out.println(empresa);
+                System.out.println("sector"+sector);
                 int meses = Integer.parseInt(antiguedad);
                 meses = meses * -1;
                 fecha.add(Calendar.MONTH, meses);
                 
-		String sql = "SELECT * FROM Oferta WHERE '1'='1'";
-                if (empresa>0) sql.concat(" AND OIDEmpresa = "+empresa);
-		if (sector>0) sql.concat(" AND OIDSector = "+sector);
-                if (meses>0) sql.concat("AND Fecha <= "+fecha);
+		String sql = "SELECT * FROM Oferta o, C_Empresa c, Sector s WHERE o.OIDEmpresa=c.OID AND o.OIDSector=s.OID";
+                if (empresa>0) sql.concat(" AND o.OIDEmpresa = "+empresa);
+		if (sector>0){ sql.concat(" AND o.OIDSector = "+sector+" AND s.OID = "+sector);}
+                if (meses>0) sql.concat(" AND o.Fecha <= "+fecha);
 		try{
 
 			driver.conectar();
 			ResultSet resultados, resultado_1;
                         resultados = driver.seleccionar(sql);
+                        temp2 = new Sector();
+                        temp3 = new C_Empresa();
+                        temp = new Oferta();
+                               
 
 			while(resultados.next()){
                             
                                 /* obtener datos oferta*/
-                                 
+                               
 				temp = new Oferta();
+                                
 				temp.setOID(resultados.getLong("OID"));
 				temp.setCualificacionRequerida(resultados.getString("CualificacionRequerida"));
 				temp.setDescripcionOferta(resultados.getString("DescripcionOferta"));
@@ -126,30 +135,13 @@ public class OfertaJDBC {
 				temp.setFecha(resultados.getDate("Fecha"));
 				temp.setPlazasOfertadas(resultados.getInt("PlazasOfertadas"));
 				temp.setTipoContrato(resultados.getString("TipoContrato"));
-                              
-                                /* obtener datos empresa */
-                                
-                                String sql1 = "SELECT * FROM C_Empresa WHERE OID = '"+resultados.getInt("OIDEmpresa") +"'"; 
-                                resultado_1=driver.seleccionar(sql1);
-                                temp.getEmpresa().setNombre(resultado_1.getString("Nombre"));
-                                driver.desconectar();
-                                
-
-                                
-
-                                
-                                /* obtener datos sector */
-
-                                sql1 = "SELECT * FROM Sector WHERE OID = '"+resultados.getInt("OIDSector")+"'"; 
-                                resultado_1=driver.seleccionar(sql1);
-                                temp.getSector().setDescripcion(resultado_1.getString("Descripcion")); 
-                                
+                                temp2.setDescripcion(resultados.getString("Descripcion"));
+                                temp3.setNombre(resultados.getString("Nombre"));
+                                temp.setSector(temp2);
+                                temp.setEmpresa(temp3);
+                                System.out.print("sector 2"+resultados.getString("OIDSector"));
 				Lista_ofertas.add(temp);
-                                
-                                
-                                    
-                                    
-                                
+                         
 			}
 		}
 		catch (SQLException ex){
