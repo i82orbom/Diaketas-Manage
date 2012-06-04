@@ -2,6 +2,7 @@
 package Controladores.Voluntario;
 
 import Controladores.TestDatos;
+import JDBC.AyudaJDBC;
 import JDBC.C_EmpresaJDBC;
 import JDBC.C_PersonaJDBC;
 import JDBC.MovimientoJDBC;
@@ -149,6 +150,110 @@ public class ControladorContabilidad {
 		});
 	}
 
+	private void actualizarTablaGastos(){
+		vista.getTbGastos().setModel(new TableModel() {
+
+			@Override
+			public int getRowCount() {
+				return gastos.size();
+			}
+
+			@Override
+			public int getColumnCount() {
+				return columnasGastos.length;
+			}
+
+			@Override
+			public String getColumnName(int columnIndex) {
+				return columnasGastos[columnIndex];
+			}
+
+			@Override
+			public Class<?> getColumnClass(int i) {
+				return String.class;
+			}
+
+			@Override
+			public boolean isCellEditable(int rowIndex, int columnIndex) {
+				return false;
+			}
+
+			@Override
+			public Object getValueAt(int rowIndex, int columnIndex) {
+			Gasto gas;
+			Ayuda ayu;
+				switch(columnIndex){
+					case 0:
+						return formateador.format(gastos.get(rowIndex).getFecha());
+					case 1:
+						return gastos.get(rowIndex).getImporte();
+					case 2:
+						if(gastos.get(rowIndex).getClass() == Gasto.class){
+							gas = (Gasto)gastos.get(rowIndex);
+							try{
+								ayu = AyudaJDBC.getInstance().obtenerAyuda(gas.getOIDAyuda());
+								return ayu.getBeneficiarioDeAyuda().getNIF();
+							}
+							catch(SQLException ex){
+								Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
+							}
+							return "";
+						}
+						
+					default: return "";
+				}
+			}
+
+			@Override
+			public void setValueAt(Object o, int i, int i1) {
+				
+			}
+
+			@Override
+			public void addTableModelListener(TableModelListener tl) {
+				
+			}
+
+			@Override
+			public void removeTableModelListener(TableModelListener tl) {
+				
+			}
+			
+		});	
+	}
+	
+	private void obtenerIngresos(Date fechaInicial, Date fechaFin) {
+        
+        try {
+            ingresos = MovimientoJDBC.getInstance().obtenerDatosIngresos(fechaInicial, fechaFin);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void obtenerGastos(Date fechaInicial, Date fechaFin) {
+        
+        try {
+            gastos = MovimientoJDBC.getInstance().obtenerDatosGastos(fechaInicial, fechaFin);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+	
+	private float obtenerBalance(Date fechaInicial, Date fechaFin){
+		if(ingresos.size() <= 0)
+			obtenerIngresos(fechaInicial,fechaFin);
+		if(gastos.size() <= 0)
+			obtenerGastos(fechaInicial,fechaFin);
+		
+		float t_ing=0,t_gas=0;
+		for(int i=0;i<ingresos.size();i++)
+			t_ing = t_ing + ingresos.get(i).getImporte();
+		for(int i=0;i<gastos.size();i++)
+			t_gas = t_gas + gastos.get(i).getImporte();
+		return t_ing - t_gas;
+	}
+	
     public ControladorContabilidad(PanelVoluntarioContabilidad vista) {
         this.vista = vista;
         
@@ -193,40 +298,8 @@ public class ControladorContabilidad {
         }
 
         return exito;
-    }
+    }    
 
-    public ArrayList<Movimiento> obtenerIngresos(Date fechaInicial, Date fechaFin) {
-        ArrayList<Movimiento> ingresos = null;
-        try {
-            ingresos = MovimientoJDBC.getInstance().obtenerDatosIngresos(fechaInicial, fechaFin);
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return ingresos;
-    }
-
-    public ArrayList<Movimiento> obtenerGastos(Date fechaInicial, Date fechaFin) {
-        ArrayList<Movimiento> gastos = null;
-        try {
-            gastos = MovimientoJDBC.getInstance().obtenerDatosGastos(fechaInicial, fechaFin);
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return gastos;
-    }
-
-    public float obtenerContabilidad(Date fechaInicial, Date fechaFin) {
-        float balance = 0;
-        try {
-            balance = MovimientoJDBC.getInstance().obtenerBalance(fechaInicial, fechaFin);
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return balance;
-    }
     // TODO Listeners de los botones
     
     class BtBuscarContabilidad implements ActionListener {
@@ -242,7 +315,7 @@ public class ControladorContabilidad {
                 vista.setTextLabelError("Fecha : dd/MM/YYYY");
             }
             
-            vista.getCuadroBalance().setText(Float.toString(obtenerContabilidad(fechaInicio, fechaFin)));
+            vista.getCuadroBalance().setText(Float.toString(obtenerBalance(fechaInicio, fechaFin)));
         }
        
     }

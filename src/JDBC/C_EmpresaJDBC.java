@@ -198,6 +198,7 @@ public class C_EmpresaJDBC {
 		return Empresa;
     }
 	
+	//ESTE MÉTODO ES NUEVO, HAY QUE AÑADIRLO AL DISEÑO DE LA 2NDA ITERACIÓN
 	public C_Empresa obtenerC_Empresa(Long OID) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
