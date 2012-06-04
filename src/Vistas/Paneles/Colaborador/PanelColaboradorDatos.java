@@ -78,6 +78,12 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
         cbFechaFinalColaborador = new javax.swing.JComboBox();
         cbFechaInicialColaborador = new javax.swing.JComboBox();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        jTabbedPane3.setBackground(new java.awt.Color(255, 255, 255));
+
+        PanelDatosColaborador.setBackground(new java.awt.Color(255, 255, 255));
+
         label27.setForeground(new java.awt.Color(255, 51, 51));
         label27.setText("Datos personales");
 
@@ -172,9 +178,9 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
                                     .addComponent(textDomiciolioColaborador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelDatosColaboradorLayout.createSequentialGroup()
                                     .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(label28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(label29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(label30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(label30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(label28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(textNombreColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -296,6 +302,8 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
         );
 
         jTabbedPane3.addTab("Datos", PanelDatosColaborador);
+
+        PanelColaboracionesColaborador.setBackground(new java.awt.Color(255, 255, 255));
 
         label43.setForeground(new java.awt.Color(255, 0, 0));
         label43.setText("Colaboraciones");
