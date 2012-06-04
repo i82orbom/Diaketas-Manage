@@ -262,7 +262,7 @@
     <Component class="javax.swing.JButton" name="btnGuardarTipoAyuda">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/images/save_f2.png"/>
+          <Image iconType="3" name="/Vista/images/guardar.png"/>
         </Property>
         <Property name="actionCommand" type="java.lang.String" value="guardarTipoAyuda"/>
       </Properties>

@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.text.SimpleDateFormat;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -18,7 +17,7 @@ import javax.swing.JTextField;
  * @author raphaelcolleau
  */
 public class PanelVoluntarioDatos extends javax.swing.JPanel {
-    
+
     private static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
     /**
@@ -29,14 +28,14 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
 
         labelError.setVisible(false);
     }
-    
+
     public void nuevoVoluntario () {
         limpiarCampos();
         btBorrar.setVisible(true);
         btEliminar.setVisible(false);
         labelError.setVisible(false);
     }
-    
+
     public void modificarVoluntario (Voluntario voluntario) {
         btBorrar.setVisible(false);
         btEliminar.setVisible(true);
@@ -166,7 +165,7 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
     public JLabel getlTelMovil() {
         return lTelMovil;
     }
-    
+
     public void setColorLabels (Color c) {
         for (Component comp : this.getComponents()) {
             if (comp.getClass() == JLabel.class) {
@@ -236,7 +235,7 @@ public class PanelVoluntarioDatos extends javax.swing.JPanel {
 
         textFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
-        btGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/save_f2.png"))); // NOI18N
+        btGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
         btGuardar.setToolTipText("Guardar");
         btGuardar.setActionCommand("guardarDatosVoluntario");
 

@@ -158,7 +158,7 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
         btnEliminarTipoAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
         btnEliminarTipoAyuda.setActionCommand("eliminarTipoAyuda");
 
-        btnGuardarTipoAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/save_f2.png"))); // NOI18N
+        btnGuardarTipoAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
         btnGuardarTipoAyuda.setActionCommand("guardarTipoAyuda");
 
         tablaTiposAyuda.setModel(new javax.swing.table.DefaultTableModel(
