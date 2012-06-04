@@ -20,28 +20,28 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
     }
 
      /** LISTENERS */
-    
+
     public void anadirListenerbtAyudas(ActionListener listener){
         this.btAyudas.addActionListener(listener);
     }
-    
+
     public void anadirListenerbtBuscarVoluntario(ActionListener listener){
         this.btBuscarVoluntario.addActionListener(listener);
     }
-      
+
     public void anadirListenerbtColaboraciones(ActionListener listener){
         this.btColaboraciones.addActionListener(listener);
     }
-        
+
     public void anadirListenerbtContabilidad(ActionListener listener){
         this.btContabilidad.addActionListener(listener);
     }
-    
-     
+
+
     public void anadirListenerbtNuevoVoluntario(ActionListener listener){
         this.btNuevoVoluntario.addActionListener(listener);
     }
-   
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -100,25 +100,26 @@ public class PanelVoluntarioInicio extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(100, 100, 100)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btNuevoVoluntario)
-                        .addGap(243, 243, 243)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btBuscarVoluntario))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btContabilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(151, 151, 151)
                         .addComponent(btColaboraciones, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(144, 144, 144)
-                        .addComponent(btAyudas, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btAyudas, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(90, 90, 90)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btNuevoVoluntario, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btBuscarVoluntario))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btNuevoVoluntario, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(btBuscarVoluntario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btContabilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)

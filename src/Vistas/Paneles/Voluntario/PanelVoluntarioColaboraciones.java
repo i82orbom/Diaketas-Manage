@@ -22,7 +22,7 @@ public class PanelVoluntarioColaboraciones extends javax.swing.JPanel {
     public void anadirListenerbtAñadirColaboraciones (ActionListener listener){
         this.btAñadirColaboraciones.addActionListener(listener);
     }
-    
+
     public void anadirListenerbtCuotasNoPagatas(ActionListener listener){
         this.btComprobarPagos.addActionListener(listener);
     }
@@ -59,11 +59,11 @@ public class PanelVoluntarioColaboraciones extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addGap(142, 142, 142)
                 .addComponent(btAñadirColaboraciones, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 358, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
                 .addComponent(btComprobarPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92))
+                .addGap(160, 160, 160))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -21,25 +21,19 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="1000" max="32767" attributes="0"/>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="jTabbedPane3" min="-2" pref="916" max="-2" attributes="0"/>
-                  <EmptySpace pref="42" max="32767" attributes="0"/>
-              </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="jTabbedPane3" min="-2" pref="949" max="-2" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="550" max="32767" attributes="0"/>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="jTabbedPane3" min="-2" pref="494" max="-2" attributes="0"/>
-                  <EmptySpace pref="28" max="32767" attributes="0"/>
-              </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="jTabbedPane3" min="-2" pref="524" max="-2" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,189 +65,169 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="911" max="32767" attributes="0"/>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="label35" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="207" max="-2" attributes="0"/>
-                                  <Component id="label42" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="textMovilColaborador" min="-2" pref="127" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label31" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label27" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="label31" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="label27" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label32" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label33" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label41" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label35" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="32" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="textLocalidadColaborador" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="textTelefonoColaborador" min="-2" pref="120" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                          <Component id="label42" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="textMovilColaborador" min="-2" pref="122" max="-2" attributes="0"/>
+                                      </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="label32" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                                          <Component id="textDomiciolioColaborador" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="label29" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="label30" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="label28" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="textNombreColaborador" alignment="0" min="-2" pref="315" max="-2" attributes="0"/>
-                                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="textDNIColaborador" alignment="0" pref="315" max="32767" attributes="0"/>
-                                                  <Component id="textNacionalidadColaborador" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="label33" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                          <Component id="textLocalidadColaborador" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="label34" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="textCPColaborador" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="textTelefonoColaborador" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="label36" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="label37" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="label39" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="label41" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="textProvinciaColaborador" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="radioMasculinoColaborador" min="-2" max="-2" attributes="0"/>
+                                          <Component id="textProvinciaColaborador" max="32767" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="radioFemeninoColaborador" min="-2" max="-2" attributes="0"/>
+                                          <Component id="label34" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="textCPColaborador" min="-2" pref="79" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="textDiaFNColaborador" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
-                                              <Component id="label38" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                              <Component id="textMesFNColaborador" min="-2" pref="89" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                              <Component id="label40" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="textAnoFNColaborador" min="-2" pref="56" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="textApellidosColaborador" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="textDomiciolioColaborador" min="-2" pref="334" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="398" max="-2" attributes="0"/>
-                                  <Component id="btGuardarColaborador" min="-2" pref="27" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btLimpiarColaborador" min="-2" pref="33" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="492" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="label28" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="label29" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="label30" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="textNacionalidadColaborador" alignment="0" min="-2" pref="266" max="-2" attributes="0"/>
+                          <Component id="textDNIColaborador" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
+                          <Component id="textNombreColaborador" alignment="0" min="-2" pref="266" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label37" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label39" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="radioMasculinoColaborador" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="radioFemeninoColaborador" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="textFechaNacimiento" min="-2" pref="177" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="47" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="label36" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="textApellidosColaborador" min="-2" pref="319" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="340" max="-2" attributes="0"/>
+                      <Component id="btGuardarColaborador" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btLimpiarColaborador" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="466" max="32767" attributes="0"/>
-                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="label27" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="label28" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textNombreColaborador" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="label36" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="label27" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="label28" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label36" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textApellidosColaborador" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="label29" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                      <Component id="textFechaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="label37" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="textApellidosColaborador" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="textAnoFNColaborador" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="label40" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="label29" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textDNIColaborador" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="textNacionalidadColaborador" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="label30" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="textMesFNColaborador" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="textDiaFNColaborador" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="label38" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="radioMasculinoColaborador" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="radioFemeninoColaborador" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="label37" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="label39" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="label39" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="radioMasculinoColaborador" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="radioFemeninoColaborador" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="label31" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="label32" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textDomiciolioColaborador" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="label33" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textLocalidadColaborador" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="textNombreColaborador" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="textDNIColaborador" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="label30" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textNacionalidadColaborador" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="label41" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="textProvinciaColaborador" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="label34" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="textCPColaborador" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="label42" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="label35" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="textTelefonoColaborador" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="textMovilColaborador" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btLimpiarColaborador" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="btGuardarColaborador" alignment="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="61" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Component id="label31" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="textDomiciolioColaborador" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="label32" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="textLocalidadColaborador" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="label33" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="label41" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textProvinciaColaborador" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="label34" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textCPColaborador" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="textTelefonoColaborador" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="label35" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="label42" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textMovilColaborador" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="btGuardarColaborador" min="-2" max="-2" attributes="0"/>
+                          <Component id="btLimpiarColaborador" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -284,8 +258,8 @@
             </Component>
             <Component class="javax.swing.JTextField" name="textDNIColaborador">
               <Properties>
-                <Property name="name" type="java.lang.String" value=""/>
                 <Property name="text" type="java.lang.String" value="DNI/Pasaporte"/>
+                <Property name="name" type="java.lang.String" value=""/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="label30">
@@ -328,7 +302,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="textTelefonoColaborador">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Movil"/>
+                <Property name="text" type="java.lang.String" value="Fijo"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="textLocalidadColaborador">
@@ -361,44 +335,25 @@
                 <Property name="text" type="java.lang.String" value="Apellidos"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="textDiaFNColaborador">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="dia"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="label38">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="de"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="textMesFNColaborador">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="mes"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JRadioButton" name="radioFemeninoColaborador">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Mujer"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="radioMasculinoColaborador">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Hombre"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="label39">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sexo"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="label40">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="de"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="textAnoFNColaborador">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="a&#xf1;o"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="label41">
@@ -408,7 +363,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="textProvinciaColaborador">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Procvincia"/>
+                <Property name="text" type="java.lang.String" value="Provincia"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="textMovilColaborador">
@@ -435,6 +390,13 @@
                 </Property>
               </Properties>
             </Component>
+            <Component class="javax.swing.JFormattedTextField" name="textFechaNacimiento">
+              <Properties>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                  <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
+                </Property>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="PanelColaboracionesColaborador">
@@ -454,9 +416,9 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="label44" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -467,36 +429,32 @@
                                           <Component id="label46" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="textConceptoColaborador" alignment="0" min="-2" pref="571" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="textCantidadColaborador" min="-2" pref="111" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                                               <Component id="label47" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="textFechaColaborador" min="-2" pref="139" max="-2" attributes="0"/>
-                                              <EmptySpace min="272" pref="272" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="textConceptoColaborador" max="32767" attributes="0"/>
-                                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="jFormattedTextField1" min="-2" pref="139" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="btColaboradorBuscar" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
-                                  <Component id="btGuardarColaboracionColaborador" alignment="1" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="btColaboradorBuscar" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btGuardarColaboracionColaborador" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btEliminarColaborador" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="btEliminarColaborador" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jScrollPane13" min="-2" pref="672" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="cbFechaInicialColaborador" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
-                                  <Component id="cbFechaFinalColaborador" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                                  <Component id="cbFechaInicialColaborador" max="32767" attributes="0"/>
+                                  <Component id="cbFechaFinalColaborador" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -510,21 +468,23 @@
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="label43" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Component id="cbFechaInicialColaborador" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="cbFechaFinalColaborador" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="btColaboradorBuscar" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="btEliminarColaborador" alignment="1" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="btColaboradorBuscar" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btEliminarColaborador" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btGuardarColaboracionColaborador" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Component id="jScrollPane13" min="-2" pref="183" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="label44" min="-2" max="-2" attributes="0"/>
@@ -535,19 +495,16 @@
                                       </Group>
                                   </Group>
                                   <Component id="label47" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                      <Component id="btGuardarColaboracionColaborador" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
-                                      <Component id="textFechaColaborador" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jFormattedTextField1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="label46" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="textConceptoColaborador" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="102" max="32767" attributes="0"/>
+                      <EmptySpace pref="154" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -568,7 +525,7 @@
                 <Component class="javax.swing.JTable" name="tableColaboracionesColaborador">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="6">
+                      <Table columnCount="4" rowCount="0">
                         <Column editable="true" title="Cantidad" type="java.lang.Object"/>
                         <Column editable="true" title="Fecha" type="java.lang.Object"/>
                         <Column editable="true" title="Concepto" type="java.lang.Object"/>
@@ -609,8 +566,6 @@
                 <Property name="text" type="java.lang.String" value="Fecha"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="textFechaColaborador">
-            </Component>
             <Component class="javax.swing.JButton" name="btGuardarColaboracionColaborador">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -648,6 +603,14 @@
                     <StringItem index="0" value="Fecha inicial"/>
                   </StringArray>
                 </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+              <Properties>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                  <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
           </SubComponents>

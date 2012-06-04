@@ -33,7 +33,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTabbedPane1" min="-2" pref="987" max="-2" attributes="0"/>
-              <EmptySpace pref="7" max="32767" attributes="0"/>
+              <EmptySpace pref="3" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -42,7 +42,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTabbedPane1" min="-2" pref="581" max="-2" attributes="0"/>
-              <EmptySpace pref="13" max="32767" attributes="0"/>
+              <EmptySpace pref="8" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -108,11 +108,6 @@
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="cbEstadoCivil" min="-2" pref="86" max="-2" attributes="0"/>
-                                                      <EmptySpace max="32767" attributes="0"/>
-                                                      <Component id="labelSituacionEconomica" min="-2" pref="244" max="-2" attributes="0"/>
-                                                  </Group>
                                                   <Group type="102" attributes="0">
                                                       <Group type="103" groupAlignment="1" attributes="0">
                                                           <Component id="textFechaNacimiento" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
@@ -120,8 +115,9 @@
                                                       </Group>
                                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                                   </Group>
-                                                  <Group type="102" attributes="0">
+                                                  <Group type="102" alignment="1" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="cbEstadoCivil" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
                                                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                                                               <Component id="textOcupacion" pref="148" max="32767" attributes="0"/>
                                                               <Component id="textTelefonoMovil" max="32767" attributes="0"/>
@@ -129,7 +125,10 @@
                                                           <Component id="textProfesion" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
                                                       </Group>
                                                       <EmptySpace max="32767" attributes="0"/>
-                                                      <Component id="jScrollPane7" min="-2" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="labelSituacionEconomica" min="-2" pref="244" max="-2" attributes="0"/>
+                                                          <Component id="jScrollPane7" min="-2" pref="310" max="-2" attributes="0"/>
+                                                      </Group>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -157,12 +156,9 @@
                                               <Component id="textPrecioVivienda" min="-2" pref="95" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="textEspecificarTipoVivienda" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
+                                          <Component id="labelError" alignment="0" min="-2" pref="605" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
-                                      <Component id="btGuardar" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                      <Component id="btBorrar" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="141" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -172,11 +168,16 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="labelVivienda" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="labelError" min="-2" pref="351" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              <EmptySpace min="21" pref="928" max="32767" attributes="0"/>
                           </Group>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="307" max="-2" attributes="0"/>
+                      <Component id="btGuardar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btBorrar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -213,7 +214,7 @@
                               <Component id="textApellidos" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -275,18 +276,16 @@
                                   <Component id="textEspecificarTipoVivienda" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPane7" min="-2" pref="107" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
-                              <Component id="labelError" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btGuardar" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btBorrar" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="jScrollPane7" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="51" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="labelError" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btGuardar" min="-2" max="-2" attributes="0"/>
+                          <Component id="btBorrar" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -473,7 +472,7 @@
             <Component class="javax.swing.JButton" name="btGuardar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Vista/images/save_f2.png"/>
+                  <Image iconType="3" name="/Vista/images/guardar.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -576,7 +575,7 @@
                                       <Component id="btLimpiarCamposAyuda" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="51" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -589,7 +588,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel59" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane10" pref="306" max="32767" attributes="0"/>
+                      <Component id="jScrollPane10" pref="342" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel60" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -629,7 +628,7 @@
             <Component class="javax.swing.JButton" name="btGuardarIntervencionBeneficiario">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Vista/images/save_f2.png"/>
+                  <Image iconType="3" name="/Vista/images/guardar.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Guardar"/>
               </Properties>
@@ -781,7 +780,7 @@
                               <Component id="btGuardarFamiliarBeneficiario" min="-2" pref="43" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btEliminarFamiliarBeneficiario" min="-2" pref="34" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="215" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="345" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -810,7 +809,7 @@
                           <Component id="btGuardarFamiliarBeneficiario" min="-2" pref="34" max="-2" attributes="0"/>
                           <Component id="btEliminarFamiliarBeneficiario" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                      <EmptySpace pref="36" max="32767" attributes="0"/>
                       <Component id="jScrollPane9" min="-2" pref="438" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -893,7 +892,7 @@
             <Component class="javax.swing.JButton" name="btGuardarFamiliarBeneficiario">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Vista/images/save_f2.png"/>
+                  <Image iconType="3" name="/Vista/images/guardar.png"/>
                 </Property>
               </Properties>
             </Component>

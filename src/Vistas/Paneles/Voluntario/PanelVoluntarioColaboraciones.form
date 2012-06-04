@@ -21,12 +21,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
               <Component id="btAñadirColaboraciones" min="-2" pref="229" max="-2" attributes="0"/>
-              <EmptySpace pref="358" max="32767" attributes="0"/>
+              <EmptySpace pref="240" max="32767" attributes="0"/>
               <Component id="btComprobarPagos" min="-2" pref="229" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
