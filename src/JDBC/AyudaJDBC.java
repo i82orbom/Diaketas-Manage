@@ -84,6 +84,24 @@ public class AyudaJDBC {
         driver.desconectar();
         return lista_ayudas;
     }
+    
+    public long getOIDUltimaAyuda() throws SQLException{
+        
+        DriverJDBC driver = DriverJDBC.getInstance();
+
+        String sentencia = "SELECT MAX(OID) FROM Ayuda";
+
+        driver.conectar();
+        ResultSet resultado = driver.seleccionar(sentencia);
+        long oid_resultado = -1;
+        while (resultado.next()) {
+            oid_resultado = resultado.getLong(1);
+        }
+        
+        driver.desconectar();
+    
+        return oid_resultado;
+    }
 
     public boolean comprobarTipoAyuda(String titulo) throws SQLException {
 
@@ -239,15 +257,20 @@ public class AyudaJDBC {
         return exito;
     }
 
-    public boolean registrarDatosAyuda(Ayuda ayuda, Beneficiario ben, Voluntario vol) throws SQLException {
+    public boolean registrarDatosAyuda(Ayuda ayuda) throws SQLException {
 
         DriverJDBC driver = DriverJDBC.getInstance();
         Float importe = ayuda.getImporte();
+        Beneficiario ben = ayuda.getBeneficiarioDeAyuda();
+        Voluntario vol = ayuda.getVoluntarioQueOtorga();
 
         String sql = "INSERT INTO ayuda (Fecha,Importe,Observaciones,TipoAyudaOID,OID_Volun,OID_Bene) VALUES ('" + TestDatos.formatterBD.format(ayuda.getFecha()) + "','" + importe.toString() + "','" + ayuda.getObservaciones() + "','" + ayuda.getTipo_ayuda().getOID() + "','" + vol.getOID() + "','" + ben.getOID() + "')";
         driver.conectar();
         boolean exito = driver.insertar(sql);
         driver.desconectar();
+        
+        ayuda.setOID(this.getOIDUltimaAyuda());
+        
         return exito;
 
     }

@@ -286,17 +286,16 @@ public class ControladorContabilidad {
         Movimiento movimiento = new Movimiento();
         movimiento.setImporte(ayuda.getImporte());
         movimiento.setConcepto(ayuda.getObservaciones());
-      //  movimiento.setTipo('G');
-        //movimiento.setFecha(SimpleDateFormat.getDateInstance());
+        movimiento.setFecha(new Date());
 
         boolean exito;
-      /*  try {
+        try {
             exito = MovimientoJDBC.getInstance().registrarDatosGastoAyuda(movimiento, ayuda);
         } catch (SQLException ex) {
             Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
             exito = false;
         }
-*/
+
         return true;
     }    
 

@@ -301,29 +301,17 @@ public class MovimientoJDBC {
          
          return exito;
      }
-    /*
+   
      public boolean registrarDatosGastoAyuda(Movimiento movimiento, Ayuda ayuda) throws SQLException{
          
          DriverJDBC driver = DriverJDBC.getInstance() ;
          String sentencia ;
-         String fecha , fecha_ayuda;
-         fecha = movimiento.getFecha().toString();
-         fecha_ayuda = ayuda.getFecha().toString();
-         Float importe = movimiento.getImporte();
-         //Asociacion temp = movimiento.getAsociacionQueGenera().get
-         Integer maxMovID ;
+        
          boolean exito;
          
          ResultSet rs;
-         //Buscamos el Maximo MovimientoID para que la inserciÃ³n se autoincremental
-         String consulta = "SELECT MAX(MovimientoID) as maxMovId FROM movimiento " ;
-         rs = driver.seleccionar(consulta);
-         if(rs.next())
-             maxMovID= rs.getInt("maxMovId")+1;
-         else
-             maxMovID = 1;
-         
-         sentencia = "INSERT INTO movimiento (MovimientoID,Fecha,Importe,concepto,tipo,AsociacionID,AyudaOID) VALUES ('"+maxMovID.toString()+"','"+fecha_ayuda+"','"+importe.toString()+"','"+movimiento.getConcepto()+"','"+movimiento.getTipo()+"','1','" +ayuda.getOID()+ "' )";
+        
+         sentencia = "INSERT INTO movimiento (Cantidad, Concepto, Fecha) VALUES ('"+movimiento.getImporte()+"','"+movimiento.getConcepto()+"','"+TestDatos.formatterBD.format(movimiento.getFecha())+"' )";
          
          try {
             driver.inicioTransaccion();
@@ -336,9 +324,45 @@ public class MovimientoJDBC {
         } finally {
             driver.finTransaccion();
         }
-         
+            
+         movimiento.setOID(MovimientoJDBC.getInstance().getOIDUltimoMovimiento());
+         sentencia = "INSERT INTO Gasto (OID, OIDAyuda) VALUES ('" + movimiento.getOID() + "','" + ayuda.getOID() + "')";
+          try {
+            driver.inicioTransaccion();
+            exito = driver.insertar(sentencia); 
+            driver.commit();
+        } catch (SQLException ex) {
+            driver.rollback();
+            exito = false;
+            throw ex;
+        } finally {
+            driver.finTransaccion();
+        }
          
          return exito;
      }
-      */       
+     
+     public long getOIDUltimoMovimiento() throws SQLException{
+        
+        DriverJDBC driver = DriverJDBC.getInstance();
+
+        String sentencia = "SELECT MAX(OID) FROM Movimiento";
+        long oid_resultado = -1;    
+        try{
+        driver.conectar();
+        ResultSet resultado = driver.seleccionar(sentencia);
+        
+        while (resultado.next()) {
+            oid_resultado = resultado.getLong(1);
+        }
+        
+        driver.desconectar();
+        }
+        catch (SQLException e){
+            return -1;
+        }
+        
+        return oid_resultado;
+    }
+            
 }
