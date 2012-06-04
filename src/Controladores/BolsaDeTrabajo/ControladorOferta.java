@@ -268,7 +268,6 @@ public class ControladorOferta {
 				ControladorErrores.mostrarError("Error al obtener la empresa:\n"+ex);
 			}
 			if (empresa!=null) empresaOID = empresa.getOID();
-                        System.out.println(empresaOID);
 //			else empresaOID = 0l;
 		}
 

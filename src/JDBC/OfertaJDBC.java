@@ -101,9 +101,9 @@ public class OfertaJDBC {
 		ArrayList<Oferta> listaOfertas = new ArrayList<Oferta>();
 		Oferta oferta;
 
-		String sql = "SELECT * FROM Oferta o WHERE Fecha>=DATE_SUB(CURDATE(), INTERVAL "+antiguedad+" MONTH)";
-		if (empresaOID>0) sql.concat(" AND o.OIDEmpresa = "+empresaOID);
-		if (sectorOID>0) sql.concat(" AND o.OIDSector = "+sectorOID);
+		String sql = "SELECT * FROM oferta WHERE Fecha>=DATE_SUB(CURDATE(), INTERVAL "+antiguedad+" MONTH)";
+		if (empresaOID>0) sql+=(" AND OIDEmpresa = " + empresaOID);
+		if (sectorOID>0) sql+=(" AND OIDSector = " + sectorOID);
 
 		try{
 			driver.conectar();
