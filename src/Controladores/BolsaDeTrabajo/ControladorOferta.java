@@ -258,7 +258,7 @@ public class ControladorOferta {
 		}
 	}
 
-	public void obtenerListaOfertas(String empresaNombre, String sectorDesc, String antiguedad){
+	public void obtenerListaOfertas(String empresaNombre, String sectorDesc, int antiguedad){
 		Long empresaOID = -1l, sectorOID = -1l;
 
 		if (!empresaNombre.equals("")){
@@ -508,8 +508,7 @@ public class ControladorOferta {
 		public void actionPerformed(ActionEvent e) {
 			String empresa = vista.getOfertaBuscar().gettextoCIFEmpresa();
 			String sectorDesc = vista.getOfertaBuscar().getTextoSector();
-			String antiguedad = vista.getOfertaBuscar().getAntiguedad()+"";
-System.out.println("Antiguedad seleccionada: "+antiguedad);
+			int antiguedad = vista.getOfertaBuscar().getAntiguedad();
 
 			obtenerListaOfertas(empresa, sectorDesc, antiguedad);
 		}

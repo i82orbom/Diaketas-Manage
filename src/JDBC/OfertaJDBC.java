@@ -10,12 +10,13 @@ package JDBC;
  */
 
 import Controladores.TestDatos;
-import Modelo.*;
-import java.sql.Date;
+import Modelo.C_Empresa;
+import Modelo.Oferta;
+import Modelo.Sector;
+import Modelo.Voluntario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class OfertaJDBC {
     private static OfertaJDBC instancia;
@@ -95,53 +96,41 @@ public class OfertaJDBC {
 		return exito;
     }
 
-	public ArrayList<Oferta> filtrarOfertas (Long empresa, Long sector, String antiguedad)throws SQLException{
+	public ArrayList<Oferta> filtrarOfertas(Long empresaOID, Long sectorOID, int antiguedad)throws SQLException{
 		DriverJDBC driver = DriverJDBC.getInstance();
-		Calendar fecha = Calendar.getInstance();
-                ArrayList<Oferta> Lista_ofertas = new ArrayList<Oferta>();
-                Oferta temp;
-                Sector temp2;
-                C_Empresa temp3;
-                System.out.println(empresa);
-                System.out.println("sector"+sector);
-                int meses = Integer.parseInt(antiguedad);
-                meses = meses * -1;
-                fecha.add(Calendar.MONTH, meses);
-                
-		String sql = "SELECT * FROM Oferta o, C_Empresa c, Sector s WHERE o.OIDEmpresa=c.OID AND o.OIDSector=s.OID";
-                if (empresa>0) sql.concat(" AND o.OIDEmpresa = "+empresa);
-		if (sector>0){ sql.concat(" AND o.OIDSector = "+sector+" AND s.OID = "+sector);}
-                if (meses>0) sql.concat(" AND o.Fecha <= "+fecha);
-		try{
+		ArrayList<Oferta> listaOfertas = new ArrayList<Oferta>();
+		Oferta oferta;
 
+		String sql = "SELECT * FROM Oferta o WHERE Fecha>=DATE_SUB(CURDATE(), INTERVAL "+antiguedad+" MONTH)";
+		if (empresaOID>0) sql.concat(" AND o.OIDEmpresa = "+empresaOID);
+		if (sectorOID>0) sql.concat(" AND o.OIDSector = "+sectorOID);
+
+		try{
 			driver.conectar();
-			ResultSet resultados, resultado_1;
-                        resultados = driver.seleccionar(sql);
-                        temp2 = new Sector();
-                        temp3 = new C_Empresa();
-                        temp = new Oferta();
-                               
+			ResultSet resultados;
+			resultados = driver.seleccionar(sql);
 
 			while(resultados.next()){
-                            
-                                /* obtener datos oferta*/
-                               
-				temp = new Oferta();
-                                
-				temp.setOID(resultados.getLong("OID"));
-				temp.setCualificacionRequerida(resultados.getString("CualificacionRequerida"));
-				temp.setDescripcionOferta(resultados.getString("DescripcionOferta"));
-				temp.setDuracionContrato(resultados.getInt("DuracionContrato"));
-				temp.setFecha(resultados.getDate("Fecha"));
-				temp.setPlazasOfertadas(resultados.getInt("PlazasOfertadas"));
-				temp.setTipoContrato(resultados.getString("TipoContrato"));
-                                temp2.setDescripcion(resultados.getString("Descripcion"));
-                                temp3.setNombre(resultados.getString("Nombre"));
-                                temp.setSector(temp2);
-                                temp.setEmpresa(temp3);
-                                System.out.print("sector 2"+resultados.getString("OIDSector"));
-				Lista_ofertas.add(temp);
-                         
+				oferta = new Oferta();
+
+				oferta.setSector(new Sector());
+				oferta.setEmpresa(new C_Empresa());
+				oferta.setVoluntario(new Voluntario());
+
+				/* obtener datos oferta*/
+				oferta.setOID(resultados.getLong("OID"));
+				oferta.setCualificacionRequerida(resultados.getString("CualificacionRequerida"));
+				oferta.setDescripcionOferta(resultados.getString("DescripcionOferta"));
+				oferta.setDuracionContrato(resultados.getInt("DuracionContrato"));
+				oferta.setFecha(resultados.getDate("Fecha"));
+				oferta.setPlazasOfertadas(resultados.getInt("PlazasOfertadas"));
+				oferta.setTipoContrato(resultados.getString("TipoContrato"));
+
+				oferta.getEmpresa().setOID(resultados.getLong("OIDEmpresa"));
+				oferta.getSector().setOID(resultados.getLong("OIDSector"));
+				oferta.getVoluntario().setOID(resultados.getLong("OIDVoluntario"));
+
+				listaOfertas.add(oferta);
 			}
 		}
 		catch (SQLException ex){
@@ -151,9 +140,16 @@ public class OfertaJDBC {
 			driver.desconectar();
 		}
 
+		for (Oferta o:listaOfertas){
+			/* ______ empresa ______ */
+			o.setEmpresa(C_EmpresaJDBC.getInstance().obtenerC_Empresa(o.getEmpresa().getOID()));
+			/* ______ sector ______ */
+			o.setSector(SectorJDBC.getInstance().ConsultarSector(o.getSector().getOID()));
+			/* ______ voluntario ______ */
+			o.setVoluntario(VoluntarioJDBC.getInstance().obtenerVoluntario(o.getSector().getOID()));
+		}
 
-
-		return Lista_ofertas;
+		return listaOfertas;
 	}
 
 	public boolean ActualizarOferta (Oferta oferta) throws SQLException{
@@ -173,29 +169,28 @@ public class OfertaJDBC {
 
         return true;
 	}
-        
-        public boolean ConsultarOfertaSector (Long oid) throws SQLException {
-    
-        DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "SELECT * FROM Oferta WHERE OIDSector ="+oid;
-        ResultSet resultado;
-        boolean exito;
-        
-        try{
-            driver.conectar();
-            resultado=driver.seleccionar(sql);
-            if(resultado.next())
-                exito=true;
-            else
-                exito = false;
-        }
-        catch( SQLException ea){
-            throw(ea);
-        }
-        finally{
-            driver.desconectar();
-        }
-        return exito;
-    }
-   
+
+	public boolean ConsultarOfertaSector (Long oid) throws SQLException {
+		DriverJDBC driver = DriverJDBC.getInstance();
+		String sql = "SELECT * FROM Oferta WHERE OIDSector ="+oid;
+		ResultSet resultado;
+		boolean exito;
+
+		try{
+			driver.conectar();
+			resultado=driver.seleccionar(sql);
+			if(resultado.next())
+				exito=true;
+			else
+				exito = false;
+		}
+		catch( SQLException ea){
+			throw(ea);
+		}
+		finally{
+			driver.desconectar();
+		}
+		return exito;
+	}
+
 }
