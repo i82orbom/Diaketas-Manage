@@ -104,11 +104,10 @@ public class OfertaJDBC {
                 meses = meses * -1;
                 fecha.add(Calendar.MONTH, meses);
                 
-		String sql = "SELECT * FROM Oferta o WHERE '1'='1' ";
+		String sql = "SELECT * FROM Oferta WHERE '1'='1'";
                 if (empresa>0) sql.concat(" AND OIDEmpresa = "+empresa);
 		if (sector>0) sql.concat(" AND OIDSector = "+sector);
                 if (meses>0) sql.concat("AND Fecha <= "+fecha);
-                System.out.printf("asdfasd");
 		try{
 
 			driver.conectar();
@@ -127,12 +126,15 @@ public class OfertaJDBC {
 				temp.setFecha(resultados.getDate("Fecha"));
 				temp.setPlazasOfertadas(resultados.getInt("PlazasOfertadas"));
 				temp.setTipoContrato(resultados.getString("TipoContrato"));
-                                
+                              
                                 /* obtener datos empresa */
                                 
-                                String sql1 = "SELECT * FROM C_Empresa WHERE OID = '"+resultados.getInt("OIDEmpresa")+"'"; 
+                                String sql1 = "SELECT * FROM C_Empresa WHERE OID = '"+resultados.getInt("OIDEmpresa") +"'"; 
                                 resultado_1=driver.seleccionar(sql1);
                                 temp.getEmpresa().setNombre(resultado_1.getString("Nombre"));
+                                driver.desconectar();
+                                
+
                                 
 
                                 
@@ -140,9 +142,14 @@ public class OfertaJDBC {
 
                                 sql1 = "SELECT * FROM Sector WHERE OID = '"+resultados.getInt("OIDSector")+"'"; 
                                 resultado_1=driver.seleccionar(sql1);
-                                temp.getSector().setDescripcion(resultado_1.getString("Descripcion"));
+                                temp.getSector().setDescripcion(resultado_1.getString("Descripcion")); 
                                 
 				Lista_ofertas.add(temp);
+                                
+                                
+                                    
+                                    
+                                
 			}
 		}
 		catch (SQLException ex){
