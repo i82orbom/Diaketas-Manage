@@ -155,6 +155,7 @@ public class ControladorDemanda {
 
 		try{
 			DemandaJDBC.getInstance().ActualizarDemanda(de);
+                        vista.getDemandaDatos().getlabelError().setForeground(Color.black);
 			vista.getDemandaDatos().getlabelError().setText("La demanda ha sido actualizada");
 		}
 		catch (SQLException ex){
@@ -392,8 +393,9 @@ public class ControladorDemanda {
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Eliminar Demanda");
 
-						if (vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow() != -1) {
-							demandaConsultada = listaDemandas.get(vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow());
+                        if (vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow() != -1) {
+                                demandaConsultada = listaDemandas.get(vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow());
+                                vista.getDemandaBuscar().getTablaBusquedaDemandante().clearSelection();
 			}
 			if (demandaConsultada!=null) eliminarDemanda(demandaConsultada);
 			else ControladorErrores.mostrarAlerta("No hay ninguna demanda seleccionada.");
@@ -407,6 +409,7 @@ public class ControladorDemanda {
 				System.out.println("Consultar Demanda");
 				if (vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow() != -1) {
 					demandaConsultada = listaDemandas.get(vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow());
+                                        vista.getDemandaBuscar().getTablaBusquedaDemandante().clearSelection();
 					ControladorBolsaTrabajo.getInstance(null).mostrarConsultarDemandas(demandaConsultada);
 				}
 			}

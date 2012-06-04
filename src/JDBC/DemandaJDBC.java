@@ -133,7 +133,7 @@ public class DemandaJDBC {
         if( OIDSector > 0) {
                 sql += " AND OIDSector="+OIDSector;
         }
-        sql+=" AND Fecha<=DATE_SUB(CURDATE(), INTERVAL "+meses+" MONTH);";
+        sql+=" AND Fecha>=DATE_SUB(CURDATE(), INTERVAL "+meses+" MONTH);";
         try {
             driver.conectar();
             resultados = driver.seleccionar(sql);
@@ -242,8 +242,8 @@ public class DemandaJDBC {
 
     public boolean ActualizarDemanda (Demanda demanda) throws SQLException {
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql1 = "UPDATE Demanda SET OIDSector = "+demanda.getSector().getOID()+",OIDVoluntario = "+demanda.getVoluntario().getOID()+",DescripcionVidaLaboral = '"+demanda.getDescripcionValidaLaboral()+"',Fecha= '"+demanda.getFecha()+"'";
-
+        String sql1 = "UPDATE Demanda SET OIDSector = "+demanda.getSector().getOID()+",OIDVoluntario = "+demanda.getVoluntario().getOID()+",DescripcionVidaLaboral = '"+demanda.getDescripcionValidaLaboral()+"',Fecha= CURDATE() WHERE OID = '"+demanda.getOID()+"';";
+System.out.println(sql1);
         try {
             driver.conectar();
             driver.actualizar(sql1);
