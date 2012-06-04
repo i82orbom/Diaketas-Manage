@@ -265,6 +265,11 @@ public class ControladorVoluntario {
             if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_NIVEL1)) {
                 mostrarVistaInicio();
             }
+            
+            if (ae.getActionCommand().equalsIgnoreCase(BarraDeNavegacion.TO_NIVEL2)) {
+				if(vista.getBarraDeNavegacion().getTextLebelNivel2().equalsIgnoreCase("Colaboraciones"))
+					mostrarVistaColaboraciones();
+			}
         }
     }
 
