@@ -262,25 +262,7 @@ public class ControladorContabilidad {
     }
 
     // Metodos JDBC
-    public boolean registrarGasto(float importe, String concepto) {
-        // TODO comprobar datos
 
-        Movimiento movimiento = new Movimiento();
-        movimiento.setImporte(importe);
-        movimiento.setConcepto(concepto);
-        movimiento.setTipo('G');
-        //movimiento.setFecha(SimpleDateFormat.getDateInstance());
-
-        boolean exito;
-        try {
-            exito = MovimientoJDBC.getInstance().registrarDatosGasto(movimiento);
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
-            exito = false;
-        }
-
-        return exito;
-    }
 
     public boolean registrarGastoAyuda(Ayuda ayuda) {
         Movimiento movimiento = new Movimiento();
