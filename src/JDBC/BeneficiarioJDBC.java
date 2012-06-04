@@ -119,6 +119,49 @@ public class BeneficiarioJDBC {
 
         return benef;
     }
+    
+    public Beneficiario obtenerBeneficiario(long OID) throws SQLException {
+        DriverJDBC driver = DriverJDBC.getInstance();
+        String sql = "SELECT * FROM beneficiario b, persona p WHERE (p.OID='" + OID + "') AND p.OID=b.OID";
+        Beneficiario benef = null;
+
+        try {
+            driver.conectar();
+            ResultSet resultado = driver.seleccionar(sql);
+
+            if (resultado.next()) {
+                benef = new Beneficiario();
+                benef.setOID(resultado.getLong("OID"));
+                benef.setNIF(resultado.getString("NIF"));
+                benef.setNombre(resultado.getString("Nombre"));
+                benef.setApellidos(resultado.getString("Apellidos"));
+                benef.setFechaDENacimiento(resultado.getDate("FechaNacimiento"));
+                benef.setCP(resultado.getString("CP"));
+                benef.setTelefonoFijo(resultado.getString("TelefonoFijo"));
+                benef.setTelefonoMovil(resultado.getString("TelefonoMovil"));
+                benef.setDomicilio(resultado.getString("Domicilio"));
+                benef.setLocalidad(resultado.getString("Localidad"));
+                benef.setEstadoCivil(resultado.getString("EstadoCivil"));
+                benef.setNacionalidad(resultado.getString("Nacionalidad"));
+                benef.setNivelDeEstudio(resultado.getString("NivelDeEstudio"));
+                benef.setObservaciones(resultado.getString("Observaciones"));
+                benef.setOcupacion(resultado.getString("Ocupacion"));
+                benef.setProfesion(resultado.getString("Profesion"));
+                benef.setSituacionEconomica(resultado.getString("SituacionEconomica"));
+                benef.setVivienda(resultado.getString("Vivienda"));
+                benef.setViviendaAlquiler(resultado.getFloat("ViviendaAlquiler"));
+                benef.setViviendaObservaciones(resultado.getString("ViviendaObservaciones"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            driver.desconectar();
+        }
+
+        //benef.setAyudasPrestadas(obtenerAyudasBeneficiario(benef.getNIF()));
+
+        return benef;
+    }
 
     public boolean modificarDatosBeneficiario(Beneficiario beneficiario) throws SQLException {
         DriverJDBC driver = DriverJDBC.getInstance();

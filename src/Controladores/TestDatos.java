@@ -38,7 +38,7 @@ public class TestDatos {
     /**
      * Formato de la fecha para la base de datos
      */
-    public static SimpleDateFormat formatterBD = new SimpleDateFormat("yyyy/MM/dd");
+    public static SimpleDateFormat formatterBD = new SimpleDateFormat("yyyy-MM-dd");
 
     public static boolean isDNI(String DNI) {
         if (DNI.length() != 9) {

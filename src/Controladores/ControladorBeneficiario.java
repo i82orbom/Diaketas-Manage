@@ -160,7 +160,7 @@ public class ControladorBeneficiario {
     }
 
     private void actualizarTablaAyuda() {
-        if (benef != null) {
+        if (benef != null && benef.getAyudasPrestadas() != null) {
             /*
              * Actualizar intervenciones
              */

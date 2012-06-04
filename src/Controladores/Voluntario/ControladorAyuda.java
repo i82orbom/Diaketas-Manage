@@ -2,6 +2,7 @@
 package Controladores.Voluntario;
 
 import Controladores.ControladorErrores;
+import Controladores.TestDatos;
 import JDBC.AyudaJDBC;
 import Modelo.Ayuda;
 import Modelo.TipoAyuda;
@@ -10,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
@@ -61,14 +63,18 @@ public class ControladorAyuda {
     private ArrayList<TipoAyuda> tiposAyuda;
     // tipo de ayuda seleccionado en el comboBox
     private TipoAyuda tipoAyudaSeleccionado;
+    
+    private ArrayList<Ayuda> ayudas;
 
     private String[] columnNamesTipoAyuda = {"Titulo", "Descripcion", "Monetaria"};
+    private String[] columnNamesAyuda = {"Concepto", "DNI"};
 
     public ControladorAyuda(PanelVoluntarioAyudas vista) {
         this.vista = vista;
 
         this.vista.getBtnGuardarTipoAyuda().addActionListener(new BtGuardarTipoAyudaListener());
         this.vista.getBtnEliminarTipoAyuda().addActionListener(new BtBorrarTipoAyudaListener());
+        this.vista.getBtnBuscarAyudas().addActionListener(new BtBuscarAyudaListener());
     }
 
     public void actualizarTipoAyuda() {
@@ -169,6 +175,60 @@ public class ControladorAyuda {
         };
         vista.getCbTipoAyuda().setModel(cbModel);
     }
+    
+    private void actualizarTablaAyudas () {
+        TableModel model = new TableModel() {
+
+            @Override
+            public int getRowCount() {
+                return ayudas.size();
+            }
+
+            @Override
+            public int getColumnCount() {
+                return columnNamesAyuda.length;
+            }
+
+            @Override
+            public String getColumnName(int i) {
+                return columnNamesAyuda[i];
+            }
+
+            @Override
+            public Class<?> getColumnClass(int i) {
+                return String.class;
+            }
+
+            @Override
+            public boolean isCellEditable(int i, int i1) {
+                return false;
+            }
+
+            @Override
+            public Object getValueAt(int row, int col) {
+                switch (col) {
+                    case 0:
+                        return ayudas.get(row).getImporte();
+                    case 1:
+                        return ayudas.get(row).getBeneficiarioDeAyuda().getNIF();
+                }
+                return "";
+            }
+
+            @Override
+            public void setValueAt(Object o, int i, int i1) {
+            }
+
+            @Override
+            public void addTableModelListener(TableModelListener tl) {
+            }
+
+            @Override
+            public void removeTableModelListener(TableModelListener tl) {
+            }
+        };
+        vista.getTablaAyudas().setModel(model);
+    }
 
     // TODO Metodos JDBC
     public boolean registrarAyuda(Ayuda ayuda) {
@@ -235,6 +295,18 @@ public class ControladorAyuda {
         }
 
         return exito;
+    }
+    
+    public ArrayList<Ayuda> buscarAyudas (Date fechaIni, Date fechaFin, float importeMin, float importeMax, String tipoAyuda) {
+        ArrayList<Ayuda> t_ayudas = new ArrayList<Ayuda>();
+        
+        try {
+            t_ayudas = AyudaJDBC.getInstance().buscarAyudas(fechaIni, fechaFin, importeMin, importeMax, tipoAyuda);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return t_ayudas;
     }
 
     private boolean modificarTypoAyuda (TipoAyuda tipoAyuda) {
@@ -326,11 +398,42 @@ public class ControladorAyuda {
 
     }
 
-    class BtGuardarAyudaListener implements ActionListener {
+    class BtBuscarAyudaListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            boolean datosCorrectos = true;
+            vista.getLabelErrorAyuda().setVisible(false);
+            
+            Date fechaInicio = null;
+            Date fechaFin = null;
+            float importeMin = 0;
+            float importeMax = 0;
+            try {
+                fechaInicio = TestDatos.formatter.parse(vista.getFechaInicioAyudas().getText());
+                fechaFin = TestDatos.formatter.parse(vista.getFechaFinAyudas().getText());
+            } catch (Exception e) {
+                vista.setTextErrorAyuda("Fecha dd/mm/aaaa");
+                datosCorrectos = false;
+            }
+            
+            try {
+                importeMin = Float.parseFloat(vista.getMinimoImporte().getText());
+                importeMax = Float.parseFloat(vista.getMaximoImporte().getText());
+            } catch (Exception e) {
+                vista.setTextErrorAyuda("Importe debe ser numero"); 
+                datosCorrectos = false;
+            }
+            
+            if (vista.getCbTipoAyuda().getSelectedIndex() == -1) {
+                vista.setTextErrorAyuda("Selecionna un tipo de ayuda");
+                datosCorrectos = false;
+            }
+            
+            if (datosCorrectos) {
+                ayudas = buscarAyudas(fechaInicio, fechaFin, importeMin, importeMax, vista.getCbTipoAyuda().getSelectedItem().toString());
+                actualizarTablaAyudas();
+            }
         }
 
     }

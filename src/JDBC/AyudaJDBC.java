@@ -22,6 +22,7 @@
  *      004 - Mayo 27, 2012 - RC - Corrección consultas SQL
  *      005 - Mayo 29, 2012 - RC - Corrección consultas SQL registrar datos ayuda
  *      006 - Mayo 30, 2012 - RC - Corrección consultas SQL modificar datos ayuda
+ *      007 - Jun 4, 2012 - RC - cambio consultas SQL buscarAyudas
  *      
  **
  ** NOTAS:
@@ -59,16 +60,15 @@ public class AyudaJDBC {
     }
 
     //Mirar
-    public ArrayList<Ayuda> buscarAyudas(String dni, Date fechaIni, Date fechaFin, float importeIni, float importeFin, String tipoAyuda) throws SQLException {
+    public ArrayList<Ayuda> buscarAyudas(Date fechaIni, Date fechaFin, float importeIni, float importeFin, String tipoAyuda) throws SQLException {
 
         ArrayList<Ayuda> lista_ayudas = new ArrayList<Ayuda>();
         DriverJDBC driver = DriverJDBC.getInstance();
 
-        String sentencia = "SELECT * FROM ayuda a, tipoayuda t WHERE a.BeneficiarioNIF='" + dni + "' AND a.Fecha>=" + fechaIni + " AND a.Fecha<=" + fechaFin + " AND a.Importe>=" + importeIni + " AND a.Importe<=" + importeFin + " AND t.OID = a.TipoAyudaOID AND t.Titulo LIKE '%" + tipoAyuda + "%'";
+        String sentencia = "SELECT * FROM ayuda a, tipoayuda t WHERE a.Fecha>='" + TestDatos.formatterBD.format(fechaIni) + "' AND a.Fecha<='" + TestDatos.formatterBD.format(fechaFin) + "' AND a.Importe>=" + importeIni + " AND a.Importe<=" + importeFin + " AND t.OID = a.TipoAyudaOID AND t.Titulo = '" + tipoAyuda + "'";
 
         driver.conectar();
         ResultSet resultado = driver.seleccionar(sentencia);
-        driver.desconectar();
         Ayuda temp;
         while (resultado.next()) {
             temp = new Ayuda();
@@ -77,10 +77,11 @@ public class AyudaJDBC {
             temp.setFecha(resultado.getDate("Fecha"));
             temp.setObservaciones(resultado.getString("Observaciones"));
             temp.setImporte(resultado.getFloat("Importe"));
-
+            temp.setBeneficiarioDeAyuda(BeneficiarioJDBC.getInstance().obtenerBeneficiario(resultado.getLong("OID_Bene")));
             lista_ayudas.add(temp);
         }
-
+        
+        driver.desconectar();
         return lista_ayudas;
     }
 

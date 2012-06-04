@@ -182,7 +182,7 @@ public class ControladorContabilidad {
 			public Object getValueAt(int rowIndex, int columnIndex) {
 			Gasto gas;
 			Ayuda ayu;
-				switch(columnIndex){
+				switch(columnIndex){/*
 					case 0:
 						return formateador.format(gastos.get(rowIndex).getFecha());
 					case 1:
@@ -199,7 +199,7 @@ public class ControladorContabilidad {
 							}
 							return "";
 						}
-						
+						*/
 					default: return "";
 				}
 			}

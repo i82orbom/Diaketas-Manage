@@ -17,6 +17,7 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
      */
     public PanelVoluntarioAyudas() {
         initComponents();
+        labelErrorAyuda.setVisible(false);
         labelErrorTipoAyuda.setVisible(false);
     }
     
@@ -28,21 +29,22 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
     public JLabel getLabelErrorTipoAyuda() {
         return labelErrorTipoAyuda;
     }
+    
+    public void setTextErrorAyuda (String text) {
+        labelErrorAyuda.setText(text);
+        labelErrorAyuda.setVisible(true);
+    }
+
+    public JLabel getLabelErrorAyuda() {
+        return labelErrorAyuda;
+    }
 
     public JButton getBtnBuscarAyudas() {
         return btnBuscarAyudas;
     }
 
-    public JButton getBtnEliminarAyuda() {
-        return btnEliminarAyuda;
-    }
-
     public JButton getBtnEliminarTipoAyuda() {
         return btnEliminarTipoAyuda;
-    }
-
-    public JButton getBtnGuardarAyuda() {
-        return btnGuardarAyuda;
     }
 
     public JButton getBtnGuardarTipoAyuda() {
@@ -89,10 +91,6 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
         return tablaTiposAyuda;
     }
 
-    public JTextField getTextBeneficiarioAyudas() {
-        return textBeneficiarioAyudas;
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,8 +103,6 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaAyudas = new javax.swing.JTable();
-        jLabel24 = new javax.swing.JLabel();
-        textBeneficiarioAyudas = new javax.swing.JTextField();
         btnBuscarAyudas = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
@@ -127,8 +123,7 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         isMonetaria = new javax.swing.JCheckBox();
-        btnGuardarAyuda = new javax.swing.JButton();
-        btnEliminarAyuda = new javax.swing.JButton();
+        labelErrorAyuda = new javax.swing.JLabel();
         labelErrorTipoAyuda = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -151,8 +146,6 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
             }
         ));
         jScrollPane3.setViewportView(tablaAyudas);
-
-        jLabel24.setText("Beneficiario");
 
         btnBuscarAyudas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
         btnBuscarAyudas.setActionCommand("buscarBeneficiarioAyuda");
@@ -201,11 +194,8 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
 
         jLabel31.setText("Monetaria");
 
-        btnGuardarAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/save_f2.png"))); // NOI18N
-        btnGuardarAyuda.setActionCommand("guardarTipoAyuda");
-
-        btnEliminarAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
-        btnEliminarAyuda.setActionCommand("eliminarTipoAyuda");
+        labelErrorAyuda.setForeground(new java.awt.Color(255, 0, 0));
+        labelErrorAyuda.setText("label error");
 
         labelErrorTipoAyuda.setForeground(new java.awt.Color(255, 0, 0));
         labelErrorTipoAyuda.setText("label error");
@@ -217,12 +207,15 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel14))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(fechaInicioAyudas, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,9 +225,6 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
                                             .addComponent(fechaFinAyudas)
                                             .addComponent(maximoImporte, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
-                                        .addComponent(jLabel24))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
                                         .addComponent(jLabel27))
                                     .addGroup(layout.createSequentialGroup()
@@ -243,20 +233,11 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(11, 11, 11)
                                         .addComponent(jLabel29))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(cbTipoAyuda, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(textBeneficiarioAyudas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))))
+                                    .addComponent(cbTipoAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelErrorAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnBuscarAyudas)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnGuardarAyuda)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(btnEliminarAyuda))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel14)))
+                                .addComponent(btnBuscarAyudas)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -269,8 +250,9 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
                                 .addComponent(textTipoAyuda)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addComponent(labelErrorTipoAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(41, 41, 41)
+                        .addGap(31, 31, 31)
                         .addComponent(btnGuardarTipoAyuda)
                         .addGap(41, 41, 41)
                         .addComponent(btnEliminarTipoAyuda)
@@ -296,12 +278,10 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel24)
                             .addComponent(jLabel26)
                             .addComponent(textTipoAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textBeneficiarioAyudas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel30)
                             .addComponent(descripcionTipoAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
@@ -319,7 +299,7 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
                                         .addComponent(jLabel28))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(labelErrorTipoAyuda)
-                                        .addGap(26, 26, 26))))
+                                        .addGap(25, 25, 25))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btnGuardarTipoAyuda)
@@ -341,10 +321,8 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
                                     .addComponent(maximoImporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(27, 27, 27)
                                 .addComponent(btnBuscarAyudas, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnGuardarAyuda)
-                                    .addComponent(btnEliminarAyuda))
+                                .addGap(28, 28, 28)
+                                .addComponent(labelErrorAyuda)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -355,9 +333,7 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarAyudas;
-    private javax.swing.JButton btnEliminarAyuda;
     private javax.swing.JButton btnEliminarTipoAyuda;
-    private javax.swing.JButton btnGuardarAyuda;
     private javax.swing.JButton btnGuardarTipoAyuda;
     private javax.swing.JComboBox cbTipoAyuda;
     private javax.swing.JTextField descripcionTipoAyuda;
@@ -365,7 +341,6 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
     private javax.swing.JTextField fechaInicioAyudas;
     private javax.swing.JCheckBox isMonetaria;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -375,12 +350,12 @@ public class PanelVoluntarioAyudas extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel labelErrorAyuda;
     private javax.swing.JLabel labelErrorTipoAyuda;
     private javax.swing.JTextField maximoImporte;
     private javax.swing.JTextField minimoImporte;
     private javax.swing.JTable tablaAyudas;
     private javax.swing.JTable tablaTiposAyuda;
-    private javax.swing.JTextField textBeneficiarioAyudas;
     private javax.swing.JTextField textTipoAyuda;
     // End of variables declaration//GEN-END:variables
 }
