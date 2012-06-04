@@ -100,7 +100,7 @@ public class ControladorContabilidad {
 
 			@Override
 			public Object getValueAt(int rowIndex, int columnIndex) {
-			Colaboracion col;
+			Movimiento col;
 			C_Empresa emp;
 			C_Persona per;
 				switch(columnIndex){
@@ -111,7 +111,7 @@ public class ControladorContabilidad {
 					case 2:
 						if(ingresos.get(rowIndex).getClass() == Colaboracion.class){
 							col = (Colaboracion)ingresos.get(rowIndex);
-							try{
+					/*		try{
 								emp = C_EmpresaJDBC.getInstance().obtenerC_Empresa(col.getOIDColaborador());
 								return emp.getCIF();
 							}
@@ -125,7 +125,7 @@ public class ControladorContabilidad {
 							catch(SQLException ex){
 								Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
 							}
-							return "";
+							return "";*/
 						}
 						
 					default: return "";
@@ -222,7 +222,7 @@ public class ControladorContabilidad {
 		});	
 	}
 	
-	private void obtenerIngresos(Date fechaInicial, Date fechaFin) {
+    private void obtenerIngresos(Date fechaInicial, Date fechaFin) {
         
         try {
             ingresos = MovimientoJDBC.getInstance().obtenerDatosIngresos(fechaInicial, fechaFin);
@@ -241,17 +241,11 @@ public class ControladorContabilidad {
     }
 	
 	private float obtenerBalance(Date fechaInicial, Date fechaFin){
-		if(ingresos.size() <= 0)
-			obtenerIngresos(fechaInicial,fechaFin);
-		if(gastos.size() <= 0)
-			obtenerGastos(fechaInicial,fechaFin);
-		
-		float t_ing=0,t_gas=0;
-		for(int i=0;i<ingresos.size();i++)
-			t_ing = t_ing + ingresos.get(i).getImporte();
-		for(int i=0;i<gastos.size();i++)
-			t_gas = t_gas + gastos.get(i).getImporte();
-		return t_ing - t_gas;
+            try {
+               return MovimientoJDBC.getInstance().obtenerBalance(fechaInicial, fechaFin);
+            } catch (SQLException ex) {
+                return Integer.MIN_VALUE;
+            }
 	}
 	
     public ControladorContabilidad(PanelVoluntarioContabilidad vista) {
@@ -297,6 +291,13 @@ public class ControladorContabilidad {
             }
             
             vista.getCuadroBalance().setText(Float.toString(obtenerBalance(fechaInicio, fechaFin)));
+            
+            // Hay que hacer esto para actualizar las variables y de esta forma actualizar la tabla de ingresos y gastos
+            obtenerIngresos(fechaInicio, fechaFin);
+            obtenerGastos(fechaInicio, fechaFin);
+            
+            actualizarTablaGastos();
+            actualizarTablaIngresos();
         }
        
     }

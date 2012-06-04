@@ -35,8 +35,7 @@ public class Movimiento {
     private String concepto;
     private Date fecha;
     private float importe;
-    //Puede ser G para gasto o I para ingreso
-    private char tipo;
+ 
     
     // para facilitar la recuperacion de los campos de la interfaz en los controladores
     public static int CONCEPTO_ID = 0;
@@ -132,21 +131,6 @@ public class Movimiento {
         this.importe = importe;
     }
  
-    /**
-     * 
-     * @return
-     */
-    public char getTipo() {
-        return tipo;
-    }
-
-    /**
-     * 
-     * @param tipo
-     */
-    public void setTipo(char tipo) {
-        this.tipo = tipo;
-    }
     
     
 }

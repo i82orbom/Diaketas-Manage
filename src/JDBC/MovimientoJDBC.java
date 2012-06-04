@@ -58,210 +58,123 @@ public class MovimientoJDBC {
      
      public float obtenerBalance(Date fecha_inicial, Date fecha_final) throws SQLException{
          
-          float total=0;
-         
-          ResultSet resultado;
-          DriverJDBC driver = DriverJDBC.getInstance() ;
-       
-          String consulta = "SELECT Cantidad FROM movimiento WHERE Fecha BETWEEN '"+TestDatos.formatterBD.format(fecha_inicial) +"' AND '"+TestDatos.formatterBD.format(fecha_final)+"'";
+          float ingresosSuma = 0;
+          float gastosSuma = 0;
           
-          try{
-              driver.conectar();
-              resultado = driver.seleccionar(consulta);
-
-              while (resultado.next()){
-                      total = total + resultado.getFloat("Cantidad");
-              }      
-         
-          }catch (SQLException ex) {
-              throw ex;
-          } finally {
-              driver.desconectar();
+          // Primero se obtienen los Ingresos
+          
+          ArrayList<Movimiento> ingresos = this.obtenerDatosIngresos(fecha_inicial, fecha_final);
+          ArrayList<Movimiento> gastos = this.obtenerDatosGastos(fecha_inicial, fecha_final);
+          
+          for (int i = 0; i < ingresos.size(); ++i){
+              ingresosSuma += ingresos.get(i).getImporte();
           }
-
-         return total;
+          
+           for (int i = 0; i < gastos.size(); ++i){
+              gastosSuma += gastos.get(i).getImporte();
+          }
+           
+           gastosSuma *= -1;
+          
+           return (ingresosSuma + gastosSuma);
      }
      
      public ArrayList<Movimiento> obtenerDatosGastos(Date fecha_inicial, Date fecha_final) throws SQLException{
          
-          ArrayList<Movimiento> lista_movimientos = new ArrayList<Movimiento>();
-         
-         
-          ResultSet rs,rs2;
-          DriverJDBC driver = DriverJDBC.getInstance() ;
-          
-          String fecha_ini_string = fecha_inicial.toString();
-          String fecha_fin_string = fecha_final.toString();
-       
-          String consulta = "SELECT * FROM movimiento WHERE Cantidad < '0' AND Fecha >= '"+TestDatos.formatterBD.format(fecha_inicial)+"' AND Fecha <= '"+TestDatos.formatterBD.format(fecha_final)+"'"; 
-          
-          try{
-              driver.conectar();
-         
-              rs = driver.seleccionar(consulta);
-              Movimiento m;
-          
-                while (rs.next()){
-                    m=new Movimiento();
-                    m.setOID(rs.getLong("OID"));    
-                    m.setConcepto(rs.getString("Concepto"));
-                    m.setImporte(rs.getFloat("Cantidad"));
-                    m.setFecha(rs.getDate("Fecha"));
-                   // m.setTipo('G');
-                    //Guardamos el ID de ayuda
-                        
-
-                    /*
-                    //AÃ±adimos los valores de la ayuda
-                    String consulta3 = "SELECT * FROM ayuda WHERE OID = '"+id_ayuda+"'";
-                    rs2 = driver.seleccionar(consulta3);
-
-                    Ayuda ayu ;
-                    ArrayList<Ayuda> lista_ayudas = new ArrayList<Ayuda>();
-                    while (rs2.next()){
-                        ayu = new Ayuda();
-                        ayu.setFecha(rs2.getDate("Fecha"));
-                        ayu.setImporte(rs2.getFloat("Importe"));
-                        ayu.setObservaciones(rs2.getString("Observaciones"));
-                        ayu.setOID(rs2.getLong("OID"));
-
-                        lista_ayudas.add(ayu);
-
-                    }
-                    m.setAyudasAsociadas(lista_ayudas);
-                    */
-                    lista_movimientos.add(m);
-                }
-           }catch (SQLException ex) {
-            throw ex;
-           } finally {
-             driver.desconectar();
-           }
-
-         return lista_movimientos;
+        ArrayList<Movimiento> listaMovimientos = new ArrayList<Movimiento>();
+        
+        DriverJDBC driver = DriverJDBC.getInstance();
+        ResultSet rs = null;
+        
+        String consulta = "SELECT m.OID, Cantidad, Concepto, Fecha FROM Movimiento m join Gasto on m.OID= Gasto.OID WHERE Fecha BETWEEN '" + fecha_final + "' AND '" + fecha_final + "';";
+        
+        try{
+            driver.conectar();
+            rs = driver.seleccionar(consulta);
+            
+            while(rs.next()){
+                Movimiento m = new Movimiento();
+                
+                m.setConcepto(rs.getString("concepto"));
+                m.setFecha(rs.getDate("fecha"));
+                m.setImporte(rs.getFloat("importe"));
+                m.setOID(rs.getLong("OID"));
+                
+                // Un movimiento tiene ayudas asociadas, que en este caso habría que añadirlas, pero no nos interesa para hacer los gastos
+                // Habría que cojer el ID de este movimiento y consultar en ayudas para rellenar el array que tiene cada movimiento
+                
+                listaMovimientos.add(m);
+            }
+            
+        }
+        catch (SQLException e){
+            return null;
+        }
+        
+        return listaMovimientos;
          
      }
      
-         public ArrayList<Movimiento> obtenerDatosIngresos(Date fecha_inicial, Date fecha_final) throws SQLException{
+    public ArrayList<Movimiento> obtenerDatosIngresos(Date fecha_inicial, Date fecha_final) throws SQLException{
          
-          ArrayList<Movimiento> lista_movimientos = new ArrayList<Movimiento>();
-         
-         
-          ResultSet rs,rs2;
-          DriverJDBC driver = DriverJDBC.getInstance() ;
           
-          String fecha_ini_string = fecha_inicial.toString();
-          String fecha_fin_string = fecha_final.toString();
-       
-          String consulta = "SELECT * FROM movimiento WHERE Cantidad > '0' AND Fecha >= '"+TestDatos.formatterBD.format(fecha_inicial)+"' AND Fecha <= '"+TestDatos.formatterBD.format(fecha_final)+"'"; 
-          
-          try{
-              driver.conectar();
-         
-              rs = driver.seleccionar(consulta);
-              Movimiento m;
-          
-                while (rs.next()){
-                    m=new Movimiento();
-                    m.setOID(rs.getLong("OID"));    
-                    m.setConcepto(rs.getString("Concepto"));
-                    m.setImporte(rs.getFloat("Cantidad"));
-                    m.setFecha(rs.getDate("Fecha"));
-                   // m.setTipo('G');
-                    //Guardamos el ID de ayuda
-                        
-
-                    /*
-                    //AÃ±adimos los valores de la ayuda
-                    String consulta3 = "SELECT * FROM ayuda WHERE OID = '"+id_ayuda+"'";
-                    rs2 = driver.seleccionar(consulta3);
-
-                    Ayuda ayu ;
-                    ArrayList<Ayuda> lista_ayudas = new ArrayList<Ayuda>();
-                    while (rs2.next()){
-                        ayu = new Ayuda();
-                        ayu.setFecha(rs2.getDate("Fecha"));
-                        ayu.setImporte(rs2.getFloat("Importe"));
-                        ayu.setObservaciones(rs2.getString("Observaciones"));
-                        ayu.setOID(rs2.getLong("OID"));
-
-                        lista_ayudas.add(ayu);
-
-                    }
-                    m.setAyudasAsociadas(lista_ayudas);
-                    */
-                    lista_movimientos.add(m);
-                }
-           }catch (SQLException ex) {
-            throw ex;
-           } finally {
-             driver.desconectar();
-           }
-
-         return lista_movimientos;
-         
-     }
+        ArrayList<Movimiento> listaMovimientos = new ArrayList<Movimiento>();
+        
+        DriverJDBC driver = DriverJDBC.getInstance();
+        ResultSet rs = null;
+        
+        String consulta = "SELECT m.OID, Cantidad, Concepto, Fecha FROM Movimiento m join PagoCuota on m.OID= PagoCuota.OID WHERE Fecha BETWEEN '" + fecha_final + "' AND '" + fecha_final + "';";
+        
+        try{
+            driver.conectar();
+            rs = driver.seleccionar(consulta);
+            
+            while(rs.next()){
+                Movimiento m = new Movimiento();
+                
+                m.setConcepto(rs.getString("concepto"));
+                m.setFecha(rs.getDate("fecha"));
+                m.setImporte(rs.getFloat("importe"));
+                m.setOID(rs.getLong("OID"));
+                
+                // En este caso no tiene ayudas asociadas el movimiento ya que es un ingreso
+                
+                listaMovimientos.add(m);
+            }
+            
+        }
+        catch (SQLException e){
+            return null;
+        }
+        
+        consulta = "SELECT m.OID, Cantidad, Concepto, Fecha FROM Movimiento m join Colaboracion on m.OID= Colaboracion.OID WHERE Fecha BETWEEN '" + fecha_final + "' AND '" + fecha_final + "';";
+        
+        try{
+            driver.conectar();
+            rs = driver.seleccionar(consulta);
+            
+            while(rs.next()){
+                Movimiento m = new Movimiento();
+                
+                m.setConcepto(rs.getString("concepto"));
+                m.setFecha(rs.getDate("fecha"));
+                m.setImporte(rs.getFloat("importe"));
+                m.setOID(rs.getLong("OID"));
+                
+                // En este caso no tiene ayudas asociadas el movimiento ya que es un ingreso
+                
+                listaMovimientos.add(m);
+            }
+            
+        }
+        catch (SQLException e){
+            return null;
+        }
+    
+        return listaMovimientos;
+    }
      
-     /*
-     public ArrayList<Movimiento> obtenerDatosIngresos(Date fecha_inicial, Date fecha_final) throws SQLException{
-         
-           ArrayList<Movimiento> lista_movimientos = new ArrayList<Movimiento>();
-         
-         
-          ResultSet rs,rs2;
-          DriverJDBC driver = DriverJDBC.getInstance() ;
-          
-          String fecha_ini_string = fecha_inicial.toString();
-          String fecha_fin_string = fecha_final.toString();
-       
-          String consulta = "SELECT * FROM movimiento WHERE tipo = 'I' AND Fecha >= '"+fecha_inicial+"' AND Fecha <= '"+fecha_final+"'"; 
-          
-          try{
-                driver.conectar();
-                rs = driver.seleccionar(consulta);
-                Movimiento m;
-          
-                while (rs.next()){
-                    m=new Movimiento();
-
-                    m.setConcepto(rs.getString("concepto"));
-                    m.setImporte(rs.getFloat("Importe"));
-                    m.setFecha(rs.getDate("Fecha"));
-                    m.setTipo('G');
-                    //Guardamos el ID de ayuda
-                    String id_ayuda = rs.getString("AyudaOID");         
-
-                    //AÃ±adimos los valores de la ayuda
-                    String consulta3 = "SELECT * FROM ayuda WHERE OID = '"+id_ayuda+"'";
-                    rs2 = driver.seleccionar(consulta3);
-
-                    Ayuda ayu ;
-                    ArrayList<Ayuda> lista_ayudas = new ArrayList<Ayuda>();
-                    while (rs2.next()){
-                        ayu = new Ayuda();
-                        ayu.setFecha(rs2.getDate("Fecha"));
-                        ayu.setImporte(rs2.getFloat("Importe"));
-                        ayu.setObservaciones(rs2.getString("Observaciones"));
-                        ayu.setOID(rs2.getLong("OID"));
-
-                        lista_ayudas.add(ayu);
-
-                    }
-                    m.setAyudasAsociadas(lista_ayudas);
-
-                    lista_movimientos.add(m);
-                }   
-          
-         }catch (SQLException ex) {
-            throw ex;
-         } finally {
-             driver.desconectar();
-         }
-         
-         return lista_movimientos;
-         
-     }
-     */
+    
      
      public boolean registrarDatosGastoAyuda(Movimiento movimiento, Ayuda ayuda) throws SQLException{
          
