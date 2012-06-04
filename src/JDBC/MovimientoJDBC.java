@@ -262,46 +262,7 @@ public class MovimientoJDBC {
          
      }
      */
-     public boolean registrarDatosGasto(Movimiento movimiento) throws SQLException{
-         
-         DriverJDBC driver = DriverJDBC.getInstance() ;
-         String sentencia ;
-         String fecha ;
-         fecha = movimiento.getFecha().toString();
-         Float importe = movimiento.getImporte();
-         //Asociacion temp = movimiento.getAsociacionQueGenera().get
-         boolean exito;
-       
-         
-         ResultSet rs;
-         /*
-         //Buscamos el Maximo MovimientoID para que la inserciÃ³n se autoincremental
-         String consulta = "SELECT MAX(MovimientoID) as maxMovId FROM movimiento " ;
-         rs = driver.seleccionar(consulta);
-         if(rs.next())
-             maxMovID= rs.getInt("maxMovId")+1;
-         else
-             maxMovID = 1;
-         */
-         
-         sentencia = "INSERT INTO movimiento (Fecha,Cantidad,Concepto) VALUES ('"+TestDatos.formatterBD.format(fecha)+"','"+importe.toString()+"','"+movimiento.getConcepto()+"')";
-         
-         try {
-            driver.inicioTransaccion();
-            exito = driver.insertar(sentencia);
-            driver.commit();
-        } catch (SQLException ex) {
-            driver.rollback();
-            exito = false;
-            throw ex;
-        } finally {
-            driver.finTransaccion();
-        }
-         
-         
-         return exito;
-     }
-   
+     
      public boolean registrarDatosGastoAyuda(Movimiento movimiento, Ayuda ayuda) throws SQLException{
          
          DriverJDBC driver = DriverJDBC.getInstance() ;
