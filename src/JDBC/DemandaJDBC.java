@@ -120,6 +120,44 @@ public class DemandaJDBC {
 
 
    */
+       public ArrayList<Demanda> FiltrarDemandas2(long OIDBeneficiario , long OIDSector , int meses) throws SQLException {
+        DriverJDBC driver = DriverJDBC.getInstance();
+        ResultSet resultados;
+        ArrayList<Demanda> listaDemandas= new ArrayList<Demanda>();
+        Demanda temp;
+
+        String sql = "SELECT * FROM Demanda WHERE '1'='1'";
+        if( OIDBeneficiario > 0) {
+                sql += " AND OIDBeneficiario="+OIDBeneficiario;
+        }
+        if( OIDSector > 0) {
+                sql += " AND OIDSector="+OIDSector;
+        }
+        sql+=" AND Fecha>=DATE_SUB(CURDATE(), INTERVAL "+meses+" MONTH);";
+        try {
+            driver.conectar();
+            resultados = driver.seleccionar(sql);
+
+            while (resultados.next()) {
+                temp = new Demanda();
+                System.out.println(resultados.getString("OIDBeneficiario"));
+                temp.setBeneficiario(BeneficiarioJDBC.getInstance().obtenerBeneficiario(resultados.getLong("OIDBeneficiario")));
+                temp.setVoluntario(VoluntarioJDBC.getInstance().obtenerVoluntario(resultados.getLong("OIDVoluntario")));
+                temp.setSector(SectorJDBC.getInstance().ConsultarSector(resultados.getLong("OIDSector")));
+                temp.setDescripcionValidaLaboral(resultados.getString("DescripcionVidaLaboral"));
+                temp.setFecha(resultados.getDate("Fecha"));
+                temp.setOID(resultados.getLong("OID"));
+                listaDemandas.add(temp);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            driver.desconectar();
+        }
+
+        return listaDemandas;
+    }
+    
     public ArrayList<Demanda> FiltrarDemandas(long OIDBeneficiario , long OIDSector , int meses) throws SQLException{
 		DriverJDBC driver = DriverJDBC.getInstance();
 		ResultSet resultado;
@@ -204,8 +242,8 @@ public class DemandaJDBC {
 
     public boolean ActualizarDemanda (Demanda demanda) throws SQLException {
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql1 = "UPDATE Demanda SET OIDSector = "+demanda.getSector().getOID()+",OIDVoluntario = "+demanda.getVoluntario().getOID()+",DescripcionVidaLaboral = '"+demanda.getDescripcionValidaLaboral()+"',Fecha= '"+demanda.getFecha()+"'";
-
+        String sql1 = "UPDATE Demanda SET OIDSector = "+demanda.getSector().getOID()+",OIDVoluntario = "+demanda.getVoluntario().getOID()+",DescripcionVidaLaboral = '"+demanda.getDescripcionValidaLaboral()+"',Fecha= CURDATE() WHERE OID = '"+demanda.getOID()+"';";
+System.out.println(sql1);
         try {
             driver.conectar();
             driver.actualizar(sql1);

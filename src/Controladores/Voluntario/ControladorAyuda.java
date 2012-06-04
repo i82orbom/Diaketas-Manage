@@ -237,7 +237,7 @@ public class ControladorAyuda {
             // TODO test ayuda.getBeneficiarioDeAyuda().getNIF() exite
             // TODO test datos
         try {
-            exito = AyudaJDBC.getInstance().registrarDatosAyuda(ayuda, ayuda.getBeneficiarioDeAyuda(), ayuda.getVoluntarioQueOtorga());
+            exito = AyudaJDBC.getInstance().registrarDatosAyuda(ayuda);
         } catch (SQLException ex) {
             Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);
             return false;

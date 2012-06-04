@@ -189,6 +189,36 @@ public class VoluntarioJDBC {
 
         return voluntario;
     }
+      public Voluntario obtenerVoluntario(Long OID) throws SQLException {
+        DriverJDBC driver = DriverJDBC.getInstance();
+        String sql = "SELECT * FROM voluntario v, persona p WHERE (p.OID='" + OID + "') AND p.OID=v.OID";
+        Voluntario voluntario = null;
+        ResultSet resultado;
 
+        try {
+            driver.conectar();
+            resultado = driver.seleccionar(sql);
+            if (resultado.next()) {
+                voluntario = new Voluntario();
+                voluntario.setPassword(resultado.getString("Password"));
+                voluntario.setNIF(resultado.getString("NIF"));
+                voluntario.setNombre(resultado.getString("Nombre"));
+                voluntario.setApellidos(resultado.getString("Apellidos"));
+                voluntario.setCP(resultado.getString("CP"));
+                voluntario.setTelefonoFijo(resultado.getString("TelefonoFijo"));
+                voluntario.setTelefonoMovil(resultado.getString("TelefonoMovil"));
+                voluntario.setDomicilio(resultado.getString("Domicilio"));
+                voluntario.setLocalidad(resultado.getString("Localidad"));
+                voluntario.setFechaDENacimiento(resultado.getDate("FechaNacimiento"));
+                voluntario.setOID(resultado.getLong("OID"));
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            driver.desconectar();
+        }
+
+        return voluntario;
+    }
 
 }
