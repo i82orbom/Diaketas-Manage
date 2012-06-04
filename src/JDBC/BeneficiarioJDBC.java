@@ -115,7 +115,7 @@ public class BeneficiarioJDBC {
             driver.desconectar();
         }
 
-        //benef.setAyudasPrestadas(obtenerAyudasBeneficiario(benef.getNIF()));
+        benef.setAyudasPrestadas(obtenerAyudasBeneficiario(benef.getNIF()));
 
         return benef;
     }
