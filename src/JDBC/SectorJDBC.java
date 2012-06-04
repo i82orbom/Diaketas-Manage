@@ -115,5 +115,28 @@ public class SectorJDBC {
 
 		return sector;
     }
+public Sector ConsultarSector(Long OID) throws SQLException{
+        DriverJDBC driver = DriverJDBC.getInstance();
+        String sql = "SELECT * FROM sector WHERE OID = '"+OID+"'";
+		Sector sector = new Sector();
+        ResultSet resultado;
+
+		try{
+            driver.conectar();
+            resultado=driver.seleccionar(sql);
+			if (resultado.next()){
+				sector.setOID(resultado.getLong("OID"));
+				sector.setDescripcion(resultado.getString("descripcion"));
+			}
+        }
+        catch(SQLException ea){
+            throw ea;
+        }
+        finally {
+            driver.desconectar();
+        }
+
+		return sector;
+    }
 
 }

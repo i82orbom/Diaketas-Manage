@@ -109,11 +109,11 @@ public class ControladorDemanda {
 			public Object getValueAt(int fil, int col) {
 				switch (col) {
 					case 0:
-						return listaDemandas.get(fil).getBeneficiario().getNIF()+ " 1";
+						return listaDemandas.get(fil).getBeneficiario().getNIF();
 					case 1:
 						return listaDemandas.get(fil).getBeneficiario().getNombre()+ " "+listaDemandas.get(fil).getBeneficiario().getApellidos();
 					case 2:
-						return listaDemandas.get(fil).getSector().getDescripcion()+ " 3";
+						return listaDemandas.get(fil).getSector().getDescripcion();
 					case 3:
 						return TestDatos.formatter.format(listaDemandas.get(fil).getFecha());
 				}
@@ -164,14 +164,20 @@ public class ControladorDemanda {
 
 	public ArrayList<Demanda> obtenerListaDemandas(String DNI, String sectorDesc, String antiguedad){
 		Long beneficiarioOID = -1l, sectorOID = -1l;
-
+                vista.getDemandaBuscar().getLabelError().setText("");
 		if (!DNI.equals("")){
 			Beneficiario beneficiario = null;
 			try{ beneficiario = BeneficiarioJDBC.getInstance().obtenerBeneficiario(DNI);
 			} catch (SQLException ex){
 				ControladorErrores.mostrarError("Error al obtener el Beneficiario:\n"+ex);
 			}
-			if(beneficiario!=null) beneficiarioOID = beneficiario.getOID();
+			if(beneficiario==null){
+                            listaDemandas =new ArrayList<Demanda>(); 
+                            actualizarTablaDemandas();
+                             vista.getDemandaBuscar().getLabelError().setText("El DNI no coincide con el de ningún Beneficiario");
+                            return listaDemandas; }
+                        beneficiarioOID = beneficiario.getOID();
+                        
 		}
 
 		if (!sectorDesc.equals("")){
@@ -180,14 +186,22 @@ public class ControladorDemanda {
 			} catch (SQLException ex){
 				ControladorErrores.mostrarError("Error al obtener el sector:\n"+ex);
 			}
-			if (sector!=null) sectorOID = sector.getOID();
+			if(sector==null){
+                            listaDemandas =new ArrayList<Demanda>(); 
+                            actualizarTablaDemandas();
+                             vista.getDemandaBuscar().getLabelError().setText("El sector no coincide con ningún Sector");
+                            return listaDemandas; }
+                        sectorOID = sector.getOID();
 		}
 
 		try{
 						//System.out.println("Sector OID");
-			listaDemandas = DemandaJDBC.getInstance().FiltrarDemandas(beneficiarioOID,sectorOID, Integer.parseInt(antiguedad));
+			listaDemandas = DemandaJDBC.getInstance().FiltrarDemandas2(beneficiarioOID,sectorOID, Integer.parseInt(antiguedad));
 			System.out.println("Tamaño lista "+listaDemandas.size());
-						actualizarTablaDemandas();
+                        actualizarTablaDemandas();
+                        if(listaDemandas.size()==0){
+                        vista.getDemandaBuscar().getLabelError().setText("El Beneficiario no tiene ninguna Demanda en este Sector");    
+                        }             
 		} catch (SQLException ex){
 			ControladorErrores.mostrarError("Error al obtener la lista de demandas:\n"+ex.getMessage());
 		}

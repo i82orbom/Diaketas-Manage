@@ -5,10 +5,7 @@
 package Vistas.Paneles.BolsaTrabajo;
 
 import Vistas.Paneles.Beneficiario.*;
-import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 
 /**
@@ -61,7 +58,12 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
 		return cbAntiguedad.getSelectedIndex();
 		
     }
+
+    public JLabel getLabelError() {
+        return labelError;
+    }
         
+    
     public JButton getBTConsultar(){
         return BTModificar;
     }
@@ -85,6 +87,7 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
         BTEliminar = new javax.swing.JButton();
         BTModificar = new javax.swing.JButton();
         BTBuscar3 = new javax.swing.JButton();
+        labelError = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
@@ -110,7 +113,7 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
             }
         });
 
-        cbSector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Construccion", "Electricidad", "Carpinteria", "Fontaneria", " " }));
+        cbSector.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Construccion", "Electricidad" }));
 
         jLabel65.setText("Antiguedad");
 
@@ -127,14 +130,14 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
             }
         });
 
+        labelError.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelError.setForeground(new java.awt.Color(255, 0, 0));
+        labelError.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 948, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,6 +161,15 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(BTEliminar)
                         .addGap(389, 389, 389))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 948, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(346, 346, 346)
+                        .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,8 +185,10 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
                         .addComponent(cbAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(BTBuscar3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
-                .addGap(87, 87, 87)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+                .addGap(54, 54, 54)
+                .addComponent(labelError)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BTEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BTModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -200,6 +214,7 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JLabel labelError;
     private javax.swing.JTable tablaBusquedaDemandante;
     private javax.swing.JTextField textBusquedaDemandanteDNI;
     // End of variables declaration//GEN-END:variables
