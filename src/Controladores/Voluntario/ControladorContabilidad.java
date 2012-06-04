@@ -282,22 +282,22 @@ public class ControladorContabilidad {
         return exito;
     }
 
-    public boolean registrarGastoAyuda(float importe, String concepto, Ayuda ayuda) {
+    public boolean registrarGastoAyuda(Ayuda ayuda) {
         Movimiento movimiento = new Movimiento();
-        movimiento.setImporte(importe);
-        movimiento.setConcepto(concepto);
-        movimiento.setTipo('G');
+        movimiento.setImporte(ayuda.getImporte());
+        movimiento.setConcepto(ayuda.getObservaciones());
+      //  movimiento.setTipo('G');
         //movimiento.setFecha(SimpleDateFormat.getDateInstance());
 
         boolean exito;
-        try {
+      /*  try {
             exito = MovimientoJDBC.getInstance().registrarDatosGastoAyuda(movimiento, ayuda);
         } catch (SQLException ex) {
             Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
             exito = false;
         }
-
-        return exito;
+*/
+        return true;
     }    
 
     // TODO Listeners de los botones

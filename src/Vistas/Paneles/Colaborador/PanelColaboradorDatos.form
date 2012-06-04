@@ -259,7 +259,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="java.awt.Label" name="label27">
+            <Component class="javax.swing.JLabel" name="label27">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -267,38 +267,38 @@
                 <Property name="text" type="java.lang.String" value="Datos personales"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label28">
+            <Component class="javax.swing.JLabel" name="label28">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nombre"/>
               </Properties>
             </Component>
-            <Component class="java.awt.TextField" name="textNombreColaborador">
+            <Component class="javax.swing.JTextField" name="textNombreColaborador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nombre"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label29">
+            <Component class="javax.swing.JLabel" name="label29">
               <Properties>
                 <Property name="text" type="java.lang.String" value="DNI/Pasaporte"/>
               </Properties>
             </Component>
-            <Component class="java.awt.TextField" name="textDNIColaborador">
+            <Component class="javax.swing.JTextField" name="textDNIColaborador">
               <Properties>
                 <Property name="name" type="java.lang.String" value=""/>
                 <Property name="text" type="java.lang.String" value="DNI/Pasaporte"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label30">
+            <Component class="javax.swing.JLabel" name="label30">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nacionalidad"/>
               </Properties>
             </Component>
-            <Component class="java.awt.TextField" name="textNacionalidadColaborador">
+            <Component class="javax.swing.JTextField" name="textNacionalidadColaborador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nacionalidad"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label31">
+            <Component class="javax.swing.JLabel" name="label31">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -306,72 +306,72 @@
                 <Property name="text" type="java.lang.String" value="Datos de contacto"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label32">
+            <Component class="javax.swing.JLabel" name="label32">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Domicilio"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label33">
+            <Component class="javax.swing.JLabel" name="label33">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Localidad"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label34">
+            <Component class="javax.swing.JLabel" name="label34">
               <Properties>
                 <Property name="text" type="java.lang.String" value="C&#xf3;digo Postal"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label35">
+            <Component class="javax.swing.JLabel" name="label35">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tel&#xe9;fono"/>
               </Properties>
             </Component>
-            <Component class="java.awt.TextField" name="textTelefonoColaborador">
+            <Component class="javax.swing.JTextField" name="textTelefonoColaborador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Movil"/>
               </Properties>
             </Component>
-            <Component class="java.awt.TextField" name="textLocalidadColaborador">
+            <Component class="javax.swing.JTextField" name="textLocalidadColaborador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Localidad"/>
               </Properties>
             </Component>
-            <Component class="java.awt.TextField" name="textCPColaborador">
+            <Component class="javax.swing.JTextField" name="textCPColaborador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="C&#xf3;digo Postal"/>
               </Properties>
             </Component>
-            <Component class="java.awt.TextField" name="textDomiciolioColaborador">
+            <Component class="javax.swing.JTextField" name="textDomiciolioColaborador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Calle, n&#xfa;mero, escalera, piso"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label36">
+            <Component class="javax.swing.JLabel" name="label36">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Apellidos"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label37">
+            <Component class="javax.swing.JLabel" name="label37">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nacido el"/>
               </Properties>
             </Component>
-            <Component class="java.awt.TextField" name="textApellidosColaborador">
+            <Component class="javax.swing.JTextField" name="textApellidosColaborador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Apellidos"/>
               </Properties>
             </Component>
-            <Component class="java.awt.TextField" name="textDiaFNColaborador">
+            <Component class="javax.swing.JTextField" name="textDiaFNColaborador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="dia"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label38">
+            <Component class="javax.swing.JLabel" name="label38">
               <Properties>
                 <Property name="text" type="java.lang.String" value="de"/>
               </Properties>
             </Component>
-            <Component class="java.awt.TextField" name="textMesFNColaborador">
+            <Component class="javax.swing.JTextField" name="textMesFNColaborador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="mes"/>
               </Properties>
@@ -386,37 +386,37 @@
                 <Property name="text" type="java.lang.String" value="Hombre"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label39">
+            <Component class="javax.swing.JLabel" name="label39">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sexo"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label40">
+            <Component class="javax.swing.JLabel" name="label40">
               <Properties>
                 <Property name="text" type="java.lang.String" value="de"/>
               </Properties>
             </Component>
-            <Component class="java.awt.TextField" name="textAnoFNColaborador">
+            <Component class="javax.swing.JTextField" name="textAnoFNColaborador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="a&#xf1;o"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label41">
+            <Component class="javax.swing.JLabel" name="label41">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Provincia"/>
               </Properties>
             </Component>
-            <Component class="java.awt.TextField" name="textProvinciaColaborador">
+            <Component class="javax.swing.JTextField" name="textProvinciaColaborador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Procvincia"/>
               </Properties>
             </Component>
-            <Component class="java.awt.TextField" name="textMovilColaborador">
+            <Component class="javax.swing.JTextField" name="textMovilColaborador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Movil"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label42">
+            <Component class="javax.swing.JLabel" name="label42">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Movil"/>
               </Properties>
@@ -553,7 +553,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="java.awt.Label" name="label43">
+            <Component class="javax.swing.JLabel" name="label43">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -579,7 +579,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="java.awt.Label" name="label44">
+            <Component class="javax.swing.JLabel" name="label44">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -587,29 +587,29 @@
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir colaboracion"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label45">
+            <Component class="javax.swing.JLabel" name="label45">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cantidad"/>
               </Properties>
             </Component>
-            <Component class="java.awt.TextField" name="textCantidadColaborador">
+            <Component class="javax.swing.JTextField" name="textCantidadColaborador">
             </Component>
-            <Component class="java.awt.Label" name="label46">
+            <Component class="javax.swing.JLabel" name="label46">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Concepto"/>
               </Properties>
             </Component>
-            <Component class="java.awt.TextField" name="textConceptoColaborador">
+            <Component class="javax.swing.JTextField" name="textConceptoColaborador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="concepto dado en el inggreso, si lo hay"/>
               </Properties>
             </Component>
-            <Component class="java.awt.Label" name="label47">
+            <Component class="javax.swing.JLabel" name="label47">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Fecha"/>
               </Properties>
             </Component>
-            <Component class="java.awt.TextField" name="textFechaColaborador">
+            <Component class="javax.swing.JTextField" name="textFechaColaborador">
             </Component>
             <Component class="javax.swing.JButton" name="btGuardarColaboracionColaborador">
               <Properties>

@@ -244,7 +244,7 @@ public class ControladorAyuda {
         }
 
         if (ayuda.getTipo_ayuda().isMonetaria()) {
-            exito = ControladorContabilidad.getInstance(null).registrarGastoAyuda(ayuda.getImporte(), ayuda.getObservaciones(), ayuda);
+            exito = ControladorContabilidad.getInstance(null).registrarGastoAyuda(ayuda);
         }
 
         return exito;
