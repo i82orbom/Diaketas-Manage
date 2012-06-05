@@ -259,7 +259,7 @@ public class SocioJDBC {
     public ArrayList<Socio> obtenerListadoSocios(String tipoBusqueda, String valor) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "SELECT * FROM Socio s, C_Persona p, Colaborador c WHERE "+tipoBusqueda+" LIKE '%"+valor+"%' AND s.OID=p.OID AND s.OID=c.OID AND p.OID=C.OID";
+        String sql = "SELECT * FROM Socio s, C_Persona p, Colaborador c WHERE "+tipoBusqueda+" LIKE '%"+valor+"%' AND s.OID=p.OID AND s.OID=c.OID AND p.OID=c.OID";
         ArrayList<Socio> listaSocios = new ArrayList<Socio>();
         Socio socio = null;
 
@@ -316,10 +316,9 @@ public class SocioJDBC {
     public Cuota obtenerCuotaActiva(Socio socio) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        Date fechaActual = new Date();
         Cuota c = new Cuota();
 		
-        String sql = "SELECT * FROM Cuota c WHERE c.OIDSocio='"+socio.getOID()+"' AND (c.FechaFin > '"+TestDatos.formatterBD.format(fechaActual)+"' OR c.FechaFin <> NULL)";
+        String sql = "SELECT * FROM Cuota c WHERE c.OIDSocio='"+socio.getOID()+"' AND (c.FechaFin > CURDATE() OR c.FechaFin IS NOT NULL)";
         try {
             driver.conectar();
             ResultSet rs = driver.seleccionar(sql);

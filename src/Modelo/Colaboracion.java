@@ -29,8 +29,8 @@ package Modelo;
 public class Colaboracion extends Movimiento{
     
     private Long OID;
-    private Long OIDColaborador;
-    private Long OIDVoluntario;
+    private Colaborador colaborador;
+    private Voluntario voluntario;
     
     /**
      * Constructor por defecto
@@ -55,34 +55,34 @@ public class Colaboracion extends Movimiento{
     }
     
     /**
-     * Obtener el OID de el Colaborador
-     * @return OIDColaborador
+     * Obtener el Colaborador
+     * @return Colaborador
      */
-    public Long getOIDColaborador() {
-        return OIDColaborador;
+    public Colaborador getColaborador() {
+        return colaborador;
     }
     
     /**
-     * Asignar un OID a un Colaborador
-     * @param OIDColaborador
+     * Asignar un  Colaborador
+     * @param Colaborador
      */
-    public void setOIDColaborador(Long OIDColaborador) {
-        this.OIDColaborador = OIDColaborador;
+    public void setColaborador(Colaborador col) {
+        this.colaborador = col;
     }
     
     /**
-     * Obtener el OID del Voluntario
-     * @return OIDVoluntario
+     * Obtener el Voluntario
+     * @return Voluntario
      */
-    public Long getOIDVoluntario() {
-        return OIDVoluntario;
+    public Voluntario getVoluntario() {
+        return voluntario;
     }
     
     /**
-     * Asignar un OID a un Voluntario
-     * @param OIDVoluntario
+     * Asignar un Voluntario
+     * @param Voluntario
      */
-    public void setOIDVoluntario(Long OIDVoluntario) {
-        this.OIDVoluntario = OIDVoluntario;
+    public void setVoluntario(Voluntario vol) {
+        this.voluntario = vol;
     }
 }

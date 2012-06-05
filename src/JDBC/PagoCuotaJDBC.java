@@ -24,8 +24,11 @@
  */
 package JDBC;
 
+import Controladores.TestDatos;
+import Controladores.Voluntario.ControladorVoluntario;
 import Modelo.PagoCuota;
 import Modelo.Socio;
+import Modelo.Voluntario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -68,7 +71,7 @@ public class PagoCuotaJDBC {
     public boolean añadirPagoCuota(PagoCuota pc) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "INSERT INTO Movimiento (importe, fecha, concepto) VALUES ('"+pc.getImporte()+"','"+pc.getFecha()+"','"+pc.getConcepto()+"')";
+        String sql = "INSERT INTO Movimiento (Cantidad, Fecha, Concepto) VALUES ('"+pc.getImporte()+"','"+TestDatos.formatterBD.format(pc.getFecha())+"','"+pc.getConcepto()+"')";
         String sql2 = "INSERT INTO PagoCuota (OIDSocio, OIDVoluntario, OID) VALUES ('"+pc.getSocio().getOID()+"','"+pc.getVoluntario().getOID()+"',LAST_INSERT_ID())";
 
         try{
@@ -126,18 +129,21 @@ public class PagoCuotaJDBC {
     public ArrayList<PagoCuota> HistorialPagosCuotas (Socio s, Date fechaInicio, Date fechaFin) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
+		Voluntario vol = new Voluntario();
         ArrayList<PagoCuota> listaPagosCuotas = new ArrayList<PagoCuota>();
         String sql = "SELECT * FROM PagoCuota p, Movimiento m, Voluntario v WHERE p.OID=m.OID AND p.OIDSocio='"+s.getOID()+"' AND p.OIDVoluntario=v.OID";
-
+		System.out.println(sql);
         try {
             driver.conectar();
             ResultSet rs = driver.seleccionar(sql);
 
-            if(rs.next()){
+            while(rs.next()){
                 PagoCuota PagoC = new PagoCuota();
+				PagoC.setSocio(s);
+				PagoC.setVoluntario(VoluntarioJDBC.getInstance().obtenerVoluntario(rs.getLong("OIDVoluntario")));
                 PagoC.setConcepto(rs.getString("Concepto"));
                 PagoC.setFecha(rs.getDate("Fecha"));
-                PagoC.setImporte(rs.getFloat("Importe"));
+                PagoC.setImporte(rs.getFloat("Cantidad"));
 
                 listaPagosCuotas.add(PagoC);
             }

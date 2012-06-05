@@ -5,8 +5,6 @@ import JDBC.CuotaJDBC;
 import JDBC.SocioJDBC;
 import Modelo.Cuota;
 import Modelo.Socio;
-import Vistas.Paneles.Colaboradores.VistaColaboradores;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -105,4 +103,22 @@ public class ControladorCuota {
         }
         return cuotas;
     }
+	
+	public boolean cancelarCuota (Cuota c) {
+		if (c.getFechaUltimoPago().equals(c.getFechaInicio())) {
+			try {
+				return CuotaJDBC.getInstance().eliminarCuota(c);
+			} catch (SQLException ex) {
+				Logger.getLogger(ControladorCuota.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		} 
+		else {
+			try {
+				return CuotaJDBC.getInstance().cancelarCuota(c);
+			} catch (SQLException ex) {
+				Logger.getLogger(ControladorCuota.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+		return true;
+	}
 }

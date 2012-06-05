@@ -110,6 +110,9 @@ public class ControladorColaboradores {
         vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
         vista.getBarraDeNavigacion().setTextLabelNivel2("Socio");
         vista.getBarraDeNavigacion().setTextLabelNivel3("Datos");
+		vista.getPanelSocioDatos().getJtabbedPaneSocio().setEnabledAt(0,true);
+		vista.getPanelSocioDatos().getJtabbedPaneSocio().setEnabledAt(1,false);
+		vista.getPanelSocioDatos().getJtabbedPaneSocio().setEnabledAt(2,false);
     }
 
     private void mostrarVistaSocioBuscar(){
@@ -158,6 +161,9 @@ public class ControladorColaboradores {
         vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
         vista.getBarraDeNavigacion().setTextLabelNivel2("Socio");
 		vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Socio");
+		vista.getPanelSocioDatos().getJtabbedPaneSocio().setEnabledAt(0,true);
+		vista.getPanelSocioDatos().getJtabbedPaneSocio().setEnabledAt(1,true);
+		vista.getPanelSocioDatos().getJtabbedPaneSocio().setEnabledAt(2,true);
 	}
     //Listener de la barra de navigacion
     class ListenerBarraNavigacion implements ActionListener {

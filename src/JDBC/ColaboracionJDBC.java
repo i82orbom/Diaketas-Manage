@@ -27,6 +27,7 @@ package JDBC;
 import Controladores.TestDatos;
 import Modelo.Colaboracion;
 import Modelo.Colaborador;
+import Modelo.Voluntario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ public class ColaboracionJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "INSERT INTO Movimiento (Cantidad, Concepto, Fecha) VALUES ('"+c.getImporte()+"','"+c.getConcepto()+"','"+TestDatos.formatterBD.format(c.getFecha())+"')";
-        String sql2 = "INSERT INTO Colaboracion (OID, OIDVoluntario, OIDColaborador) VALUES (LAST_INSERT_ID(),'"+c.getOIDVoluntario()+"','"+c.getOIDColaborador()+"')";
+        String sql2 = "INSERT INTO Colaboracion (OID, OIDVoluntario, OIDColaborador) VALUES (LAST_INSERT_ID(),'"+c.getVoluntario().getOID()+"','"+c.getColaborador().getOID()+"')";
 
         try{
             driver.inicioTransaccion();
@@ -128,9 +129,10 @@ public class ColaboracionJDBC {
     public ArrayList<Colaboracion> HistorialColaboraciones(Colaborador c, Date FechaInicio, Date FechaFin) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-
-        String sql = "SELECT * FROM Colaboracion c, Movimiento m WHERE c.OIDColaborador='"+c.getOID()+"' AND m.Fecha>='"+FechaInicio+"' AND m.Fecha<='"+FechaFin+"'";
-
+        Voluntario vol = new Voluntario();
+        String sql = "SELECT * FROM Colaboracion c, Movimiento m, Voluntario v WHERE c.OIDVoluntario = v.OID AND c.OID=m.OID AND c.OIDColaborador='"+c.getOID()+"' AND m.Fecha>='"+TestDatos.formatterBD.format(FechaInicio)+"' AND m.Fecha<='"+TestDatos.formatterBD.format(FechaFin)+"'";
+		System.out.println(sql);
+		
         ArrayList<Colaboracion> listaColaboraciones = new ArrayList<Colaboracion>();
         Colaboracion colaboracion = null;
 
@@ -138,10 +140,13 @@ public class ColaboracionJDBC {
             driver.conectar();
             ResultSet rs = driver.seleccionar(sql);
 
-            if(rs.next()){
+            while(rs.next()){
                 colaboracion = new Colaboracion();
+				colaboracion.setColaborador(c);
+				colaboracion.setVoluntario(VoluntarioJDBC.getInstance().obtenerVoluntario(rs.getLong("OIDVoluntario")));
+				colaboracion.setVoluntario(vol);
                 colaboracion.setFecha(rs.getDate("Fecha"));
-                colaboracion.setImporte(rs.getInt("Importe"));
+                colaboracion.setImporte(rs.getInt("Cantidad"));
                 colaboracion.setConcepto(rs.getString("Concepto"));
 
                 listaColaboraciones.add(colaboracion);
@@ -156,5 +161,25 @@ public class ColaboracionJDBC {
         return listaColaboraciones;
     }
 
+	public boolean comprobarSiColaboracion(Long oid) throws SQLException{
+		DriverJDBC driver = DriverJDBC.getInstance();
+		String sql = "SELECT * FROM Colaboracion c WHERE c.OIDVoluntario='"+oid+"'";
+		boolean existe=false;
+        try {
+            driver.conectar();
+            ResultSet rs = driver.seleccionar(sql);
 
+            if(rs.next()){
+               existe=true;
+			}
+		}
+		catch (SQLException ex){
+				throw ex;
+		}
+		finally{
+			driver.desconectar();
+		}
+			return existe;
+	}
+	
 }

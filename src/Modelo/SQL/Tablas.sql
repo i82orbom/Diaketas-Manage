@@ -259,5 +259,7 @@ INSERT INTO sector(Descripcion) Values ("Construccion");
 INSERT INTO sector(Descripcion) Values ("Carpinteria");
 INSERT INTO sector(Descripcion) Values ("Hosteleria");
 
-INSERT INTO oferta values (null,3,2,1,"Manipulador de alimentos","Trabajo de camarero en Hotel Carapan",3,"2012-03-01",10,"Fijo");
+INSERT INTO oferta values (null,2,2,2,"Manipulador de alimentos","Trabajo de camarero en Hotel Carapan",3,"2012-03-01",10,"Fijo");
 INSERT INTO demanda (OIDSector,OIDBeneficiario,OIDVoluntario,DescripcionVidaLaboral,Fecha)values (1,1,2,"asdfasd","2010-04-03");
+
+--SELECT * FROM PagoCuota p, Movimiento m, Voluntario v WHERE p.OID=m.OID AND p.OIDSocio=4 AND p.OIDVoluntario=v.OID

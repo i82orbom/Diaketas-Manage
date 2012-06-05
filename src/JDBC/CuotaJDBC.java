@@ -69,7 +69,7 @@ public class CuotaJDBC {
     public boolean añadirCuota(Cuota c) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "INSERT INTO Cuota (Cantidad, IntervalosPagos, FechaInicio, FechaFin, OIDSocio) VALUES ('"+c.getCantidad()+"','"+c.getIntervaloPagos()+"','"+TestDatos.formatterBD.format(c.getFechaInicio())+"','"+TestDatos.formatterBD.format(c.getFechaFin())+"','"+c.getSocio().getOID()+"')";
+        String sql = "INSERT INTO Cuota (Cantidad, IntervalosPagos, FechaInicio, FechaFin, FechaUltimoPago, OIDSocio) VALUES ('"+c.getCantidad()+"','"+c.getIntervaloPagos()+"','"+TestDatos.formatterBD.format(c.getFechaInicio())+"','"+TestDatos.formatterBD.format(c.getFechaFin())+"','"+TestDatos.formatterBD.format(c.getFechaUltimoPago())+"','"+c.getSocio().getOID()+"')";
 
         try{
             driver.inicioTransaccion();
@@ -97,7 +97,7 @@ public class CuotaJDBC {
     public boolean actualizarUltimoPago(Cuota c) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "UPDATE Cuota SET FechaUltimoPago='"+TestDatos.formatterBD.format(c.getFechaUltimoPago())+"'+'"+c.getIntervaloPagos()+"' WHERE OIDSocio='"+c.getSocio().getOID()+"'";
+        String sql = "UPDATE Cuota SET FechaUltimoPago=DATE_ADD('"+TestDatos.formatterBD.format(c.getFechaUltimoPago())+"',INTERVAL "+c.getIntervaloPagos()+" MONTH) WHERE OIDSocio='"+c.getSocio().getOID()+"'";
 		System.out.println(sql);
 
         try{
@@ -153,8 +153,7 @@ public class CuotaJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
 
-        Date fechaActual = new Date();
-        String sql = "UPDATE Cuota SET FechaFin='"+TestDatos.formatterBD.format(fechaActual.getTime())+"' WHERE Cuota.OID='"+c.getOIDCuota()+"'";
+        String sql = "UPDATE Cuota SET FechaFin = CURDATE() WHERE Cuota.OID='"+c.getOIDCuota()+"'";
         try{
             driver.inicioTransaccion();
             driver.actualizar(sql);

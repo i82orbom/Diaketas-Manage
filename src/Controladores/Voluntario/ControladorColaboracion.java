@@ -4,9 +4,6 @@ package Controladores.Voluntario;
 import JDBC.ColaboracionJDBC;
 import Modelo.Colaboracion;
 import Modelo.Colaborador;
-import Vistas.Paneles.Socio.VistaSocio;
-import Vistas.Paneles.Voluntario.VistaVoluntario;
-import java.awt.event.KeyListener;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -85,4 +82,13 @@ public class ControladorColaboracion {
 
         return null;
     }
+	public boolean comprobarSiColaboracion (Long oid){
+		boolean exito=false;
+		try {
+			exito = ColaboracionJDBC.getInstance().comprobarSiColaboracion(oid);
+		} catch (SQLException ex) {
+			Logger.getLogger(ControladorColaboracion.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return exito;
+	}
 }

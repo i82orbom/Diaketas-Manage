@@ -81,7 +81,7 @@ public class TestDatos {
     }
 
     public static boolean isTelefonoOFax(String numero) {
-        if (numero.length() < 9) {
+        if (numero.length() < 9 || numero.length()>15) {
             return false;
         }
 
