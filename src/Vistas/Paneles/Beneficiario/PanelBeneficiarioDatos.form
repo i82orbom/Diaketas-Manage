@@ -31,9 +31,8 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" min="-2" pref="987" max="-2" attributes="0"/>
-              <EmptySpace pref="3" max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" min="-2" pref="993" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="7" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -41,8 +40,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" min="-2" pref="581" max="-2" attributes="0"/>
-              <EmptySpace pref="8" max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" min="-2" pref="569" max="-2" attributes="0"/>
+              <EmptySpace pref="25" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -72,22 +71,26 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="labelNacionalidad" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelNIF" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelNombre" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelNivelEstudios" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelTelefonoFijo" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelDomicilio" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelLocalidad" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelObservaciones" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelTipoVivienda" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelViviendaEspecificacion" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="labelDatosPersonales" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="labelNacionalidad" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelNIF" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelNombre" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelNivelEstudios" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelTelefonoFijo" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelDomicilio" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelLocalidad" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelObservaciones" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelTipoVivienda" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelViviendaEspecificacion" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -108,26 +111,21 @@
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Group type="103" groupAlignment="1" attributes="0">
-                                                          <Component id="textFechaNacimiento" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
-                                                          <Component id="textApellidos" min="-2" pref="307" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="textApellidos" min="-2" pref="307" max="-2" attributes="0"/>
+                                                  <Component id="textFechaNacimiento" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="cbEstadoCivil" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
                                                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                                                               <Component id="textOcupacion" pref="148" max="32767" attributes="0"/>
                                                               <Component id="textTelefonoMovil" max="32767" attributes="0"/>
                                                           </Group>
                                                           <Component id="textProfesion" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
+                                                          <Component id="cbEstadoCivil" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
                                                       </Group>
-                                                      <EmptySpace max="32767" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="labelSituacionEconomica" min="-2" pref="244" max="-2" attributes="0"/>
                                                           <Component id="jScrollPane7" min="-2" pref="310" max="-2" attributes="0"/>
+                                                          <Component id="labelSituacionEconomica" min="-2" pref="244" max="-2" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                               </Group>
@@ -143,41 +141,34 @@
                                               <Component id="textObservaciones" alignment="0" pref="400" max="32767" attributes="0"/>
                                               <Component id="textDomicilio" alignment="0" max="32767" attributes="0"/>
                                           </Group>
-                                      </Group>
-                                      <EmptySpace pref="76" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="cbTipoVivienda" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                              <Component id="labelViviendaPrecio" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="textPrecioVivienda" min="-2" pref="95" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="cbTipoVivienda" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                                      <Component id="labelViviendaPrecio" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="textPrecioVivienda" min="-2" pref="95" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="textEspecificarTipoVivienda" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="btGuardar" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="btBorrar" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="labelError" min="-2" pref="605" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <Component id="textEspecificarTipoVivienda" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
-                                          <Component id="labelError" alignment="0" min="-2" pref="605" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
+                                  <Component id="labelVivienda" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="labelDatosPersonales" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelVivienda" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="21" pref="928" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="307" max="-2" attributes="0"/>
-                      <Component id="btGuardar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btBorrar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -187,7 +178,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelDatosPersonales" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="labelNombre" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -206,17 +197,20 @@
                                   <Component id="textNacionalidad" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="labelEstadoCivil" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cbEstadoCivil" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelSituacionEconomica" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="labelApellidos" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="textApellidos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="labelApellidos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textApellidos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="labelSituacionEconomica" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="labelNivelEstudios" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cbNivelEstudios" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -270,22 +264,23 @@
                                   <Component id="labelViviendaPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="textPrecioVivienda" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="labelViviendaEspecificacion" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textEspecificarTipoVivienda" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jScrollPane7" min="-2" pref="107" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btGuardar" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btBorrar" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="jScrollPane7" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="labelError" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="25" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btGuardar" min="-2" max="-2" attributes="0"/>
-                          <Component id="btBorrar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelViviendaEspecificacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textEspecificarTipoVivienda" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelError" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <EmptySpace pref="42" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -575,7 +570,7 @@
                                       <Component id="btLimpiarCamposAyuda" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -588,7 +583,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel59" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane10" pref="342" max="32767" attributes="0"/>
+                      <Component id="jScrollPane10" pref="294" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel60" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -780,7 +775,7 @@
                               <Component id="btGuardarFamiliarBeneficiario" min="-2" pref="43" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btEliminarFamiliarBeneficiario" min="-2" pref="34" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="345" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="221" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -809,7 +804,7 @@
                           <Component id="btGuardarFamiliarBeneficiario" min="-2" pref="34" max="-2" attributes="0"/>
                           <Component id="btEliminarFamiliarBeneficiario" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jScrollPane9" min="-2" pref="438" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
