@@ -105,9 +105,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textBusqueda">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btBuscar">
       <Properties>

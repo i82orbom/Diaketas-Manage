@@ -20,6 +20,7 @@
  *      002 - Mar 26, 2012 - FBR - Implementacion de los mÃ©todos 
  **     003 - Jun 01, 2012 - FBR - ImplementaciÃ³n de las transacciones y revision de los mÃ©todos de registrar
  *      004 - Jun 04, 2012 - FBR - Cambios en los métodos
+ *      005 - Jun 05, 2012 - RC - Correciones sentencias sql 
  **
  ** NOTAS:
  **   
@@ -34,6 +35,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -84,9 +87,9 @@ public class MovimientoJDBC {
         ArrayList<Movimiento> listaMovimientos = new ArrayList<Movimiento>();
         
         DriverJDBC driver = DriverJDBC.getInstance();
-        ResultSet rs = null;
+        ResultSet rs;
         
-        String consulta = "SELECT m.OID, Cantidad, Concepto, Fecha FROM Movimiento m join Gasto on m.OID= Gasto.OID WHERE Fecha BETWEEN '" + TestDatos.formatterBD.format(fecha_inicial) + "' AND '" + TestDatos.formatterBD.format(fecha_final) + "';";
+        String consulta = "SELECT m.OID, Cantidad, Concepto, Fecha FROM Movimiento m join Gasto on m.OID= Gasto.OID WHERE Fecha BETWEEN '" + TestDatos.formatterBD.format(fecha_inicial) + "' AND '" + TestDatos.formatterBD.format(fecha_final) + "'";
         
         try{
             driver.conectar();
@@ -95,9 +98,9 @@ public class MovimientoJDBC {
             while(rs.next()){
                 Movimiento m = new Movimiento();
                 
-                m.setConcepto(rs.getString("concepto"));
-                m.setFecha(rs.getDate("fecha"));
-                m.setImporte(rs.getFloat("importe"));
+                m.setConcepto(rs.getString("Concepto"));
+                m.setFecha(rs.getDate("Fecha"));
+                m.setImporte(rs.getFloat("Cantidad"));
                 m.setOID(rs.getLong("OID"));
                 
                 // Un movimiento tiene ayudas asociadas, que en este caso habría que añadirlas, pero no nos interesa para hacer los gastos
@@ -108,11 +111,10 @@ public class MovimientoJDBC {
             
         }
         catch (SQLException e){
-            return null;
+            Logger.getLogger(MovimientoJDBC.class.getName()).log(Level.SEVERE, null, e);
         }
-        
-        return listaMovimientos;
-         
+        driver.desconectar();
+        return listaMovimientos;         
      }
      
     public ArrayList<Movimiento> obtenerDatosIngresos(Date fecha_inicial, Date fecha_final) throws SQLException{
@@ -121,9 +123,9 @@ public class MovimientoJDBC {
         ArrayList<Movimiento> listaMovimientos = new ArrayList<Movimiento>();
         
         DriverJDBC driver = DriverJDBC.getInstance();
-        ResultSet rs = null;
+        ResultSet rs;
         
-        String consulta = "SELECT m.OID, Cantidad, Concepto, Fecha FROM Movimiento m join PagoCuota on m.OID= PagoCuota.OID WHERE Fecha BETWEEN '" + TestDatos.formatterBD.format(fecha_inicial) + "' AND '" + TestDatos.formatterBD.format(fecha_final) + "';";
+        String consulta = "SELECT m.OID, Cantidad, Concepto, Fecha FROM Movimiento m join PagoCuota on m.OID= PagoCuota.OID WHERE Fecha BETWEEN '" + TestDatos.formatterBD.format(fecha_inicial) + "' AND '" + TestDatos.formatterBD.format(fecha_final) + "'";
 
         try{
             driver.conectar();
@@ -132,44 +134,34 @@ public class MovimientoJDBC {
             while(rs.next()){
                 Movimiento m = new Movimiento();
                 
-                m.setConcepto(rs.getString("concepto"));
-                m.setFecha(rs.getDate("fecha"));
-                m.setImporte(rs.getFloat("importe"));
+                m.setConcepto(rs.getString("Concepto"));
+                m.setFecha(rs.getDate("Fecha"));
+                m.setImporte(rs.getFloat("Cantidad"));
                 m.setOID(rs.getLong("OID"));
                 
                 // En este caso no tiene ayudas asociadas el movimiento ya que es un ingreso
-                
                 listaMovimientos.add(m);
             }
             
-        }
-        catch (SQLException e){
-            return null;
-        }
-        
-        consulta = "SELECT m.OID, Cantidad, Concepto, Fecha FROM Movimiento m join Colaboracion on m.OID= Colaboracion.OID WHERE Fecha BETWEEN '" + TestDatos.formatterBD.format(fecha_inicial) + "' AND '" + TestDatos.formatterBD.format(fecha_final) + "';";
-        try{
-            driver.conectar();
+            consulta = "SELECT m.OID, Cantidad, Concepto, Fecha FROM Movimiento m join Colaboracion on m.OID= Colaboracion.OID WHERE Fecha BETWEEN '" + TestDatos.formatterBD.format(fecha_inicial) + "' AND '" + TestDatos.formatterBD.format(fecha_final) + "'";
             rs = driver.seleccionar(consulta);
-            
             while(rs.next()){
                 Movimiento m = new Movimiento();
                 
-                m.setConcepto(rs.getString("concepto"));
-                m.setFecha(rs.getDate("fecha"));
-                m.setImporte(rs.getFloat("importe"));
+                m.setConcepto(rs.getString("Concepto"));
+                m.setFecha(rs.getDate("Fecha"));
+                m.setImporte(rs.getFloat("Cantidad"));
                 m.setOID(rs.getLong("OID"));
                 
-                // En este caso no tiene ayudas asociadas el movimiento ya que es un ingreso
-                
+                // En este caso no tiene ayudas asociadas el movimiento ya que es un ingreso            
                 listaMovimientos.add(m);
             }
-            
         }
         catch (SQLException e){
-            return null;
+            Logger.getLogger(MovimientoJDBC.class.getName()).log(Level.SEVERE, null, e);
         }
-    
+        
+        driver.desconectar();
         return listaMovimientos;
     }
      

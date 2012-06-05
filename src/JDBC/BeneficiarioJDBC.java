@@ -28,6 +28,7 @@
  *      009 - May 23, 2012 - JAEG - Modificada sentencia SQL del metodo obtenerListadoBeneficiario()
  *      010 - May 29, 2012 - RC - Modificada sentencia SQL de los metodos obtenerBeneficiario() y obtenerListadoBeneficiario para que incluye el OID
  *      011 - May 30, 2012 - JAEG - Arreglada funcion "datosFamiliares"
+ *      012 - Jun 05, 2012 - FJB - Cambios en ModificrDatosBeneficiario
  ** NOTAS:
  **
  **
@@ -115,11 +116,12 @@ public class BeneficiarioJDBC {
             driver.desconectar();
         }
 
-        benef.setAyudasPrestadas(obtenerAyudasBeneficiario(benef.getNIF()));
+		if (benef!=null)
+	       benef.setAyudasPrestadas(obtenerAyudasBeneficiario(benef.getNIF()));
 
         return benef;
     }
-    
+
     public Beneficiario obtenerBeneficiario(long OID) throws SQLException {
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "SELECT * FROM beneficiario b, persona p WHERE (p.OID='" + OID + "') AND p.OID=b.OID";
@@ -165,8 +167,8 @@ public class BeneficiarioJDBC {
 
     public boolean modificarDatosBeneficiario(Beneficiario beneficiario) throws SQLException {
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql1 = "UPDATE persona SET NIF='" + beneficiario.getNIF() + "',Nombre='" + beneficiario.getNombre() + "',Apellidos='" + beneficiario.getApellidos() + "',FechaNacimiento='" + beneficiario.getFechaDENacimiento() + "',CP='" + beneficiario.getCP() + "',TelefonoFijo='" + beneficiario.getTelefonoFijo() + "',TelefonoMovil='" + beneficiario.getTelefonoMovil() + "',Domicilio='" + beneficiario.getDomicilio() + "',Localidad='" + beneficiario.getLocalidad() + "WHERE OID =" + beneficiario.getOID() + "'";
-        String sql2 = "UPDATE beneficiario SET NIF='" + beneficiario.getNIF() + "',Nacionalidad='" + beneficiario.getNacionalidad() + "',EstadoCivil='" + beneficiario.getEstadoCivil() + "',NivelDeEstudio='" + beneficiario.getNivelDeEstudio() + "',Observaciones='" + beneficiario.getObservaciones() + "',Ocupacion='" + beneficiario.getOcupacion() + "',Profesion='" + beneficiario.getProfesion() + "',SituacionEconomica='" + beneficiario.getSituacionEconomica() + "',Vivienda='" + beneficiario.getVivienda() + "',ViviendaAlquiler='" + beneficiario.getViviendaAlquiler() + "',ViviendaObservaciones='" + beneficiario.getViviendaObservaciones() + "WHERE OID =" + beneficiario.getOID() + "'";
+        String sql1 = "UPDATE persona SET NIF='" + beneficiario.getNIF() + "',Nombre='" + beneficiario.getNombre() + "',Apellidos='" + beneficiario.getApellidos() + "',FechaNacimiento='" + TestDatos.formatterBD.format(beneficiario.getFechaDENacimiento()) + "',CP='" + beneficiario.getCP() + "',TelefonoFijo='" + beneficiario.getTelefonoFijo() + "',TelefonoMovil='" + beneficiario.getTelefonoMovil() + "',Domicilio='" + beneficiario.getDomicilio() + "',Localidad='" + beneficiario.getLocalidad() + "' WHERE OID = '" + beneficiario.getOID() + "'";
+        String sql2 = "UPDATE beneficiario SET EstadoCivil='" + beneficiario.getEstadoCivil() + "',Nacionalidad='" + beneficiario.getNacionalidad() + "',NivelDeEstudio='" + beneficiario.getNivelDeEstudio() + "',Observaciones='" + beneficiario.getObservaciones() + "',Ocupacion='" + beneficiario.getOcupacion() + "',Profesion='" + beneficiario.getProfesion() + "',SituacionEconomica='" + beneficiario.getSituacionEconomica() + "',Vivienda='" + beneficiario.getVivienda() + "',ViviendaAlquiler='" + beneficiario.getViviendaAlquiler() + "',ViviendaObservaciones='" + beneficiario.getViviendaObservaciones() + "' WHERE OID = '" + beneficiario.getOID() + "'";
 
         try {
             driver.inicioTransaccion();

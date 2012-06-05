@@ -24,14 +24,14 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
         return btBuscar;
     }
 
-	public JTable getTbIngresos(){
-		return tablaListaIngresos;
-	}
-	
-	public JTable getTbGastos(){
-		return tablaListaGastos;
-	}
-	
+    public JTable getTbIngresos() {
+        return tablaListaIngresos;
+    }
+
+    public JTable getTbGastos() {
+        return tablaListaGastos;
+    }
+
     public JTextField getCuadroBalance() {
         return cuadroBalance;
     }
@@ -49,6 +49,10 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
         labelError.setText(error);
     }
 
+    public JLabel getLabelError() {
+        return labelError;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,9 +63,9 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaListaGastos = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
         tablaListaIngresos = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaListaGastos = new javax.swing.JTable();
         fieldFechaInicio = new javax.swing.JFormattedTextField();
         fieldFechaFin = new javax.swing.JFormattedTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -78,7 +82,7 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1000, 550));
         setPreferredSize(new java.awt.Dimension(1000, 550));
 
-        tablaListaGastos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaListaIngresos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -97,10 +101,10 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tablaListaGastos.setToolTipText("");
-        jScrollPane1.setViewportView(tablaListaGastos);
+        tablaListaIngresos.setToolTipText("");
+        jScrollPane1.setViewportView(tablaListaIngresos);
 
-        tablaListaIngresos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaListaGastos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -119,7 +123,7 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tablaListaIngresos);
+        jScrollPane2.setViewportView(tablaListaGastos);
 
         fieldFechaInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
@@ -204,7 +208,7 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
                         .addComponent(fieldFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
                         .addComponent(btBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                         .addComponent(labelError)
                         .addGap(57, 57, 57)
                         .addComponent(jLabel1)

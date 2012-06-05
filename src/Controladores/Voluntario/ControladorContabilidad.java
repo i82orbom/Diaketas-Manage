@@ -29,6 +29,7 @@ import javax.swing.table.TableModel;
  **
  ** DESARROLLADO POR:
  *          Raphael Colleau (RC)
+ *          Jose Angel Gonzalez Molina (JGM)
  **
  **
  ** SUPERVISADO POR:
@@ -37,6 +38,8 @@ import javax.swing.table.TableModel;
  ** HISTORIA:
  ** 	000 - 16 mai 2012 - RC - Creacion
  ** 	001 - 22 mai 2012 - RC - Adicion metodos relacionados con modelo
+ **		002 -  1 jun 2012 - JGM - Método para actualizar la tabla ingresos
+ **		003 -  4 jun 2012 - JGM - Método para actualizar la tabla gastos
  **
  ** NOTAS:
  **
@@ -59,198 +62,194 @@ public class ControladorContabilidad {
         
     private PanelVoluntarioContabilidad vista;
     
+    // list por las tablas
     private ArrayList<Movimiento> gastos;
     private ArrayList<Movimiento> ingresos;
-	
-	String[] columnasGastos = {"Fecha","Gasto","Dni"};
-	String[] columnasIngresos = {"Fecha","Ingreso","Dni"};
-	
-	private SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
-	
-	/*
-	 * El arrayList de ingresos debe estar rellenado
-	 */
-	private void actualizarTablaIngresos(){
-		vista.getTbIngresos().setModel(new TableModel() {
-
-			@Override
-			public int getRowCount() {
-				return ingresos.size();
-			}
-
-			@Override
-			public int getColumnCount() {
-				return columnasIngresos.length;
-			}
-
-			@Override
-			public String getColumnName(int columnIndex) {
-				return columnasIngresos[columnIndex];
-			}
-
-			@Override
-			public Class<?> getColumnClass(int i) {
-				return String.class;
-			}
-
-			@Override
-			public boolean isCellEditable(int rowIndex, int columnIndex) {
-				return false;
-			}
-
-			@Override
-			public Object getValueAt(int rowIndex, int columnIndex) {
-			Movimiento col;
-			C_Empresa emp;
-			C_Persona per;
-				switch(columnIndex){
-					case 0:
-						return formateador.format(ingresos.get(rowIndex).getFecha());
-					case 1:
-						return ingresos.get(rowIndex).getImporte();
-					case 2:
-						if(ingresos.get(rowIndex).getClass() == Colaboracion.class){
-							col = (Colaboracion)ingresos.get(rowIndex);
-					/*		try{
-								emp = C_EmpresaJDBC.getInstance().obtenerC_Empresa(col.getOIDColaborador());
-								return emp.getCIF();
-							}
-							catch(SQLException ex){
-								Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
-							}
-							try{
-								per = C_PersonaJDBC.getInstance().obtenerC_Persona(col.getOIDColaborador().toString());
-								return per.getDNI();
-							}
-							catch(SQLException ex){
-								Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
-							}
-							return "";*/
-						}
-						
-					default: return "";
-				}
-			}
-
-			@Override
-			public void setValueAt(Object o, int i, int i1) {
-				
-			}
-
-			@Override
-			public void addTableModelListener(TableModelListener tl) {
-				
-			}
-
-			@Override
-			public void removeTableModelListener(TableModelListener tl) {
-				
-			}
-			
-		});
-	}
-
-	private void actualizarTablaGastos(){
-		vista.getTbGastos().setModel(new TableModel() {
-
-			@Override
-			public int getRowCount() {
-				return gastos.size();
-			}
-
-			@Override
-			public int getColumnCount() {
-				return columnasGastos.length;
-			}
-
-			@Override
-			public String getColumnName(int columnIndex) {
-				return columnasGastos[columnIndex];
-			}
-
-			@Override
-			public Class<?> getColumnClass(int i) {
-				return String.class;
-			}
-
-			@Override
-			public boolean isCellEditable(int rowIndex, int columnIndex) {
-				return false;
-			}
-
-			@Override
-			public Object getValueAt(int rowIndex, int columnIndex) {
-			Gasto gas;
-			Ayuda ayu;
-				switch(columnIndex){/*
-					case 0:
-						return formateador.format(gastos.get(rowIndex).getFecha());
-					case 1:
-						return gastos.get(rowIndex).getImporte();
-					case 2:
-						if(gastos.get(rowIndex).getClass() == Gasto.class){
-							gas = (Gasto)gastos.get(rowIndex);
-							try{
-								ayu = AyudaJDBC.getInstance().obtenerAyuda(gas.getOIDAyuda());
-								return ayu.getBeneficiarioDeAyuda().getNIF();
-							}
-							catch(SQLException ex){
-								Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
-							}
-							return "";
-						}
-						*/
-					default: return "";
-				}
-			}
-
-			@Override
-			public void setValueAt(Object o, int i, int i1) {
-				
-			}
-
-			@Override
-			public void addTableModelListener(TableModelListener tl) {
-				
-			}
-
-			@Override
-			public void removeTableModelListener(TableModelListener tl) {
-				
-			}
-			
-		});	
-	}
-	
-    private ArrayList<Movimiento> obtenerIngresos(Date fechaInicial, Date fechaFin) {
-        try {
-            this.ingresos = MovimientoJDBC.getInstance().obtenerDatosIngresos(fechaInicial, fechaFin);
-            return this.ingresos;
-        } catch (SQLException ex) {
-            return null;
-        }
-    }
-
-    private ArrayList<Movimiento> obtenerGastos(Date fechaInicial, Date fechaFin) {
-        
-        try {
-            this.gastos = MovimientoJDBC.getInstance().obtenerDatosGastos(fechaInicial, fechaFin);
-            return this.gastos;
-        } catch (SQLException ex) {
-            return null;
-        }
-    }
-	
-    private float obtenerBalance(){
-        return MovimientoJDBC.getInstance().obtenerBalance(this.ingresos, this.gastos);
-    }
-	
+    // nombre de las columnas en las tablas
+    private String[] columnasGastos = {"Fecha", "Gasto", "Dni"};
+    private String[] columnasIngresos = {"Fecha", "Ingreso", "Dni"};
+    
     public ControladorContabilidad(PanelVoluntarioContabilidad vista) {
         this.vista = vista;
         
         vista.getBtBuscar().addActionListener(new BtBuscarContabilidad());
         vista.getFieldFechaFin().setText(TestDatos.formatter.format(new Date()));
     }
+
+    /*
+     * El arrayList de ingresos debe estar rellenado
+     */
+    private void actualizarTablaIngresos() {
+        vista.getTbIngresos().setModel(new TableModel() {
+
+            @Override
+            public int getRowCount() {
+                return ingresos.size();
+            }
+
+            @Override
+            public int getColumnCount() {
+                return columnasIngresos.length;
+            }
+
+            @Override
+            public String getColumnName(int columnIndex) {
+                return columnasIngresos[columnIndex];
+            }
+
+            @Override
+            public Class<?> getColumnClass(int i) {
+                return String.class;
+            }
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+
+            @Override
+            public Object getValueAt(int rowIndex, int columnIndex) {
+                Movimiento mov;
+                C_Empresa emp;
+                C_Persona per;
+                switch (columnIndex) {
+                    case 0:
+                        return TestDatos.formatter.format(ingresos.get(rowIndex).getFecha());
+                    case 1:
+                        return ingresos.get(rowIndex).getImporte();
+                    case 2:
+                        mov = ingresos.get(rowIndex);
+                        if (mov.getClass() == Colaboracion.class) {
+                            Colaboracion col = (Colaboracion) mov;
+                            try {
+                                emp = C_EmpresaJDBC.getInstance().obtenerC_Empresa(col.getOIDColaborador());
+                                return emp.getCIF();
+                            } catch (SQLException ex) {
+                                Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            try {
+                                per = C_PersonaJDBC.getInstance().obtenerC_Persona(col.getOID().toString());
+                                return per.getDNI();
+                            } catch (SQLException ex) {
+                                Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            return "";
+                        }
+
+                    default:
+                        return "";
+                }
+            }
+
+            @Override
+            public void setValueAt(Object o, int i, int i1) {
+            }
+
+            @Override
+            public void addTableModelListener(TableModelListener tl) {
+            }
+
+            @Override
+            public void removeTableModelListener(TableModelListener tl) {
+            }
+        });
+    }
+
+    private void actualizarTablaGastos() {
+        vista.getTbGastos().setModel(new TableModel() {
+
+            @Override
+            public int getRowCount() {
+                return gastos.size();
+            }
+
+            @Override
+            public int getColumnCount() {
+                return columnasGastos.length;
+            }
+
+            @Override
+            public String getColumnName(int columnIndex) {
+                return columnasGastos[columnIndex];
+            }
+
+            @Override
+            public Class<?> getColumnClass(int i) {
+                return String.class;
+            }
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+
+            @Override
+            public Object getValueAt(int rowIndex, int columnIndex) {
+                Gasto gas;
+                Ayuda ayu;
+                Movimiento mov;
+                switch (columnIndex) {
+                    case 0:
+                        return TestDatos.formatter.format(gastos.get(rowIndex).getFecha());
+                    case 1:
+                        return gastos.get(rowIndex).getImporte();
+                    case 2:
+                        mov = gastos.get(rowIndex);
+                        if (mov.getClass() == Gasto.class) {
+                            gas = (Gasto) mov;
+                            try {
+                                ayu = AyudaJDBC.getInstance().obtenerAyuda((long) gas.getOIDAyuda());
+                                return ayu.getBeneficiarioDeAyuda().getNIF();
+                            } catch (SQLException ex) {
+                                Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            return "";
+                        }
+
+                    default:
+                        return "";
+                }
+            }
+
+            @Override
+            public void setValueAt(Object o, int i, int i1) {
+            }
+
+            @Override
+            public void addTableModelListener(TableModelListener tl) {
+            }
+
+            @Override
+            public void removeTableModelListener(TableModelListener tl) {
+            }
+        });
+    }
+
+    private ArrayList<Movimiento> obtenerIngresos(Date fechaInicial, Date fechaFin) {
+        ArrayList<Movimiento> ingresos_t = new ArrayList<Movimiento>();
+        try {
+            ingresos_t = MovimientoJDBC.getInstance().obtenerDatosIngresos(fechaInicial, fechaFin);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ingresos_t;
+    }
+
+    private ArrayList<Movimiento> obtenerGastos(Date fechaInicial, Date fechaFin) {
+        ArrayList<Movimiento> gastos_t = new ArrayList<Movimiento>();
+        try {
+            gastos_t = MovimientoJDBC.getInstance().obtenerDatosGastos(fechaInicial, fechaFin);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return gastos_t;
+    }
+	
+    private float obtenerBalance(){
+        return MovimientoJDBC.getInstance().obtenerBalance(ingresos, gastos);
+    }
+	
+    
 
     // Metodos JDBC
 
@@ -273,32 +272,27 @@ public class ControladorContabilidad {
     }    
 
     // TODO Listeners de los botones
-    
     class BtBuscarContabilidad implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            Date fechaInicio = new Date();
-            Date fechaFin = new Date();
-            try { 
+            vista.getLabelError().setVisible(false);
+            Date fechaInicio;
+            Date fechaFin;
+            try {
                 fechaInicio = TestDatos.formatter.parse(vista.getFieldFechaInicio().getText());
-                fechaFin = TestDatos.formatter.parse(vista.getFieldFechaFin().getText()); 
-            } catch (Exception e) {
-                vista.setTextLabelError("Fecha : dd/MM/YYYY");
-            }
-            
-             // Hay que hacer esto para actualizar las variables y de esta forma actualizar la tabla de ingresos y gastos
-            
-           
-                obtenerIngresos(fechaInicio, fechaFin);
-                obtenerGastos(fechaInicio, fechaFin);
+                fechaFin = TestDatos.formatter.parse(vista.getFieldFechaFin().getText());
+                
+                ingresos = obtenerIngresos(fechaInicio, fechaFin);
+                gastos = obtenerGastos(fechaInicio, fechaFin);
 
                 actualizarTablaGastos();
                 actualizarTablaIngresos();
-                
+
                 vista.getCuadroBalance().setText(Float.toString(obtenerBalance()));
-    
+            } catch (Exception e) {
+                vista.setTextLabelError("Fecha : dd/MM/YYYY");
+            }
         }
-       
     }
 }

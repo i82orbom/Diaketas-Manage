@@ -54,15 +54,14 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
         return textBusquedaDemandanteDNI.getText();
     }
 
-    	public int getAntiguedad(){
-		return cbAntiguedad.getSelectedIndex();
-		
-    }
 
     public JLabel getLabelError() {
         return labelError;
     }
-        
+
+    public int getAntiguedad(){
+        return cbAntiguedad.getSelectedIndex();
+    }
     
     public JButton getBTConsultar(){
         return BTModificar;
@@ -83,11 +82,11 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
         textBusquedaDemandanteDNI = new javax.swing.JTextField();
         cbSector = new javax.swing.JComboBox();
         jLabel65 = new javax.swing.JLabel();
-        cbAntiguedad = new javax.swing.JComboBox();
         BTEliminar = new javax.swing.JButton();
         BTModificar = new javax.swing.JButton();
         BTBuscar3 = new javax.swing.JButton();
         labelError = new javax.swing.JLabel();
+        cbAntiguedad = new javax.swing.JComboBox();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
@@ -117,8 +116,6 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
 
         jLabel65.setText("Antiguedad");
 
-        cbAntiguedad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-
         BTEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
 
         BTModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/modificar.png"))); // NOI18N
@@ -133,6 +130,8 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
         labelError.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelError.setForeground(new java.awt.Color(255, 0, 0));
         labelError.setToolTipText("");
+
+        cbAntiguedad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todas", "1 mes", "2 meses", "3 meses", "4 meses", "5 meses", "6 meses", "7 meses", "8 meses", "9 meses", "10 meses", "11 meses", "mas de 1 año" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -151,9 +150,9 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
                         .addComponent(cbSector, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(79, 79, 79)
                         .addComponent(jLabel65)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
                         .addComponent(BTBuscar3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(112, 112, 112))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
