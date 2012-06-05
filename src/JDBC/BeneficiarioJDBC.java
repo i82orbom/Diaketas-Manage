@@ -115,11 +115,12 @@ public class BeneficiarioJDBC {
             driver.desconectar();
         }
 
-        benef.setAyudasPrestadas(obtenerAyudasBeneficiario(benef.getNIF()));
+		if (benef!=null)
+	       benef.setAyudasPrestadas(obtenerAyudasBeneficiario(benef.getNIF()));
 
         return benef;
     }
-    
+
     public Beneficiario obtenerBeneficiario(long OID) throws SQLException {
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "SELECT * FROM beneficiario b, persona p WHERE (p.OID='" + OID + "') AND p.OID=b.OID";
