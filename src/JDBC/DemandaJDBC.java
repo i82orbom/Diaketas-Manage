@@ -167,7 +167,7 @@ public class DemandaJDBC {
         return temp;
     }
 
-    public boolean ConsultarDemandaSector (int oid) throws SQLException {
+    public boolean ConsultarDemandaSector (long oid) throws SQLException {
 
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "SELECT * FROM Sector WHERE OID ="+oid;
@@ -177,7 +177,7 @@ public class DemandaJDBC {
         try{
             driver.conectar();
             resultado=driver.seleccionar(sql);
-            if(resultado.next())
+            if(resultado.getRow() > 0)
                 exito=true;
             else
                 exito = false;
