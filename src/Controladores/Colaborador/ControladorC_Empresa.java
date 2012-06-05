@@ -7,7 +7,6 @@ import JDBC.C_EmpresaJDBC;
 import Modelo.C_Empresa;
 import Modelo.Colaboracion;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
-import Vistas.Paneles.Empresa.VistaEmpresa;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -58,7 +57,7 @@ public class ControladorC_Empresa {
      */
     private static ControladorC_Empresa instancia = null;
 
-    
+
     public static ControladorC_Empresa getInstance(VistaColaboradores pvista) {
 
         if (instancia == null) {
@@ -67,57 +66,57 @@ public class ControladorC_Empresa {
         return instancia;
 
     }
-    
+
     C_Empresa C_Empresa_temp;
-    
+
     private ArrayList<C_Empresa> empresas;
     private ArrayList<Colaboracion> ColaboracionesEmpresa;
-    
+
     Colaboracion Colaboracion_temp;
-    
+
     private VistaColaboradores vista;
-    
+
     private SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
-    
+
     private String[] columnasEmpresa = {"CIF", "Nombre", "DireccionWeb", "Localidad", "Fax"};
     private String[] columnasColaboracionEmpresa = {"Importe", "Fecha ", "Concepto", "Confirmado por"};
 
     public ControladorC_Empresa(VistaColaboradores pvista) {
         this.vista = pvista;
-        
+
         vista.getPanelEmpresaInicio().anadirListenerbtNuevaEmpresa(new btNuevaEmpresaListener());
         vista.getPanelEmpresaInicio().anadirListenerbtBuscarEmpresa(new btBuscadorEmpresaListener());
-        
+
         vista.getPanelEmpresaDatos().getBtGuardarEmpresa().addActionListener(new btGuardarDatosEmpresaListener());
         vista.getPanelEmpresaDatos().getBtLimpiarEmpresa().addActionListener(new btLimpiarDatosEmpresaListener());
         vista.getPanelEmpresaDatos().getBtGuardarColaboracionesEmpresa().addActionListener(new btGuardarColaboracionesEmpresaListener());
         vista.getPanelEmpresaDatos().getBtEliminarColaboracionesEmpresa().addActionListener(new btEliminarColaboracionesEmpresaListener());
         vista.getPanelEmpresaDatos().getBtBuscarColaboracionesEmpresa().addActionListener(new btBuscarColaboracionesEmpresaListener());
-        
+
         vista.getPanelEmpresaBuscar().getBtBuscarEmpresa().addActionListener(new btBuscarEmpresaListener());
         vista.getPanelEmpresaBuscar().getBtConsultarEmpresa().addActionListener(new btConsultarEmpresaListener());
         vista.getPanelEmpresaBuscar().getBtEliminarEmpresa().addActionListener(new btEliminarEmpresaListener());
-        
+
         anadirKeyListener();
     }
-    
+
     private void actualizarTablaColaboraciones(){
         /*
         if(C_Empresa_temp!=null){
-            
+
             vista.getPanelEmpresaDatos().getTbColaboracionesEmpresa().setModel(new TableModel(){
-                
-   
-                        
+
+
+
             });
         }
         */
     }
-    
+
     /**
-     * 
+     *
      * @param datos
-     * @return 
+     * @return
      */
     public boolean anadirC_Empresa(String[] datos) {
 
@@ -149,11 +148,11 @@ public class ControladorC_Empresa {
 
         return exito;
     }
-    
+
     /**
-     * 
+     *
      * @param CIF
-     * @return 
+     * @return
      */
     public C_Empresa obtenerC_Empresa (String CIF) {
         C_Empresa tempE;
@@ -169,9 +168,9 @@ public class ControladorC_Empresa {
     }
 
     /**
-     * 
+     *
      * @param datos
-     * @return 
+     * @return
      */
     public boolean modificarC_Empresa (String[] datos) {
         if (!ComprobarDatos(datos))
@@ -205,9 +204,9 @@ public class ControladorC_Empresa {
     }
 
     /**
-     * 
+     *
      * @param tempE
-     * @return 
+     * @return
      */
     public boolean eliminarC_Empresa (C_Empresa tempE) {
         boolean exito;
@@ -221,10 +220,10 @@ public class ControladorC_Empresa {
     }
 
     /**
-     * 
+     *
      * @param tipoBusqueta
      * @param valor
-     * @return 
+     * @return
      */
     public ArrayList<C_Empresa> buscarC_Empresa (String tipoBusqueta, String valor) {
         ArrayList<C_Empresa> personas;
@@ -240,76 +239,76 @@ public class ControladorC_Empresa {
     }
 
     /**
-     * 
+     *
      * @param datos
-     * @return 
+     * @return
      */
     private boolean ComprobarDatos (String[] datos) {
-        
-        vista.getPanelEmpresaDatos().setColorLabels(Color.black);
+		boolean exito = true;
+		vista.getPanelEmpresaDatos().setColorLabels(Color.black);
 
-        if (!TestDatos.isCIF(datos[C_Empresa.CIF_ID])){
-            vista.getPanelEmpresaDatos().setColorLabelCIF(Color.red);
-            return false;
-        }
+		if (!TestDatos.isCIF(datos[C_Empresa.CIF_ID])){
+			vista.getPanelEmpresaDatos().setColorLabelCIF(Color.red);
+			 exito = false;
+		}
 
-        if (!TestDatos.isCodigoPostal(datos[C_Empresa.CP_ID])){
-            vista.getPanelEmpresaDatos().setColorLabelCP(Color.red);
-            return false;
-        }
+		if (!TestDatos.isCodigoPostal(datos[C_Empresa.CP_ID])){
+			vista.getPanelEmpresaDatos().setColorLabelCP(Color.red);
+			exito = false;
+		}
 
-        if (!TestDatos.isEmail(datos[C_Empresa.EMAIL_ID])){
-            vista.getPanelEmpresaDatos().setColorLabelEmail(Color.red);
-            return false;
-        }
+		if (!TestDatos.isEmail(datos[C_Empresa.EMAIL_ID])){
+			vista.getPanelEmpresaDatos().setColorLabelEmail(Color.red);
+			exito = false;
+		}
 
-        if (!TestDatos.isTelefonoOFax(datos[C_Empresa.TELEFONO1_ID])){
-            vista.getPanelEmpresaDatos().setColorLabelTelefonoFijo(Color.red);
-            return false;
-        }
-        
-        if (!TestDatos.isTelefonoOFax(datos[C_Empresa.TELEFONO2_ID])){
-            vista.getPanelEmpresaDatos().setColorLabelTelefonoMovil(Color.red);
-            return false;
-        }
+		if (!TestDatos.isTelefonoOFax(datos[C_Empresa.TELEFONO1_ID])){
+			vista.getPanelEmpresaDatos().setColorLabelTelefonoFijo(Color.red);
+			exito = false;
+		}
 
-        if (!TestDatos.isOnlyLetter(datos[C_Empresa.NOMBRE_ID])){
-            vista.getPanelEmpresaDatos().setColorLabelNombre(Color.red);
-            return false;
-        }
+		if (!TestDatos.isTelefonoOFax(datos[C_Empresa.TELEFONO2_ID])){
+			vista.getPanelEmpresaDatos().setColorLabelTelefonoMovil(Color.red);
+			exito = false;
+		}
 
-        if (!TestDatos.isOnlyLetter(datos[C_Empresa.DIRECCION_ID])){
-            vista.getPanelEmpresaDatos().setColorLabelDireccion(Color.red);
-            return false;
-        }
-        
-        if (!TestDatos.isOnlyLetter(datos[C_Empresa.DIRECCION_WEB_ID])){
-            vista.getPanelEmpresaDatos().setColorLabelDireccion(Color.red);
-            return false;
-        }
+		if (!TestDatos.isNombre(datos[C_Empresa.NOMBRE_ID])){
+			vista.getPanelEmpresaDatos().setColorLabelNombre(Color.red);
+			exito = false;
+		}
 
-        if (!TestDatos.isOnlyLetter(datos[C_Empresa.LOCALIDAD_ID])){
-            vista.getPanelEmpresaDatos().setColorLabelLocalidad(Color.red);
-            return false;
-        }
+		if (!TestDatos.isDomicilio(datos[C_Empresa.DIRECCION_ID])){
+			vista.getPanelEmpresaDatos().setColorLabelDireccion(Color.red);
+			exito = false;
+		}
 
-        if (!TestDatos.isOnlyLetter(datos[C_Empresa.PROVINCIA_ID])){
-            vista.getPanelEmpresaDatos().setColorLabelProvincia(Color.red);
-            return false;
-        }
+		if (!TestDatos.isOnlyLetter(datos[C_Empresa.DIRECCION_WEB_ID])){
+			vista.getPanelEmpresaDatos().setColorLabelDireccion(Color.red);
+			exito = false;
+		}
 
-        if (datos[C_Empresa.TELEFONO2_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[C_Empresa.TELEFONO2_ID]))
-            return false;
+		if (!TestDatos.isNombre(datos[C_Empresa.LOCALIDAD_ID])){
+			vista.getPanelEmpresaDatos().setColorLabelLocalidad(Color.red);
+			exito = false;
+		}
 
-        if (datos[C_Empresa.FAX_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[C_Empresa.FAX_ID]))
-            return false;
+		if (!TestDatos.isNombre(datos[C_Empresa.PROVINCIA_ID])){
+			vista.getPanelEmpresaDatos().setColorLabelProvincia(Color.red);
+			exito = false;
+		}
 
-        return true;
+		if (datos[C_Empresa.TELEFONO2_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[C_Empresa.TELEFONO2_ID]))
+			exito = false;
+
+		if (datos[C_Empresa.FAX_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[C_Empresa.FAX_ID]))
+			exito = false;
+
+		return exito;
     }
 
     private void anadirKeyListener() {
         TextKeyListener keyListener = new TextKeyListener();
-        
+
         vista.getPanelEmpresaDatos().getTextNombre().addKeyListener(keyListener);
         vista.getPanelEmpresaDatos().getTextCIF().addKeyListener(keyListener);
         vista.getPanelEmpresaDatos().getTextDireccionWeb().addKeyListener(keyListener);
@@ -321,12 +320,12 @@ public class ControladorC_Empresa {
         vista.getPanelEmpresaDatos().getTextTelefonoFijo().addKeyListener(keyListener);
         vista.getPanelEmpresaDatos().getTextTelefonoMovil().addKeyListener(keyListener);
         vista.getPanelEmpresaDatos().getTextEmail().addKeyListener(keyListener);
-        
+
         vista.getPanelEmpresaDatos().getTextImporte().addKeyListener(keyListener);
         vista.getPanelEmpresaDatos().getTextConcepto().addKeyListener(keyListener);
         vista.getPanelEmpresaDatos().getTextFecha().addKeyListener(keyListener);
     }
-    
+
     class TextKeyListener implements KeyListener {
 
         @Override
@@ -343,7 +342,7 @@ public class ControladorC_Empresa {
         @Override
         public void keyReleased(KeyEvent ke) {
         }
-        
+
     }
     /* BOTONES PANEL_EMPRESA_INICIO */
     class btNuevaEmpresaListener implements ActionListener {
@@ -353,7 +352,7 @@ public class ControladorC_Empresa {
             ControladorColaboradores.getInstance(null).mostrarVistaEmpresaNuevo();
         }
     }
-    
+
     class btBuscadorEmpresaListener implements ActionListener {
 
         @Override
@@ -361,12 +360,12 @@ public class ControladorC_Empresa {
             ControladorColaboradores.getInstance(null).mostrarVistaEmpresaBuscar();
         }
     }
-    
+
     /* BOTONES PANEL_EMPRESA_DATOS */
     class btBuscarColaboracionesEmpresaListener implements ActionListener {
 
         @Override
-        public void actionPerformed(ActionEvent e) { 
+        public void actionPerformed(ActionEvent e) {
         }
     }
 
@@ -393,24 +392,24 @@ public class ControladorC_Empresa {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            
+
             boolean datosValidos=true;
-            
+
             if(vista.getPanelEmpresaDatos().getTextImporte().getText().equals("")){
                 vista.getPanelEmpresaDatos().setColorLabelImporte(Color.red);
                 datosValidos = false;
             }
-            
+
             if(vista.getPanelEmpresaDatos().getTextConcepto().getText().equals("")){
                 vista.getPanelEmpresaDatos().setColorLabelConcepto(Color.red);
                 datosValidos = false;
             }
-            
+
             if(vista.getPanelEmpresaDatos().getTextFecha().getText().equals("")){
                 vista.getPanelEmpresaDatos().setColorLabelFecha(Color.red);
                 datosValidos = false;
             }
-            
+
             if(!datosValidos){
                 vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("Los campos en rojo están mal");
             }else{
@@ -419,7 +418,7 @@ public class ControladorC_Empresa {
                     c.setImporte(Float.parseFloat(vista.getPanelEmpresaDatos().getTextImporte().getText()));
                     c.setConcepto(vista.getPanelEmpresaDatos().getTextConcepto().getText());
                     c.setFecha(new Date());
-                    
+
                     boolean exito = ControladorColaboracion.getInstance().anadirColaboracion(c);
                     if (exito)
                         vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("Colaboración añadida");
@@ -429,7 +428,7 @@ public class ControladorC_Empresa {
                     Colaboracion_temp.setImporte(Float.parseFloat(vista.getPanelEmpresaDatos().getTextImporte().getText()));
                     Colaboracion_temp.setConcepto(vista.getPanelEmpresaDatos().getTextConcepto().getText());
                     Colaboracion_temp.setFecha(new Date());
-                    
+
                     boolean exito = ControladorColaboracion.getInstance().anadirColaboracion(Colaboracion_temp);
                     if (exito)
                         vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("Colaboración modificada");
@@ -437,7 +436,7 @@ public class ControladorC_Empresa {
                         vista.getPanelEmpresaDatos().setTextLabelErrorColaboraciones("Colaboracion no modificada");
                 }
             }
-            
+
         }
     }
 
@@ -453,25 +452,20 @@ public class ControladorC_Empresa {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            
-            String[] datos = vista.getPanelEmpresaDatos().getDatosPersonales();
-            if (C_Empresa_temp != null) {
-                
-                boolean exito = modificarC_Empresa(datos);
-                if (exito) 
-                    vista.getPanelEmpresaDatos().setTextLabelError("Empresa modificada correctamente.");
-                else 
-                    vista.getPanelEmpresaDatos().setTextLabelError("La Empresa no ha sido modificada.");
-                
-            } else {
-                
-                boolean exito = anadirC_Empresa(datos);
-                if (exito)
-                    vista.getPanelEmpresaDatos().setTextLabelError("Empresa añadida correctamente.");
-                else
-                    vista.getPanelEmpresaDatos().setTextLabelError("La Empresa no ha sido añadida.");   
-            }
-   
+			String[] datos = vista.getPanelEmpresaDatos().getDatosPersonales();
+			if (C_Empresa_temp != null) {
+				boolean exito = modificarC_Empresa(datos);
+				if (exito)
+					vista.getPanelEmpresaDatos().setTextLabelError("Empresa modificada correctamente.");
+				else
+					vista.getPanelEmpresaDatos().setTextLabelError("La Empresa no ha sido modificada.");
+			} else {
+				boolean exito = anadirC_Empresa(datos);
+				if (exito)
+					vista.getPanelEmpresaDatos().setTextLabelError("Empresa añadida correctamente.");
+				else
+					vista.getPanelEmpresaDatos().setTextLabelError("La Empresa no ha sido añadida.");
+			}
         }
     }
 
@@ -506,10 +500,10 @@ public class ControladorC_Empresa {
             } else {
                 vista.getPanelEmpresaBuscar().setTextLabelError("Selecciona una empresa");
             }
-            
+
         }
     }
-    
+
     class btBuscarEmpresaListener implements ActionListener {
 
         @Override
@@ -576,10 +570,10 @@ public class ControladorC_Empresa {
                 public void removeTableModelListener(TableModelListener l) {
                     throw new UnsupportedOperationException("Not supported yet.");
                 }
-                
-                
+
+
             };
-            vista.getPanelEmpresaBuscar().getTbBuscadorEmpresas().setModel(tabla); 
+            vista.getPanelEmpresaBuscar().getTbBuscadorEmpresas().setModel(tabla);
         }
     }
 }
