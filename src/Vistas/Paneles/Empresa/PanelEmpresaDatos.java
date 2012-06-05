@@ -188,7 +188,7 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
     }
 
     public String[] getDatosPersonales() {
-        String[] datos = new String[24];
+        String[] datos = new String[20];
 
         datos[C_Empresa.NOMBRE_ID] = jTextNombre.getText();
         datos[C_Empresa.CIF_ID] = jTextCIF.getText();
@@ -197,6 +197,7 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
         datos[C_Empresa.TELEFONO2_ID] = jTextTelefonoMovil.getText();
         datos[C_Empresa.DIRECCION_ID] = jTextDireccion.getText();
         datos[C_Empresa.LOCALIDAD_ID] = jTextLocalidad.getText();
+        datos[C_Empresa.PROVINCIA_ID] = jTextProvincia.getText();
         datos[C_Empresa.CP_ID] = jTextCP.getText();
         datos[C_Empresa.FAX_ID] = jTextFax.getText();
         datos[C_Empresa.EMAIL_ID] = jTextEmail.getText();
@@ -334,6 +335,7 @@ public class PanelEmpresaDatos extends javax.swing.JPanel {
         jLabelProvincia.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelProvincia.setText("Provincia");
 
+        jLabelError.setForeground(new java.awt.Color(255, 0, 0));
         jLabelError.setText("Mensaje de Error");
         jLabelError.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
