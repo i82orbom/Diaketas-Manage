@@ -123,16 +123,15 @@ public class AyudaJDBC {
 
     }
 
-    public Ayuda obtenerAyuda(TipoAyuda tipoAyuda, String beneficiarioDNI, Date fecha) throws SQLException {
+    public Ayuda obtenerAyuda(TipoAyuda tipoAyuda, long oidBenef, Date fecha) throws SQLException {
 
         DriverJDBC driver = DriverJDBC.getInstance();
 
         Ayuda ayuda = null;
-        String sql = "SELECT * FROM ayuda WHERE Fecha='" + fecha + "' AND BeneficiarioNIF='" + beneficiarioDNI + "' AND TipoAyudaOID='" + tipoAyuda.getOID() + "' LIMIT 1";
+        String sql = "SELECT * FROM ayuda WHERE Fecha='" + fecha + "' AND OID_Bene='" + oidBenef + "' AND TipoAyudaOID='" + tipoAyuda.getOID() + "' LIMIT 1";
         driver.conectar();
         ResultSet resultados = driver.seleccionar(sql);
-        driver.desconectar();
-
+        
         while (resultados.next()) {
             ayuda = new Ayuda();
             ayuda.setOID(resultados.getLong("OID"));
@@ -141,6 +140,7 @@ public class AyudaJDBC {
             ayuda.setObservaciones("Observaciones");
 
         }
+		driver.desconectar();
         return ayuda;
     }
 	
@@ -220,8 +220,12 @@ public class AyudaJDBC {
         boolean exito = driver.eliminar(sql);
 
         if (exito) {
-            String sql2 = "DELETE FROM ayuda WHERE OID='" + ayudaOID + "'";
+            String sql2 = "DELETE FROM Gasto WHERE OIDAyuda='" + ayudaOID + "'";
             exito = driver.eliminar(sql2);
+			if(exito){
+				String sql3 = "DELETE FROM ayuda WHERE OID='" + ayudaOID + "'";
+				exito = driver.eliminar(sql3);
+			}
         }
         driver.desconectar();
         return exito;
@@ -285,9 +289,17 @@ public class AyudaJDBC {
         Beneficiario ben = ayuda.getBeneficiarioDeAyuda();
         Voluntario vol = ayuda.getVoluntarioQueOtorga();
 
-        String sql = "INSERT INTO ayuda (Fecha,Importe,Observaciones,TipoAyudaOID,OID_Volun,OID_Bene) VALUES ('" + TestDatos.formatterBD.format(ayuda.getFecha()) + "','" + importe.toString() + "','" + ayuda.getObservaciones() + "','" + ayuda.getTipo_ayuda().getOID() + "','" + vol.getOID() + "','" + ben.getOID() + "')";
+		String sql1 = "INSERT INTO Movimiento (cantidad, fecha, concepto) VALUES ('"+ayuda.getImporte()+"','"+TestDatos.formatterBD.format(ayuda.getFecha())+"','"+ayuda.getTipo_ayuda().getTitulo()+"')";
+		
+        String sql2 = "INSERT INTO ayuda (Fecha,Importe,Observaciones,TipoAyudaOID,OID_Volun,OID_Bene) VALUES ('" + TestDatos.formatterBD.format(ayuda.getFecha()) + "','" + importe.toString() + "','" + ayuda.getObservaciones() + "','" + ayuda.getTipo_ayuda().getOID() + "','" + vol.getOID() + "','" + ben.getOID() + "')";
         driver.conectar();
-        boolean exito = driver.insertar(sql);
+        boolean exito = driver.insertar(sql1);
+		exito = driver.insertar(sql2);
+		
+		long oidAyuda = obtenerAyuda(ayuda.getTipo_ayuda(),ayuda.getBeneficiarioDeAyuda().getOID(),ayuda.getFecha()).getOID();
+				
+		String sql3 = "INSERT INTO Gasto (OIDAyuda) VALUES ("+oidAyuda+")";
+		exito = driver.insertar(sql3);
         driver.desconectar();
         
         ayuda.setOID(this.getOIDUltimaAyuda());

@@ -38,8 +38,8 @@ import javax.swing.table.TableModel;
  ** HISTORIA:
  ** 	000 - 16 mai 2012 - RC - Creacion
  ** 	001 - 22 mai 2012 - RC - Adicion metodos relacionados con modelo
- **	002 -  1 jun 2012 - JGM - Método para actualizar la tabla ingresos
- **	003 -  4 jun 2012 - JGM - Método para actualizar la tabla gastos
+ **		002 -  1 jun 2012 - JGM - Método para actualizar la tabla ingresos
+ **		003 -  4 jun 2012 - JGM - Método para actualizar la tabla gastos
  **
  ** NOTAS:
  **
