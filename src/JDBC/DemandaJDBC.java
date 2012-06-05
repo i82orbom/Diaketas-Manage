@@ -67,60 +67,7 @@ public class DemandaJDBC {
         }
     }
 
-
- /*
-   public ArrayList<Demanda> FiltrarDemandas (Long beneficiario, Long sector, String antiguedad)throws SQLException{
-		DriverJDBC driver = DriverJDBC.getInstance();
-		Date fecha_limite;
-		String sql = "SELECT * FROM Demanda d WHERE '1'='1' ";
-
-		if (beneficiario>0) sql += " AND d.oidbeneficiario = "+beneficiario;
-		if (sector>0) sql += " AND d.OIDsector = "+sector+"";
-
-
-//		s.descripcion= '"+sector+"' AND s.OID = o.OIDSector AND (CURDATE()- '"+antiguedad+"')> o.Fecha";
-		ArrayList<Demanda> lista_demanda = new ArrayList<Demanda>();
-
-		try{
-			Demanda temp;
-			Sector tempSector = new Sector();
-			Beneficiario tempBeneficiario = new Beneficiario();
-
-			driver.conectar();
-			ResultSet resultados = driver.seleccionar(sql);
-
-			while(resultados.next()){
-				temp = new Demanda();
-				temp.setOID(resultados.getLong("OID"));
-                                temp.setDescripcionValidaLaboral(resultados.getString("DescripcionVidaLaboral"));
-				temp.setFecha(resultados.getDate("Fecha"));
-
-				tempBeneficiario.setOID(resultados.getLong("OIDbeneficiario"));
-				tempBeneficiario.setNIF("NIF");
-				temp.setIdBeneficiario(tempBeneficiario);
-
-				tempSector.setOID(resultados.getLong("OIDsector"));
-				tempSector.setDescripcion("Decripcion");
-				temp.setIdSector(tempSector);
-
-				lista_demanda.add(temp);
-			}
-		}
-		catch (SQLException ex){
-			throw ex;
-		}
-		finally {
-			driver.desconectar();
-		}
-
-
-
-		return lista_demanda;
-	}
-
-
-   */
-       public ArrayList<Demanda> FiltrarDemandas2(long OIDBeneficiario , long OIDSector , int meses) throws SQLException {
+       public ArrayList<Demanda> FiltrarDemandas(long OIDBeneficiario , long OIDSector , int meses) throws SQLException {
         DriverJDBC driver = DriverJDBC.getInstance();
         ResultSet resultados;
         ArrayList<Demanda> listaDemandas= new ArrayList<Demanda>();
@@ -133,14 +80,13 @@ public class DemandaJDBC {
         if( OIDSector > 0) {
                 sql += " AND OIDSector="+OIDSector;
         }
-        sql+=" AND Fecha>=DATE_SUB(CURDATE(), INTERVAL "+meses+" MONTH);";
+        sql+=" AND Fecha<=DATE_SUB(CURDATE(), INTERVAL "+meses+" MONTH);";
         try {
             driver.conectar();
             resultados = driver.seleccionar(sql);
 
             while (resultados.next()) {
                 temp = new Demanda();
-                System.out.println(resultados.getString("OIDBeneficiario"));
                 temp.setBeneficiario(BeneficiarioJDBC.getInstance().obtenerBeneficiario(resultados.getLong("OIDBeneficiario")));
                 temp.setVoluntario(VoluntarioJDBC.getInstance().obtenerVoluntario(resultados.getLong("OIDVoluntario")));
                 temp.setSector(SectorJDBC.getInstance().ConsultarSector(resultados.getLong("OIDSector")));
@@ -158,92 +104,9 @@ public class DemandaJDBC {
         return listaDemandas;
     }
     
-    public ArrayList<Demanda> FiltrarDemandas(long OIDBeneficiario , long OIDSector , int meses) throws SQLException{
-		DriverJDBC driver = DriverJDBC.getInstance();
-		ResultSet resultado;
-
-		ArrayList<Demanda> listaDemandas = new ArrayList<Demanda>();
-		Beneficiario beneficiario;
-		Voluntario voluntario;
-		Sector sector;
-		Demanda temp;
-
-		String sql = "SELECT * FROM Demanda WHERE '1'='1'";
-		if( OIDBeneficiario > 0) {
-			sql += " AND OIDBeneficiario="+OIDBeneficiario;
-		}
-		if( OIDSector > 0) {
-			sql += " AND OIDSector="+OIDSector;
-		}
-		sql+=" AND Fecha<=DATE_SUB(CURDATE(), INTERVAL "+meses+" MONTH);";
-
-		try{
-			driver.conectar();
-			resultado = driver.seleccionar(sql);
-			System.out.println("Consulta: "+sql);
-
-			while (resultado.next()){
-				beneficiario = new Beneficiario();
-				voluntario = new Voluntario();
-				sector = new Sector();
-
-				//____ Datos de la demanda ____
-				temp = new Demanda();
-				temp.setOID(resultado.getLong("OID"));
-				temp.setDescripcionValidaLaboral(resultado.getString("DescripcionVidaLaboral"));
-				temp.setFecha(resultado.getDate("Fecha"));
-
-				beneficiario.setOID(resultado.getLong("OIDBeneficiario"));
-				temp.setBeneficiario(beneficiario);
-
-//				voluntario.setOID(resultado.getLong("OIDVoluntario"));
-//				temp.setVoluntario(voluntario);
-
-				sector.setOID(resultado.getLong("OIDSector"));
-				temp.setSector(sector);
-
-				//____ Añadimos la demanda al arraylist ____
-				listaDemandas.add(temp);
-			}
-
-			for (Demanda d:listaDemandas){
-				sector = d.getSector();
-				beneficiario = d.getBeneficiario();
-//				voluntario = d.getVoluntario();
-
-				//____ Obtenemos el sector ____
-				String sql1 = "SELECT * FROM Sector WHERE OID ="+sector.getOID();
-				resultado = driver.seleccionar(sql1);
-				sector.setDescripcion(resultado.getString("Descripcion"));
-
-				//____ Obtenemos el beneficiario ____
-				sql1 = "SELECT NIF FROM Persona WHERE OID = "+beneficiario.getOID();
-				resultado = driver.seleccionar(sql1);
-				beneficiario = BeneficiarioJDBC.getInstance().obtenerBeneficiario(resultado.getString("NIF"));
-
-				//____ Obtenemos el voluntario ____
-/*				sql1 = "SELECT NIF FROM Persona WHERE OID = "+voluntario.getOID();
-				resultado = driver.seleccionar(sql1);
-				voluntario = VoluntarioJDBC.getInstance().obtenerVoluntario(resultado_1.getString("NIF"));
-				temp.setVoluntario(voluntario);
-*/
-
-			}
-		}
-		catch (SQLException ex){
-			throw ex;
-		}
-		finally {
-			driver.desconectar();
-		}
-
-		return listaDemandas;
-    }
-
     public boolean ActualizarDemanda (Demanda demanda) throws SQLException {
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql1 = "UPDATE Demanda SET OIDSector = "+demanda.getSector().getOID()+",OIDVoluntario = "+demanda.getVoluntario().getOID()+",DescripcionVidaLaboral = '"+demanda.getDescripcionValidaLaboral()+"',Fecha= CURDATE() WHERE OID = '"+demanda.getOID()+"';";
-System.out.println(sql1);
         try {
             driver.conectar();
             driver.actualizar(sql1);
