@@ -100,7 +100,7 @@ public class ControladorContabilidad {
 
 			@Override
 			public Object getValueAt(int rowIndex, int columnIndex) {
-			Movimiento col;
+			Movimiento mov;
 			C_Empresa emp;
 			C_Persona per;
 				switch(columnIndex){
@@ -109,9 +109,10 @@ public class ControladorContabilidad {
 					case 1:
 						return ingresos.get(rowIndex).getImporte();
 					case 2:
-						if(ingresos.get(rowIndex).getClass() == Colaboracion.class){
-							col = (Colaboracion)ingresos.get(rowIndex);
-					/*		try{
+						mov = ingresos.get(rowIndex);							
+						if(mov.getClass() == Colaboracion.class){
+							Colaboracion col = (Colaboracion)mov;
+							try{
 								emp = C_EmpresaJDBC.getInstance().obtenerC_Empresa(col.getOIDColaborador());
 								return emp.getCIF();
 							}
@@ -119,13 +120,13 @@ public class ControladorContabilidad {
 								Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
 							}
 							try{
-								per = C_PersonaJDBC.getInstance().obtenerC_Persona(col.getOIDColaborador().toString());
+								per = C_PersonaJDBC.getInstance().obtenerC_Persona(col.getOID().toString());
 								return per.getDNI();
 							}
 							catch(SQLException ex){
 								Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
 							}
-							return "";*/
+							return "";
 						}
 						
 					default: return "";
@@ -182,16 +183,18 @@ public class ControladorContabilidad {
 			public Object getValueAt(int rowIndex, int columnIndex) {
 			Gasto gas;
 			Ayuda ayu;
-				switch(columnIndex){/*
+			Movimiento mov;
+				switch(columnIndex){
 					case 0:
 						return formateador.format(gastos.get(rowIndex).getFecha());
 					case 1:
 						return gastos.get(rowIndex).getImporte();
 					case 2:
-						if(gastos.get(rowIndex).getClass() == Gasto.class){
-							gas = (Gasto)gastos.get(rowIndex);
+						mov = gastos.get(rowIndex);
+						if(mov.getClass() == Gasto.class){
+							gas = (Gasto)mov;
 							try{
-								ayu = AyudaJDBC.getInstance().obtenerAyuda(gas.getOIDAyuda());
+								ayu = AyudaJDBC.getInstance().obtenerAyuda((long)gas.getOIDAyuda());
 								return ayu.getBeneficiarioDeAyuda().getNIF();
 							}
 							catch(SQLException ex){
@@ -199,7 +202,7 @@ public class ControladorContabilidad {
 							}
 							return "";
 						}
-						*/
+						
 					default: return "";
 				}
 			}

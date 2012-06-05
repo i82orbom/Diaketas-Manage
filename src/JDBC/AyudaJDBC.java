@@ -143,6 +143,27 @@ public class AyudaJDBC {
         }
         return ayuda;
     }
+	
+	public Ayuda obtenerAyuda(Long oid) throws SQLException {
+
+        DriverJDBC driver = DriverJDBC.getInstance();
+
+        Ayuda ayuda = null;
+        String sql = "SELECT * FROM ayuda WHERE OID='" + oid;
+        driver.conectar();
+        ResultSet resultados = driver.seleccionar(sql);
+        driver.desconectar();
+
+        while (resultados.next()) {
+            ayuda = new Ayuda();
+            ayuda.setOID(resultados.getLong("OID"));
+            ayuda.setFecha(resultados.getDate("Fecha"));
+            ayuda.setImporte(resultados.getFloat("Importe"));
+            ayuda.setObservaciones("Observaciones");
+
+        }
+        return ayuda;
+    }
 
     public ArrayList<TipoAyuda> obtenerDatosTipoAyuda() throws SQLException {
 
