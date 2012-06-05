@@ -25,11 +25,11 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
     }
 
 	public JTable getTbIngresos(){
-		return tablaListaIngresos;
+		return tablaListaGastos;
 	}
 	
 	public JTable getTbGastos(){
-		return tablaListaGastos;
+		return tablaListaIngresos;
 	}
 	
     public JTextField getCuadroBalance() {
@@ -59,9 +59,9 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaListaGastos = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
         tablaListaIngresos = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaListaGastos = new javax.swing.JTable();
         fieldFechaInicio = new javax.swing.JFormattedTextField();
         fieldFechaFin = new javax.swing.JFormattedTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -78,7 +78,7 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1000, 550));
         setPreferredSize(new java.awt.Dimension(1000, 550));
 
-        tablaListaGastos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaListaIngresos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -97,10 +97,10 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tablaListaGastos.setToolTipText("");
-        jScrollPane1.setViewportView(tablaListaGastos);
+        tablaListaIngresos.setToolTipText("");
+        jScrollPane1.setViewportView(tablaListaIngresos);
 
-        tablaListaIngresos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaListaGastos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -119,7 +119,7 @@ public class PanelVoluntarioContabilidad extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tablaListaIngresos);
+        jScrollPane2.setViewportView(tablaListaGastos);
 
         fieldFechaInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
