@@ -93,8 +93,6 @@ public class PanelVoluntarioBuscar extends javax.swing.JPanel {
         btVerVoluntario.setText("Ver Voluntario");
         btVerVoluntario.setActionCommand("verBeneficiarioBusqueda");
 
-        textBusqueda.setText("Buscar");
-
         btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
         btBuscar.setActionCommand("buscarBeneficiarioDNI");
 
