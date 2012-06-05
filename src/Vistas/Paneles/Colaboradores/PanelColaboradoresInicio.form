@@ -30,7 +30,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
               <Component id="btColaborador" min="-2" pref="231" max="-2" attributes="0"/>
-              <EmptySpace pref="402" max="32767" attributes="0"/>
+              <EmptySpace pref="400" max="32767" attributes="0"/>
               <Component id="btSocio" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
           </Group>
@@ -63,7 +63,7 @@
           <Font name="Lucida Grande" size="14" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/images/monigotes_redimensionados.png"/>
+          <Image iconType="3" name="/Vista/images/colaboradores.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="COLABORADORES"/>
         <Property name="actionCommand" type="java.lang.String" value="nuevoBeneficiario"/>
@@ -77,10 +77,10 @@
           <Font name="Lucida Grande" size="14" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/images/socios.jpg"/>
+          <Image iconType="3" name="/Vista/images/empresa-redes-sociales-web-201.png"/>
         </Property>
+        <Property name="text" type="java.lang.String" value="SOCIOS"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
-        <Property name="label" type="java.lang.String" value="SOCIO"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[215, 183]"/>
         </Property>
@@ -96,9 +96,9 @@
           <Font name="Lucida Grande" size="14" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/images/empresas-redimensionada.jpg"/>
+          <Image iconType="3" name="/Vista/images/empresac6.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="EMPRESA"/>
+        <Property name="text" type="java.lang.String" value="EMPRESAS"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>

@@ -18,11 +18,11 @@ public class PanelEmpresaInicio extends javax.swing.JPanel {
     public PanelEmpresaInicio() {
         initComponents();
     }
-    
+
     public void anadirListenerbtBuscarEmpresa(ActionListener listener){
         btBuscarEmpresa.addActionListener(listener);
     }
-    
+
     public void anadirListenerbtNuevaEmpresa(ActionListener listener){
         btNuevaEmpresa.addActionListener(listener);
     }
@@ -41,14 +41,14 @@ public class PanelEmpresaInicio extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         btNuevaEmpresa.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        btNuevaEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/usu.png"))); // NOI18N
+        btNuevaEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/nueva-empresa.png"))); // NOI18N
         btNuevaEmpresa.setText("NUEVA EMPRESA");
         btNuevaEmpresa.setActionCommand("contabilidad");
         btNuevaEmpresa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btNuevaEmpresa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         btBuscarEmpresa.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        btBuscarEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/lupa.png"))); // NOI18N
+        btBuscarEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar-empresa.png"))); // NOI18N
         btBuscarEmpresa.setText("BUSCAR");
         btBuscarEmpresa.setActionCommand("buscarVoluntario");
         btBuscarEmpresa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -58,21 +58,21 @@ public class PanelEmpresaInicio extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(btNuevaEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
-                .addComponent(btBuscarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(172, 172, 172)
+                .addComponent(btNuevaEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(189, 189, 189)
+                .addComponent(btBuscarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(201, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(152, 152, 152)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btNuevaEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btBuscarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addGap(170, 170, 170)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btNuevaEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btBuscarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
