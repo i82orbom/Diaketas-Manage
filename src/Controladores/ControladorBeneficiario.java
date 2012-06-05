@@ -343,6 +343,51 @@ public class ControladorBeneficiario {
 
         return true;
     }
+	
+	private boolean modificarBeneficiario(String[] datos) {
+        if (this.comprobarDatos(datos) == false) {
+            return false;
+        }
+
+        try{
+			Beneficiario beneficiario = BeneficiarioJDBC.getInstance().obtenerBeneficiario(datos[Beneficiario.NIF_ID]);
+			beneficiario.setNIF(datos[Beneficiario.NIF_ID]);
+			beneficiario.setNombre(datos[Beneficiario.NOMBRE_ID]);
+			beneficiario.setApellidos(datos[Beneficiario.APELLIDOS_ID]);
+			
+			try {
+				beneficiario.setFechaDENacimiento(TestDatos.formatter.parse(datos[Beneficiario.FECHA_DE_NACIMIENTO_ID]));
+			} catch (ParseException ex) {
+				Logger.getLogger(ControladorBeneficiario.class.getName()).log(Level.SEVERE, null, ex);
+			}
+
+			beneficiario.setDomicilio(datos[Beneficiario.DOMICILIO_ID]);
+			beneficiario.setCP(datos[Beneficiario.CP_ID]);
+			beneficiario.setLocalidad(datos[Beneficiario.LOCALIDAD_ID]);
+			beneficiario.setTelefonoMovil(datos[Beneficiario.TELEFONO_MOVIL_ID]);
+			beneficiario.setTelefonoFijo(datos[Beneficiario.TELEFONO_FIJO_ID]);
+			beneficiario.setEstadoCivil(datos[Beneficiario.ESTADO_CIVIL_ID]);
+
+			beneficiario.setNacionalidad(datos[Beneficiario.NACIONALIDAD_ID]);
+			beneficiario.setNivelDeEstudio(datos[Beneficiario.NIVELESTUDIOS_ID]);
+			beneficiario.setObservaciones(datos[Beneficiario.OBSERVACIONES_ID]);
+			beneficiario.setOcupacion(datos[Beneficiario.OCUPACION_ID]);
+			beneficiario.setProfesion(datos[Beneficiario.PROFESION_ID]);
+			beneficiario.setSituacionEconomica(datos[Beneficiario.SITUACION_ECONOMICA_ID]);
+			beneficiario.setVivienda(datos[Beneficiario.VIVIENDA_ID]);
+			Float alquiler = Float.parseFloat(datos[Beneficiario.VIVIENDA_ALQUILER_ID]);
+			beneficiario.setViviendaAlquiler(alquiler);
+			beneficiario.setViviendaObservaciones(datos[Beneficiario.VIVIENDA_OBSERVACIONES_ID]);
+			
+			BeneficiarioJDBC.getInstance().modificarDatosBeneficiario(beneficiario);
+		}		
+        catch (SQLException se) {
+            ControladorErrores.mostrarError("Error al añadir beneficiario:\n" + se.getMessage());
+            return false;
+        }
+
+        return true;
+    }
 
     private ArrayList<Beneficiario> buscarBeneficiario(String dato, String tipoDato) {
         ArrayList<Beneficiario> benefs;
@@ -503,7 +548,16 @@ public class ControladorBeneficiario {
             if (benef != null) {
                 //TODO Modificar beneficiario
             } else {
-                boolean exito = insertarBeneficiario(datos);
+				boolean exito = false;
+                try{
+					if(BeneficiarioJDBC.getInstance().obtenerBeneficiario(datos[Beneficiario.NIF_ID]) == null)
+						exito = insertarBeneficiario(datos);
+					else
+						exito = modificarBeneficiario(datos);
+				}
+				catch(SQLException se){
+					ControladorErrores.mostrarError("Error al añadir beneficiario:\n" + se.getMessage());
+				}
 
                 if (exito) {
                     vista.getPanelDatos().setTextLabelError("Beneficiario añadido correctamente.");
