@@ -121,12 +121,12 @@ public class ControladorContabilidad {
                         mov = ingresos.get(rowIndex);
                         if (mov.getClass() == Colaboracion.class) {
                             Colaboracion col = (Colaboracion) mov;
-                            try {
+                     /*       try {
                                 emp = C_EmpresaJDBC.getInstance().obtenerC_Empresa(col.getOIDColaborador());
                                 return emp.getCIF();
                             } catch (SQLException ex) {
                                 Logger.getLogger(ControladorContabilidad.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+                            }*/
                             try {
                                 per = C_PersonaJDBC.getInstance().obtenerC_Persona(col.getOID().toString());
                                 return per.getDNI();
