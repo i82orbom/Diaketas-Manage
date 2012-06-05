@@ -287,15 +287,17 @@ public class ControladorContabilidad {
                 vista.setTextLabelError("Fecha : dd/MM/YYYY");
             }
             
-            vista.getCuadroBalance().setText(Float.toString(obtenerBalance()));
+             // Hay que hacer esto para actualizar las variables y de esta forma actualizar la tabla de ingresos y gastos
             
-            // Hay que hacer esto para actualizar las variables y de esta forma actualizar la tabla de ingresos y gastos
-            
-            if (!(obtenerIngresos(fechaInicio, fechaFin) == null || obtenerGastos(fechaInicio, fechaFin) == null)){
+           
+                obtenerIngresos(fechaInicio, fechaFin);
+                obtenerGastos(fechaInicio, fechaFin);
 
                 actualizarTablaGastos();
                 actualizarTablaIngresos();
-            }
+                
+                vista.getCuadroBalance().setText(Float.toString(obtenerBalance()));
+    
         }
        
     }
