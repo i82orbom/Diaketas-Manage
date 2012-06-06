@@ -104,7 +104,7 @@ public class ControladorC_Empresa {
     }
 
     /**
-     *
+     * Funcion para añadir un Colaborador Empresa
      * @param datos
      * @return
      */
@@ -131,7 +131,7 @@ public class ControladorC_Empresa {
 
         boolean exito = false;
         try {
-            exito = C_EmpresaJDBC.getInstance().añadirC_Empresa(tempE);
+            exito = C_EmpresaJDBC.getInstance().anadirC_Empresa(tempE);
         } catch (SQLException ex) {
             Logger.getLogger(ControladorC_Persona.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -140,7 +140,7 @@ public class ControladorC_Empresa {
     }
 
     /**
-     *
+     * Funcion que obtiene un Colaborador Empresa a partir del CIF
      * @param CIF
      * @return
      */
@@ -158,7 +158,25 @@ public class ControladorC_Empresa {
     }
 
     /**
-     *
+     * Función que obtiene un Colaborador Empresa a partir del OID
+     * @param OID
+     * @return 
+     */
+    public C_Empresa obtenerC_Empresa (Long OID) {
+        C_Empresa tempE;
+
+        try {
+            tempE = C_EmpresaJDBC.getInstance().obtenerC_Empresa(OID);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorC_Persona.class.getName()).log(Level.SEVERE, null, ex);
+            tempE = null;
+        }
+
+        return tempE;
+    }
+    
+    /**
+     * Función que modifica un Colaborador Empresa
      * @param datos
      * @return
      */
@@ -194,7 +212,7 @@ public class ControladorC_Empresa {
     }
 
     /**
-     *
+     * Funcion que elimina un Colaborador Empresa
      * @param tempE
      * @return
      */
@@ -210,7 +228,7 @@ public class ControladorC_Empresa {
     }
 
     /**
-     *
+     * Buscar un Colaborador Empresa
      * @param tipoBusqueta
      * @param valor
      * @return
@@ -243,7 +261,7 @@ public class ControladorC_Empresa {
     
     */
     /**
-     *
+     * Comprueba si los datos introducidos son correctos
      * @param datos
      * @return
      */
