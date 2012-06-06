@@ -15,7 +15,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -209,14 +208,17 @@ public class ControladorSocio{
 		} catch (SQLException ex) {
 			Logger.getLogger(ControladorSocio.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		if(pagosCuotas!=null)
-			System.out.println(pagosColaboraciones.size());
-		else
-			System.out.println("no tiene na2");
+	
 		ArrayList<Movimiento> pagos = new ArrayList<Movimiento>();
-		pagos.addAll(pagosCuotas);
-		pagos.addAll(pagosColaboraciones);
-
+		for(int i=0; i<pagosCuotas.size(); i++){
+			pagos.add(pagosCuotas.get(i));
+			pagos.get(i).setOID(pagosCuotas.get(i).getOID());
+		}
+		for(int i=0; i<pagosColaboraciones.size(); i++){
+			pagos.add(pagosColaboraciones.get(i));
+			pagos.get(i).setOID(pagosColaboraciones.get(i).getOID());
+		}
+		
 		return pagos;
 	}
 

@@ -4,6 +4,10 @@
  */
 package Vistas.Paneles.Colaborador;
 
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Alberto
@@ -15,8 +19,69 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
      */
     public PanelColaboradorDatos() {
         initComponents();
+		labelError.setVisible(false);
     }
+	
+	
+	public JButton getBtBorrarDatosColaborador() {
+		return btLimpiarDatosColaborador;
+	}
 
+	public JButton getBtGuardarDatosColaborador() {
+		return btGuardarDatosColaborador;
+	}
+	
+	public void setTextLabelError (String text) {
+		labelError.setText(text);
+		labelError.setVisible(true);
+	}
+	
+		public JTextField getTextNombre(){
+		return jTextNombre;
+	}
+        public JTextField getTextApellidos(){
+		return jTextApellidos;
+	}
+        public JTextField getTextDNI(){
+		return jTextDNI;
+	}
+        public JTextField getTextEmail(){
+                return jTextEmail;
+        }
+        
+        public JFormattedTextField getTextFN(){
+			return jFormattedTextFechaNacimiento;
+        }
+        public char getSexo(){
+			if(radioSexoMasculinoSocio.isSelected())
+				return 'H';
+			else
+				return 'M';
+
+		}
+        public JTextField getTextLocalidad(){
+                return jTextLocalidad;
+        }
+        
+        public JTextField getTextProvincia(){
+                return jTextProvincia;
+        }        
+        
+        public JTextField getTextDomicilio(){
+                return jTextDomicilio;
+        }
+        
+        public JTextField getTextCP(){
+                return jTextCP;
+        }
+        
+        public JTextField getTextTelfFijo(){
+                return jTextTelefono;
+        }
+                
+        public JTextField getTextTelMovil(){
+                return jTextMovil;
+        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,37 +91,40 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupSexo = new javax.swing.ButtonGroup();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         PanelDatosColaborador = new javax.swing.JPanel();
-        label27 = new javax.swing.JLabel();
-        label28 = new javax.swing.JLabel();
-        textNombreColaborador = new javax.swing.JTextField();
-        label29 = new javax.swing.JLabel();
-        textDNIColaborador = new javax.swing.JTextField();
-        label30 = new javax.swing.JLabel();
-        textNacionalidadColaborador = new javax.swing.JTextField();
-        label31 = new javax.swing.JLabel();
-        label32 = new javax.swing.JLabel();
-        label33 = new javax.swing.JLabel();
-        label34 = new javax.swing.JLabel();
-        label35 = new javax.swing.JLabel();
-        textTelefonoColaborador = new javax.swing.JTextField();
-        textLocalidadColaborador = new javax.swing.JTextField();
-        textCPColaborador = new javax.swing.JTextField();
-        textDomiciolioColaborador = new javax.swing.JTextField();
-        label36 = new javax.swing.JLabel();
-        label37 = new javax.swing.JLabel();
-        textApellidosColaborador = new javax.swing.JTextField();
-        radioFemeninoColaborador = new javax.swing.JRadioButton();
-        radioMasculinoColaborador = new javax.swing.JRadioButton();
-        label39 = new javax.swing.JLabel();
-        label41 = new javax.swing.JLabel();
-        textProvinciaColaborador = new javax.swing.JTextField();
-        textMovilColaborador = new javax.swing.JTextField();
-        label42 = new javax.swing.JLabel();
-        btGuardarColaborador = new javax.swing.JButton();
-        btLimpiarColaborador = new javax.swing.JButton();
-        textFechaNacimiento = new javax.swing.JFormattedTextField();
+        label7 = new javax.swing.JLabel();
+        label14 = new javax.swing.JLabel();
+        radioSexoFemeninoSocio = new javax.swing.JRadioButton();
+        label17 = new javax.swing.JLabel();
+        btGuardarDatosColaborador = new javax.swing.JButton();
+        btLimpiarDatosColaborador = new javax.swing.JButton();
+        radioSexoMasculinoSocio = new javax.swing.JRadioButton();
+        labelError = new javax.swing.JLabel();
+        jTextNombre = new javax.swing.JTextField();
+        jTextDNI = new javax.swing.JTextField();
+        jTextEmail = new javax.swing.JTextField();
+        jTextDomicilio = new javax.swing.JTextField();
+        jTextLocalidad = new javax.swing.JTextField();
+        jTextCP = new javax.swing.JTextField();
+        jTextTelefono = new javax.swing.JTextField();
+        jTextMovil = new javax.swing.JTextField();
+        jTextProvincia = new javax.swing.JTextField();
+        jTextApellidos = new javax.swing.JTextField();
+        jFormattedTextFechaNacimiento = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        Localidad = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         PanelColaboracionesColaborador = new javax.swing.JPanel();
         label43 = new javax.swing.JLabel();
         jScrollPane13 = new javax.swing.JScrollPane();
@@ -80,202 +148,221 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
 
         PanelDatosColaborador.setBackground(new java.awt.Color(255, 255, 255));
 
-        label27.setForeground(new java.awt.Color(255, 51, 51));
-        label27.setText("Datos personales");
+        label7.setForeground(new java.awt.Color(255, 51, 51));
+        label7.setText("Datos personales");
 
-        label28.setText("Nombre");
+        label14.setText("de");
 
-        textNombreColaborador.setText("Nombre");
+        radioSexoFemeninoSocio.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroupSexo.add(radioSexoFemeninoSocio);
+        radioSexoFemeninoSocio.setText("Mujer");
 
-        label29.setText("DNI/Pasaporte");
+        label17.setForeground(new java.awt.Color(255, 0, 0));
+        label17.setText("Datos de contacto");
 
-        textDNIColaborador.setText("DNI/Pasaporte");
-        textDNIColaborador.setName("");
+        btGuardarDatosColaborador.setBackground(new java.awt.Color(255, 255, 255));
+        btGuardarDatosColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
+        btGuardarDatosColaborador.setBorder(null);
 
-        label30.setText("Nacionalidad");
+        btLimpiarDatosColaborador.setBackground(new java.awt.Color(255, 255, 255));
+        btLimpiarDatosColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
+        btLimpiarDatosColaborador.setBorder(null);
 
-        textNacionalidadColaborador.setText("Nacionalidad");
+        radioSexoMasculinoSocio.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroupSexo.add(radioSexoMasculinoSocio);
+        radioSexoMasculinoSocio.setSelected(true);
+        radioSexoMasculinoSocio.setText("Hombre");
+        radioSexoMasculinoSocio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        label31.setForeground(new java.awt.Color(255, 0, 0));
-        label31.setText("Datos de contacto");
+        labelError.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        labelError.setForeground(new java.awt.Color(255, 51, 51));
+        labelError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelError.setText("Error");
 
-        label32.setText("Domicilio");
+        jTextNombre.setText("Nombre");
 
-        label33.setText("Localidad");
+        jTextDNI.setText("DNI/Pasaporte");
 
-        label34.setText("Código Postal");
+        jTextEmail.setText("E-mail");
 
-        label35.setText("Teléfono");
+        jTextDomicilio.setText("Domicilio");
 
-        textTelefonoColaborador.setText("Fijo");
+        jTextLocalidad.setText("Localidad");
 
-        textLocalidadColaborador.setText("Localidad");
+        jTextCP.setText("Codigo Postal");
 
-        textCPColaborador.setText("Código Postal");
+        jTextTelefono.setText("Telefono fijo");
 
-        textDomiciolioColaborador.setText("Calle, número, escalera, piso");
+        jTextMovil.setText("Telefono Movil");
 
-        label36.setText("Apellidos");
+        jTextProvincia.setText("Provincia");
 
-        label37.setText("Nacido el");
+        jTextApellidos.setText("Apellidos");
 
-        textApellidosColaborador.setText("Apellidos");
+        jFormattedTextFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
-        radioFemeninoColaborador.setBackground(new java.awt.Color(255, 255, 255));
-        radioFemeninoColaborador.setText("Mujer");
+        jLabel1.setText("Nombre");
 
-        radioMasculinoColaborador.setBackground(new java.awt.Color(255, 255, 255));
-        radioMasculinoColaborador.setText("Hombre");
+        jLabel2.setText("DNI / NIF/ Pasaporte");
 
-        label39.setText("Sexo");
+        jLabel3.setText("E-Mail");
 
-        label41.setText("Provincia");
+        jLabel4.setText("Domicilio");
 
-        textProvinciaColaborador.setText("Provincia");
+        Localidad.setText("Localidad");
 
-        textMovilColaborador.setText("Movil");
+        jLabel6.setText("Código Postal");
 
-        label42.setText("Movil");
+        jLabel7.setText("Teléfono");
 
-        btGuardarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
+        jLabel9.setText("Apellidos");
 
-        btLimpiarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
+        jLabel10.setText("Fecha Nacimiento");
 
-        textFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        jLabel11.setText("Sexo");
+
+        jLabel12.setText("Provincia");
+
+        jLabel13.setText("Movil");
 
         javax.swing.GroupLayout PanelDatosColaboradorLayout = new javax.swing.GroupLayout(PanelDatosColaborador);
         PanelDatosColaborador.setLayout(PanelDatosColaboradorLayout);
         PanelDatosColaboradorLayout.setHorizontalGroup(
             PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(25, 25, 25)
                 .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
                         .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label31)
-                            .addComponent(label27))
+                            .addComponent(label7)
+                            .addComponent(label17))
                         .addContainerGap())
                     .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label32)
-                            .addComponent(label33)
-                            .addComponent(label41)
-                            .addComponent(label35))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textLocalidadColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelDatosColaboradorLayout.createSequentialGroup()
-                                    .addComponent(textTelefonoColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(35, 35, 35)
-                                    .addComponent(label42)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(textMovilColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
-                                    .addComponent(textProvinciaColaborador)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(label34)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(textCPColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(textDomiciolioColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(492, 492, 492))))
-            .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label28)
-                    .addComponent(label29)
-                    .addComponent(label30))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textNacionalidadColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textDNIColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textNombreColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
-                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label37)
-                            .addComponent(label39))
-                        .addGap(18, 18, 18)
+                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
+                                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
+                                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4)
+                                            .addComponent(Localidad)
+                                            .addComponent(jLabel6))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosColaboradorLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jLabel2)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextCP, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(64, 64, 64)
                         .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
-                                .addComponent(radioMasculinoColaborador)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(radioFemeninoColaborador))
-                            .addComponent(textFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
-                        .addComponent(label36)
-                        .addGap(18, 18, 18)
-                        .addComponent(textApellidosColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(48, 48, 48))
+                                .addGap(29, 29, 29)
+                                .addComponent(btGuardarDatosColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(71, 71, 71)
+                                .addComponent(btLimpiarDatosColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(322, 322, 322)
+                                .addComponent(label14))
+                            .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
+                                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel13))
+                                .addGap(18, 18, 18)
+                                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
+                                        .addComponent(radioSexoMasculinoSocio)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(radioSexoFemeninoSocio))
+                                    .addComponent(jFormattedTextFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextMovil, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextApellidos)
+                                    .addComponent(jTextProvincia, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE))))
+                        .addGap(17, 17, 17))))
             .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
-                .addGap(340, 340, 340)
-                .addComponent(btGuardarColaborador)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btLimpiarColaborador)
-                .addContainerGap())
+                .addGap(380, 380, 380)
+                .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         PanelDatosColaboradorLayout.setVerticalGroup(
             PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addContainerGap()
                 .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
-                        .addComponent(label27)
+                        .addComponent(label7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(13, 13, 13))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosColaboradorLayout.createSequentialGroup()
+                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jTextApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
+                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel10)
+                    .addComponent(jFormattedTextFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(label14))
+                    .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label28)
-                            .addComponent(label36)
-                            .addComponent(textApellidosColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label29)
-                            .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(textFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label37)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)
+                            .addComponent(radioSexoMasculinoSocio)
+                            .addComponent(radioSexoFemeninoSocio))))
+                .addGap(38, 38, 38)
+                .addComponent(label17)
+                .addGap(33, 33, 33)
+                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosColaboradorLayout.createSequentialGroup()
                         .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label39)
-                            .addComponent(radioMasculinoColaborador)
-                            .addComponent(radioFemeninoColaborador)))
-                    .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(textNombreColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textDNIColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(32, 32, 32))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosColaboradorLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
                         .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label30)
-                            .addComponent(textNacionalidadColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(1, 1, 1)))
-                .addGap(47, 47, 47)
-                .addComponent(label31)
+                            .addComponent(Localidad)
+                            .addComponent(jTextLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)
+                            .addComponent(jTextProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel13)
+                    .addComponent(jTextMovil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addComponent(labelError)
                 .addGap(18, 18, 18)
-                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textDomiciolioColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label32))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textLocalidadColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label33))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label41)
-                    .addComponent(textProvinciaColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label34)
-                    .addComponent(textCPColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textTelefonoColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label35)
-                    .addComponent(label42)
-                    .addComponent(textMovilColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(85, 85, 85)
-                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btGuardarColaborador)
-                    .addComponent(btLimpiarColaborador))
-                .addGap(56, 56, 56))
+                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btLimpiarDatosColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btGuardarDatosColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
         );
 
         jTabbedPane3.addTab("Datos", PanelDatosColaborador);
@@ -414,52 +501,55 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Localidad;
     private javax.swing.JPanel PanelColaboracionesColaborador;
     private javax.swing.JPanel PanelDatosColaborador;
     private javax.swing.JButton btColaboradorBuscar;
     private javax.swing.JButton btEliminarColaborador;
     private javax.swing.JButton btGuardarColaboracionColaborador;
-    private javax.swing.JButton btGuardarColaborador;
-    private javax.swing.JButton btLimpiarColaborador;
+    private javax.swing.JButton btGuardarDatosColaborador;
+    private javax.swing.JButton btLimpiarDatosColaborador;
+    private javax.swing.ButtonGroup buttonGroupSexo;
     private javax.swing.JComboBox cbFechaFinalColaborador;
     private javax.swing.JComboBox cbFechaInicialColaborador;
+    private javax.swing.JFormattedTextField jFormattedTextFechaNacimiento;
     private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JLabel label27;
-    private javax.swing.JLabel label28;
-    private javax.swing.JLabel label29;
-    private javax.swing.JLabel label30;
-    private javax.swing.JLabel label31;
-    private javax.swing.JLabel label32;
-    private javax.swing.JLabel label33;
-    private javax.swing.JLabel label34;
-    private javax.swing.JLabel label35;
-    private javax.swing.JLabel label36;
-    private javax.swing.JLabel label37;
-    private javax.swing.JLabel label39;
-    private javax.swing.JLabel label41;
-    private javax.swing.JLabel label42;
+    private javax.swing.JTextField jTextApellidos;
+    private javax.swing.JTextField jTextCP;
+    private javax.swing.JTextField jTextDNI;
+    private javax.swing.JTextField jTextDomicilio;
+    private javax.swing.JTextField jTextEmail;
+    private javax.swing.JTextField jTextLocalidad;
+    private javax.swing.JTextField jTextMovil;
+    private javax.swing.JTextField jTextNombre;
+    private javax.swing.JTextField jTextProvincia;
+    private javax.swing.JTextField jTextTelefono;
+    private javax.swing.JLabel label14;
+    private javax.swing.JLabel label17;
     private javax.swing.JLabel label43;
     private javax.swing.JLabel label44;
     private javax.swing.JLabel label45;
     private javax.swing.JLabel label46;
     private javax.swing.JLabel label47;
-    private javax.swing.JRadioButton radioFemeninoColaborador;
-    private javax.swing.JRadioButton radioMasculinoColaborador;
+    private javax.swing.JLabel label7;
+    private javax.swing.JLabel labelError;
+    private javax.swing.JRadioButton radioSexoFemeninoSocio;
+    private javax.swing.JRadioButton radioSexoMasculinoSocio;
     private javax.swing.JTable tableColaboracionesColaborador;
-    private javax.swing.JTextField textApellidosColaborador;
-    private javax.swing.JTextField textCPColaborador;
     private javax.swing.JTextField textCantidadColaborador;
     private javax.swing.JTextField textConceptoColaborador;
-    private javax.swing.JTextField textDNIColaborador;
-    private javax.swing.JTextField textDomiciolioColaborador;
-    private javax.swing.JFormattedTextField textFechaNacimiento;
-    private javax.swing.JTextField textLocalidadColaborador;
-    private javax.swing.JTextField textMovilColaborador;
-    private javax.swing.JTextField textNacionalidadColaborador;
-    private javax.swing.JTextField textNombreColaborador;
-    private javax.swing.JTextField textProvinciaColaborador;
-    private javax.swing.JTextField textTelefonoColaborador;
     // End of variables declaration//GEN-END:variables
 }

@@ -82,6 +82,7 @@ public class ControladorColaboracion {
 
         return null;
     }
+	
 	public boolean comprobarSiColaboracion (Long oid){
 		boolean exito=false;
 		try {

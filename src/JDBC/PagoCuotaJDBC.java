@@ -25,7 +25,6 @@
 package JDBC;
 
 import Controladores.TestDatos;
-import Controladores.Voluntario.ControladorVoluntario;
 import Modelo.PagoCuota;
 import Modelo.Socio;
 import Modelo.Voluntario;
@@ -129,16 +128,16 @@ public class PagoCuotaJDBC {
     public ArrayList<PagoCuota> HistorialPagosCuotas (Socio s, Date fechaInicio, Date fechaFin) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-		Voluntario vol = new Voluntario();
         ArrayList<PagoCuota> listaPagosCuotas = new ArrayList<PagoCuota>();
         String sql = "SELECT * FROM PagoCuota p, Movimiento m, Voluntario v WHERE p.OID=m.OID AND p.OIDSocio='"+s.getOID()+"' AND p.OIDVoluntario=v.OID";
-		System.out.println(sql);
-        try {
+
+		try {
             driver.conectar();
             ResultSet rs = driver.seleccionar(sql);
 
             while(rs.next()){
                 PagoCuota PagoC = new PagoCuota();
+				PagoC.setOIDPagoCuota(rs.getLong("OID"));
 				PagoC.setSocio(s);
 				PagoC.setVoluntario(VoluntarioJDBC.getInstance().obtenerVoluntario(rs.getLong("OIDVoluntario")));
                 PagoC.setConcepto(rs.getString("Concepto"));

@@ -142,6 +142,7 @@ public class ColaboracionJDBC {
 
             while(rs.next()){
                 colaboracion = new Colaboracion();
+				colaboracion.setOIDColaboracion(rs.getLong("OID"));
 				colaboracion.setColaborador(c);
 				colaboracion.setVoluntario(VoluntarioJDBC.getInstance().obtenerVoluntario(rs.getLong("OIDVoluntario")));
 				colaboracion.setVoluntario(vol);
@@ -163,7 +164,8 @@ public class ColaboracionJDBC {
 
 	public boolean comprobarSiColaboracion(Long oid) throws SQLException{
 		DriverJDBC driver = DriverJDBC.getInstance();
-		String sql = "SELECT * FROM Colaboracion c WHERE c.OIDVoluntario='"+oid+"'";
+		String sql = "SELECT * FROM Colaboracion c WHERE c.OID='"+oid+"'";
+		System.out.println(sql);
 		boolean existe=false;
         try {
             driver.conectar();
