@@ -298,7 +298,8 @@ public class ControladorBeneficiario {
         vista.getPanelDatos().getTextObservacionesIntervencionBeneficiario().setText("");
         vista.getPanelDatos().getCbTiposAyuda().setSelectedIndex(0);
         ayudaSeleccionada = null;
-        vista.getPanelDatos().getTbIntervenciones().removeRowSelectionInterval(0, benef.getAyudasPrestadas().size() - 1);
+        if (benef.getAyudasPrestadas().size() > 0)
+            vista.getPanelDatos().getTbIntervenciones().removeRowSelectionInterval(0, benef.getAyudasPrestadas().size() - 1);
     }
 
     private boolean insertarBeneficiario(String[] datos) {
