@@ -1,9 +1,11 @@
 package Controladores.Colaborador;
 
 import Controladores.ControladorColaboradores;
+import Controladores.ControladorPrincipal;
 import Controladores.TestDatos;
 import Controladores.Voluntario.ControladorColaboracion;
 import JDBC.C_EmpresaJDBC;
+import JDBC.ColaboracionJDBC;
 import Modelo.C_Empresa;
 import Modelo.Colaboracion;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
@@ -13,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -98,19 +101,6 @@ public class ControladorC_Empresa {
         vista.getPanelEmpresaBuscar().getBtEliminarEmpresa().addActionListener(new btEliminarEmpresaListener());
 
         anadirKeyListener();
-    }
-
-    private void actualizarTablaColaboraciones(){
-        /*
-        if(C_Empresa_temp!=null){
-
-            vista.getPanelEmpresaDatos().getTbColaboracionesEmpresa().setModel(new TableModel(){
-
-
-
-            });
-        }
-        */
     }
 
     /**
@@ -238,6 +228,20 @@ public class ControladorC_Empresa {
         return personas;
     }
 
+    /* LA HE QUITADO PORQUE HE LLAMADO DIRECTAMENTE EN LA FUNCION BUSCAR AL JDBC
+    public ArrayList<Colaboracion> historialColaboraciones (C_Empresa empresa, java.util.Date fechaInicial, java.util.Date fechaFinal) {
+				
+		ArrayList<Colaboracion> Colaboraciones = null;
+		
+		try {
+			Colaboraciones = ColaboracionJDBC.getInstance().HistorialColaboraciones(empresa, fechaInicial, fechaFinal);
+		} catch (SQLException ex) {
+			Logger.getLogger(ControladorC_Empresa.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return Colaboraciones;
+	}
+    
+    */
     /**
      *
      * @param datos
@@ -366,9 +370,103 @@ public class ControladorC_Empresa {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            
+            boolean datosCorrectos = true;
+            String fechainicial = null;
+            String fechafinal = null;
+            if( !TestDatos.isFecha( vista.getPanelEmpresaDatos().getTextFechaInicial().getText())) {
+                vista.getPanelEmpresaDatos().getTextFechaInicial().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+            if( !TestDatos.isFecha( vista.getPanelEmpresaDatos().getTextFechaFinal().getText())) {
+                vista.getPanelEmpresaDatos().getTextFechaFinal().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+            fechainicial = vista.getPanelEmpresaDatos().getTextFechaInicial().getText();			
+            fechafinal = vista.getPanelEmpresaDatos().getTextFechaFinal().getText();
+            
+            if(!datosCorrectos){
+                vista.getPanelSocioDatos().setTextLabelErrorColaboracion("Las fechas son erroneas");
+            }else{
+                try {
+                    try {
+                        ColaboracionesEmpresa = ColaboracionJDBC.getInstance().HistorialColaboraciones(C_Empresa_temp, TestDatos.formatter.parse(fechainicial), TestDatos.formatter.parse(fechafinal));
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorC_Empresa.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } catch (ParseException ex) {
+                        Logger.getLogger(ControladorC_Empresa.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            actualizarTablaColaboraciones();
         }
     }
+    
+    /**
+     * Funcion para actualizar la Tabla de las Colaboraciones de una Empresa
+     */
+    private void actualizarTablaColaboraciones(){
+        TableModel tableModel = new TableModel(){
 
+            @Override
+            public int getRowCount() {
+                return ColaboracionesEmpresa.size();
+            }
+
+            @Override
+            public int getColumnCount() {
+                return columnasColaboracionEmpresa.length;
+            }
+
+            @Override
+            public String getColumnName(int columnIndex) {
+                return columnasColaboracionEmpresa[columnIndex];
+            }
+
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return String.class;
+            }
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+
+            @Override
+            public Object getValueAt(int rowIndex, int columnIndex) {
+                switch (columnIndex) {
+                        case 0:
+                            return ColaboracionesEmpresa.get(rowIndex).getImporte();
+                        case 1:
+                            return TestDatos.formatter.format(ColaboracionesEmpresa.get(rowIndex).getFecha());
+                        case 2:
+                            return ColaboracionesEmpresa.get(rowIndex).getConcepto();
+                        case 3:
+                            return ControladorPrincipal.getInstance().getVoluntario().getNombre();
+                        default:
+                            return "";
+                    }
+            }
+            
+
+            @Override
+            public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+
+            @Override
+            public void addTableModelListener(TableModelListener l) {
+            }
+
+            @Override
+            public void removeTableModelListener(TableModelListener l) {
+            }
+            
+        };
+        vista.getPanelEmpresaDatos().getTbColaboracionesEmpresa().setModel(tableModel);
+    }
+    
     class btEliminarColaboracionesEmpresaListener implements ActionListener {
 
         @Override

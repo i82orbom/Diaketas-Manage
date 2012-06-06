@@ -192,12 +192,12 @@ public class ControladorOferta {
 
 
 		if (sector!=null){
-/*			try {
+			try {
 				tieneDemandas = DemandaJDBC.getInstance().ConsultarDemandaSector(sector.getOID());
 			} catch (SQLException ex){
 				ControladorErrores.mostrarError("Error al obtener demandas del sector:\n"+ex);
 			}
-*/
+
 			try {
 				tieneOfertas = OfertaJDBC.getInstance().ConsultarOfertaSector(sector.getOID());
 			} catch (SQLException ex){

@@ -33,7 +33,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTabbedPane4" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -212,7 +212,6 @@
                                   <Component id="jTextFax" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelFax" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -228,7 +227,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabelError" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                      <EmptySpace pref="14" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btGuardarEmpresa" min="-2" max="-2" attributes="0"/>
                           <Component id="btLimpiarEmpresa" min="-2" max="-2" attributes="0"/>
@@ -430,7 +429,6 @@
                                                       <Component id="jLabelFecha" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                                       <Component id="jFormattedTextFecha" min="-2" pref="150" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Component id="jTextConcepto" min="-2" pref="570" max="-2" attributes="0"/>
                                               </Group>
@@ -452,16 +450,24 @@
                       <EmptySpace min="0" pref="55" max="32767" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="719" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Component id="btBuscarColaboracionesEmpresa" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btEliminarColaboracionesEmpresa" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="cbFechaFinalEmpresa" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cbFechaInicialEmpresa" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                              <Component id="jLabelFechaFinal" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <Component id="jLabelFechaInicial" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jFormattedTextFechaFinal" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="jFormattedTextFechaInicial" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -473,17 +479,20 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="cbFechaInicialEmpresa" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabelFechaInicial" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jFormattedTextFechaInicial" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="cbFechaFinalEmpresa" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                              <Component id="jLabelFechaFinal" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jFormattedTextFechaFinal" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btBuscarColaboracionesEmpresa" min="-2" max="-2" attributes="0"/>
                                   <Component id="btEliminarColaboracionesEmpresa" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="72" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="49" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -531,24 +540,6 @@
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Vista/images/borrar.png"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="cbFechaFinalEmpresa">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="1">
-                    <StringItem index="0" value="Fecha Final"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="cbFechaInicialEmpresa">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="1">
-                    <StringItem index="0" value="Fecha inicial"/>
-                  </StringArray>
                 </Property>
               </Properties>
             </Component>
@@ -654,6 +645,30 @@
             <Component class="javax.swing.JLabel" name="jLabelErrorColaboraciones">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Mensaje de Error"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelFechaInicial">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fecha Inicial"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelFechaFinal">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fecha Final"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFechaFinal">
+              <Properties>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                  <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFechaInicial">
+              <Properties>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+                  <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>
