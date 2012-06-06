@@ -67,7 +67,7 @@ public class C_EmpresaJDBC {
      * @return true Si se ha podido añadir la Empresa
      * @throws SQLException
      */
-    public boolean añadirC_Empresa(C_Empresa e) throws SQLException{
+    public boolean anadirC_Empresa(C_Empresa e) throws SQLException{
 		DriverJDBC driver = DriverJDBC.getInstance();
 		String sql = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, CP, TelefonoFijo, TelefonoMovil, Email) VALUES ('"
 				+ e.getDireccion()+"','"+e.getLocalidad()+"','"+e.getProvincia()+"','"+e.getCP()+"','"+e.getTelefonoFijo()+"',,'"+e.getTelefonoMovil()+"','"+e.getEmail()+"')";

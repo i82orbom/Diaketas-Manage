@@ -236,12 +236,9 @@ public class ControladorAyuda {
 
             // TODO test ayuda.getBeneficiarioDeAyuda().getNIF() exite
             // TODO test datos
-        try {
-            exito = AyudaJDBC.getInstance().registrarDatosAyuda(ayuda);
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
+       
+        exito = AyudaJDBC.getInstance().registrarDatosAyuda(ayuda);
+        
 
         if (ayuda.getTipo_ayuda().isMonetaria()) {
             exito = ControladorContabilidad.getInstance(null).registrarGastoAyuda(ayuda);
