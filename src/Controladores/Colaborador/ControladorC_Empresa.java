@@ -246,7 +246,7 @@ public class ControladorC_Empresa {
         return personas;
     }
 
-    /* LA HE QUITADO PORQUE HE LLAMADO DIRECTAMENTE EN LA FUNCION BUSCAR AL JDBC
+    
     public ArrayList<Colaboracion> historialColaboraciones (C_Empresa empresa, java.util.Date fechaInicial, java.util.Date fechaFinal) {
 				
 		ArrayList<Colaboracion> Colaboraciones = null;
@@ -259,7 +259,7 @@ public class ControladorC_Empresa {
 		return Colaboraciones;
 	}
     
-    */
+    
     /**
      * Comprueba si los datos introducidos son correctos
      * @param datos
@@ -594,7 +594,8 @@ public class ControladorC_Empresa {
                 C_Empresa_temp = empresas.get(vista.getPanelEmpresaBuscar().getTbBuscadorEmpresas().getSelectedRow());
                 String CIF = vista.getPanelEmpresaBuscar().getTbBuscadorEmpresas().getValueAt(vista.getPanelEmpresaBuscar().getTbBuscadorEmpresas().getSelectedRow(), 0).toString();
                 C_Empresa_temp = obtenerC_Empresa(CIF);
-                // Colaboraciones empresa...
+                ColaboracionesEmpresa = historialColaboraciones(C_Empresa_temp, null, null);
+                actualizarTablaColaboraciones();
                 ControladorColaboradores.getInstance(null).mostrarVistaEmpresaModificar();
             }
         }
