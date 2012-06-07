@@ -153,10 +153,10 @@ public class ControladorBeneficiario {
     }
 
     private void mostrarVistaModificarBeneficiario() {
-        vista.showPanel(VistaBeneficiario.panelDatos);
         ayudaSeleccionada = null;
         vista.getBarraDeNavigacion().setTextLabelNivel1("Beneficiario");
         vista.getBarraDeNavigacion().setTextLabelNivel2("Modificar Beneficiario");
+        vista.showPanel(VistaBeneficiario.panelDatos);
     }
 
     private void actualizarTablaAyuda() {
@@ -225,13 +225,13 @@ public class ControladorBeneficiario {
             });
         }
     }
-    
+
     private void actualizarCampoAyuda () {
         vista.getPanelDatos().getTextImporteBeneficiario().setText(Float.toString(ayudaSeleccionada.getImporte()));
         vista.getPanelDatos().getTextObservacionesIntervencionBeneficiario().setText(ayudaSeleccionada.getObservaciones());
         // TODO actualizar comboBox
     }
-    
+
     private void actualizarTablaFamiliares(){
         vista.getPanelDatos().getTbFamiliares().setModel(new TableModel() {
 
@@ -283,16 +283,16 @@ public class ControladorBeneficiario {
 
             @Override
             public void addTableModelListener(TableModelListener l) {
-               
+
             }
 
             @Override
             public void removeTableModelListener(TableModelListener l) {
-                
+
             }
         });
     }
-    
+
     private void limpiarCamposAyuda() {
         vista.getPanelDatos().getTextImporteBeneficiario().setText("");
         vista.getPanelDatos().getTextObservacionesIntervencionBeneficiario().setText("");
@@ -344,7 +344,7 @@ public class ControladorBeneficiario {
 
         return true;
     }
-	
+
 	private boolean modificarBeneficiario(String[] datos) {
         if (this.comprobarDatos(datos) == false) {
             return false;
@@ -355,7 +355,7 @@ public class ControladorBeneficiario {
 			beneficiario.setNIF(datos[Beneficiario.NIF_ID]);
 			beneficiario.setNombre(datos[Beneficiario.NOMBRE_ID]);
 			beneficiario.setApellidos(datos[Beneficiario.APELLIDOS_ID]);
-			
+
 			try {
 				beneficiario.setFechaDENacimiento(TestDatos.formatter.parse(datos[Beneficiario.FECHA_DE_NACIMIENTO_ID]));
 			} catch (ParseException ex) {
@@ -379,9 +379,9 @@ public class ControladorBeneficiario {
 			Float alquiler = Float.parseFloat(datos[Beneficiario.VIVIENDA_ALQUILER_ID]);
 			beneficiario.setViviendaAlquiler(alquiler);
 			beneficiario.setViviendaObservaciones(datos[Beneficiario.VIVIENDA_OBSERVACIONES_ID]);
-			
+
 			BeneficiarioJDBC.getInstance().modificarDatosBeneficiario(beneficiario);
-		}		
+		}
         catch (SQLException se) {
             ControladorErrores.mostrarError("Error al añadir beneficiario:\n" + se.getMessage());
             return false;
@@ -400,7 +400,7 @@ public class ControladorBeneficiario {
         }
         return benefs;
     }
-    
+
     private ArrayList<Persona> consultarFamiliares(Long OIDBenef){
         ArrayList<Persona> famis;
         try {
@@ -414,13 +414,13 @@ public class ControladorBeneficiario {
 
     private Beneficiario consultarBeneficiario(String dni) {
         Beneficiario beneficiario = null;
-        
+
         try {
             beneficiario = BeneficiarioJDBC.getInstance().obtenerBeneficiario(dni);
         } catch (SQLException ex) {
             Logger.getLogger(ControladorBeneficiario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return beneficiario;
     }
 
@@ -645,6 +645,7 @@ public class ControladorBeneficiario {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (vista.getPanelBuscar().getTablaBusquedaBeneficiario().getSelectedRow() != -1) {
+				vista.getPanelDatos().limpiarFormulario();
                 benef = beneficiarios.get(vista.getPanelBuscar().getTablaBusquedaBeneficiario().getSelectedRow());
                 tiposAyuda = ControladorAyuda.getInstance(null).obtenerTiposAyuda();
                 benef.setFamilia(consultarFamiliares(benef.getOID()));
@@ -662,26 +663,26 @@ public class ControladorBeneficiario {
         @Override
         public void actionPerformed(ActionEvent ae) {
             boolean datosCorrectos = true;
-            
+
             if (vista.getPanelDatos().getCbTiposAyuda().getSelectedItem() == null) {
                 datosCorrectos = false;
             }
-            
+
             try {
                 Float.parseFloat(vista.getPanelDatos().getTextImporteBeneficiario().getText());
             } catch (Exception e) {
                 vista.getPanelDatos().setTextLabelErrorAyuda("El importe debe ser un numero.");
                 datosCorrectos = false;
             }
-            
+
             if (vista.getPanelDatos().getTextImporteBeneficiario().getText().equals("")) {
                 datosCorrectos = false;
             }
-            
+
             if (vista.getPanelDatos().getTextObservacionesIntervencionBeneficiario().getText().equals("")) {
                 datosCorrectos = false;
             }
-            
+
             if (!datosCorrectos) {
                 vista.getPanelDatos().setTextLabelErrorAyuda("Error : la ayuda no ha sido anadido.");
             } else {
@@ -710,7 +711,7 @@ public class ControladorBeneficiario {
                     ayudaSeleccionada.setObservaciones(vista.getPanelDatos().getTextObservacionesIntervencionBeneficiario().getText());
                     ayudaSeleccionada.setTipo_ayuda((TipoAyuda) vista.getPanelDatos().getCbTiposAyuda().getSelectedItem());
                     ayudaSeleccionada.setVoluntarioQueOtorga(ControladorPrincipal.getInstance().getVoluntario());
-                    
+
                     boolean exito = ControladorAyuda.getInstance(null).modificarAyuda(ayudaSeleccionada);
                     if (exito) {
                         benef = consultarBeneficiario(benef.getNIF());
@@ -725,7 +726,7 @@ public class ControladorBeneficiario {
             }
         }
     }
-    
+
     class BtEliminarIntervencionesListener implements ActionListener {
 
         @Override
@@ -747,7 +748,7 @@ public class ControladorBeneficiario {
             }
         }
     }
-    
+
     class BtLimpiarCamposAyudaListener implements ActionListener {
 
         @Override
@@ -756,7 +757,7 @@ public class ControladorBeneficiario {
         }
 
     }
-    
+
     class TablaAyudaListener implements MouseListener{
 
         @Override
@@ -782,6 +783,6 @@ public class ControladorBeneficiario {
         @Override
         public void mouseExited(MouseEvent me) {
         }
-        
+
     }
 }
