@@ -24,6 +24,7 @@
  */
 package JDBC;
 
+import Controladores.TestDatos;
 import Modelo.C_Persona;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -42,7 +43,7 @@ public class C_PersonaJDBC {
      * Instancia C_PersonaJDBC
      */
     private static C_PersonaJDBC instancia;
-
+	private static int OID_Anonimo = 0; 
     /**
      * Constructor
      */
@@ -69,12 +70,11 @@ public class C_PersonaJDBC {
     public boolean añadirC_Persona(C_Persona persona) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, codigoPostal, TelefojonoFijo, TelefojonoMovil, Email) VALUES ('"+persona.getDireccion()+"','"+persona.getLocalidad()+"','"+persona.getProvincia()+"','"+persona.getCP()+"','"+persona.getTelefonoFijo()+"','"+persona.getTelefonoMovil()+"','"+persona.getEmail()+"')";
-        String sql2 = "INSERT INTO C_Persona (OID, DNI, Nombre, Apellidos, FechaDeNacimiento) VALUES (LAST_INSERT_ID(),'"+persona.getDNI()+"','"+persona.getNombre()+"','"+persona.getApellidos()+"','"+persona.getFechaDeNacimiento()+"','"+persona.getSexo()+"')";
-
+        String sql1 = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, CP, TelefonoFijo, TelefonoMovil, Email) VALUES ('"+persona.getDireccion()+"','"+persona.getLocalidad()+"','"+persona.getProvincia()+"','"+persona.getCP()+"','"+persona.getTelefonoFijo()+"','"+persona.getTelefonoMovil()+"','"+persona.getEmail()+"')";
+        String sql2 = "INSERT INTO C_Persona (OID, DNI, Nombre, Apellidos, FechaNacimiento,Sexo) VALUES (LAST_INSERT_ID(),'"+persona.getDNI()+"','"+persona.getNombre()+"','"+persona.getApellidos()+"','"+TestDatos.formatterBD.format(persona.getFechaDeNacimiento())+"','"+persona.getSexo()+"')";
         try{
             driver.inicioTransaccion();
-            driver.insertar(sql);
+            driver.insertar(sql1);
             driver.insertar(sql2);
             driver.commit();
         }
@@ -97,8 +97,9 @@ public class C_PersonaJDBC {
     public boolean modificarDatosC_Persona(C_Persona persona) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "UPDATE Colaborador SET Direccion='"+persona.getDireccion()+"', Localidad='"+persona.getLocalidad()+"', Provincia='"+persona.getProvincia()+"', codigoPostal='"+persona.getCP()+"', TelefonoFijo='"+persona.getTelefonoFijo()+"', TelefonoMovil='"+persona.getTelefonoMovil()+"', Email='"+persona.getEmail()+"WHERE OID="+persona.getOID()+"'";
-        String sql2 = "UPDATE C_Persona SET DNI='"+persona.getDNI()+"', Nombre='"+persona.getNombre()+"', Apellidos='"+persona.getApellidos()+"', FechaDeNacimiento='"+persona.getFechaDeNacimiento()+"WHERE OID="+persona.getOID()+"'";
+        String sql = "UPDATE Colaborador SET Direccion='"+persona.getDireccion()+"', Localidad='"+persona.getLocalidad()+"', Provincia='"+persona.getProvincia()+"', CP='"+persona.getCP()+"', TelefonoFijo='"+persona.getTelefonoFijo()+"', TelefonoMovil='"+persona.getTelefonoMovil()+"', Email='"+persona.getEmail()+"'WHERE OID='"+persona.getOID()+"'";
+        String sql2 = "UPDATE C_Persona SET DNI='"+persona.getDNI()+"', Nombre='"+persona.getNombre()+"', Apellidos='"+persona.getApellidos()+"', FechaNacimiento='"+TestDatos.formatterBD.format(persona.getFechaDeNacimiento())+"', Sexo ='"+ persona.getSexo() +"'WHERE OID='"+persona.getOID()+"'";
+		System.out.println(sql2);
 
         try{
             driver.inicioTransaccion();
@@ -127,7 +128,7 @@ public class C_PersonaJDBC {
     public boolean eliminarC_Persona(C_Persona persona) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "UPDATE Colaboracion SET OID=OID_Anonimo WHERE OID='"+persona.getOID()+"'";
+        String sql = "UPDATE Colaboracion SET OIDColaborador="+OID_Anonimo+" WHERE OID='"+persona.getOID()+"'";
         String sql2 = "DELETE FROM C_Persona WHERE OID='"+persona.getOID()+"'";
         String sql3 = "DELETE FROM Colaborador WHERE OID='"+persona.getOID()+"'";
 
@@ -151,15 +152,15 @@ public class C_PersonaJDBC {
 
     /**
      * Consultar los datos de un Colaborador Persona
-     * @param OIDPersona
+     * @param DNI
      * @return Persona Colaborador Persona que se queria consultar
      * @throws SQLException
      */
-    public C_Persona obtenerC_Persona(String OIDPersona) throws SQLException{
+    public C_Persona obtenerC_Persona(String DNI) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
 
-        String sql = "SELECT * FROM Colaborador c, C_Persona p WHERE (p.OID='"+OIDPersona+"') AND c.OID=p.OID";
+        String sql = "SELECT * FROM Colaborador c, C_Persona p WHERE (p.DNI='"+DNI+"') AND c.OID=p.OID";
         C_Persona Persona = null;
 
 
@@ -170,13 +171,12 @@ public class C_PersonaJDBC {
 
             if(rs.next()){
                 Persona = new C_Persona();
-
+				Persona.setOID(rs.getLong("OID"));
                 Persona.setDNI(rs.getString("DNI"));
                 Persona.setNombre(rs.getString("Nombre"));
                 Persona.setApellidos(rs.getString("Apellidos"));
-                Persona.setFechaDeNacimiento(rs.getDate("FechaDeNacimiento"));
-
-                char bufSexo[] = new char[1];
+                Persona.setFechaDeNacimiento(rs.getDate("FechaNacimiento"));
+				char bufSexo[] = new char[1];
                 try {
                     rs.getCharacterStream("Sexo").read(bufSexo);
                 } catch (IOException ex) {
@@ -184,7 +184,7 @@ public class C_PersonaJDBC {
                 }
                 Persona.setSexo(bufSexo[0]);
 
-                Persona.setCP(rs.getString("CodigoPostal"));
+                Persona.setCP(rs.getString("CP"));
                 Persona.setDireccion(rs.getString("Direccion"));
                 Persona.setEmail(rs.getString("Email"));
                 Persona.setLocalidad(rs.getString("Localidad"));
@@ -213,38 +213,41 @@ public class C_PersonaJDBC {
     public ArrayList<C_Persona> buscarC_Persona(String tipoBusqueda, String valor) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "SELECT * FROM C_Persona p, Colaborador c WHERE "+tipoBusqueda+"='"+valor+"' AND p.OID=c.OID";
+        String sql = "SELECT * FROM C_Persona p, Colaborador c, Socio s WHERE "+tipoBusqueda+" LIKE '%"+valor+"%' AND p.OID=c.OID AND p.OID!=s.OID AND c.OID!=s.OID AND c.OID!=0 AND p.OID!=0 AND s.OID!=0";
         ArrayList<C_Persona> listaC_Persona = new ArrayList<C_Persona>();
-        C_Persona Persona = null;
+       
 
         try {
             driver.conectar();
             ResultSet resultados = driver.seleccionar(sql);
 
-            if(resultados.next()){
-                Persona = new C_Persona();
-                Persona.setDNI(resultados.getString("DNI"));
-                Persona.setNombre(resultados.getString("Nombre"));
-                Persona.setApellidos(resultados.getString("Apellidos"));
-                Persona.setFechaDeNacimiento(resultados.getDate("FechaDeNacimiento"));
+			while(resultados.next()){
+				if(resultados.getLong("OID")!=0){
+					C_Persona Persona = new C_Persona();
+					Persona.setOID(resultados.getLong("OID"));
+					Persona.setDNI(resultados.getString("DNI"));
+					Persona.setNombre(resultados.getString("Nombre"));
+					Persona.setApellidos(resultados.getString("Apellidos"));
+					Persona.setFechaDeNacimiento(resultados.getDate("FechaNacimiento"));
 
-                char bufSexo[] = new char[1];
-                try {
-                    resultados.getCharacterStream("Sexo").read(bufSexo);
-                } catch (IOException ex) {
-                    Logger.getLogger(C_PersonaJDBC.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                Persona.setSexo(bufSexo[0]);
+					char bufSexo[] = new char[1];
+					try {
+						resultados.getCharacterStream("Sexo").read(bufSexo);
+					} catch (IOException ex) {
+						Logger.getLogger(C_PersonaJDBC.class.getName()).log(Level.SEVERE, null, ex);
+					}
+					Persona.setSexo(bufSexo[0]);
 
-                Persona.setCP(resultados.getString("CodigoPostal"));
-                Persona.setDireccion(resultados.getString("Direccion"));
-                Persona.setEmail(resultados.getString("Email"));
-                Persona.setLocalidad(resultados.getString("Localidad"));
-                Persona.setProvincia(resultados.getString("Provincia"));
-                Persona.setTelefonoFijo(resultados.getString("TelefonoFijo"));
-                Persona.setTelefonoMovil(resultados.getString("TelefonoMovil"));
+					Persona.setCP(resultados.getString("CP"));
+					Persona.setDireccion(resultados.getString("Direccion"));
+					Persona.setEmail(resultados.getString("Email"));
+					Persona.setLocalidad(resultados.getString("Localidad"));
+					Persona.setProvincia(resultados.getString("Provincia"));
+					Persona.setTelefonoFijo(resultados.getString("TelefonoFijo"));
+					Persona.setTelefonoMovil(resultados.getString("TelefonoMovil"));
 
-                listaC_Persona.add(Persona);
+					listaC_Persona.add(Persona);
+				}
             }
         }
         catch (SQLException ex){

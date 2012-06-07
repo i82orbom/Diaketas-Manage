@@ -134,8 +134,8 @@ public class SocioJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
 		
-        String sql = "UPDATE Colaboracion SET OID="+OID_Anonimo+" WHERE OID='"+socio.getOID()+"'";
-        String sql2 = "UPDATE PagoCuota SET OID="+OID_Anonimo+" WHERE OIDSocio='"+socio.getOID()+"'";
+        String sql = "UPDATE Colaboracion SET OIDColaborador="+OID_Anonimo+" WHERE OID='"+socio.getOID()+"'";
+        String sql2 = "UPDATE PagoCuota SET OIDSocio="+OID_Anonimo+" WHERE OIDSocio='"+socio.getOID()+"'";
         String sql3 = "UPDATE Cuota SET fechaFin=fechaUltimoPago WHERE OIDSocio='"+socio.getOID()+"'";
         String sql4 = "UPDATE Cuota SET OIDSocio="+OID_Anonimo+" WHERE OIDSocio='"+socio.getOID()+"'";
         String sql5 = "DELETE FROM Socio WHERE OID='"+socio.getOID()+"'";
@@ -267,33 +267,35 @@ public class SocioJDBC {
             ResultSet rs = driver.seleccionar(sql);
 
             while(rs.next()){
-                socio = new Socio();
-				socio.setOID(rs.getLong("OID"));
-                socio.setUsuario(rs.getString("usuario"));
-                socio.setContrasena(rs.getString("contrasena"));
+				if(rs.getLong("OID")!=0){
+					socio = new Socio();
+					socio.setOID(rs.getLong("OID"));
+					socio.setUsuario(rs.getString("usuario"));
+					socio.setContrasena(rs.getString("contrasena"));
 
-                socio.setDNI(rs.getString("DNI"));
-                socio.setNombre(rs.getString("Nombre"));
-                socio.setApellidos(rs.getString("Apellidos"));
-                socio.setFechaDeNacimiento(rs.getDate("FechaNacimiento"));
+					socio.setDNI(rs.getString("DNI"));
+					socio.setNombre(rs.getString("Nombre"));
+					socio.setApellidos(rs.getString("Apellidos"));
+					socio.setFechaDeNacimiento(rs.getDate("FechaNacimiento"));
 
-                char bufSexo[] = new char[1];
-                try {
-                    rs.getCharacterStream("Sexo").read(bufSexo);
-                } catch (IOException ex) {
-                    Logger.getLogger(SocioJDBC.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                socio.setSexo(bufSexo[0]);
+					char bufSexo[] = new char[1];
+					try {
+						rs.getCharacterStream("Sexo").read(bufSexo);
+					} catch (IOException ex) {
+						Logger.getLogger(SocioJDBC.class.getName()).log(Level.SEVERE, null, ex);
+					}
+					socio.setSexo(bufSexo[0]);
 
-                socio.setCP(rs.getString("CP"));
-                socio.setDireccion(rs.getString("Direccion"));
-                socio.setEmail(rs.getString("Email"));
-                socio.setLocalidad(rs.getString("Localidad"));
-                socio.setProvincia(rs.getString("Provincia"));
-                socio.setTelefonoFijo(rs.getString("TelefonoFijo"));
-                socio.setTelefonoMovil(rs.getString("TelefonoMovil"));
+					socio.setCP(rs.getString("CP"));
+					socio.setDireccion(rs.getString("Direccion"));
+					socio.setEmail(rs.getString("Email"));
+					socio.setLocalidad(rs.getString("Localidad"));
+					socio.setProvincia(rs.getString("Provincia"));
+					socio.setTelefonoFijo(rs.getString("TelefonoFijo"));
+					socio.setTelefonoMovil(rs.getString("TelefonoMovil"));
 
-                listaSocios.add(socio);
+					listaSocios.add(socio);
+				}
             }
         }
         catch (SQLException ex){

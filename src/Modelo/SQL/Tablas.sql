@@ -262,3 +262,5 @@ INSERT INTO sector(Descripcion) Values ("Hosteleria");
 INSERT INTO oferta values (null,2,2,2,"Manipulador de alimentos","Trabajo de camarero en Hotel Carapan",3,"2012-03-01",10,"Fijo");
 INSERT INTO demanda (OIDSector,OIDBeneficiario,OIDVoluntario,DescripcionVidaLaboral,Fecha)values (1,1,2,"asdfasd","2010-04-03");
 
+INSERT INTO MOVIMIENTO values (0,200.0,'Nulo','0001-01-01');
+UPDATE MOVIMIENTO SET OID=0 WHERE OID=LAST_INSERT_ID(); 

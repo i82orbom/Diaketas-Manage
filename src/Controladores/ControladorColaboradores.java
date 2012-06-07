@@ -1,8 +1,8 @@
 package Controladores;
 
 import Controladores.Colaborador.ControladorC_Empresa;
+import Controladores.Colaborador.ControladorC_Persona;
 import Controladores.Colaborador.ControladorSocio;
-import Controladores.Voluntario.ControladorColaboracion;
 import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
 import java.awt.event.ActionEvent;
@@ -60,7 +60,7 @@ public class ControladorColaboradores {
 	ControladorSocio.getInstance(vista);
 	ControladorC_Empresa.getInstance(vista);
 	//ControladorC_Empresa.getInstance(vista.getVistaEmpresa());
-	//ControladorC_Persona.getInstance(vista.getVistaColaborador());
+	ControladorC_Persona.getInstance(vista);
 
         // anadir listener
         vista.getBarraDeNavigacion().setListener(new ListenerBarraNavigacion());
@@ -147,6 +147,8 @@ public class ControladorColaboradores {
         vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
         vista.getBarraDeNavigacion().setTextLabelNivel2("Colaborador");
         vista.getBarraDeNavigacion().setTextLabelNivel3("Datos");
+		vista.getPanelColaboradorDatos().getJtabbedPaneColaborador().setEnabledAt(0,true);
+		vista.getPanelColaboradorDatos().getJtabbedPaneColaborador().setEnabledAt(1,false);
     }
 
     private void mostrarVistaColaboradorBuscar(){
@@ -164,6 +166,14 @@ public class ControladorColaboradores {
 		vista.getPanelSocioDatos().getJtabbedPaneSocio().setEnabledAt(0,true);
 		vista.getPanelSocioDatos().getJtabbedPaneSocio().setEnabledAt(1,true);
 		vista.getPanelSocioDatos().getJtabbedPaneSocio().setEnabledAt(2,true);
+	}
+	public void mostrarVistaModificarColaborador() {
+		vista.showPanel(VistaColaboradores.panelcolaboradorDatos);
+        vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
+        vista.getBarraDeNavigacion().setTextLabelNivel2("Colaborador");
+		vista.getBarraDeNavigacion().setTextLabelNivel3("Modificar Colaborador");
+		vista.getPanelColaboradorDatos().getJtabbedPaneColaborador().setEnabledAt(0,true);
+		vista.getPanelColaboradorDatos().getJtabbedPaneColaborador().setEnabledAt(1,true);
 	}
     //Listener de la barra de navigacion
     class ListenerBarraNavigacion implements ActionListener {
