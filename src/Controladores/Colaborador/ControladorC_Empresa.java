@@ -688,12 +688,10 @@ public class ControladorC_Empresa {
 
                 @Override
                 public void addTableModelListener(TableModelListener l) {
-                    throw new UnsupportedOperationException("Not supported yet.");
                 }
 
                 @Override
                 public void removeTableModelListener(TableModelListener l) {
-                    throw new UnsupportedOperationException("Not supported yet.");
                 }
 
 
