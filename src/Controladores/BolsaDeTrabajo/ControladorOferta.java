@@ -103,7 +103,6 @@ public class ControladorOferta {
 		vista.getOfertaDatos().getlabelDuracionContrato().setForeground(c);
 		vista.getOfertaDatos().getlabelCualificacion().setForeground(c);
 	}
-
 	private void actualizarTablaOfertas(){
 				TableModel tableModel = new TableModel() {
 			@Override
@@ -162,7 +161,6 @@ public class ControladorOferta {
 		vista.getOfertaBuscar().gettablaBusquedaOferta().setModel(tableModel);
 	}
 
-
 	/*______ Métodos del controlador ______*/
 	public void insertarSector(Sector sector){
 		try{
@@ -183,14 +181,13 @@ public class ControladorOferta {
 
 	public void eliminarSector(String desc){
 		Sector sector=null;
-		boolean tieneOfertas=false, tieneDemandas=false;
+		boolean tieneOfertas=true, tieneDemandas=true;
+
 		try {
 			sector = SectorJDBC.getInstance().ConsultarSector(desc);
 		} catch (SQLException ex){
 			ControladorErrores.mostrarError("Error al obtener sector:\n"+ex);
 		}
-
-
 		if (sector!=null){
 			try {
 				tieneDemandas = DemandaJDBC.getInstance().ConsultarDemandaSector(sector.getOID());
@@ -215,19 +212,18 @@ public class ControladorOferta {
 			try {
 				SectorJDBC.getInstance().EliminarSector(sector);
 				vista.getOfertaDatos().getlabelError().setText("Sector eliminado correctamente");
+
+				try { 				// Recargo la lista de sectores
+					vista.getOfertaDatos().getcbSector().removeAllItems();
+					ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
+					for (int i=0;i<sectores.size();i++)
+						vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+				}catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
 			}
 			catch (SQLException ex){
 				ControladorErrores.mostrarError("Error al eliminar sector:\n"+ex);
 			}
 		}
-
-		// Recargo la lista de sectores
-		try {
-			vista.getOfertaDatos().getcbSector().removeAllItems();
-			ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
-			for (int i=0;i<sectores.size();i++)
-				vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
-		}catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
 	}
 
 	public void insertarOferta(Oferta oferta){
