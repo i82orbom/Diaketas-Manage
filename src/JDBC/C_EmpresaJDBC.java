@@ -70,7 +70,7 @@ public class C_EmpresaJDBC {
     public boolean anadirC_Empresa(C_Empresa e) throws SQLException{
 		DriverJDBC driver = DriverJDBC.getInstance();
 		String sql = "INSERT INTO Colaborador (Direccion, Localidad, Provincia, CP, TelefonoFijo, TelefonoMovil, Email) VALUES ('"
-				+ e.getDireccion()+"','"+e.getLocalidad()+"','"+e.getProvincia()+"','"+e.getCP()+"','"+e.getTelefonoFijo()+"',,'"+e.getTelefonoMovil()+"','"+e.getEmail()+"')";
+				+ e.getDireccion()+"','"+e.getLocalidad()+"','"+e.getProvincia()+"','"+e.getCP()+"','"+e.getTelefonoFijo()+"','"+e.getTelefonoMovil()+"','"+e.getEmail()+"')";
 		String sql2 = "INSERT INTO C_Empresa (OID, CIF, Nombre, Fax, DireccionWeb) VALUES ("
 				+ "LAST_INSERT_ID(),'"+e.getCIF()+"','"+e.getNombre()+"','"+e.getFax()+"','"+e.getDireccionWeb()+"')";
 

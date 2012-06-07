@@ -123,6 +123,7 @@ public class PanelDemandaDatos extends javax.swing.JPanel {
 
         btGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel64.setText("Sector ");
@@ -174,6 +175,7 @@ public class PanelDemandaDatos extends javax.swing.JPanel {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel66.setText("NIF/ Pasaporte");

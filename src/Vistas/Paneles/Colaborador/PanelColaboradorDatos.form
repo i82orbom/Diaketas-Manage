@@ -225,7 +225,6 @@
                                   <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTextProvincia" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -241,13 +240,10 @@
                                   <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTextMovil" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="94" max="32767" attributes="0"/>
+                              <EmptySpace pref="34" max="32767" attributes="0"/>
                               <Component id="labelError" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btHacerSocio" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="btHacerSocio" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -329,7 +325,7 @@
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Hombre"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Cursor Por defecto"/>
+                  <Color id="Default Cursor"/>
                 </Property>
               </Properties>
             </Component>
@@ -346,54 +342,24 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextNombre">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nombre"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextDNI">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="DNI/Pasaporte"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextEmail">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="E-mail"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextDomicilio">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Domicilio"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextLocalidad">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Localidad"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextCP">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Codigo Postal"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextTelefono">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Telefono fijo"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextMovil">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Telefono Movil"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextProvincia">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Provincia"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextApellidos">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Apellidos"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFechaNacimiento">
               <Properties>
@@ -487,7 +453,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                      <EmptySpace pref="35" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -574,7 +540,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="154" max="32767" attributes="0"/>
+                      <EmptySpace pref="116" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -628,7 +594,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="textConceptoColaborador">
               <Properties>
-                <Property name="text" type="java.lang.String" value="concepto dado en el inggreso, si lo hay"/>
+                <Property name="text" type="java.lang.String" value="Concepto dado en el ingreso, si lo hay"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="label47">

@@ -36,16 +36,18 @@
                       <EmptySpace min="-2" pref="505" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabelBuscarPor" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="cbTipoBusquedaEmpresa" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="JtextBuscarEmpresa" alignment="0" min="-2" pref="214" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="JtextBuscarEmpresa" min="-2" pref="214" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="btBuscarEmpresa" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="btBuscarEmpresa" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -65,15 +67,16 @@
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="JtextBuscarEmpresa" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabelBuscarPor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbTipoBusquedaEmpresa" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btBuscarEmpresa" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
+              </Group>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabelBuscarPor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbTipoBusquedaEmpresa" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane20" min="-2" pref="303" max="-2" attributes="0"/>
@@ -91,9 +94,6 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="JtextBuscarEmpresa">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelBuscarPor">
       <Properties>
