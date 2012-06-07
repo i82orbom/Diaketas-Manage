@@ -92,6 +92,10 @@ public class ControladorBeneficiario {
      * Ayuda seleccionada en la tabla de ayuda
      */
     Ayuda ayudaSeleccionada;
+	/*
+	 * Familiar seleccionado en la tabla de familiares
+	 */
+	Persona familiarSeleccionado;
     /*
      * Formateador de fechas
      */
@@ -145,6 +149,7 @@ public class ControladorBeneficiario {
         }
         benef = null;
         ayudaSeleccionada = null;
+		familiarSeleccionado = null;
         vista.getPanelDatos().getTbIntervenciones().setModel(new DefaultTableModel(columnasIntervenciones, 0));
         vista.getPanelDatos().getTbFamiliares().setModel(new DefaultTableModel(columnasFamiliares,0));
         vista.showPanel(VistaBeneficiario.panelDatos);
@@ -154,6 +159,7 @@ public class ControladorBeneficiario {
 
     private void mostrarVistaModificarBeneficiario() {
         ayudaSeleccionada = null;
+		familiarSeleccionado = null;
         vista.getBarraDeNavigacion().setTextLabelNivel1("Beneficiario");
         vista.getBarraDeNavigacion().setTextLabelNivel2("Modificar Beneficiario");
         vista.showPanel(VistaBeneficiario.panelDatos);
@@ -231,6 +237,10 @@ public class ControladorBeneficiario {
         vista.getPanelDatos().getTextObservacionesIntervencionBeneficiario().setText(ayudaSeleccionada.getObservaciones());
         // TODO actualizar comboBox
     }
+	
+	private void actualizarCampoFamiliar () {
+		vista.getPanelDatos().getTextNIFFamiliarBeneficiario().setText(familiarSeleccionado.getNIF());
+	}
 
     private void actualizarTablaFamiliares(){
         vista.getPanelDatos().getTbFamiliares().setModel(new TableModel() {
@@ -551,7 +561,8 @@ public class ControladorBeneficiario {
             } else {
 				boolean exito = false;
                 try{
-					if(BeneficiarioJDBC.getInstance().obtenerBeneficiario(datos[Beneficiario.NIF_ID]) == null)
+					benef = BeneficiarioJDBC.getInstance().obtenerBeneficiario(datos[Beneficiario.NIF_ID]);
+					if(benef == null)
 						exito = insertarBeneficiario(datos);
 					else
 						exito = modificarBeneficiario(datos);
@@ -748,6 +759,65 @@ public class ControladorBeneficiario {
             }
         }
     }
+	
+	class BtGuardarFamiliarBeneficiario implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent ae) {
+			vista.getPanelDatos().getLabelErrorAyuda().setVisible(false);
+			Beneficiario familiar = null;
+			boolean datosCorrectos = true;
+			String NIFFamiliar;
+			try{
+				NIFFamiliar = vista.getPanelDatos().getTextNIFFamiliarBeneficiario().getText();
+				familiar = BeneficiarioJDBC.getInstance().obtenerBeneficiario(NIFFamiliar);
+				if(familiar == null){
+					datosCorrectos = false;
+					vista.getPanelDatos().setTextLabelErrorAyuda("El familiar debe ser un beneficiario.");
+				}
+				if (vista.getPanelDatos().getCbParentescoBeneficiario().getSelectedItem() == null) {
+					datosCorrectos = false;
+				}
+				if(!datosCorrectos)
+					vista.getPanelDatos().setTextLabelErrorAyuda("Error : el familiar no ha sido anadido.");
+				else {
+					BeneficiarioJDBC.getInstance().añadirFamiliar(benef, NIFFamiliar);
+				}				
+			}
+			catch (SQLException ex){
+				Logger.getLogger(ControladorBeneficiario.class.getName()).log(Level.SEVERE, null, ex);
+			}
+			
+		}
+		
+	}
+	
+	class BtEliminarFamiliarBeneficiario implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent ae) {			
+			try{
+				if (vista.getPanelDatos().getTbFamiliares().getSelectedRow() != -1) {
+					if (JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar el familiar?", "Eliminar Familiar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						if (BeneficiarioJDBC.getInstance().eliminarDatosfamiliar(familiarSeleccionado.getNIF(), benef.getNIF())) {
+							vista.getPanelDatos().setTextLabelErrorAyuda("La ayuda ha sido eliminado del sistema.");
+							benef = consultarBeneficiario(benef.getNIF());
+							actualizarTablaAyuda();
+							limpiarCamposAyuda();
+						} else {
+							vista.getPanelDatos().setTextLabelErrorAyuda("Error : la ayuda no ha sido eliminado del sistema.");
+						}
+					}
+				} else {
+					vista.getPanelDatos().setTextLabelErrorAyuda("Selecciona una ayuda.");
+				}
+            }
+			catch (SQLException ex){
+				Logger.getLogger(ControladorBeneficiario.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+		
+	}
 
     class BtLimpiarCamposAyudaListener implements ActionListener {
 
@@ -785,4 +855,36 @@ public class ControladorBeneficiario {
         }
 
     }
+	
+	class TablaFamiliaresListener implements MouseListener{
+
+		@Override
+		public void mouseClicked(MouseEvent me) {
+			if (vista.getPanelDatos().getTbFamiliares().getSelectedRow() != -1) {
+                familiarSeleccionado = benef.getFamilia().get(vista.getPanelDatos().getTbFamiliares().getSelectedRow());
+                actualizarCampoFamiliar();
+            }
+		}
+
+		@Override
+		public void mousePressed(MouseEvent me) {
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent me) {
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent me) {
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent me) {
+			
+		}
+		
+	}
 }

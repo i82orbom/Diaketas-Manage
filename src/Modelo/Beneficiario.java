@@ -62,7 +62,7 @@ public class Beneficiario extends Persona {
      */
     public Beneficiario() {
     }
-
+	
     /**
      *
      * @return

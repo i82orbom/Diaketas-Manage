@@ -236,6 +236,18 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
         return btEliminarIntervencionBeneficiario;
     }
 
+	public JButton getBtGuardarFamiliarBeneficiario() {
+		return btGuardarFamiliarBeneficiario;
+	}
+	
+	public JTextField getTextNIFFamiliarBeneficiario() {
+		return textNIFFamiliarBeneficiario;
+	}
+	
+	public JComboBox getCbParentescoBeneficiario() {
+		return cbParentescoBeneficiario;
+	}
+	
     public String[] getDatosPersonales() {
         String[] datos = new String[24];
 

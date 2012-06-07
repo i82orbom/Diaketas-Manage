@@ -280,7 +280,7 @@
                           <Component id="textEspecificarTipoVivienda" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="labelError" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="42" max="32767" attributes="0"/>
+                      <EmptySpace pref="44" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
