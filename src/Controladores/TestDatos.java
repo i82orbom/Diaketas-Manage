@@ -116,7 +116,7 @@ public class TestDatos {
 
     public static boolean isDireccionWeb(String d){
         for(int i=0; i<d.length(); i++){
-            if(!Character.isLetter(d.charAt(i)) && d.charAt(i) != '.'){
+            if(!Character.isLetterOrDigit(d.charAt(i)) && d.charAt(i) != '.'){
                 return false;
             }
         }
