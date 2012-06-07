@@ -497,6 +497,7 @@ public class ControladorVoluntario {
             if(JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar el Voluntario?", "Eliminar Voluntario", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
                 if (eliminarVoluntario(voluntario_temp)) {
                     vista.getPanelVoluntarioDatos().setTextLabelError("El Voluntario ha sido eliminado del sistema.");
+                    mostrarVistaInicio();
                 } else {
                     vista.getPanelVoluntarioDatos().setTextLabelError("Error : el Voluntario no ha sido eliminado del sistema.");
                 }
