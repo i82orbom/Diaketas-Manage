@@ -239,10 +239,13 @@ public class ControladorAyuda {
        
         exito = AyudaJDBC.getInstance().registrarDatosAyuda(ayuda);
         
-
-        if (ayuda.getTipo_ayuda().isMonetaria()) {
-            exito = ControladorContabilidad.getInstance(null).registrarGastoAyuda(ayuda);
+        if (exito == true){
+            
+            if (ayuda.getTipo_ayuda().isMonetaria()){
+                exito = AyudaJDBC.getInstance().registrarDatosGasto(ayuda);
+            }
         }
+        
 
         return exito;
     }
@@ -321,11 +324,9 @@ public class ControladorAyuda {
     public boolean eliminarAyuda(Ayuda ayuda) {
         boolean exito = false;
 
-        try {
-            exito = AyudaJDBC.getInstance().eliminarDatosAyuda(ayuda.getOID());
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorAyuda.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        exito = AyudaJDBC.getInstance().eliminarDatosAyuda(ayuda.getOID());
+      
 
         return exito;
     }
