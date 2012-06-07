@@ -304,7 +304,7 @@ public class ControladorC_Empresa {
 			exito = false;
 		}
 
-		if (!TestDatos.isOnlyLetter(datos[C_Empresa.DIRECCION_WEB_ID])){
+		if (!TestDatos.isDireccionWeb(datos[C_Empresa.DIRECCION_WEB_ID])){
 			vista.getPanelEmpresaDatos().setColorLabelDireccion(Color.red);
 			exito = false;
 		}
