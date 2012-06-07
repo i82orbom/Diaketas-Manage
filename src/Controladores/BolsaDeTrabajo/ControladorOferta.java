@@ -76,7 +76,7 @@ public class ControladorOferta {
 		vista.getOfertaBuscar().getBTBuscar().addActionListener(new ListenerBtBuscarOferta());
 		vista.getOfertaBuscar().getBTEliminar().addActionListener(new ListenerBtEliminarOfertaBuscada());
 		vista.getOfertaBuscar().getBTConsultar().addActionListener(new ListenerBtConsultarOferta());
-
+		vista.getOfertaBuscar().getBTModificar().addActionListener(new ListenerBtModificarOfertaBuscada());
 	}
 
 	public static ControladorOferta getInstance(VistaBolsaTrabajo panelOferta){
@@ -530,6 +530,18 @@ public class ControladorOferta {
 			if (vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
                 ofertaConsultada = listaOfertas.get(vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow());
 				ControladorBolsaTrabajo.getInstance(null).mostrarConsultarOferta(ofertaConsultada);
+			}
+		}
+	}
+
+	public class ListenerBtModificarOfertaBuscada
+		implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
+                ofertaConsultada = listaOfertas.get(vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow());
+				ControladorBolsaTrabajo.getInstance(null).mostrarModificarOferta(ofertaConsultada);
 			}
 		}
 	}

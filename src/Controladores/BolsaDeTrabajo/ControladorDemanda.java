@@ -58,9 +58,9 @@ public class ControladorDemanda {
 		vista = pvista;
 
 		// Botones
-				// Nueva Demanda
-		vista.getDemandaDatos().getbtGuardar().addActionListener(new ControladorDemanda.ListenerBtGuardarDemanda());
-		vista.getDemandaDatos().getbtLimpiar().addActionListener(new ControladorDemanda.ListenerBtLimpiar());
+		// Nueva Demanda
+		vista.getDemandaDatos().getbtGuardar().addActionListener(new ListenerBtGuardarDemanda());
+		vista.getDemandaDatos().getbtLimpiar().addActionListener(new ListenerBtLimpiar());
 
 		// Modificar Demanda
 		vista.getDemandaDatos().getBTModificar().addActionListener(new ListenerBtModificarDemanda());
@@ -71,6 +71,7 @@ public class ControladorDemanda {
 		vista.getDemandaBuscar().getBTBuscar().addActionListener(new ListenerBtBuscarDemanda());
 		vista.getDemandaBuscar().getBTEliminar().addActionListener(new ListenerBtEliminarDemandaBuscada());
 		vista.getDemandaBuscar().getBTConsultar().addActionListener(new ListenerBtConsultarDemanda());
+		vista.getDemandaBuscar().getBTModificar().addActionListener(new ListenerBtModificarDemandaBuscada());
 	}
 
 	public static ControladorDemanda getInstance(VistaBolsaTrabajo panelDemanda){
@@ -173,13 +174,13 @@ public class ControladorDemanda {
 				ControladorErrores.mostrarError("Error al obtener el Beneficiario:\n"+ex);
 			}
 			if(beneficiario==null){
-                            listaDemandas =new ArrayList<Demanda>(); 
+                            listaDemandas =new ArrayList<Demanda>();
                             actualizarTablaDemandas();
                              vista.getDemandaBuscar().getLabelError().setText("El DNI no coincide con el de ningún Beneficiario");
-                            return listaDemandas; 
+                            return listaDemandas;
                         }
                         beneficiarioOID = beneficiario.getOID();
-                        
+
 		}
 
 		if (!sectorDesc.equals("")){
@@ -189,7 +190,7 @@ public class ControladorDemanda {
 				ControladorErrores.mostrarError("Error al obtener el sector:\n"+ex);
 			}
 			if(sector==null){
-                            listaDemandas =new ArrayList<Demanda>(); 
+                            listaDemandas =new ArrayList<Demanda>();
                             actualizarTablaDemandas();
                              vista.getDemandaBuscar().getLabelError().setText("El sector no coincide con ningún Sector");
                             return listaDemandas; }
@@ -197,12 +198,12 @@ public class ControladorDemanda {
 		}
 
 		try{
-		
+
 			listaDemandas = DemandaJDBC.getInstance().FiltrarDemandas(beneficiarioOID,sectorOID, antiguedad);
                         actualizarTablaDemandas();
                         if(listaDemandas.size()==0){
-                        vista.getDemandaBuscar().getLabelError().setText("La búsqueda no produjo ningún resultado");    
-                        }             
+                        vista.getDemandaBuscar().getLabelError().setText("La búsqueda no produjo ningún resultado");
+                        }
 		} catch (SQLException ex){
 			ControladorErrores.mostrarError("Error al obtener la lista de demandas:\n"+ex.getMessage());
 		}
@@ -212,7 +213,7 @@ public class ControladorDemanda {
 
 	public void eliminarDemanda(Demanda demanda){
             boolean eliminada = false;
-            
+
 				if(JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar la demanda?", "Eliminar Demanda", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
 					try{
 							DemandaJDBC.getInstance().EliminarDemanda(demanda.getOID());
@@ -229,7 +230,7 @@ public class ControladorDemanda {
 		actualizarTablaDemandas();
                 }
 		ControladorBolsaTrabajo.getInstance(null).mostrarBuscarDemanda();
-                
+
 	}
 
 	public void setColorLabels(Color c){
@@ -409,6 +410,17 @@ public class ControladorDemanda {
 				if (vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow() != -1) {
 					demandaConsultada = listaDemandas.get(vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow());
                                       	ControladorBolsaTrabajo.getInstance(null).mostrarConsultarDemandas(demandaConsultada);
+				}
+			}
+	}
+
+	public class ListenerBtModificarDemandaBuscada implements ActionListener{
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow() != -1) {
+					demandaConsultada = listaDemandas.get(vista.getDemandaBuscar().getTablaBusquedaDemandante().getSelectedRow());
+					ControladorBolsaTrabajo.getInstance(null).mostrarModificarDemanda(demandaConsultada);
 				}
 			}
 	}
