@@ -83,7 +83,7 @@ public class PanelEmpresaBuscar extends javax.swing.JPanel {
 
         jLabelBuscarPor.setText("Buscar por:");
 
-        cbTipoBusquedaEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo de busqueda", " " }));
+        cbTipoBusquedaEmpresa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CIF", "Nombre", "DireccionWeb" }));
 
         btBuscarEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
 
@@ -135,16 +135,15 @@ public class PanelEmpresaBuscar extends javax.swing.JPanel {
                         .addComponent(btEliminarEmpresa)
                         .addGap(505, 505, 505))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelBuscarPor)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbTipoBusquedaEmpresa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(JtextBuscarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btBuscarEmpresa)))
-                        .addContainerGap())))
+                            .addComponent(JtextBuscarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btBuscarEmpresa)
+                        .addContainerGap(701, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(165, 165, 165)
                 .addComponent(jLabelError, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)

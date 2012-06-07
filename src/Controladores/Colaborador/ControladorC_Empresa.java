@@ -626,6 +626,15 @@ public class ControladorC_Empresa {
         public void actionPerformed(ActionEvent e) {
             String dato = vista.getPanelEmpresaBuscar().getTextBusquedaEmpresa();
             String tipoDato = vista.getPanelEmpresaBuscar().getTipoDatoBusquedaEmpresa();
+            
+            if(tipoDato.equals("CIF"))
+                    tipoDato="CIF";
+            else if(tipoDato.equals("Nombre"))
+                    tipoDato="Nombre";
+            else if(tipoDato.equals("DireccionWeb"))
+                    tipoDato="DireccionWeb";
+
+            
             empresas = buscarC_Empresa(tipoDato, dato);
             TableModel tabla = new TableModel() {
 

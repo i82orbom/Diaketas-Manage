@@ -36,19 +36,17 @@
                       <EmptySpace min="-2" pref="505" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabelBuscarPor" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="cbTipoBusquedaEmpresa" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="JtextBuscarEmpresa" min="-2" pref="214" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btBuscarEmpresa" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="JtextBuscarEmpresa" min="-2" pref="214" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btBuscarEmpresa" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="701" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -103,9 +101,10 @@
     <Component class="javax.swing.JComboBox" name="cbTipoBusquedaEmpresa">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
-            <StringItem index="0" value="Tipo de busqueda"/>
-            <StringItem index="1" value=" "/>
+          <StringArray count="3">
+            <StringItem index="0" value="CIF"/>
+            <StringItem index="1" value="Nombre"/>
+            <StringItem index="2" value="DireccionWeb"/>
           </StringArray>
         </Property>
       </Properties>
