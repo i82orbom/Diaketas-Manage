@@ -343,5 +343,26 @@ public class SocioJDBC {
 	}
         return c;
     }
+	
+	public boolean insertarUnicamenteSocio(Socio socio) throws SQLException{
+	DriverJDBC driver = DriverJDBC.getInstance();
+        String sql = "INSERT INTO Socio (OID, usuario, contrasena) VALUES ('"+socio.getOID()+"','"+socio.getUsuario()+"','"+socio.getContrasena()+"')";
 
+        try{
+                driver.inicioTransaccion();
+                driver.insertar(sql);
+
+                driver.commit();
+        }
+        catch (SQLException ex){
+                driver.rollback();
+                throw ex;
+        }
+        finally{
+                driver.finTransaccion();
+        }
+
+        return true;
+    }
+	
 }

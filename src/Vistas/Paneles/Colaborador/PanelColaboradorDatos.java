@@ -23,6 +23,7 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
     public PanelColaboradorDatos() {
         initComponents();
 		labelError.setVisible(false);
+		btHacerSocio.setVisible(false);
     }
 	
 	
@@ -128,6 +129,9 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
 	public JTabbedPane getJtabbedPaneColaborador(){
 		return jTabbedPaneColaboradores;
 	}
+	public JButton getHacerSocio(){
+		return btHacerSocio;
+	}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -171,6 +175,7 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        btHacerSocio = new javax.swing.JButton();
         PanelColaboracionesColaborador = new javax.swing.JPanel();
         label43 = new javax.swing.JLabel();
         jScrollPane13 = new javax.swing.JScrollPane();
@@ -271,6 +276,8 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
 
         jLabel13.setText("Movil");
 
+        btHacerSocio.setText("Hacer Socio");
+
         javax.swing.GroupLayout PanelDatosColaboradorLayout = new javax.swing.GroupLayout(PanelDatosColaborador);
         PanelDatosColaborador.setLayout(PanelDatosColaboradorLayout);
         PanelDatosColaboradorLayout.setHorizontalGroup(
@@ -336,7 +343,9 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
             .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
                 .addGap(380, 380, 380)
                 .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btHacerSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosColaboradorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btGuardarDatosColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -395,17 +404,22 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
                             .addComponent(jLabel12)
                             .addComponent(jTextProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel13)
-                    .addComponent(jTextMovil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
-                .addComponent(labelError)
+                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
+                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jTextCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)
+                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel13)
+                            .addComponent(jTextMovil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                        .addComponent(labelError))
+                    .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btHacerSocio)))
                 .addGap(18, 18, 18)
                 .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btLimpiarDatosColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -556,6 +570,7 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
     private javax.swing.JButton btEliminarColaborador;
     private javax.swing.JButton btGuardarColaboracionColaborador;
     private javax.swing.JButton btGuardarDatosColaborador;
+    private javax.swing.JButton btHacerSocio;
     private javax.swing.JButton btLimpiarDatosColaborador;
     private javax.swing.ButtonGroup buttonGroupSexo;
     private javax.swing.JComboBox cbFechaFinalColaborador;

@@ -74,6 +74,7 @@ public class ControladorSocio{
 	ArrayList<Colaboracion> colaboraciones = new ArrayList<Colaboracion>();
 	ArrayList<PagoCuota> pagoCuotas = new ArrayList<PagoCuota>();
 	ArrayList<Movimiento> mov = new ArrayList<Movimiento>();
+	boolean cambiarASocio=false;
 	
 	private String[] columnNames = {"DNI", "Nombre", "Direccion", "Localidad", "Teléfono", "Movil", "CP"};
 	private String[] columnNamesCuotas = {"Cantidad", "Fecha Inicio", "Fecha Final", "Intervalo de Pagos", "Ulitmo Pago"};
@@ -146,18 +147,26 @@ public class ControladorSocio{
             JOptionPane.showMessageDialog(null, "Un socio con este DNI ya existe.");
             return false;
         }
-		if (comprobarUsuarioUnico(socio.getUsuario()) && !socio_temp.getUsuario().equals(socio.getUsuario())) {
+		if (comprobarUsuarioUnico(socio.getUsuario()) && !socio_temp.getUsuario().equals(socio.getUsuario()) && socio.getUsuario()!=null) {
             JOptionPane.showMessageDialog(null, "Un socio con este Usuario ya existe.");
             return false;
         } 
 		boolean exito;
+		if(cambiarASocio){
+			cambiarASocio=false;
+			try {
+				exito=SocioJDBC.getInstance().insertarUnicamenteSocio(socio);
+			} catch (SQLException ex) {
+				Logger.getLogger(ControladorSocio.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
 		try {
 				exito = SocioJDBC.getInstance().modificarDatosSocio(socio);
 		} catch (SQLException ex) {
 			exito = false;
 			Logger.getLogger(ControladorSocio.class.getName()).log(Level.SEVERE, null, ex);
 		}
-
+		
 		return exito;
 	}
 
@@ -274,8 +283,8 @@ public class ControladorSocio{
                 vista.getPanelSocioDatos().getTextTelMovil().setForeground(Color.RED);
                 datosCorrectos = false;
             }
-			if( !TestDatos.isNombre(vista.getPanelSocioDatos().getTextNombre().getText()) ) {
-                vista.getPanelSocioDatos().getTextNombre().setForeground(Color.RED);
+			if( !TestDatos.isNombre(vista.getPanelSocioDatos().getTextUsuario().getText()) ) {
+                vista.getPanelSocioDatos().getTextUsuario().setForeground(Color.RED);
                 datosCorrectos = false;
             }
 			
@@ -337,7 +346,7 @@ public class ControladorSocio{
 				socio_temp.setUsuario(vista.getPanelSocioDatos().getTextUsuario().getText());
 
 				String password = ControladorPrincipal.getInstance().md5(vista.getPanelSocioDatos().getTextDNI().getText() + ControladorPrincipal.getInstance().getSalto());
-                socio_temp.setContrasena(password);		
+                socio_temp.setContrasena(password);
 				boolean exito = modificarSocio(socio_temp);
 				if (exito) {
 						vista.getPanelSocioDatos().setTextLabelError("Socio modificado correctamente.");
@@ -348,6 +357,7 @@ public class ControladorSocio{
 			}
 		}
 	}
+	
 	private void anadirKeyListener () {
         TextKeyListener keyListener = new TextKeyListener();
         

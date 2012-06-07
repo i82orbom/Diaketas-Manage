@@ -8,6 +8,7 @@ import JDBC.C_PersonaJDBC;
 import Modelo.C_Persona;
 import Modelo.Colaboracion;
 import Modelo.Movimiento;
+import Modelo.Socio;
 import Vistas.Paneles.Colaboradores.VistaColaboradores;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -31,7 +32,7 @@ import javax.swing.table.TableModel;
  **
  **
  ** DESARROLLADO POR:
- *          Raphael Colleau (RC)
+ *          Raphael Colleau (RC) y Alberto Moreno Mantas
  **
  **
  ** SUPERVISADO POR:
@@ -77,6 +78,7 @@ public class ControladorC_Persona {
 		
 		vista.getPanelColaboradorDatos().getBtGuardarDatosColaborador().addActionListener(new btGuardarColaboradorListener());
 		vista.getPanelColaboradorDatos().getBtBorrarDatosColaborador().addActionListener(new btBorrarColaboradorListener());
+		vista.getPanelColaboradorDatos().getHacerSocio().addActionListener(new btHacerSocioListener());
 		
 		vista.getPanelColaboradorBuscar().getBtBuscarColaborador().addActionListener(new btBuscarColaboradorListener());
 		vista.getPanelColaboradorBuscar().getBtConsultarColaborador().addActionListener(new btConsultarColaboradorListener());
@@ -255,6 +257,7 @@ public class ControladorC_Persona {
 					if (exito) {
 							colaborador_temp = obtenerC_Persona(colaborador.getDNI());
 							vista.getPanelColaboradorDatos().getJtabbedPaneColaborador().setEnabledAt(1, true);
+							vista.getPanelColaboradorDatos().getHacerSocio().setVisible(true);
 							vista.getPanelColaboradorDatos().setTextLabelError("Colaborador añadido correctamente.");
 					} else {
 							vista.getPanelColaboradorDatos().setTextLabelError("El colaborador no ha sido añadido.");
@@ -307,6 +310,7 @@ public class ControladorC_Persona {
 						datos[i]="";
 						vista.getPanelColaboradorDatos().escribirColaboradorDatos(datos);
 						colaborador_temp=null;
+						vista.getPanelColaboradorDatos().getHacerSocio().setVisible(false);
 						vista.getPanelColaboradorDatos().setTextLabelError("Colaborador eliminado correctamente.");
 					} else {
 							vista.getPanelColaboradorDatos().setTextLabelError("El colaborador no ha sido eliminado.");
@@ -414,7 +418,7 @@ public class ControladorC_Persona {
 			if(filaSeleccionada!=-1)
 				colaborador_temp = personas.get(filaSeleccionada);
 				vista.getPanelColaboradorDatos().modificarColaborador(colaborador_temp);
-							
+				vista.getPanelColaboradorDatos().getHacerSocio().setVisible(true);
 				ControladorColaboradores.getInstance(vista).mostrarVistaModificarColaborador();
 		}
 	}		
@@ -438,7 +442,35 @@ public class ControladorC_Persona {
 					vista.getPanelColaboradorBuscar().setTextLabelError("Error : el Socio no ha sido eliminado del sistema.");
 				}
 			}
-			
 		}
+	}
+	public class btHacerSocioListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Socio socio = new Socio();
+			socio.setOID(colaborador_temp.getOID());
+			socio.setNombre(vista.getPanelColaboradorDatos().getTextNombre().getText());
+			socio.setApellidos(vista.getPanelColaboradorDatos().getTextApellidos().getText());
+			socio.setDNI(vista.getPanelColaboradorDatos().getTextDNI().getText());
+			try {
+				socio.setFechaDeNacimiento(TestDatos.formatter.parse(vista.getPanelColaboradorDatos().getTextFN().getText()));
+			} catch (ParseException ex) {
+				Logger.getLogger(ControladorC_Persona.class.getName()).log(Level.SEVERE, null, ex);
+			}
+			socio.setEmail(vista.getPanelColaboradorDatos().getTextEmail().getText());
+			socio.setSexo(vista.getPanelColaboradorDatos().getSexo());
+			socio.setDireccion(vista.getPanelColaboradorDatos().getTextDomicilio().getText());
+			socio.setProvincia(vista.getPanelColaboradorDatos().getTextProvincia().getText());
+			socio.setLocalidad(vista.getPanelColaboradorDatos().getTextLocalidad().getText());
+			socio.setCP(vista.getPanelColaboradorDatos().getTextCP().getText());
+			socio.setTelefonoFijo(vista.getPanelColaboradorDatos().getTextTelfFijo().getText());
+			socio.setTelefonoMovil(vista.getPanelColaboradorDatos().getTextTelMovil().getText());
+			
+			ControladorSocio.getInstance(vista).socio_temp= socio;
+			ControladorSocio.getInstance(vista).cambiarASocio=true;
+			vista.getPanelSocioDatos().modificarSocio(socio);
+			ControladorColaboradores.getInstance(vista).mostrarVistaModificarSocio();
+		}	
 	}
 }
