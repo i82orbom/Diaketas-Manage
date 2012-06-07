@@ -246,7 +246,7 @@ public class ControladorC_Empresa {
         return personas;
     }
 
-    /* LA HE QUITADO PORQUE HE LLAMADO DIRECTAMENTE EN LA FUNCION BUSCAR AL JDBC
+    
     public ArrayList<Colaboracion> historialColaboraciones (C_Empresa empresa, java.util.Date fechaInicial, java.util.Date fechaFinal) {
 				
 		ArrayList<Colaboracion> Colaboraciones = null;
@@ -259,7 +259,7 @@ public class ControladorC_Empresa {
 		return Colaboraciones;
 	}
     
-    */
+    
     /**
      * Comprueba si los datos introducidos son correctos
      * @param datos
@@ -304,7 +304,7 @@ public class ControladorC_Empresa {
 			exito = false;
 		}
 
-		if (!TestDatos.isOnlyLetter(datos[C_Empresa.DIRECCION_WEB_ID])){
+		if (!TestDatos.isDireccionWeb(datos[C_Empresa.DIRECCION_WEB_ID])){
 			vista.getPanelEmpresaDatos().setColorLabelDireccion(Color.red);
 			exito = false;
 		}
@@ -594,7 +594,8 @@ public class ControladorC_Empresa {
                 C_Empresa_temp = empresas.get(vista.getPanelEmpresaBuscar().getTbBuscadorEmpresas().getSelectedRow());
                 String CIF = vista.getPanelEmpresaBuscar().getTbBuscadorEmpresas().getValueAt(vista.getPanelEmpresaBuscar().getTbBuscadorEmpresas().getSelectedRow(), 0).toString();
                 C_Empresa_temp = obtenerC_Empresa(CIF);
-                // Colaboraciones empresa...
+                ColaboracionesEmpresa = historialColaboraciones(C_Empresa_temp, null, null);
+                actualizarTablaColaboraciones();
                 ControladorColaboradores.getInstance(null).mostrarVistaEmpresaModificar();
             }
         }
@@ -626,6 +627,15 @@ public class ControladorC_Empresa {
         public void actionPerformed(ActionEvent e) {
             String dato = vista.getPanelEmpresaBuscar().getTextBusquedaEmpresa();
             String tipoDato = vista.getPanelEmpresaBuscar().getTipoDatoBusquedaEmpresa();
+            
+            if(tipoDato.equals("CIF"))
+                    tipoDato="CIF";
+            else if(tipoDato.equals("Nombre"))
+                    tipoDato="Nombre";
+            else if(tipoDato.equals("DireccionWeb"))
+                    tipoDato="DireccionWeb";
+
+            
             empresas = buscarC_Empresa(tipoDato, dato);
             TableModel tabla = new TableModel() {
 
@@ -679,12 +689,10 @@ public class ControladorC_Empresa {
 
                 @Override
                 public void addTableModelListener(TableModelListener l) {
-                    throw new UnsupportedOperationException("Not supported yet.");
                 }
 
                 @Override
                 public void removeTableModelListener(TableModelListener l) {
-                    throw new UnsupportedOperationException("Not supported yet.");
                 }
 
 

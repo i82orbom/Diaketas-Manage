@@ -245,9 +245,9 @@ public class C_EmpresaJDBC {
     public ArrayList<C_Empresa> buscarC_Empresa(String tipoBusqueda, String valor) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "SELECT * FROM C_Empresa e, Colaborador c WHERE "+tipoBusqueda+"='"+valor+"'";
+        String sql = "SELECT * FROM C_Empresa e, Colaborador c WHERE "+tipoBusqueda+" LIKE '%"+valor+"%' AND e.OID=c.OID";
         ArrayList<C_Empresa> listaC_Empresa = new ArrayList<C_Empresa>();
-        C_Empresa Empresa = null;
+        C_Empresa Empresa;
 
         try {
             driver.conectar();

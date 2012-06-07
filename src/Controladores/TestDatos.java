@@ -114,6 +114,15 @@ public class TestDatos {
         return m.matches();
     }
 
+    public static boolean isDireccionWeb(String d){
+        for(int i=0; i<d.length(); i++){
+            if(!Character.isLetter(d.charAt(i)) && d.charAt(i) != '.'){
+                return false;
+            }
+        }
+        return true;
+    }
+    
     public static boolean isOnlyLetter(String s) {
         // Definición isLetter de Unicode: [\\p{IsL}]
         for (int i = 0; i < s.length(); i++) {
