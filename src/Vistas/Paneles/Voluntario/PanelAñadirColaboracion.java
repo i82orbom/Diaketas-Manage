@@ -4,6 +4,10 @@
  */
 package Vistas.Paneles.Voluntario;
 
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Alberto
@@ -15,8 +19,72 @@ public class PanelAñadirColaboracion extends javax.swing.JPanel {
      */
     public PanelAñadirColaboracion() {
         initComponents();
+		labelError.setVisible(false);
     }
-
+	
+	public JButton getBtGuardarColaboracionEmpresa(){
+		return btGuardarColaboracionEmpresa;
+	}
+	public JButton getBtGuardarColaboracionSocio(){
+		return btGuardarColaboracionSocio;
+	}
+	public JButton getBtGuardarColaboracionColaborador(){
+		return btGuardarColaboracionColaborador;
+	}
+	public JButton getBtLimpiarSocio(){
+		return btLimpiarSocio;
+	}
+	public JButton getBtLimpiarEmpresa(){
+		return btLimpiarEmpresa;
+	}
+	public JButton getBtLimpiarColaborador(){
+		return btLimpiarColaborador;
+	}
+	
+	public JTextField getTextDNISocio(){
+		return textDNISocio;
+	}
+	public JTextField getTextDNIColaborador(){
+		return textDNIColaborador;
+	}
+	public JTextField getTextCIFEmpresa(){
+		return textCIFEmpresa;
+	}
+	public JTextField getTextCantidadSocio(){
+		return textCantidadSocio;
+	}
+	public JTextField getTextCantidadColaborador(){
+		return textCantidadColaborador;
+	}
+	public JTextField getTextCantidadEmpresa(){
+		return textCantidadEmpresa;
+	}
+	public JTextField getTextConceptoSocio(){
+		return textConceptoSocio;
+	}
+	public JTextField getTextConceptoColaborador(){
+		return textConceptoColaborador;
+	}
+	public JTextField getTextConceptoEmpresa(){
+		return textConceptoEmpresa;
+	}
+	public JFormattedTextField getTextFechaSocio(){
+		return jFormattedTextFechaSocio;
+	}
+	public JFormattedTextField getTextFechaColaborador(){
+		return jFormattedTextFechaColaborador;
+	}
+	public JFormattedTextField getTextFechaEmpresa(){
+		return jFormattedTextFechaEmpresa;
+	}
+	
+	public void setLabelError(String error){
+		labelError.setText(error);
+		labelError.setVisible(true);
+	}
+	public void setLaberErrorVisible(boolean visible){
+		labelError.setVisible(visible);
+	}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,32 +94,44 @@ public class PanelAñadirColaboracion extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btLimpiarColaboradorAñadir = new javax.swing.JButton();
+        btLimpiarColaborador = new javax.swing.JButton();
         jLabel76 = new javax.swing.JLabel();
-        textCIFEmpresaAñadir = new javax.swing.JTextField();
+        textCIFEmpresa = new javax.swing.JTextField();
         jLabel79 = new javax.swing.JLabel();
         jLabel78 = new javax.swing.JLabel();
         jLabel77 = new javax.swing.JLabel();
-        textFechaEmpresaAñadir = new javax.swing.JTextField();
         jLabel80 = new javax.swing.JLabel();
-        texrConceptoEmpresaAñadir = new javax.swing.JTextField();
-        textCantidadEmpresaAñadir = new javax.swing.JTextField();
-        btGuardarEmpresaAñadir = new javax.swing.JButton();
-        btLimpiarEmpresaAñadir = new javax.swing.JButton();
+        textConceptoEmpresa = new javax.swing.JTextField();
+        textCantidadEmpresa = new javax.swing.JTextField();
+        btGuardarColaboracionEmpresa = new javax.swing.JButton();
+        btLimpiarEmpresa = new javax.swing.JButton();
         jLabel71 = new javax.swing.JLabel();
-        btGuardarColaboradorAñadir = new javax.swing.JButton();
-        textDNIColaboracorAñadir = new javax.swing.JTextField();
+        btGuardarColaboracionColaborador = new javax.swing.JButton();
+        textDNIColaborador = new javax.swing.JTextField();
         jLabel72 = new javax.swing.JLabel();
-        textCantidadColaboradorAñadir = new javax.swing.JTextField();
+        textCantidadColaborador = new javax.swing.JTextField();
         jLabel73 = new javax.swing.JLabel();
-        textConceptoColaboradorAñadir = new javax.swing.JTextField();
+        textConceptoColaborador = new javax.swing.JTextField();
         jLabel74 = new javax.swing.JLabel();
-        textFechaColaboradorAñadir = new javax.swing.JTextField();
         jLabel75 = new javax.swing.JLabel();
+        jLabel81 = new javax.swing.JLabel();
+        jLabel82 = new javax.swing.JLabel();
+        jLabel83 = new javax.swing.JLabel();
+        jLabel84 = new javax.swing.JLabel();
+        textDNISocio = new javax.swing.JTextField();
+        textCantidadSocio = new javax.swing.JTextField();
+        textConceptoSocio = new javax.swing.JTextField();
+        jLabel85 = new javax.swing.JLabel();
+        btGuardarColaboracionSocio = new javax.swing.JButton();
+        btLimpiarSocio = new javax.swing.JButton();
+        jFormattedTextFechaSocio = new javax.swing.JFormattedTextField();
+        jFormattedTextFechaColaborador = new javax.swing.JFormattedTextField();
+        jFormattedTextFechaEmpresa = new javax.swing.JFormattedTextField();
+        labelError = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        btLimpiarColaboradorAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
+        btLimpiarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
 
         jLabel76.setForeground(new java.awt.Color(255, 0, 0));
         jLabel76.setText("Añadir en empresa");
@@ -64,14 +144,14 @@ public class PanelAñadirColaboracion extends javax.swing.JPanel {
 
         jLabel80.setText("Fecha");
 
-        btGuardarEmpresaAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
+        btGuardarColaboracionEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
 
-        btLimpiarEmpresaAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
+        btLimpiarEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
 
         jLabel71.setForeground(new java.awt.Color(255, 0, 0));
         jLabel71.setText("Añadir en colaborador");
 
-        btGuardarColaboradorAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
+        btGuardarColaboracionColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
 
         jLabel72.setText("DNI del colaborador");
 
@@ -81,127 +161,201 @@ public class PanelAñadirColaboracion extends javax.swing.JPanel {
 
         jLabel75.setText("Fecha");
 
+        jLabel81.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel81.setText("Añadir en socio");
+
+        jLabel82.setText("DNI del socio");
+
+        jLabel83.setText("Cantidad");
+
+        jLabel84.setText("Concepto");
+
+        jLabel85.setText("Fecha");
+
+        btGuardarColaboracionSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
+
+        btLimpiarSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/limpiar.png"))); // NOI18N
+
+        jFormattedTextFechaSocio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+
+        jFormattedTextFechaColaborador.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+
+        jFormattedTextFechaEmpresa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+
+        labelError.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        labelError.setForeground(new java.awt.Color(255, 51, 51));
+        labelError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelError.setText("Error");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel76)
-                        .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel71)
+                    .addComponent(jLabel76)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel74)
+                                    .addComponent(jLabel73)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel72, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGap(29, 29, 29)
+                                    .addGap(24, 24, 24)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel83)
+                                        .addComponent(jLabel84)
+                                        .addComponent(jLabel82))
+                                    .addGap(33, 33, 33)))
+                            .addComponent(jLabel81)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel78)
                                     .addComponent(jLabel79)
-                                    .addGap(59, 59, 59))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel78)
-                                        .addComponent(jLabel77))
-                                    .addGap(18, 18, 18)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(textCantidadEmpresaAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(125, 125, 125)
-                                    .addComponent(jLabel80)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(textFechaEmpresaAñadir))
-                                .addComponent(texrConceptoEmpresaAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textCIFEmpresaAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(99, 99, 99)
-                            .addComponent(btGuardarEmpresaAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btLimpiarEmpresaAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel71)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(29, 29, 29)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel72)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(textDNIColaboracorAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(402, 402, 402))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel74)
-                                        .addComponent(jLabel73))
-                                    .addGap(59, 59, 59)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(textCantidadColaboradorAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(125, 125, 125)
-                                            .addComponent(jLabel75)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(textFechaColaboradorAñadir))
-                                        .addComponent(textConceptoColaboradorAñadir))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btGuardarColaboradorAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                            .addComponent(btLimpiarColaboradorAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(97, 97, 97))
+                                    .addComponent(jLabel77))))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(textDNIColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(textCantidadEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(81, 81, 81)
+                                        .addComponent(jLabel80)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jFormattedTextFechaEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(textConceptoEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textCIFEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(textCantidadColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(81, 81, 81)
+                                        .addComponent(jLabel75)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jFormattedTextFechaColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(textCantidadSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(81, 81, 81)
+                                        .addComponent(jLabel85)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jFormattedTextFechaSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(textDNISocio, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textConceptoColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textConceptoSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(88, 88, 88)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btGuardarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btLimpiarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btGuardarColaboracionColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btLimpiarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btGuardarColaboracionEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 44, Short.MAX_VALUE)
+                                        .addComponent(btLimpiarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addGap(102, 102, 102))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(356, 356, 356))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(149, 149, 149)
+                .addGap(68, 68, 68)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel81)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textDNISocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel82))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel83)
+                            .addComponent(textCantidadSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel85)
+                            .addComponent(jFormattedTextFechaSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btGuardarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btLimpiarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel84)
+                    .addComponent(textConceptoSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addComponent(jLabel71)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel72)
-                    .addComponent(textDNIColaboracorAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textDNIColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(btGuardarColaboradorAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btLimpiarColaboradorAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel73)
-                            .addComponent(textCantidadColaboradorAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textCantidadColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel75)
-                            .addComponent(textFechaColaboradorAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jFormattedTextFechaColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textConceptoColaboradorAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel74))))
-                .addGap(45, 45, 45)
-                .addComponent(jLabel76)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel77)
-                    .addComponent(textCIFEmpresaAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textConceptoColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel74))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel76)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel77)
+                            .addComponent(textCIFEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btGuardarColaboracionColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btLimpiarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textCantidadEmpresaAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel78)
-                            .addComponent(textFechaEmpresaAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel80))
+                            .addComponent(textCantidadEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel80)
+                            .addComponent(jFormattedTextFechaEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel78))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel79)
-                            .addComponent(texrConceptoEmpresaAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(textConceptoEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btLimpiarEmpresaAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btGuardarEmpresaAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(170, Short.MAX_VALUE))
+                            .addComponent(btLimpiarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btGuardarColaboracionEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(34, 34, 34)
+                .addComponent(labelError)
+                .addGap(90, 90, 90))
         );
 
         getAccessibleContext().setAccessibleName("añadir");
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btGuardarColaboradorAñadir;
-    private javax.swing.JButton btGuardarEmpresaAñadir;
-    private javax.swing.JButton btLimpiarColaboradorAñadir;
-    private javax.swing.JButton btLimpiarEmpresaAñadir;
+    private javax.swing.JButton btGuardarColaboracionColaborador;
+    private javax.swing.JButton btGuardarColaboracionEmpresa;
+    private javax.swing.JButton btGuardarColaboracionSocio;
+    private javax.swing.JButton btLimpiarColaborador;
+    private javax.swing.JButton btLimpiarEmpresa;
+    private javax.swing.JButton btLimpiarSocio;
+    private javax.swing.JFormattedTextField jFormattedTextFechaColaborador;
+    private javax.swing.JFormattedTextField jFormattedTextFechaEmpresa;
+    private javax.swing.JFormattedTextField jFormattedTextFechaSocio;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
@@ -212,13 +366,20 @@ public class PanelAñadirColaboracion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel80;
-    private javax.swing.JTextField texrConceptoEmpresaAñadir;
-    private javax.swing.JTextField textCIFEmpresaAñadir;
-    private javax.swing.JTextField textCantidadColaboradorAñadir;
-    private javax.swing.JTextField textCantidadEmpresaAñadir;
-    private javax.swing.JTextField textConceptoColaboradorAñadir;
-    private javax.swing.JTextField textDNIColaboracorAñadir;
-    private javax.swing.JTextField textFechaColaboradorAñadir;
-    private javax.swing.JTextField textFechaEmpresaAñadir;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel82;
+    private javax.swing.JLabel jLabel83;
+    private javax.swing.JLabel jLabel84;
+    private javax.swing.JLabel jLabel85;
+    private javax.swing.JLabel labelError;
+    private javax.swing.JTextField textCIFEmpresa;
+    private javax.swing.JTextField textCantidadColaborador;
+    private javax.swing.JTextField textCantidadEmpresa;
+    private javax.swing.JTextField textCantidadSocio;
+    private javax.swing.JTextField textConceptoColaborador;
+    private javax.swing.JTextField textConceptoEmpresa;
+    private javax.swing.JTextField textConceptoSocio;
+    private javax.swing.JTextField textDNIColaborador;
+    private javax.swing.JTextField textDNISocio;
     // End of variables declaration//GEN-END:variables
 }

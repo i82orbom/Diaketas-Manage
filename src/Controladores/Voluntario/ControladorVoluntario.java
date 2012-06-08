@@ -4,8 +4,11 @@ package Controladores.Voluntario;
 import Controladores.ControladorErrores;
 import Controladores.ControladorPrincipal;
 import Controladores.TestDatos;
+import JDBC.C_EmpresaJDBC;
+import JDBC.C_PersonaJDBC;
+import JDBC.SocioJDBC;
 import JDBC.VoluntarioJDBC;
-import Modelo.Voluntario;
+import Modelo.*;
 import Vistas.BarraDeNavegacion;
 import Vistas.Paneles.Voluntario.VistaVoluntario;
 import java.awt.Color;
@@ -112,8 +115,14 @@ public class ControladorVoluntario {
         vista.getPanelVoluntarioBuscar().getBtBuscar().addActionListener(new BtBuscarVoluntarioListener());
         vista.getPanelVoluntarioBuscar().getBtVerVoluntario().addActionListener(new BtVerVoluntarioListener());
 
-        anadirKeyListener();
+		vista.getPanelVoluntarioAñadirColaboraciones().getBtGuardarColaboracionSocio().addActionListener(new BtGuardarColaboracionSocioListener());
+		vista.getPanelVoluntarioAñadirColaboraciones().getBtGuardarColaboracionColaborador().addActionListener(new BtGuardarColaboracionColaboradorListener());
+		vista.getPanelVoluntarioAñadirColaboraciones().getBtGuardarColaboracionEmpresa().addActionListener(new BtGuardarColaboracionEmpresaListener());
+		vista.getPanelVoluntarioAñadirColaboraciones().getBtLimpiarSocio().addActionListener(new BtLimpiarSocioListener());
+		vista.getPanelVoluntarioAñadirColaboraciones().getBtLimpiarEmpresa().addActionListener(new BtLimpiarEmpresaListener());
+		vista.getPanelVoluntarioAñadirColaboraciones().getBtLimpiarColaborador().addActionListener(new BtLimpiarColaboradorListener());
 
+        anadirKeyListener();
         // al principio mostrar la vista de inicio
         mostrarVistaInicio();
     }
@@ -594,5 +603,202 @@ public class ControladorVoluntario {
         }
 
     }
+	public class BtGuardarColaboracionSocioListener implements ActionListener{
 
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Socio s=null;
+			Colaboracion colaboracion = new Colaboracion();
+			boolean datosCorrectos=true;
+			if( !TestDatos.isNombre( vista.getPanelVoluntarioAñadirColaboraciones().getTextConceptoSocio().getText()) ) {
+                vista.getPanelVoluntarioAñadirColaboraciones().getTextConceptoSocio().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isMoney(vista.getPanelVoluntarioAñadirColaboraciones().getTextCantidadSocio().getText()) ) {
+                vista.getPanelVoluntarioAñadirColaboraciones().getTextCantidadSocio().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isDNI( vista.getPanelVoluntarioAñadirColaboraciones().getTextDNISocio().getText()) ) {
+                vista.getPanelVoluntarioAñadirColaboraciones().getTextDNISocio().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isFecha( vista.getPanelVoluntarioAñadirColaboraciones().getTextFechaSocio().getText())) {
+                vista.getPanelVoluntarioAñadirColaboraciones().getTextFechaSocio().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if(!datosCorrectos){
+				vista.getPanelVoluntarioAñadirColaboraciones().setLabelError("Los campos en rojo tienes errores.");
+			}
+			else{
+				//s= new Socio();
+				try {
+					s = SocioJDBC.getInstance().obtenerSocio(vista.getPanelVoluntarioAñadirColaboraciones().getTextDNISocio().getText());
+				} catch (SQLException ex) {
+					Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				if(s!=null){
+					colaboracion.setColaborador(s);
+					try {
+						colaboracion.setFecha(TestDatos.formatter.parse(vista.getPanelVoluntarioAñadirColaboraciones().getTextFechaSocio().getText()));
+					} catch (ParseException ex) {
+						Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+					}
+					colaboracion.setConcepto(vista.getPanelVoluntarioAñadirColaboraciones().getTextConceptoSocio().getText());
+					colaboracion.setImporte(Float.parseFloat(vista.getPanelVoluntarioAñadirColaboraciones().getTextCantidadSocio().getText()));
+					colaboracion.setVoluntario(ControladorPrincipal.getInstance().getVoluntario());
+					ControladorColaboracion.getInstance().anadirColaboracion(colaboracion);
+					vista.getPanelVoluntarioAñadirColaboraciones().setLabelError("La colaboracion se ha añadido");
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Un socio con este DNI no existe.");
+				}
+			}
+		}
+	}
+	public class BtLimpiarSocioListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextDNISocio().setText("");
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextCantidadSocio().setText("");
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextConceptoSocio().setText("");
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextFechaSocio().setText("");
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextDNISocio().setForeground(Color.BLACK);
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextCantidadSocio().setForeground(Color.BLACK);
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextConceptoSocio().setForeground(Color.BLACK);
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextFechaSocio().setForeground(Color.BLACK);
+		}
+	}
+	public class BtLimpiarEmpresaListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextCIFEmpresa().setText("");
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextCantidadEmpresa().setText("");
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextConceptoEmpresa().setText("");
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextFechaEmpresa().setText("");
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextCIFEmpresa().setForeground(Color.BLACK);
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextCantidadEmpresa().setForeground(Color.BLACK);
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextConceptoEmpresa().setForeground(Color.BLACK);
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextFechaEmpresa().setForeground(Color.BLACK);
+		}
+	}
+	public class BtLimpiarColaboradorListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextDNIColaborador().setText("");
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextCantidadColaborador().setText("");
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextConceptoColaborador().setText("");
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextFechaColaborador().setText("");
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextDNIColaborador().setForeground(Color.BLACK);
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextCantidadColaborador().setForeground(Color.BLACK);
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextConceptoColaborador().setForeground(Color.BLACK);
+			vista.getPanelVoluntarioAñadirColaboraciones().getTextFechaColaborador().setForeground(Color.BLACK);
+		}
+	}
+	
+	public class BtGuardarColaboracionColaboradorListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			C_Persona s=null;
+			Colaboracion colaboracion = new Colaboracion();
+			boolean datosCorrectos=true;
+			if( !TestDatos.isNombre( vista.getPanelVoluntarioAñadirColaboraciones().getTextConceptoColaborador().getText()) ) {
+                vista.getPanelVoluntarioAñadirColaboraciones().getTextConceptoColaborador().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isMoney(vista.getPanelVoluntarioAñadirColaboraciones().getTextCantidadColaborador().getText()) ) {
+                vista.getPanelVoluntarioAñadirColaboraciones().getTextCantidadColaborador().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isDNI( vista.getPanelVoluntarioAñadirColaboraciones().getTextDNIColaborador().getText()) ) {
+                vista.getPanelVoluntarioAñadirColaboraciones().getTextDNIColaborador().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isFecha( vista.getPanelVoluntarioAñadirColaboraciones().getTextFechaColaborador().getText())) {
+                vista.getPanelVoluntarioAñadirColaboraciones().getTextFechaColaborador().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if(!datosCorrectos){
+				vista.getPanelVoluntarioAñadirColaboraciones().setLabelError("Los campos en rojo tienes errores.");
+			}
+			else{
+				try {
+					s = C_PersonaJDBC.getInstance().obtenerC_Persona(vista.getPanelVoluntarioAñadirColaboraciones().getTextDNIColaborador().getText());
+				} catch (SQLException ex) {
+					Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				if(s!=null){
+					colaboracion.setColaborador(s);
+					try {
+						colaboracion.setFecha(TestDatos.formatter.parse(vista.getPanelVoluntarioAñadirColaboraciones().getTextFechaColaborador().getText()));
+					} catch (ParseException ex) {
+						Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+					}
+					colaboracion.setConcepto(vista.getPanelVoluntarioAñadirColaboraciones().getTextConceptoColaborador().getText());
+					colaboracion.setImporte(Float.parseFloat(vista.getPanelVoluntarioAñadirColaboraciones().getTextCantidadColaborador().getText()));
+					colaboracion.setVoluntario(ControladorPrincipal.getInstance().getVoluntario());
+					ControladorColaboracion.getInstance().anadirColaboracion(colaboracion);
+					vista.getPanelVoluntarioAñadirColaboraciones().setLabelError("La colaboracion se ha añadido");
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Un colaborador con este DNI no existe.");				
+				}
+			}
+		}
+	}
+	
+	public class BtGuardarColaboracionEmpresaListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			C_Empresa s=null;
+			Colaboracion colaboracion = new Colaboracion();
+			boolean datosCorrectos=true;
+			if( !TestDatos.isNombre( vista.getPanelVoluntarioAñadirColaboraciones().getTextConceptoEmpresa().getText()) ) {
+                vista.getPanelVoluntarioAñadirColaboraciones().getTextConceptoEmpresa().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isMoney(vista.getPanelVoluntarioAñadirColaboraciones().getTextCantidadEmpresa().getText()) ) {
+                vista.getPanelVoluntarioAñadirColaboraciones().getTextCantidadEmpresa().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isCIF( vista.getPanelVoluntarioAñadirColaboraciones().getTextCIFEmpresa().getText()) ) {
+                vista.getPanelVoluntarioAñadirColaboraciones().getTextCIFEmpresa().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isFecha( vista.getPanelVoluntarioAñadirColaboraciones().getTextFechaEmpresa().getText())) {
+                vista.getPanelVoluntarioAñadirColaboraciones().getTextFechaEmpresa().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if(!datosCorrectos){
+				vista.getPanelVoluntarioAñadirColaboraciones().setLabelError("Los campos en rojo tienes errores.");
+			}
+			else{
+				try {
+					s = C_EmpresaJDBC.getInstance().obtenerC_Empresa(vista.getPanelVoluntarioAñadirColaboraciones().getTextCIFEmpresa().getText());
+				} catch (SQLException ex) {
+					Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				if(s!=null){
+					colaboracion.setColaborador(s);
+					try {
+						colaboracion.setFecha(TestDatos.formatter.parse(vista.getPanelVoluntarioAñadirColaboraciones().getTextFechaEmpresa().getText()));
+					} catch (ParseException ex) {
+						Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+					}
+					colaboracion.setConcepto(vista.getPanelVoluntarioAñadirColaboraciones().getTextConceptoEmpresa().getText());
+					colaboracion.setImporte(Float.parseFloat(vista.getPanelVoluntarioAñadirColaboraciones().getTextCantidadEmpresa().getText()));
+					colaboracion.setVoluntario(ControladorPrincipal.getInstance().getVoluntario());
+					ControladorColaboracion.getInstance().anadirColaboracion(colaboracion);
+					vista.getPanelVoluntarioAñadirColaboraciones().setLabelError("La colaboracion se ha añadido");
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Un empresa con este CIF no existe.");				
+				}
+			}
+		}
+	}
 }

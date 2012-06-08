@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -24,151 +24,205 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                      <Component id="jLabel76" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel71" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel76" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel74" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel73" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                              <Component id="jLabel72" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel83" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel84" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel82" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="jLabel81" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel78" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel79" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel78" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel77" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabel77" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="textCantidadEmpresaAñadir" min="-2" pref="111" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                                  <Component id="jLabel80" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="textFechaEmpresaAñadir" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="texrConceptoEmpresaAñadir" alignment="0" min="-2" pref="430" max="-2" attributes="0"/>
-                              <Component id="textCIFEmpresaAñadir" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                          <Component id="btGuardarEmpresaAñadir" min="-2" pref="25" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btLimpiarEmpresaAñadir" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
-                  </Group>
-                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                      <Component id="jLabel71" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel72" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="textDNIColaboracorAñadir" min="-2" pref="162" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="402" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="textDNIColaborador" min="-2" pref="162" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="textCantidadEmpresa" min="-2" pref="111" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                                      <Component id="jLabel80" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jFormattedTextFechaEmpresa" min="-2" pref="142" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="textConceptoEmpresa" alignment="0" min="-2" pref="430" max="-2" attributes="0"/>
+                                  <Component id="textCIFEmpresa" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="textCantidadColaborador" min="-2" pref="111" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                                      <Component id="jLabel75" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jFormattedTextFechaColaborador" min="-2" pref="142" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="textCantidadSocio" min="-2" pref="111" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                                      <Component id="jLabel85" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jFormattedTextFechaSocio" min="-2" pref="142" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="textDNISocio" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
+                                  <Component id="textConceptoColaborador" alignment="0" min="-2" pref="441" max="-2" attributes="0"/>
+                                  <Component id="textConceptoSocio" alignment="0" min="-2" pref="430" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel74" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel73" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="btGuardarColaboracionSocio" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="btLimpiarSocio" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="textCantidadColaboradorAñadir" min="-2" pref="111" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                                          <Component id="jLabel75" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="textFechaColaboradorAñadir" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Component id="textConceptoColaboradorAñadir" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="btGuardarColaboracionColaborador" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="btLimpiarColaborador" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="99" max="-2" attributes="0"/>
-                                  <Component id="btGuardarColaboradorAñadir" min="-2" pref="25" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="btGuardarColaboracionEmpresa" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" pref="44" max="32767" attributes="0"/>
+                                      <Component id="btLimpiarEmpresa" min="-2" pref="27" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <Component id="btLimpiarColaboradorAñadir" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="labelError" min="-2" pref="262" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="356" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel81" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="textDNISocio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel82" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel83" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textCantidadSocio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel85" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jFormattedTextFechaSocio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="43" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btGuardarColaboracionSocio" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="btLimpiarSocio" min="-2" pref="30" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel84" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textConceptoSocio" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Component id="jLabel71" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel72" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="textDNIColaboracorAñadir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textDNIColaborador" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      <Component id="btGuardarColaboradorAñadir" min="-2" pref="26" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="btLimpiarColaboradorAñadir" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel73" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textCantidadColaboradorAñadir" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textCantidadColaborador" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel75" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFechaColaboradorAñadir" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jFormattedTextFechaColaborador" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textConceptoColaboradorAñadir" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textConceptoColaborador" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel74" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jLabel76" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel77" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textCIFEmpresa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-              </Group>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-              <Component id="jLabel76" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel77" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="textCIFEmpresaAñadir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btGuardarColaboracionColaborador" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="btLimpiarColaborador" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textCantidadEmpresaAñadir" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel78" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFechaEmpresaAñadir" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textCantidadEmpresa" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel80" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jFormattedTextFechaEmpresa" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel78" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel79" min="-2" max="-2" attributes="0"/>
-                          <Component id="texrConceptoEmpresaAñadir" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="textConceptoEmpresa" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btLimpiarEmpresaAñadir" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="btGuardarEmpresaAñadir" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="btLimpiarEmpresa" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="btGuardarColaboracionEmpresa" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="170" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Component id="labelError" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btLimpiarColaboradorA&#xf1;adir">
+    <Component class="javax.swing.JButton" name="btLimpiarColaborador">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Vista/images/limpiar.png"/>
@@ -183,7 +237,7 @@
         <Property name="text" type="java.lang.String" value="A&#xf1;adir en empresa"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textCIFEmpresaA&#xf1;adir">
+    <Component class="javax.swing.JTextField" name="textCIFEmpresa">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel79">
       <Properties>
@@ -200,25 +254,23 @@
         <Property name="text" type="java.lang.String" value="CIF de la empresa"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFechaEmpresaA&#xf1;adir">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel80">
       <Properties>
         <Property name="text" type="java.lang.String" value="Fecha"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="texrConceptoEmpresaA&#xf1;adir">
+    <Component class="javax.swing.JTextField" name="textConceptoEmpresa">
     </Component>
-    <Component class="javax.swing.JTextField" name="textCantidadEmpresaA&#xf1;adir">
+    <Component class="javax.swing.JTextField" name="textCantidadEmpresa">
     </Component>
-    <Component class="javax.swing.JButton" name="btGuardarEmpresaA&#xf1;adir">
+    <Component class="javax.swing.JButton" name="btGuardarColaboracionEmpresa">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Vista/images/guardar.png"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btLimpiarEmpresaA&#xf1;adir">
+    <Component class="javax.swing.JButton" name="btLimpiarEmpresa">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Vista/images/limpiar.png"/>
@@ -233,39 +285,118 @@
         <Property name="text" type="java.lang.String" value="A&#xf1;adir en colaborador"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btGuardarColaboradorA&#xf1;adir">
+    <Component class="javax.swing.JButton" name="btGuardarColaboracionColaborador">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Vista/images/guardar.png"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textDNIColaboracorA&#xf1;adir">
+    <Component class="javax.swing.JTextField" name="textDNIColaborador">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel72">
       <Properties>
         <Property name="text" type="java.lang.String" value="DNI del colaborador"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textCantidadColaboradorA&#xf1;adir">
+    <Component class="javax.swing.JTextField" name="textCantidadColaborador">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel73">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cantidad"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textConceptoColaboradorA&#xf1;adir">
+    <Component class="javax.swing.JTextField" name="textConceptoColaborador">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel74">
       <Properties>
         <Property name="text" type="java.lang.String" value="Concepto"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFechaColaboradorA&#xf1;adir">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel75">
       <Properties>
         <Property name="text" type="java.lang.String" value="Fecha"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel81">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="A&#xf1;adir en socio"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel82">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="DNI del socio"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel83">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cantidad"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel84">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Concepto"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="textDNISocio">
+    </Component>
+    <Component class="javax.swing.JTextField" name="textCantidadSocio">
+    </Component>
+    <Component class="javax.swing.JTextField" name="textConceptoSocio">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel85">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fecha"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btGuardarColaboracionSocio">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Vista/images/guardar.png"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btLimpiarSocio">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Vista/images/limpiar.png"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFechaSocio">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFechaColaborador">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFechaEmpresa">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelError">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="14" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Error"/>
       </Properties>
     </Component>
   </SubComponents>

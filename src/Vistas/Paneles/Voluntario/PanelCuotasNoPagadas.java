@@ -4,6 +4,8 @@
  */
 package Vistas.Paneles.Voluntario;
 
+import javax.swing.*;
+
 /**
  *
  * @author Alberto
@@ -17,6 +19,37 @@ public class PanelCuotasNoPagadas extends javax.swing.JPanel {
         initComponents();
     }
 
+	public JButton getBtGuardarPagoCuota(){
+		return btGuardarPagoCuota;
+	}
+	
+	public JTextField getTextDNI(){
+		return textDNI;
+	}
+	
+	public JTextField getTextCantidad(){
+		return textCantidad;
+	}
+	
+	public JTextField getTextConcepto(){
+		return textConcepto;
+	}
+	
+	public JFormattedTextField getTextFecha(){
+		return jFormattedTextFecha;
+	}
+	
+	public void setLabelError(String error){
+		labelError.setText(error);
+		labelError.setVisible(true);
+	}
+	public void setLabelErrorVisible(boolean visible){
+		labelError.setVisible(visible);
+	}
+	
+	public JTable getTablaCuotas(){
+		return tableCuotas;
+	}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,24 +60,25 @@ public class PanelCuotasNoPagadas extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane15 = new javax.swing.JScrollPane();
-        tableCuotras = new javax.swing.JTable();
+        tableCuotas = new javax.swing.JTable();
         jLabel92 = new javax.swing.JLabel();
         jLabel82 = new javax.swing.JLabel();
         jLabel83 = new javax.swing.JLabel();
         jLabel84 = new javax.swing.JLabel();
         jLabel85 = new javax.swing.JLabel();
-        textConceptoCuotas = new javax.swing.JTextField();
-        textDNISocioCuotas = new javax.swing.JTextField();
-        textCantidadCuotas = new javax.swing.JTextField();
+        textConcepto = new javax.swing.JTextField();
+        textDNI = new javax.swing.JTextField();
+        textCantidad = new javax.swing.JTextField();
         jLabel86 = new javax.swing.JLabel();
-        textFechaCuotas = new javax.swing.JTextField();
-        btGuardarCuota = new javax.swing.JButton();
+        btGuardarPagoCuota = new javax.swing.JButton();
+        jFormattedTextFecha = new javax.swing.JFormattedTextField();
+        labelError = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jScrollPane15.setBackground(new java.awt.Color(255, 255, 255));
 
-        tableCuotras.setModel(new javax.swing.table.DefaultTableModel(
+        tableCuotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -55,7 +89,7 @@ public class PanelCuotasNoPagadas extends javax.swing.JPanel {
                 "DNI", "Cantidad de cuota", "Cantidad que debe", "Intervalo de pagos", "Fecha ultimo pago"
             }
         ));
-        jScrollPane15.setViewportView(tableCuotras);
+        jScrollPane15.setViewportView(tableCuotas);
 
         jLabel92.setForeground(new java.awt.Color(255, 0, 0));
         jLabel92.setText("Cuotas");
@@ -71,7 +105,12 @@ public class PanelCuotasNoPagadas extends javax.swing.JPanel {
 
         jLabel86.setText("Fecha");
 
-        btGuardarCuota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
+        btGuardarPagoCuota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
+
+        labelError.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        labelError.setForeground(new java.awt.Color(255, 51, 51));
+        labelError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelError.setText("Error");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -81,30 +120,40 @@ public class PanelCuotasNoPagadas extends javax.swing.JPanel {
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel92)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(76, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel82)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel83)
+                            .addComponent(jLabel84)
+                            .addComponent(jLabel85))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textConcepto, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel83)
-                                    .addComponent(jLabel84)
-                                    .addComponent(jLabel85))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textConceptoCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textDNISocioCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(textCantidadCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(textCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(74, 74, 74)
                                         .addComponent(jLabel86)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(textFechaCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jFormattedTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btGuardarCuota, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(63, 63, 63)))))
-                .addContainerGap(76, Short.MAX_VALUE))
+                                .addComponent(btGuardarPagoCuota, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(116, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(369, 369, 369)
+                    .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(369, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,32 +161,38 @@ public class PanelCuotasNoPagadas extends javax.swing.JPanel {
                 .addGap(40, 40, 40)
                 .addComponent(jLabel92)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addComponent(jLabel82)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel83)
-                    .addComponent(textDNISocioCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel83)
+                            .addComponent(textDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(textCantidadCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel86)
-                                .addComponent(textFechaCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jFormattedTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel84))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel85)
-                            .addComponent(textConceptoCuotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btGuardarCuota, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                            .addComponent(textConcepto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btGuardarPagoCuota, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(101, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(502, 502, 502)
+                    .addComponent(labelError)
+                    .addContainerGap(29, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btGuardarCuota;
+    private javax.swing.JButton btGuardarPagoCuota;
+    private javax.swing.JFormattedTextField jFormattedTextFecha;
     private javax.swing.JLabel jLabel82;
     private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel84;
@@ -145,10 +200,10 @@ public class PanelCuotasNoPagadas extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel92;
     private javax.swing.JScrollPane jScrollPane15;
-    private javax.swing.JTable tableCuotras;
-    private javax.swing.JTextField textCantidadCuotas;
-    private javax.swing.JTextField textConceptoCuotas;
-    private javax.swing.JTextField textDNISocioCuotas;
-    private javax.swing.JTextField textFechaCuotas;
+    private javax.swing.JLabel labelError;
+    private javax.swing.JTable tableCuotas;
+    private javax.swing.JTextField textCantidad;
+    private javax.swing.JTextField textConcepto;
+    private javax.swing.JTextField textDNI;
     // End of variables declaration//GEN-END:variables
 }
