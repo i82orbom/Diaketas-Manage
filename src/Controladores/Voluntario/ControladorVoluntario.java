@@ -852,9 +852,10 @@ public class ControladorVoluntario {
 					pago.setVoluntario(ControladorPrincipal.getInstance().getVoluntario());
 
 					if(ControladorPagoCuota.getInstance().anadirPagoCuota(pago)){
+						ComprobarImpagos();
 						vista.getPanelVoluntarioCuotasNoPagadas().setLabelError("El pago de la cuota ha sido añadido");
 					}
-					else
+					else						
 						vista.getPanelVoluntarioCuotasNoPagadas().setLabelError("El pago de la cuota no ha sido añadido");
 				}
 				else{
