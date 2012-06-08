@@ -5,10 +5,7 @@
 package Vistas.Paneles.Colaborador;
 
 import Modelo.C_Persona;
-import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
@@ -23,6 +20,7 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
     public PanelColaboradorDatos() {
         initComponents();
 		labelError.setVisible(false);
+		labelErrorColaboracion.setVisible(false);
 		btHacerSocio.setVisible(false);
     }
 	
@@ -132,6 +130,45 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
 	public JButton getHacerSocio(){
 		return btHacerSocio;
 	}
+	
+	public JButton getBtEliminarColaboracion(){
+		return btEliminarColaborador;
+	}
+	public JButton getBtBuscarColaboraciones(){
+		return btBuscarColaboraciones;
+	}
+	public JButton getBtGuardarColaboracion(){
+		return btGuardarColaboracionColaborador;
+	}
+	
+	public JTextField getTextCantidad(){
+		return JtextCantidadColaborador;
+	}
+	public JTextField getTextConcepto(){
+		return JtextConceptoColaborador;
+	}
+	
+	public JFormattedTextField getTextFecha(){
+		return jFormattedTextFecha;
+	}
+	public JFormattedTextField getTextFechaInicio(){
+		return jFormattedTextFechaInicio;
+	}
+	public JFormattedTextField getTextFechaFinal(){
+		return jFormattedTextFechaFinal;
+	}
+	public void setTextLabelErrorColaboracion(String cadena){
+		labelErrorColaboracion.setText(cadena);
+		labelErrorColaboracion.setVisible(true);
+	}
+	
+	public void setTextLabelErrorColaboracionVisible(Boolean bol){
+		labelErrorColaboracion.setVisible(bol);
+	}
+	
+	public JTable getTablaColaboraciones(){
+		return JtableColaboracionesColaborador;
+	}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -179,19 +216,22 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
         PanelColaboracionesColaborador = new javax.swing.JPanel();
         label43 = new javax.swing.JLabel();
         jScrollPane13 = new javax.swing.JScrollPane();
-        tableColaboracionesColaborador = new javax.swing.JTable();
+        JtableColaboracionesColaborador = new javax.swing.JTable();
         label44 = new javax.swing.JLabel();
         label45 = new javax.swing.JLabel();
-        textCantidadColaborador = new javax.swing.JTextField();
+        JtextCantidadColaborador = new javax.swing.JTextField();
         label46 = new javax.swing.JLabel();
-        textConceptoColaborador = new javax.swing.JTextField();
+        JtextConceptoColaborador = new javax.swing.JTextField();
         label47 = new javax.swing.JLabel();
         btGuardarColaboracionColaborador = new javax.swing.JButton();
-        btColaboradorBuscar = new javax.swing.JButton();
+        btBuscarColaboraciones = new javax.swing.JButton();
         btEliminarColaborador = new javax.swing.JButton();
-        cbFechaFinalColaborador = new javax.swing.JComboBox();
-        cbFechaInicialColaborador = new javax.swing.JComboBox();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jFormattedTextFecha = new javax.swing.JFormattedTextField();
+        jFormattedTextFechaInicio = new javax.swing.JFormattedTextField();
+        jFormattedTextFechaFinal = new javax.swing.JFormattedTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        labelErrorColaboracion = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -263,40 +303,56 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
         PanelDatosColaboradorLayout.setHorizontalGroup(
             PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
+                .addGap(380, 380, 380)
+                .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btHacerSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosColaboradorLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btGuardarDatosColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
+                .addComponent(btLimpiarDatosColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(391, 391, 391))
+            .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
+                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(63, 63, 63)))
+                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextCP, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(575, 575, 575))
                     .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
                         .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label7)
                             .addComponent(label17))
                         .addContainerGap())
                     .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
-                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
                                 .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
-                                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4)
-                                            .addComponent(Localidad)
-                                            .addComponent(jLabel6))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosColaboradorLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jLabel2)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextCP, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(Localidad))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosColaboradorLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(64, 64, 64)
                         .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
@@ -316,22 +372,10 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(radioSexoFemeninoSocio))
                                     .addComponent(jFormattedTextFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextMovil, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextApellidos)
-                                    .addComponent(jTextProvincia, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE))))
+                                    .addComponent(jTextProvincia, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                                    .addComponent(jTextMovil, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(17, 17, 17))))
-            .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addComponent(labelError, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btHacerSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosColaboradorLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btGuardarDatosColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83)
-                .addComponent(btLimpiarDatosColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(391, 391, 391))
         );
         PanelDatosColaboradorLayout.setVerticalGroup(
             PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,26 +420,24 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
                             .addComponent(jTextDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(32, 32, 32))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosColaboradorLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Localidad)
-                            .addComponent(jTextLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12)
-                            .addComponent(jTextProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelDatosColaboradorLayout.createSequentialGroup()
-                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)
-                        .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel13)
-                            .addComponent(jTextMovil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addComponent(labelError))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Localidad)
+                        .addComponent(jTextLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel12)
+                        .addComponent(jTextProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel13)
+                    .addComponent(jTextMovil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(79, 79, Short.MAX_VALUE)
+                .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelError)
                     .addComponent(btHacerSocio))
                 .addGap(18, 18, 18)
                 .addGroup(PanelDatosColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -411,7 +453,7 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
         label43.setForeground(new java.awt.Color(255, 0, 0));
         label43.setText("Colaboraciones");
 
-        tableColaboracionesColaborador.setModel(new javax.swing.table.DefaultTableModel(
+        JtableColaboracionesColaborador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -419,7 +461,7 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
                 "Cantidad", "Fecha", "Concepto", "Confirmada por"
             }
         ));
-        jScrollPane13.setViewportView(tableColaboracionesColaborador);
+        jScrollPane13.setViewportView(JtableColaboracionesColaborador);
 
         label44.setForeground(new java.awt.Color(255, 0, 0));
         label44.setText("Añadir colaboracion");
@@ -428,30 +470,60 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
 
         label46.setText("Concepto");
 
-        textConceptoColaborador.setText("Concepto dado en el ingreso, si lo hay");
+        JtextConceptoColaborador.setText("Concepto dado en el ingreso, si lo hay");
 
         label47.setText("Fecha");
 
         btGuardarColaboracionColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/guardar.png"))); // NOI18N
 
-        btColaboradorBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
+        btBuscarColaboraciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
 
         btEliminarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
 
-        cbFechaFinalColaborador.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fecha Final" }));
+        jFormattedTextFecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
-        cbFechaInicialColaborador.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fecha inicial" }));
+        jFormattedTextFechaInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
-        jFormattedTextField1.setToolTipText("");
+        jFormattedTextFechaFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+
+        jLabel5.setText("Fecha inicial");
+
+        jLabel8.setText("Fecha final");
+
+        labelErrorColaboracion.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        labelErrorColaboracion.setForeground(new java.awt.Color(255, 51, 51));
+        labelErrorColaboracion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelErrorColaboracion.setText("Error");
 
         javax.swing.GroupLayout PanelColaboracionesColaboradorLayout = new javax.swing.GroupLayout(PanelColaboracionesColaborador);
         PanelColaboracionesColaborador.setLayout(PanelColaboracionesColaboradorLayout);
         PanelColaboracionesColaboradorLayout.setHorizontalGroup(
             PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelColaboracionesColaboradorLayout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap(31, Short.MAX_VALUE)
+                .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelColaboracionesColaboradorLayout.createSequentialGroup()
+                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelColaboracionesColaboradorLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jFormattedTextFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFormattedTextFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(PanelColaboracionesColaboradorLayout.createSequentialGroup()
+                                .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PanelColaboracionesColaboradorLayout.createSequentialGroup()
+                                        .addGap(86, 86, 86)
+                                        .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel8)))
+                                    .addGroup(PanelColaboracionesColaboradorLayout.createSequentialGroup()
+                                        .addGap(44, 44, 44)
+                                        .addComponent(btBuscarColaboraciones)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btEliminarColaborador)))
+                                .addContainerGap())))
                     .addGroup(PanelColaboracionesColaboradorLayout.createSequentialGroup()
                         .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(label44)
@@ -462,26 +534,20 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
                                     .addComponent(label46))
                                 .addGap(29, 29, 29)
                                 .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textConceptoColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JtextConceptoColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(PanelColaboracionesColaboradorLayout.createSequentialGroup()
-                                        .addComponent(textCantidadColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(JtextCantidadColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(76, 76, 76)
                                         .addComponent(label47)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(jFormattedTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(60, 60, 60)
-                        .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btColaboradorBuscar)
-                            .addComponent(btGuardarColaboracionColaborador))
-                        .addGap(18, 18, 18)
-                        .addComponent(btEliminarColaborador))
-                    .addGroup(PanelColaboracionesColaboradorLayout.createSequentialGroup()
-                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbFechaInicialColaborador, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbFechaFinalColaborador, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(58, 58, 58))
+                        .addComponent(btGuardarColaboracionColaborador)
+                        .addGap(58, 142, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelColaboracionesColaboradorLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelErrorColaboracion, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(285, 285, 285))
         );
         PanelColaboracionesColaboradorLayout.setVerticalGroup(
             PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -489,35 +555,42 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
                 .addGap(40, 40, 40)
                 .addComponent(label43)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(PanelColaboracionesColaboradorLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(cbFechaInicialColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jFormattedTextFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cbFechaFinalColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btColaboradorBuscar)
-                            .addComponent(btEliminarColaborador))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btGuardarColaboracionColaborador))
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jFormattedTextFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelColaboracionesColaboradorLayout.createSequentialGroup()
+                                .addComponent(btBuscarColaboraciones)
+                                .addGap(103, 103, 103)
+                                .addComponent(btGuardarColaboracionColaborador))
+                            .addComponent(btEliminarColaborador)))
                     .addGroup(PanelColaboracionesColaboradorLayout.createSequentialGroup()
-                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(PanelColaboracionesColaboradorLayout.createSequentialGroup()
                                 .addComponent(label44)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(label45)
-                                    .addComponent(textCantidadColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(label47)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(17, 17, 17)
+                                    .addComponent(JtextCantidadColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(label47)
+                                .addComponent(jFormattedTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(14, 14, 14)
                         .addGroup(PanelColaboracionesColaboradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label46)
-                            .addComponent(textConceptoColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(116, Short.MAX_VALUE))
+                            .addComponent(JtextConceptoColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(30, 30, 30)
+                .addComponent(labelErrorColaboracion)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         jTabbedPaneColaboradores.addTab("Colaboraciones", PanelColaboracionesColaborador);
@@ -529,31 +602,34 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jTabbedPaneColaboradores, javax.swing.GroupLayout.PREFERRED_SIZE, 949, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jTabbedPaneColaboradores, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JtableColaboracionesColaborador;
+    private javax.swing.JTextField JtextCantidadColaborador;
+    private javax.swing.JTextField JtextConceptoColaborador;
     private javax.swing.JLabel Localidad;
     private javax.swing.JPanel PanelColaboracionesColaborador;
     private javax.swing.JPanel PanelDatosColaborador;
-    private javax.swing.JButton btColaboradorBuscar;
+    private javax.swing.JButton btBuscarColaboraciones;
     private javax.swing.JButton btEliminarColaborador;
     private javax.swing.JButton btGuardarColaboracionColaborador;
     private javax.swing.JButton btGuardarDatosColaborador;
     private javax.swing.JButton btHacerSocio;
     private javax.swing.JButton btLimpiarDatosColaborador;
     private javax.swing.ButtonGroup buttonGroupSexo;
-    private javax.swing.JComboBox cbFechaFinalColaborador;
-    private javax.swing.JComboBox cbFechaInicialColaborador;
+    private javax.swing.JFormattedTextField jFormattedTextFecha;
+    private javax.swing.JFormattedTextField jFormattedTextFechaFinal;
+    private javax.swing.JFormattedTextField jFormattedTextFechaInicio;
     private javax.swing.JFormattedTextField jFormattedTextFechaNacimiento;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -562,8 +638,10 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JTabbedPane jTabbedPaneColaboradores;
@@ -586,10 +664,8 @@ public class PanelColaboradorDatos extends javax.swing.JPanel {
     private javax.swing.JLabel label47;
     private javax.swing.JLabel label7;
     private javax.swing.JLabel labelError;
+    private javax.swing.JLabel labelErrorColaboracion;
     private javax.swing.JRadioButton radioSexoFemeninoSocio;
     private javax.swing.JRadioButton radioSexoMasculinoSocio;
-    private javax.swing.JTable tableColaboracionesColaborador;
-    private javax.swing.JTextField textCantidadColaborador;
-    private javax.swing.JTextField textConceptoColaborador;
     // End of variables declaration//GEN-END:variables
 }

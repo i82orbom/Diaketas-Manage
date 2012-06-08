@@ -469,7 +469,7 @@ public class ControladorSocio{
 				DNI = vista.getPanelSocioBuscar().getTablaBusqueda().getValueAt(filaSeleccionada, 0).toString();
 			if(DNI!=null){
 				s = obtenerSocio(DNI);
-				if(JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar el Voluntario?", "Eliminar Voluntario", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+				if(JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar el Socio?", "Eliminar Socio", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
 					if (s!=null && eliminarSocio(s)) {
 						socios.remove(filaSeleccionada);
 						actualizarTablaBuscar();

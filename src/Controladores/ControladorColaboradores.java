@@ -103,6 +103,7 @@ public class ControladorColaboradores {
 		vista.showPanel(VistaColaboradores.panelcolaboradorInicio);
 		vista.getBarraDeNavigacion().setTextLabelNivel1("Colaboradores");
 		vista.getBarraDeNavigacion().setTextLabelNivel2("Colaborador");
+		ControladorC_Persona.getInstance(vista).nuevoColaborador();
     }
 
     private void mostrarVistaSocioNuevo(){

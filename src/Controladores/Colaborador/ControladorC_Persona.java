@@ -2,9 +2,12 @@
 package Controladores.Colaborador;
 
 import Controladores.ControladorColaboradores;
+import Controladores.ControladorPrincipal;
 import Controladores.TestDatos;
+import Controladores.Voluntario.ControladorColaboracion;
 import Controladores.Voluntario.ControladorVoluntario;
 import JDBC.C_PersonaJDBC;
+import JDBC.ColaboracionJDBC;
 import Modelo.C_Persona;
 import Modelo.Colaboracion;
 import Modelo.Movimiento;
@@ -68,7 +71,6 @@ public class ControladorC_Persona {
 	C_Persona colaborador_temp = null;
 	ArrayList<C_Persona> personas = null;
 	ArrayList<Colaboracion> colaboraciones = new ArrayList<Colaboracion>();
-	ArrayList<Movimiento> mov = new ArrayList<Movimiento>();
 	
 	private String[] columnNames = {"DNI", "Nombre", "Direccion", "Localidad", "Teléfono", "Movil", "Codigo Postal"};
 	private String[] columnNamesColaboraciones = {"Cantidad", "Fecha", "Concepto", "Confirmada por"};
@@ -83,6 +85,10 @@ public class ControladorC_Persona {
 		vista.getPanelColaboradorBuscar().getBtBuscarColaborador().addActionListener(new btBuscarColaboradorListener());
 		vista.getPanelColaboradorBuscar().getBtConsultarColaborador().addActionListener(new btConsultarColaboradorListener());
 		vista.getPanelColaboradorBuscar().getBtEliminarColaborador().addActionListener(new btEliminarColaboradorListener());
+		
+		vista.getPanelColaboradorDatos().getBtGuardarColaboracion().addActionListener(new btGuardarColaboracionListener());
+		vista.getPanelColaboradorDatos().getBtBuscarColaboraciones().addActionListener(new btBuscarrColaboracionListener());
+		vista.getPanelColaboradorDatos().getBtEliminarColaboracion().addActionListener(new btEliminarColaboracionListener());
     }
     
 
@@ -182,6 +188,25 @@ public class ControladorC_Persona {
 		return persona;
 	}
 	
+	public void nuevoColaborador(){
+		colaborador_temp = null;
+		String[] datos = new String[25];
+		for(int i=0; i<25; i++)
+		datos[i]="";
+		vista.getPanelColaboradorDatos().getHacerSocio().setVisible(false);
+		vista.getPanelColaboradorDatos().escribirColaboradorDatos(datos);
+		vista.getPanelColaboradorDatos().getTextNombre().setForeground(Color.BLACK);
+		vista.getPanelColaboradorDatos().getTextApellidos().setForeground(Color.BLACK);
+		vista.getPanelColaboradorDatos().getTextDNI().setForeground(Color.BLACK);
+		vista.getPanelColaboradorDatos().getTextFN().setForeground(Color.BLACK);
+		vista.getPanelColaboradorDatos().getTextEmail().setForeground(Color.BLACK);
+		vista.getPanelColaboradorDatos().getTextDomicilio().setForeground(Color.BLACK);
+		vista.getPanelColaboradorDatos().getTextLocalidad().setForeground(Color.BLACK);
+		vista.getPanelColaboradorDatos().getTextProvincia().setForeground(Color.BLACK);
+		vista.getPanelColaboradorDatos().getTextCP().setForeground(Color.BLACK);
+		vista.getPanelColaboradorDatos().getTextTelfFijo().setForeground(Color.BLACK);
+		vista.getPanelColaboradorDatos().getTextTelMovil().setForeground(Color.BLACK);
+	}
 	public class btGuardarColaboradorListener implements ActionListener{
 
 		@Override
@@ -432,14 +457,14 @@ public class ControladorC_Persona {
 			if(filaSeleccionada!=-1)
 				persona = personas.get(filaSeleccionada);
 
-			if(JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar el Voluntario?", "Eliminar Voluntario", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+			if(JOptionPane.showConfirmDialog(vista, "¿Seguro que desea eliminar el Colaborador?", "Eliminar Colaborador", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
 				if (persona!=null && eliminarC_Persona(persona)) {
 					personas.remove(filaSeleccionada);
 					actualizarTablaBuscar();
-					vista.getPanelColaboradorBuscar().setTextLabelError("El Socio ha sido eliminado del sistema.");
+					vista.getPanelColaboradorBuscar().setTextLabelError("El Colaborador ha sido eliminado del sistema.");
 				}
 				else {
-					vista.getPanelColaboradorBuscar().setTextLabelError("Error : el Socio no ha sido eliminado del sistema.");
+					vista.getPanelColaboradorBuscar().setTextLabelError("Error : el Colaborador no ha sido eliminado del sistema.");
 				}
 			}
 		}
@@ -472,5 +497,169 @@ public class ControladorC_Persona {
 			vista.getPanelSocioDatos().modificarSocio(socio);
 			ControladorColaboradores.getInstance(vista).mostrarVistaModificarSocio();
 		}	
+	}
+	
+	public class btGuardarColaboracionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+		boolean datosCorrectos = true;
+		
+		if( !TestDatos.isMoney( vista.getPanelColaboradorDatos().getTextCantidad().getText()) ) {
+			vista.getPanelColaboradorDatos().getTextCantidad().setForeground(Color.RED);
+			datosCorrectos = false;
+		}
+		if( !TestDatos.isFecha( vista.getPanelColaboradorDatos().getTextFecha().getText()) ) {
+			vista.getPanelColaboradorDatos().getTextFecha().setForeground(Color.RED);
+			datosCorrectos = false;
+		}
+		if( !TestDatos.isDomicilio( vista.getPanelColaboradorDatos().getTextConcepto().getText()) ) {
+			vista.getPanelColaboradorDatos().getTextConcepto().setForeground(Color.RED);
+			datosCorrectos = false;
+		}
+		if (!datosCorrectos) {
+			vista.getPanelColaboradorDatos().setTextLabelErrorColaboracion("Los campos en rojo tienes errores.");
+		}
+		else {
+			vista.getPanelColaboradorDatos().setTextLabelErrorColaboracionVisible(false);
+			//Tipo es colaboracion
+				Colaboracion colaboracion = new Colaboracion();
+				colaboracion.setImporte(Float.parseFloat(vista.getPanelColaboradorDatos().getTextCantidad().getText()));
+				colaboracion.setConcepto(vista.getPanelColaboradorDatos().getTextConcepto().getText());
+				try {	
+					colaboracion.setFecha(TestDatos.formatter.parse(vista.getPanelColaboradorDatos().getTextFecha().getText()));				
+				} catch (ParseException ex) {
+					Logger.getLogger(ControladorColaboracion.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				colaboracion.setColaborador(colaborador_temp);
+				colaboracion.setVoluntario(ControladorPrincipal.getInstance().getVoluntario());
+
+				if(ControladorColaboracion.getInstance().anadirColaboracion(colaboracion)){
+					colaboraciones.add(colaboracion);
+					vista.getPanelColaboradorDatos().setTextLabelErrorColaboracion("La colaboracion ha sido añadida");
+				}
+				else
+					vista.getPanelColaboradorDatos().setTextLabelErrorColaboracion("La colaboracion no ha sido añadida");
+			}
+		}
+	}
+	
+	public class btBuscarrColaboracionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			boolean datosCorrectos = true;
+			String fechaini = null;
+			String fechafin = null;
+			if( !TestDatos.isFecha( vista.getPanelColaboradorDatos().getTextFechaInicio().getText())) {
+                vista.getPanelColaboradorDatos().getTextFechaInicio().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			if( !TestDatos.isFecha( vista.getPanelColaboradorDatos().getTextFechaFinal().getText())) {
+                vista.getPanelColaboradorDatos().getTextFechaFinal().setForeground(Color.RED);
+                datosCorrectos = false;
+            }
+			fechaini = vista.getPanelColaboradorDatos().getTextFechaInicio().getText();			
+			fechafin = vista.getPanelColaboradorDatos().getTextFechaFinal().getText();
+			
+			if(!datosCorrectos){
+				vista.getPanelColaboradorDatos().setTextLabelErrorColaboracion("Las fechas no son erroneas");
+			}
+			else{
+				vista.getPanelColaboradorDatos().setTextLabelErrorColaboracionVisible(false);
+				vista.getPanelColaboradorDatos().getTextFechaInicio().setForeground(Color.BLACK);
+				vista.getPanelColaboradorDatos().getTextFechaFinal().setForeground(Color.BLACK);
+
+				try {
+					try {
+						colaboraciones = ColaboracionJDBC.getInstance().HistorialColaboraciones(colaborador_temp, TestDatos.formatter.parse(fechaini), TestDatos.formatter.parse(fechafin));
+					} catch (ParseException ex) {
+						Logger.getLogger(ControladorC_Persona.class.getName()).log(Level.SEVERE, null, ex);
+					}
+				} catch (SQLException ex) {
+					Logger.getLogger(ControladorC_Persona.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				actualizarTablaColaboraciones();
+			}		
+		}
+	}
+	
+	public void actualizarTablaColaboraciones(){
+	TableModel tableModel = new TableModel() {
+
+			@Override
+			public int getRowCount() {
+				return colaboraciones.size();
+			}
+
+			@Override
+			public int getColumnCount() {
+				return columnNamesColaboraciones.length;
+			}
+
+			@Override
+			public String getColumnName(int i) {
+				return columnNamesColaboraciones[i];
+			}
+
+			@Override
+			public Class<?> getColumnClass(int i) {
+				return String.class;
+			}
+
+			@Override
+			public boolean isCellEditable(int i, int i1) {
+				return false;
+			}
+
+			@Override
+			public Object getValueAt(int row, int col) {
+				switch (col) {
+					case 0:
+						return colaboraciones.get(row).getImporte();
+					case 1:
+						return TestDatos.formatter.format(colaboraciones.get(row).getFecha());
+					case 2:
+						return colaboraciones.get(row).getConcepto();
+					case 3:
+						return ControladorPrincipal.getInstance().getVoluntario().getNombre();
+				}
+				
+				return "";
+			}
+
+			@Override
+			public void setValueAt(Object o, int row, int col) {
+				throw new UnsupportedOperationException("Not supported yet.");
+			}
+
+			@Override
+			public void addTableModelListener(TableModelListener tl) {
+
+			}
+
+			@Override
+			public void removeTableModelListener(TableModelListener tl) {
+
+			}
+		};
+		vista.getPanelColaboradorDatos().getTablaColaboraciones().setModel(tableModel);
+	}
+	
+	public class btEliminarColaboracionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int pos = vista.getPanelColaboradorDatos().getTablaColaboraciones().getSelectedRow();
+			Colaboracion col = colaboraciones.get(pos);
+			if(ControladorColaboracion.getInstance().eliminarColaboracion(col)){
+				colaboraciones.remove(pos);
+				actualizarTablaColaboraciones();
+				vista.getPanelColaboradorDatos().setTextLabelErrorColaboracion("La colaboracion ha sido eliminado");
+			}
+			else
+				vista.getPanelColaboradorDatos().setTextLabelErrorColaboracion("La colaboracion no ha sido eliminado");
+		}
+		
 	}
 }
