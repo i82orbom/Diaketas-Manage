@@ -145,6 +145,19 @@ public class TestDatos {
         }
         return true;
     }
+	
+	public static boolean isOnlyNumeric(String s) {
+        if (s.length() < 1) {
+            return false;
+        }
+
+        for (int i = 0; i < s.length(); i++) {
+            if ((!Character.isDigit(s.charAt(i))) && s.charAt(i) != '.') {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public static boolean isOnlyLetterOrDigit(String s) {
         if (s.length() < 1) {

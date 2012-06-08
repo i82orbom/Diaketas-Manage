@@ -600,7 +600,7 @@ public class ControladorSocio{
                 vista.getPanelSocioDatos().getTextCantidadCuota().setForeground(Color.RED);
                 datosCorrectos = false;
             }
-			if( !TestDatos.isOnlyDigit( vista.getPanelSocioDatos().getTextIntervaloCuotaSocio().getText()) ) {
+			if( !TestDatos.isOnlyNumeric( vista.getPanelSocioDatos().getTextIntervaloCuotaSocio().getText()) ) {
                 vista.getPanelSocioDatos().getTextIntervaloCuotaSocio().setForeground(Color.RED);
                 datosCorrectos = false;
             }

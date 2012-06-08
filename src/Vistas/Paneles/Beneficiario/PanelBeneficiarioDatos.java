@@ -240,6 +240,10 @@ public class PanelBeneficiarioDatos extends javax.swing.JPanel {
 		return btGuardarFamiliarBeneficiario;
 	}
 	
+	public JButton getBtEliminarFamiliarBeneficiario() {
+		return btEliminarFamiliarBeneficiario;
+	}
+	
 	public JTextField getTextNIFFamiliarBeneficiario() {
 		return textNIFFamiliarBeneficiario;
 	}

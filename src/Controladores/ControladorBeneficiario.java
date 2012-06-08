@@ -126,6 +126,10 @@ public class ControladorBeneficiario {
         vista.getPanelDatos().getBtEliminarIntervencionBeneficiario().addActionListener(new BtEliminarIntervencionesListener());
         vista.getPanelDatos().getBtLimpiarCamposAyuda().addActionListener(new BtLimpiarCamposAyudaListener());
         vista.getPanelDatos().getTbIntervenciones().addMouseListener(new TablaAyudaListener());
+		
+		vista.getPanelDatos().getBtGuardarFamiliarBeneficiario().addActionListener(new BtGuardarFamiliarBeneficiario());
+		vista.getPanelDatos().getBtEliminarFamiliarBeneficiario().addActionListener(new BtEliminarFamiliarBeneficiario());
+		vista.getPanelDatos().getTbFamiliares().addMouseListener(new TablaFamiliaresListener());
 
         vista.getPanelBuscar().getBtBuscarBeneficiarios().addActionListener(new btBuscarBeneficiariosListener());
         vista.getPanelBuscar().getBtVerBeneficiarioBusqueda().addActionListener(new btVerBeneficiarioListener());
@@ -495,7 +499,7 @@ public class ControladorBeneficiario {
             vista.getPanelDatos().setColorLabelSituacionEconomica(Color.red);
             validos = false;
         }
-        if (!TestDatos.isOnlyDigit(datos[Beneficiario.VIVIENDA_ALQUILER_ID])) {
+        if (!TestDatos.isOnlyNumeric(datos[Beneficiario.VIVIENDA_ALQUILER_ID])) {
             vista.getPanelDatos().setColorLabelViviendaPrecio(Color.red);
             validos = false;
         }
@@ -556,27 +560,17 @@ public class ControladorBeneficiario {
         @Override
         public void actionPerformed(ActionEvent ae) {
             String[] datos = vista.getPanelDatos().getDatosPersonales();
+			boolean exito = false;
             if (benef != null) {
-                //TODO Modificar beneficiario
-            } else {
-				boolean exito = false;
-                try{
-					benef = BeneficiarioJDBC.getInstance().obtenerBeneficiario(datos[Beneficiario.NIF_ID]);
-					if(benef == null)
-						exito = insertarBeneficiario(datos);
-					else
-						exito = modificarBeneficiario(datos);
-				}
-				catch(SQLException se){
-					ControladorErrores.mostrarError("Error al añadir beneficiario:\n" + se.getMessage());
-				}
-
-                if (exito) {
-                    vista.getPanelDatos().setTextLabelError("Beneficiario añadido correctamente.");
-                } else {
-                    vista.getPanelDatos().setTextLabelError("El beneficiario no ha sido añadido.");
-                }
-            }
+                exito = modificarBeneficiario(datos);
+            } else {				
+				exito = insertarBeneficiario(datos);
+			}
+			if (exito) {
+				vista.getPanelDatos().setTextLabelError("Beneficiario añadido correctamente.");
+			} else {
+				vista.getPanelDatos().setTextLabelError("El beneficiario no ha sido añadido.");
+			}
         }
     }
 
