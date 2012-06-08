@@ -247,15 +247,17 @@ public class C_EmpresaJDBC {
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "SELECT * FROM C_Empresa e, Colaborador c WHERE "+tipoBusqueda+" LIKE '%"+valor+"%' AND e.OID=c.OID";
         ArrayList<C_Empresa> listaC_Empresa = new ArrayList<C_Empresa>();
-        C_Empresa Empresa;
+        
 
         try {
+            C_Empresa Empresa;
             driver.conectar();
             ResultSet resultados = driver.seleccionar(sql);
 
 
-            if(resultados.next()){
+            while(resultados.next()){
                 Empresa = new C_Empresa();
+                Empresa.setOID(resultados.getLong("OID"));
                 Empresa.setCIF(resultados.getString("CIF"));
                 Empresa.setNombre(resultados.getString("Nombre"));
                 Empresa.setDireccionWeb(resultados.getString("DireccionWeb"));

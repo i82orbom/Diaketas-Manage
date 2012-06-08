@@ -416,14 +416,10 @@ public class ControladorC_Empresa {
                 vista.getPanelSocioDatos().setTextLabelErrorColaboracion("Las fechas son erroneas");
             }else{
                 try {
-                    try {
-                        ColaboracionesEmpresa = ColaboracionJDBC.getInstance().HistorialColaboraciones(C_Empresa_temp, TestDatos.formatter.parse(fechainicial), TestDatos.formatter.parse(fechafinal));
-                    } catch (SQLException ex) {
-                        Logger.getLogger(ControladorC_Empresa.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    ColaboracionesEmpresa = historialColaboraciones(C_Empresa_temp, TestDatos.formatter.parse(fechainicial), TestDatos.formatter.parse(fechafinal));
                 } catch (ParseException ex) {
-                        Logger.getLogger(ControladorC_Empresa.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    Logger.getLogger(ControladorC_Empresa.class.getName()).log(Level.SEVERE, null, ex);
+                }          
             }
             actualizarTablaColaboraciones();
         }
