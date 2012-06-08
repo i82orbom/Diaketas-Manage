@@ -262,7 +262,7 @@ public class ControladorDemanda {
                         if(!TestDatos.isDNI(DNI)){
                                 exito = false; vista.getDemandaDatos().getLabelNif().setForeground(Color.red);
                         }
-                        if (!TestDatos.isNombre(HistorialLaboral)) {
+                        if (!TestDatos.isDomicilio(HistorialLaboral)) {
                                 exito = false; vista.getDemandaDatos().getLabelHistorialLaboral().setForeground(Color.red);
 }
                         if(!exito){
@@ -337,7 +337,7 @@ public class ControladorDemanda {
 				if(!TestDatos.isDNI(DNI)){
 					exito = false; vista.getDemandaDatos().getLabelNif().setForeground(Color.red);
 				}
-				if (!TestDatos.isNombre(HistorialLaboral)) {
+				if (!TestDatos.isDomicilio(HistorialLaboral)) {
 					exito = false; vista.getDemandaDatos().getLabelHistorialLaboral().setForeground(Color.red);
 				}
 				if(!exito){

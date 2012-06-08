@@ -140,6 +140,9 @@ public class ControladorBolsaTrabajo {
         vista.getDemandaDatos().getTaHistoriaLaboral().setEnabled(true);
         vista.getDemandaDatos().getTextNIF().setEditable(true);
         vista.getDemandaDatos().getTaHistoriaLaboral().setEditable(true);
+        vista.getDemandaDatos().getTextNIF().setText(demanda.getBeneficiario().getNIF());
+        vista.getDemandaDatos().getcbSector().setSelectedItem(demanda.getSector().getDescripcion());
+        vista.getDemandaDatos().getTaHistoriaLaboral().setText(demanda.getDescripcionValidaLaboral());
         try {
 			vista.getDemandaDatos().getcbSector().removeAllItems();
 			ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
