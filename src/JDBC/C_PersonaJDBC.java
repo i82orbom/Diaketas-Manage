@@ -99,7 +99,6 @@ public class C_PersonaJDBC {
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "UPDATE Colaborador SET Direccion='"+persona.getDireccion()+"', Localidad='"+persona.getLocalidad()+"', Provincia='"+persona.getProvincia()+"', CP='"+persona.getCP()+"', TelefonoFijo='"+persona.getTelefonoFijo()+"', TelefonoMovil='"+persona.getTelefonoMovil()+"', Email='"+persona.getEmail()+"'WHERE OID='"+persona.getOID()+"'";
         String sql2 = "UPDATE C_Persona SET DNI='"+persona.getDNI()+"', Nombre='"+persona.getNombre()+"', Apellidos='"+persona.getApellidos()+"', FechaNacimiento='"+TestDatos.formatterBD.format(persona.getFechaDeNacimiento())+"', Sexo ='"+ persona.getSexo() +"'WHERE OID='"+persona.getOID()+"'";
-		System.out.println(sql2);
 
         try{
             driver.inicioTransaccion();
@@ -128,15 +127,15 @@ public class C_PersonaJDBC {
     public boolean eliminarC_Persona(C_Persona persona) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "UPDATE Colaboracion SET OIDColaborador="+OID_Anonimo+" WHERE OID='"+persona.getOID()+"'";
+        String sql = "UPDATE Colaboracion SET OIDColaborador="+OID_Anonimo+" WHERE OIDColaborador='"+persona.getOID()+"'";
         String sql2 = "DELETE FROM C_Persona WHERE OID='"+persona.getOID()+"'";
-        String sql3 = "DELETE FROM Colaborador WHERE OID='"+persona.getOID()+"'";
+        //String sql3 = "DELETE FROM Colaborador WHERE OID='"+persona.getOID()+"'";
 
         try{
             driver.inicioTransaccion();
             driver.actualizar(sql);
             driver.eliminar(sql2);
-            driver.eliminar(sql3);
+            //driver.eliminar(sql3);
             driver.commit();
 
         }
@@ -213,7 +212,7 @@ public class C_PersonaJDBC {
     public ArrayList<C_Persona> buscarC_Persona(String tipoBusqueda, String valor) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "SELECT * FROM C_Persona p, Colaborador c, Socio s WHERE "+tipoBusqueda+" LIKE '%"+valor+"%' AND p.OID=c.OID AND p.OID!=s.OID AND c.OID!=s.OID AND c.OID!=0 AND p.OID!=0 AND s.OID!=0";
+        String sql = "SELECT * FROM C_Persona p, Colaborador c WHERE "+tipoBusqueda+" LIKE '%"+valor+"%' AND p.OID=c.OID AND c.OID!=0";
         ArrayList<C_Persona> listaC_Persona = new ArrayList<C_Persona>();
        
 
@@ -222,7 +221,7 @@ public class C_PersonaJDBC {
             ResultSet resultados = driver.seleccionar(sql);
 
 			while(resultados.next()){
-				if(resultados.getLong("OID")!=0){
+				if(resultados.getLong("OID")!=0&& SocioJDBC.getInstance().obtenerSocio(resultados.getString("DNI"))==null){
 					C_Persona Persona = new C_Persona();
 					Persona.setOID(resultados.getLong("OID"));
 					Persona.setDNI(resultados.getString("DNI"));

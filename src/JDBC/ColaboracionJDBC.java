@@ -131,7 +131,6 @@ public class ColaboracionJDBC {
         DriverJDBC driver = DriverJDBC.getInstance();
         Voluntario vol = new Voluntario();
         String sql = "SELECT * FROM Colaboracion c, Movimiento m, Voluntario v WHERE c.OIDVoluntario = v.OID AND c.OID=m.OID AND c.OIDColaborador='"+c.getOID()+"' AND m.Fecha>='"+TestDatos.formatterBD.format(FechaInicio)+"' AND m.Fecha<='"+TestDatos.formatterBD.format(FechaFin)+"'";
-		System.out.println(sql);
 		
         ArrayList<Colaboracion> listaColaboraciones = new ArrayList<Colaboracion>();
         Colaboracion colaboracion = null;
