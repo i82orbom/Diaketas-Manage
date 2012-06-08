@@ -287,17 +287,15 @@ public class BeneficiarioJDBC {
         return true;
     }
 
-    public boolean añadirFamiliar(Persona p, String beneficiarioNIF) throws SQLException {
+    public boolean añadirFamiliar(Long oidBenef1, Long oidBenef2, String parentesco) throws SQLException {
         
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql1 = "INSERT INTO persona (NIF,Nombre,Apellidos,FechaNacimiento,CP,TelefonoFijo,TelefonoMovil,Domicilio,Localidad) VALUES ('"
-                + p.getNIF() + "','" + p.getNombre() + "','" + p.getApellidos() + "','" + TestDatos.formatterBD.format(p.getFechaDENacimiento()) + "','" + p.getCP() + "','" + p.getTelefonoFijo() + "','" + p.getTelefonoMovil() + "','" + p.getDomicilio() + "','" + p.getLocalidad() + "' )";
-        String sql2 = "INSERT INTO familia (PersonaNIF1, PersonaNIF2) VALUES ('" + beneficiarioNIF + "','" + p.getNIF() + "')";
+       
+        String sql = "INSERT INTO familia (OID_Bene1, OID_Bene2, Parentesco) VALUES (" + oidBenef1 + "," + oidBenef2 + ",'"+ parentesco +"')";
 
         try {
             driver.inicioTransaccion();
-            driver.insertar(sql1);
-            driver.insertar(sql2);
+            driver.insertar(sql);
             driver.commit();
         } catch (SQLException ex) {
             throw ex;

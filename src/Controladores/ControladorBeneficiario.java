@@ -166,6 +166,8 @@ public class ControladorBeneficiario {
 		familiarSeleccionado = null;
         vista.getBarraDeNavigacion().setTextLabelNivel1("Beneficiario");
         vista.getBarraDeNavigacion().setTextLabelNivel2("Modificar Beneficiario");
+		actualizarTablaAyuda();
+		actualizarTablaFamiliares();
         vista.showPanel(VistaBeneficiario.panelDatos);
     }
 
@@ -768,14 +770,14 @@ public class ControladorBeneficiario {
 				if(familiar == null){
 					datosCorrectos = false;
 					vista.getPanelDatos().setTextLabelErrorAyuda("El familiar debe ser un beneficiario.");
-				}
+				}				
 				if (vista.getPanelDatos().getCbParentescoBeneficiario().getSelectedItem() == null) {
 					datosCorrectos = false;
 				}
 				if(!datosCorrectos)
 					vista.getPanelDatos().setTextLabelErrorAyuda("Error : el familiar no ha sido anadido.");
 				else {
-					BeneficiarioJDBC.getInstance().añadirFamiliar(benef, NIFFamiliar);
+					BeneficiarioJDBC.getInstance().añadirFamiliar(benef.getOID(), familiar.getOID(), vista.getPanelDatos().getCbParentescoBeneficiario().getSelectedItem().toString());
 				}				
 			}
 			catch (SQLException ex){
