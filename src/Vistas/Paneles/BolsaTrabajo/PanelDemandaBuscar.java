@@ -4,8 +4,10 @@
  */
 package Vistas.Paneles.BolsaTrabajo;
 
-import Vistas.Paneles.Beneficiario.*;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTable;
 
 
 /**
@@ -18,54 +20,57 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
     /**
      * Creates new form PanelBeneficiarioBuscar
      */
-    public PanelDemandaBuscar() {
-        initComponents();
-    }
+	public PanelDemandaBuscar() {
+		initComponents();
+	}
 
-    public JButton getBTBuscar(){
-        return BTBuscar3;
-    }
+	/* ________ Botones de la vista ________*/
+	public JButton getBTBuscar(){
+		return BTBuscar;
+	}
 
-    public JButton getBTEliminar(){
-        return BTEliminar;
-    }
+	public JButton getBTEliminar(){
+		return BTEliminar;
+	}
 
-    public JButton getBTModificar(){
-        return BTEliminar;
-    }
-
-       public JComboBox getcbSector(){
-        return cbSector;
-   }
-
-    public String getcbAntiguedad(){
-        return cbAntiguedad.getSelectedItem().toString();
-    }
-    
-    public String getTextoSector(){
-        return cbSector.getSelectedItem().toString();
-    }
-    
-    public JTable getTablaBusquedaDemandante(){
-        return tablaBusquedaDemandante;
-    }
-
-    public String getTextBusquedaDemandanteDNI(){
-        return textBusquedaDemandanteDNI.getText();
-    }
-
-
-    public JLabel getLabelError() {
-        return labelError;
-    }
-
-    public int getAntiguedad(){
-        return cbAntiguedad.getSelectedIndex();
-    }
-    
     public JButton getBTConsultar(){
+        return BTConsultar;
+    }
+
+	public JButton getBTModificar(){
         return BTModificar;
     }
+
+	/* ________ Campos de la vista ________*/
+	public JComboBox getcbSector(){
+		return cbSector;
+	}
+
+	public String getcbAntiguedad(){
+		return cbAntiguedad.getSelectedItem().toString();
+	}
+
+	public String getTextoSector(){
+		return cbSector.getSelectedItem().toString();
+	}
+
+	public JTable getTablaBusquedaDemandante(){
+		return tablaBusquedaDemandante;
+	}
+
+	public String getTextBusquedaDemandanteDNI(){
+		return textBusquedaDemandanteDNI.getText();
+	}
+
+	public JLabel getLabelError() {
+		return labelError;
+	}
+
+	public int getAntiguedad(){
+		return cbAntiguedad.getSelectedIndex();
+	}
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,9 +89,10 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
         jLabel65 = new javax.swing.JLabel();
         BTEliminar = new javax.swing.JButton();
         BTModificar = new javax.swing.JButton();
-        BTBuscar3 = new javax.swing.JButton();
+        BTBuscar = new javax.swing.JButton();
         labelError = new javax.swing.JLabel();
         cbAntiguedad = new javax.swing.JComboBox();
+        BTConsultar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
@@ -120,10 +126,10 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
 
         BTModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/modificar.png"))); // NOI18N
 
-        BTBuscar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
-        BTBuscar3.addActionListener(new java.awt.event.ActionListener() {
+        BTBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
+        BTBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTBuscar3ActionPerformed(evt);
+                BTBuscarActionPerformed(evt);
             }
         });
 
@@ -132,6 +138,8 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
         labelError.setToolTipText("");
 
         cbAntiguedad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todas", "1 mes", "2 meses", "3 meses", "4 meses", "5 meses", "6 meses", "7 meses", "8 meses", "9 meses", "10 meses", "11 meses", "mas de 1 año" }));
+
+        BTConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/consultar.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -153,9 +161,11 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(64, 64, 64)
-                        .addComponent(BTBuscar3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BTBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(112, 112, 112))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(BTConsultar)
+                        .addGap(18, 18, 18)
                         .addComponent(BTModificar)
                         .addGap(18, 18, 18)
                         .addComponent(BTEliminar)
@@ -182,7 +192,7 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
                         .addComponent(cbSector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel65)
                         .addComponent(cbAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(BTBuscar3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BTBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                 .addGap(54, 54, 54)
@@ -190,21 +200,23 @@ public class PanelDemandaBuscar extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BTEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BTModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BTModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BTConsultar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BTBuscar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTBuscar3ActionPerformed
+    private void BTBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTBuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BTBuscar3ActionPerformed
+    }//GEN-LAST:event_BTBuscarActionPerformed
 
     private void textBusquedaDemandanteDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textBusquedaDemandanteDNIActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textBusquedaDemandanteDNIActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BTBuscar3;
+    private javax.swing.JButton BTBuscar;
+    private javax.swing.JButton BTConsultar;
     private javax.swing.JButton BTEliminar;
     private javax.swing.JButton BTModificar;
     private javax.swing.JComboBox cbAntiguedad;

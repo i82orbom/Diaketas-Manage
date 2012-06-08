@@ -76,7 +76,7 @@ public class ControladorOferta {
 		vista.getOfertaBuscar().getBTBuscar().addActionListener(new ListenerBtBuscarOferta());
 		vista.getOfertaBuscar().getBTEliminar().addActionListener(new ListenerBtEliminarOfertaBuscada());
 		vista.getOfertaBuscar().getBTConsultar().addActionListener(new ListenerBtConsultarOferta());
-
+		vista.getOfertaBuscar().getBTModificar().addActionListener(new ListenerBtModificarOfertaBuscada());
 	}
 
 	public static ControladorOferta getInstance(VistaBolsaTrabajo panelOferta){
@@ -350,7 +350,7 @@ public class ControladorOferta {
 			if (!TestDatos.isCIF(CIF)){
 				exito = false; vista.getOfertaDatos().getlabelCIF().setForeground(Color.red);
 			}
-			if (!TestDatos.isNombre(descripcion)) {
+			if (!TestDatos.isDomicilio(descripcion)) {
 				exito = false; vista.getOfertaDatos().getlabelDescripcionOferta().setForeground(Color.red);
 			}
 			if (!TestDatos.isOnlyDigit(nPuestos)) {
@@ -359,7 +359,7 @@ public class ControladorOferta {
 			if (!TestDatos.isOnlyDigit(duracion)) {
 				exito = false; vista.getOfertaDatos().getlabelDuracionContrato().setForeground(Color.red);
 			}
-			if (!TestDatos.isNombre(cualificacion)) {
+			if (!TestDatos.isDomicilio(cualificacion)) {
 				exito = false; vista.getOfertaDatos().getlabelCualificacion().setForeground(Color.red);
 			}
 
@@ -439,7 +439,7 @@ public class ControladorOferta {
 			if (!TestDatos.isCIF(CIF)){
 				exito = false; vista.getOfertaDatos().getlabelCIF().setForeground(Color.red);
 			}
-			if (!TestDatos.isNombre(descripcion)) {
+			if (!TestDatos.isDomicilio(descripcion)) {
 				exito = false; vista.getOfertaDatos().getlabelDescripcionOferta().setForeground(Color.red);
 			}
 			if (!TestDatos.isOnlyDigit(nPuestos)) {
@@ -448,7 +448,7 @@ public class ControladorOferta {
 			if (!TestDatos.isOnlyDigit(duracion)) {
 				exito = false; vista.getOfertaDatos().getlabelDuracionContrato().setForeground(Color.red);
 			}
-			if (!TestDatos.isNombre(cualificacion)) {
+			if (!TestDatos.isDomicilio(cualificacion)) {
 				exito = false; vista.getOfertaDatos().getlabelCualificacion().setForeground(Color.red);
 			}
 
@@ -530,6 +530,18 @@ public class ControladorOferta {
 			if (vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
                 ofertaConsultada = listaOfertas.get(vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow());
 				ControladorBolsaTrabajo.getInstance(null).mostrarConsultarOferta(ofertaConsultada);
+			}
+		}
+	}
+
+	public class ListenerBtModificarOfertaBuscada
+		implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow() != -1) {
+                ofertaConsultada = listaOfertas.get(vista.getOfertaBuscar().gettablaBusquedaOferta().getSelectedRow());
+				ControladorBolsaTrabajo.getInstance(null).mostrarModificarOferta(ofertaConsultada);
 			}
 		}
 	}

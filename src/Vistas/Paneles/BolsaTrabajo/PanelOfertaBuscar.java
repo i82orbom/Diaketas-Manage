@@ -1,11 +1,8 @@
 
 package Vistas.Paneles.BolsaTrabajo;
 
-import Modelo.Sector;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 
 /**
@@ -27,6 +24,10 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
     }
 
     public JButton getBTConsultar(){
+        return BTConsultar;
+    }
+
+	public JButton getBTModificar(){
         return BTModificar;
     }
 
@@ -78,6 +79,7 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
         BTBuscar = new javax.swing.JButton();
         labelCIFEmpresa = new javax.swing.JLabel();
         textCIFEmpresa = new javax.swing.JTextField();
+        BTConsultar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1000, 600));
@@ -115,12 +117,17 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
         cbAntiguedad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todas", "1 mes", "2 meses", "3 meses", "4 meses", "5 meses", "6 meses", "7 meses", "8 meses", "9 meses", "10 meses", "11 meses", "mas de 1 año" }));
 
         BTEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/borrar.png"))); // NOI18N
+        BTEliminar.setToolTipText("Eliminar");
 
         BTModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/modificar.png"))); // NOI18N
+        BTModificar.setToolTipText("Modificar");
 
         BTBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/buscar.png"))); // NOI18N
 
         labelCIFEmpresa.setText("Empresa");
+
+        BTConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/images/consultar.png"))); // NOI18N
+        BTConsultar.setToolTipText("Consultar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -128,6 +135,8 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BTConsultar)
+                .addGap(18, 18, 18)
                 .addComponent(BTModificar)
                 .addGap(18, 18, 18)
                 .addComponent(BTEliminar)
@@ -151,13 +160,13 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(BTBuscar)))
+                        .addComponent(BTBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cbSector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,19 +175,21 @@ public class PanelOfertaBuscar extends javax.swing.JPanel {
                         .addComponent(labelCIFEmpresa)
                         .addComponent(textCIFEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(labelSectorBusqueda))
-                    .addComponent(BTBuscar))
+                    .addComponent(BTBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
                 .addGap(87, 87, 87)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BTEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BTModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BTModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BTConsultar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTBuscar;
+    private javax.swing.JButton BTConsultar;
     private javax.swing.JButton BTEliminar;
     private javax.swing.JButton BTModificar;
     private javax.swing.JComboBox cbAntiguedad;

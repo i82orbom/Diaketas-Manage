@@ -140,11 +140,14 @@ public class ControladorBolsaTrabajo {
         vista.getDemandaDatos().getTaHistoriaLaboral().setEnabled(true);
         vista.getDemandaDatos().getTextNIF().setEditable(true);
         vista.getDemandaDatos().getTaHistoriaLaboral().setEditable(true);
+        vista.getDemandaDatos().getTextNIF().setText(demanda.getBeneficiario().getNIF());
+        vista.getDemandaDatos().getcbSector().setSelectedItem(demanda.getSector().getDescripcion());
+        vista.getDemandaDatos().getTaHistoriaLaboral().setText(demanda.getDescripcionValidaLaboral());
         try {
-                vista.getDemandaDatos().getcbSector().removeAllItems();
-                ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
-                for (int i=0;i<sectores.size();i++)
-                        vista.getDemandaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
+			vista.getDemandaDatos().getcbSector().removeAllItems();
+			ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
+			for (int i=0;i<sectores.size();i++)
+					vista.getDemandaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
         }catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
 
         vista.showPanel(VistaBolsaTrabajo.PanelDemandaDatos);
@@ -217,7 +220,7 @@ public class ControladorBolsaTrabajo {
 		vista.getOfertaDatos().getTextCIF().setEnabled(false);
 		vista.getOfertaDatos().getTextCIF().setText(oferta.getEmpresa().getCIF());
 		vista.getOfertaDatos().getcbSector().setEnabled(false);
-		vista.getOfertaDatos().getcbSector().setSelectedItem(oferta.getSector().getDescripcion());
+		vista.getOfertaDatos().getcbSector().addItem(oferta.getSector().getDescripcion());
 		vista.getOfertaDatos().getTextNuevoSector().setVisible(false);
 		vista.getOfertaDatos().gettaDescripcionOferta().setEditable(false);
 		vista.getOfertaDatos().gettaDescripcionOferta().setText(oferta.getDescripcionOferta());
@@ -247,13 +250,19 @@ public class ControladorBolsaTrabajo {
 		vista.getOfertaDatos().getBTEliminarSector().setVisible(true);
 
 		vista.getOfertaDatos().getTextCIF().setEnabled(true);
+		vista.getOfertaDatos().getTextCIF().setText(oferta.getEmpresa().getCIF());
 		vista.getOfertaDatos().getcbSector().setEnabled(true);
 		vista.getOfertaDatos().getTextNuevoSector().setVisible(true);
 		vista.getOfertaDatos().gettaDescripcionOferta().setEditable(true);
+		vista.getOfertaDatos().gettaDescripcionOferta().setText(oferta.getDescripcionOferta());
 		vista.getOfertaDatos().gettextNPuestos().setEditable(true);
+		vista.getOfertaDatos().gettextNPuestos().setText(oferta.getPlazasOfertadas()+"");
 		vista.getOfertaDatos().getcbTipoContrato().setEnabled(true);
+		vista.getOfertaDatos().getcbTipoContrato().setSelectedItem(oferta.getTipoContrato());
 		vista.getOfertaDatos().gettextDuracionContrato().setEditable(true);
+		vista.getOfertaDatos().gettextDuracionContrato().setText(oferta.getDuracionContrato()+"");
 		vista.getOfertaDatos().gettaCualificacion().setEditable(true);
+		vista.getOfertaDatos().gettaCualificacion().setText(oferta.getCualificacionRequerida());
 
 
 		try {
@@ -261,10 +270,11 @@ public class ControladorBolsaTrabajo {
 			ArrayList<Sector> sectores = SectorJDBC.getInstance().ListadoSectores();
 			for (int i=0;i<sectores.size();i++){
 				vista.getOfertaDatos().getcbSector().addItem(sectores.get(i).getDescripcion());
-				if (oferta.getSector().getDescripcion().equals(sectores.get(i).getDescripcion())){
-					vista.getOfertaDatos().getcbSector().setSelectedIndex(i);
-				}
+//				if (oferta.getSector().getDescripcion().equals(sectores.get(i).getDescripcion())){
+//					vista.getOfertaDatos().getcbSector().setSelectedIndex(i);
+//				}
 			}
+			vista.getOfertaDatos().getcbSector().setSelectedItem(oferta.getSector().getDescripcion());
 		}catch (SQLException ex){ ControladorErrores.mostrarAlerta("Error al Obtener los sectores:\n"+ex); }
 
 		vista.showPanel(VistaBolsaTrabajo.PanelOfertaDatos);
