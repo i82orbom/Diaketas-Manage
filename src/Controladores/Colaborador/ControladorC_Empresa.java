@@ -294,6 +294,11 @@ public class ControladorC_Empresa {
 			exito = false;
 		}
 
+                if (!TestDatos.isTelefonoOFax(datos[C_Empresa.FAX_ID])){
+			vista.getPanelEmpresaDatos().setColorLabelFax(Color.red);
+			exito = false;
+		}
+                
 		if (!TestDatos.isNombre(datos[C_Empresa.NOMBRE_ID])){
 			vista.getPanelEmpresaDatos().setColorLabelNombre(Color.red);
 			exito = false;
@@ -319,11 +324,15 @@ public class ControladorC_Empresa {
 			exito = false;
 		}
 
-		if (datos[C_Empresa.TELEFONO2_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[C_Empresa.TELEFONO2_ID]))
+		if (datos[C_Empresa.TELEFONO2_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[C_Empresa.TELEFONO2_ID])){
+                        vista.getPanelEmpresaDatos().setColorLabelTelefonoMovil(Color.red);
+                        exito = false;
+                }
+                
+		if (datos[C_Empresa.FAX_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[C_Empresa.FAX_ID])){
+                        vista.getPanelEmpresaDatos().setColorLabelFax(Color.red);
 			exito = false;
-
-		if (datos[C_Empresa.FAX_ID].length() > 0 && !TestDatos.isTelefonoOFax(datos[C_Empresa.FAX_ID]))
-			exito = false;
+                }
 
 		return exito;
     }
@@ -407,14 +416,10 @@ public class ControladorC_Empresa {
                 vista.getPanelSocioDatos().setTextLabelErrorColaboracion("Las fechas son erroneas");
             }else{
                 try {
-                    try {
-                        ColaboracionesEmpresa = ColaboracionJDBC.getInstance().HistorialColaboraciones(C_Empresa_temp, TestDatos.formatter.parse(fechainicial), TestDatos.formatter.parse(fechafinal));
-                    } catch (SQLException ex) {
-                        Logger.getLogger(ControladorC_Empresa.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    ColaboracionesEmpresa = historialColaboraciones(C_Empresa_temp, TestDatos.formatter.parse(fechainicial), TestDatos.formatter.parse(fechafinal));
                 } catch (ParseException ex) {
-                        Logger.getLogger(ControladorC_Empresa.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    Logger.getLogger(ControladorC_Empresa.class.getName()).log(Level.SEVERE, null, ex);
+                }          
             }
             actualizarTablaColaboraciones();
         }
