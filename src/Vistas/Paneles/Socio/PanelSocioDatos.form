@@ -752,6 +752,7 @@
                   <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="01/01/0001"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFechaFinColaboracion">
@@ -760,6 +761,7 @@
                   <Format format="dd/MM/yyyy" subtype="-1" type="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="01/01/3000"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">

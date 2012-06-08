@@ -42,7 +42,8 @@ public class Colaboracion extends Movimiento{
      * Obtener el OID de la Colaboracion
      * @return OID
      */
-    public Long getOIDColaboracion() {
+	@Override
+    public Long getOID() {
         return OID;
     }
     
@@ -50,7 +51,8 @@ public class Colaboracion extends Movimiento{
      * Asignar un OID a una Colaboracion
      * @param OID
      */
-    public void setOIDColaboracion(Long OID) {
+	@Override
+    public void setOID(Long OID) {
         this.OID = OID;
     }
     

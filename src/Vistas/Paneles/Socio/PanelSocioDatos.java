@@ -324,7 +324,6 @@ public class PanelSocioDatos extends javax.swing.JPanel {
         label7.setText("Datos personales");
 
         label14.setText("de");
-        label14.setVisible(false);
 
         radioSexoFemeninoSocio.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroupSexo.add(radioSexoFemeninoSocio);
@@ -618,9 +617,11 @@ public class PanelSocioDatos extends javax.swing.JPanel {
 
         jFormattedTextFechaInicioColaboracion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         jFormattedTextFechaInicioColaboracion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextFechaInicioColaboracion.setText("01/01/0001");
 
         jFormattedTextFechaFinColaboracion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         jFormattedTextFechaFinColaboracion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextFechaFinColaboracion.setText("01/01/3000");
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Fecha Inicial");
@@ -723,7 +724,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                         .addComponent(btGuardarColaboracionSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(labelErrorColaboracion)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         jTabbedPaneSocio.addTab("Colaboraciones", PanelColaboracionesSocio);
@@ -860,7 +861,7 @@ public class PanelSocioDatos extends javax.swing.JPanel {
                             .addComponent(btGuardarCuotaSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelErrorCuota)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jTabbedPaneSocio.addTab("Cuotas", PanelCuotasSocio);

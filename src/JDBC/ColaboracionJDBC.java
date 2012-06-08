@@ -100,7 +100,7 @@ public class ColaboracionJDBC {
     public boolean eliminarColaboracion(Colaboracion c) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "DELETE FROM Colaboracion WHERE OID= '"+c.getOIDColaboracion()+"'";
+        String sql = "DELETE FROM Colaboracion WHERE OID= '"+c.getOID()+"'";
 
         try{
             driver.inicioTransaccion();
@@ -129,7 +129,6 @@ public class ColaboracionJDBC {
     public ArrayList<Colaboracion> HistorialColaboraciones(Colaborador c, Date FechaInicio, Date FechaFin) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        Voluntario vol = new Voluntario();
         String sql = "SELECT * FROM Colaboracion c, Movimiento m, Voluntario v WHERE c.OIDVoluntario = v.OID AND c.OID=m.OID AND c.OIDColaborador='"+c.getOID()+"' AND m.Fecha>='"+TestDatos.formatterBD.format(FechaInicio)+"' AND m.Fecha<='"+TestDatos.formatterBD.format(FechaFin)+"'";
 		
         ArrayList<Colaboracion> listaColaboraciones = new ArrayList<Colaboracion>();
@@ -141,10 +140,9 @@ public class ColaboracionJDBC {
 
             while(rs.next()){
                 colaboracion = new Colaboracion();
-				colaboracion.setOIDColaboracion(rs.getLong("OID"));
+				colaboracion.setOID(rs.getLong("OID"));
 				colaboracion.setColaborador(c);
 				colaboracion.setVoluntario(VoluntarioJDBC.getInstance().obtenerVoluntario(rs.getLong("OIDVoluntario")));
-				colaboracion.setVoluntario(vol);
                 colaboracion.setFecha(rs.getDate("Fecha"));
                 colaboracion.setImporte(rs.getInt("Cantidad"));
                 colaboracion.setConcepto(rs.getString("Concepto"));
@@ -164,7 +162,6 @@ public class ColaboracionJDBC {
 	public boolean comprobarSiColaboracion(Long oid) throws SQLException{
 		DriverJDBC driver = DriverJDBC.getInstance();
 		String sql = "SELECT * FROM Colaboracion c WHERE c.OID='"+oid+"'";
-		System.out.println(sql);
 		boolean existe=false;
         try {
             driver.conectar();

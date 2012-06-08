@@ -98,7 +98,6 @@ public class CuotaJDBC {
 
         DriverJDBC driver = DriverJDBC.getInstance();
         String sql = "UPDATE Cuota SET FechaUltimoPago=DATE_ADD('"+TestDatos.formatterBD.format(c.getFechaUltimoPago())+"',INTERVAL "+c.getIntervaloPagos()+" MONTH) WHERE OIDSocio='"+c.getSocio().getOID()+"'";
-		System.out.println(sql);
 
         try{
             driver.inicioTransaccion();
@@ -125,8 +124,8 @@ public class CuotaJDBC {
     public boolean atrasarUltimoPago(Cuota c) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "UPDATE Cuota SET FechaUltimoPago='"+c.getFechaUltimoPago()+"'-'"+c.getIntervaloPagos()+"' WHERE OIDSocio='"+c.getSocio().getOID()+"'";
-
+        String sql = "UPDATE Cuota SET FechaUltimoPago=DATE_SUB('"+TestDatos.formatterBD.format(c.getFechaUltimoPago())+"',INTERVAL "+c.getIntervaloPagos()+" MONTH) WHERE OIDSocio='"+c.getSocio().getOID()+"'";
+		//System.out.println(sql);
         try{
             driver.inicioTransaccion();
             driver.actualizar(sql);
@@ -218,7 +217,7 @@ public class CuotaJDBC {
             if(rs.next()){
                 Cuota cuota = new Cuota();
 				cuota.setOIDCuota(rs.getLong("OID"));
-				//cuota.setSocio(rs.getLong("OIDSocio"));
+				cuota.setSocio(SocioJDBC.getInstance().obtenerSocio(rs.getString("DNI")));
                 cuota.setCantidad(rs.getDouble("Cantidad"));
                 cuota.setFechaFin(rs.getDate("FechaFin"));
                 cuota.setFechaInicial(rs.getDate("FechaInicio"));

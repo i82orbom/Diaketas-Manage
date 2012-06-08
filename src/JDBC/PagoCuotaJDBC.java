@@ -99,7 +99,7 @@ public class PagoCuotaJDBC {
     public boolean eliminarPagoCuota(PagoCuota pc) throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        String sql = "DELETE FROM PagoCuota WHERE OID='"+pc.getOIDPagoCuota()+"'";
+        String sql = "DELETE FROM PagoCuota WHERE OID='"+pc.getOID()+"'";
 
 
         try{
@@ -137,7 +137,7 @@ public class PagoCuotaJDBC {
 
             while(rs.next()){
                 PagoCuota PagoC = new PagoCuota();
-				PagoC.setOIDPagoCuota(rs.getLong("OID"));
+				PagoC.setOID(rs.getLong("OID"));
 				PagoC.setSocio(s);
 				PagoC.setVoluntario(VoluntarioJDBC.getInstance().obtenerVoluntario(rs.getLong("OIDVoluntario")));
                 PagoC.setConcepto(rs.getString("Concepto"));

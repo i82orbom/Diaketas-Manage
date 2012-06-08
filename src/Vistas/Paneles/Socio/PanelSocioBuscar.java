@@ -108,7 +108,6 @@ public class PanelSocioBuscar extends javax.swing.JPanel {
         });
         jScrollPane12.setViewportView(tableBuscarSocio);
 
-        textBuscarSocio.setText("Buscar");
         textBuscarSocio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         textBuscarSocio.setSelectionColor(new java.awt.Color(102, 204, 255));
 
@@ -162,7 +161,7 @@ public class PanelSocioBuscar extends javax.swing.JPanel {
                         .addComponent(jLabel81))
                     .addGap(44, 44, 44)
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btConsultar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))

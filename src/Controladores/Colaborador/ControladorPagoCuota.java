@@ -1,18 +1,15 @@
 
 package Controladores.Colaborador;
 
-import Controladores.TestDatos;
 import JDBC.CuotaJDBC;
 import JDBC.PagoCuotaJDBC;
 import JDBC.SocioJDBC;
 import Modelo.Cuota;
 import Modelo.PagoCuota;
-import Modelo.Socio;
-import Modelo.Voluntario;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  ** NOMBRE CLASE:
@@ -60,35 +57,39 @@ public class ControladorPagoCuota {
 
     public boolean anadirPagoCuota (PagoCuota pago) {
 
-        Cuota cuota;
+        Cuota cuota=null;
         try {
             cuota = SocioJDBC.getInstance().obtenerCuotaActiva(pago.getSocio());
         } catch (SQLException ex) {
             Logger.getLogger(ControladorPagoCuota.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-        try {
-            CuotaJDBC.getInstance().actualizarUltimoPago(cuota);
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorPagoCuota.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
+		if(cuota.getSocio()!=null){
+			try {
+				CuotaJDBC.getInstance().actualizarUltimoPago(cuota);
+			} catch (SQLException ex) {
+				Logger.getLogger(ControladorPagoCuota.class.getName()).log(Level.SEVERE, null, ex);
+				return false;
+			}
 
-        try {
-            PagoCuotaJDBC.getInstance().añadirPagoCuota(pago);
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorPagoCuota.class.getName()).log(Level.SEVERE, null, ex);
-        }
+			try {
+				PagoCuotaJDBC.getInstance().añadirPagoCuota(pago);
+			} catch (SQLException ex) {
+				Logger.getLogger(ControladorPagoCuota.class.getName()).log(Level.SEVERE, null, ex);
+			}
 
-        return true;
+			return true;
+		}
+		else
+			JOptionPane.showMessageDialog(null,"El socio no tiene ninguna cuota activa");
+			return false;
     }
 
     public boolean eliminarPagoCuota (PagoCuota pc) {
-        Socio s = new Socio();
-        s.setOID(pc.getOID());
+       
         Cuota c;
         try {
-            c = SocioJDBC.getInstance().obtenerCuotaActiva(s);
+            c = SocioJDBC.getInstance().obtenerCuotaActiva(pc.getSocio());
         } catch (SQLException ex) {
             Logger.getLogger(ControladorPagoCuota.class.getName()).log(Level.SEVERE, null, ex);
             return false;

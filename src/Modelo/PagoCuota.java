@@ -42,7 +42,7 @@ public class PagoCuota extends Movimiento{
      * Obtener el OID del Pago de una Cuota
      * @return OID
      */
-    public Long getOIDPagoCuota() {
+    public Long getOID() {
         return OID;
     }
     
@@ -50,7 +50,7 @@ public class PagoCuota extends Movimiento{
      * Asignar un OID al Pago de una Cuota
      * @param OID
      */
-    public void setOIDPagoCuota(Long OID) {
+    public void setOID(Long OID) {
         this.OID = OID;
     }            
 	

@@ -218,17 +218,26 @@ public class ControladorSocio{
 			Logger.getLogger(ControladorSocio.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	
-		ArrayList<Movimiento> pagos = new ArrayList<Movimiento>();
+		Movimiento movimiento = null;
 		for(int i=0; i<pagosCuotas.size(); i++){
-			pagos.add(pagosCuotas.get(i));
-			pagos.get(i).setOID(pagosCuotas.get(i).getOID());
+			movimiento = new Movimiento();
+			movimiento.setOID(pagosCuotas.get(i).getOID());
+			movimiento.setConcepto(pagosCuotas.get(i).getConcepto());
+			movimiento.setImporte(pagosCuotas.get(i).getImporte());
+			movimiento.setFecha(pagosCuotas.get(i).getFecha());
+			mov.add(movimiento);
+			
 		}
 		for(int i=0; i<pagosColaboraciones.size(); i++){
-			pagos.add(pagosColaboraciones.get(i));
-			pagos.get(i).setOID(pagosColaboraciones.get(i).getOID());
+			movimiento = new Movimiento();
+			movimiento.setOID(pagosColaboraciones.get(i).getOID());
+			movimiento.setConcepto(pagosColaboraciones.get(i).getConcepto());
+			movimiento.setImporte(pagosColaboraciones.get(i).getImporte());
+			movimiento.setFecha(pagosColaboraciones.get(i).getFecha());
+			mov.add(movimiento);
 		}
 		
-		return pagos;
+		return mov;
 	}
 
 	/**
@@ -803,6 +812,39 @@ public class ControladorSocio{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			int pos = vista.getPanelSocioDatos().getTablaColaboraciones().getSelectedRow();
+			Movimiento movi = mov.get(pos);
+			Colaboracion col= new Colaboracion();
+			PagoCuota cu = new PagoCuota();
+			if(ControladorColaboracion.getInstance().comprobarSiColaboracion(movi.getOID())){
+				if(socio_temp!=null)
+					col.setColaborador(socio_temp);
+				else
+					col.setColaborador(obtenerSocio(vista.getPanelSocioDatos().getTextDNI().getText()));
+				col.setVoluntario(ControladorPrincipal.getInstance().getVoluntario());
+				col.setOID(movi.getOID());
+				col.setConcepto(movi.getConcepto());
+				col.setImporte(movi.getImporte());
+				col.setFecha(movi.getFecha());
+				if(ControladorColaboracion.getInstance().eliminarColaboracion(col)){
+					mov.remove(pos);
+					vista.getPanelSocioDatos().setTextLabelErrorColaboracion("La colaboracion ha sido eliminada");
+					actualizarTablaColaboraciones();
+				}
+			}
+			else{
+				cu.setSocio(socio_temp);
+				cu.setVoluntario(ControladorPrincipal.getInstance().getVoluntario());
+				cu.setOID(movi.getOID());
+				cu.setConcepto(movi.getConcepto());
+				cu.setImporte(movi.getImporte());
+				cu.setFecha(movi.getFecha());
+				if(ControladorPagoCuota.getInstance().eliminarPagoCuota(cu)){
+					mov.remove(pos);
+					vista.getPanelSocioDatos().setTextLabelErrorColaboracion("El pago de la cuota ha sido eliminada");
+					actualizarTablaColaboraciones();
+				}
+			}
 		}
 	
 	}
@@ -827,11 +869,11 @@ public class ControladorSocio{
 			fechafin = vista.getPanelSocioDatos().getTextFechaFinal().getText();
 			
 			if(!datosCorrectos){
-				vista.getPanelSocioDatos().setTextLabelErrorColaboracion("Las fechas son erroneas");
+				vista.getPanelSocioDatos().setTextLabelErrorColaboracion("Las fechas no son erroneas");
 			}
 			else{
 				try {
-					mov = historialPagosCuotas(socio_temp, TestDatos.formatter.parse(fechaini), TestDatos.formatter.parse(fechafin));
+					 historialPagosCuotas(socio_temp, TestDatos.formatter.parse(fechaini), TestDatos.formatter.parse(fechafin));
 				} catch (ParseException ex) {
 					Logger.getLogger(ControladorSocio.class.getName()).log(Level.SEVERE, null, ex);
 				}
@@ -869,7 +911,7 @@ public class ControladorSocio{
 
 			@Override
 			public Object getValueAt(int row, int col) {
-				boolean existe=false;
+
 				switch (col) {
 					case 0:
 						return mov.get(row).getImporte();
@@ -879,8 +921,6 @@ public class ControladorSocio{
 						return mov.get(row).getConcepto();
 					case 3:
 						if(ControladorColaboracion.getInstance().comprobarSiColaboracion(mov.get(row).getOID()))
-							existe=true;
-						if(existe)
 							return "Colaboracion";
 						else
 							return "Cuota";
