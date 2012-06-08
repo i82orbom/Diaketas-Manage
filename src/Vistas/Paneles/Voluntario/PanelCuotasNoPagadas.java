@@ -17,6 +17,7 @@ public class PanelCuotasNoPagadas extends javax.swing.JPanel {
      */
     public PanelCuotasNoPagadas() {
         initComponents();
+		labelError.setVisible(false);
     }
 
 	public JButton getBtGuardarPagoCuota(){

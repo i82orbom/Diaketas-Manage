@@ -27,7 +27,6 @@ package JDBC;
 import Controladores.TestDatos;
 import Modelo.PagoCuota;
 import Modelo.Socio;
-import Modelo.Voluntario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -205,11 +205,11 @@ public class CuotaJDBC {
     public ArrayList<Cuota> comprobarImpagos() throws SQLException{
 
         DriverJDBC driver = DriverJDBC.getInstance();
-        Date fechaActual = null;
+        Date fechaActual = new Date();
         ArrayList<Cuota> listaCuotas = new ArrayList<Cuota>();
 
-        String sql ="SELECT * FROM Cuota c, Socio s WHERE c.OIDSocio = s.OID AND c.fechaUltimoPago+c.intervaloPagos < '"+fechaActual.getTime()+"'";
-
+        String sql ="SELECT * FROM Cuota c, Socio s, Persona p WHERE c.OIDSocio = s.OID AND c.OIDSocio = p.OID AND p.OID = s.OID AND DATE_ADD(FechaUltimoPago ,INTERVAL IntervalosPagos MONTH) < '"+TestDatos.formatterBD.format(fechaActual.getTime())+"'";
+		System.out.println(sql);
         try {
             driver.conectar();
             ResultSet rs = driver.seleccionar(sql);

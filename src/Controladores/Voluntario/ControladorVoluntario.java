@@ -1,6 +1,9 @@
 
 package Controladores.Voluntario;
 
+import Controladores.Colaborador.ControladorCuota;
+import Controladores.Colaborador.ControladorPagoCuota;
+import Controladores.Colaborador.ControladorSocio;
 import Controladores.ControladorErrores;
 import Controladores.ControladorPrincipal;
 import Controladores.TestDatos;
@@ -81,13 +84,15 @@ public class ControladorVoluntario {
 
     }
 
+
     private VistaVoluntario vista;
     // el voluntario que esta modificando
     Voluntario voluntario_temp;
     // List de voluntarios por la tabla
     private ArrayList<Voluntario> voluntarios = new ArrayList<Voluntario>();
+	ArrayList<Cuota> cuotas = null;
     private String[] columnNames = {"DNI", "Nombre y Apellidos", "Fecha de Nacimiento", "Localidad", "Telefono movil"};
-
+	private String [] columnNamesCuotas = {"DNI", "Cantidad de cuota", "Cantidad que debe", "Intervalo de pago", "Fecha ultimo pago"};
     /**
      * Constructor de la clase
      */
@@ -121,6 +126,7 @@ public class ControladorVoluntario {
 		vista.getPanelVoluntarioAñadirColaboraciones().getBtLimpiarSocio().addActionListener(new BtLimpiarSocioListener());
 		vista.getPanelVoluntarioAñadirColaboraciones().getBtLimpiarEmpresa().addActionListener(new BtLimpiarEmpresaListener());
 		vista.getPanelVoluntarioAñadirColaboraciones().getBtLimpiarColaborador().addActionListener(new BtLimpiarColaboradorListener());
+		vista.getPanelVoluntarioCuotasNoPagadas().getBtGuardarPagoCuota().addActionListener(new BtGuardarPagoCuotaListener());
 
         anadirKeyListener();
         // al principio mostrar la vista de inicio
@@ -181,6 +187,7 @@ public class ControladorVoluntario {
 
     private void mostrarVistaCuotasNoPagadas() {
         vista.showPanel(VistaVoluntario.panelCuotas);
+		ControladorVoluntario.getInstance(vista).ComprobarImpagos();
         vista.getBarraDeNavegacion().setTextLabelNivel1("Voluntario");
         vista.getBarraDeNavegacion().setTextLabelNivel2("Colaboraciones");
         vista.getBarraDeNavegacion().setTextLabelNivel3("Cuotas no pagadas");
@@ -800,5 +807,130 @@ public class ControladorVoluntario {
 				}
 			}
 		}
+	}
+	public class BtGuardarPagoCuotaListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			boolean datosCorrectos=true;
+			if( !TestDatos.isNombre( vista.getPanelVoluntarioCuotasNoPagadas().getTextConcepto().getText()) ) {
+				vista.getPanelVoluntarioCuotasNoPagadas().getTextConcepto().setForeground(Color.RED);
+				datosCorrectos = false;
+			}
+			if( !TestDatos.isMoney(vista.getPanelVoluntarioCuotasNoPagadas().getTextCantidad().getText()) ) {
+				vista.getPanelVoluntarioCuotasNoPagadas().getTextCantidad().setForeground(Color.RED);
+				datosCorrectos = false;
+			}
+			if( !TestDatos.isCIF( vista.getPanelVoluntarioCuotasNoPagadas().getTextDNI().getText()) ) {
+				vista.getPanelVoluntarioCuotasNoPagadas().getTextDNI().setForeground(Color.RED);
+				datosCorrectos = false;
+			}
+			if( !TestDatos.isFecha( vista.getPanelVoluntarioCuotasNoPagadas().getTextFecha().getText())) {
+				vista.getPanelVoluntarioCuotasNoPagadas().getTextFecha().setForeground(Color.RED);
+				datosCorrectos = false;
+			}
+			if(!datosCorrectos){
+				vista.getPanelVoluntarioCuotasNoPagadas().setLabelError("Los campos en rojo tienes errores.");
+			}
+			else{
+				PagoCuota pago= new PagoCuota();
+				Socio s = null;
+				try {
+					s = SocioJDBC.getInstance().obtenerSocio(vista.getPanelVoluntarioCuotasNoPagadas().getTextDNI().getText());
+				} catch (SQLException ex) {
+					Logger.getLogger(ControladorVoluntario.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				if(s!=null){
+					pago.setImporte(Float.parseFloat(vista.getPanelVoluntarioCuotasNoPagadas().getTextCantidad().getText()));
+					pago.setConcepto(vista.getPanelVoluntarioCuotasNoPagadas().getTextConcepto().getText());
+					try {	
+						pago.setFecha(TestDatos.formatter.parse(vista.getPanelVoluntarioCuotasNoPagadas().getTextFecha().getText()));				
+					} catch (ParseException ex) {
+						Logger.getLogger(ControladorColaboracion.class.getName()).log(Level.SEVERE, null, ex);
+					}
+					pago.setSocio(s);
+					pago.setVoluntario(ControladorPrincipal.getInstance().getVoluntario());
+
+					if(ControladorPagoCuota.getInstance().anadirPagoCuota(pago)){
+						vista.getPanelVoluntarioCuotasNoPagadas().setLabelError("El pago de la cuota ha sido añadido");
+					}
+					else
+						vista.getPanelVoluntarioCuotasNoPagadas().setLabelError("El pago de la cuota no ha sido añadido");
+				}
+				else{
+						vista.getPanelVoluntarioCuotasNoPagadas().setLabelError("El socio con ese CIF no existe");
+				}
+			}
+		}		
+	}
+	public void ComprobarImpagos(){
+		
+		cuotas = ControladorCuota.getInstance().comprobarImpagos();
+		if(cuotas!=null){
+			actualizarTablaCuotasNoPagadas();
+		}
+	}
+	
+	public void actualizarTablaCuotasNoPagadas(){
+	TableModel tableModel = new TableModel() {
+
+			@Override
+			public int getRowCount() {
+				return cuotas.size();
+			}
+
+			@Override
+			public int getColumnCount() {
+				return columnNamesCuotas.length;
+			}
+
+			@Override
+			public String getColumnName(int i) {
+				return columnNamesCuotas[i];
+			}
+
+			@Override
+			public Class<?> getColumnClass(int i) {
+				return String.class;
+			}
+
+			@Override
+			public boolean isCellEditable(int i, int i1) {
+				return false;
+			}
+
+			@Override
+			public Object getValueAt(int row, int col) {
+				switch (col) {
+					case 0:
+						return cuotas.get(row).getSocio().getDNI();
+					case 1:
+						return cuotas.get(row).getCantidad();
+					case 2:
+						return cuotas.get(row).getCantidad();
+					case 3:
+						return cuotas.get(row).getIntervaloPagos();
+					case 4:
+						return cuotas.get(row).getFechaUltimoPago();
+				}
+				return "";
+			}
+
+			@Override
+			public void setValueAt(Object o, int row, int col) {
+				throw new UnsupportedOperationException("Not supported yet.");
+			}
+
+			@Override
+			public void addTableModelListener(TableModelListener tl) {
+
+			}
+
+			@Override
+			public void removeTableModelListener(TableModelListener tl) {
+
+			}
+		};
+		vista.getPanelVoluntarioCuotasNoPagadas().getTablaCuotas().setModel(tableModel);
 	}
 }

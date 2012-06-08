@@ -82,7 +82,7 @@ public class ControladorCuota {
         }
     }
 
-    public ArrayList<Cuota> comprobarImpagos (Socio s) {
+    public ArrayList<Cuota> comprobarImpagos () {
         ArrayList<Cuota> cuotas = null;
         try {
             cuotas = CuotaJDBC.getInstance().comprobarImpagos();
