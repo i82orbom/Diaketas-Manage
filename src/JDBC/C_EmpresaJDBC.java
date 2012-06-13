@@ -263,7 +263,7 @@ public class C_EmpresaJDBC {
                 Empresa.setDireccionWeb(resultados.getString("DireccionWeb"));
                 Empresa.setFax(resultados.getString("Fax"));
 
-                Empresa.setCP(resultados.getString("CodigoPostal"));
+                Empresa.setCP(resultados.getString("CP"));
                 Empresa.setDireccion(resultados.getString("Direccion"));
                 Empresa.setEmail(resultados.getString("Email"));
                 Empresa.setLocalidad(resultados.getString("Localidad"));
